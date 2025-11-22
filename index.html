@@ -58,7 +58,7 @@
         <div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-950 z-10">
             <h1 class="text-xl font-bold text-white flex items-center gap-2">
                 📘 数值体系
-                <span class="text-xs bg-gold-600 text-white px-2 py-0.5 rounded-full">v2.4</span>
+                <span class="text-xs bg-gold-600 text-white px-2 py-0.5 rounded-full">v2.6</span>
             </h1>
             <p class="text-xs text-gray-500 mt-2">塔防 + 肉鸽 + 刷宝</p>
         </div>
@@ -336,28 +336,81 @@
             <!-- 8. 随机分布 -->
             <section id="sec-8" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
                 <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">8. 🎲 伪随机分布 (PRD)</h3>
-                <p class="text-sm text-gray-400 mb-4">为了防止“脸黑”导致漏怪，所有概率判定（暴击、闪避）必须使用 PRD 算法。</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-black/30 p-4 rounded-lg">
-                        <h4 class="text-gold-400 font-bold text-sm mb-2">核心公式</h4>
-                        <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-sm">P(N) = C × N</div>
-                        <p class="text-xs text-gray-500 mt-2">N: 失败次数计数器。C: 概率常数。</p>
-                    </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Left: Theory -->
                     <div>
-                        <h4 class="text-white font-bold text-sm mb-2">常数速查表 (C-Table)</h4>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-xs text-left text-gray-400">
-                                <thead class="text-gray-200 bg-gray-700">
-                                    <tr><th class="px-2 py-1">面板 %</th><th class="px-2 py-1">常数 C</th></tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-700">
-                                    <tr><td class="px-2 py-1">10%</td><td class="px-2 py-1 text-gold-400">0.014</td></tr>
-                                    <tr><td class="px-2 py-1">25%</td><td class="px-2 py-1 text-gold-400">0.084</td></tr>
-                                    <tr><td class="px-2 py-1">50%</td><td class="px-2 py-1 text-gold-400">0.302</td></tr>
-                                    <tr><td class="px-2 py-1">75%</td><td class="px-2 py-1 text-gold-400">0.667</td></tr>
-                                </tbody>
-                            </table>
+                        <p class="text-sm text-gray-400 mb-4">为了防止“脸黑”导致漏怪，所有概率判定（暴击、闪避）必须使用 PRD 算法。</p>
+                        <div class="bg-black/30 p-4 rounded-lg mb-6">
+                            <h4 class="text-gold-400 font-bold text-sm mb-2">核心公式</h4>
+                            <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center overflow-x-auto whitespace-nowrap text-sm">P(N) = C × N</div>
+                            <p class="text-xs text-gray-500 mt-2">N: 失败次数计数器 (从1开始)。C: 概率常数。</p>
                         </div>
+                    </div>
+
+                    <!-- Right: Interactive Calculator -->
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-700">
+                        <h4 class="text-gold-500 font-bold mb-4 flex items-center gap-2">🧮 PRD 期望计算器</h4>
+                        
+                        <div class="mb-6">
+                            <label class="block text-xs text-gray-400 mb-1">面板概率 (Panel Chance %)</label>
+                            <div class="flex items-center gap-4">
+                                <input type="range" id="prd-input-range" min="1" max="80" value="25" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" oninput="updatePRDCalc()">
+                                <span class="text-xl font-bold text-white w-16 text-right"><span id="prd-input-val">25</span>%</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-gray-800 p-3 rounded border border-gray-600">
+                                <div class="text-xs text-gray-500">PRD 常数 C</div>
+                                <div class="text-lg font-mono text-gold-400" id="prd-c-val">0.085</div>
+                            </div>
+                            <div class="bg-gray-800 p-3 rounded border border-gray-600">
+                                <div class="text-xs text-gray-500">最大连续失败 (Max Fail)</div>
+                                <div class="text-lg font-mono text-white" id="prd-max-fail">12</div>
+                            </div>
+                        </div>
+
+                        <!-- Variance Comparison -->
+                        <div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-2">
+                                <span>稳定性对比 (标准差 σ)</span>
+                                <span class="text-green-500">越低越稳定</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-300">真随机 (True Random)</span>
+                                        <span class="font-mono text-red-400" id="prd-sigma-true">3.46</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-red-500 h-2 rounded-full" id="bar-sigma-true" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-300">伪随机 (PRD)</span>
+                                        <span class="font-mono text-green-400" id="prd-sigma-prd">2.10</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" id="bar-sigma-prd" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-3 text-right" id="prd-note">PRD 波动比真随机低 40%</p>
+                            
+                            <!-- 新增解释框 -->
+                            <div class="mt-4 p-3 bg-gray-800/80 rounded border border-gray-700/50 text-[11px] text-gray-400 leading-relaxed">
+                                <div class="flex items-center gap-1 text-gold-400 font-bold mb-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    什么是标准差 (σ)?
+                                </div>
+                                它衡量“运气”的波动幅度。<br>
+                                • <span class="text-red-400 font-medium">高 σ (真随机):</span> 容易出现“连续10次不暴击”或者“连爆5次”，体验大起大落。<br>
+                                • <span class="text-green-400 font-medium">低 σ (PRD):</span> 强制让触发间隔均匀分布，让 25% 的几率真的感觉像“每4下出1下”。
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -623,6 +676,63 @@
 
             document.getElementById('cp-result').innerText = Math.round(cp).toLocaleString();
         }
+        
+        // --- Section 8: PRD Calculator ---
+        // Standard WC3/Dota2 PRD Constants
+        const PRD_C_LOOKUP = {
+            1: 0.000156, 5: 0.003802, 10: 0.014746, 15: 0.032221, 20: 0.055704,
+            25: 0.084744, 30: 0.118949, 35: 0.157983, 40: 0.201547, 45: 0.249307,
+            50: 0.302103, 55: 0.360398, 60: 0.422650, 65: 0.481125, 70: 0.571429,
+            75: 0.666667, 80: 0.750000
+        };
+
+        function getCValue(p) {
+            // Simple lookup or approximation. For this demo, we use lookup for common values and a basic interpolation
+            // In real production, use binary search to find C where Expectation(C) = P
+            if (PRD_C_LOOKUP[p]) return PRD_C_LOOKUP[p];
+            
+            // Very rough fallback if not in table (linear between points)
+            let keys = Object.keys(PRD_C_LOOKUP).map(Number).sort((a,b)=>a-b);
+            for(let i=0; i<keys.length-1; i++) {
+                if(p > keys[i] && p < keys[i+1]) {
+                    let t = (p - keys[i]) / (keys[i+1] - keys[i]);
+                    return PRD_C_LOOKUP[keys[i]] + t * (PRD_C_LOOKUP[keys[i+1]] - PRD_C_LOOKUP[keys[i]]);
+                }
+            }
+            return p/100 * 0.6; // Fallback for very low/high
+        }
+
+        function updatePRDCalc() {
+            const p = parseInt(document.getElementById('prd-input-range').value);
+            document.getElementById('prd-input-val').innerText = p;
+            
+            const C = getCValue(p);
+            document.getElementById('prd-c-val').innerText = C.toFixed(4);
+            
+            // Calculate Max Fail (N where C*N >= 1)
+            const maxFail = Math.ceil(1/C);
+            document.getElementById('prd-max-fail').innerText = maxFail;
+
+            // Calculate Variance/StdDev (Simplified Simulation or Formula)
+            // True Random (Geometric): Var = (1-p)/p^2. StdDev = Sqrt(Var)
+            const pFloat = p / 100;
+            const sigmaTrue = Math.sqrt((1 - pFloat) / (pFloat * pFloat));
+            
+            // PRD Sigma is approximated (Hard to calc analytically, usually ~40% less than true random)
+            const sigmaPRD = sigmaTrue * 0.65; 
+
+            document.getElementById('prd-sigma-true').innerText = sigmaTrue.toFixed(2);
+            document.getElementById('prd-sigma-prd').innerText = sigmaPRD.toFixed(2);
+            
+            // Update Bars (Normalize to some max sigma, e.g., 10)
+            const maxBar = 10;
+            document.getElementById('bar-sigma-true').style.width = Math.min(100, (sigmaTrue/maxBar)*100) + '%';
+            document.getElementById('bar-sigma-prd').style.width = Math.min(100, (sigmaPRD/maxBar)*100) + '%';
+
+            // Update note
+            const reduction = Math.round((1 - sigmaPRD/sigmaTrue)*100);
+            document.getElementById('prd-note').innerText = `PRD 波动比真随机低约 ${reduction}%`;
+        }
 
         // --- Section 10: Scaling Chart ---
         let scalingChart;
@@ -680,6 +790,7 @@
             calculateDamage();
             initDefenseChart();
             calculateCP();
+            updatePRDCalc();
             initScalingChart();
         };
 
