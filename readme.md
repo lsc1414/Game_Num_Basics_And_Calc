@@ -1,7 +1,42 @@
-# 📘 核心数值体系定义手册 (Numerical System Base)
+# 📘 核心数值体系定义手册
 
 **适用范围：** 塔防 + 肉鸽 + 刷宝
 **设计参考：** Path of Exile (PoE), Diablo 4, Warframe
+
+-----
+
+## 0. 🧭 数值设计综述：给非数值策划的导读
+
+**写在前面：** 如果你对数学感到头疼，请先读这一章。数值不是为了刁难策划，而是为了翻译体验。
+
+### 0.1 数值到底是什么？
+数值是**游戏体验的翻译官**。
+* 策划说：“这个怪很难打。”（模糊的体验）
+* 程序问：“多少血？多少攻？”
+* 数值回答：“血量是玩家 DPS 的 20 倍，攻击力能打掉玩家 40% 的血。”（精确的体验）
+
+数值的作用只有两个：
+1.  **量化体验**：把“难/简单”、“爽/憋屈”变成具体的数字。
+2.  **控制节奏**：决定玩家多久爽一次，多久遇到一个坎。
+
+### 0.2 为什么有的游戏好像不需要数值？
+像《超级马里奥》、《蔚蓝》、《只狼》这样的动作游戏，显性数值很少。
+* **技巧主导 (Skill-Based)**：核心是验证玩家的**操作**（跳得准不准，反应快不快）。
+* **二元判定**：结果通常只有 **0 (失败)** 和 **1 (成功)**。要么跳过去，要么死。
+* **隐形数值**：其实它们也有数值（跳跃高度、无敌帧时间），但这些是**手感参数**，不需要玩家去“刷”。
+
+**结论：** 如果核心乐趣是**“操作精准度”**，数值体系应极简化。
+
+### 0.3 为什么本游戏（塔防/肉鸽）极其依赖数值？
+因为核心乐趣是 **“构建 (Build) 与 验证 (Verify)”**。
+* **策略颗粒度**：数值提供了丰富的中间态——“打得更快了”、“暴击更多了”。
+* **成长反馈**：操作水平有上限（手残党），但**数值成长是无限的**。这是长线留存的基础。
+* **多样性**：通过不同的数值维度（攻速流 vs 暴击流），创造出不同的玩法。
+
+### 0.4 给非数值策划的三个建议
+1.  **先想体验，再算公式**：不要上来就列公式。先描述画面：“我希望这个怪能抗住塔打 5 秒”。然后倒推：`怪物血量 = 塔DPS * 5`。
+2.  **关注比例 > 绝对值**：攻击力是 100 还是 10000 不重要。重要的是**杀怪时间 (TTK)** 是多少。只要比例对，体验就对。
+3.  **不要重新发明轮子**：本文档中的公式（减伤公式、PRD、独立乘区）是业界几十年的标准答案。直接用，别瞎改。
 
 -----
 
@@ -9,19 +44,20 @@
 
 这是整个游戏最核心的公式。所有伤害计算必须遵循此逻辑，严禁随意添加乘区。
 
-$$FinalDamage = OutgoingDamage \times DefMitigation$$
+**最终伤害 = 输出面板 (Outgoing) × 防御减伤系数 (DefMitigation)**
 
-其中 **OutgoingDamage (输出面板)** 的计算如下：
+其中 **输出面板** 的计算逻辑如下：
+
 > Outgoing = [基础伤害] × [增伤乘区] × [独立乘区] × [暴击乘区]
 
 **展开公式：**
-`Outgoing = [(面板攻击 × 技能倍率) + 技能固定伤] × (1 + Inc总和) × (1 + MoreA) × (1 + MoreB)... × 暴击倍率`
+`Outgoing = [(面板攻击 × 技能倍率) + 技能固定伤] × (1 + Inc总和) × (1 + MoreA) × (1 + MoreB)... × 暴击期望`
 
 ### 1.1 🧱 基础伤害的构成 (The Anatomy of Base Damage)
 
 这是你提到的“白值”与“系数”的结合点。
 
-$$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFlat}$$
+**公式：** `基础伤害 = (面板攻击 × 技能系数) + 技能固定伤害`
 
 1.  **💪 面板攻击 (Panel ATK):**
       * 来源：`角色基础` + `武器攻击` + `装备附加点伤(Flat)`。
@@ -61,11 +97,11 @@ $$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFl
 **计算过程：**
 
 1.  **基础区间 (Base):**
-      * $Base = (200 \times 1.5) + 50 = 300 + 50 = 350$
+      * `Base = (200 * 1.5) + 50 = 300 + 50 = 350`
 2.  **增伤区间 (Inc):**
-      * $Inc = 1 + 0.2 + 0.3 = 1.5$
+      * `Inc = 1 + 0.2 + 0.3 = 1.5`
 3.  **最终输出 (Outgoing):**
-      * $350 \times 1.5 \times 1.2 \times 2.0 = 1260$
+      * `350 * 1.5 * 1.2 * 2.0 = 1260`
 
 ### 1.4 ⚖️ 暴击稳定性 (Critical Stability)
 
@@ -86,12 +122,12 @@ $$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFl
   * **对于近战 (Melee) / 动作类:**
       * **问题：** 太刀有前摇(Wind-up)和后摇(Back-swing)。
       * **算法：** 攻速直接缩放**动画播放速度 (Animation Scale)**。
-      * $$AnimSpeed = BaseAnimSpeed \times (1 + \%IncAPS)$$
+      * **公式：** `AnimSpeed = BaseAnimSpeed * (1 + IncAPS%)`
       * *处理前摇：* 在塔防/肉鸽中，通常不建议做复杂的“卡肉”或“取消后摇”。直接整体加速动画即可。如果攻速极快（如 5.0 APS），建议简化动画为残影，避免模型鬼畜。
 
 ### 2.2 ⏳ 冷却时间 (Cooldown / CD)
 
-  * **公式：** $FinalCD = BaseCD \times (1 - \min(TotalCDR, Cap))$
+  * **公式：** `FinalCD = BaseCD * (1 - min(TotalCDR, Cap))`
   * **上限 (Cap):** 建议锁定 CDR 上限为 **75%** (即 4倍施法频率)。
       * *设计意图：* 防止无限控制或服务器崩溃。
 
@@ -125,7 +161,7 @@ $$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFl
 **射程主导，时间从属。** 适用于 90% 的弓箭、子弹、魔法。
 
   * **配置：** 策划只配 `Range` 和 `Speed`。
-  * **公式：** $Lifetime = \frac{Range}{Speed} \times Buffer$
+  * **公式：** `Lifetime = (Range / Speed) * Buffer`
   * **Buffer (追击冗余):** 建议取 **1.3 ~ 1.5**。
 
 #### B. 燃料模式 (Fuel Limited)
@@ -133,7 +169,7 @@ $$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFl
 **时间主导，射程从属。** 适用于 **喷火器**、**持续光束**。
 
   * **配置：** `Lifetime` (燃料) 为主属性。
-  * **物理结果：** $MaxDistance = Speed \times Lifetime$。
+  * **物理结果：** `MaxDistance = Speed * Lifetime`。
 
 ### 3.4 🛰️ 特殊弹道模式 (Advanced Ballistics)
 
@@ -164,7 +200,7 @@ $$\text{BaseDamage} = (\text{PanelATK} \times \text{SkillRatio}) + \text{SkillFl
 
 针对 **物理伤害 (Physical Damage)** 的减伤机制。
 
-$$PhysMitigation = \frac{Armor}{Armor + K}$$
+**公式：** `PhysMitigation = Armor / (Armor + K)`
 
   * **K (常数):** 决定曲线陡峭程度。建议取值 **3000**。
 
@@ -182,7 +218,7 @@ $$PhysMitigation = \frac{Armor}{Armor + K}$$
 
 #### A. 核心公式
 
-$$ResMultiplier = 1 - \min((TargetRes - AttackerPen), MaxResCap)$$
+`ResMultiplier = 1 - min((TargetRes - AttackerPen), MaxResCap)`
 
   * **TargetRes (目标抗性):** 敌人的面板抗性。
   * **AttackerPen (攻击者穿透):** 极其珍贵的攻击词条，直接做减法。
@@ -237,10 +273,10 @@ $$ResMultiplier = 1 - \min((TargetRes - AttackerPen), MaxResCap)$$
   * **场景：** 暴击率 > 100%。
   * **方案 A (Warframe 模式):** **红色暴击**。
       * 120% 暴击率 = 100% 造成 1倍爆伤，20% 几率造成 2倍爆伤（即暴击了再暴击）。
-      * *公式：* $CritTier = floor(CritRate)$; $FinalDmg = Base \times (1 + CritTier \times (CritDmg - 1))$
+      * **公式：** `CritTier = floor(CritRate)`; `FinalDmg = Base * (1 + CritTier * (CritDmg - 1))`
   * **方案 B (转化模式):**
       * 溢出的暴击率转化为暴击伤害。
-      * *公式：* 每 1% 溢出暴击率 -> 增加 2% 暴击伤害。
+      * **公式：** 每 1% 溢出暴击率 -> 增加 2% 暴击伤害。
 
 ### 5.2 🏹 攻速溢出 (Speed Overflow)
 
@@ -283,32 +319,32 @@ UI 上显示的数值必须与后端计算逻辑严格一致，但需要进行**
 #### A. 面板 DPS (Damage Per Second)
 
 这是玩家最爱看的数字，也是衡量强度的标准。
-$$DPS = AvgDamage \times FinalAPS \times CritMultiplier$$
+`DPS = AvgDamage * FinalAPS * CritMultiplier`
 其中：
 
-  * **AvgDamage (平均DPH):** $(MinDamage + MaxDamage) / 2$
-  * **CritMultiplier (暴击期望倍率):** $1 + (CritRate \times (CritDamage - 1))$
+  * **AvgDamage (平均DPH):** `(MinDamage + MaxDamage) / 2`
+  * **CritMultiplier (暴击期望倍率):** `1 + (CritRate * (CritDamage - 1))`
       * *注：如果 CritRate > 100% (红色暴击)，公式依然通用。*
 
 #### B. 技能冷却时间显示的动态变化 (Tooltip CD)
 
 在技能提示框 (Tooltip) 中，应当显示**计算 CDR 后**的实际时间。
-$$TooltipCD = BaseCD \times (1 - \min(PlayerCDR, Cap))$$
+`TooltipCD = BaseCD * (1 - min(PlayerCDR, Cap))`
 
-  * *UI 变色：* 如果当前 CD 小于 BaseCD，用 <color=green>绿色</color> 显示，表示受到增益。
+  * *UI 变色：* 如果当前 CD 小于 BaseCD，用 `<color=green>绿色</color>` 显示，表示受到增益。
 
 #### C. 有效生命值 (EHP - Effective HP)
 
 建议在防御面板的高级信息中显示，这比单纯的 HP 更有参考价值。
-$$EHP = \frac{HP}{(1 - DamageReduction) \times (1 - DodgeChance)}$$
+`EHP = HP / ((1 - DamageReduction) * (1 - DodgeChance))`
 
   * *示例：* 1000 血，50% 减伤，50% 闪避。
-  * $EHP = 1000 / (0.5 \times 0.5) = 4000$。
+  * `EHP = 1000 / (0.5 * 0.5) = 4000`。
   * *意义：* 闪避和护甲乘算后，极大提升了有效血量。
 
 -----
 
-## 7. 💪 战斗力计算标准 (Combat Power / Gear Score)
+## 7. 💪 战力计算标准 (Combat Power / Gear Score)
 
 **定义：** 战斗力（CP）是对单位综合强度的**静态估算**。
 **用途：** 关卡门槛限制、排行榜、给玩家的直观成长反馈。
@@ -316,7 +352,7 @@ $$EHP = \frac{HP}{(1 - DamageReduction) \times (1 - DodgeChance)}$$
 
 ### 7.1 🔢 计算公式 (CP Formula)
 
-$$CombatPower = \sum (AttributeValue \times Weight) + \sum (MechanicScore)$$
+`CombatPower = sum(AttributeValue * Weight) + sum(MechanicScore)`
 
 ### 7.2 🏋️ 属性权重参考表 (Standard Weight Table)
 
@@ -360,13 +396,34 @@ $$CombatPower = \sum (AttributeValue \times Weight) + \sum (MechanicScore)$$
 ## 8. 🎲 随机分布标准 (Random Distribution Standards)
 
 **定义：** 游戏中所有涉及概率判定（闪避、暴击、触发）的底层算法标准。
-**目的：** 消除真随机带来的体验方差（Bad Luck Protection）。
+**目的：** 消除真随机带来的体验方差（Bad Luck Protection），提供“符合直觉”的随机体验。
 
-### 8.1 🔮 伪随机分布 (PRD - Pseudo Random Distribution)
+### 8.1 核心概念解析：真随机 vs 伪随机
+
+#### A. 真随机 (True Random / Independent)
+* **原理：** 每次掷骰子都是独立的。之前的失败不会影响下一次成功的几率。
+* **统计学特征：**
+    * **期望 (Expectation):** 长期来看符合面板概率。
+    * **方差 (Variance):** **极高**。容易出现“连续10次不暴击”或者“连续5次暴击”的聚簇现象 (Clustering)。
+* **玩家体验：** “这游戏针对我！”、“这 20% 暴击率是假的吧？”。在小样本下（如一场战斗打几十下），体验极不稳定。
+
+#### B. 伪随机分布 (PRD / Dependent)
+* **原理：** 每次判定失败，下一次成功的几率会提升；一旦成功，几率重置为初始值。
+* **统计学特征：**
+    * **期望:** 通过调整初始系数 C，使得长期期望严格等于面板概率。
+    * **方差:** **极低**。它强制结果均匀分布，抑制了连续失败和连续成功的可能性。
+* **玩家体验：** “稳定”、“手感好”。25% 的几率感觉真的就像“每4下打出1下”。
+
+#### C. 为什么方差很重要？
+* **方差 (Variance)** 衡量的是数据偏离平均值的程度。
+* 在塔防中，高方差意味着**风险**。如果你的主力塔攻速慢、暴击率 50%，真随机可能导致它连续 3 次不暴击，这几秒的输出空窗期足以让怪跑掉（漏怪）。
+* PRD 通过降低方差，保证了输出的**稳定性**，让玩家可以信赖概率属性。
+
+### 8.2 伪随机分布 (PRD) 算法实现
 
 #### A. 核心公式
 
-$$P(N) = C \times N$$
+`P(N) = C * N`
 
   * **N:** 失败次数计数器（初始=1，成功后重置为1）。
   * **C:** 概率增量常数（查表可得）。
@@ -424,8 +481,8 @@ public class PRDSystem {
 #### A. 幸运一击 (Lucky Hit / Proc Rate)
 
   * **定义：** 影响 **“击中时触发特效”** 的概率。
-  * **公式：** $FinalChance = BaseChance \times (1 + Luck\%)$
-  * *示例：* 技能自带 10% 几率流血。玩家幸运+50%。最终触发率 = $10\% \times 1.5 = 15\%$。
+  * **公式：** `FinalChance = BaseChance * (1 + Luck%)`
+  * *示例：* 技能自带 10% 几率流血。玩家幸运+50%。最终触发率 = `10% * 1.5 = 15%`。
 
 #### B. 掉落幸运 (Loot Luck / Magic Find)
 
@@ -472,9 +529,9 @@ public class PRDSystem {
 
   * **不使用 PRD:** 掉落频率比攻击频率低太多，查表法太复杂。
   * **推荐：熵值累加 (Entropy System)**
-      * 初始掉率 $P = 1\%$。
-      * 每杀一只精英没出货，累加 $P = P + 0.1\%$。
-      * 出货后，重置 $P = 1\%$。
+      * 初始掉率 `P = 1%`。
+      * 每杀一只精英没出货，累加 `P = P + 0.1%`。
+      * 出货后，重置 `P = 1%`。
 
 -----
 
@@ -499,12 +556,12 @@ public class PRDSystem {
 
 #### A. 基础成长公式
 
-$$Stat_{Current} = Stat_{Base} \times (GrowthFactor)^{TimeOrWave}$$
+`Stat_Current = Stat_Base * (GrowthFactor ^ TimeOrWave)`
 
-  * **HP 成长:** 推荐 $Factor = 1.2$ (每分钟/每波)。
-      * *第10分钟:* $1.2^{10} \approx 6.19$ 倍。
-      * *第30分钟:* $1.2^{30} \approx 237$ 倍。
-  * **攻击成长:** 推荐 $Factor = 1.1$ (比血量慢，防止玩家被摸一下即死)。
+  * **HP 成长:** 推荐 `Factor = 1.2` (每分钟/每波)。
+      * *第10分钟:* `1.2 ^ 10 ≈ 6.19` 倍。
+      * *第30分钟:* `1.2 ^ 30 ≈ 237` 倍。
+  * **攻击成长:** 推荐 `Factor = 1.1` (比血量慢，防止玩家被摸一下即死)。
 
 #### B. 模型与质量膨胀 (Quality Scaling)
 
@@ -550,13 +607,13 @@ $$Stat_{Current} = Stat_{Base} \times (GrowthFactor)^{TimeOrWave}$$
 #### A. 控制强度 (Status Potency)
 
   * **作用：** 增加控制效果的持续时间或效果强度。
-  * **公式：** $Duration = BaseDuration \times (1 + Potency\%)$
+  * **公式：** `Duration = BaseDuration * (1 + Potency%)`
   * *用途：* 冰法流派核心词条。
 
 #### B. 控制抗性/韧性 (Tenacity)
 
   * **作用：** 减少受到的控制时间。
-  * **公式：** $FinalDuration = Duration \times (1 - \min(Tenacity, 0.9))$
+  * **公式：** `FinalDuration = Duration * (1 - min(Tenacity, 0.9))`
   * *注意：* Boss 必须拥有高韧性，否则会被永久晕眩。
 
 #### C. 状态易伤 (Damage to CC)
@@ -646,7 +703,7 @@ $$Stat_{Current} = Stat_{Base} \times (GrowthFactor)^{TimeOrWave}$$
   * **稀释效应 (Dilution):**
       * 假设你已有 +400% 增伤。
       * 再获得一个 "+50% 物理伤害" 词条。
-      * **实际提升:** $(1 + 4.5) / (1 + 4.0) = 5.5 / 5.0 = 1.1$ (即 **10%** 提升)。
+      * **实际提升:** `(1 + 4.5) / (1 + 4.0) = 5.5 / 5.0 = 1.1` (即 **10%** 提升)。
       * *结论:* 同样数值的词条，你拥有的越多，新获得的那个就越不值钱。
   * **设计目的:** 作为数值的**基石**。保证玩家前期有明显的成长，但防止后期数值指数级爆炸。
 
@@ -670,13 +727,13 @@ $$Stat_{Current} = Stat_{Base} \times (GrowthFactor)^{TimeOrWave}$$
 | 乘区名称 | 作用原理 | 提升公式 |
 | :--- | :--- | :--- |
 | **基础区** | 技能倍率、点伤 | 直接增加底数 |
-| **增伤区** | Inc 词条 | `× (1 + Inc总和)` |
-| **攻速区** | 攻击频率 | `× APS` |
-| **暴击区** | 双倍伤害 | `× (1 + Rate × (Dmg - 1))` |
-| **易伤区** | 敌人受到的伤害 | `× (1 + EnemyTaken%)` |
-| **抗性区** | 穿透与减抗 | `× (1 - (Res - Pen))` |
+| **增伤区** | Inc 词条 | `* (1 + Inc总和)` |
+| **攻速区** | 攻击频率 | `* APS` |
+| **暴击区** | 双倍伤害 | `* (1 + Rate * (Dmg - 1))` |
+| **易伤区** | 敌人受到的伤害 | `* (1 + EnemyTaken%)` |
+| **抗性区** | 穿透与减抗 | `* (1 - (Res - Pen))` |
 
-  * **黄金法则:** `2 × 2 × 2 = 8`，而 `4 × 1 × 1 = 4`。
+  * **黄金法则:** `2 * 2 * 2 = 8`，而 `4 * 1 * 1 = 4`。
   * **指导意义:** 当玩家觉得“伤害刮痧”时，不要让他再去堆攻击力了（稀释严重），引导他去堆攻速、暴击或穿透（开辟新乘区）。
 
 ### 12.2 🛡️ 为什么防御公式要用除法 (百分比减伤)?
@@ -729,11 +786,11 @@ $$Stat_{Current} = Stat_{Base} \times (GrowthFactor)^{TimeOrWave}$$
 
 | 属性 | 推荐增长公式 | 说明 |
 | :--- | :--- | :--- |
-| **怪物 HP** | $Base \times 1.2^{L}$ | **指数增长**。这是最核心的属性，必须跟上玩家 DPS 的膨胀。 |
-| **怪物攻击** | $Base \times 1.1^{L}$ | **缓慢指数**。攻击力不宜涨太快，否则容错率会变得极低（一击必杀）。 |
-| **怪物护甲** | $StepFunction(L)$ | **阶梯式增长**。每 5-10 关上一个台阶。 |
-| **怪物移速** | $Base \times (1 + 0.02 \times L)$ | **线性微增**。移速必须有硬上限（如玩家移速的 1.5 倍），否则无法风筝/塔无法命中。 |
-| **怪物数量** | $min(Cap, Base + 2 \times L)$ | **对数增长/封顶**。受限于显卡性能，数量不能无限涨，后期靠质量（精英怪）取胜。 |
+| **怪物 HP** | `Base * 1.2 ^ L` | 指数增长，核心属性。 |
+| **怪物攻击** | `Base * 1.1 ^ L` | 缓慢指数，防止被秒。 |
+| **怪物护甲** | `StepFunction(L)` | 阶梯式增长。每 5-10 关上一个台阶。 |
+| **怪物移速** | `Base * (1 + 0.02 * L)` | 线性微增。必须有硬上限（如玩家移速的 1.5 倍），否则无法风筝/塔无法命中。 |
+| **怪物数量** | `min(Cap, Base + 2 * L)` | 对数增长/封顶。受限于显卡性能，数量不能无限涨，后期靠质量（精英怪）取胜。 |
 
 ### 13.3 🧱 抗性墙设计 (Resistance Wall)
 
