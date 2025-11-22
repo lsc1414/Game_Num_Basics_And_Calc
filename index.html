@@ -58,7 +58,7 @@
         <div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-950 z-10">
             <h1 class="text-xl font-bold text-white flex items-center gap-2">
                 📘 数值体系
-                <span class="text-xs bg-gold-600 text-white px-2 py-0.5 rounded-full">v2.3</span>
+                <span class="text-xs bg-gold-600 text-white px-2 py-0.5 rounded-full">v2.4</span>
             </h1>
             <p class="text-xs text-gray-500 mt-2">塔防 + 肉鸽 + 刷宝</p>
         </div>
@@ -245,8 +245,8 @@
                 </div>
             </section>
 
-            <!-- 5-7. 溢出/UI/战力 -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- 5-6. 溢出/UI (Note: Sec 7 moved to detailed view below) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
                     <h4 class="font-bold text-white mb-2">5. 🌊 溢出转化</h4>
                     <p class="text-xs text-gray-400 mb-2">防止数值浪费，提升爽感。</p>
@@ -264,16 +264,74 @@
                         <li>EHP: <span class="font-mono text-gold-400">{N0}</span> (高级面板)</li>
                     </ul>
                 </div>
-                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
-                    <h4 class="font-bold text-white mb-2">7. 💪 战力计算</h4>
-                    <p class="text-xs text-gray-400 mb-2">锚点: 1 ATK = 1 CP。</p>
-                    <ul class="text-xs space-y-1">
-                        <li>Crit%: 15.0权重</li>
-                        <li>CDR%: 20.0权重</li>
-                        <li>More%: 25.0权重</li>
-                    </ul>
-                </div>
             </div>
+
+            <!-- 7. 战力计算 -->
+            <section id="sec-7" class="section-card bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">7. 💪 战力计算标准</h3>
+                <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-lg">
+                    CombatPower = ∑(Attribute × Weight) + ∑(MechanicScore)
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                    <!-- Calculator -->
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-700">
+                        <h4 class="text-gold-500 font-bold mb-4 flex items-center gap-2">🧮 战力模拟器</h4>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">攻击力 (1.0)</label>
+                                    <input type="number" id="cp-atk" value="1000" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">生命值 (0.2)</label>
+                                    <input type="number" id="cp-hp" value="5000" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">暴击率% (15)</label>
+                                    <input type="number" id="cp-crit" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">暴伤% (8)</label>
+                                    <input type="number" id="cp-critdmg" value="50" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">独立增伤% (25)</label>
+                                    <input type="number" id="cp-more" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">机制加分 (Fixed)</label>
+                                    <input type="number" id="cp-mech" value="0" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()" placeholder="如: 投射物+1=500">
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center bg-black/40 p-3 rounded border border-gold-500/30 mt-4">
+                                <span class="text-gray-400 text-sm">战力评分:</span>
+                                <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-red-500" id="cp-result">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weights Table -->
+                    <div>
+                        <h4 class="text-white font-bold mb-2 text-sm">⚖️ 属性权重参考表 (1攻=1分)</h4>
+                        <div class="overflow-hidden rounded-lg border border-gray-700">
+                            <table class="w-full text-xs text-left text-gray-400">
+                                <thead class="bg-gray-800 text-gray-200">
+                                    <tr><th class="p-2">属性</th><th class="p-2">权重</th><th class="p-2">说明</th></tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-700">
+                                    <tr><td class="p-2">攻击力</td><td class="p-2 text-gold-400">1.0</td><td class="p-2">基准锚点</td></tr>
+                                    <tr><td class="p-2">生命值</td><td class="p-2 text-gold-400">0.2</td><td class="p-2">量大管饱</td></tr>
+                                    <tr><td class="p-2">暴击率%</td><td class="p-2 text-gold-400">15.0</td><td class="p-2">1%暴击 ≈ 15攻击</td></tr>
+                                    <tr><td class="p-2">暴击伤害%</td><td class="p-2 text-gold-400">8.0</td><td class="p-2">价值约为暴击率一半</td></tr>
+                                    <tr><td class="p-2">冷却缩减%</td><td class="p-2 text-gold-400">20.0</td><td class="p-2">稀有且有上限</td></tr>
+                                    <tr><td class="p-2">独立增伤%</td><td class="p-2 text-gold-400">25.0</td><td class="p-2">最珍贵的乘区</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- 8. 随机分布 -->
             <section id="sec-8" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
@@ -408,6 +466,7 @@
             { id: 'sec-2', title: '2. 速度与冷却' },
             { id: 'sec-3', title: '3. 射程弹道' },
             { id: 'sec-4', title: '4. 防御体系' },
+            { id: 'sec-7', title: '7. 战力计算' },
             { id: 'sec-8', title: '8. 伪随机 (PRD)' },
             { id: 'sec-9', title: '9. 掉落系统' },
             { id: 'sec-10', title: '10. 无尽成长' },
@@ -544,6 +603,27 @@
             defenseChart.update();
         }
 
+        // --- Section 7: Combat Power Calculator ---
+        function calculateCP() {
+            const val = (id) => parseFloat(document.getElementById(id).value) || 0;
+            
+            // Weights (Based on Doc)
+            const W = {
+                atk: 1.0, hp: 0.2, 
+                crit: 15.0, critDmg: 8.0, more: 25.0
+            };
+
+            let cp = 0;
+            cp += val('cp-atk') * W.atk;
+            cp += val('cp-hp') * W.hp;
+            cp += val('cp-crit') * W.crit;
+            cp += val('cp-critdmg') * W.critDmg;
+            cp += val('cp-more') * W.more;
+            cp += val('cp-mech'); // Fixed score directly added
+
+            document.getElementById('cp-result').innerText = Math.round(cp).toLocaleString();
+        }
+
         // --- Section 10: Scaling Chart ---
         let scalingChart;
         function initScalingChart() {
@@ -599,6 +679,7 @@
         window.onload = () => {
             calculateDamage();
             initDefenseChart();
+            calculateCP();
             initScalingChart();
         };
 
