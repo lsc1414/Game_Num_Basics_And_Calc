@@ -3,48 +3,57 @@
 [English Version](README.md) | [中文版本](README_CN.md)
 
 Welcome to the core design and calculation repository for **Project Vampirefall**.
-This project is a hybrid game combining **Tower Defense**, **Roguelike**, and **Looter** mechanics, inspired by titles like *Path of Exile*, *Vampire Survivors*, and *GemCraft*.
+This project is a hybrid game combining **Tower Defense**, **Roguelike**, and **Looter** mechanics.
 
-This directory serves as the "Brain" of the project, containing the mathematical models, design philosophies, and technical standards that drive the game's balance and architecture.
+This directory serves as the "Single Source of Truth" for all mathematical models, design philosophies, and technical standards.
 
 ---
 
 ## 📚 Documentation Map
 
-### 1. 🧠 Design & Mathematics (The "Why" & "How")
-*   **[Numerical Design Manual](Numerical_Design_Manual.md)** (Renamed from old readme)
-    *   **What is it?** The "Bible" of the game's math.
-    *   **Contents:** Damage formulas, PRD algorithms, Armor vs. Dodge curves, Loot bucket logic.
-    *   **Target Audience:** Systems Designers, Gameplay Programmers.
+### 1. 🧠 Game Design (The "Soul")
+#### Core Mechanics
+*   **[Numerical Manual](Design/Numerical_Manual.md):** The "Bible" of math (Damage formulas, Defense models).
+*   **[Combat System](Design/Mechanics/Combat_System.md):** Damage types, Status ailments, Poise/Stagger.
+*   **[Tower Defense](Design/Mechanics/Tower_Defense_System.md):** Tower types, Construction rules, Hero synergy.
+*   **[Roguelike Perks](Design/Mechanics/Roguelike_Perks.md):** In-run progression, Drafting pools, Curses.
 
-*   **[Game Design Philosophy](GameDesign_Philosophy_And_Systems.md)**
-    *   **What is it?** The theory of "Fun".
-    *   **Contents:** Core Loops, Synergy (1+1>2), Pacing Control, Player Psychographics.
-    *   **Target Audience:** All Designers.
+#### Systems & Economy
+*   **[Itemization](Design/Systems/Itemization.md):** Gear slots, Affix pools, Unique item design.
+*   **[Loot Rules](Design/Systems/Loot_Table_Rules.md):** Drop buckets, Smart loot, Chest types.
+*   **[Meta Progression](Design/Systems/Meta_Progression.md):** Skill tree (Constellation), Base building.
 
-*   **[Industry Case Studies](IndustryCaseStudies.md)**
-    *   **What is it?** A library of mechanics from top-tier games (Diablo, Genshin, Warframe).
-    *   **Contents:** Analysis of why specific mechanics work and how to adapt them.
+#### Content & World
+*   **[Bestiary & AI](Design/Content/Enemy_Bestiary.md):** Monster hierarchy, AI archetypes, Affixes.
+*   **[Level Design](Design/Content/Level_Design_Guide.md):** Map generation, Wave pacing, Map events.
 
-### 2. 🛠️ Technical Implementation (The "Code")
-*   **[Unity Practical Dev Tips](Unity_Practical_Dev_Tips.md)**
-    *   **Contents:** Performance optimization (Pooling, Batching), Architecture (EventBus, SO), and Debugging tricks.
-    *   **Target:** Client Programmers.
+#### Theory
+*   **[Philosophy](Design/Philosophy_And_Systems.md):** Core loops, Player psychographics.
+*   **[Case Studies](Design/Industry_CaseStudies.md):** Analysis of Diablo, PoE, Vampire Survivors.
 
-*   **[Unity Asset Management](Unity_Asset_Management_Tips.md)**
-    *   **Contents:** Import settings, Addressables vs. Resources, and Git LFS handling.
-    *   **Target:** Tech Artists, Programmers.
+---
 
-*   **[Asset Naming Standards](AssetNaming_Standards.md)**
-    *   **Contents:** Strict naming conventions (`T_`, `M_`, `P_`) to keep the project organized.
-    *   **Tool:** Includes a link to the `AssetNamingValidator.cs` script.
+### 2. 🛠️ Technical Architecture (The "Brain")
+*   **[Save System](Tech/Save_System_Architecture.md):** Data structure, Serialization, Anti-cheat.
+*   **[Performance Budget](Tech/Performance_Budget.md):** CPU/GPU limits, LOD policy for 60FPS.
+*   **[Input System](Tech/Input_System_Design.md):** Action maps, Controller support, Accessibility.
 
-*   **[Folder Structure Standards](Unity_Folder_Structure_Standards.md)**
-    *   **Contents:** The "Hybrid" folder structure (`Features/` vs `Art/`) for modular development.
+---
 
-### 3. ☠️ Production Survival Guide
-*   **[Game Dev Post-Mortem Lessons](GameDev_Production_Lessons.md)**
-    *   **Contents:** A collection of painful lessons on Scope Creep, Localization, UI/UX, and Marketing. Read this to avoid cancelling the project.
+### 3. 🎨 Art & Audio (The "Skin")
+*   **[UI/UX Guidelines](Art/UI_UX_Guidelines.md):** Visual style, Layer hierarchy, Interaction feedback.
+*   **[VFX Standards](Art/VFX_Standards.md):** Visual hierarchy, Color coding, Optimization.
+*   **[Audio Guide](Audio/Practical_Guide.md):** Sound hierarchy, Mixing, Implementation tips.
+
+---
+
+### 4. 📋 Production & Standards (The "Law")
+*   **[Documentation Roadmap](Design/Documentation_Roadmap.md):** The master plan for all docs.
+*   **[Folder Structure](Unity_Standards/Folder_Structure.md):** Unity project organization.
+*   **[Asset Naming](Unity_Standards/Asset_Naming.md):** Strict naming conventions (`T_`, `M_`, `P_`).
+*   **[Asset Management](Unity_Standards/Asset_Management.md):** Import settings & best practices.
+*   **[Production Lessons](Dev_Guides/Production_Lessons.md):** Post-mortem lessons to avoid failure.
+*   **[Unity Tips](Dev_Guides/Unity_Practical_Tips.md):** Coding & Debugging tricks.
 
 ---
 
@@ -52,22 +61,17 @@ This directory serves as the "Brain" of the project, containing the mathematical
 
 ### 📊 Visualizing the Math
 We have provided an interactive HTML dashboard to simulate and verify the numerical models without writing code.
-1.  Locate **`index.html`** in this directory.
+1.  Locate **`Design/Calculator/index.html`** in this directory.
 2.  Open it in any modern web browser (Chrome/Edge).
-3.  Use it to calculate:
-    *   **DPS Expectations:** See how `Inc` vs `More` affects output.
-    *   **Defense Curves:** Visualize Linear Armor vs. Exponential Dodge.
-    *   **PRD Stability:** Compare True Random vs. Pseudo-Random variance.
 
 ### 👮 Enforcing Standards
-To ensure the project stays clean:
-1.  Copy `AssetNamingValidator.cs` to your Unity project's `Assets/Editor` folder.
-2.  It will automatically flag any asset that violates the naming conventions defined in `AssetNaming_Standards.md`.
+1.  Copy `Unity_Standards/Tools/AssetNamingValidator.cs` to your Unity project's `Assets/Editor` folder.
+2.  It will automatically flag any asset that violates naming conventions.
 
 ---
 
 ## 🤖 AI Context
-*   **[GEMINI.md](GEMINI.md)**: This file is generated for the AI agent to understand the project context quickly. It summarizes the directory structure and key file contents.
+*   **[GEMINI.md](GEMINI.md)**: Summarizes the project context for AI agents.
 
 ---
 

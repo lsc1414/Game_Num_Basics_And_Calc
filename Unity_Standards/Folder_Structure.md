@@ -5,7 +5,7 @@
 
 ---
 
-## 1. 核心哲学：为什么纯“按类型”是错误的？
+## 1. ⚖️ 核心哲学：为什么纯“按类型”是错误的？
 
 ### ❌ 传统做法 (按类型 / Type-Based)
 *   `Assets/Scripts/Player/PlayerController.cs`
