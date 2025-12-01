@@ -168,7 +168,209 @@
 
 ---
 
-## 7. 代码实现接口 (C# Interface)
+## 7. 实时分析系统 (Real-time Analytics)
+
+### 7.1 实时监控面板 (Live Dashboard)
+**为什么需要实时数据？**
+- 新功能上线后，需要立即发现问题
+- 活动期间需要实时调整策略
+- 崩溃或支付异常需要秒级响应
+
+| 指标类型 | 监控项 | 报警阈值 | 处理方案 |
+| :--- | :--- | :--- | :--- |
+| 📈 收入监控 | 小时收入同比下降 | > 30% | 立即检查支付渠道 |
+| 👥 用户活跃 | 实时在线人数异常 | < 历史均值 50% | 检查服务器状态 |
+| 🐛 稳定性 | 崩溃率 | > 2% | 回滚版本或热修复 |
+| ⚡ 性能 | 服务器响应时间 | > 1000ms | 扩容或优化查询 |
+
+### 7.2 实时活动追踪 (Event Tracking)
+```csharp
+// 实时活动效果监控
+public class RealTimeEventTracker
+{
+    public static void TrackEvent(string eventType, Dictionary<string, object> data)
+    {
+        // 发送到实时数据流 (Kafka/WebSocket)
+        RealTimeStream.Send(eventType, data);
+
+        // 同时记录到离线分析系统
+        AnalyticsMgr.LogEvent(eventType, data);
+    }
+
+    // 活动转化漏斗实时监控
+    public static void MonitorFunnel(string funnelId, string step, string userId)
+    {
+        TrackEvent("funnel_step", new Dictionary<string, object>{
+            {"funnel_id", funnelId},
+            {"step", step},
+            {"user_id", userId},
+            {"timestamp", DateTime.UtcNow}
+        });
+    }
+}
+```
+
+## 8. A/B测试框架 (A/B Testing Framework)
+
+### 8.1 实验设计原则
+**🎯 业界最佳实践**：
+- **Netflix** 每天运行 250+ 个A/B测试
+- **Facebook** 通过A/B测试发现蓝色主题提升15%互动率
+- **Airbnb** 用A/B测试优化搜索算法，提升20%预订率
+
+| 实验类型 | 适用场景 | 最小样本量 | 运行时长 |
+| :--- | :--- | :--- | :--- |
+| 🎨 UI变化 | 按钮颜色、文案 | 1000用户/组 | 1-2周 |
+| 🎮 玩法调整 | 难度曲线、奖励 | 5000用户/组 | 2-4周 |
+| 💰 商业化 | 价格、礼包内容 | 10000用户/组 | 4-6周 |
+
+### 8.2 分流算法 (User Bucketing)
+```csharp
+public class ABTestManager
+{
+    // 基于用户ID的一致性哈希分流
+    public static string GetExperimentGroup(string experimentName, string userId)
+    {
+        // 确保用户始终在同一实验组
+        int hash = (experimentName + userId).GetHashCode();
+        int bucket = Math.Abs(hash) % 100;
+
+        // 50%对照组，50%实验组
+        return bucket < 50 ? "control" : "treatment";
+    }
+
+    // 多变量测试 (MVT)
+    public static string GetMVTGroup(string experimentName, string userId,
+        Dictionary<string, float> variantWeights)
+    {
+        int hash = (experimentName + userId).GetHashCode();
+        int bucket = Math.Abs(hash) % 100;
+
+        float cumulative = 0;
+        foreach (var variant in variantWeights)
+        {
+            cumulative += variant.Value;
+            if (bucket < cumulative * 100)
+                return variant.Key;
+        }
+        return "control";
+    }
+}
+```
+
+### 8.3 统计显著性检验
+```csharp
+public class StatisticalAnalyzer
+{
+    // 计算置信区间 (95%)
+    public static (double lower, double upper) CalculateConfidenceInterval(
+        double conversionRate, int sampleSize)
+    {
+        double standardError = Math.Sqrt(conversionRate * (1 - conversionRate) / sampleSize);
+        double margin = 1.96 * standardError; // 95%置信度
+        return (conversionRate - margin, conversionRate + margin);
+    }
+
+    // A/B测试效果评估
+    public static bool IsSignificant(ExperimentResult control, ExperimentResult treatment)
+    {
+        // 使用Z检验计算p值
+        double pooledP = (control.Conversions + treatment.Conversions) /
+                        (control.Users + treatment.Users);
+        double se = Math.Sqrt(pooledP * (1 - pooledP) *
+                    (1.0/control.Users + 1.0/treatment.Users));
+        double zScore = (treatment.ConversionRate - control.ConversionRate) / se;
+
+        return Math.Abs(zScore) > 1.96; // p < 0.05
+    }
+}
+```
+
+## 9. 数据可视化与报告 (Data Visualization)
+
+### 9.1 核心仪表板设计
+**📊 业界标杆**：
+- **Supercell** 的实时仪表板显示全球玩家分布
+- **King** 用热力图分析关卡难度曲线
+- **Riot Games** 通过玩家行为预测流失
+
+```csharp
+public class DashboardGenerator
+{
+    // 留存率热力图
+    public static void GenerateRetentionHeatmap()
+    {
+        var retentionData = GetRetentionData();
+        // 使用颜色深浅表示留存率高低
+        // 红色: 低留存 (< 20%)
+        // 黄色: 中等留存 (20-40%)
+        // 绿色: 高留存 (> 40%)
+    }
+
+    // 收入预测曲线
+    public static void GenerateRevenueForecast()
+    {
+        var historicalData = GetHistoricalRevenue();
+        var forecast = TimeSeriesForecast(historicalData, days: 30);
+        // 显示置信区间
+        ShowForecastWithConfidence(forecast);
+    }
+}
+```
+
+### 9.2 自动化报告系统
+| 报告类型 | 频率 | 关键指标 | 发送对象 |
+| :--- | :--- | :--- | :--- |
+| 📱 每日简报 | 早上9点 | DAU、收入、崩溃率 | 全团队 |
+| 📈 周度深度 | 周一 | 留存、关卡数据、商业化 | 产品经理 |
+| 🎯 月度复盘 | 月初 | 版本对比、竞品分析 | 高层管理 |
+
+## 10. 数据质量与监控 (Data Quality)
+
+### 10.1 数据质量检查
+**🚨 常见问题**：
+- 数据丢失（网络问题导致事件未上报）
+- 数据重复（客户端重试机制）
+- 数据异常（作弊、测试账号污染）
+
+```csharp
+public class DataQualityMonitor
+{
+    // 数据完整性检查
+    public static void ValidateDataCompleteness()
+    {
+        var expectedEvents = GetExpectedEvents();
+        var actualEvents = GetActualEvents();
+
+        double completeness = (double)actualEvents / expectedEvents;
+        if (completeness < 0.95) // 95%完整性阈值
+        {
+            AlertManager.SendAlert("Data completeness below threshold");
+        }
+    }
+
+    // 异常值检测（使用3σ原则）
+    public static List<DataPoint> DetectOutliers(List<DataPoint> data)
+    {
+        double mean = data.Average(d => d.Value);
+        double stdDev = CalculateStandardDeviation(data);
+
+        return data.Where(d => Math.Abs(d.Value - mean) > 3 * stdDev).ToList();
+    }
+}
+```
+
+### 10.2 反作弊数据监控
+| 监控维度 | 异常阈值 | 检测算法 | 处理策略 |
+| :--- | :--- | :--- | :--- |
+| 💰 资源获取速度 | > 正常值5倍 | 统计分布 | 标记观察 |
+| ⚔️ 战斗数据 | 伤害超出理论上限 | 规则引擎 | 自动封禁 |
+| 🏃 移动速度 | > 最大移动速度 | 物理引擎验证 | 踢出游戏 |
+| ⏱️ 游戏时间 | > 24小时连续在线 | 行为模式 | 人工审核 |
+
+---
+
+## 11. 代码实现接口 (C# Interface)
 
 ```csharp
 public static class AnalyticsMgr
@@ -178,17 +380,17 @@ public static class AnalyticsMgr
         // 1. 添加通用参数 (User ID, Device, etc.)
         params["user_id"] = UserProfile.ID;
         params["ts"] = DateTime.UtcNow.ToUnixTimeSeconds();
-        
+
         // 2. 发送给第三方 SDK (Unity Analytics, Firebase, ThinkingData)
         // SDK.Track(eventName, params);
-        
+
         // 3. 开发模式下打印日志
         if (Debug.isDebugBuild)
         {
             Debug.Log($"[Analytics] {eventName}: {JsonConvert.SerializeObject(params)}");
         }
     }
-    
+
     // 封装常用方法，防止拼写错误
     public static void LogLevelStart(int levelId, string difficulty) { ... }
     public static void LogResourceChange(string type, int amount, string reason) { ... }
