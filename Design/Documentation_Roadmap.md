@@ -88,12 +88,95 @@
 
 ---
 
+## 7. 技术实现与案例 (Technical Implementation & Cases)
+*定义游戏的"肌肉"——具体如何实现和业界成功经验。*
+
+### 🔧 技术实现深度案例
+*   ✅ **[PRD算法完整实现] `Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md`**
+    *   8位计数器实现、性能优化、向量化计算、Intervention-PRD电竞模式。
+*   ✅ **[ECS性能优化实战] `Dev_Guides/Technical_Implementation/ECS_Performance_Optimization.md`**
+    *   Vampire Survivors案例分析：500单位同屏优化，内存带宽降低80%。
+*   ✅ **[GPU Instancing渲染优化] `Dev_Guides/Technical_Implementation/GPU_Instancing_Guide.md`**
+    *   15k精灵1 Draw-call实现，Unity/UE5具体代码示例。
+*   ✅ **[掉落蓄水池算法实现] `Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm.md`**
+    *   DPM恒定2.0的权重预算制，0 GC实现方案。
+*   ✅ **[全局埋点实战指南] `Dev_Guides/Technical_Implementation/Game_Analytics_Guide.md`** *(新增)*
+    *   漏斗模型设计、经济与战斗核心埋点清单、反作弊数据监控。
+
+### 🎮 业界成功案例深度剖析
+*   ✅ **[Bloons TD6伤害矩阵系统] `Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md`**
+    *   11×9完整免疫矩阵分析，如何通过"0伤害"强制多元化建塔。
+*   ✅ **[Kingdom Rush四维数值模型] `Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md`**
+    *   数量、血量、速度、时间四维控制，兵营时间放大器机制。
+*   ✅ **[Hades 225种Build多样性] `Dev_Guides/Industry_Cases/Hades_Build_Diversity.md`**
+    *   双层标签系统设计，主标签+副标签的225条机制轨道。
+*   ✅ **[Vampire Survivors性能奇迹] `Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md`**
+    *   ECS+DOTS架构详解，经验宝石合并算法，PRD随机性优化。
+
+### 💥 失败案例教训分析
+*   ✅ **[Battleborn失败深度剖析] `Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis.md`**
+    *   TTK思维冲突，数值公式缺陷，滚雪球机制失控。
+*   ✅ **[Paragon复杂度陷阱] `Dev_Guides/Failure_Cases/Paragon_Complexity_Trap.md`**
+    *   TPS+MOBA+卡牌三重机制叠加，3D视角平衡性不可行。
+
+---
+
+## 8. 实用工具与模板 (Tools & Templates)
+*提供可直接使用的开发资源和工具。*
+
+### 🛠️ 开发工具与插件
+*   ✅ **[Excel三表法数值模板] `Dev_Guides/Tools/Excel_Numerical_Templates.md`**
+    *   参数表/计算表/校验表分离，支持Google Sheet+AppScript热更新。
+*   ✅ **[Unity PRD算法插件] `Dev_Guides/Tools/Unity_PRD_Plugin.md`**
+    *   Jobs System兼容的C#实现，向量化优化版本。
+*   ✅ **[AI平衡测试工具] `Dev_Guides/Tools/AI_Balance_Testing.md`**
+    *   Claude/GPT-4o自动测试脚本，20美元成本跑6轮迭代。
+*   ✅ **[战斗仿真系统] `Dev_Guides/Tools/Combat_Simulation_System.md`**
+    *   Headless版本1秒1万局，Python实现，输出胜率/伤害分布。
+
+### 📊 实用计算器与可视化
+*   ✅ **[数值计算器套装] `Dev_Guides/Tools/Numerical_Calculator_Suite.md`**
+    *   TTK/DPS/EHP计算器，随机分布可视化，经济系统平衡校验。
+*   ✅ **[性能监控脚本集] `Dev_Guides/Tools/Performance_Monitoring_Scripts.md`**
+    *   帧时间统计、内存泄漏检测、移动游戏性能分析。
+
+---
+
+## 9. 团队协作与生产流程 (Team Collaboration)
+*定义高效的团队协作方式。*
+
+### 🤝 敏捷开发实践
+*   ✅ **[独立游戏团队Scrum实施] `Dev_Guides/Collaboration/Agile_For_Indie_Teams.md`**
+    *   2周冲刺周期，策划-程序-美术每日站会，Demo日展示机制。
+*   ✅ **[跨时区远程协作指南] `Dev_Guides/Collaboration/Remote_Collaboration.md`**
+    *   Slack+Notion+Perforce工具链，时区重叠4小时工作制。
+
+### 📈 项目管理与质量控制
+*   ✅ **[里程碑规划模板] `Dev_Guides/Collaboration/Milestone_Planning.md`**
+    *   Vertical Slice→Alpha→Beta→Gold完整流程，风险评估清单。
+*   ✅ **[Beta测试与用户反馈] `Dev_Guides/Collaboration/Beta_Testing_Guide.md`**
+    *   Steam Playtest申请流程，用户反馈分类处理，数据驱动迭代。
+
+---
+
 ## 🗓️ 状态总结 (Status Summary)
 
-**🎉 所有核心设计文档已全部完成 (100%)。**
+**🎉 核心设计文档已完成 (100%)，技术实现案例扩充中（已完成 20/20）。**
 项目已具备进入 **Vertical Slice (垂直切片)** 开发阶段的理论基础。
+
+**文档增强进度:**
+✅ **技术实现深度**: 掉落蓄水池、ECS优化、PRD算法、Bloons TD6伤害矩阵、Excel三表法、GPU Instancing、全局埋点指南
+✅ **业界案例剖析**: Vampire Survivors 性能分析、Kingdom Rush、Hades、Battleborn、Paragon 案例已完成
+✅ **实用工具开发**: Unity PRD 插件、AI平衡测试、战斗仿真、数值计算器、性能监控脚本已全部完成
+✅ **团队协作**: 敏捷开发、远程协作、里程碑规划、Beta测试指南已全部完成
+
+**Next Steps:**
+1.  **执行里程碑计划**: 启动 Vertical Slice 开发。
+2.  **搭建数据后台**: 根据《全局埋点指南》接入 Analytics SDK。
+3.  **部署工具链**: 将 PRD 插件和性能监控脚本合入项目主分支。
 
 **Next Steps:**
 1.  程序团队搭建 **FSM 框架** 和 **Luban 导表流程**。
 2.  美术团队根据 **UI/UX 规范** 制作第一版 HUD。
 3.  策划团队使用 `index.html` 计算器验证 **Numerical Manual** 中的公式。
+4.  继续完善技术实现案例，为团队提供更多实用工具和业界经验。
