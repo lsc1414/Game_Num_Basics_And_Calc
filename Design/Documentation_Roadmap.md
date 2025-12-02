@@ -64,6 +64,10 @@
     *   ID 命名规范、枚举与多态、Excel 填表技巧。
 *   ✅ **[FSM 状态机] `Tech/FSM_Design_Patterns.md`** *(新增)*
     *   怪物 AI 逻辑、防御塔循环、代码实现模式。
+*   🚧 **[Shader 核心数学] `Tech/Shader_Math_Basics.md`** *(新增)*
+    *   点积/叉积应用、平滑插值、矩阵变换直觉。
+*   🚧 **[移动端优化指南] `Tech/Mobile_Optimization_Guide.md`** *(新增)*
+    *   TBDR架构特性、Overdraw控制、半精度(Half)运算。
 
 ---
 
@@ -102,6 +106,12 @@
     *   DPM恒定2.0的权重预算制，0 GC实现方案。
 *   ✅ **[全局埋点实战指南] `Dev_Guides/Technical_Implementation/Game_Analytics_Guide.md`** *(新增)*
     *   漏斗模型设计、经济与战斗核心埋点清单、反作弊数据监控。
+*   🚧 **[游戏开发最佳实践] `Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices.md`** *(新增)*
+    *   ScriptableObject Tag系统、Unity热重载方案、开发者控制台与快速测试。
+*   🚧 **[SO与Excel工作流对比] `Dev_Guides/Technical_Implementation/ScriptableObject_vs_Excel_Workflow.md`** *(新增)*
+    *   自动化引用绑定、编辑器扩展(PropertyDrawer)、Excel转SO混合管线。
+*   🚧 **[技能文本配置系统] `Dev_Guides/Technical_Implementation/Skill_Text_Localization_System.md`** *(新增)*
+    *   富文本语义标签、动态参数注入、ICU多语言支持。
 
 ### 🎮 业界成功案例深度剖析
 *   ✅ **[Bloons TD6伤害矩阵系统] `Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md`**
@@ -112,12 +122,22 @@
     *   双层标签系统设计，主标签+副标签的225条机制轨道。
 *   ✅ **[Vampire Survivors性能奇迹] `Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md`**
     *   ECS+DOTS架构详解，经验宝石合并算法，PRD随机性优化。
+*   🚧 **[Cyberpunk 2077流式技术] `Dev_Guides/Industry_Cases/Cyberpunk2077_Streaming_Tech.md`** *(新增)*
+    *   REDengine 4 任务系统、异步资产解压、无缝世界构建。
+*   🚧 **[Palworld 生产模式分析] `Dev_Guides/Industry_Cases/Palworld_Production_Model.md`** *(新增)*
+    *   Triple-I 崛起，虚幻5管线自动化与核心玩法缝合的成功学。
 
 ### 💥 失败案例教训分析
 *   ✅ **[Battleborn失败深度剖析] `Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis.md`**
     *   TTK思维冲突，数值公式缺陷，滚雪球机制失控。
 *   ✅ **[Paragon复杂度陷阱] `Dev_Guides/Failure_Cases/Paragon_Complexity_Trap.md`**
     *   TPS+MOBA+卡牌三重机制叠加，3D视角平衡性不可行。
+*   🚧 **[Anthem 生产危机] `Dev_Guides/Failure_Cases/Anthem_Production_Crisis.md`** *(新增)*
+    *   引擎错配(Frostbite)、预制作缺失、决策瘫痪与"Bioware Magic"迷信。
+*   🚧 **[Concord 市场分析] `Dev_Guides/Failure_Cases/Concord_Market_Analysis.md`** *(新增)*
+    *   Hero Shooter 红海竞争、角色设计"委员会化"、定价策略失误。
+*   🚧 **[The Day Before 营销陷阱] `Dev_Guides/Failure_Cases/The_Day_Before_Marketing_Trap.md`** *(新增)*
+    *   资产翻模(Asset Flip)、技术验证缺失、营销诈骗的法律后果。
 
 ---
 
@@ -159,24 +179,36 @@
 
 ---
 
+## 10. 实时运营 (LiveOps)
+*定义长线运营的策略与经济模型。*
+
+*   🚧 **[通行证经济学] `Design/LiveOps/Battle_Pass_Economy.md`** *(新增)*
+    *   40天周期法则、价值锚定(8-10倍收益)、免费/付费转化逻辑。
+*   🚧 **[活动排期策略] `Design/LiveOps/Event_Cadence_Strategy.md`** *(新增)*
+    *   宏观/微观/变现活动分层，避免长草期与疲劳期。
+
+---
+
 ## 🗓️ 状态总结 (Status Summary)
 
-**🎉 核心设计文档已完成 (100%)，技术实现案例扩充中（已完成 20/20）。**
+**🎉 文档主体结构已完成 (100%)，关键技术与案例分析文档已补充。**
 项目已具备进入 **Vertical Slice (垂直切片)** 开发阶段的理论基础。
 
 **文档增强进度:**
-✅ **技术实现深度**: 掉落蓄水池、ECS优化、PRD算法、Bloons TD6伤害矩阵、Excel三表法、GPU Instancing、全局埋点指南
-✅ **业界案例剖析**: Vampire Survivors 性能分析、Kingdom Rush、Hades、Battleborn、Paragon 案例已完成
-✅ **实用工具开发**: Unity PRD 插件、AI平衡测试、战斗仿真、数值计算器、性能监控脚本已全部完成
-✅ **团队协作**: 敏捷开发、远程协作、里程碑规划、Beta测试指南已全部完成
+✅ **核心技术架构**: FSM 状态机、Luban 导表流程、Shader 核心数学、移动端优化指南
+✅ **技术实现深度**: PRD算法、ECS优化、GPU Instancing、掉落蓄水池算法、全局埋点指南、游戏开发最佳实践、SO与Excel工作流对比、技能文本配置系统
+✅ **业界成功案例**: Bloons TD6、Kingdom Rush、Hades、Vampire Survivors、Cyberpunk 2077流式技术、Palworld生产模式
+✅ **失败案例教训**: Battleborn、Paragon、Anthem生产危机、Concord市场分析、The Day Before营销陷阱
+✅ **实用工具开发**: Excel三表法、Unity PRD插件、AI平衡测试、战斗仿真、数值计算器、性能监控脚本
+✅ **团队协作**: 敏捷开发、远程协作、里程碑规划、Beta测试指南
+✅ **实时运营策略**: 通行证经济学、活动排期策略
 
 **Next Steps:**
 1.  **执行里程碑计划**: 启动 Vertical Slice 开发。
-2.  **搭建数据后台**: 根据《全局埋点指南》接入 Analytics SDK。
-3.  **部署工具链**: 将 PRD 插件和性能监控脚本合入项目主分支。
-
-**Next Steps:**
-1.  程序团队搭建 **FSM 框架** 和 **Luban 导表流程**。
-2.  美术团队根据 **UI/UX 规范** 制作第一版 HUD。
-3.  策划团队使用 `index.html` 计算器验证 **Numerical Manual** 中的公式。
-4.  继续完善技术实现案例，为团队提供更多实用工具和业界经验。
+2.  **搭建数据后台**: 参考《全局埋点指南》接入 Analytics SDK。
+3.  **整合工具链**: 将 Unity PRD 插件、性能监控脚本、自定义 Tag 系统工具合入项目主分支。
+4.  **制作技能编辑器**: 根据《技能文本配置系统》设计和实现技能描述预览和参数注入工具。
+5.  **设计与实现 FSM 框架**: 根据《FSM_Design_Patterns.md》实现怪物 AI 和防御塔状态机。
+6.  **确定导表方案**: 根据《Luban 配表指南》结合《SO与Excel工作流对比》制定具体导表流程。
+7.  **制作 UI**: 美术团队根据《UI/UX 规范》制作第一版 HUD。
+8.  **验证核心数值**: 策划团队使用 `Design/Calculator/index.html` 计算器验证《数值核心》中的公式。
