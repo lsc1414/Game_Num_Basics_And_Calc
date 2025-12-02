@@ -35,7 +35,8 @@
 *   **[FSM 状态机设计](Tech/FSM_Design_Patterns.md):** 怪物 AI 逻辑、防御塔循环、代码实现模式。
 *   **[通用决策系统](Tech/Architecture/Unified_Decision_System.md):** 模块化、可配置的 AI/索敌逻辑，适用于多种游戏系统。
 *   **[移动端优化指南](Tech/Mobile_Optimization_Guide.md):** TBDR 架构、Overdraw 控制、半精度运算。
-*   **[Shader 核心数学](Tech/Shader_Math_Basics.md):** 点积/叉积应用、矩阵变换。
+*   **[Unity Transform 数学](Tech/Mechanics/Unity_Transform_Math_Guide.md):** 向量点乘/叉乘几何意义、矩阵基向量、RectTransform 深度解析。
+*   **[Shader 核心数学](Tech/Graphics/Shader_Math_Patterns.md):** 常用效果公式 (Fresnel, Dissolve)、2D 特效与后处理数学。
 *   **[Luban 配表指南](Tech/Luban_Config_Guide.md):** ID 命名规范、枚举与多态应用。
 *   **[存档系统](Tech/Save_System_Architecture.md):** 数据结构、序列化方案、反作弊。
 *   **[性能预算](Tech/Performance_Budget.md):** CPU/GPU 限制、60FPS 优化标准。
@@ -45,6 +46,7 @@
 
 ### 3. 🎨 美术与表现 (The "Skin")
 *   **[UI/UX 规范](Art/UI_UX_Guidelines.md):** 视觉风格、层级结构、交互反馈。
+*   **[HUD与血条系统](Tech/Mechanics/Unity_HUD_HealthBar_DeepDive.md):** 海量单位血条优化(GPU Instancing)、打击感反馈设计。
 *   **[特效规范](Art/VFX_Standards.md):** 视觉分级、颜色编码、性能优化。
 *   **[音频指南](Audio/Practical_Guide.md):** 声音分级、混音技巧、代码实现。
 *   **[画质指南](Art/Visual_Quality_Guide.md):** URP 设置、光照烘焙、后处理策略。

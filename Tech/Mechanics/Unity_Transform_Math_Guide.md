@@ -63,6 +63,27 @@ Unity 提供了三种方式来表示旋转，混用它们是 Bug 之源。
 *   **Vector (向量):** 受旋转和**缩放**影响，不受位置影响。
     *   `TransformVector()`: Local -> World (带缩放)
 
+### 3.3 特别篇：UI 坐标系转换 (The UI Coordinate Problem)
+UI 系统 (`RectTransform`) 虽然继承自 Transform，但在坐标转换上有一个巨大的“断层”：**渲染模式 (Render Mode)**。
+
+1.  **Screen Space - Overlay:** 
+    *   UI 直接绘制在屏幕最上层。
+    *   **没有世界坐标概念**（或者说，世界坐标 = 屏幕像素坐标）。
+    *   `position.x` 就是屏幕上的像素 X。
+    *   转换时**不需要** Camera 参数 (传 `null`)。
+
+2.  **Screen Space - Camera / World Space:**
+    *   UI 是 3D 世界中的实体板子，有确定的深度 (Z)。
+    *   受透视 (Perspective) 影响：近大远小。
+    *   转换时**必须**传入渲染该 Canvas 的 Camera，否则射线检测会偏离。
+
+**核心理论:** 
+在处理 UI 交互（如鼠标点击、物体飞向 UI）时，永远不要试图直接“加减坐标”。必须寻找一个**公共参考系**——通常是**屏幕空间 (Screen Space)**。
+*   3D 世界 -> **屏幕** <- UI 局部
+*   UI A -> **屏幕** <- UI B
+
+---
+
 ### 3.2 最佳实践案例
 
 #### 案例 A: 子弹发射位置
@@ -168,57 +189,87 @@ transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpee
 // transform.position = Vector3.Lerp(transform.position, targetPos, lerpFactor);
 ```
 
-#### 案例 I: 3D物体飞向UI (World Object to UI Fly Effect)
+#### 案例 I: 3D物体飞向UI (World Object to UI Fly Effect) - 进阶版
 经典需求：怪物掉落金币（世界坐标），金币拾取后飞向 UI 上的金币栏（屏幕坐标）。
-**核心原理:** `WorldToScreenPoint` 将世界坐标转换为屏幕坐标。
-**注意:** UI 坐标系通常是 Screen Space - Overlay 或 Camera 模式，处理方式略有不同。
+**初级陷阱:** 直接用 `position` 赋值，在不同分辨率或 UI 锚点设置下会偏移。
+**核心原理:** 使用 `RectTransformUtility` 将屏幕坐标转换为**局部 UI 坐标**。
 
 ```csharp
 // 场景假设：
 // 1. worldCoin: 掉落在地上的金币 (3D)
-// 2. uiGoldIcon: UI上的金币图标 (RectTransform)
-// 3. uiCoinPrefab: 用来做飞行特效的 UI 金币预制体
-// 4. canvasTransform: UI Canvas 的 Transform
+// 2. uiGoldIcon: UI上的金币图标 (RectTransform, 可能有各种 Anchor 设置)
+// 3. uiCoinPrefab: 飞行特效预制体 (UI元素)
+// 4. effectsCanvas: 专门用于播放特效的 Canvas (Overlay 或 Camera 模式)
 
 public void PlayCoinFlyEffect(Transform worldCoin) {
-    // 1. 获取目标 UI 元素的屏幕位置
-    // 对于 Screen Space - Overlay Canvas, position 即为屏幕像素坐标
-    Vector3 targetScreenPos = uiGoldIcon.position;
+    // --- 第一步：确定起点 (World -> Screen -> Local UI) ---
+    Vector3 screenPos = Camera.main.WorldToScreenPoint(worldCoin.position);
+    
+    // 将屏幕坐标转换为 effectsCanvas 下的局部坐标
+    // 这样无论 Canvas 缩放模式如何，都能保证位置正确
+    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        (RectTransform)effectsCanvas.transform, 
+        screenPos, 
+        effectsCanvas.worldCamera, // 如果是 Overlay 模式，这里传 null
+        out Vector2 startLocalPos
+    );
 
-    // 2. 将掉落金币的世界坐标转换为屏幕坐标
-    Vector3 startScreenPos = Camera.main.WorldToScreenPoint(worldCoin.position);
+    // --- 第二步：确定终点 (Target UI -> Screen -> Local UI) ---
+    // 即使 uiGoldIcon 在另一个 Canvas 且有复杂的锚点，
+    // 我们也先转成通用的屏幕坐标，再转回 effectsCanvas 的局部坐标
+    
+    // 1. 获取目标在屏幕上的绝对位置 (处理跨 Canvas 的关键)
+    // 注意: 如果目标 UI 是 Overlay 模式，worldCamera 传 null
+    Vector3 targetWorldPos = uiGoldIcon.position; 
+    Vector2 targetScreenPos = RectTransformUtility.WorldToScreenPoint(
+        uiGoldIconCanvas.worldCamera, 
+        targetWorldPos
+    );
 
-    // 3. 生成一个临时的 UI 金币 (Prefab) 用于飞行效果
-    GameObject flyingCoin = Instantiate(uiCoinPrefab, canvasTransform);
-    flyingCoin.transform.position = startScreenPos; // 设置初始位置
+    // 2. 转回特效层的局部坐标
+    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        (RectTransform)effectsCanvas.transform,
+        targetScreenPos,
+        effectsCanvas.worldCamera,
+        out Vector2 endLocalPos
+    );
 
-    // 4. 启动协程让它飞过去
-    StartCoroutine(FlyToTarget(flyingCoin.transform, targetScreenPos));
+    // --- 第三步：生成并飞行 ---
+    GameObject flyingCoin = Instantiate(uiCoinPrefab, effectsCanvas.transform);
+    RectTransform flyRect = flyingCoin.GetComponent<RectTransform>();
+    
+    // 重要: 重置锚点为中心，避免父级锚点影响
+    flyRect.anchoredPosition = startLocalPos;
+    flyRect.anchorMin = new Vector2(0.5f, 0.5f);
+    flyRect.anchorMax = new Vector2(0.5f, 0.5f);
+    flyRect.pivot = new Vector2(0.5f, 0.5f);
+
+    StartCoroutine(FlyToTarget(flyRect, endLocalPos));
 }
 
-IEnumerator FlyToTarget(Transform coin, Vector3 target) {
-    float duration = 0.5f;
+IEnumerator FlyToTarget(RectTransform coin, Vector2 targetPos) {
+    // 使用 anchoredPosition 进行移动，保证在 UI 坐标系内的正确性
+    float duration = 0.6f;
     float elapsed = 0;
-    Vector3 start = coin.position;
-    
+    Vector2 startPos = coin.anchoredPosition;
+
     while (elapsed < duration) {
         elapsed += Time.deltaTime;
         float t = elapsed / duration;
+        t = t * t * (3f - 2f * t); // SmoothStep
         
-        // 使用 SmoothStep 让运动更自然 (慢进慢出)
-        t = Mathf.SmoothStep(0, 1, t);
-        
-        // 线性插值位置
-        coin.position = Vector3.Lerp(start, target, t); 
-        
+        coin.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
         yield return null;
     }
     
-    // 到达目标，销毁特效金币，并增加数值
     Destroy(coin.gameObject);
-    AddGoldAmount(1);
+    // AddGold();
 }
 ```
+**总结:** 解决 UI 坐标乱飞的终极法宝是 **"屏幕坐标 (Screen Point)" 作为中转站**，配合 `RectTransformUtility.ScreenPointToLocalPointInRectangle`。
+
+> 💡 **深入学习 UI 数学:** 关于 Anchors、Pivot、SizeDelta 的深层原理及更多 UI 适配技巧，请参阅专门文档：
+> **[Unity RectTransform 深度解析 (The Math of UI)](./Unity_RectTransform_DeepDive.md)**
 
 ---
 
