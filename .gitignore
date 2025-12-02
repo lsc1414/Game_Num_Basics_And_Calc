@@ -142,3 +142,12 @@ yarn-error.log*
 *.tar.gz
 *.rar
 *.7z
+${APPDATA}/npm/gemini
+${APPDATA}/npm/gemini.cmd
+${APPDATA}/npm/gemini.ps1
+.claude/settings.local.json
+.github/workflows/gemini-dispatch.yml
+.github/workflows/gemini-invoke.yml
+.github/workflows/gemini-review.yml
+.github/workflows/gemini-scheduled-triage.yml
+.github/workflows/gemini-triage.yml
