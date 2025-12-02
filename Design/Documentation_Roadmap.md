@@ -23,6 +23,8 @@
     *   塔的生命周期、建造规则、人塔协同机制。
 *   ✅ **[肉鸽强化系统] `Design/Mechanics/Roguelike_Perks.md`**
     *   局内成长（Level Up Bonuses）、随机池权重、诅咒机制。
+*   ✅ **[仇恨系统与AI] `Design/Mechanics/Aggro_System.md`** *(新增)*
+    *   仇恨列表计算、混合优先级金字塔、风筝限制与特殊行为。
 
 ---
 
@@ -112,6 +114,8 @@
     *   自动化引用绑定、编辑器扩展(PropertyDrawer)、Excel转SO混合管线。
 *   🚧 **[技能文本配置系统] `Dev_Guides/Technical_Implementation/Skill_Text_Localization_System.md`** *(新增)*
     *   富文本语义标签、动态参数注入、ICU多语言支持。
+*   🚧 **[技能动画管线] `Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline.md`** *(新增)*
+    *   摒弃Animation Event，拥抱可视化Timeline与逻辑驱动表现。
 
 ### 🎮 业界成功案例深度剖析
 *   ✅ **[Bloons TD6伤害矩阵系统] `Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md`**

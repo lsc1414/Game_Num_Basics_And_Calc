@@ -35,7 +35,8 @@
 
 ### 2. 🛠️ 技术架构 (The "Brain")
 *   **[FSM 状态机设计](Tech/FSM_Design_Patterns.md):** 怪物 AI 逻辑、防御塔循环、代码实现模式。
-*   **[移动端优化指南](Tech/Mobile_Optimization_Guide.md):** 发热控制、包体瘦身、海量单位渲染。
+*   **[移动端优化指南](Tech/Mobile_Optimization_Guide.md):** TBDR 架构、Overdraw 控制、半精度运算。
+*   **[Shader 核心数学](Tech/Shader_Math_Basics.md):** 点积/叉积应用、矩阵变换。
 *   **[Luban 配表指南](Tech/Luban_Config_Guide.md):** ID 命名规范、枚举与多态应用。
 *   **[存档系统](Tech/Save_System_Architecture.md):** 数据结构、序列化方案、反作弊。
 *   **[性能预算](Tech/Performance_Budget.md):** CPU/GPU 限制、60FPS 优化标准。
@@ -58,16 +59,24 @@
 *   **[GPU Instancing](Dev_Guides/Technical_Implementation/GPU_Instancing_Guide.md):** 1个 DrawCall 渲染万级精灵。
 *   **[掉落蓄水池算法](Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm.md):** 恒定 DPM 的 0GC 掉落系统。
 *   **[全局埋点指南](Dev_Guides/Technical_Implementation/Game_Analytics_Guide.md):** 遥测数据、漏斗模型、反作弊监控。
+*   **[游戏开发最佳实践](Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices.md):** ScriptableObject Tag、热重载、快速测试。
+*   **[SO与Excel工作流对比](Dev_Guides/Technical_Implementation/ScriptableObject_vs_Excel_Workflow.md):** 自动化引用绑定、混合管线。
+*   **[技能文本配置系统](Dev_Guides/Technical_Implementation/Skill_Text_Localization_System.md):** 富文本语义标签、动态参数注入。
 
 #### 业界案例深度剖析
 *   **[Kingdom Rush](Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md):** 四维数值平衡模型 (血量/速度/数量/时间)。
 *   **[Hades](Dev_Guides/Industry_Cases/Hades_Build_Diversity.md):** 双层标签系统与双神祝福设计。
 *   **[Vampire Survivors](Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md):** 性能优化秘籍 (经验宝石合并)。
 *   **[Bloons TD6](Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md):** 伤害类型 vs 防御类型矩阵。
+*   **[Cyberpunk 2077流式技术](Dev_Guides/Industry_Cases/Cyberpunk2077_Streaming_Tech.md):** 任务系统、异步资产解压。
+*   **[Palworld 生产模式](Dev_Guides/Industry_Cases/Palworld_Production_Model.md):** Triple-I 自动化管线分析。
 
 #### 失败案例复盘
 *   **[Battleborn](Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis.md):** 视觉噪声与 TTK 认知失调。
 *   **[Paragon](Dev_Guides/Failure_Cases/Paragon_Complexity_Trap.md):** 策略游戏中的 Z 轴陷阱。
+*   **[Anthem 生产危机](Dev_Guides/Failure_Cases/Anthem_Production_Crisis.md):** 引擎错配与预制作缺失。
+*   **[Concord 市场分析](Dev_Guides/Failure_Cases/Concord_Market_Analysis.md):** Hero Shooter 红海竞争与角色设计问题。
+*   **[The Day Before 营销陷阱](Dev_Guides/Failure_Cases/The_Day_Before_Marketing_Trap.md):** 资产翻模与法律风险。
 
 ---
 
@@ -89,6 +98,12 @@
 *   **[战斗仿真系统](Dev_Guides/Tools/Combat_Simulation_System.md):** Python 无头战斗模拟器。
 *   **[性能监控脚本](Dev_Guides/Tools/Performance_Monitoring_Scripts.md):** 运行时 FPS/内存 HUD。
 *   **[数值计算器](Dev_Guides/Tools/Numerical_Calculator_Suite.md):** TTK、EHP 和经济模拟工具。
+
+---
+
+### 7. 📈 实时运营 (LiveOps)
+*   **[通行证经济学](Design/LiveOps/Battle_Pass_Economy.md):** 40天周期、价值锚定策略。
+*   **[活动排期策略](Design/LiveOps/Event_Cadence_Strategy.md):** 宏观/微观活动分层。
 
 ---
 
