@@ -86,6 +86,7 @@
 
 ### 🤖 AI 与算法
 *   **[AI 效用系统](Tech/AI_Utility_System.md):** Utility AI。
+*   **[Roguelike 随机算法](Tech/Algorithms/Roguelike_RNG_Systems.md):** 标签加权与动态概率模型。
 *   **[状态机模式](Tech/FSM_Design_Patterns.md):** FSM 实践。
 *   **[游戏曲线](Tech/Math/Game_Curves_DeepDive.md):** 数学缓动。
 
@@ -103,9 +104,12 @@
 
 ### 🎨 美术标准
 *   **[视觉质量指南](Art/Visual_Quality_Guide.md):** 风格标准。
+*   **[游戏字体排印指南](Art/Typography_And_Font_Guide.md):** 免费商用字体推荐与粗细排版策略。
 *   **[视觉层级](Art/Visual_Hierarchy_In_Chaos.md):** 混乱管理与轮廓线。
 *   **[新手引导](Design/UX/FTUE_Best_Practices.md):** 洋葱皮教学与FTUE。
-*   **[UI/UX 指南](Art/UI_UX_Guidelines.md):** 交互规范。
+*   **[UI/UX 指南](Art/UI_UX_Guidelines.md):** 交互设计规范。
+*   **[UI 信息密度指南](Art/UI_Info_Density_Guide.md):** 极简与硬核描述的取舍策略。
+*   **[新手引导与FTUE](Design/UX/FTUE_Best_Practics.md):** 洋葱皮教学法与无文本引导。
 *   **[特效标准](Art/VFX_Standards.md):** 粒子性能限制。
 *   **[相机设置](Art/Camera_DeepDive_And_Settings.md):** 震动与跟随。
 *   **[游戏手感](Art/Game_Feel_And_Juice.md):** 顿帧与打击感。
