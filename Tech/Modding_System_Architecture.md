@@ -181,21 +181,49 @@ public class DamagePatch {
 *   **初期**: 暂时不需要官方集成 Harmony。因为 **BepInEx** (第三方 Mod 加载器) 已经完美支持 Unity 游戏了。硬核玩家自己会装 BepInEx。
 *   **官方态度**: **默许但不提供支持**。不要使用 IL2CPP 打包（这会让 Harmony 失效），尽量使用 Mono 后端，方便社区逆向。
 
-## 4. 避坑与安全
+## 4. BepInEx：Unity Modding 的事实标准
+
+如果 Harmony 是手术刀，**BepInEx (Bepis Injector Extensible)** 就是全套的手术台。
+
+### 4.1 BepInEx 是什么？
+它是一个开源的 **Unity / .NET 游戏插件框架**。
+*   **功能**: 它负责把 Modder 写的 DLL 注入到游戏进程中，并提供生命周期管理 (Start, Update)、配置管理 (Config)、日志 (Logging) 等基础设施。
+*   **地位**: 它是目前 Unity 游戏 Mod 社区（Thunderstore, NexusMods）的绝对基石。
+
+### 4.2 它是怎么工作的？(原理)
+1.  **Doorstop**: BepInEx 利用了一个名为 `winhttp.dll` 或 `version.dll` 的劫持技术。当 Windows 启动游戏 exe 时，会优先加载游戏目录下的这个“假 DLL”。
+2.  **注入**: 这个假 DLL 启动后，会拉起 BepInEx 的核心逻辑，然后再启动 Mono 虚拟机。
+3.  **加载**: BepInEx 扫描 `BepInEx/plugins` 目录下的所有用户 DLL，并自动执行它们。
+
+### 4.3 官方需要做什么？(Action Items)
+其实，**官方什么都不用做**，BepInEx 就能工作。但为了让社区更舒服，建议做以下几点：
+
+1.  **不要使用 IL2CPP**: IL2CPP 会把 C# 代码编译成 C++ 机器码，导致 metadata 丢失，BepInEx 极其难用（需要复杂的 Cpp2IL 转换）。**请务必使用 Mono 后端打包** (PC端)。
+2.  **不要混淆代码**: 除非你有极高的商业机密，否则不要开代码混淆。混淆后 `DamageCalculator` 变成了 `A` 类，`Calculate` 变成了 `b` 方法，Modder 会疯掉。
+3.  **保持 API 稳定**: 核心类（如 `Tower`, `Enemy`）的方法签名尽量不要频繁改动。如果改了，社区 Mod 会全部报错。
+
+### 4.4 官方集成策略
+如果你想更进一步，可以直接把 BepInEx 的功能“吸纳”进来：
+*   **Steam 启动项**: 允许玩家添加 `-enable-mods` 参数，官方代码里检测到参数就加载 StreamingAssets 里的 DLL。
+*   **提供 SDK**: 官方发布一个 `Vampirefall.Modding.dll`，里面全是接口 (`ITowerMod`, `IEnemyMod`)。Modder 引用这个 DLL 写代码，比用 Harmony 瞎猜要安全得多。
+
+---
+
+## 5. 避坑与安全
 
 1.  **ID 管理**: 必须使用字符串 ID (`"tower_fire"`) 而不是枚举 (`Enum.TowerFire`)。枚举是编译死的，字符串是灵活的。
 2.  **路径大小写**: Windows 不区分大小写，Linux/Android 区分。Mod 加载代码最好统一转小写处理路径。
 3.  **沙盒**: 不要允许 Mod 访问 `System.IO` 里的删除/写入 API（除了 Mod 自己的临时文件夹），防止恶意 Mod 格式化玩家硬盘。
 
-## 5. Steam Workshop 集成
+## 6. Steam Workshop 集成
 
 如果你打算上 Steam，集成 Workshop 是最方便的。
 *   使用 [Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET)。
 *   API: `SteamUGC.SubscribeItem()` 下载 Mod 到本地，然后你的 `ModManager` 去 Steam 的下载目录加载即可。
 
-## 6. 总结
+## 7. 总结
 
 对于 *Vampirefall*:
 1.  **第一步**: 确保你的 Config (Luban) 可以导出为 **JSON** 并在运行时读取。
 2.  **第二步**: 编写一个 `ResourceManager`，支持从 StreamingAssets 加载 `.png` 覆盖默认 Sprite。
-3.  **第三步 (进阶)**: 使用 **Mono** 编译构建，不要用 IL2CPP，为 Harmony 社区留一扇门。
+3.  **第三步 (进阶)**: 使用 **Mono** 编译构建，不要用 IL2CPP，为 Harmony/BepInEx 社区留一扇门。
