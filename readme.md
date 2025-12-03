@@ -1,12 +1,4 @@
-# 🏰 Project Vampirefall - 服务端与数值核心
-
-欢迎来到 **Project Vampirefall** 的核心设计与计算仓库。
-本项目是一款融合了 **塔防 (Tower Defense)**、**肉鸽 (Roguelike)** 和 **刷宝 (Looter)** 机制的混合品类游戏。
-
-本目录是所有数学模型、设计哲学和技术标准的“单一真理来源” (Single Source of Truth)。
-
----
-
+# 🏰 游戏开发全案 (The Game Development Codex)
 ## 📚 文档导览 (Documentation Map)
 
 ### 1. 🧠 游戏设计 (Design - The "Soul")
