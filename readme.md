@@ -1,4 +1,5 @@
 # 🏰 游戏开发全案 (The Game Development Codex)
+`游戏核心设计、数值模型与技术标准的单一真理来源 (Single Source of Truth)。`
 ## 📚 文档导览 (Documentation Map)
 
 ### 1. 🧠 游戏设计 (Design - The "Soul")
