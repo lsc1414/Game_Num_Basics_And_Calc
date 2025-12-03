@@ -1,6 +1,7 @@
-# 🧛 Project Vampirefall
+# 🧛 Project Vampirefall: 游戏开发的100件事 (The 100 Steps to Launch)
 > **"当《王国保卫战》遇见《流放之路》与《吸血鬼幸存者》"**
-> 一个融合了 **塔防策略 (TD)**、**Roguelike 变数** 与 **刷宝驱动 (Loot)** 的海量同屏动作塔防游戏。
+>
+> 这不仅仅是一个文档库，而是一份 **从立项到上线 (Zero to Hero)** 的实战生存指南。我们在这里记录下开发高品质 **混合品类 (Hybrid Genre)** 游戏所需的 100 个关键决策与技术标准。
 
 ---
 
@@ -78,6 +79,7 @@
 
 ### 🏗️ 核心架构
 *   **[GAS 技能系统](Tech/Gameplay_Ability_System_Design.md):** 技能系统设计。
+*   **[Mod 系统架构](Tech/Modding_System_Architecture.md):** 数据驱动与 Lua 脚本支持。
 *   **[NavMesh 寻路](Tech/Mechanics/NavMesh_Pathfinding_Guide.md):** 动态避障。
 *   **[3D vs 平面地形](Dev_Guides/Technical_Implementation/Terrain_3D_vs_2D_Analysis.md):** 选型分析。
 *   **[弹道系统](Tech/Mechanics/Projectile_System_DeepDive.md):** 对象池与射线检测。
@@ -109,7 +111,6 @@
 *   **[新手引导](Design/UX/FTUE_Best_Practices.md):** 洋葱皮教学与FTUE。
 *   **[UI/UX 指南](Art/UI_UX_Guidelines.md):** 交互设计规范。
 *   **[UI 信息密度指南](Art/UI_Info_Density_Guide.md):** 极简与硬核描述的取舍策略。
-*   **[新手引导与FTUE](Design/UX/FTUE_Best_Practics.md):** 洋葱皮教学法与无文本引导。
 *   **[特效标准](Art/VFX_Standards.md):** 粒子性能限制。
 *   **[相机设置](Art/Camera_DeepDive_And_Settings.md):** 震动与跟随。
 *   **[游戏手感](Art/Game_Feel_And_Juice.md):** 顿帧与打击感。
@@ -128,7 +129,12 @@
 
 *   **[Steam 发行](Dev_Guides/Publishing/Steam_Strategy.md):** 商店页与新品节。
 *   **[TapTap 发行](Dev_Guides/Publishing/TapTap_Strategy.md):** 篝火测试。
-*   **[敏捷开发](Dev_Guides/Collaboration/Agile_For_Indie_Teams.md):** 冲刺规划。
+*   **[敏捷开发指南](Dev_Guides/Collaboration/Agile_For_Indie_Teams.md):** 冲刺规划、每日站会。
+*   **[Git 版本管理规范](Dev_Guides/Collaboration/Git_Commit_Standards.md):** Commit Log 模板与分支策略。
+*   **[Git 极客生存指南](Dev_Guides/Collaboration/Git_Advanced_Guide_For_Programmers.md):** 命令行速查、冲突解决与私有服搭建。
+*   **[GitHub PR 工作流](Dev_Guides/Collaboration/GitHub_PR_Workflow.md):** PR 模板、Code Review 礼仪与合并策略。
+*   **[SVN转Git极简指南](Dev_Guides/Collaboration/SVN_vs_Git_Migration_Guide.md):** 两种工具的对比与美术/策划上手手册。
+*   **[里程碑规划](Dev_Guides/Collaboration/Milestone_Planning.md):** 版本节点控制。
 *   **[成功案例](Design/Industry_CaseStudies.md):** 行业标杆分析。
 *   **[失败复盘](Dev_Guides/Failure_Cases/Anthem_Failure_Analysis.md):** 避坑指南。
 
