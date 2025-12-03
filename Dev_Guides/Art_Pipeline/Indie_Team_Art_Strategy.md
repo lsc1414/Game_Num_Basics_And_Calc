@@ -432,3 +432,55 @@
 4.  **🌵 颜色调和 (Color Harmony)**
     *   *问题*: 绿色的仙人掌/旗帜在橙色背景上显得有点“生硬”（红绿对比过于强烈）。
     *   *优化*: 将绿色的色相稍微向**青色 (Cyan)** 或 **黄色 (Yellow)** 偏移，避免使用纯正的 RGB 绿色。这会让画面看起来更高级。
+
+---
+
+## 13. 🛍️ 商店资产生存指南：混合工作流 (Mixed Asset Workflow)
+
+**Q: 我买的资产有些是画好贴图的 (Textured)，有些是只用色板的 (Palette/Vertex Color)，它们能混用吗？**
+
+**A: 可以，但必须通过“Shader 统一化”来强制融合。**
+
+### 13.1 两种流派的区别 (The Difference)
+
+| 特性 | 🎨 贴图流 (Textured) | 🌈 色板流 (Palette / Synty) |
+| :--- | :--- | :--- |
+| **原理** | 每个模型有独立的 UV 和一张专属贴图 (e.g., `Sword_Albedo.png`)。 | 所有模型共用一张 256x256 的色块图。UV 缩成一个点，放在对应颜色上。 |
+| **优势** | 细节丰富，可以画纹理、污渍、手绘光影。 | 极其省内存 (1张贴图管全家)，Draw Call 容易合并。 |
+| **劣势** | 内存占用大，风格差异大 (不同画师画风不同)。 | 细节缺失，看起来像“塑料积木”。 |
+
+### 13.2 🚫 绝对禁止 (Must Not)
+*   **禁止使用原作者的 Shader**: 商店资产通常自带 Standard Shader 或自定义 Shader。**全部丢弃！**
+*   **禁止混用光照模型**: 不要让 A 资产受 PBR 光照影响，而 B 资产只受 Unlit 影响。这会产生严重的“拼凑感”。
+
+### 13.3 ✅ 统一工作流 (The Unification Pipeline)
+
+我们要用 **TCP2 Master Shader** 作为“熔炉”，把它们熔铸成同一种风格。
+
+#### 步骤 1: 材质球统一 (Material Standardization)
+所有资产，无论来源，必须换成 **Project Vampirefall 标准材质球**。
+*   **Shader**: 选择 `Toony Colors Pro 2/Hybrid Shader` (或你生成的 Mobile Shader)。
+
+#### 步骤 2: 贴图处理 (Texture Handling)
+*   **对于贴图流资产**:
+    *   将 `Albedo` 贴图放入 Shader 的 `Main Texture` 槽位。
+    *   **关键**: 如果贴图自带了强烈的手绘光影（比如画死的阴影），需要用 PS 减淡，或者在 Shader 里调高 `Ramp Threshold` 来冲淡它。
+*   **对于色板流资产**:
+    *   将 `Palette` 贴图放入 Shader 的 `Main Texture` 槽位。
+    *   **关键**: 设置贴图的 `Filter Mode` 为 **Point (No Filter)**。否则颜色边缘会模糊串色。
+
+#### 步骤 3: 光照签名 (The Lighting Signature)
+这是让它们看起来像“同一个游戏”的核心魔法。**必须在两个材质球上开启完全相同的以下设置**：
+
+1.  **Ramp Texture (光照衰减)**: 两个材质球使用**同一张 Ramp 图**。
+    *   *效果*: 无论是精细的贴图模型，还是简单的色块模型，它们的**阴影颜色和衰减方式**将完全一致。
+2.  **Rim Light (边缘光)**: 开启相同的 Fresnel Rim。
+    *   *效果*: 它们都会被同样的“阳光”勾勒出轮廓。
+3.  **Outline (描边)**: (可选) 统一开启或关闭。
+    *   *注意*: 色板流模型的法线通常很硬 (Hard Normals)，描边可能会断裂。如果必须描边，可能需要用 Blender 重新平滑法线 (Smooth Normals by Angle)。
+
+### 13.4 💡 进阶技巧：色板重映射 (Palette Remapping)
+如果你觉得 Synty 的色板颜色太饱和（太卡通），与你的手绘贴图不搭：
+*   **不要**去改模型 UV。
+*   **直接改 Palette 贴图**: 把那张 256x256 的色板图扔进 PS，挂一个 `Hue/Saturation` 调整层，整体降低饱和度，或者统一偏色（比如偏蓝）。
+*   *结果*: 场景里几千个色板流模型瞬间统统变色，完美融入你的美术风格。
