@@ -482,5 +482,64 @@
 ### 13.4 💡 进阶技巧：色板重映射 (Palette Remapping)
 如果你觉得 Synty 的色板颜色太饱和（太卡通），与你的手绘贴图不搭：
 *   **不要**去改模型 UV。
-*   **直接改 Palette 贴图**: 把那张 256x256 的色板图扔进 PS，挂一个 `Hue/Saturation` 调整层，整体降低饱和度，或者统一偏色（比如偏蓝）。
-*   *结果*: 场景里几千个色板流模型瞬间统统变色，完美融入你的美术风格。
+### 13.5 🛠️ 自动化工具：批量法线平滑 (Batch Normal Smoothing for Outlines)
+
+**Q: 为了描边不断裂，我需要把所有 Low Poly 模型的法线都平滑吗？**
+
+**A: 千万别直接平滑模型法线！那会毁了你的 Low Poly 风格！**
+
+#### 核心矛盾 (The Conflict)
+*   **光照 (Lighting)** 需要 **硬法线 (Hard Normals)**：这样才能看到棱角分明的面。
+*   **描边 (Outline)** 需要 **软法线 (Smooth Normals)**：这样描边才会连续，不会在棱角处断开。
+
+#### 解决方案：双法线流 (The Dual-Normal Workflow)
+我们保持模型的原始法线不变（用于光照），但计算一套平滑法线**烘焙到数据通道 (UV3, UV4 或 Vertex Color)** 中，专门给 Shader 画描边用。
+
+#### ✅ TCP2 官方工具 (The Built-in Way)
+Toony Colors Pro 2 自带了一个工具：`Window > Toony Colors Pro 2 > Smoothed Normals Utility`。
+1.  选中你的所有模型（Project 窗口中）。
+2.  打开工具，选择 **Vertex Colors** (最通用) 或 **UV2/3/4**。
+3.  点击 **Apply to Selection**。
+4.  在 Shader 中，找到 **Outline** 设置，勾选 **Use Smoothed Normals** 并指定对应的通道。
+
+#### ⚡ 程序员的批量自动化 (The Programmer's Way)
+如果你有 1000 个资产，不想手动点工具，可以写一个 `AssetPostprocessor` 脚本，在导入模型时自动处理。
+
+```csharp
+// 放在 Editor 文件夹下
+using UnityEngine;
+using UnityEditor;
+using System.Collections.Generic;
+
+public class SmoothNormalBaker : AssetPostprocessor
+{
+    // 命名包含 "_Outline" 的模型会自动触发
+    void OnPostprocessModel(GameObject g)
+    {
+        if (!assetPath.Contains("_Outline")) return; 
+
+        foreach (var meshFilter in g.GetComponentsInChildren<MeshFilter>())
+        {
+            var mesh = meshFilter.sharedMesh;
+            // 1. 计算平滑法线
+            var smoothNormals = CalculateSmoothNormals(mesh); 
+            // 2. 写入 UV3 (或者 Colors)
+            mesh.SetUVs(2, smoothNormals); 
+            // 3. 上传 Mesh 数据
+            mesh.UploadMeshData(false);
+        }
+    }
+
+    // 简单的平均法线算法 (示意)
+    List<Vector3> CalculateSmoothNormals(Mesh mesh)
+    {
+        // ... (这里通常使用 TCP2 的 API: TCP2_SmoothedNormalsUtility.GetSmoothedNormals(mesh))
+        return new List<Vector3>();
+    }
+}
+```
+
+> **💡 总结**:
+> *   **不要**在 Blender 里把模型平滑了导出来。
+> *   **要**使用工具把平滑法线**存到侧面的通道里**。
+> *   这样你既拥有 Low Poly 的硬朗光影，又拥有丝滑不断的描边。
