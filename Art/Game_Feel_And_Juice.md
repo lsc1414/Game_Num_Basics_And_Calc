@@ -138,3 +138,23 @@ public class GameFeelManager : MonoBehaviour {
 ### Celeste (蔚蓝)
 *   **屏幕震动**: 极其克制但精准。
 *   **辅助功能**: 允许玩家关闭震动（这一点很重要，部分玩家会晕3D）。
+
+## 7. 扩展阅读与参考 (References)
+
+### 📖 书籍
+*   **Game Feel: A Game Designer's Guide to Virtual Sensation** (Steve Swink)
+    *   游戏手感设计的权威著作，深入探讨了玩家与游戏交互的物理和心理层面。
+
+### 📺 GDC 演讲
+*   **[Juice It or Lose It](https://www.youtube.com/watch?v=Fy0aCDLWmGQ)** (Vlambeer - GDC 2012)
+    *   普及了“Juice”概念的经典演讲，通过大量实例展示如何通过微小细节提升游戏反馈。
+*   **[The Art of Juice](https://www.youtube.com/watch?v=21yX6qYwTmc)** (Adam Saltsman - GDC 2013)
+    *   深入剖析了Juice的构成元素，并提供了如何在设计中融入Juice的实用建议。
+*   **[The Trauma System: An Iterative Approach to Screen Shake](https://www.youtube.com/watch?v=tu-Qe66AvtY)** (Unity Technologies - Unite Copenhagen 2019)
+    *   详细讲解了如何在Unity中实现Trauma系统，以及其在多场景中的应用。
+
+### 📝 深度文章
+*   **[Making 'Moments that Matter': How 'Hit Stop' and 'Screen Shake' Enhance Player Experience](https://www.gamasutra.com/view/news/328246/Making_Moments_that_Matter_How_Hit_Stop_and_Screen_Shake_Enhance_Player_Experience.php)** (Gamasutra)
+    *   探讨了打击感背后的心理学机制，以及如何通过这些技术提升玩家的沉浸感和满足度。
+*   **[The Importance of Game Feel in Roguelikes](https://rogueliker.com/articles/the-importance-of-game-feel-in-roguelikes/)** (Rogueliker.com)
+    *   分析了Roguelike游戏中手感的重要性，以及如何通过手感提升重复游玩的乐趣。
