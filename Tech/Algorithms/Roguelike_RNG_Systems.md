@@ -92,3 +92,25 @@ float CalculateWeight(Item item, PlayerState player) {
 3.  **双重质变**: 设计类似 *Hades* 的双重祝福（如 火+油），并在玩家凑齐前置时，**疯狂暗示**甚至**硬塞**给他。
 
 让玩家觉得运气好，是 Roguelike 的入门；让玩家觉得是自己的选择导致了无敌，才是 Roguelike 的大师。
+
+---
+
+## 📚 扩展阅读与数学原理 (References)
+
+### 🎲 随机性理论
+*   **[Randomness in Game Design](https://www.youtube.com/watch?v=dwI5b-wRLic)** (Game Maker's Toolkit)
+    *   Mark Brown 深入浅出地解释了 **"Input Randomness" (输入随机)** vs **"Output Randomness" (输出随机)** 的区别。
+*   **[Controlling Chaos: The Art of RNG](https://www.gdcvault.com/play/1024927/Controlling-Chaos-The-Art-of)** (GDC 2018)
+    *   *Slay the Spire* 的开发者演讲（如果找不到原视频，可参考相关设计文章），讲述如何平衡卡牌游戏的随机性。
+
+### 💻 算法实现
+*   **[Shuffle Bag Algorithm](https://tetrisconcept.net/wiki/Random_Generator)** (Tetris Wiki)
+    *   俄罗斯方块的随机生成器（7-Bag 机制）。这是实现“防脸黑”保底机制的最简单算法。
+*   **[Weighted Random Selection](https://blog.bruce-hill.com/a-faster-weighted-random-choice)**
+    *   技术博客，详细比较了多种加权随机算法的性能（O(n) vs O(log n)）。在 *Vampirefall* 中，如果掉落池很大，需要高效算法。
+
+### 🎮 案例研究
+*   **[Hades' "God Mode" and Pity Timers](https://www.supergiantgames.com/blog/hades-updates/)** (Supergiant Blog)
+    *   研究 Hades 如何通过隐性的数值调整来控制玩家的心流体验。
+*   **[Unity Random Class Documentation](https://docs.unity3d.com/ScriptReference/Random.html)**
+    *   官方文档。注意 `Random.Range` 的边界问题（整数是包左不包右，浮点数是全包）。

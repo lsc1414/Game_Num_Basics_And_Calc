@@ -227,3 +227,25 @@ public class DamagePatch {
 1.  **第一步**: 确保你的 Config (Luban) 可以导出为 **JSON** 并在运行时读取。
 2.  **第二步**: 编写一个 `ResourceManager`，支持从 StreamingAssets 加载 `.png` 覆盖默认 Sprite。
 3.  **第三步 (进阶)**: 使用 **Mono** 编译构建，不要用 IL2CPP，为 Harmony/BepInEx 社区留一扇门。
+
+---
+
+## 📚 扩展阅读与工具库 (References)
+
+### 🛠️ 核心工具库
+*   **[Harmony (Lib.Harmony)](https://harmony.pardeike.net/)**
+    *   官方文档。详细解释了 Prefix, Postfix, Transpiler 的用法和原理。
+*   **[BepInEx](https://github.com/BepInEx/BepInEx)**
+    *   GitHub 仓库。Unity 游戏 Modding 的事实标准框架。
+*   **[Steamworks.NET](https://github.com/rlabrecque/Steamworks.NET)**
+    *   C# 封装的 Steam API。集成创意工坊 (Workshop) 必读。
+
+### 📖 社区教程与案例
+*   **[RimWorld Modding Wiki](https://rimworldwiki.com/wiki/Modding_Tutorials)**
+    *   RimWorld 的 Mod 社区是全球最活跃的之一，他们的教程非常有参考价值。
+*   **[Valheim Modding Guide](https://github.com/Valheim-Modding/Wiki)**
+    *   Valheim 也是基于 Unity + BepInEx 的典型案例。可以参考他们的 Mod 结构。
+
+### 📝 深度技术文章
+*   **[Understanding Unity's IL2CPP](https://blog.unity.com/technology/an-introduction-to-il2cpp-internals)** (Unity Blog)
+    *   读懂这篇文章，你就会明白为什么 IL2CPP 对 Mod 制作是毁灭性的打击。

@@ -155,3 +155,25 @@
     *   Atlas: 2048x2048
     *   Padding: 5 (正文通常只有细描边或无描边，省空间给更多字)
     *   Mode: SDFAA
+
+---
+
+## 📚 扩展阅读与资源下载 (References)
+
+### 🛠️ TextMeshPro 官方文档
+*   **[TextMesh Pro User Guide](https://docs.unity3d.com/Packages/com.unity.textmeshpro@latest/manual/index.html)**
+    *   官方手册。必读 **"Font Asset Creator"** 和 **"Rich Text"** 章节。
+*   **[Signed Distance Fields (SDF) Explained](https://steamcdn-a.akamaihd.net/apps/valve/2007/SIGGRAPH2007_AlphaTestedMagnification.pdf)** (Valve Paper)
+    *   SDF 技术的原始论文（来自 Valve）。硬核程序必读，理解为什么它放大不糊。
+
+### 🔠 字体设计与排版
+*   **[Google Fonts Knowledge](https://fonts.google.com/knowledge)**
+    *   极其详尽的字体知识库。学习什么是 **Legibility (易识性)** vs **Readability (易读性)**。
+*   **[Butterick's Practical Typography](https://practicaltypography.com/)**
+    *   程序员写的排版书。重点阅读 **"Typography in ten minutes"**。
+
+### 📦 免费商用字体源
+*   **[Google Fonts](https://fonts.google.com/)**
+    *   包含 Noto Sans (思源黑体) 等海量免费字体。
+*   **[猫啃网 (Maoken)](https://www.maoken.com/)**
+    *   国内最大的免费商用字体收集站。可以在这里找到很多有个性的中文字体（如阿里妈妈系列）。

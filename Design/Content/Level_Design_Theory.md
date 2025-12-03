@@ -71,3 +71,23 @@
 *   **Dust 2**: 经典的“田”字型结构。中门 (Mid) 是核心争夺点，连接 A/B 两点。塔防也可以借鉴这种**多线互通**结构，让玩家在两条路之间疲于奔命，必须用传送门或高机动英雄救场。
 *   **Kingdom Rush**: 每一关都引入一个新塔或新怪。利用地形（如从河里突然钻出的怪）打破玩家的既定防线，强迫重建。
 
+---
+
+## 📚 扩展阅读与灵感来源 (References)
+
+### 🏯 关卡设计圣经
+*   **[Level Up! The Guide to Great Video Game Design](https://www.amazon.com/Level-Guide-Great-Video-Design/dp/1118877160)** (Scott Rogers)
+    *   通俗易懂的关卡设计入门书，特别是关于“引导玩家视线”的部分。
+*   **[Super Mario 3D World's 4-Step Level Design](https://www.youtube.com/watch?v=dBmIkEvEBtA)** (Game Maker's Toolkit)
+    *   Mark Brown 详细拆解了任天堂的 **起承转合 (Kishōtenketsu)** 设计法，这是本篇文档的核心理论依据。
+
+### 🛠️ 塔防特化
+*   **[Designing Tower Defense Games](https://www.gamasutra.com/view/feature/132666/designing_tower_defense_games.php)** (Gamasutra)
+    *   深入讨论了“路径设计”对游戏难度的数学影响。
+*   **[The Art of Choke Points](https://www.youtube.com/watch?v=rDjrOaoMz9c)** (Level Design Lobby)
+    *   视频分析了 FPS 地图中的扼守点设计，其原理完全通用于塔防游戏。
+
+### 🧘 心流理论
+*   **[Flow: The Psychology of Optimal Experience](https://www.amazon.com/Flow-Psychology-Experience-Perennial-Classics/dp/0061339202)** (Mihaly Csikszentmihalyi)
+    *   心流理论的原著。理解“挑战”与“技能”的动态平衡。
+

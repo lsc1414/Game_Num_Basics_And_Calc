@@ -814,3 +814,25 @@ public class PRDSystem {
   * **调整方法:**
       * 如果玩家 DPS 膨胀过快（TTK < 0.1s），通过 **怪物护甲/HP倍率** 压回来。
       * 如果玩家打不动（TTK > 20s），检查是否投放了足够的 **独立增伤 (More)** 词条。
+
+-----
+
+## 📚 扩展阅读与数学模型 (References)
+
+### ⚔️ 伤害公式 (Damage Formulas)
+*   **[Path of Exile Wiki: Damage Calculation](https://www.poewiki.net/wiki/Damage)**
+    *   **必读**。深入理解 `Base * (1+Inc) * More * Crit` 这一黄金公式的来源。
+*   **[Warframe Damage 2.0](https://warframe.fandom.com/wiki/Damage)**
+    *   学习如何通过“元素克制表”构建复杂的伤害体系（如腐蚀剥甲、病毒增伤）。
+
+### 🛡️ 防御机制 (Defense Mechanics)
+*   **[Diablo 3 Armor Formula](https://diablo.fandom.com/wiki/Armor_(Diablo_III))**
+    *   解释了 `Armor / (Armor + K)` 这种非线性收益公式如何产生线性的 EHP (有效生命值) 增长。
+*   **[League of Legends Armor & Magic Resist](https://leagueoflegends.fandom.com/wiki/Armor)**
+    *   同样的公式在 MOBA 游戏中的应用。
+
+### 🎲 伪随机算法 (PRD)
+*   **[Pseudo-Random Distribution (Dota 2 Wiki)](https://dota2.fandom.com/wiki/Random_distribution)**
+    *   详细列出了从 5% 到 95% 暴击率对应的 C 值常数表。直接照抄即可。
+*   **[True Random vs Pseudo Random](https://www.youtube.com/watch?v=Mgu8F0V67D0)** (Video)
+    *   直观演示了为什么真随机在游戏中会让玩家感觉“体验很差”。

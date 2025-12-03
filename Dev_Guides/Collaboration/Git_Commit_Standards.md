@@ -140,3 +140,23 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 
 **最后通牒**: 
 "Update", "Fix bug", "Backup", "..." 这种 Commit Message 一经发现，**请请全组喝奶茶**。
+
+---
+
+## 📚 扩展阅读与参考标准 (References)
+
+### 🌍 行业标准
+*   **[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)**
+    *   本文档基于此规范。它是目前最流行的 Commit Message 标准，被 Angular, React, Electron 等数万个开源项目采用。
+*   **[Semantic Versioning 2.0.0](https://semver.org/)** (语义化版本控制)
+    *   解释了为什么 `BREAKING CHANGE` 会导致大版本号 +1 (v1.0.0 -> v2.0.0)。
+
+### 🔧 自动化工具
+*   **[Husky](https://github.com/typicode/husky)**
+    *   最流行的 Git Hooks 工具。可以用它在 `git commit` 之前自动运行 Lint 检查。
+*   **[Commitlint](https://github.com/conventional-changelog/commitlint)**
+    *   一个命令行工具，用来检查 Commit Message 是否符合 Conventional Commits 规范。建议集成到 CI/CD 流程中。
+
+### 📖 深度文章
+*   **[How to Write a Git Commit Message](https://cbea.ms/git-commit/)** (Chris Beams)
+    *   这篇博客被无数人引用，详细解释了“为什么要用祈使句”、“为什么首行不能超过50个字符”。

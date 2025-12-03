@@ -88,3 +88,23 @@
 ### 🟢 核心原则 (Must)
 1.  **Commit Message**: 必须清晰。`Fix bug` 是垃圾提交。`Fix: 修复了箭塔在 30 级时攻速溢出的 Bug` 是好提交。
 2.  **美术资源命名**: 严格遵守 `T_Icon_Sword_01` (Type_Category_Name_Variant) 的命名规范。
+
+---
+
+## 📚 扩展阅读与技术标准 (References)
+
+### 🚀 性能优化
+*   **[Unity Performance Best Practices](https://unity.com/how-to/unity-performance-best-practices)** (Official Unity)
+    *   官方白皮书。必读章节：*Memory Management* 和 *Asset Auditing*。
+*   **[10000 Update() calls vs 10000 Array iterations](https://blogs.unity3d.com/2015/12/23/1k-update-calls/)** (Unity Blog)
+    *   用数据证明了为什么 **Update** 是性能杀手，以及为什么你应该用 Manager 统一轮询。
+
+### 🎨 美术规范
+*   **[The Technical Art of Sea of Thieves](https://www.youtube.com/watch?v=C2h6W52y474)** (GDC 2018)
+    *   *盗贼之海* 的技术美术分享。展示了如何用最少的 DrawCall 实现最绚丽的风格化海洋。
+*   **[Optimizing Graphics in Unity](https://learn.unity.com/tutorial/fixing-performance-problems)**
+    *   Unity Learn 上的官方课程，详细讲解了 DrawCall Batching 和 GPU Instancing 的触发条件。
+
+### 💻 代码架构
+*   **[Level Up Your Code with Game Programming Patterns](https://gameprogrammingpatterns.com/)** (Bob Nystrom)
+    *   *必读*: **Object Pool** 和 **Data Locality** 章节。这是高性能游戏编程的基石。

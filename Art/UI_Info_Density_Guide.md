@@ -83,3 +83,25 @@
 3.  **开关**: 在设置里加一个选项 `[x] 显示高级技能描述`，默认关闭。
 
 把选择权交给玩家，让休闲玩家看热闹，硬核玩家看门道。
+
+---
+
+## 📚 扩展阅读与 UX 原则 (References)
+
+### 🧠 认知心理学
+*   **[Hick's Law](https://lawsofux.com/hicks-law/)** (Laws of UX)
+    *   **希克定律**: 选项越多，决策时间越长。这是我们为什么要精简战斗 UI 的核心理论依据。
+*   **[Miller's Law](https://lawsofux.com/millers-law/)** (Laws of UX)
+    *   **米勒定律**: 人脑的工作记忆只能处理 7±2 个组块。所以技能描述里不要出现超过 5 个数字。
+
+### 👁️ 界面设计
+*   **[10 Usability Heuristics for User Interface Design](https://www.nngroup.com/articles/ten-usability-heuristics/)** (Nielsen Norman Group)
+    *   UX 设计界的“十诫”。重点阅读 **"Visibility of system status"** (系统状态可见性) 和 **"Recognition rather than recall"** (再认优于回忆)。
+*   **[Progressive Disclosure](https://www.nngroup.com/articles/progressive-disclosure/)** (Nielsen Norman Group)
+    *   **分层展示**的理论源头。解释了为什么一开始只给用户看最少的信息，然后按需展开。
+
+### 🎮 游戏 UI 案例
+*   **[Game UI Database](https://www.gameuidatabase.com/)**
+    *   全球最大的游戏 UI 截图库。可以在这里搜 *Hades*, *Slay the Spire* 的 UI 布局作为参考。
+*   **[Elden Ring UI Analysis](https://www.youtube.com/watch?v=...search_for_real_link)** (推荐搜索相关分析视频)
+    *   学习魂系游戏如何用极简的 UI 传达复杂的信息（通过动画、音效而非文字）。

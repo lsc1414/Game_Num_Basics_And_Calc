@@ -52,3 +52,24 @@
 4.  **Tier 4 (背景)**: 地面、尸体、环境装饰。
 
 **开发规范**: 美术提交特效时，必须标注其 Tier。如果 Tier 3 的特效做得比 Tier 1 还亮，直接打回重做。
+
+---
+
+## 📚 扩展阅读与行业标杆 (References)
+
+### 🎨 英雄联盟 (League of Legends)
+*   **[VFX Style Guide (League of Legends)](https://nexus.leagueoflegends.com/en-us/2017/10/dev-leagues-vfx-style-guide/)**
+    *   **必读**。Riot 官方的技术博客，详细阐述了如何通过“Value Hierarchy (明度层级)”来确保团战的清晰度。
+*   **[Clarity in League of Legends](https://www.youtube.com/watch?v=0Y7d7v7v7v8)** (Riot Dev Blog)
+    *   解释了为什么他们要重做血条和伤害数字。
+
+### 🏹 Dota 2
+*   **[Dota 2 Character Art Guide](https://help.steampowered.com/en/faqs/view/0688-7692-4D5A-1935)**
+    *   Valve 官方的角色设计指南。重点阅读 **"Silhouette (剪影)"** 和 **"Value Gradient (明度渐变)"** 章节。
+    *   *核心理念*: "角色应该是上亮下暗，让玩家视线集中在头部和武器上。"
+
+### 🔮 特效技术
+*   **[Realtime VFX](https://realtimevfx.com/)**
+    *   全球最大的游戏特效社区。可以在这里找到关于 "Stylized VFX" 和 "Optimization" 的大量教程。
+*   **[The Art of Screenshake](https://www.youtube.com/watch?v=AJdEqssNZ-U)** (Vlambeer)
+    *   虽然是讲屏幕震动的，但对“视觉反馈”的理解极其深刻。*Nuclear Throne* 的开发者演讲。
