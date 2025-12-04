@@ -176,3 +176,21 @@ public class AttackPipeline {
 3.  **过度设计 (Over-Engineering):** 为还没出现的需求写复杂的接口。**YAGNI (You Aren't Gonna Need It)** 原则是王道。
 
 ---
+
+## 📚 扩展阅读与代码圣经 (References)
+
+### 🏛️ 设计模式基础
+*   **[Game Programming Patterns](https://gameprogrammingpatterns.com/)** (Bob Nystrom)
+    *   **必读圣经**。免费在线阅读。重点推荐 *Type Object* (对应 ScriptableObject) 和 *Data Locality* (对应 DOTS) 章节。
+*   **[Refactoring.Guru](https://refactoring.guru/design-patterns)**
+    *   图文并茂地讲解了 GoF 23 种经典模式。如果你忘了“装饰器模式”怎么写，来这查。
+
+### 🏎️ 性能与架构
+*   **[Unity ECS (Entity Component System) Documentation](https://docs.unity3d.com/Packages/com.unity.entities@latest)**
+    *   官方 DOTS 文档。理解数据导向编程 (Data-Oriented Design) 的权威来源。
+*   **[Dependency Injection in Unity](https://www.youtube.com/watch?v=NkQ_nQw5eNo)** (Infallible Code)
+    *   讲解为什么你应该使用 DI (依赖注入) 来替代 Singleton，从而写出更干净、可测试的代码。
+
+### 🔧 实战案例
+*   **[Command Pattern in Strategy Games](https://www.gamasutra.com/view/feature/131265/implementing_a_command_system_for_.php)**
+    *   详解如何利用命令模式实现 RTS 游戏中的“输入缓冲”和“回放系统”。

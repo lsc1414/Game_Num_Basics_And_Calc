@@ -575,3 +575,22 @@ Perk 选择界面是玩家最期待的时刻，必须有强烈的多巴胺反馈
 }
 ```
 
+---
+
+## 📚 扩展阅读与设计灵感 (References)
+
+### 🎲 随机性与设计
+*   **[Game Maker's Toolkit: The Two Types of Random](https://www.youtube.com/watch?v=dwI5b-wRLic)**
+    *   Mark Brown 深度解析 Input Randomness vs Output Randomness。
+*   **[Hades Developer Blog: Controlling Randomness](https://www.supergiantgames.com/blog/)**
+    *   Supergiant 如何在 Hades 中通过 "God Mode" 和 Pity Timers 控制玩家体验。
+
+### 🃏 牌库构建 (Deck Building)
+*   **[Slay the Spire: Balancing a Deck Builder](https://www.gdcvault.com/play/1025775/Slay-the-Spire-Metrics-Driven)** (GDC 2019)
+    *   Mega Crit 团队分享如何通过数据分析来平衡 300+ 张卡牌。
+*   **[Magic: The Gathering Design Articles](https://magic.wizards.com/en/articles/archive/making-magic/timmy-johnny-and-spike-2013-12-03)**
+    *   万智牌首席设计师 Mark Rosewater 的经典文章，定义了 Timmy, Johnny, Spike 三种玩家类型，对设计 Perk 非常有启发。
+
+### 🧠 涌现性玩法 (Emergent Gameplay)
+*   **[Systemic Games: 5 Key Elements](https://www.gamasutra.com/blogs/TynanSylvester/20130602/193462/The_Design_of_RimWorld.php)**
+    *   RimWorld 开发者 Tynan Sylvester 讲解如何通过简单的规则组合创造出复杂的涌现性玩法。
