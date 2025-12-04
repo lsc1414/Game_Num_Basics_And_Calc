@@ -51,6 +51,9 @@
 
 ### 💰 系统与经济 (Systems & Economy)
 *   **[装备与物品化](Design/Systems/Itemization.md):** 词缀结构、暗金设计。
+*   **[权衡词条库](Design/Systems/TradeOff_Affix_Library.md):** 100个“缺陷即特色”的词条灵感。
+*   **[关卡词条库](Design/Systems/Map_Affix_Library.md):** 100+个中英文对照的地图特效。
+*   **[塔防词条库](Design/Systems/Tower_Defense_Affix_Library.md):** 100+个塔防专用词条。
 *   **[掉落规则](Design/Systems/Loot_Table_Rules.md):** 掉落蓄水池、智能掉落。
 *   **[POE 门票机制](Design/Systems/POE_Map_Fragment_Design.md):** 高风险门票与经济循环。
 *   **[局外成长](Design/Systems/Meta_Progression.md):** 天赋树、基地建设。
@@ -183,6 +186,7 @@
 
 ### 🏆 案例分析 (Case Studies)
 *   **[行业标杆](Design/Industry_CaseStudies.md):** 竞品研究集合。
+*   **[正中靶心深度解析](Design/CaseStudies/BangBangSurvivor_DeepDive.md):** 居中UI与权衡机制拆解。
 *   **[Bloons TD6](Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md):** 伤害矩阵设计。
 *   **[Hades](Dev_Guides/Industry_Cases/Hades_Build_Diversity.md):** 构建多样性分析。
 *   **[Kingdom Rush](Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md):** 经典塔防数值。
