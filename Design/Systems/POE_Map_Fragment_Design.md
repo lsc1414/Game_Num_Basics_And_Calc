@@ -91,3 +91,14 @@ $$E(Ticket) = (P_{Drop} \times Value_{Drop}) - Cost_{Time} - Risk_{Fail}$$
 1.  **不可交易的进度**: Maven 的 0/10 进度是绑定角色的，不可交易。这防止了工作室垄断门票产出。
 2.  **碎片必须占格子**: 这听起来很反人类，但 POE 的碎片占用背包格是促进仓库页销量的手段（商业化）。对于 *Vampirefall*，如果背包不卖钱，建议做专门的“碎片钱包”以优化体验。
 3.  **失败一定要痛**: 打门票本不仅消耗门票，通常还有 **"只有 1 条命"** 或者 **"不能复活"** 的限制。这能最大化紧张感。
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>

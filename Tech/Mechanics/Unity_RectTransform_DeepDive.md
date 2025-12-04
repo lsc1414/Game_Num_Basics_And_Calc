@@ -248,3 +248,15 @@ void Update() {
 | **贴边距离** | 拉伸模式 | `offsetMin` (左下), `offsetMax` (右上) |
 | **全屏铺满** | 任意 | `anchorMin=0`, `anchorMax=1`, `offsetMin/Max=0` |
 | **鼠标跟随** | 任意 | `RectTransformUtility.ScreenPointToLocalPointInRectangle` |
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+

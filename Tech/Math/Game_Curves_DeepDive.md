@@ -185,3 +185,15 @@ $$ y = x^2(3 - 2x) $$
 ## 6. 📚 扩展阅读
 *   [The Book of Shaders: Shaping Functions](https://thebookofshaders.com/05/) - 必读，图形学中的曲线圣经。
 *   [GDC: Math for Game Developers](https://www.youtube.com/watch?v=s7V7K8y8X2c)
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+

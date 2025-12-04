@@ -389,3 +389,14 @@ Unity 的 Transform 系统使用“肮脏标记”模式。
 | **两向量夹角** | `Vector3.Angle(dirA, dirB);` (返回 0~180 度) |
 | **世界坐标转屏幕坐标** | `Camera.main.WorldToScreenPoint(worldPos)` |
 | **屏幕坐标转世界 (带深度)** | `Camera.main.ScreenToWorldPoint(new Vector3(x, y, depth))` |
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>

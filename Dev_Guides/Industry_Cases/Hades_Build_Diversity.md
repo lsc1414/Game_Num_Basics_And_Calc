@@ -247,3 +247,14 @@ public class LightningBoon : BoonEffect {
 
 ---
 *总结：真正的多样性不是来自于元素的数量，而是来自于元素之间连接方式的数量。通过良好的底层架构，让策划人员能够像搭积木一样自由组合玩法，而无需每次都请求程序修改代码。*
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>

@@ -255,3 +255,14 @@ Get Ready For Winter 2025: LiveOps Tactics That Worked - AppMagic, 访问时间�
 Render pipelines - Unity - Manual, 访问时间为 十二月 2, 2025， https://docs.unity3d.com/6000.2/Documentation/Manual/render-pipelines.html
 Art optimization tips for mobile game developers part 2 - Unity, 访问时间为 十二月 2, 2025， https://unity.com/how-to/mobile-game-optimization-tips-part-2
 Sony shutting down Seattle-area game developer Firewalk Studios - GeekWire, 访问时间为 十二月 2, 2025， https://www.geekwire.com/2024/sony-shutting-down-seattle-area-game-developer-firewalk-studios/
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
