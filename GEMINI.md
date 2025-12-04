@@ -40,6 +40,16 @@ This repository (`Server/Game_Num_Basics_And_Calc`) serves as the **Single Sourc
 ## 👮 AI Rules (Must Follow)
 1.  **Language**: All output must be in **Chinese** (except for code).
 2.  **Documentation**: When adding a new document, you **MUST** update `readme.md` to include a link to it.
+3.  **GitHub Pages Compatibility**: Formulas and Mermaid diagrams in every document must be adapted for GitHub Pages. For Mermaid, include the following script:
+    ```html
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false });
+      await mermaid.run({
+        querySelector: '.language-mermaid',
+      });
+    </script>
+    ```
 
 ## 🔗 Quick Links
 *   [Main Readme](readme.md)

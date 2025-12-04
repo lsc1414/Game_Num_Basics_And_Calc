@@ -21,7 +21,7 @@
 3.  **调试工具**: 学会使用 **[调试指令与GM工具](Dev_Guides/Tools/Debug_Console_And_Cheats.md)** 提高效率。
 
 ### 🎨 新人美术 (Artist)
-1.  **画风对齐**: 阅读 **[视觉质量指南](Art/Visual_Quality_Guide.md)**。
+1.  **画风对齐**: 阅读 **[视觉质量指南](Art/Visual_Quality_Guide.md)** 和 **[美术风格一致性指南](Art/Art_Direction_Guide.md)**。
 2.  **乱而不杂**: 学习 **[视觉层级与混乱管理](Art/Visual_Hierarchy_In_Chaos.md)**，防止光污染。
 3.  **资源规范**: 遵守 **[资源命名规范](Unity_Standards/Asset_Naming.md)**。
 
@@ -49,6 +49,7 @@
 *   **[元素反应机制](Design/Mechanics/Elemental_Reaction_System.md):** 状态连携 (油火爆燃)。
 *   **[肉鸽强化系统](Design/Mechanics/Roguelike_Perks.md):** 词条池、诅咒机制。
 *   **[仇恨系统](Design/Mechanics/Aggro_System.md):** 目标选择逻辑。
+*   **[难度曲线与 DDA 系统](Design/Mechanics/Difficulty_And_DDA_System.md):** 心流理论、动态难度调整算法。
 
 ### 💰 系统与经济 (Systems & Economy)
 *   **[装备与物品化](Design/Systems/Itemization.md):** 词缀结构、暗金设计。
@@ -60,11 +61,16 @@
 *   **[局外成长](Design/Systems/Meta_Progression.md):** 天赋树、基地建设。
 *   **[经济模型](Design/Systems/Economy_And_Inflation_Model.md):** 资源产出消耗。
 *   **[邮件系统](Design/Systems/Mail_System_Design.md):** 公告与奖励发放。
+*   **[成就与收集系统](Design/Systems/Achievement_And_Collection_System.md):** 成就设计、图鉴系统、完成主义心理学。
+*   **[技能树设计](Design/Systems/Skill_Tree_Design.md):** 线性/分支/网格树、Build多样性、重置机制。
+*   **[多人协作平衡](Design/Systems/Coop_Balance_Design.md):** 难度伸缩、资源分配(金币独立/以太共享)、职业互补。
 
 ### 🗺️ 内容与世界 (Content & World)
 *   **[怪物图鉴](Design/Content/Enemy_Bestiary.md):** AI 行为模板。
 *   **[关卡设计指南](Design/Content/Level_Design_Guide.md):** 波次节奏控制。
 *   **[关卡设计理论](Design/Content/Level_Design_Theory.md):** 空间结构与隐性引导。
+*   **[Boss 设计哲学](Design/Content/Boss_Design_Philosophy.md):** 柱阶段系统、电报机制、业界案例分析。
+*   **[游戏剧情与包装](Design/Narrative/Game_Narrative_And_Presentation.md):** 环境叙事、Lore 系统、肉鸽叙事设计。
 
 ### 🎓 理论与策略 (Theory & Strategy)
 *   **[设计哲学](Design/Philosophy_And_Systems.md):** 玩家心理模型。
@@ -126,6 +132,7 @@
 *   **[WFC 生成](Dev_Guides/Technical_Implementation/Procedural_Generation_WFC.md):** 波函数坍缩算法。
 *   **[掉落算法](Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm.md):** 动态概率控制。
 *   **[PRD 算法](Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md):** 伪随机分布详解。
+*   **[程序化生成指南](Tech/Algorithms/Procedural_Generation_Guide.md):** WFC、BSP、Cellular Automata、地图生成算法。
 
 ### 🔧 机制深度解析 (Mechanics Deep Dive)
 *   **[伤害判定](Tech/Mechanics/Damage_Judgment_Mechanisms_Guide.md):** 判定时序与优先级。
@@ -134,6 +141,9 @@
 *   **[血条优化](Tech/Mechanics/Unity_HUD_HealthBar_DeepDive.md):** 性能与表现。
 *   **[UI 变换](Tech/Mechanics/Unity_RectTransform_DeepDive.md):** RectTransform 详解。
 *   **[变换数学](Tech/Mechanics/Unity_Transform_Math_Guide.md):** 向量与矩阵运算。
+*   **[连招系统设计](Tech/Mechanics/Combo_System_Design.md):** 输入缓冲、连锁窗口、取消系统深度研究。
+*   **[瞄准辅助系统](Tech/Mechanics/Aim_Assist_System.md):** 磁吸机制、输入补偿、难度分级、移动端优化。
+*   **[移动与冲刺系统](Tech/Mechanics/Movement_And_Dash_System.md):** I-Frame、转角修正、充能机制、Hades/Celeste案例。
 
 ### 🚀 性能与工具
 *   **[移动端优化](Tech/Mobile_Optimization_Guide.md):** 渲染与内存。
@@ -155,20 +165,6 @@
 *   **[性能监控](Dev_Guides/Tools/Performance_Monitoring_Scripts.md):** 运行时性能分析。
 *   **[PRD 插件](Dev_Guides/Tools/Unity_PRD_Plugin.md):** Unity 随机工具。
 *   **[AI 平衡测试](Dev_Guides/Tools/AI_Balance_Testing.md):** 自动化平衡性测试。
-
-</details>
-
-<details markdown="1" open>
-<summary><strong>📂 点击展开：3. 美术与音频 (Art & Audio)</strong></summary>
-
-### 🎨 美术标准
-*   **[视觉质量指南](Art/Visual_Quality_Guide.md):** 风格标准。
-*   **[游戏字体排印指南](Art/Typography_And_Font_Guide.md):** 免费商用字体推荐与粗细排版策略。
-*   **[视觉层级](Art/Visual_Hierarchy_In_Chaos.md):** 混乱管理与轮廓线。
-*   **[新手引导](Design/UX/FTUE_Best_Practices.md):** 洋葱皮教学与FTUE。
-*   **[UI/UX 指南](Art/UI_UX_Guidelines.md):** 交互设计规范。
-*   **[UI 信息密度指南](Art/UI_Info_Density_Guide.md):** 极简与硬核描述的取舍策略。
-*   **[特效标准](Art/VFX_Standards.md):** 粒子性能限制。
 *   **[相机设置](Art/Camera_DeepDive_And_Settings.md):** 震动与跟随。
 *   **[游戏手感](Art/Game_Feel_And_Juice.md):** 顿帧与打击感。
 
@@ -177,6 +173,7 @@
 *   **[轻量级框架](Audio/Lightweight_Audio_Framework.md):** 纯代码管理方案。
 *   **[挂载策略](Audio/AudioListener_Placement_Guide.md):** 俯视角听感修正。
 *   **[音效技巧](Audio/Audio_System_Design_and_Tricks.md):** 变调与侧链。
+*   **[动态音乐系统](Audio/Adaptive_Music_System.md):** 垂直分层、水平切换、自适应强度。
 *   **[Wwise指南](Audio/Wwise_Middleware_Guide.md):** 中间件对比。
 
 </details>
