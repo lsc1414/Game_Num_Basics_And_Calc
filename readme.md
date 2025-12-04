@@ -1,4 +1,5 @@
-# 🧛 Project Vampirefall: 游戏开发的100件事 (The 100 Steps to Launch)
+# 游戏开发的100件事 
+# The 100 Steps to Launch
 > **"当《王国保卫战》遇见《流放之路》与《吸血鬼幸存者》"**
 >
 > 这不仅仅是一个文档库，而是一份 **从立项到上线 (Zero to Hero)** 的实战生存指南。我们在这里记录下开发高品质 **混合品类 (Hybrid Genre)** 游戏所需的 100 个关键决策与技术标准。
@@ -38,7 +39,7 @@
 
 ## 📚 完整知识库 (The Codex)
 
-<details>
+<details markdown="1" open>
 <summary><strong>📂 点击展开：1. 游戏设计 (Design)</strong></summary>
 
 ### ⚔️ 核心机制 (Core Mechanics)
@@ -81,7 +82,7 @@
 
 </details>
 
-<details>
+<details markdown="1" open>
 <summary><strong>📂 点击展开：2. 技术架构 (Tech)</strong></summary>
 
 ### 🏗️ 核心架构
@@ -140,7 +141,7 @@
 
 </details>
 
-<details>
+<details markdown="1" open>
 <summary><strong>📂 点击展开：3. 美术与音频 (Art & Audio)</strong></summary>
 
 ### 🎨 美术标准
@@ -163,7 +164,7 @@
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>📂 点击展开：4. 生产与发行 (Production)</strong></summary>
 
 ### 🗓️ 流程与管理 (Process & Management)
