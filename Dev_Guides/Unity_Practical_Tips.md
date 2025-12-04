@@ -183,6 +183,8 @@ Shader "Custom/InstancedEffect"
     }
 }
 
+```
+
 ---
 
 ## 2. 🏗️ 架构设计：如何写出不耦合的代码
@@ -423,6 +425,8 @@ public class TowerStateMachine
 
 
 ---
+
+```
 
 ## 3. 🛠️ 开发效率：别重复造轮子
 
@@ -680,7 +684,7 @@ public class AllocationAnalyzer
         if (condition.Contains("GC.Alloc") && condition.Contains("Bytes"))
         {
             // 检测到GC分配，记录详细信息
-            var match = System.Text.RegularExpressions.Regex.Match(condition, @"(\\d+) Bytes");
+            var match = System.Text.RegularExpressions.Regex.Match(condition, @"(\d+) Bytes");
             if (match.Success)
             {
                 int bytes = int.Parse(match.Groups[1].Value);
@@ -766,6 +770,8 @@ public class MobileProfiler : MonoBehaviour
         return string.Format("{0:n1} {1}", number, suffixes[counter]);
     }
 }
+
+```
 
 ---
 
