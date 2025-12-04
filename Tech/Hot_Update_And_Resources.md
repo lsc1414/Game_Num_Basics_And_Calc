@@ -82,3 +82,8 @@ graph TD
     *   *解法*: CI/CD 流程强制绑定。每次构建 DLL 必须同时触发资源版本号递增，确保 `GameVersion` 一致。
 *   **防裁剪**: Unity Strip Engine Code 可能把热更用到的引擎代码裁剪掉。
     *   *解法*: 在 `link.xml` 中保留必要的命名空间。
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>

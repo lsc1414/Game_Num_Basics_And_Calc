@@ -119,3 +119,8 @@ graph TD
 2.  [ ] **位置**: 它是通用资源还是模块独享资源？放对文件夹了吗？
 3.  [ ] **引用**: 核心 UI 是否错误引用了关卡内的大贴图？
 4.  [ ] **测试**: 提交前是否在 `EditorSimulateMode` 下运行测试过？
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>

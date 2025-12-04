@@ -72,7 +72,24 @@
 *   **[横竖屏策略](Design/Product_Strategy/Screen_Orientation_Strategy.md):** 用户场景分析。
 *   **[游戏心理学框架](Design/Game_Psychology_DeepDive.md):** 心流通道、爽点设计公式、流失归因。
 *   **[斯金纳箱理论](Design/Psychology/Skinner_Box_and_Addiction.md):** 随机奖励 (VR) 与固定奖励 (FR) 的成瘾机制。
-*   **[案例分析](Design/Industry_CaseStudies.md):** 竞品研究集合。
+
+### 🏆 案例分析 (Case Studies)
+*   **[行业标杆](Design/Industry_CaseStudies.md):** 竞品研究集合。
+*   **[正中靶心深度解析](Design/CaseStudies/BangBangSurvivor_DeepDive.md):** 居中UI与权衡机制拆解。
+*   **[Bloons TD6](Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md):** 伤害矩阵设计。
+*   **[Hades](Dev_Guides/Industry_Cases/Hades_Build_Diversity.md):** 构建多样性分析。
+*   **[Kingdom Rush](Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md):** 经典塔防数值。
+*   **[Loop Hero](Dev_Guides/Industry_Cases/Loop_Hero_Loop_Mechanics.md):** 循环机制解构。
+*   **[Palworld](Dev_Guides/Industry_Cases/Palworld_Production_Model.md):** 缝合生产模式。
+*   **[Thronefall](Dev_Guides/Industry_Cases/Thronefall_Minimalist_Hybrid.md):** 极简混合设计。
+*   **[吸血鬼幸存者](Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md):** 性能与爽感。
+
+### 💀 失败复盘 (Post-Mortems)
+*   **[Anthem](Dev_Guides/Failure_Cases/Anthem_Failure_Analysis.md):** 发行灾难分析。
+*   **[Battleborn](Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis.md):** 定位模糊之殇。
+*   **[Concord](Dev_Guides/Failure_Cases/Concord_Failure_Analysis.md):** 服务型游戏困境。
+*   **[Paragon](Dev_Guides/Failure_Cases/Paragon_Complexity_Trap.md):** 复杂性陷阱。
+*   **[The Day Before](Dev_Guides/Failure_Cases/The_Day_Before_Failure_Analysis.md):** 营销骗局警示。
 
 ### 📅 运营 (LiveOps)
 *   **[通行证经济](Design/LiveOps/Battle_Pass_Economy.md):** 40天周期设计。
@@ -185,23 +202,7 @@
 *   **[独立美术策略](Dev_Guides/Art_Pipeline/Indie_Team_Art_Strategy.md):** 资源生产管线。
 *   **[白盒工作流](Dev_Guides/Art_Pipeline/Unity_Greybox_Workflow.md):** 关卡验证流程。
 
-### 🏆 案例分析 (Case Studies)
-*   **[行业标杆](Design/Industry_CaseStudies.md):** 竞品研究集合。
-*   **[正中靶心深度解析](Design/CaseStudies/BangBangSurvivor_DeepDive.md):** 居中UI与权衡机制拆解。
-*   **[Bloons TD6](Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md):** 伤害矩阵设计。
-*   **[Hades](Dev_Guides/Industry_Cases/Hades_Build_Diversity.md):** 构建多样性分析。
-*   **[Kingdom Rush](Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md):** 经典塔防数值。
-*   **[Loop Hero](Dev_Guides/Industry_Cases/Loop_Hero_Loop_Mechanics.md):** 循环机制解构。
-*   **[Palworld](Dev_Guides/Industry_Cases/Palworld_Production_Model.md):** 缝合生产模式。
-*   **[Thronefall](Dev_Guides/Industry_Cases/Thronefall_Minimalist_Hybrid.md):** 极简混合设计。
-*   **[吸血鬼幸存者](Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md):** 性能与爽感。
 
-### 💀 失败复盘 (Post-Mortems)
-*   **[Anthem](Dev_Guides/Failure_Cases/Anthem_Failure_Analysis.md):** 发行灾难分析。
-*   **[Battleborn](Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis.md):** 定位模糊之殇。
-*   **[Concord](Dev_Guides/Failure_Cases/Concord_Failure_Analysis.md):** 服务型游戏困境。
-*   **[Paragon](Dev_Guides/Failure_Cases/Paragon_Complexity_Trap.md):** 复杂性陷阱。
-*   **[The Day Before](Dev_Guides/Failure_Cases/The_Day_Before_Failure_Analysis.md):** 营销骗局警示。
 
 </details>
 

@@ -262,3 +262,8 @@ public class BossChaseState : BaseState {
 *   **原则：** **Logic FSM 驱动 Animator，绝反之。**
 *   **错误：** 在 Animator 的 `OnStateExit` 里写代码改逻辑变量。这会导致逻辑很难调试。
 *   **正确：** 代码里 `ChangeState(Attack)` -> 调用 `animator.SetTrigger("Attack")`。
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>

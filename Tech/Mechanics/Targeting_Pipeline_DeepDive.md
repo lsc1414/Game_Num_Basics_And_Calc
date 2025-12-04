@@ -114,3 +114,8 @@ graph TD
 *   **SIMD 优化:** 如果单位极多，可以将位置数据放入 `NativeArray<float3>`，用 Unity Job System 并行计算距离分数。
 
 ---
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
