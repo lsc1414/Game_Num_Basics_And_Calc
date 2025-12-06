@@ -43,6 +43,7 @@
 <summary><strong>📂 点击展开：1. 游戏设计 (Design)</strong></summary>
 
 ### ⚔️ 核心机制 (Core Mechanics)
+*   **[数值框架构建指南](Design/Numerical/Numerical_Framework_Methodology.md):** 从零开始确立TTK、经济循环与成长曲线。
 *   **[数值设计手册](Design/Numerical_Manual.md):** 数学的“圣经”。
 *   **[战斗系统详解](Design/Mechanics/Combat_System.md):** 伤害类型、韧性机制。
 *   **[塔防建筑机制](Design/Mechanics/Tower_Defense_System.md):** 建造规则、人塔协同。
@@ -87,6 +88,7 @@
 *   **[行业标杆](Design/Industry_CaseStudies.md):** 竞品研究集合。
 *   **[正中靶心深度解析](Design/CaseStudies/BangBangSurvivor_DeepDive.md):** 居中UI与权衡机制拆解。
 *   **[Bloons TD6](Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md):** 伤害矩阵设计。
+*   **[Brotato](Dev_Guides/Industry_Cases/Brotato_Numerical_Analysis.md):** 属性加成与负属性博弈。
 *   **[Hades](Dev_Guides/Industry_Cases/Hades_Build_Diversity.md):** 构建多样性分析。
 *   **[Kingdom Rush](Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md):** 经典塔防数值。
 *   **[Loop Hero](Dev_Guides/Industry_Cases/Loop_Hero_Loop_Mechanics.md):** 循环机制解构。
