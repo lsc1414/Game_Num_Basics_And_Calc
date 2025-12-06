@@ -60,6 +60,7 @@
 *   **[POE 门票机制](Design/Systems/POE_Map_Fragment_Design.md):** 高风险门票与经济循环。
 *   **[局外成长](Design/Systems/Meta_Progression.md):** 天赋树、基地建设。
 *   **[经济模型](Design/Systems/Economy_And_Inflation_Model.md):** 资源产出消耗。
+*   **[数值膨胀控制论](Design/Systems/Power_Creep_Management.md):** 线性vs指数增长与数值压缩。
 *   **[邮件系统](Design/Systems/Mail_System_Design.md):** 公告与奖励发放。
 *   **[成就与收集系统](Design/Systems/Achievement_And_Collection_System.md):** 成就设计、图鉴系统、完成主义心理学。
 *   **[技能树设计](Design/Systems/Skill_Tree_Design.md):** 线性/分支/网格树、Build多样性、重置机制。
@@ -78,6 +79,9 @@
 *   **[横竖屏策略](Design/Product_Strategy/Screen_Orientation_Strategy.md):** 用户场景分析。
 *   **[游戏心理学框架](Design/Game_Psychology_DeepDive.md):** 心流通道、爽点设计公式、流失归因。
 *   **[斯金纳箱理论](Design/Psychology/Skinner_Box_and_Addiction.md):** 随机奖励 (VR) 与固定奖励 (FR) 的成瘾机制。
+
+### 🧠 交互与体验 (UX)
+*   **[无障碍设计标准](Design/UX/Accessibility_Standards.md):** 色盲模式/防晕/改键 (Steam Deck/主机必读)。
 
 ### 🏆 案例分析 (Case Studies)
 *   **[行业标杆](Design/Industry_CaseStudies.md):** 竞品研究集合。
@@ -121,6 +125,7 @@
 *   **[ECS 架构](Tech/Architecture/ECS_Theory_And_Practice.md):** 数据驱动设计理论。
 *   **[统一决策系统](Tech/Architecture/Unified_Decision_System.md):** 核心决策层设计。
 *   **[决策系统图解](Tech/Architecture/Decision_System_Diagrams.md):** 架构可视化。
+*   **[Unity 代码毒药](Tech/Architecture/Unity_Anti_Patterns.md):** 毁灭项目的反模式 (单例/协程/Linq)。
 
 ### 🤖 AI 与算法
 *   **[AI 效用系统](Tech/AI_Utility_System.md):** Utility AI。
@@ -149,6 +154,7 @@
 *   **[移动端优化](Tech/Mobile_Optimization_Guide.md):** 渲染与内存。
 *   **[性能预算](Tech/Performance_Budget.md):** 机型红线。
 *   **[自动化Wiki](Dev_Guides/Tools/Automated_Wiki_Generation.md):** 自动图鉴生成。
+*   **[福尔摩斯调试法](Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide.md):** 二分法与内存侦探。
 *   **[调试指令](Dev_Guides/Tools/Debug_Console_And_Cheats.md):** GM工具集。
 *   **[Luban配置](Tech/Luban_Config_Guide.md):** 导表工作流。
 *   **[ECS 优化](Dev_Guides/Technical_Implementation/ECS_Performance_Optimization.md):** 实体系统性能调优。
@@ -163,12 +169,29 @@
 *   **[数值模板](Dev_Guides/Tools/Excel_Numerical_Templates.md):** Excel 计算表。
 *   **[计算器套件](Dev_Guides/Tools/Numerical_Calculator_Suite.md):** 综合计算工具。
 *   **[性能监控](Dev_Guides/Tools/Performance_Monitoring_Scripts.md):** 运行时性能分析。
+*   **[工具链指南](Dev_Guides/Tools/Game_Dev_Toolchain_Guide.md):** 自动化与管线加速。
+*   **[Odin Inspector 高级技巧](Dev_Guides/Tools/Odin_Inspector_Advanced_Techniques.md):** 自定义验证、动态下拉、性能优化等非官方 Demo 技巧。
+*   **[Odin + Luban 集成指南](Dev_Guides/Tools/Odin_Luban_Integration_Guide.md):** 可视化编辑 + 配置表生成的双向工作流。
 *   **[PRD 插件](Dev_Guides/Tools/Unity_PRD_Plugin.md):** Unity 随机工具。
 *   **[AI 平衡测试](Dev_Guides/Tools/AI_Balance_Testing.md):** 自动化平衡性测试。
+*   **[Roguelike 组合测试](Dev_Guides/Testing/Roguelike_Rapid_Testing_System.md):** (木头人/Build代码/热重载) 快速验证方案。
+
+
+</details>
+
+<details markdown="1" open>
+<summary><strong>📂 点击展开：3. 美术与音频 (Art & Audio)</strong></summary>
+
+### 🎨 技术美术 (Tech Art)
+*   **[资源验证标准](Art/Tech_Art/Asset_Validation_Standards.md):** 纹理/模型/材质的性能红线。
+*   **[特效优化黑魔法](Art/VFX/VFX_Optimization_Guide.md):** Overdraw 杀手与粒子性能调优。
+*   **[粒子系统详解](Art/VFX/Unity_Particle_System_DeepDive.md):** Shader/Blender工作流与C#动态控制。
+*   **[视觉质量指南](Art/Visual_Quality_Guide.md):** 风格统一性。
+*   **[混乱管理](Art/Visual_Hierarchy_In_Chaos.md):** 视觉降噪。
 *   **[相机设置](Art/Camera_DeepDive_And_Settings.md):** 震动与跟随。
 *   **[游戏手感](Art/Game_Feel_And_Juice.md):** 顿帧与打击感。
 
-### 🎵 音频工程
+### 🎵 音频工程 (Audio)
 *   **[音频实践](Audio/Practical_Guide.md):** 基础混音。
 *   **[轻量级框架](Audio/Lightweight_Audio_Framework.md):** 纯代码管理方案。
 *   **[挂载策略](Audio/AudioListener_Placement_Guide.md):** 俯视角听感修正。
@@ -182,6 +205,8 @@
 <summary><strong>📂 点击展开：4. 生产与发行 (Production)</strong></summary>
 
 ### 🗓️ 流程与管理 (Process & Management)
+*   **[上线生死清单](Dev_Guides/Publishing/Launch_Readiness_Checklist.md):** 发射前夜必查 (FTUE/合规/包体)。
+*   **[社区危机公关](Dev_Guides/Community/Community_Crisis_Management.md):** 差评如潮时的应对 SOP 与赎罪指南。
 *   **[Steam 发行](Dev_Guides/Publishing/Steam_Strategy.md):** 商店页与新品节。
 *   **[TapTap 发行](Dev_Guides/Publishing/TapTap_Strategy.md):** 篝火测试。
 *   **[敏捷开发](Dev_Guides/Collaboration/Agile_For_Indie_Teams.md):** 冲刺规划、每日站会。
@@ -189,6 +214,8 @@
 *   **[里程碑规划](Dev_Guides/Collaboration/Milestone_Planning.md):** 版本节点控制。
 *   **[Beta 测试](Dev_Guides/Collaboration/Beta_Testing_Guide.md):** 测试流程管理。
 *   **[远程协作](Dev_Guides/Collaboration/Remote_Collaboration.md):** 异地办公指南。
+*   **[高效开发指南](Design/Production/Efficient_Game_Dev_Guide.md):** 拒绝返工与项目规划。
+*   **[文档模板](Design/Production/Design_Document_Templates.md):** 策划文档标准模板库。
 
 ### 🤝 协作规范 (Collaboration)
 *   **[Git 版本管理](Dev_Guides/Collaboration/Git_Commit_Standards.md):** Commit Log 模板与分支策略。
@@ -197,6 +224,7 @@
 *   **[SVN转Git](Dev_Guides/Collaboration/SVN_vs_Git_Migration_Guide.md):** 迁移与上手手册。
 *   **[Unity 技巧](Dev_Guides/Unity_Practical_Tips.md):** 引擎使用小贴士。
 *   **[独立美术策略](Dev_Guides/Art_Pipeline/Indie_Team_Art_Strategy.md):** 资源生产管线。
+*   **[UI 制作精通](Dev_Guides/Art_Pipeline/UI_Production_Mastery.md):** 从手工到自动化的 UI 工业化指南。
 *   **[白盒工作流](Dev_Guides/Art_Pipeline/Unity_Greybox_Workflow.md):** 关卡验证流程。
 
 
