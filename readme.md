@@ -80,6 +80,19 @@
 *   **[横竖屏策略](Design/Product_Strategy/Screen_Orientation_Strategy.md):** 用户场景分析。
 *   **[游戏心理学框架](Design/Game_Psychology_DeepDive.md):** 心流通道、爽点设计公式、流失归因。
 *   **[斯金纳箱理论](Design/Psychology/Skinner_Box_and_Addiction.md):** 随机奖励 (VR) 与固定奖励 (FR) 的成瘾机制。
+*   **[极简策略设计图谱](Design/Minimalist_Strategy_Design_Knowledge.md):** 认知负荷管理、日夜循环经济学与群体AI算法。
+*   **[构建《杀戮尖塔》类游戏知识图谱](Design/Roguelike_Deckbuilder_Knowledge_Map.md):** 解析 DBG+Roguelike 核心机制、数值平衡与架构设计。
+*   **[《Risk of Rain 2》知识图谱](Design/Risk_of_Rain_2_Knowledge_Map.md):** 时间压力系统、物品协同与多人动态平衡。
+*   **[《Deep Rock Galactic》知识图谱](Design/Deep_Rock_Galactic_Knowledge_Map.md):** 职业互补设计、程序生成洞穴与强制合作机制。
+*   **[《Enter the Gungeon》知识图谱](Design/Enter_the_Gungeon_Knowledge_Map.md):** 武器多样性设计、弹道系统优化与房间生成。
+*   **[《Dead Cells》知识图谱](Design/Dead_Cells_Knowledge_Map.md):** 颜色分级词缀、关卡分支设计与打击感优化。
+*   **[《Dome Keeper》知识图谱](Design/Dome_Keeper_Knowledge_Map.md):** 双阶段循环、资源管理博弈与时间压力。
+*   **[《Binding of Isaac》知识图谱](Design/Binding_of_Isaac_Knowledge_Map.md):** 道具协同数学、房间生成与诅咒机制。
+*   **[《They Are Billions》知识图谱](Design/They_Are_Billions_Knowledge_Map.md):** 经济螺旋设计、大规模单位优化与失败惩罚。
+*   **[《Noita》知识图谱](Design/Noita_Knowledge_Map.md):** 法术模块化系统、像素物理模拟与涌现式玩法。
+*   **[《Darkest Dungeon》知识图谱](Design/Darkest_Dungeon_Knowledge_Map.md):** 压力系统设计、永久损失机制与叙事驱动。
+*   **[《Magicka》知识图谱](Design/Magicka_Knowledge_Map.md):** 元素组合系统、实时法术构建与环境交互机制。
+*   **[《Magicraft》知识图谱](Design/Magicraft_Knowledge_Map.md):** 模块化武器构筑、零件组装系统与协同效应设计。
 
 ### 🧠 交互与体验 (UX)
 *   **[无障碍设计标准](Design/UX/Accessibility_Standards.md):** 色盲模式/防晕/改键 (Steam Deck/主机必读)。
