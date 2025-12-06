@@ -139,20 +139,6 @@
 *   **[PRD 算法](Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md):** 伪随机分布详解。
 *   **[程序化生成指南](Tech/Algorithms/Procedural_Generation_Guide.md):** WFC、BSP、Cellular Automata、地图生成算法。
 
-### 🔧 机制深度解析 (Mechanics Deep Dive)
-*   **[伤害判定](Tech/Mechanics/Damage_Judgment_Mechanisms_Guide.md):** 判定时序与优先级。
-*   **[索敌管线](Tech/Mechanics/Targeting_Pipeline_DeepDive.md):** 目标筛选流程。
-*   **[索敌系统](Tech/Mechanics/Targeting_System_DeepDive.md):** 核心索敌逻辑。
-*   **[血条优化](Tech/Mechanics/Unity_HUD_HealthBar_DeepDive.md):** 性能与表现。
-*   **[UI 变换](Tech/Mechanics/Unity_RectTransform_DeepDive.md):** RectTransform 详解。
-*   **[变换数学](Tech/Mechanics/Unity_Transform_Math_Guide.md):** 向量与矩阵运算。
-*   **[连招系统设计](Tech/Mechanics/Combo_System_Design.md):** 输入缓冲、连锁窗口、取消系统深度研究。
-*   **[瞄准辅助系统](Tech/Mechanics/Aim_Assist_System.md):** 磁吸机制、输入补偿、难度分级、移动端优化。
-*   **[移动与冲刺系统](Tech/Mechanics/Movement_And_Dash_System.md):** I-Frame、转角修正、充能机制、Hades/Celeste案例。
-
-### 🚀 性能与工具
-*   **[移动端优化](Tech/Mobile_Optimization_Guide.md):** 渲染与内存。
-*   **[性能预算](Tech/Performance_Budget.md):** 机型红线。
 *   **[自动化Wiki](Dev_Guides/Tools/Automated_Wiki_Generation.md):** 自动图鉴生成。
 *   **[福尔摩斯调试法](Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide.md):** 二分法与内存侦探。
 *   **[调试指令](Dev_Guides/Tools/Debug_Console_And_Cheats.md):** GM工具集。
@@ -184,6 +170,8 @@
 
 ### 🎨 技术美术 (Tech Art)
 *   **[资源验证标准](Art/Tech_Art/Asset_Validation_Standards.md):** 纹理/模型/材质的性能红线。
+*   **[HDR 渲染机制](Art/Tech_Art/HDR_DeepDive.md):** 线性空间、Tone Mapping 与 FP16 精度。
+*   **[Bloom 后处理详解](Art/Tech_Art/Bloom_PostProcessing_DeepDive.md):** 阈值设置、HDR颜色与性能优化。
 *   **[特效优化黑魔法](Art/VFX/VFX_Optimization_Guide.md):** Overdraw 杀手与粒子性能调优。
 *   **[粒子系统详解](Art/VFX/Unity_Particle_System_DeepDive.md):** Shader/Blender工作流与C#动态控制。
 *   **[视觉质量指南](Art/Visual_Quality_Guide.md):** 风格统一性。
