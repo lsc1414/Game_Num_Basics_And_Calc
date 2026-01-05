@@ -151,3 +151,9 @@ ${APPDATA}/npm/gemini.ps1
 .github/workflows/gemini-review.yml
 .github/workflows/gemini-scheduled-triage.yml
 .github/workflows/gemini-triage.yml
+
+# =============== MkDocs ================
+site/
+.cache/
+__pycache__/
+*.pyc

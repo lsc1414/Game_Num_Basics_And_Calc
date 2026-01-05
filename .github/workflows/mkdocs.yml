@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: pip install mkdocs-material
+        run: pip install -r requirements.txt
 
       - name: Build MkDocs
         run: mkdocs build --strict
