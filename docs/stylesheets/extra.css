@@ -29,6 +29,7 @@ body, .md-typeset {
 
 .md-typeset h1 {
   margin-bottom: 1.5rem;
+  color: var(--md-default-fg-color); /* 防止默认的灰色 (light) 导致看起来像有一层白膜 */
 }
 
 .md-typeset h2 {
