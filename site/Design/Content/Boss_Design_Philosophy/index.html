@@ -1,0 +1,4203 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="游戏开发的 100 件事 - 数值设计、规则与技术标准">
+      
+      
+      
+        <link rel="canonical" href="https://your-username.github.io/Game_Num_Basics_And_Calc/Design/Content/Boss_Design_Philosophy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>🧙‍♂️ Boss 战设计哲学深度研究 - Vampirefall 核心知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#boss" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Vampirefall 核心知识库" class="md-header__button md-logo" aria-label="Vampirefall 核心知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 6h10a6 6 0 0 1 6 6 6 6 0 0 1-6 6c-1.78 0-3.37-.77-4.47-2h-1.06c-1.1 1.23-2.69 2-4.47 2a6 6 0 0 1-6-6 6 6 0 0 1 6-6M6 9v2H4v2h2v2h2v-2h2v-2H8V9zm9.5 3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m3-3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5A1.5 1.5 0 0 0 18.5 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vampirefall 核心知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🧙‍♂️ Boss 战设计哲学深度研究
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../START_HERE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🚀 新人指南
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Numerical_Manual/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🧠 策划 (Design)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tech/Architecture/Unified_Decision_System/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  💻 程序 (Tech)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Art/Visual_Quality_Guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🎨 美术 (Art)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Unity_Standards/Asset_Naming/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📋 规范 (Standards)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../portal.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔗 其它
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vampirefall 核心知识库" class="md-nav__button md-logo" aria-label="Vampirefall 核心知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 6h10a6 6 0 0 1 6 6 6 6 0 0 1-6 6c-1.78 0-3.37-.77-4.47-2h-1.06c-1.1 1.23-2.69 2-4.47 2a6 6 0 0 1-6-6 6 6 0 0 1 6-6M6 9v2H4v2h2v2h2v-2h2v-2H8V9zm9.5 3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m3-3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5A1.5 1.5 0 0 0 18.5 9"/></svg>
+
+    </a>
+    Vampirefall 核心知识库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../START_HERE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 新人指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 策划 (Design)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🧠 策划 (Design)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 数值与公式
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📐 数值与公式
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Numerical_Manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值设计手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Unity_General_Numeric_Quick_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用数值速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Numerical/Numerical_Framework_Methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值框架构建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Difficulty_And_DDA_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    难度曲线与 DDA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems/Power_Creep_Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值膨胀控制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems/Economy_And_Inflation_Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚔️ 战斗与机制
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ⚔️ 战斗与机制
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Combat_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    战斗系统详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Tower_Defense_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    塔防建筑机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Elemental_Reaction_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    元素反应机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Roguelike_Perks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    肉鸽强化系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Mechanics/Aggro_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仇恨系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems/Itemization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物品化系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems/TradeOff_Affix_Library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    权衡词条库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Mechanics/Projectile_System_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    弹道系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎮 游戏设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎮 游戏设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Philosophy_And_Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计哲学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Game_Psychology_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    游戏心理学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Minimalist_Strategy_Design_Knowledge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    极简策略设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Enemy_Bestiary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    怪物图鉴
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Level_Design_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关卡设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Narrative/Game_Narrative_And_Presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    叙事与包装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 知识图谱
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📖 知识图谱
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Roguelike_Deckbuilder_Knowledge_Map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    杀戮尖塔图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Risk_of_Rain_2_Knowledge_Map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk of Rain 2 图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Industry_Cases/Vampire_Survivors_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    吸血鬼幸存者性能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Industry_Cases/Hades_Build_Diversity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hades 构建多样性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 发行与运营
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🚀 发行与运营
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Publishing/Launch_Readiness_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    上线生死清单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Publishing/Steam_Unity_Indie_Game_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Steam 发行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Publishing/Steam_Unity_Quality_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Steam 质量标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LiveOps/Battle_Pass_Economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通行证经济
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Community/Community_Crisis_Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    社区危机公关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💀 失败复盘
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    💀 失败复盘
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Failure_Cases/Anthem_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anthem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battleborn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Failure_Cases/Concord_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concord
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 程序 (Tech)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    💻 程序 (Tech)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ 架构与系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ 架构与系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Architecture/Unified_Decision_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统一决策系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Architecture/ECS_Theory_And_Practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Network_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Gameplay_Ability_System_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GAS 技能系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Save_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存盘系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Optimization/Unity_Advanced_CSharp_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C# 进阶优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Architecture/Unity_Anti_Patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    代码反模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 AI 与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🤖 AI 与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/AI_Utility_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 效用系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Algorithms/Roguelike_RNG_Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roguelike 随机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Technical_Implementation/Procedural_Generation_WFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFC 生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Mechanics/NavMesh_Pathfinding_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NavMesh 寻路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    掉落算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Calculator/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ 工具与流程
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ 工具与流程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Tools/Debug_Console_And_Cheats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调试指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Luban_Config_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luban 配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    福尔摩斯调试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Tools/AI_Balance_Testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 平衡测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 美术 (Art)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎨 美术 (Art)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Art/Visual_Quality_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉质量指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Art/Tech_Art/Asset_Validation_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源验证标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Art/VFX/VFX_Optimization_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特效优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tech/Graphics/Unity_SpriteAtlas_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SpriteAtlas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Audio/Practical_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    音频实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Audio/Adaptive_Music_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态音乐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📋 规范 (Standards)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📋 规范 (Standards)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Unity_Standards/Asset_Naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源命名规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Dev_Guides/Collaboration/Git_Commit_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 提交规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Unity_Standards/Folder_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity 标准目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 其它
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔗 其它
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    交互式知识库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-theoretical-basis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 1. 理论基础 (Theoretical Basis)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 1. 理论基础 (Theoretical Basis)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 核心定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📐 设计理论
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-practical-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 2. 实践应用 (Practical Implementation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 2. 实践应用 (Practical Implementation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vampirefall-boss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 Vampirefall Boss 设计框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ 数据结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vampirefall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Vampirefall 专属机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-industry-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 3. 业界优秀案例 (Industry Best Practices)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 3. 业界优秀案例 (Industry Best Practices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-kingdom-rush-boss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 案例 1: Kingdom Rush - 塔防类 Boss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-hades-boss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 案例 2: Hades - 肉鸽类 Boss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dark-souls-boss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 案例 3: Dark Souls - 动作类 Boss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cuphead-boss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 案例 4: Cuphead - 横版多阶段 Boss
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 4. 参考资料 (References)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 4. 参考资料 (References)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 学术与理论
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📺 GDC 演讲
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌐 技术博客
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 推荐书籍
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vampirefall-boss_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 附录：Vampirefall Boss 设计检查清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 附录：Vampirefall Boss 设计检查清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-boss_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 1: Boss 原型设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 2: 电报系统实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 3: 塔防互动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 4: 肉鸽词条联动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 5: 视听打磨
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 阶段 6: 奖励与反馈
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="boss">🧙‍♂️ Boss 战设计哲学深度研究<a class="headerlink" href="#boss" title="Permanent link">&para;</a></h1>
+<h2 id="1-theoretical-basis">📚 1. 理论基础 (Theoretical Basis)<a class="headerlink" href="#1-theoretical-basis" title="Permanent link">&para;</a></h2>
+<h3 id="_1">🎯 核心定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong>Boss（首领/头目）</strong> 是游戏中设计用来测试玩家技能掌握度的特殊敌人，通常具有以下特征：
+- 高于普通敌人的生命值和攻击力
+- 独特的机制和攻击模式
+- 明确的阶段划分
+- 专属的战斗场地和音乐</p>
+<p><strong>Boss 战的核心目的</strong>：
+1. <strong>技能检验点 (Skill Gate)</strong> - 确保玩家掌握了核心机制
+2. <strong>高潮节点 (Climax)</strong> - 提供情绪上的爆发点
+3. <strong>奖励发放点 (Reward Node)</strong> - 给予重要战利品和成就感</p>
+<h3 id="_2">📐 设计理论<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="1-pillar-phase-design">1. 柱阶段系统 (Pillar Phase Design)<a class="headerlink" href="#1-pillar-phase-design" title="Permanent link">&para;</a></h4>
+<p>经典 Boss 战通常采用 <strong>3-4 阶段</strong> 设计，每个阶段称为一个"柱"：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>生命值      阶段特性
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>100% ─┐     第一柱：教学阶段（攻击模式简单）
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>      │       
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>75%  ─┼─    第二柱：提速阶段（攻击速度 +30%）
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      │       
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>50%  ─┼─    第三柱：混合阶段（组合技出现）
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      │       
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>25%  ─┼─    第四柱：绝命阶段（大招频繁 + 狂暴）
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>      │       
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>0%   ─┘     胜利
+</span></code></pre></div>
+<p><strong>阶段设计公式</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Phase_Difficulty = Base_Difficulty × (1 + Phase_Index × Scaling_Factor)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>推荐参数:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>- Phase_Index: 0, 1, 2, 3 (阶段索引)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- Scaling_Factor: 0.2 ~ 0.4 (每阶段难度增幅)
+</span></code></pre></div>
+<h4 id="2-telegraph-system">2. 电报系统 (Telegraph System)<a class="headerlink" href="#2-telegraph-system" title="Permanent link">&para;</a></h4>
+<p>Boss 的攻击必须有<strong>可读懂的前摇 (Tell)</strong>，遵循"电报原则"：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>威力越大 → 前摇越长 → 惩罚越重
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>示例:
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>┌──────────────────────────────────────┐
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│ 攻击类型     │ 前摇时间 │ 伤害  │ 惩罚  │
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├──────────────────────────────────────┤
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│ 普通斩击     │  0.3s   │ 10%  │ 无   │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│ 重击         │  0.8s   │ 30%  │ 击晕  │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│ 终结技       │  2.0s   │ 80%  │ 秒杀  │
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>└──────────────────────────────────────┘
+</span></code></pre></div>
+<p><strong>电报设计三要素</strong>:
+1. <strong>视觉提示</strong>: 蓄力特效、发光、颜色变化
+2. <strong>听觉提示</strong>: 音效提前 0.2 秒播放
+3. <strong>位置提示</strong>: 攻击范围指示器（红圈、扇形区域）</p>
+<h4 id="3-learning-curve">3. 学习曲线模型 (Learning Curve)<a class="headerlink" href="#3-learning-curve" title="Permanent link">&para;</a></h4>
+<p>优秀的 Boss 战遵循 <strong>"公平但困难"</strong> 原则：</p>
+<pre class="mermaid"><code>graph LR
+    A[第1次尝试] --&gt;|观察模式| B[第2-3次]
+    B --&gt;|理解弱点| C[第4-5次]
+    C --&gt;|完善操作| D[成功击败]
+    D --&gt;|获得成就感| E[记忆深刻]</code></pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run({
+    querySelector: '.language-mermaid',
+  });
+</script>
+
+<p><strong>平均击败次数理论值</strong>:
+- <strong>新手友好</strong>: 3-5 次尝试
+- <strong>正常难度</strong>: 5-10 次尝试
+- <strong>硬核难度</strong>: 10-50 次尝试
+- <strong>超难关卡</strong>: 50+ 次尝试（如魂系列）</p>
+<h4 id="4-boss">4. Boss 战心理学<a class="headerlink" href="#4-boss" title="Permanent link">&para;</a></h4>
+<h5 id="_3">爽点设计公式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>成就感 = (难度挑战 × 克服过程) + (视觉反馈 + 听觉反馈)
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>关键要素:
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>- 难度挑战: 适度挫败（不能太简单）
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>- 克服过程: 可感知的进步
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>- 视觉反馈: 血条突破、阶段转换特效
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>- 听觉反馈: 音乐变化、台词触发
+</span></code></pre></div>
+<h5 id="_4">挫败感控制<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>糟糕设计</th>
+<th>优秀设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❌ 一击秒杀（无法学习）</td>
+<td>✅ 留活命机会（1-2 次容错）</td>
+</tr>
+<tr>
+<td>❌ 随机不可预测攻击</td>
+<td>✅ 有规律可循的循环</td>
+</tr>
+<tr>
+<td>❌ 过长的无敌时间</td>
+<td>✅ 伤害窗口明确</td>
+</tr>
+<tr>
+<td>❌ 战斗后无存档点</td>
+<td>✅ Boss 门前自动存档</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-practical-implementation">🛠️ 2. 实践应用 (Practical Implementation)<a class="headerlink" href="#2-practical-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="vampirefall-boss">🎮 Vampirefall Boss 设计框架<a class="headerlink" href="#vampirefall-boss" title="Permanent link">&para;</a></h3>
+<h4 id="_5">混合品类的挑战与机遇<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>Vampirefall 的<strong>塔防 + 肉鸽 + Looter</strong> 架构为 Boss 战带来独特可能性：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>传统 Boss 设计</th>
+<th>Vampirefall 创新点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>空间</strong></td>
+<td>固定竞技场</td>
+<td><strong>塔防地图上的移动 Boss</strong></td>
+</tr>
+<tr>
+<td><strong>资源</strong></td>
+<td>玩家技能为主</td>
+<td><strong>塔 + 角色联动输出</strong></td>
+</tr>
+<tr>
+<td><strong>奖励</strong></td>
+<td>固定掉落</td>
+<td><strong>智能掉落 + 词条强化</strong></td>
+</tr>
+<tr>
+<td><strong>重玩性</strong></td>
+<td>记忆攻击模式</td>
+<td><strong>随机词条改变 Boss 属性</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="boss_1">三层 Boss 设计系统<a class="headerlink" href="#boss_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────────────────────────────┐
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ 1. 静态基线 (Boss 原型)                 │
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│    - 基础血量、伤害、移动速度          │
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│    - 核心攻击模式（3-4 种）            │
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>├─────────────────────────────────────────┤
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│ 2. 阶段变异 (Phase Modifiers)          │
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│    - 每 25% 血量触发新阶段             │
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│    - 召唤小怪 / 改变移动模式           │
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>├─────────────────────────────────────────┤
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│ 3. 词条增幅 (Affix Layer)              │
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│    - 地图词条影响 Boss                 │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│    - 例: &quot;火焰灌注&quot; → Boss 攻击附带燃烧 │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>└─────────────────────────────────────────┘
+</span></code></pre></div>
+<h3 id="_6">🗂️ 数据结构<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h4 id="bossconfigcs">BossConfig.cs<a class="headerlink" href="#bossconfigcs" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">[System.Serializable]</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BossConfig</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">EnemyConfig</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="na">[Header(&quot;Boss 专属属性&quot;)]</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">bossName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;暗影巨龙&quot;</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">BossType</span><span class="w"> </span><span class="n">bossType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BossType</span><span class="p">.</span><span class="n">ChapterBoss</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="na">[Header(&quot;阶段设计&quot;)]</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">PhaseData</span><span class="p">[]</span><span class="w"> </span><span class="n">phases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PhaseData</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="na">[Header(&quot;电报系统&quot;)]</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">telegraphDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">;</span><span class="w">  </span><span class="c1">// 大招前摇</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">telegraphEffectPrefab</span><span class="p">;</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="na">[Header(&quot;战斗场地&quot;)]</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">arenaCenter</span><span class="p">;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">arenaRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10f</span><span class="p">;</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">lockPlayerInArena</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">    </span><span class="na">[Header(&quot;音乐与氛围&quot;)]</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">AudioClip</span><span class="w"> </span><span class="n">bossMusicTrack</span><span class="p">;</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">AudioClip</span><span class="w"> </span><span class="n">phaseTransitionSFX</span><span class="p">;</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="na">[Header(&quot;奖励&quot;)]</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">LootTableConfig</span><span class="w"> </span><span class="n">bossLootTable</span><span class="p">;</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">guaranteedGoldCoins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="p">}</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="na">[System.Serializable]</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">PhaseData</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="p">{</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">    </span><span class="na">[Range(0f, 1f)]</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">healthThreshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.75f</span><span class="p">;</span><span class="w">  </span><span class="c1">// 触发阈值</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">attackSpeedMultiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">moveSpeedMultiplier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">AttackPattern</span><span class="p">[]</span><span class="w"> </span><span class="n">newAttackPatterns</span><span class="p">;</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">summonMinions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">minionCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="p">}</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">BossType</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="p">{</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="w">    </span><span class="n">MiniBoss</span><span class="p">,</span><span class="w">      </span><span class="c1">// 小 Boss（每 3-5 关）</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="w">    </span><span class="n">ChapterBoss</span><span class="p">,</span><span class="w">   </span><span class="c1">// 章节 Boss（每 10 关）</span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="w">    </span><span class="n">WorldBoss</span><span class="p">,</span><span class="w">     </span><span class="c1">// 世界 Boss（赛季特殊）</span>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="w">    </span><span class="n">SecretBoss</span><span class="w">     </span><span class="c1">// 隐藏 Boss（彩蛋）</span>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="bossaicontrollercs">BossAIController.cs<a class="headerlink" href="#bossaicontrollercs" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BossAIController</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">BossConfig</span><span class="w"> </span><span class="n">config</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">currentPhaseIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">currentHealth</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">StateMachine</span><span class="o">&lt;</span><span class="n">BossState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stateMachine</span><span class="p">;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="n">currentHealth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">maxHealth</span><span class="p">;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="n">InitializeStateMachine</span><span class="p">();</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="n">TriggerBossIntro</span><span class="p">();</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="c1">// 检查阶段转换</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">healthRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentHealth</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">maxHealth</span><span class="p">;</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">        </span><span class="n">CheckPhaseTransition</span><span class="p">(</span><span class="n">healthRatio</span><span class="p">);</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">        </span><span class="c1">// 更新状态机</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">        </span><span class="n">stateMachine</span><span class="p">.</span><span class="n">Update</span><span class="p">();</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CheckPhaseTransition</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">healthRatio</span><span class="p">)</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentPhaseIndex</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">phases</span><span class="p">.</span><span class="n">Length</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">nextPhase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">phases</span><span class="p">[</span><span class="n">currentPhaseIndex</span><span class="p">];</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">healthRatio</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">nextPhase</span><span class="p">.</span><span class="n">healthThreshold</span><span class="p">)</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">            </span><span class="n">EnterNewPhase</span><span class="p">(</span><span class="n">currentPhaseIndex</span><span class="p">);</span>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="w">            </span><span class="n">currentPhaseIndex</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>
+</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">EnterNewPhase</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">phaseIndex</span><span class="p">)</span>
+</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="w">        </span><span class="c1">// 1. 播放转换特效</span>
+</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="w">        </span><span class="n">PlayPhaseTransitionEffect</span><span class="p">();</span>
+</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>
+</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="w">        </span><span class="c1">// 2. 短暂无敌（给玩家喘息）</span>
+</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="w">        </span><span class="n">StartCoroutine</span><span class="p">(</span><span class="n">PhaseTransitionInvincibility</span><span class="p">(</span><span class="mf">1.5f</span><span class="p">));</span>
+</span><span id="__span-6-44"><a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>
+</span><span id="__span-6-45"><a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="w">        </span><span class="c1">// 3. 更新 AI 行为</span>
+</span><span id="__span-6-46"><a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">phase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">phases</span><span class="p">[</span><span class="n">phaseIndex</span><span class="p">];</span>
+</span><span id="__span-6-47"><a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="w">        </span><span class="n">UpdateAttackPatterns</span><span class="p">(</span><span class="n">phase</span><span class="p">.</span><span class="n">newAttackPatterns</span><span class="p">);</span>
+</span><span id="__span-6-48"><a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>
+</span><span id="__span-6-49"><a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a><span class="w">        </span><span class="c1">// 4. 召唤小怪（如果需要）</span>
+</span><span id="__span-6-50"><a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">phase</span><span class="p">.</span><span class="n">summonMinions</span><span class="p">)</span>
+</span><span id="__span-6-51"><a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-52"><a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a><span class="w">            </span><span class="n">SummonMinions</span><span class="p">(</span><span class="n">phase</span><span class="p">.</span><span class="n">minionCount</span><span class="p">);</span>
+</span><span id="__span-6-53"><a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-54"><a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>
+</span><span id="__span-6-55"><a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a><span class="w">        </span><span class="c1">// 5. 音效与台词</span>
+</span><span id="__span-6-56"><a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a><span class="w">        </span><span class="n">PlayVoiceLine</span><span class="p">(</span><span class="s">$&quot;Phase{phaseIndex + 1}&quot;</span><span class="p">);</span>
+</span><span id="__span-6-57"><a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>
+</span><span id="__span-6-58"><a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a><span class="w">        </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&quot;[Boss] 进入第 {phaseIndex + 1} 阶段&quot;</span><span class="p">);</span>
+</span><span id="__span-6-59"><a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-60"><a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a>
+</span><span id="__span-6-61"><a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IEnumerator</span><span class="w"> </span><span class="nf">PhaseTransitionInvincibility</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">duration</span><span class="p">)</span>
+</span><span id="__span-6-62"><a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-63"><a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a><span class="w">        </span><span class="n">isInvincible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-6-64"><a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a><span class="w">        </span><span class="n">stateMachine</span><span class="p">.</span><span class="n">ChangeState</span><span class="p">(</span><span class="n">BossState</span><span class="p">.</span><span class="n">PhaseTransition</span><span class="p">);</span>
+</span><span id="__span-6-65"><a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>
+</span><span id="__span-6-66"><a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a><span class="w">        </span><span class="k">yield</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">WaitForSeconds</span><span class="p">(</span><span class="n">duration</span><span class="p">);</span>
+</span><span id="__span-6-67"><a id="__codelineno-6-67" name="__codelineno-6-67" href="#__codelineno-6-67"></a>
+</span><span id="__span-6-68"><a id="__codelineno-6-68" name="__codelineno-6-68" href="#__codelineno-6-68"></a><span class="w">        </span><span class="n">isInvincible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+</span><span id="__span-6-69"><a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a><span class="w">        </span><span class="n">stateMachine</span><span class="p">.</span><span class="n">ChangeState</span><span class="p">(</span><span class="n">BossState</span><span class="p">.</span><span class="n">Combat</span><span class="p">);</span>
+</span><span id="__span-6-70"><a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-71"><a id="__codelineno-6-71" name="__codelineno-6-71" href="#__codelineno-6-71"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="_7">电报系统实现<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BossTelegraphSystem</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">TelegraphAttack</span><span class="p">(</span><span class="n">AttackData</span><span class="w"> </span><span class="n">attack</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="n">StartCoroutine</span><span class="p">(</span><span class="n">TelegraphSequence</span><span class="p">(</span><span class="n">attack</span><span class="p">));</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IEnumerator</span><span class="w"> </span><span class="nf">TelegraphSequence</span><span class="p">(</span><span class="n">AttackData</span><span class="w"> </span><span class="n">attack</span><span class="p">)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="c1">// 1. 显示攻击范围指示器</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">indicator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShowAttackIndicator</span><span class="p">(</span><span class="n">attack</span><span class="p">.</span><span class="n">attackRange</span><span class="p">,</span><span class="w"> </span><span class="n">attack</span><span class="p">.</span><span class="n">attackType</span><span class="p">);</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="c1">// 2. 提前播放音效 (0.2s 提前量)</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="k">yield</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">WaitForSeconds</span><span class="p">(</span><span class="mf">0.2f</span><span class="p">);</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="n">audioSource</span><span class="p">.</span><span class="n">PlayOneShot</span><span class="p">(</span><span class="n">attack</span><span class="p">.</span><span class="n">telegraphSFX</span><span class="p">);</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="c1">// 3. 等待前摇时间</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">elapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.2f</span><span class="p">;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">elapsed</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">attack</span><span class="p">.</span><span class="n">telegraphDuration</span><span class="p">)</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">            </span><span class="c1">// 指示器闪烁加速（紧张感）</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">pulseFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">PingPong</span><span class="p">(</span><span class="n">elapsed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4f</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">            </span><span class="n">indicator</span><span class="p">.</span><span class="n">SetAlpha</span><span class="p">(</span><span class="mf">0.3f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pulseFactor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.7f</span><span class="p">);</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">            </span><span class="n">elapsed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">            </span><span class="k">yield</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">        </span><span class="c1">// 4. 执行攻击</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">        </span><span class="n">HideAttackIndicator</span><span class="p">(</span><span class="n">indicator</span><span class="p">);</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">        </span><span class="n">ExecuteAttack</span><span class="p">(</span><span class="n">attack</span><span class="p">);</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="nf">ShowAttackIndicator</span><span class="p">(</span><span class="n">AttackRange</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="n">AttackType</span><span class="w"> </span><span class="n">type</span><span class="p">)</span>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">        </span><span class="n">GameObject</span><span class="w"> </span><span class="n">prefab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="k">switch</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">            </span><span class="n">AttackType</span><span class="p">.</span><span class="n">Melee</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">circlePrefab</span><span class="p">,</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">            </span><span class="n">AttackType</span><span class="p">.</span><span class="n">Cone</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">conePrefab</span><span class="p">,</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">            </span><span class="n">AttackType</span><span class="p">.</span><span class="n">Line</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">linePrefab</span><span class="p">,</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">            </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">circlePrefab</span>
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="w">        </span><span class="p">};</span>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a>
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instantiate</span><span class="p">(</span><span class="n">prefab</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">identity</span><span class="p">);</span>
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="w">        </span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">localScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="mf">1f</span><span class="p">);</span>
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="vampirefall">🎯 Vampirefall 专属机制<a class="headerlink" href="#vampirefall" title="Permanent link">&para;</a></h3>
+<h4 id="1-boss">1. 塔防互动型 Boss<a class="headerlink" href="#1-boss" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Boss 可以攻击和摧毁玩家的塔</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BossTowerInteraction</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">TargetNearbyTowers</span><span class="p">()</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">towers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FindObjectsOfType</span><span class="o">&lt;</span><span class="n">TowerController</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">nearestTower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">towers</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">))</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">();</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nearestTower</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">nearestTower</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">5f</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">            </span><span class="c1">// Boss 专属技能：摧塔一击</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">            </span><span class="n">AttackTower</span><span class="p">(</span><span class="n">nearestTower</span><span class="p">);</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">AttackTower</span><span class="p">(</span><span class="n">TowerController</span><span class="w"> </span><span class="n">tower</span><span class="p">)</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">        </span><span class="n">tower</span><span class="p">.</span><span class="n">TakeDamage</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">towerDamage</span><span class="p">);</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">        </span><span class="n">PlayEffect</span><span class="p">(</span><span class="s">&quot;BossSmashTower&quot;</span><span class="p">);</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">        </span><span class="c1">// 玩家需要保护塔或重建</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="2">2. 肉鸽词条联动<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Boss 受地图词条影响</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BossAffixSystem</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">ApplyMapAffixes</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MapAffix</span><span class="o">&gt;</span><span class="w"> </span><span class="n">affixes</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">affix</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">affixes</span><span class="p">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">affix</span><span class="p">.</span><span class="n">affixType</span><span class="p">)</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">AffixType</span><span class="p">.</span><span class="n">ElementalInfusion</span><span class="p">:</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">                    </span><span class="c1">// Boss 攻击附加元素伤害</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">                    </span><span class="n">AddElementalDamage</span><span class="p">(</span><span class="n">affix</span><span class="p">.</span><span class="n">elementType</span><span class="p">);</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">AffixType</span><span class="p">.</span><span class="n">SpeedBuff</span><span class="p">:</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">                    </span><span class="c1">// Boss 移动速度 +50%</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">                    </span><span class="n">moveSpeed</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">;</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">AffixType</span><span class="p">.</span><span class="n">ReflectDamage</span><span class="p">:</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">                    </span><span class="c1">// Boss 反伤 20%</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">                    </span><span class="n">enableReflectDamage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">                    </span><span class="n">reflectRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.2f</span><span class="p">;</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="3-industry-best-practices">🌟 3. 业界优秀案例 (Industry Best Practices)<a class="headerlink" href="#3-industry-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="1-kingdom-rush-boss">🎮 案例 1: <strong>Kingdom Rush - 塔防类 Boss</strong><a class="headerlink" href="#1-kingdom-rush-boss" title="Permanent link">&para;</a></h3>
+<h4 id="_8">核心机制<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>Kingdom Rush 的 Boss 设计巧妙平衡了<strong>塔防的静态部署</strong>和 <strong>Boss 战的动态对抗</strong>。</p>
+<p><strong>经典案例: Vez'nan（最终 Boss）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>阶段 1 (100% → 66%):
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>- 缓慢移动，血厚
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>- 定期召唤骷髅小兵（干扰塔的输出）
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>- 教学阶段：让玩家理解&quot;控制小兵 + 集火 Boss&quot;
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>阶段 2 (66% → 33%):
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>- 瞬移机制（跳过塔的火力网）
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>- 范围魔法攻击（必须用英雄躲避）
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>- 混合挑战：塔 + 英雄操作
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>阶段 3 (33% → 0%):
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>- 狂暴：攻击速度翻倍
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>- 终极技：陨石雨（范围伤害，必须走位）
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>- 高潮期：极限压力测试
+</span></code></pre></div>
+<p><strong>设计亮点</strong>:
+- ✅ <strong>阶段分明</strong>: 每阶段有明确的挑战重点
+- ✅ <strong>英雄互动</strong>: Boss 战强制玩家使用英雄（不能纯挂机）
+- ✅ <strong>视觉反馈</strong>: 血量门槛时有震屏特效 + 台词</p>
+<p><strong>Vampirefall 借鉴</strong>:
+- 塔防 Boss 必须有"反塔机制"（摧塔 / 瞬移 / 范围免疫）
+- 强制玩家参与战斗（不能纯塔防通关）
+- 阶段转换要有仪式感（特效 + 音乐变化）</p>
+<hr />
+<h3 id="2-hades-boss">🎮 案例 2: <strong>Hades - 肉鸽类 Boss</strong><a class="headerlink" href="#2-hades-boss" title="Permanent link">&para;</a></h3>
+<h4 id="_9">核心机制<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>Hades 的 Boss 设计是<strong>肉鸽类的教科书</strong>，每个 Boss 都有：
+1. 固定的核心模式（可学习）
+2. 随机的词条变异（重玩性）
+3. 对话与剧情整合（情感联结）</p>
+<p><strong>经典案例: 九头蛇 Lernie（第一关 Boss）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>核心模式（固定）:
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>- 3 个头，每个头有独立血条
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>- 左头：横扫攻击
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>- 中头：远程吐息
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>- 右头：冲锋撞击
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>词条变异（随机）:
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>Run 1: &quot;强化装甲&quot; → 伤害减免 +30%
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Run 2: &quot;极速再生&quot; → 每秒回血 2%
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>Run 3: &quot;召唤增援&quot; → 周期性刷小怪
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>剧情整合:
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>- 击败后有扎格雷乌斯的吐槽
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>- 多次击败后有新对话（避免重复感）
+</span></code></pre></div>
+<p><strong>设计哲学</strong>:</p>
+<blockquote>
+<p>"玩家需要在 50 次 Run 中击败同一个 Boss 50 次，如何避免无聊？"</p>
+</blockquote>
+<p>答案：<strong>固定框架 + 随机变量</strong></p>
+<p><strong>Vampirefall 借鉴</strong>:
+- Boss 的核心模式要固定（公平性）
+- 但每次遇到的词条组合不同（新鲜感）
+- 可以考虑台词系统（第 1/10/50 次击败有不同反馈）</p>
+<hr />
+<h3 id="3-dark-souls-boss">🎮 案例 3: <strong>Dark Souls - 动作类 Boss</strong><a class="headerlink" href="#3-dark-souls-boss" title="Permanent link">&para;</a></h3>
+<h4 id="_10">核心机制<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>魂系列 Boss 遵循<strong>"困难但公平"</strong>的铁律：</p>
+<p><strong>设计原则</strong>:
+1. <strong>所有攻击都可以通过翻滚/格挡/走位躲避</strong>
+2. <strong>每次死亡都能学到新东西</strong>
+3. <strong>击败后的成就感极强</strong></p>
+<p><strong>经典案例: Ornstein &amp; Smough（双人 Boss）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>第一阶段：
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>- 两个 Boss 同时在场
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>- 快速的 Ornstein + 缓慢的 Smough
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>- 玩家必须学会分割战场
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>第二阶段（根据击杀顺序）:
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>- 先杀 O → Smough 吸收力量变巨大
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>- 先杀 S → Ornstein 获得闪电能力
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>- 双结局设计（增加重玩性）
+</span></code></pre></div>
+<p><strong>电报系统大师课</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>攻击</th>
+<th>前摇</th>
+<th>视觉提示</th>
+<th>听觉提示</th>
+<th>危险度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通刺击</td>
+<td>0.4s</td>
+<td>举枪动作</td>
+<td>轻微破风声</td>
+<td>低</td>
+</tr>
+<tr>
+<td>跳跃猛击</td>
+<td>1.2s</td>
+<td>高高跃起</td>
+<td>大吼</td>
+<td>中高</td>
+</tr>
+<tr>
+<td>闪电冲锋</td>
+<td>2.0s</td>
+<td>全身发光</td>
+<td>电流爆鸣</td>
+<td>极高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Vampirefall 借鉴</strong>:
+- 双 Boss / 多 Boss 机制可以增加战术深度
+- 电报系统必须精确（前摇时间 = 玩家反应窗口）
+- 失败后可以立即重试（减少挫败感）</p>
+<hr />
+<h3 id="4-cuphead-boss">🎮 案例 4: <strong>Cuphead - 横版多阶段 Boss</strong><a class="headerlink" href="#4-cuphead-boss" title="Permanent link">&para;</a></h3>
+<h4 id="_11">核心机制<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>Cuphead 的 Boss 设计是<strong>纯粹的模式记忆 + 反应力测试</strong>。</p>
+<p><strong>设计特色</strong>:
+- <strong>短平快</strong>: 每场战斗 2-4 分钟
+- <strong>阶段密集</strong>: 通常 3-5 个阶段快速切换
+- <strong>视觉狂欢</strong>: 每个阶段都有全新的美术和动画</p>
+<p><strong>经典案例: Cala Maria（美人鱼 Boss）</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>阶段 1: 水面战斗
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>- 吐泡泡弹幕
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>- 召唤飞鱼
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>阶段 2: 石化光线
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>- 眼睛发射石化射线（必须躲在掩体后）
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>- 电鳗攻击
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>阶段 3: 美杜莎形态
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>- 头发变成蛇（独立攻击）
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>- 全屏弹幕地狱
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>阶段 4: 棺材型态（死亡阶段）
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>- 最后的绝命攻势
+</span></code></pre></div>
+<p><strong>设计哲学</strong>:</p>
+<blockquote>
+<p>"每个阶段都应该感觉像一个全新的 Boss。"</p>
+</blockquote>
+<p><strong>Vampirefall 借鉴</strong>:
+- 短回合多阶段设计适合肉鸽（快速迭代）
+- 视觉变化要明显（让玩家觉得"进度感"）
+- 可以考虑"假死复活"机制（增加戏剧性）</p>
+<hr />
+<h2 id="4-references">🔗 4. 参考资料 (References)<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<h3 id="_12">📄 学术与理论<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Boss Fight Design and Structure</strong><br />
+<em>Mark Brown - Game Maker's Toolkit</em><br />
+<a href="https://www.youtube.com/watch?v=8LhoIQ1h-yQ">YouTube 视频</a></p>
+</li>
+<li>
+<p><strong>The Art of Boss Battles</strong><br />
+<em>Extra Credits</em><br />
+<a href="https://www.youtube.com/watch?v=K1xgMrMvN8I">YouTube 播放列表</a></p>
+</li>
+</ol>
+<h3 id="gdc">📺 GDC 演讲<a class="headerlink" href="#gdc" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>[GDC 2018] Designing Cuphead's Bosses</strong><br />
+   演讲者: Jared Moldenhauer (Studio MDHR)<br />
+<a href="https://www.gdcvault.com/play/1024998/">GDC Vault</a></p>
+</li>
+<li>
+<p><strong>[GDC 2019] The Boss Design of 'Furi'</strong><br />
+   演讲者: Emeric Thoa (The Game Bakers)<br />
+<a href="https://www.youtube.com/watch?v=wJY2puGPcP8">YouTube 链接</a></p>
+</li>
+<li>
+<p><strong>[GDC 2015] Dark Souls: Difficulty Done Right</strong><br />
+   演讲者: Hidetaka Miyazaki (FromSoftware)<br />
+<a href="https://www.gdcvault.com/play/1022054/">GDC Vault</a></p>
+</li>
+</ol>
+<h3 id="_13">🌐 技术博客<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Boss Design 101 - Gamasutra</strong><br />
+<a href="https://www.gamasutra.com/view/feature/134503/boss_design_101.php">文章链接</a></p>
+</li>
+<li>
+<p><strong>The Psychology of Boss Fights</strong><br />
+<a href="https://medium.com/@gamedesignthoughts/psychology-of-boss-fights">Medium 深度分析</a></p>
+</li>
+<li>
+<p><strong>Telegraph System in Action Games</strong><br />
+<a href="https://www.youtube.com/@AIandGames">AI and Games 频道</a></p>
+</li>
+</ol>
+<h3 id="_14">📚 推荐书籍<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>《游戏关卡设计》</strong> (Level Up! The Guide to Great Video Game Design)<br />
+   作者: Scott Rogers<br />
+   第 12 章: "Boss Fights and Big Baddies"</p>
+</li>
+<li>
+<p><strong>《游戏设计梦工厂》</strong> (Challenges for Game Designers)<br />
+   作者: Brenda Romero, Ian Schreiber<br />
+   第 8 章: "Combat and Challenge Design"</p>
+</li>
+</ol>
+<hr />
+<h2 id="vampirefall-boss_1">🎯 附录：Vampirefall Boss 设计检查清单<a class="headerlink" href="#vampirefall-boss_1" title="Permanent link">&para;</a></h2>
+<h3 id="1-boss_1">✅ 阶段 1: Boss 原型设计<a class="headerlink" href="#1-boss_1" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 确定 Boss 类型（小 Boss / 章节 Boss / 隐藏 Boss）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计 3-4 个核心攻击模式</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 规划阶段划分（推荐 3 阶段：75% / 50% / 25%）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计专属技能（大招）</li>
+</ul>
+<h3 id="2_1">✅ 阶段 2: 电报系统实现<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 为每个攻击设计前摇时间（0.3s ~ 2.0s）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 创建攻击范围指示器 Prefab</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 添加音效提示（提前 0.2s 播放）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 测试玩家反应窗口（确保公平）</li>
+</ul>
+<h3 id="3">✅ 阶段 3: 塔防互动<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计反塔机制（瞬移 / 摧塔 / 范围免疫）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 实现 Boss 移动路径（A* 或 NavMesh）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 添加召唤小怪逻辑（分散玩家注意力）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 测试塔 + 玩家联动输出平衡</li>
+</ul>
+<h3 id="4">✅ 阶段 4: 肉鸽词条联动<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 实现地图词条影响 Boss</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计 Boss 专属词条池（5-10 个）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 测试词条组合平衡性</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 确保没有"必死组合"</li>
+</ul>
+<h3 id="5">✅ 阶段 5: 视听打磨<a class="headerlink" href="#5" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 创建 Boss 专属音乐轨道</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计阶段转换特效（震屏 + 粒子）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 添加台词系统（可选）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 制作战败 / 胜利过场动画</li>
+</ul>
+<h3 id="6">✅ 阶段 6: 奖励与反馈<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 配置 Boss 掉落表（智能掉落）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 设计首次击败奖励</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 添加成就系统（速通 / 无伤 / 特殊条件）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 实现战斗数据统计（用于平衡性调整）</li>
+</ul>
+<hr />
+<p><strong>最后更新</strong>: 2025-12-04<br />
+<strong>维护者</strong>: Vampirefall 设计团队</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/your-username" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

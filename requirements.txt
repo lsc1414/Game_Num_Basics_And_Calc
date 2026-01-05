@@ -1,0 +1,4 @@
+# MkDocs Material 依赖
+# 安装: pip install -r requirements.txt
+
+mkdocs-material>=9.5

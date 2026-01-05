@@ -1,0 +1,4270 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="游戏开发的 100 件事 - 数值设计、规则与技术标准">
+      
+      
+      
+        <link rel="canonical" href="https://your-username.github.io/Game_Num_Basics_And_Calc/Design/Magicraft_Knowledge_Map/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>🪄 《Magicraft》核心设计知识图谱 (Magicraft Knowledge Map) - Vampirefall 核心知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#magicraft-magicraft-knowledge-map" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Vampirefall 核心知识库" class="md-header__button md-logo" aria-label="Vampirefall 核心知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 6h10a6 6 0 0 1 6 6 6 6 0 0 1-6 6c-1.78 0-3.37-.77-4.47-2h-1.06c-1.1 1.23-2.69 2-4.47 2a6 6 0 0 1-6-6 6 6 0 0 1 6-6M6 9v2H4v2h2v2h2v-2h2v-2H8V9zm9.5 3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m3-3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5A1.5 1.5 0 0 0 18.5 9"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vampirefall 核心知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🪄 《Magicraft》核心设计知识图谱 (Magicraft Knowledge Map)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../START_HERE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  🚀 新人指南
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../Numerical_Manual/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🧠 策划 (Design)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tech/Architecture/Unified_Decision_System/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  💻 程序 (Tech)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Art/Visual_Quality_Guide/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🎨 美术 (Art)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Unity_Standards/Asset_Naming/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📋 规范 (Standards)
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../portal.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔗 其它
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Vampirefall 核心知识库" class="md-nav__button md-logo" aria-label="Vampirefall 核心知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 6h10a6 6 0 0 1 6 6 6 6 0 0 1-6 6c-1.78 0-3.37-.77-4.47-2h-1.06c-1.1 1.23-2.69 2-4.47 2a6 6 0 0 1-6-6 6 6 0 0 1 6-6M6 9v2H4v2h2v2h2v-2h2v-2H8V9zm9.5 3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5m3-3a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5A1.5 1.5 0 0 0 18.5 9"/></svg>
+
+    </a>
+    Vampirefall 核心知识库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../START_HERE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 新人指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧠 策划 (Design)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🧠 策划 (Design)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📐 数值与公式
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📐 数值与公式
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Numerical_Manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值设计手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Unity_General_Numeric_Quick_Reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通用数值速查表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Numerical/Numerical_Framework_Methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值框架构建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Difficulty_And_DDA_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    难度曲线与 DDA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Systems/Power_Creep_Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数值膨胀控制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Systems/Economy_And_Inflation_Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ⚔️ 战斗与机制
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ⚔️ 战斗与机制
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Combat_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    战斗系统详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Tower_Defense_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    塔防建筑机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Elemental_Reaction_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    元素反应机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Roguelike_Perks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    肉鸽强化系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mechanics/Aggro_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仇恨系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Systems/Itemization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    物品化系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Systems/TradeOff_Affix_Library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    权衡词条库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Mechanics/Projectile_System_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    弹道系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎮 游戏设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎮 游戏设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Philosophy_And_Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计哲学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Game_Psychology_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    游戏心理学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Minimalist_Strategy_Design_Knowledge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    极简策略设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Content/Enemy_Bestiary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    怪物图鉴
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Content/Level_Design_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    关卡设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Narrative/Game_Narrative_And_Presentation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    叙事与包装
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📖 知识图谱
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📖 知识图谱
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Roguelike_Deckbuilder_Knowledge_Map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    杀戮尖塔图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Risk_of_Rain_2_Knowledge_Map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk of Rain 2 图谱
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Industry_Cases/Vampire_Survivors_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    吸血鬼幸存者性能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Industry_Cases/Hades_Build_Diversity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hades 构建多样性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚀 发行与运营
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🚀 发行与运营
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Publishing/Launch_Readiness_Checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    上线生死清单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Publishing/Steam_Unity_Indie_Game_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Steam 发行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Publishing/Steam_Unity_Quality_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Steam 质量标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LiveOps/Battle_Pass_Economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    通行证经济
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Community/Community_Crisis_Management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    社区危机公关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💀 失败复盘
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    💀 失败复盘
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Failure_Cases/Anthem_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anthem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Failure_Cases/Battleborn_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battleborn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Failure_Cases/Concord_Failure_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concord
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    💻 程序 (Tech)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    💻 程序 (Tech)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🏗️ 架构与系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🏗️ 架构与系统
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Architecture/Unified_Decision_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统一决策系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Architecture/ECS_Theory_And_Practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECS 架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Network_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Gameplay_Ability_System_Design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GAS 技能系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Save_System_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存盘系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Optimization/Unity_Advanced_CSharp_Performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C# 进阶优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Architecture/Unity_Anti_Patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    代码反模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 AI 与算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🤖 AI 与算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/AI_Utility_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 效用系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Algorithms/Roguelike_RNG_Systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roguelike 随机
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Technical_Implementation/Procedural_Generation_WFC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WFC 生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Mechanics/NavMesh_Pathfinding_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NavMesh 寻路
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    掉落算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../Calculator/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🛠️ 工具与流程
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🛠️ 工具与流程
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Tools/Debug_Console_And_Cheats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调试指令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Luban_Config_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luban 配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    福尔摩斯调试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Tools/AI_Balance_Testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 平衡测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🎨 美术 (Art)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🎨 美术 (Art)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Art/Visual_Quality_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉质量指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Art/Tech_Art/Asset_Validation_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源验证标准
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Art/VFX/VFX_Optimization_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    特效优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tech/Graphics/Unity_SpriteAtlas_DeepDive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SpriteAtlas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Audio/Practical_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    音频实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Audio/Adaptive_Music_System/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态音乐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📋 规范 (Standards)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    📋 规范 (Standards)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Unity_Standards/Asset_Naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源命名规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Dev_Guides/Collaboration/Git_Commit_Standards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 提交规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Unity_Standards/Folder_Structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity 标准目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 其它
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    🔗 其它
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portal.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    交互式知识库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-theoretical-basis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 1. 理论基础 (Theoretical Basis)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 1. 理论基础 (Theoretical Basis)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-magicraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 核心定义：什么是 Magicraft 的武器构筑？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 武器构筑的三大组成部分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 武器构筑的数学模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 零件的稀有度系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-practical-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 2. 实践应用 (Practical Implementation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ 2. 实践应用 (Practical Implementation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 新手入门：5 个经典武器构筑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 进阶技巧：零件协同效应
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-vampirefall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Vampirefall 适配：武器构筑系统实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 武器发射系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-industry-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🌟 3. 业界优秀案例 (Industry Best Practices)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌟 3. 业界优秀案例 (Industry Best Practices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-magicraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Magicraft 的设计天才之处
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-magicraft-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Magicraft vs 其他武器构建游戏对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 经典构筑案例分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-vampirefall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Vampirefall 的适配建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 零件速查表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 零件速查表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发射器对照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        弹道对照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        效果器对照表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 4. 参考资料 (References)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 4. 参考资料 (References)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📺 视频资源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wiki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📄 文档与 Wiki
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 社区资源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#magicraft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 总结：Magicraft 武器系统的设计精髓
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 总结：Magicraft 武器系统的设计精髓">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心设计原则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vampirefall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对 Vampirefall 的启示
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="magicraft-magicraft-knowledge-map">🪄 《Magicraft》核心设计知识图谱 (Magicraft Knowledge Map)<a class="headerlink" href="#magicraft-magicraft-knowledge-map" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>"用魔法零件组装你的终极武器"</strong> - Magicraft 的核心玩法</p>
+</blockquote>
+<p>这份文档将用<strong>最通俗易懂</strong>的方式，为没玩过的人讲解 Magicraft 的武器构筑系统。</p>
+<hr />
+<h2 id="1-theoretical-basis">📚 1. 理论基础 (Theoretical Basis)<a class="headerlink" href="#1-theoretical-basis" title="Permanent link">&para;</a></h2>
+<h3 id="11-magicraft">1.1 核心定义：什么是 Magicraft 的武器构筑？<a class="headerlink" href="#11-magicraft" title="Permanent link">&para;</a></h3>
+<p>想象你在玩<strong>乐高积木</strong>，但不是搭建房子，而是<strong>组装魔法武器</strong>。</p>
+<p><strong>核心概念</strong>:
+- 🔧 <strong>武器 = 零件组合</strong>: 每把武器由多个"魔法零件"组成
+- 🎯 <strong>零件 = 功能模块</strong>: 每个零件提供特定的功能（发射方式、弹道、效果等）
+- 🔄 <strong>组合 = 创造</strong>: 不同零件的组合会产生完全不同的武器</p>
+<p><strong>通俗解释</strong>: 
+- 传统游戏: 你"捡到"一把火焰剑
+- Magicraft: 你"组装"一把会发射追踪火球、击中后爆炸、并分裂成3个小火球的魔法枪</p>
+<hr />
+<h3 id="12">1.2 武器构筑的三大组成部分<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>Magicraft 的武器由 <strong>3 个核心部分</strong> 组成，就像一辆汽车需要引擎、轮胎和方向盘：</p>
+<h4 id="1-emitter">部分 1: 发射器 (Emitter) 🎯<a class="headerlink" href="#1-emitter" title="Permanent link">&para;</a></h4>
+<p><strong>作用</strong>: 决定"怎么发射"
+- <strong>单发 (Single Shot)</strong>: 一次发射 1 个弹药
+- <strong>散射 (Spread)</strong>: 一次发射 3-5 个弹药，呈扇形
+- <strong>环形 (Ring)</strong>: 一次发射 8 个弹药，360度环绕
+- <strong>波浪 (Wave)</strong>: 发射一道波浪，横扫前方</p>
+<p><strong>通俗比喻</strong>: 
+- 单发 = 步枪（精准）
+- 散射 = 霰弹枪（范围）
+- 环形 = 地雷（防御）
+- 波浪 = 激光炮（清场）</p>
+<h4 id="2-projectile">部分 2: 弹道 (Projectile) 💫<a class="headerlink" href="#2-projectile" title="Permanent link">&para;</a></h4>
+<p><strong>作用</strong>: 决定"弹药是什么"
+- <strong>火球 (Fireball)</strong>: 直线飞行，击中爆炸
+- <strong>闪电 (Lightning)</strong>: 瞬间击中，链式传导
+- <strong>冰锥 (Ice Shard)</strong>: 减速敌人
+- <strong>毒液 (Poison)</strong>: 持续伤害</p>
+<p><strong>通俗比喻</strong>:
+- 火球 = 手榴弹（爆炸伤害）
+- 闪电 = 电击枪（瞬间命中）
+- 冰锥 = 冷冻枪（控制）
+- 毒液 = 毒气弹（DOT）</p>
+<h4 id="3-effect">部分 3: 效果器 (Effect) ✨<a class="headerlink" href="#3-effect" title="Permanent link">&para;</a></h4>
+<p><strong>作用</strong>: 决定"击中后做什么"
+- <strong>爆炸 (Explosion)</strong>: 击中后产生 AOE 伤害
+- <strong>分裂 (Split)</strong>: 击中后分裂成多个小弹药
+- <strong>追踪 (Homing)</strong>: 弹药会自动追踪敌人
+- <strong>穿透 (Pierce)</strong>: 穿透多个敌人</p>
+<p><strong>通俗比喻</strong>:
+- 爆炸 = 榴弹（范围伤害）
+- 分裂 = 子母弹（二次伤害）
+- 追踪 = 导弹（自动瞄准）
+- 穿透 = 穿甲弹（无视护甲）</p>
+<hr />
+<h3 id="13">1.3 武器构筑的数学模型<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>Magicraft 的武器威力不是简单的加法，而是<strong>乘法叠加</strong>：</p>
+<div class="arithmatex">\[
+TotalDamage = BaseDamage \times EmitterMultiplier \times ProjectileMultiplier \times EffectMultiplier
+\]</div>
+<p><strong>示例计算</strong>:
+- 基础伤害: 10
+- 发射器: 散射 (×3 弹药)
+- 弹道: 火球 (×1.5 伤害)
+- 效果: 爆炸 (×2 范围伤害)</p>
+<div class="arithmatex">\[
+TotalDamage = 10 \times 3 \times 1.5 \times 2 = 90
+\]</div>
+<p><strong>关键点</strong>: 组合得当，1+1+1 可以 &gt; 10！</p>
+<hr />
+<h3 id="14">1.4 零件的稀有度系统<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>Magicraft 的零件分为 4 个稀有度：</p>
+<table>
+<thead>
+<tr>
+<th>稀有度</th>
+<th>颜色</th>
+<th>效果强度</th>
+<th>掉落率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通</td>
+<td>⚪ 白色</td>
+<td>基础效果</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>稀有</td>
+<td>🟢 绿色</td>
+<td>+50% 效果</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>史诗</td>
+<td>🟣 紫色</td>
+<td>+100% 效果</td>
+<td>8%</td>
+</tr>
+<tr>
+<td>传说</td>
+<td>🟠 橙色</td>
+<td>+200% 效果 + 特殊能力</td>
+<td>2%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong>:
+- 普通"爆炸": 范围 2 米
+- 传说"爆炸": 范围 6 米 + 点燃敌人</p>
+<hr />
+<h2 id="2-practical-implementation">🛠️ 2. 实践应用 (Practical Implementation)<a class="headerlink" href="#2-practical-implementation" title="Permanent link">&para;</a></h2>
+<h3 id="21-5">2.1 新手入门：5 个经典武器构筑<a class="headerlink" href="#21-5" title="Permanent link">&para;</a></h3>
+<h4 id="1-shotgun-build">构筑 1: "霰弹枪" (Shotgun Build) 💥<a class="headerlink" href="#1-shotgun-build" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>发射器: 散射 (5发)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>弹道: 火球
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>效果: 无
+</span></code></pre></div>
+<strong>特点</strong>: 近距离高爆发，适合冲脸
+<strong>适用场景</strong>: 对付单个强敌</p>
+<h4 id="2-missile-launcher">构筑 2: "导弹发射器" (Missile Launcher) 🚀<a class="headerlink" href="#2-missile-launcher" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>发射器: 单发
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>弹道: 火球
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>效果: 追踪 + 爆炸
+</span></code></pre></div>
+<strong>特点</strong>: 自动瞄准，范围伤害
+<strong>适用场景</strong>: 对付移动敌人</p>
+<h4 id="3-chain-lightning">构筑 3: "闪电链" (Chain Lightning) ⚡<a class="headerlink" href="#3-chain-lightning" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>发射器: 单发
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>弹道: 闪电
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>效果: 链式传导 (最多5个敌人)
+</span></code></pre></div>
+<strong>特点</strong>: 群体清怪，瞬间命中
+<strong>适用场景</strong>: 对付大量小怪</p>
+<h4 id="4-freeze-trap">构筑 4: "冰冻陷阱" (Freeze Trap) ❄️<a class="headerlink" href="#4-freeze-trap" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>发射器: 环形 (8发)
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>弹道: 冰锥
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>效果: 减速 + 冻结
+</span></code></pre></div>
+<strong>特点</strong>: 360度防御，控制敌人
+<strong>适用场景</strong>: 被围攻时自保</p>
+<h4 id="5-poison-cloud">构筑 5: "毒雾炮" (Poison Cloud) ☠️<a class="headerlink" href="#5-poison-cloud" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>发射器: 波浪
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>弹道: 毒液
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>效果: 持续伤害 (5秒)
+</span></code></pre></div>
+<strong>特点</strong>: 大范围 DOT，持续输出
+<strong>适用场景</strong>: 守点、刷怪</p>
+<hr />
+<h3 id="22">2.2 进阶技巧：零件协同效应<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>Magicraft 的精髓在于<strong>零件之间的协同</strong>。某些组合会产生"1+1&gt;2"的效果。</p>
+<h4 id="1">协同 1: 分裂 + 追踪 = 导弹雨<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>发射器: 单发
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>弹道: 火球
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>效果: 分裂 (3个) + 追踪
+</span></code></pre></div>
+<strong>效果</strong>: 发射 1 个火球，击中后分裂成 3 个追踪小火球，每个都会自动寻找敌人。
+<strong>为什么强</strong>: 单次攻击 = 4 次命中（1主弹 + 3子弹）</p>
+<h4 id="2">协同 2: 穿透 + 爆炸 = 穿甲榴弹<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>发射器: 单发
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>弹道: 火球
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>效果: 穿透 + 爆炸
+</span></code></pre></div>
+<strong>效果</strong>: 火球穿透所有敌人，每次穿透都会爆炸。
+<strong>为什么强</strong>: 敌人排成一排时，一发可以炸 5-10 次</p>
+<h4 id="3">协同 3: 散射 + 冰冻 = 冰霜散弹<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>发射器: 散射 (5发)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>弹道: 冰锥
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>效果: 冻结
+</span></code></pre></div>
+<strong>效果</strong>: 一次发射 5 个冰锥，大范围冻结敌人。
+<strong>为什么强</strong>: 控制 + 范围，适合应急</p>
+<h4 id="4">协同 4: 环形 + 闪电 = 特斯拉线圈<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>发射器: 环形 (8发)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>弹道: 闪电
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>效果: 链式传导
+</span></code></pre></div>
+<strong>效果</strong>: 360度发射 8 道闪电，每道闪电可以链式传导 3 次。
+<strong>为什么强</strong>: 理论上可以击中 8×3 = 24 个敌人</p>
+<hr />
+<h3 id="23-vampirefall">2.3 Vampirefall 适配：武器构筑系统实现<a class="headerlink" href="#23-vampirefall" title="Permanent link">&para;</a></h3>
+<p>我们可以借鉴 Magicraft 的模块化思路，设计一个<strong>技能组装系统</strong>。</p>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// 武器零件基类</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">public</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WeaponPart</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ScriptableObject</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">partName</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">PartRarity</span><span class="w"> </span><span class="n">rarity</span><span class="p">;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">icon</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">// 零件稀有度</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">PartRarity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="n">Common</span><span class="p">,</span><span class="w">    </span><span class="c1">// 普通</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="n">Rare</span><span class="p">,</span><span class="w">      </span><span class="c1">// 稀有</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="n">Epic</span><span class="p">,</span><span class="w">      </span><span class="c1">// 史诗</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="n">Legendary</span><span class="w">  </span><span class="c1">// 传说</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="p">}</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="c1">// 发射器零件</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="na">[CreateAssetMenu(fileName = &quot;Emitter&quot;, menuName = &quot;Weapon/Emitter&quot;)]</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EmitterPart</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WeaponPart</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">EmitterType</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">projectileCount</span><span class="p">;</span><span class="w">  </span><span class="c1">// 发射数量</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">spreadAngle</span><span class="p">;</span><span class="w">    </span><span class="c1">// 散布角度</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="p">}</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">EmitterType</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">    </span><span class="n">Single</span><span class="p">,</span><span class="w">   </span><span class="c1">// 单发</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="n">Spread</span><span class="p">,</span><span class="w">   </span><span class="c1">// 散射</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="n">Ring</span><span class="p">,</span><span class="w">     </span><span class="c1">// 环形</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="n">Wave</span><span class="w">      </span><span class="c1">// 波浪</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="p">}</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="c1">// 弹道零件</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="na">[CreateAssetMenu(fileName = &quot;Projectile&quot;, menuName = &quot;Weapon/Projectile&quot;)]</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ProjectilePart</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WeaponPart</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ProjectileType</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">prefab</span><span class="p">;</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">baseDamage</span><span class="p">;</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="p">}</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">ProjectileType</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">    </span><span class="n">Fireball</span><span class="p">,</span><span class="w">   </span><span class="c1">// 火球</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">    </span><span class="n">Lightning</span><span class="p">,</span><span class="w">  </span><span class="c1">// 闪电</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="w">    </span><span class="n">IceShard</span><span class="p">,</span><span class="w">   </span><span class="c1">// 冰锥</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">    </span><span class="n">Poison</span><span class="w">      </span><span class="c1">// 毒液</span>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="p">}</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="c1">// 效果器零件</span>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="na">[CreateAssetMenu(fileName = &quot;Effect&quot;, menuName = &quot;Weapon/Effect&quot;)]</span>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EffectPart</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">WeaponPart</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">EffectType</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">effectValue</span><span class="p">;</span><span class="w">  </span><span class="c1">// 效果数值（范围/数量等）</span>
+</span><span id="__span-9-52"><a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a><span class="p">}</span>
+</span><span id="__span-9-53"><a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a>
+</span><span id="__span-9-54"><a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">EffectType</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-55"><a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a><span class="w">    </span><span class="n">Explosion</span><span class="p">,</span><span class="w">  </span><span class="c1">// 爆炸</span>
+</span><span id="__span-9-56"><a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a><span class="w">    </span><span class="n">Split</span><span class="p">,</span><span class="w">      </span><span class="c1">// 分裂</span>
+</span><span id="__span-9-57"><a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a><span class="w">    </span><span class="n">Homing</span><span class="p">,</span><span class="w">     </span><span class="c1">// 追踪</span>
+</span><span id="__span-9-58"><a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a><span class="w">    </span><span class="n">Pierce</span><span class="w">      </span><span class="c1">// 穿透</span>
+</span><span id="__span-9-59"><a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a><span class="p">}</span>
+</span><span id="__span-9-60"><a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a>
+</span><span id="__span-9-61"><a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a><span class="c1">// 武器组装器</span>
+</span><span id="__span-9-62"><a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a><span class="na">[System.Serializable]</span>
+</span><span id="__span-9-63"><a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WeaponAssembly</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-64"><a id="__codelineno-9-64" name="__codelineno-9-64" href="#__codelineno-9-64"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">EmitterPart</span><span class="w"> </span><span class="n">emitter</span><span class="p">;</span>
+</span><span id="__span-9-65"><a id="__codelineno-9-65" name="__codelineno-9-65" href="#__codelineno-9-65"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">ProjectilePart</span><span class="w"> </span><span class="n">projectile</span><span class="p">;</span>
+</span><span id="__span-9-66"><a id="__codelineno-9-66" name="__codelineno-9-66" href="#__codelineno-9-66"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">EffectPart</span><span class="o">&gt;</span><span class="w"> </span><span class="n">effects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">EffectPart</span><span class="o">&gt;</span><span class="p">();</span><span class="w">  </span><span class="c1">// 可以有多个效果</span>
+</span><span id="__span-9-67"><a id="__codelineno-9-67" name="__codelineno-9-67" href="#__codelineno-9-67"></a>
+</span><span id="__span-9-68"><a id="__codelineno-9-68" name="__codelineno-9-68" href="#__codelineno-9-68"></a><span class="w">    </span><span class="c1">// 计算总伤害</span>
+</span><span id="__span-9-69"><a id="__codelineno-9-69" name="__codelineno-9-69" href="#__codelineno-9-69"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">CalculateDamage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-70"><a id="__codelineno-9-70" name="__codelineno-9-70" href="#__codelineno-9-70"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">baseDmg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projectile</span><span class="p">.</span><span class="n">baseDamage</span><span class="p">;</span>
+</span><span id="__span-9-71"><a id="__codelineno-9-71" name="__codelineno-9-71" href="#__codelineno-9-71"></a>
+</span><span id="__span-9-72"><a id="__codelineno-9-72" name="__codelineno-9-72" href="#__codelineno-9-72"></a><span class="w">        </span><span class="c1">// 发射器倍率</span>
+</span><span id="__span-9-73"><a id="__codelineno-9-73" name="__codelineno-9-73" href="#__codelineno-9-73"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">emitterMult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emitter</span><span class="p">.</span><span class="n">projectileCount</span><span class="p">;</span>
+</span><span id="__span-9-74"><a id="__codelineno-9-74" name="__codelineno-9-74" href="#__codelineno-9-74"></a>
+</span><span id="__span-9-75"><a id="__codelineno-9-75" name="__codelineno-9-75" href="#__codelineno-9-75"></a><span class="w">        </span><span class="c1">// 效果倍率</span>
+</span><span id="__span-9-76"><a id="__codelineno-9-76" name="__codelineno-9-76" href="#__codelineno-9-76"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">effectMult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-9-77"><a id="__codelineno-9-77" name="__codelineno-9-77" href="#__codelineno-9-77"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-78"><a id="__codelineno-9-78" name="__codelineno-9-78" href="#__codelineno-9-78"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Explosion</span><span class="p">)</span><span class="w"> </span><span class="n">effectMult</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+</span><span id="__span-9-79"><a id="__codelineno-9-79" name="__codelineno-9-79" href="#__codelineno-9-79"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Split</span><span class="p">)</span><span class="w"> </span><span class="n">effectMult</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">;</span>
+</span><span id="__span-9-80"><a id="__codelineno-9-80" name="__codelineno-9-80" href="#__codelineno-9-80"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-81"><a id="__codelineno-9-81" name="__codelineno-9-81" href="#__codelineno-9-81"></a>
+</span><span id="__span-9-82"><a id="__codelineno-9-82" name="__codelineno-9-82" href="#__codelineno-9-82"></a><span class="w">        </span><span class="c1">// 稀有度加成</span>
+</span><span id="__span-9-83"><a id="__codelineno-9-83" name="__codelineno-9-83" href="#__codelineno-9-83"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">rarityBonus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetRarityBonus</span><span class="p">();</span>
+</span><span id="__span-9-84"><a id="__codelineno-9-84" name="__codelineno-9-84" href="#__codelineno-9-84"></a>
+</span><span id="__span-9-85"><a id="__codelineno-9-85" name="__codelineno-9-85" href="#__codelineno-9-85"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">RoundToInt</span><span class="p">(</span><span class="n">baseDmg</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">emitterMult</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">effectMult</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rarityBonus</span><span class="p">);</span>
+</span><span id="__span-9-86"><a id="__codelineno-9-86" name="__codelineno-9-86" href="#__codelineno-9-86"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-87"><a id="__codelineno-9-87" name="__codelineno-9-87" href="#__codelineno-9-87"></a>
+</span><span id="__span-9-88"><a id="__codelineno-9-88" name="__codelineno-9-88" href="#__codelineno-9-88"></a><span class="w">    </span><span class="c1">// 稀有度加成</span>
+</span><span id="__span-9-89"><a id="__codelineno-9-89" name="__codelineno-9-89" href="#__codelineno-9-89"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nf">GetRarityBonus</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-90"><a id="__codelineno-9-90" name="__codelineno-9-90" href="#__codelineno-9-90"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">bonus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-9-91"><a id="__codelineno-9-91" name="__codelineno-9-91" href="#__codelineno-9-91"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">emitter</span><span class="p">.</span><span class="n">rarity</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PartRarity</span><span class="p">.</span><span class="n">Legendary</span><span class="p">)</span><span class="w"> </span><span class="n">bonus</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+</span><span id="__span-9-92"><a id="__codelineno-9-92" name="__codelineno-9-92" href="#__codelineno-9-92"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">projectile</span><span class="p">.</span><span class="n">rarity</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PartRarity</span><span class="p">.</span><span class="n">Legendary</span><span class="p">)</span><span class="w"> </span><span class="n">bonus</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+</span><span id="__span-9-93"><a id="__codelineno-9-93" name="__codelineno-9-93" href="#__codelineno-9-93"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-94"><a id="__codelineno-9-94" name="__codelineno-9-94" href="#__codelineno-9-94"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">rarity</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PartRarity</span><span class="p">.</span><span class="n">Legendary</span><span class="p">)</span><span class="w"> </span><span class="n">bonus</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">;</span>
+</span><span id="__span-9-95"><a id="__codelineno-9-95" name="__codelineno-9-95" href="#__codelineno-9-95"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-96"><a id="__codelineno-9-96" name="__codelineno-9-96" href="#__codelineno-9-96"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">bonus</span><span class="p">;</span>
+</span><span id="__span-9-97"><a id="__codelineno-9-97" name="__codelineno-9-97" href="#__codelineno-9-97"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-98"><a id="__codelineno-9-98" name="__codelineno-9-98" href="#__codelineno-9-98"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="24">2.4 武器发射系统<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<div class="language-csharp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WeaponShooter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">WeaponAssembly</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Fire</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentWeapon</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="c1">// 根据发射器类型决定发射方式</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">emitter</span><span class="p">.</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">EmitterType</span><span class="p">.</span><span class="n">Single</span><span class="p">:</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">                </span><span class="n">FireSingle</span><span class="p">();</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">EmitterType</span><span class="p">.</span><span class="n">Spread</span><span class="p">:</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">                </span><span class="n">FireSpread</span><span class="p">();</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">EmitterType</span><span class="p">.</span><span class="n">Ring</span><span class="p">:</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">                </span><span class="n">FireRing</span><span class="p">();</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">EmitterType</span><span class="p">.</span><span class="n">Wave</span><span class="p">:</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">                </span><span class="n">FireWave</span><span class="p">();</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">FireSingle</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">        </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="p">);</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">FireSpread</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">emitter</span><span class="p">.</span><span class="n">projectileCount</span><span class="p">;</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">emitter</span><span class="p">.</span><span class="n">spreadAngle</span><span class="p">;</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">currentAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">            </span><span class="n">Vector3</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">Euler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">currentAngle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="w">            </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">FireRing</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">emitter</span><span class="p">.</span><span class="n">projectileCount</span><span class="p">;</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">angleStep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">360f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">currentAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angleStep</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="w">            </span><span class="n">Vector3</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">Euler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">currentAngle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="w">            </span><span class="n">SpawnProjectile</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">FireWave</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="w">        </span><span class="c1">// 生成一道波浪（使用粒子系统或特殊碰撞体）</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="w">        </span><span class="n">GameObject</span><span class="w"> </span><span class="n">wave</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instantiate</span><span class="p">(</span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">projectile</span><span class="p">.</span><span class="n">prefab</span><span class="p">);</span>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="w">        </span><span class="n">wave</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a><span class="w">        </span><span class="n">wave</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a>
+</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">SpawnProjectile</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="n">direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a><span class="w">        </span><span class="n">GameObject</span><span class="w"> </span><span class="n">proj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instantiate</span><span class="p">(</span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">projectile</span><span class="p">.</span><span class="n">prefab</span><span class="p">);</span>
+</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a><span class="w">        </span><span class="n">proj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>
+</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a><span class="w">        </span><span class="n">Projectile</span><span class="w"> </span><span class="n">projScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">proj</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Projectile</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a><span class="w">        </span><span class="n">projScript</span><span class="p">.</span><span class="n">damage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">CalculateDamage</span><span class="p">();</span>
+</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a><span class="w">        </span><span class="n">projScript</span><span class="p">.</span><span class="n">effects</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentWeapon</span><span class="p">.</span><span class="n">effects</span><span class="p">;</span>
+</span><span id="__span-10-64"><a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a><span class="w">        </span><span class="n">projScript</span><span class="p">.</span><span class="n">Launch</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+</span><span id="__span-10-65"><a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-66"><a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a><span class="p">}</span>
+</span><span id="__span-10-67"><a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>
+</span><span id="__span-10-68"><a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a><span class="c1">// 弹药脚本</span>
+</span><span id="__span-10-69"><a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Projectile</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-70"><a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">damage</span><span class="p">;</span>
+</span><span id="__span-10-71"><a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">EffectPart</span><span class="o">&gt;</span><span class="w"> </span><span class="n">effects</span><span class="p">;</span>
+</span><span id="__span-10-72"><a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>
+</span><span id="__span-10-73"><a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Launch</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="n">direction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-74"><a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a><span class="w">        </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Rigidbody</span><span class="o">&gt;</span><span class="p">().</span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10f</span><span class="p">;</span>
+</span><span id="__span-10-75"><a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a>
+</span><span id="__span-10-76"><a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a><span class="w">        </span><span class="c1">// 检查是否有追踪效果</span>
+</span><span id="__span-10-77"><a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-78"><a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Homing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-79"><a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a><span class="w">                </span><span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="o">&lt;</span><span class="n">HomingBehavior</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-10-80"><a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-81"><a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-82"><a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-83"><a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a>
+</span><span id="__span-10-84"><a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerEnter</span><span class="p">(</span><span class="n">Collider</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-85"><a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">CompareTag</span><span class="p">(</span><span class="s">&quot;Enemy&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-86"><a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a><span class="w">            </span><span class="n">Enemy</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-10-87"><a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a><span class="w">            </span><span class="n">enemy</span><span class="p">.</span><span class="n">TakeDamage</span><span class="p">(</span><span class="n">damage</span><span class="p">);</span>
+</span><span id="__span-10-88"><a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>
+</span><span id="__span-10-89"><a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a><span class="w">            </span><span class="c1">// 应用效果</span>
+</span><span id="__span-10-90"><a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a><span class="w">            </span><span class="n">ApplyEffects</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span><span id="__span-10-91"><a id="__codelineno-10-91" name="__codelineno-10-91" href="#__codelineno-10-91"></a>
+</span><span id="__span-10-92"><a id="__codelineno-10-92" name="__codelineno-10-92" href="#__codelineno-10-92"></a><span class="w">            </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+</span><span id="__span-10-93"><a id="__codelineno-10-93" name="__codelineno-10-93" href="#__codelineno-10-93"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-94"><a id="__codelineno-10-94" name="__codelineno-10-94" href="#__codelineno-10-94"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-95"><a id="__codelineno-10-95" name="__codelineno-10-95" href="#__codelineno-10-95"></a>
+</span><span id="__span-10-96"><a id="__codelineno-10-96" name="__codelineno-10-96" href="#__codelineno-10-96"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">ApplyEffects</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="n">hitPosition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-97"><a id="__codelineno-10-97" name="__codelineno-10-97" href="#__codelineno-10-97"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">effects</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-98"><a id="__codelineno-10-98" name="__codelineno-10-98" href="#__codelineno-10-98"></a><span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-99"><a id="__codelineno-10-99" name="__codelineno-10-99" href="#__codelineno-10-99"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Explosion</span><span class="p">:</span>
+</span><span id="__span-10-100"><a id="__codelineno-10-100" name="__codelineno-10-100" href="#__codelineno-10-100"></a><span class="w">                    </span><span class="n">CreateExplosion</span><span class="p">(</span><span class="n">hitPosition</span><span class="p">,</span><span class="w"> </span><span class="n">effect</span><span class="p">.</span><span class="n">effectValue</span><span class="p">);</span>
+</span><span id="__span-10-101"><a id="__codelineno-10-101" name="__codelineno-10-101" href="#__codelineno-10-101"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-102"><a id="__codelineno-10-102" name="__codelineno-10-102" href="#__codelineno-10-102"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Split</span><span class="p">:</span>
+</span><span id="__span-10-103"><a id="__codelineno-10-103" name="__codelineno-10-103" href="#__codelineno-10-103"></a><span class="w">                    </span><span class="n">SplitProjectile</span><span class="p">(</span><span class="n">hitPosition</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">effect</span><span class="p">.</span><span class="n">effectValue</span><span class="p">);</span>
+</span><span id="__span-10-104"><a id="__codelineno-10-104" name="__codelineno-10-104" href="#__codelineno-10-104"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-105"><a id="__codelineno-10-105" name="__codelineno-10-105" href="#__codelineno-10-105"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">EffectType</span><span class="p">.</span><span class="n">Pierce</span><span class="p">:</span>
+</span><span id="__span-10-106"><a id="__codelineno-10-106" name="__codelineno-10-106" href="#__codelineno-10-106"></a><span class="w">                    </span><span class="c1">// 穿透逻辑（不销毁弹药）</span>
+</span><span id="__span-10-107"><a id="__codelineno-10-107" name="__codelineno-10-107" href="#__codelineno-10-107"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-10-108"><a id="__codelineno-10-108" name="__codelineno-10-108" href="#__codelineno-10-108"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-109"><a id="__codelineno-10-109" name="__codelineno-10-109" href="#__codelineno-10-109"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-110"><a id="__codelineno-10-110" name="__codelineno-10-110" href="#__codelineno-10-110"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-111"><a id="__codelineno-10-111" name="__codelineno-10-111" href="#__codelineno-10-111"></a>
+</span><span id="__span-10-112"><a id="__codelineno-10-112" name="__codelineno-10-112" href="#__codelineno-10-112"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">CreateExplosion</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-113"><a id="__codelineno-10-113" name="__codelineno-10-113" href="#__codelineno-10-113"></a><span class="w">        </span><span class="n">Collider</span><span class="p">[]</span><span class="w"> </span><span class="n">enemies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Physics</span><span class="p">.</span><span class="n">OverlapSphere</span><span class="p">(</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">);</span>
+</span><span id="__span-10-114"><a id="__codelineno-10-114" name="__codelineno-10-114" href="#__codelineno-10-114"></a><span class="w">        </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">enemies</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-115"><a id="__codelineno-10-115" name="__codelineno-10-115" href="#__codelineno-10-115"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">col</span><span class="p">.</span><span class="n">CompareTag</span><span class="p">(</span><span class="s">&quot;Enemy&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-116"><a id="__codelineno-10-116" name="__codelineno-10-116" href="#__codelineno-10-116"></a><span class="w">                </span><span class="n">col</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">().</span><span class="n">TakeDamage</span><span class="p">(</span><span class="n">damage</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-10-117"><a id="__codelineno-10-117" name="__codelineno-10-117" href="#__codelineno-10-117"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-10-118"><a id="__codelineno-10-118" name="__codelineno-10-118" href="#__codelineno-10-118"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-119"><a id="__codelineno-10-119" name="__codelineno-10-119" href="#__codelineno-10-119"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-120"><a id="__codelineno-10-120" name="__codelineno-10-120" href="#__codelineno-10-120"></a>
+</span><span id="__span-10-121"><a id="__codelineno-10-121" name="__codelineno-10-121" href="#__codelineno-10-121"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">SplitProjectile</span><span class="p">(</span><span class="n">Vector3</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-122"><a id="__codelineno-10-122" name="__codelineno-10-122" href="#__codelineno-10-122"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-123"><a id="__codelineno-10-123" name="__codelineno-10-123" href="#__codelineno-10-123"></a><span class="w">            </span><span class="kt">float</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">360f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-10-124"><a id="__codelineno-10-124" name="__codelineno-10-124" href="#__codelineno-10-124"></a><span class="w">            </span><span class="n">Vector3</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">Euler</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+</span><span id="__span-10-125"><a id="__codelineno-10-125" name="__codelineno-10-125" href="#__codelineno-10-125"></a>
+</span><span id="__span-10-126"><a id="__codelineno-10-126" name="__codelineno-10-126" href="#__codelineno-10-126"></a><span class="w">            </span><span class="n">GameObject</span><span class="w"> </span><span class="n">subProj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instantiate</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+</span><span id="__span-10-127"><a id="__codelineno-10-127" name="__codelineno-10-127" href="#__codelineno-10-127"></a><span class="w">            </span><span class="n">subProj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="p">;</span>
+</span><span id="__span-10-128"><a id="__codelineno-10-128" name="__codelineno-10-128" href="#__codelineno-10-128"></a><span class="w">            </span><span class="n">subProj</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Projectile</span><span class="o">&gt;</span><span class="p">().</span><span class="n">Launch</span><span class="p">(</span><span class="n">direction</span><span class="p">);</span>
+</span><span id="__span-10-129"><a id="__codelineno-10-129" name="__codelineno-10-129" href="#__codelineno-10-129"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-130"><a id="__codelineno-10-130" name="__codelineno-10-130" href="#__codelineno-10-130"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-131"><a id="__codelineno-10-131" name="__codelineno-10-131" href="#__codelineno-10-131"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="3-industry-best-practices">🌟 3. 业界优秀案例 (Industry Best Practices)<a class="headerlink" href="#3-industry-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="31-magicraft">3.1 Magicraft 的设计天才之处<a class="headerlink" href="#31-magicraft" title="Permanent link">&para;</a></h3>
+<h4 id="1_1">天才点 1: 模块化构建 🔧<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>Magicraft 不给你"100把武器"，而是给你"30个零件"，让你自己组装出 1000+ 种武器。</p>
+<p><strong>设计心理学</strong>: 玩家感觉自己在"创造"而非"选择"，极大提升了成就感。</p>
+<h4 id="2_1">天才点 2: 即时反馈 ⚡<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<p>你在工作台组装武器时，右侧会<strong>实时显示武器效果预览</strong>：
+- 发射动画
+- 伤害数值
+- 范围指示</p>
+<p><strong>设计心理学</strong>: 即时反馈让玩家能快速迭代，找到最优组合。</p>
+<h4 id="3_1">天才点 3: 稀有度加成 🌟<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<p>传说零件不仅数值高，还有<strong>特殊能力</strong>：
+- 传说"爆炸": 爆炸会点燃敌人
+- 传说"追踪": 追踪速度 +200%
+- 传说"分裂": 分裂出的子弹也会分裂</p>
+<p><strong>设计心理学</strong>: 这创造了"追求完美"的动力。</p>
+<hr />
+<h3 id="32-magicraft-vs">3.2 Magicraft vs 其他武器构建游戏对比<a class="headerlink" href="#32-magicraft-vs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>游戏</th>
+<th>构建系统</th>
+<th>自由度</th>
+<th>复杂度</th>
+<th>重玩价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Magicraft</strong></td>
+<td>零件组装</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Noita</strong></td>
+<td>法术槽位</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Enter the Gungeon</strong></td>
+<td>预设武器</td>
+<td>⭐⭐</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Borderlands</strong></td>
+<td>随机词缀</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Magicraft 的独特之处</strong>:
+- <strong>模块化</strong>: 零件可以自由组合
+- <strong>可视化</strong>: 实时预览武器效果
+- <strong>平衡性</strong>: 没有"绝对最强"的组合，只有"最适合当前情况"的组合</p>
+<hr />
+<h3 id="33">3.3 经典构筑案例分析<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<h4 id="a-nuke-build">构筑 A: "核弹" (Nuke Build)<a class="headerlink" href="#a-nuke-build" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>发射器: 单发
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>弹道: 火球
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>效果: 爆炸 (传说) + 分裂 (史诗)
+</span></code></pre></div>
+<strong>效果</strong>: 发射 1 个巨大火球，击中后爆炸（范围 10 米），并分裂成 5 个小火球，每个小火球也会爆炸。
+<strong>为什么强</strong>: 单次攻击可以清空整个屏幕的敌人。
+<strong>缺点</strong>: 射速慢，法力消耗高。</p>
+<h4 id="b-machine-gun-build">构筑 B: "机关枪" (Machine Gun Build)<a class="headerlink" href="#b-machine-gun-build" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>发射器: 单发 (传说，射速 +200%)
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>弹道: 闪电
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>效果: 穿透
+</span></code></pre></div>
+<strong>效果</strong>: 极快射速的穿透闪电，秒杀一切。
+<strong>为什么强</strong>: DPS 极高，适合打 Boss。
+<strong>缺点</strong>: 单体伤害，不适合群怪。</p>
+<h4 id="c-freeze-fortress-build">构筑 C: "冰冻要塞" (Freeze Fortress Build)<a class="headerlink" href="#c-freeze-fortress-build" title="Permanent link">&para;</a></h4>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>发射器: 环形 (8发)
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>弹道: 冰锥
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>效果: 冻结 + 减速
+</span></code></pre></div>
+<strong>效果</strong>: 360度冰冻防御，敌人无法靠近。
+<strong>为什么强</strong>: 生存能力极强。
+<strong>缺点</strong>: 伤害低，只能防守。</p>
+<hr />
+<h3 id="34-vampirefall">3.4 Vampirefall 的适配建议<a class="headerlink" href="#34-vampirefall" title="Permanent link">&para;</a></h3>
+<h4 id="a">方案 A: 简化版零件系统（推荐）<a class="headerlink" href="#a" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>零件数量</strong>: 每类 5-8 个（而非 Magicraft 的 20+）</li>
+<li><strong>组合上限</strong>: 1 发射器 + 1 弹道 + 2 效果（而非无限）</li>
+<li><strong>预设模板</strong>: 提供"推荐构筑"，降低学习曲线</li>
+</ul>
+<h4 id="b">方案 B: 塔防专用零件系统<a class="headerlink" href="#b" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>零件 = 塔升级</strong>: 零件不仅能组装武器，还能升级防御塔<ul>
+<li>发射器"散射" + 箭塔 = 多重箭塔</li>
+<li>效果"爆炸" + 炮塔 = 榴弹炮塔</li>
+</ul>
+</li>
+<li><strong>零件掉落</strong>: 击杀精英怪掉落零件</li>
+</ul>
+<h4 id="c">方案 C: 卡牌 + 零件混合<a class="headerlink" href="#c" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>卡牌 = 零件容器</strong>: 每张卡牌携带 1 个零件</li>
+<li><strong>打出卡牌 = 装备零件</strong>: 战斗中动态更换武器配置</li>
+<li><strong>示例</strong>: <ul>
+<li>卡牌1 (散射发射器) + 卡牌2 (火球) + 卡牌3 (爆炸) = 霰弹炮</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="_1">📊 零件速查表<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">发射器对照表<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>弹药数</th>
+<th>范围</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单发</td>
+<td>1</td>
+<td>单体</td>
+<td>打Boss</td>
+</tr>
+<tr>
+<td>散射</td>
+<td>3-5</td>
+<td>扇形</td>
+<td>近战清怪</td>
+</tr>
+<tr>
+<td>环形</td>
+<td>8</td>
+<td>360度</td>
+<td>防御</td>
+</tr>
+<tr>
+<td>波浪</td>
+<td>1</td>
+<td>直线范围</td>
+<td>清场</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">弹道对照表<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>伤害</th>
+<th>特性</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>火球</td>
+<td>高</td>
+<td>爆炸</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>闪电</td>
+<td>中</td>
+<td>瞬间命中</td>
+<td>移动敌人</td>
+</tr>
+<tr>
+<td>冰锥</td>
+<td>低</td>
+<td>减速</td>
+<td>控制</td>
+</tr>
+<tr>
+<td>毒液</td>
+<td>低</td>
+<td>DOT</td>
+<td>持续战</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">效果器对照表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>效果</th>
+<th>倍率</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>爆炸</td>
+<td>AOE</td>
+<td>×2</td>
+<td>群怪</td>
+</tr>
+<tr>
+<td>分裂</td>
+<td>子弹</td>
+<td>×1.5</td>
+<td>增加命中</td>
+</tr>
+<tr>
+<td>追踪</td>
+<td>自瞄</td>
+<td>×1</td>
+<td>移动敌人</td>
+</tr>
+<tr>
+<td>穿透</td>
+<td>多段</td>
+<td>×1</td>
+<td>排列敌人</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-references">🔗 4. 参考资料 (References)<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<h3 id="_5">📺 视频资源<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>YouTube</strong>: <a href="https://www.youtube.com/results?search_query=magicraft+weapon+building">Magicraft Weapon Building Guide</a> - 武器构筑教程</li>
+<li><strong>Bilibili</strong>: Magicraft 中文攻略</li>
+</ul>
+<h3 id="wiki">📄 文档与 Wiki<a class="headerlink" href="#wiki" title="Permanent link">&para;</a></h3>
+<ul>
+<li>🌐 <strong>Steam Community</strong>: <a href="https://steamcommunity.com/app/2103140/guides/">Magicraft Guides</a> - 社区指南</li>
+<li>🌐 <strong>Reddit</strong>: <a href="https://www.reddit.com/r/Magicraft/">r/Magicraft</a> - 玩家讨论</li>
+</ul>
+<h3 id="_6">🎮 社区资源<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Discord</strong>: Magicraft 官方 Discord</li>
+<li><strong>构筑分享</strong>: 玩家自制的武器构筑数据库</li>
+</ul>
+<hr />
+<h2 id="magicraft">💡 总结：Magicraft 武器系统的设计精髓<a class="headerlink" href="#magicraft" title="Permanent link">&para;</a></h2>
+<h3 id="_7">核心设计原则<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>模块化 &gt; 预设</strong>: 30 个零件的 1000 种组合，优于 1000 把预设武器</li>
+<li><strong>即时反馈</strong>: 玩家能实时看到武器效果</li>
+<li><strong>协同效应</strong>: 零件之间的组合会产生"1+1&gt;2"的效果</li>
+<li><strong>稀有度加成</strong>: 传说零件有特殊能力，而非仅仅数值高</li>
+</ol>
+<h3 id="vampirefall">对 Vampirefall 的启示<a class="headerlink" href="#vampirefall" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>简化复杂度</strong>: Magicraft 的零件系统对新手友好，我们可以直接借鉴</li>
+<li><strong>可视化编辑</strong>: 必须有清晰的 UI 显示当前武器配置</li>
+<li><strong>预设推荐</strong>: 提供"推荐构筑"按钮，降低学习曲线</li>
+<li><strong>塔防特化</strong>: 零件不仅能组装武器，还能升级防御塔</li>
+</ul>
+<hr />
+<p><strong>文档版本</strong>: v1.0<br />
+<strong>最后更新</strong>: 2025-12-06<br />
+<strong>作者</strong>: Vampirefall Team</p>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: false });
+  await mermaid.run({
+    querySelector: '.language-mermaid',
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/your-username" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

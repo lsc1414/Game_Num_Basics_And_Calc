@@ -1,0 +1,61 @@
+/* Vampirefall 知识库自定义样式 */
+
+/* 限制内容最大宽度，避免大屏过宽 */
+.md-grid {
+  max-width: 1200px;
+}
+
+/* 调整首页卡片网格布局，更紧凑 */
+.md-typeset .grid.cards > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem; /* 减小间歇 */
+  padding: 0;
+  list-style: none;
+}
+
+.md-typeset .grid.cards > ul > li {
+  background-color: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 卡片悬停效果增强 */
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 移除卡片内分割线的大间距 */
+.md-typeset .grid.cards hr {
+  margin: 1rem 0;
+}
+
+/* 自定义告示框颜色 */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--md-accent-fg-color);
+}
+
+/* 表格优化 - 紧凑模式 */
+.md-typeset table:not([class]) {
+  font-size: .8rem;
+  display: table; /* 强制表格显示，避免某些情况下的滚动条遮挡 */
+  width: 100%;
+}
+
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.3rem;
+}
+
+/* 代码块优化 */
+.md-typeset pre > code {
+  font-size: .85rem;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}

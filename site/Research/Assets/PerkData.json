@@ -1,0 +1,323 @@
+{
+  "perks": [
+    {
+      "id": "brutality_1",
+      "name": "蛮力",
+      "rarity": "Common",
+      "tags": ["Damage", "Physical", "Strength"],
+      "description": "增加10%物理伤害",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "PhysicalDamage",
+          "value": 0.1,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 100,
+      "icon": "Icons/Perks/brutality",
+      "requirements": []
+    },
+    {
+      "id": "alacrity_1",
+      "name": "迅捷",
+      "rarity": "Common",
+      "tags": ["Speed", "Attack", "Agility"],
+      "description": "增加8%攻击速度",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "AttackSpeed",
+          "value": 0.08,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 90,
+      "icon": "Icons/Perks/alacrity",
+      "requirements": []
+    },
+    {
+      "id": "tenacity_1",
+      "name": "坚韧",
+      "rarity": "Common",
+      "tags": ["Health", "Defense", "Vitality"],
+      "description": "增加10%最大生命值",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "MaxHealth",
+          "value": 0.1,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 95,
+      "icon": "Icons/Perks/tenacity",
+      "requirements": []
+    },
+    {
+      "id": "multishot_1",
+      "name": "多重投射",
+      "rarity": "Legendary",
+      "tags": ["Projectile", "Multiplicity", "Keystone"],
+      "description": "投射物数量+2，但伤害修正为60%",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "ProjectileCount",
+          "value": 2,
+          "operation": "Add",
+          "isPercentage": false
+        },
+        {
+          "type": "StatModifier",
+          "target": "ProjectileDamage",
+          "value": -0.4,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 15,
+      "icon": "Icons/Perks/multishot",
+      "requirements": ["HasRangedWeapon"]
+    },
+    {
+      "id": "chain_lightning_1",
+      "name": "连锁闪电",
+      "rarity": "Epic",
+      "tags": ["Lightning", "Chain", "Elemental"],
+      "description": "攻击时有30%概率触发连锁闪电",
+      "effects": [
+        {
+          "type": "OnHitEffect",
+          "target": "ChainLightning",
+          "value": 0.3,
+          "operation": "Set",
+          "isPercentage": false,
+          "effectData": {
+            "damage": 25,
+            "chainCount": 3,
+            "range": 5.0
+          }
+        }
+      ],
+      "weight": 25,
+      "icon": "Icons/Perks/chain_lightning",
+      "requirements": []
+    },
+    {
+      "id": "vampirism_1",
+      "name": "吸血",
+      "rarity": "Rare",
+      "tags": ["LifeSteal", "Sustain", "Survival"],
+      "description": "造成伤害的15%转化为生命值",
+      "effects": [
+        {
+          "type": "OnHitEffect",
+          "target": "LifeSteal",
+          "value": 0.15,
+          "operation": "Set",
+          "isPercentage": false
+        }
+      ],
+      "weight": 40,
+      "icon": "Icons/Perks/vampirism",
+      "requirements": []
+    },
+    {
+      "id": "critical_master_1",
+      "name": "暴击大师",
+      "rarity": "Epic",
+      "tags": ["Critical", "Damage", "Precision"],
+      "description": "暴击率+15%，暴击伤害+30%",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "CriticalChance",
+          "value": 0.15,
+          "operation": "Add",
+          "isPercentage": true
+        },
+        {
+          "type": "StatModifier",
+          "target": "CriticalDamage",
+          "value": 0.3,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 30,
+      "icon": "Icons/Perks/critical_master",
+      "requirements": []
+    },
+    {
+      "id": "glass_cannon_1",
+      "name": "玻璃大炮",
+      "rarity": "Rare",
+      "tags": ["Damage", "Fragile", "HighRisk"],
+      "description": "造成伤害+25%，但受到的伤害+25%",
+      "effects": [
+        {
+          "type": "StatModifier",
+          "target": "DamageDealt",
+          "value": 0.25,
+          "operation": "Add",
+          "isPercentage": true
+        },
+        {
+          "type": "StatModifier",
+          "target": "DamageTaken",
+          "value": 0.25,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 35,
+      "icon": "Icons/Perks/glass_cannon",
+      "requirements": []
+    },
+    {
+      "id": "tower_synergy_1",
+      "name": "塔防协同",
+      "rarity": "Epic",
+      "tags": ["Tower", "Synergy", "Defense"],
+      "description": "站在塔周围5米内，角色和塔的攻速都+15%",
+      "effects": [
+        {
+          "type": "ConditionalEffect",
+          "target": "AttackSpeed",
+          "value": 0.15,
+          "operation": "Add",
+          "isPercentage": true,
+          "condition": {
+            "type": "ProximityToTower",
+            "range": 5.0,
+            "affects": "Both"
+          }
+        }
+      ],
+      "weight": 28,
+      "icon": "Icons/Perks/tower_synergy",
+      "requirements": []
+    },
+    {
+      "id": "resourcefulness_1",
+      "name": "废料回收",
+      "rarity": "Common",
+      "tags": ["Economy", "Resource", "Efficiency"],
+      "description": "敌人死亡时掉落额外20%金币",
+      "effects": [
+        {
+          "type": "OnKillEffect",
+          "target": "GoldDrop",
+          "value": 0.2,
+          "operation": "Add",
+          "isPercentage": true
+        }
+      ],
+      "weight": 80,
+      "icon": "Icons/Perks/resourcefulness",
+      "requirements": []
+    }
+  ],
+  
+  "rarities": {
+    "Common": {
+      "color": "#FFFFFF",
+      "dropRate": 0.65,
+      "maxPerks": 2,
+      "description": "普通强化，基础效果"
+    },
+    "Rare": {
+      "color": "#4169E1",
+      "dropRate": 0.22,
+      "maxPerks": 1,
+      "description": "稀有强化，较好效果"
+    },
+    "Epic": {
+      "color": "#9370DB",
+      "dropRate": 0.10,
+      "maxPerks": 1,
+      "description": "史诗强化，强力效果"
+    },
+    "Legendary": {
+      "color": "#FF8C00",
+      "dropRate": 0.03,
+      "maxPerks": 1,
+      "description": "传说强化，改变游戏机制"
+    }
+  },
+  
+  "tags": {
+    "Damage": {
+      "description": "伤害类强化",
+      "category": "Offensive"
+    },
+    "Defense": {
+      "description": "防御类强化",
+      "category": "Defensive"
+    },
+    "Utility": {
+      "description": "功能类强化",
+      "category": "Utility"
+    },
+    "Elemental": {
+      "description": "元素类强化",
+      "category": "Elemental"
+    },
+    "Keystone": {
+      "description": "关键石强化，改变机制",
+      "category": "Special"
+    }
+  },
+  
+  "curses": [
+    {
+      "id": "glass_cannon_curse",
+      "name": "玻璃大炮诅咒",
+      "description": "获得+50%伤害，但受到的伤害+50%，持续5分钟",
+      "benefits": [
+        {
+          "type": "DamageIncrease",
+          "value": 0.5,
+          "target": "AllDamage"
+        }
+      ],
+      "costs": [
+        {
+          "type": "DamageTaken",
+          "value": 0.5,
+          "target": "AllDamage"
+        }
+      ],
+      "duration": 300,
+      "removalCost": 1000,
+      "weight": 20
+    },
+    {
+      "id": "gravity_curse",
+      "name": "重力诅咒",
+      "description": "移动速度-30%，但敌人也会被减速30%",
+      "benefits": [
+        {
+          "type": "EnemySlow",
+          "value": 0.3,
+          "target": "MovementSpeed",
+          "range": 8.0
+        }
+      ],
+      "costs": [
+        {
+          "type": "SelfSlow",
+          "value": 0.3,
+          "target": "MovementSpeed"
+        }
+      ],
+      "duration": -1,
+      "removalCost": 800,
+      "weight": 25
+    }
+  ]
+}

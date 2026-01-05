@@ -1,4 +1,4 @@
-# 🤖 Project Vampirefall - AI Context Summary (GEMINI.md)
+# 🤖 Project 游戏开发 101 - AI Context Summary (GEMINI.md)
 
 ## 📌 Project Overview
 
@@ -46,26 +46,16 @@ This repository (`Server/Game_Num_Basics_And_Calc`) serves as the **Single Sourc
 
 1.  **Language**: All output must be in **Chinese** (except for code).
 2.  **Documentation**: When adding a new document, you **MUST** update `readme.md` to include a link to it.
-3.  **GitHub Pages Compatibility**: Formulas and Mermaid diagrams in every document must be adapted for GitHub Pages. For Mermaid, include the following script:
-    ```html
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-      mermaid.initialize({ startOnLoad: false });
-      await mermaid.run({
-        querySelector: ".language-mermaid",
-      });
-    </script>
-    ```
+3.  **MkDocs Compatibility**:
+
+    - **Mermaid**: Use standard fenced code blocks with language `mermaid`. MkDocs Material handles rendering automatically.
+    - **Math**: Use LaTeX syntax (`$..$` or `$$..$$`).
     - **Tables**: Ensure there is an empty line before the start of any Markdown table.
+
 4.  **Navigation Maintenance**: When adding a new document, you **MUST**:
 
-    - Update `readme.md`: Add link with correct icon under appropriate Collapsed Section.
-    - Update `index.html`: Add entry to `docs` array (Title, Path, Category, Desc, Roles). **Note: Path must end with `.html` (not `.md`) for GitHub Pages compatibility.**
+    - **Update `mkdocs.yml`**: Add the file path to the `nav` section under the appropriate category.
     - **Icons**: 📐Math / ⚔️Combat / 🏗️Arch / 🤖AI / 🎮Design / 📖Graph / 💀Fail / 🎨Art / 🎵Audio / 🛠️Tool / 🚀Live / 📋Std.
-
-    ```
-
-    ```
 
 ## 🔗 Quick Links
 

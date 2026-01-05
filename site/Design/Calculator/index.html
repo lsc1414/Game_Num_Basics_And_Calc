@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核心数值体系定义手册 - 交互版</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827',
+                            950: '#0b0f19',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+
+        /* Chart Containers */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px; /* Default height */
+            margin: 0 auto;
+        }
+        @media (max-width: 768px) {
+            .chart-container { height: 300px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300 font-sans antialiased h-screen flex overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-gray-950 border-r border-gray-800 flex-shrink-0 hidden md:flex flex-col overflow-y-auto">
+        <div class="p-6 border-b border-gray-800 sticky top-0 bg-gray-950 z-10">
+            <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                📘 数值体系
+                <span class="text-xs bg-gold-600 text-white px-2 py-0.5 rounded-full">v2.6</span>
+            </h1>
+            <p class="text-xs text-gray-500 mt-2">塔防 + 肉鸽 + 刷宝</p>
+        </div>
+        <nav class="p-4 flex flex-col space-y-2" id="nav-container">
+            <!-- Nav items will be injected by JS -->
+        </nav>
+    </aside>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden fixed top-4 right-4 z-50">
+        <button id="mobile-menu-btn" class="bg-gray-800 p-2 rounded-md text-white border border-gray-700 shadow-lg">
+            ☰ 目录
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto scroll-smooth p-4 md:p-8 relative" id="main-content">
+        
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Header -->
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">核心数值体系定义手册</h2>
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+                    <span class="bg-gray-800 px-3 py-1 rounded-full border border-gray-700">🎯 适用范围: 塔防 / 肉鸽 / 刷宝</span>
+                    <span class="bg-gray-800 px-3 py-1 rounded-full border border-gray-700">📚 参考: PoE / Diablo 4 / Warframe</span>
+                </div>
+            </div>
+
+            <!-- 1. 伤害公式 -->
+            <section id="sec-1" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">1. ⚔️ 伤害计算总公式</h3>
+                <p class="mb-4">这是整个游戏最核心的公式。请注意 **More (独立乘区)** 的计算方式是连乘而非相加。</p>
+                
+                <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-lg">
+                    FinalDamage = Outgoing × DefMitigation
+                </div>
+                <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-sm">
+                    Outgoing = [(PanelATK × Skill%) + Flat] × (1 + ∑Inc) × (1+MoreA) × (1+MoreB)... × CritExp
+                </div>
+
+                <!-- 交互式计算器 -->
+                <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-700 mt-6">
+                    <h4 class="text-gold-500 font-bold mb-4 flex items-center gap-2">🧮 伤害面板模拟器 (Multi-Bucket Edition)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        
+                        <!-- 第一组：基础 -->
+                        <div class="col-span-full md:col-span-1 space-y-3 p-3 bg-gray-800/50 rounded border border-gray-700/50">
+                            <div class="text-xs font-bold text-gray-400 uppercase border-b border-gray-600 pb-1 mb-2">1. 基础区间 (Base)</div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">面板攻击 (ATK)</label>
+                                <input type="number" id="calc-atk" value="200" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">技能倍率 (Skill %)</label>
+                                <input type="number" id="calc-skill" value="150" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">技能固定伤 (Flat)</label>
+                                <input type="number" id="calc-flat" value="50" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                        </div>
+
+                        <!-- 第二组：增益与暴击 -->
+                        <div class="col-span-full md:col-span-1 space-y-3 p-3 bg-gray-800/50 rounded border border-gray-700/50">
+                            <div class="text-xs font-bold text-gray-400 uppercase border-b border-gray-600 pb-1 mb-2">2. 增伤与暴击 (Inc & Crit)</div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">A类增伤总和 (Inc %)</label>
+                                <input type="number" id="calc-inc" value="50" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                                <p class="text-[10px] text-gray-500 mt-1">物理+20%, 全伤+30% -> 填50</p>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">暴击率 (Crit Rate %)</label>
+                                <input type="number" id="calc-crit-rate" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">暴击伤害 (Crit Dmg %)</label>
+                                <input type="number" id="calc-crit-dmg" value="150" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                        </div>
+
+                        <!-- 第三组：独立乘区 -->
+                        <div class="col-span-full md:col-span-1 space-y-3 p-3 bg-gray-800/50 rounded border border-gold-900/30">
+                            <div class="text-xs font-bold text-gold-500 uppercase border-b border-gray-600 pb-1 mb-2">3. 独立乘区 (More Buckets)</div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">More 来源 A (%)</label>
+                                <input type="number" id="calc-more-1" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">More 来源 B (%)</label>
+                                <input type="number" id="calc-more-2" value="0" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">More 来源 C (%)</label>
+                                <input type="number" id="calc-more-3" value="0" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateDamage()">
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-1">独立乘算: (1+A%) × (1+B%) × (1+C%)</p>
+                        </div>
+
+                    </div>
+                    <div class="flex justify-between items-center bg-black/40 p-4 rounded-lg border border-gold-500/30">
+                        <span class="text-gray-400 text-sm">输出期望 (Expectation):</span>
+                        <span class="text-2xl font-bold text-gold-400" id="calc-result">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. 速度与时间 -->
+            <section id="sec-2" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">2. ⚡ 速度与冷却</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-bold text-white mb-2">🗡️ 攻击速度 (APS)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
+                            <li>定义：<span class="text-white">每秒攻击次数</span>。</li>
+                            <li>公式：BaseAPS × (1 + Inc%)</li>
+                            <li><span class="text-red-400">避坑：</span>不要使用"攻击间隔"，会导致指数级崩坏。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-2">⏳ 冷却缩减 (CDR)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1 text-gray-400">
+                            <li>公式：BaseCD × (1 - min(CDR, Cap))</li>
+                            <li><span class="text-gold-500">建议上限：75%</span> (4倍频率)。</li>
+                            <li>防止无限控制或服务器崩溃。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 射程与弹道 -->
+            <section id="sec-3" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">3. 🎯 射程与弹道</h3>
+                <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700 mb-4">
+                    <h4 class="font-bold text-white mb-2">🚀 弹道寿命公式</h4>
+                    <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-sm">Lifetime = (Range / Speed) × Buffer (1.3~1.5)</div>
+                    <p class="text-xs text-gray-400 mt-2">Buffer 用于追击冗余，防止怪在边缘逃跑时子弹凭空消失。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-700/30 rounded-lg">
+                        <h5 class="font-bold text-gold-400 text-sm mb-1">A. 标准模式</h5>
+                        <p class="text-xs">射程主导，时间从属。适用于90%的弓箭、子弹。</p>
+                    </div>
+                    <div class="p-4 bg-gray-700/30 rounded-lg">
+                        <h5 class="font-bold text-gold-400 text-sm mb-1">B. 燃料模式</h5>
+                        <p class="text-xs">时间主导，射程从属。适用于喷火器、追踪导弹。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 防御体系 -->
+            <section id="sec-4" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">4. 🛡️ 防御与生存</h3>
+                <p class="mb-4 text-sm text-gray-400">对比分析：为什么护甲是线性的，而闪避是指数级的？</p>
+                
+                <!-- 防御计算器与图表 -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 space-y-4">
+                        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                            <label class="block text-xs text-gray-400 mb-1">护甲常数 K</label>
+                            <input type="number" id="def-k" value="3000" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2.5" oninput="updateDefenseChart()">
+                            <p class="text-xs text-gray-500 mt-1">K值处减伤50%</p>
+                        </div>
+                        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+                            <h5 class="text-sm font-bold text-white mb-2">当前模拟点</h5>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span>护甲: <b id="val-armor" class="text-blue-400">3000</b></span>
+                                <span>减伤: <b id="val-dr">50%</b></span>
+                            </div>
+                            <input type="range" id="range-armor" min="0" max="30000" value="3000" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" oninput="updateDefenseChart()">
+                            
+                            <div class="flex justify-between text-xs mt-4 mb-1">
+                                <span>闪避: <b id="val-dodge" class="text-purple-400">50%</b></span>
+                                <span>EHP: <b id="val-ehp-dodge">2.0x</b></span>
+                            </div>
+                            <input type="range" id="range-dodge" min="0" max="99" value="50" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" oninput="updateDefenseChart()">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="defenseChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5-6. 溢出/UI (Note: Sec 7 moved to detailed view below) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
+                    <h4 class="font-bold text-white mb-2">5. 🌊 溢出转化</h4>
+                    <p class="text-xs text-gray-400 mb-2">防止数值浪费，提升爽感。</p>
+                    <ul class="text-xs space-y-1">
+                        <li>🔴 <b class="text-white">暴击溢出:</b> >100% 转为爆伤或红色暴击。</li>
+                        <li>🏹 <b class="text-white">攻速溢出:</b> 转为多重射击 (Multishot)。</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
+                    <h4 class="font-bold text-white mb-2">6. 🖥️ UI 标准</h4>
+                    <p class="text-xs text-gray-400 mb-2">面板显示规范。</p>
+                    <ul class="text-xs space-y-1">
+                        <li>DPS: <span class="font-mono text-gold-400">{N0}</span></li>
+                        <li>攻速: <span class="font-mono text-gold-400">{N2}/s</span> (非间隔)</li>
+                        <li>EHP: <span class="font-mono text-gold-400">{N0}</span> (高级面板)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 7. 战力计算 -->
+            <section id="sec-7" class="section-card bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">7. 💪 战力计算标准</h3>
+                <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center my-4 overflow-x-auto whitespace-nowrap text-lg">
+                    CombatPower = ∑(Attribute × Weight) + ∑(MechanicScore)
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                    <!-- Calculator -->
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-700">
+                        <h4 class="text-gold-500 font-bold mb-4 flex items-center gap-2">🧮 战力模拟器</h4>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">攻击力 (1.0)</label>
+                                    <input type="number" id="cp-atk" value="1000" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">生命值 (0.2)</label>
+                                    <input type="number" id="cp-hp" value="5000" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">暴击率% (15)</label>
+                                    <input type="number" id="cp-crit" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">暴伤% (8)</label>
+                                    <input type="number" id="cp-critdmg" value="50" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">独立增伤% (25)</label>
+                                    <input type="number" id="cp-more" value="20" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-400 mb-1">机制加分 (Fixed)</label>
+                                    <input type="number" id="cp-mech" value="0" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2" oninput="calculateCP()" placeholder="如: 投射物+1=500">
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center bg-black/40 p-3 rounded border border-gold-500/30 mt-4">
+                                <span class="text-gray-400 text-sm">战力评分:</span>
+                                <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-red-500" id="cp-result">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weights Table -->
+                    <div>
+                        <h4 class="text-white font-bold mb-2 text-sm">⚖️ 属性权重参考表 (1攻=1分)</h4>
+                        <div class="overflow-hidden rounded-lg border border-gray-700">
+                            <table class="w-full text-xs text-left text-gray-400">
+                                <thead class="bg-gray-800 text-gray-200">
+                                    <tr><th class="p-2">属性</th><th class="p-2">权重</th><th class="p-2">说明</th></tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-700">
+                                    <tr><td class="p-2">攻击力</td><td class="p-2 text-gold-400">1.0</td><td class="p-2">基准锚点</td></tr>
+                                    <tr><td class="p-2">生命值</td><td class="p-2 text-gold-400">0.2</td><td class="p-2">量大管饱</td></tr>
+                                    <tr><td class="p-2">暴击率%</td><td class="p-2 text-gold-400">15.0</td><td class="p-2">1%暴击 ≈ 15攻击</td></tr>
+                                    <tr><td class="p-2">暴击伤害%</td><td class="p-2 text-gold-400">8.0</td><td class="p-2">价值约为暴击率一半</td></tr>
+                                    <tr><td class="p-2">冷却缩减%</td><td class="p-2 text-gold-400">20.0</td><td class="p-2">稀有且有上限</td></tr>
+                                    <tr><td class="p-2">独立增伤%</td><td class="p-2 text-gold-400">25.0</td><td class="p-2">最珍贵的乘区</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. 随机分布 -->
+            <section id="sec-8" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">8. 🎲 伪随机分布 (PRD)</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Left: Theory -->
+                    <div>
+                        <p class="text-sm text-gray-400 mb-4">为了防止“脸黑”导致漏怪，所有概率判定（暴击、闪避）必须使用 PRD 算法。</p>
+                        <div class="bg-black/30 p-4 rounded-lg mb-6">
+                            <h4 class="text-gold-400 font-bold text-sm mb-2">核心公式</h4>
+                            <div class="font-mono bg-black/30 p-3 rounded-lg text-gold-400 text-center overflow-x-auto whitespace-nowrap text-sm">P(N) = C × N</div>
+                            <p class="text-xs text-gray-500 mt-2">N: 失败次数计数器 (从1开始)。C: 概率常数。</p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Calculator -->
+                    <div class="bg-gray-900/50 p-6 rounded-xl border border-gray-700">
+                        <h4 class="text-gold-500 font-bold mb-4 flex items-center gap-2">🧮 PRD 期望计算器</h4>
+                        
+                        <div class="mb-6">
+                            <label class="block text-xs text-gray-400 mb-1">面板概率 (Panel Chance %)</label>
+                            <div class="flex items-center gap-4">
+                                <input type="range" id="prd-input-range" min="1" max="80" value="25" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" oninput="updatePRDCalc()">
+                                <span class="text-xl font-bold text-white w-16 text-right"><span id="prd-input-val">25</span>%</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-gray-800 p-3 rounded border border-gray-600">
+                                <div class="text-xs text-gray-500">PRD 常数 C</div>
+                                <div class="text-lg font-mono text-gold-400" id="prd-c-val">0.085</div>
+                            </div>
+                            <div class="bg-gray-800 p-3 rounded border border-gray-600">
+                                <div class="text-xs text-gray-500">最大连续失败 (Max Fail)</div>
+                                <div class="text-lg font-mono text-white" id="prd-max-fail">12</div>
+                            </div>
+                        </div>
+
+                        <!-- Variance Comparison -->
+                        <div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-2">
+                                <span>稳定性对比 (标准差 σ)</span>
+                                <span class="text-green-500">越低越稳定</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-300">真随机 (True Random)</span>
+                                        <span class="font-mono text-red-400" id="prd-sigma-true">3.46</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-red-500 h-2 rounded-full" id="bar-sigma-true" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1">
+                                        <span class="text-gray-300">伪随机 (PRD)</span>
+                                        <span class="font-mono text-green-400" id="prd-sigma-prd">2.10</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" id="bar-sigma-prd" style="width: 50%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-500 mt-3 text-right" id="prd-note">PRD 波动比真随机低 40%</p>
+                            
+                            <!-- 新增解释框 -->
+                            <div class="mt-4 p-3 bg-gray-800/80 rounded border border-gray-700/50 text-[11px] text-gray-400 leading-relaxed">
+                                <div class="flex items-center gap-1 text-gold-400 font-bold mb-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    什么是标准差 (σ)?
+                                </div>
+                                它衡量“运气”的波动幅度。<br>
+                                • <span class="text-red-400 font-medium">高 σ (真随机):</span> 容易出现“连续10次不暴击”或者“连爆5次”，体验大起大落。<br>
+                                • <span class="text-green-400 font-medium">低 σ (PRD):</span> 强制让触发间隔均匀分布，让 25% 的几率真的感觉像“每4下出1下”。
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. 幸运与掉落 -->
+            <section id="sec-9" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">9. 🍀 掉落与怪海对策</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-gray-700 p-2 rounded text-2xl">🛁</div>
+                        <div>
+                            <h4 class="text-white font-bold">权重预算制 (Drop Budget)</h4>
+                            <p class="text-sm text-gray-400">解决怪海卡顿。怪物死亡不掷骰子，而是给“蓄水池”充能。池满则掉落。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="bg-gray-700 p-2 rounded text-2xl">❄️</div>
+                        <div>
+                            <h4 class="text-white font-bold">冷启动对策</h4>
+                            <p class="text-sm text-gray-400">关卡开始时预填充蓄水池 (80%)，确保首个精英怪必掉落。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. 无尽成长 -->
+            <section id="sec-10" class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">10. 📈 无尽模式成长模拟</h3>
+                <p class="text-sm text-gray-400 mb-4">模拟怪物数值随波次的指数膨胀。</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">基础血量</label>
+                            <input type="number" id="sim-base" value="100" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2.5" oninput="updateScalingChart()">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">成长系数 (1.x)</label>
+                            <input type="number" id="sim-factor" value="1.15" step="0.01" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-gold-500 focus:border-gold-500 block w-full p-2.5" oninput="updateScalingChart()">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">模拟波次</label>
+                            <input type="range" id="sim-wave" min="10" max="100" value="50" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer" oninput="updateScalingChart()">
+                            <div class="text-right text-xs text-gold-400 mt-1">Wave: <span id="val-wave">50</span></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="scalingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11-13. 进阶与总结 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <section class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                    <h3 class="text-xl font-bold text-white mb-4">11. 🔮 进阶属性</h3>
+                    <ul class="text-sm space-y-2 text-gray-400">
+                        <li><b class="text-white">控制强度:</b> 增加眩晕时间。</li>
+                        <li><b class="text-white">格挡 (Block):</b> 定额或百分比减伤，独立乘区。</li>
+                        <li><b class="text-white">多重施法:</b> 概率触发额外攻击，溢出部分判定+1次。</li>
+                        <li><b class="text-white">斩杀 (Cull):</b> 低于阈值直接秒杀。</li>
+                    </ul>
+                </section>
+                <section class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                    <h3 class="text-xl font-bold text-white mb-4">12. 💡 设计原理</h3>
+                    <ul class="text-sm space-y-2 text-gray-400">
+                        <li><b class="text-gold-400">加法 vs 乘法:</b> 加法做基石防止崩坏，乘法做诱饵引导构建。</li>
+                        <li><b class="text-gold-400">护甲线性律:</b> 虽然减伤率递减，但EHP收益是线性的。</li>
+                        <li><b class="text-gold-400">DPM恒定论:</b> 无论怪多怪少，每分钟掉落数量应可控。</li>
+                    </ul>
+                </section>
+            </div>
+
+            <section class="bg-gray-800 border border-gray-700 rounded-xl p-6 mb-8 shadow-lg">
+                <h3 class="text-xl font-bold text-white mb-4">13. 🚧 关卡难度控制</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+                    <div class="bg-gray-900 p-3 rounded">
+                        <div class="text-gray-500">怪物 HP</div>
+                        <div class="text-white font-mono">1.2^L</div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded">
+                        <div class="text-gray-500">攻击力</div>
+                        <div class="text-white font-mono">1.1^L</div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded">
+                        <div class="text-gray-500">护甲</div>
+                        <div class="text-white font-mono">阶梯式</div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded">
+                        <div class="text-gray-500">抗性墙</div>
+                        <div class="text-gold-400 font-mono">软强制</div>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 mt-4 text-center">目标 TTK: 小怪 0.5-2s / 精英 5-15s</p>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // --- Navigation Logic ---
+        const chapters = [
+            { id: 'sec-1', title: '1. 伤害公式' },
+            { id: 'sec-2', title: '2. 速度与冷却' },
+            { id: 'sec-3', title: '3. 射程弹道' },
+            { id: 'sec-4', title: '4. 防御体系' },
+            { id: 'sec-7', title: '7. 战力计算' },
+            { id: 'sec-8', title: '8. 伪随机 (PRD)' },
+            { id: 'sec-9', title: '9. 掉落系统' },
+            { id: 'sec-10', title: '10. 无尽成长' },
+        ];
+
+        const navContainer = document.getElementById('nav-container');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.querySelector('aside');
+
+        // Generate Nav
+        chapters.forEach(chap => {
+            const a = document.createElement('a');
+            a.href = `#${chap.id}`;
+            // 修复：手动赋予完整的 Tailwind 类名，确保 block 显示和垂直排列
+            a.className = 'flex items-center p-2 text-gray-300 rounded-lg hover:bg-gray-800 group cursor-pointer transition-colors w-full block';
+            a.innerText = chap.title;
+            navContainer.appendChild(a);
+        });
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('fixed');
+            sidebar.classList.toggle('inset-0');
+            sidebar.classList.toggle('z-40');
+        });
+
+        // --- Section 1: Damage Calculator ---
+        function calculateDamage() {
+            const atk = parseFloat(document.getElementById('calc-atk').value) || 0;
+            const skill = (parseFloat(document.getElementById('calc-skill').value) || 0) / 100;
+            const flat = parseFloat(document.getElementById('calc-flat').value) || 0;
+            const inc = (parseFloat(document.getElementById('calc-inc').value) || 0) / 100;
+            
+            // New: Multi-Bucket More
+            const more1 = (parseFloat(document.getElementById('calc-more-1').value) || 0) / 100;
+            const more2 = (parseFloat(document.getElementById('calc-more-2').value) || 0) / 100;
+            const more3 = (parseFloat(document.getElementById('calc-more-3').value) || 0) / 100;
+            const totalMoreMultiplier = (1 + more1) * (1 + more2) * (1 + more3);
+
+            // Fix: Split Crit into Rate and Dmg for Expectation calculation
+            const critRate = (parseFloat(document.getElementById('calc-crit-rate').value) || 0) / 100;
+            const critDmg = (parseFloat(document.getElementById('calc-crit-dmg').value) || 150) / 100;
+
+            // Formula: [(ATK * Skill) + Flat] * (1 + Inc) * (1 + MoreA) * (1 + MoreB)... * CritMult(Expectation)
+            const base = (atk * skill) + flat;
+            const critMultiplier = 1 + (critRate * (critDmg - 1));
+            const result = base * (1 + inc) * totalMoreMultiplier * critMultiplier;
+
+            document.getElementById('calc-result').innerText = Math.round(result).toLocaleString();
+        }
+
+        // --- Section 4: Defense Chart (Chart.js) ---
+        let defenseChart;
+        function initDefenseChart() {
+            const ctx = document.getElementById('defenseChart').getContext('2d');
+            defenseChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '护甲 EHP (线性)',
+                            data: [],
+                            borderColor: '#3b82f6', // Blue
+                            borderWidth: 2,
+                            tension: 0.1,
+                            pointRadius: 0
+                        },
+                        {
+                            label: '闪避 EHP (指数)',
+                            data: [],
+                            borderColor: '#a855f7', // Purple
+                            borderWidth: 2,
+                            tension: 0.1,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { display: false, title: { display: true, text: '投入程度 (0 -> Max)' } },
+                        y: { title: { display: true, text: '有效生命倍率 (EHP x)' }, min: 1, max: 15, grid: { color: '#374151' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#9ca3af' } }
+                    }
+                }
+            });
+            updateDefenseChart();
+        }
+
+        function updateDefenseChart() {
+            const K = parseFloat(document.getElementById('def-k').value) || 3000;
+            const currArmor = parseFloat(document.getElementById('range-armor').value);
+            const currDodge = parseFloat(document.getElementById('range-dodge').value);
+
+            // Update text
+            document.getElementById('val-armor').innerText = currArmor;
+            const dr = currArmor / (currArmor + K);
+            document.getElementById('val-dr').innerText = (dr * 100).toFixed(1) + '%';
+
+            document.getElementById('val-dodge').innerText = currDodge + '%';
+            const dodgeEhp = 1 / (1 - (currDodge/100));
+            document.getElementById('val-ehp-dodge').innerText = dodgeEhp.toFixed(2) + 'x';
+
+            // Generate Data
+            const points = 50;
+            const maxArmor = 30000;
+            const maxDodge = 95; // Hard cap at 95 visual
+            
+            const armorData = [];
+            const dodgeData = [];
+            const labels = [];
+
+            for(let i=0; i<=points; i++) {
+                labels.push(i);
+                // Armor Curve
+                const aVal = (maxArmor / points) * i;
+                const aDr = aVal / (aVal + K);
+                armorData.push(1 / (1 - aDr));
+
+                // Dodge Curve
+                const dVal = (maxDodge / points) * i;
+                const dEhp = 1 / (1 - (dVal/100));
+                dodgeData.push(dEhp);
+            }
+
+            defenseChart.data.labels = labels;
+            defenseChart.data.datasets[0].data = armorData;
+            defenseChart.data.datasets[1].data = dodgeData;
+            defenseChart.update();
+        }
+
+        // --- Section 7: Combat Power Calculator ---
+        function calculateCP() {
+            const val = (id) => parseFloat(document.getElementById(id).value) || 0;
+            
+            // Weights (Based on Doc)
+            const W = {
+                atk: 1.0, hp: 0.2, 
+                crit: 15.0, critDmg: 8.0, more: 25.0
+            };
+
+            let cp = 0;
+            cp += val('cp-atk') * W.atk;
+            cp += val('cp-hp') * W.hp;
+            cp += val('cp-crit') * W.crit;
+            cp += val('cp-critdmg') * W.critDmg;
+            cp += val('cp-more') * W.more;
+            cp += val('cp-mech'); // Fixed score directly added
+
+            document.getElementById('cp-result').innerText = Math.round(cp).toLocaleString();
+        }
+        
+        // --- Section 8: PRD Calculator ---
+        // Standard WC3/Dota2 PRD Constants
+        const PRD_C_LOOKUP = {
+            1: 0.000156, 5: 0.003802, 10: 0.014746, 15: 0.032221, 20: 0.055704,
+            25: 0.084744, 30: 0.118949, 35: 0.157983, 40: 0.201547, 45: 0.249307,
+            50: 0.302103, 55: 0.360398, 60: 0.422650, 65: 0.481125, 70: 0.571429,
+            75: 0.666667, 80: 0.750000
+        };
+
+        function getCValue(p) {
+            // Simple lookup or approximation. For this demo, we use lookup for common values and a basic interpolation
+            // In real production, use binary search to find C where Expectation(C) = P
+            if (PRD_C_LOOKUP[p]) return PRD_C_LOOKUP[p];
+            
+            // Very rough fallback if not in table (linear between points)
+            let keys = Object.keys(PRD_C_LOOKUP).map(Number).sort((a,b)=>a-b);
+            for(let i=0; i<keys.length-1; i++) {
+                if(p > keys[i] && p < keys[i+1]) {
+                    let t = (p - keys[i]) / (keys[i+1] - keys[i]);
+                    return PRD_C_LOOKUP[keys[i]] + t * (PRD_C_LOOKUP[keys[i+1]] - PRD_C_LOOKUP[keys[i]]);
+                }
+            }
+            return p/100 * 0.6; // Fallback for very low/high
+        }
+
+        function updatePRDCalc() {
+            const p = parseInt(document.getElementById('prd-input-range').value);
+            document.getElementById('prd-input-val').innerText = p;
+            
+            const C = getCValue(p);
+            document.getElementById('prd-c-val').innerText = C.toFixed(4);
+            
+            // Calculate Max Fail (N where C*N >= 1)
+            const maxFail = Math.ceil(1/C);
+            document.getElementById('prd-max-fail').innerText = maxFail;
+
+            // Calculate Variance/StdDev (Simplified Simulation or Formula)
+            // True Random (Geometric): Var = (1-p)/p^2. StdDev = Sqrt(Var)
+            const pFloat = p / 100;
+            const sigmaTrue = Math.sqrt((1 - pFloat) / (pFloat * pFloat));
+            
+            // PRD Sigma is approximated (Hard to calc analytically, usually ~40% less than true random)
+            const sigmaPRD = sigmaTrue * 0.65; 
+
+            document.getElementById('prd-sigma-true').innerText = sigmaTrue.toFixed(2);
+            document.getElementById('prd-sigma-prd').innerText = sigmaPRD.toFixed(2);
+            
+            // Update Bars (Normalize to some max sigma, e.g., 10)
+            const maxBar = 10;
+            document.getElementById('bar-sigma-true').style.width = Math.min(100, (sigmaTrue/maxBar)*100) + '%';
+            document.getElementById('bar-sigma-prd').style.width = Math.min(100, (sigmaPRD/maxBar)*100) + '%';
+
+            // Update note
+            const reduction = Math.round((1 - sigmaPRD/sigmaTrue)*100);
+            document.getElementById('prd-note').innerText = `PRD 波动比真随机低约 ${reduction}%`;
+        }
+
+        // --- Section 10: Scaling Chart ---
+        let scalingChart;
+        function initScalingChart() {
+            const ctx = document.getElementById('scalingChart').getContext('2d');
+            scalingChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '怪物数值 (Exponential)',
+                        data: [],
+                        borderColor: '#ef4444', // Red
+                        backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                        fill: true,
+                        borderWidth: 2,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: '波次 / 时间', color: '#9ca3af' }, grid: { color: '#374151' }, ticks: { color: '#9ca3af' } },
+                        y: { title: { display: true, text: '数值强度', color: '#9ca3af' }, grid: { color: '#374151' }, ticks: { color: '#9ca3af' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+            updateScalingChart();
+        }
+
+        function updateScalingChart() {
+            const base = parseFloat(document.getElementById('sim-base').value) || 100;
+            const factor = parseFloat(document.getElementById('sim-factor').value) || 1.1;
+            const waves = parseInt(document.getElementById('sim-wave').value);
+            
+            document.getElementById('val-wave').innerText = waves;
+
+            const labels = [];
+            const data = [];
+
+            for(let i=0; i<=waves; i++) {
+                labels.push(i);
+                data.push(base * Math.pow(factor, i));
+            }
+
+            scalingChart.data.labels = labels;
+            scalingChart.data.datasets[0].data = data;
+            scalingChart.update();
+        }
+
+        // Initialize
+        window.onload = () => {
+            calculateDamage();
+            initDefenseChart();
+            calculateCP();
+            updatePRDCalc();
+            initScalingChart();
+        };
+
+    </script>
+</body>
+</html>

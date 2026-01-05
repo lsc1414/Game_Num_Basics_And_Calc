@@ -53,19 +53,13 @@ description: 生成游戏机制深度研究文档（理论/实践/案例）
     - 检查是否包含具体的参考链接。
 
 5.  **更新索引 (Update Indexes)**
-    - **更新 `readme.md`**:
-      - 找到最相关的 `<details>` 分类（例如 "📐 数值与公式" 或 "🏗️ 架构与系统"）。
-      - 添加新文档的链接，格式为：`- 🏷️ **[文档标题](相对路径):** 简短描述。`
-      - 保持列表的整洁和对齐。
-    - **更新 `index.html`**:
-      - 找到 `<script>` 标签内的 `docs` 数组。
-      - 在对应分类的注释下方添加新对象：
-        ```javascript
-        {
-          title: "文档标题",
-          path: "相对路径.html", // ⚠️ 注意：必须是 .html 后缀 (非 .md)
-          cat: "分类ID", // 参见 categories 数组定义的 id (如 'math', 'combat', 'arch')
-          desc: "简短描述 (10-20字)",
-          role: ["designer", "programmer"], // 适用角色: designer, programmer, artist, producer
-        },
+    - **更新 `mkdocs.yml`**:
+      - 打开 `mkdocs.yml` 文件。
+      - 找到 `nav` 配置块。
+      - 将新文档的路径添加到合适的分类下。
+      - 格式：`- Emoji 标题: 路径/文件名.md`
+      - 示例：
+        ```yaml
+        - 🏗️ 架构与系统:
+            - 新系统名称: Tech/Architecture/New_System_Name.md
         ```
