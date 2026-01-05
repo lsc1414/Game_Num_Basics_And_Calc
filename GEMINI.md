@@ -57,9 +57,11 @@ This repository (`Server/Game_Num_Basics_And_Calc`) serves as the **Single Sourc
     </script>
     ```
 4.  **Navigation Maintenance**: When adding a new document, you **MUST**:
+
     - Update `readme.md`: Add link with correct icon under appropriate Collapsed Section.
-    - Update `index.html`: Add entry to `docs` array (Title, Path, Category, Desc, Roles).
+    - Update `index.html`: Add entry to `docs` array (Title, Path, Category, Desc, Roles). **Note: Path must end with `.html` (not `.md`) for GitHub Pages compatibility.**
     - **Icons**: 📐Math / ⚔️Combat / 🏗️Arch / 🤖AI / 🎮Design / 📖Graph / 💀Fail / 🎨Art / 🎵Audio / 🛠️Tool / 🚀Live / 📋Std.
+
     ```
 
     ```
