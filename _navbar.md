@@ -1,2 +1,0 @@
-- [🏠 返回旧版索引 (Dashboard)](index.html ":ignore")
-- [📄 GitHub 仓库](https://github.com/lsc1414/Game_Num_Basics_And_Calc/ ":ignore")
