@@ -56,6 +56,7 @@ This repository (`Server/Game_Num_Basics_And_Calc`) serves as the **Single Sourc
       });
     </script>
     ```
+    - **Tables**: Ensure there is an empty line before the start of any Markdown table.
 4.  **Navigation Maintenance**: When adding a new document, you **MUST**:
 
     - Update `readme.md`: Add link with correct icon under appropriate Collapsed Section.
