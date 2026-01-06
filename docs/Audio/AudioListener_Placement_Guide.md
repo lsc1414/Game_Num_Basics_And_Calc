@@ -95,8 +95,8 @@ public class VirtualAudioListener : MonoBehaviour
 
 ## 5. 总结
 
-| 游戏类型 | AudioListener 挂载点 | 理由 |
-| :--- | :--- | :--- |
-| **FPS / TPS** | Main Camera | 视听一致。 |
-| **Roguelike (吸血鬼幸存者)** | **主角 (Player)** | 强调主角身边的威胁感。 |
-| **RTS / 塔防 (Vampirefall)** | **虚拟耳朵 (Virtual Rig)** | 关注屏幕中心，听感稳定，不受相机缩放影响。 |
+|       游戏类型       |       AudioListener 挂载点       |       理由       |
+|       :---       |       :---       |       :---       |
+|       **FPS / TPS**       |       Main Camera       |       视听一致。       |
+|       **Roguelike (吸血鬼幸存者)**       |       **主角 (Player)**       |       强调主角身边的威胁感。       |
+|       **RTS / 塔防 (Vampirefall)**       |       **虚拟耳朵 (Virtual Rig)**       |       关注屏幕中心，听感稳定，不受相机缩放影响。       |

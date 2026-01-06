@@ -54,8 +54,7 @@
 
 ### 3.1 `sizeDelta` 的真相
 很多人以为 `rectTransform.sizeDelta` 就是宽高。**大错特错！**
-
-$$ sizeDelta = \text{ElementSize} - \text{AnchorSize} $$
+$$sizeDelta = \text{ElementSize} - \text{AnchorSize}$$
 
 *   **在点模式下:** AnchorSize 为 0，所以 `sizeDelta` **等于** 宽高。
 *   **在拉伸模式下:** `sizeDelta` 代表**相对于锚点的距离差**。
@@ -89,13 +88,13 @@ public static void StretchToFill(RectTransform rt) {
 不要自己算坐标！不要自己算坐标！不要自己算坐标！
 Unity 提供了 `RectTransformUtility` 处理复杂的 Pivot 和 Canvas 缩放。
 
-| API | 作用 | 典型场景 |
-| :--- | :--- | :--- |
-| `ScreenPointToLocalPointInRectangle` | 屏幕点 -> 局部点 | 鼠标点击 UI、物体飞向 UI |
-| `WorldToScreenPoint` | 世界(UI) -> 屏幕 | UI 坐标转回屏幕 (跨 Canvas) |
-| `ScreenPointToWorldPointInRectangle` | 屏幕点 -> 世界(UI) | 拖拽物体跟随鼠标 |
-| `FlipLayoutOnAxis` | 翻转布局 | 镜像 UI |
-| `PixelAdjustPoint` | 像素对齐 | 消除 UI 模糊 |
+|       API       |       作用       |       典型场景       |
+|       :---       |       :---       |       :---       |
+|       `ScreenPointToLocalPointInRectangle`       |       屏幕点 -> 局部点       |       鼠标点击 UI、物体飞向 UI       |
+|       `WorldToScreenPoint`       |       世界(UI) -> 屏幕       |       UI 坐标转回屏幕 (跨 Canvas)       |
+|       `ScreenPointToWorldPointInRectangle`       |       屏幕点 -> 世界(UI)       |       拖拽物体跟随鼠标       |
+|       `FlipLayoutOnAxis`       |       翻转布局       |       镜像 UI       |
+|       `PixelAdjustPoint`       |       像素对齐       |       消除 UI 模糊       |
 
 ### 4.1 为什么需要 `Camera` 参数？
 *   **Overlay Canvas:** 不需要 Camera（传 `null`），因为 UI 直接渲染在屏幕上。
@@ -243,10 +242,10 @@ void Update() {
 
 ## 7. 速查表：我该用哪个属性？
 
-| 我想改变... | 模式 | 使用属性 |
-| :--- | :--- | :--- |
-| **绝对位置** | 点模式 | `anchoredPosition` |
-| **固定宽高** | 点模式 | `sizeDelta` |
-| **贴边距离** | 拉伸模式 | `offsetMin` (左下), `offsetMax` (右上) |
-| **全屏铺满** | 任意 | `anchorMin=0`, `anchorMax=1`, `offsetMin/Max=0` |
-| **鼠标跟随** | 任意 | `RectTransformUtility.ScreenPointToLocalPointInRectangle` |
+|       我想改变...       |       模式       |       使用属性       |
+|       :---       |       :---       |       :---       |
+|       **绝对位置**       |       点模式       |       `anchoredPosition`       |
+|       **固定宽高**       |       点模式       |       `sizeDelta`       |
+|       **贴边距离**       |       拉伸模式       |       `offsetMin` (左下), `offsetMax` (右上)       |
+|       **全屏铺满**       |       任意       |       `anchorMin=0`, `anchorMax=1`, `offsetMin/Max=0`       |
+|       **鼠标跟随**       |       任意       |       `RectTransformUtility.ScreenPointToLocalPointInRectangle`       |

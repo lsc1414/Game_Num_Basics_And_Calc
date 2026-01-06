@@ -33,11 +33,11 @@
 
 ### 2.1 📀 格式与压缩 (Format & Compression)
 
-| 音频类型 | 推荐格式 (Source) | Unity Load Type | Compression Format | 解释 |
-| :--- | :--- | :--- | :--- | :--- |
-| **💥 短音效 (SFX)**<br>(UI, 枪声, 脚步) | WAV (16bit) | **Decompress On Load** | **PCM** 或 **ADPCM** | 需要极低延迟。PCM无解码开销但占内存；ADPCM是平衡选择。 |
-| **🗣️ 长音效/语音**<br>(Dialogue, Ambience) | WAV | **Compressed In Memory** | **Vorbis** (均可) | 只有播放时才解压，节省内存，但有微小CPU开销。 |
-| **🎼 背景音乐 (BGM)** | WAV | **Streaming** | **Vorbis** | 直接从磁盘流式读取，几乎不占内存，但增加磁盘IO。 |
+|       音频类型       |       推荐格式 (Source)       |       Unity Load Type       |       Compression Format       |       解释       |
+|       :---       |       :---       |       :---       |       :---       |       :---       |
+|       **💥 短音效 (SFX)**<br>(UI, 枪声, 脚步)       |       WAV (16bit)       |       **Decompress On Load**       |       **PCM** 或 **ADPCM**       |       需要极低延迟。PCM无解码开销但占内存；ADPCM是平衡选择。       |
+|       **🗣️ 长音效/语音**<br>(Dialogue, Ambience)       |       WAV       |       **Compressed In Memory**       |       **Vorbis** (均可)       |       只有播放时才解压，节省内存，但有微小CPU开销。       |
+|       **🎼 背景音乐 (BGM)**       |       WAV       |       **Streaming**       |       **Vorbis**       |       直接从磁盘流式读取，几乎不占内存，但增加磁盘IO。       |
 
 **重要原则：**
 

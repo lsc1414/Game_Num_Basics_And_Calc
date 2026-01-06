@@ -8,12 +8,13 @@
 既然没有统一的 Excel 表，我们需要把 Unity 工程本身视为一个巨大的数据库。
 
 ### 1.1 数据源扫描 (Data Source Mapping)
-| 数据类型 | 常见存储位置 | 提取方式 | 推荐方案 |
-| :--- | :--- | :--- | :--- |
-| **基础数值** (伤害公式、常量) | `C# static const` / `Enums` | 源码解析 (Roslyn) 或 反射 | **C# 反射** (最简单) |
-| **配置数据** (英雄、装备、怪物) | `ScriptableObject` (.asset) | `AssetDatabase` 加载 | **Unity Editor 脚本** |
-| **实体数据** (塔、单位属性) | `Prefab` (MonoBehaviour 字段) | `PrefabUtility` 加载 | **Unity Editor 脚本** |
-| **文本描述** (名称、技能说明) | `Localization` (.csv/.json) | 文本解析 | **CSV/JSON 库读取** |
+
+|       数据类型       |       常见存储位置       |       提取方式       |       推荐方案       |
+|       :---       |       :---       |       :---       |       :---       |
+|       **基础数值** (伤害公式、常量)       |       `C# static const` / `Enums`       |       源码解析 (Roslyn) 或 反射       |       **C# 反射** (最简单)       |
+|       **配置数据** (英雄、装备、怪物)       |       `ScriptableObject` (.asset)       |       `AssetDatabase` 加载       |       **Unity Editor 脚本**       |
+|       **实体数据** (塔、单位属性)       |       `Prefab` (MonoBehaviour 字段)       |       `PrefabUtility` 加载       |       **Unity Editor 脚本**       |
+|       **文本描述** (名称、技能说明)       |       `Localization` (.csv/.json)       |       文本解析       |       **CSV/JSON 库读取**       |
 
 ## 2. 🏗️ 架构设计：Wiki 导出器 (The Wiki Exporter)
 

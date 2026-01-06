@@ -92,12 +92,12 @@ public class AudioPitchShifter : MonoBehaviour {
 
 ## 3. 🎧 Vampirefall 音效清单建议
 
-| 类别 | 音效名 | 特性 | 备注 |
-| :--- | :--- | :--- | :--- |
-| **Feedback** | `Hit_Normal` | **随机化 Pitch** | 高频触发，必须随机化防止刺耳。 |
-| **Reward** | `Exp_Pickup` | **动态音阶 (Do-Re-Mi)** | 连续吸入经验球时，音调递增。 |
-| **Ui** | `Level_Up` | **Ducking (压低BGM)** | 升级是荣耀时刻，必须清晰。 |
-| **Combat** | `Critical_Hit` | **高频提升** | 暴击音效通常含有更多高频（金属音），穿透力强。 |
+|       类别       |       音效名       |       特性       |       备注       |
+|       :---       |       :---       |       :---       |       :---       |
+|       **Feedback**       |       `Hit_Normal`       |       **随机化 Pitch**       |       高频触发，必须随机化防止刺耳。       |
+|       **Reward**       |       `Exp_Pickup`       |       **动态音阶 (Do-Re-Mi)**       |       连续吸入经验球时，音调递增。       |
+|       **Ui**       |       `Level_Up`       |       **Ducking (压低BGM)**       |       升级是荣耀时刻，必须清晰。       |
+|       **Combat**       |       `Critical_Hit`       |       **高频提升**       |       暴击音效通常含有更多高频（金属音），穿透力强。       |
 
 ## 4. 💡 心理学小贴士
 *   **打击感**: 视觉上的顿帧 + 听觉上的低音冲击 (Kick/Bass) = 拳拳到肉。

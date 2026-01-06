@@ -17,8 +17,7 @@ Unity 中存在多个嵌套的坐标系，理解它们之间的转换是所有�
 
 ### 1.2 变换矩阵 (Transformation Matrix)
 一个物体从模型空间变换到世界空间，本质上是乘以一个 $4 \times 4$ 矩阵 $M_{Local \to World}$。
-
-$$ M = T \cdot R \cdot S $$
+$$M = T \cdot R \cdot S$$
 
 *   **顺序至关重要:** 先缩放 ($S$)，再旋转 ($R$)，最后平移 ($T$)。
 *   **矩阵乘法不满足交换律:** $R \cdot T \neq T \cdot R$。如果顺序错了，物体会绕着世界原点旋转，而不是绕着自身旋转。
@@ -377,17 +376,17 @@ Unity 的 Transform 系统使用“肮脏标记”模式。
 
 ## 8. 数学变换速查表 (Cheat Sheet)
 
-| 需求 | 公式/API |
-| :--- | :--- |
-| **物体 A 朝向物体 B** | `transform.rotation = Quaternion.LookRotation(B.pos - A.pos);` |
-| **平滑旋转向目标** | `transform.rotation = Quaternion.RotateTowards(current, target, speed * dt);` |
-| **获取 B 在 A 坐标系下的位置** | `Vector3 localPos = A.InverseTransformPoint(B.position);` |
-| **绕某个点 P 旋转** | `transform.RotateAround(P, axis, angle);` |
-| **计算距离 (不开方)** | `(A - B).sqrMagnitude` (用于比较距离，性能优于 `.distance`) |
-| **将向量投影到平面** | `Vector3.ProjectOnPlane(vector, planeNormal);` |
-| **向量反射 (子弹反弹)** | `Vector3.Reflect(velocity, wallNormal);` |
-| **检查是否在前方 (视野)** | `Vector3.Dot(transform.forward, (target - me).normalized) > 0` |
-| **检查在左还是右** | `Vector3.Cross(transform.forward, targetDir).y` (>0 右, <0 左) |
-| **两向量夹角** | `Vector3.Angle(dirA, dirB);` (返回 0~180 度) |
-| **世界坐标转屏幕坐标** | `Camera.main.WorldToScreenPoint(worldPos)` |
-| **屏幕坐标转世界 (带深度)** | `Camera.main.ScreenToWorldPoint(new Vector3(x, y, depth))` |
+|       需求       |       公式/API       |
+|       :---       |       :---       |
+|       **物体 A 朝向物体 B**       |       `transform.rotation = Quaternion.LookRotation(B.pos - A.pos);`       |
+|       **平滑旋转向目标**       |       `transform.rotation = Quaternion.RotateTowards(current, target, speed * dt);`       |
+|       **获取 B 在 A 坐标系下的位置**       |       `Vector3 localPos = A.InverseTransformPoint(B.position);`       |
+|       **绕某个点 P 旋转**       |       `transform.RotateAround(P, axis, angle);`       |
+|       **计算距离 (不开方)**       |       `(A - B).sqrMagnitude` (用于比较距离，性能优于 `.distance`)       |
+|       **将向量投影到平面**       |       `Vector3.ProjectOnPlane(vector, planeNormal);`       |
+|       **向量反射 (子弹反弹)**       |       `Vector3.Reflect(velocity, wallNormal);`       |
+|       **检查是否在前方 (视野)**       |       `Vector3.Dot(transform.forward, (target - me).normalized) > 0`       |
+|       **检查在左还是右**       |       `Vector3.Cross(transform.forward, targetDir).y` (>0 右, <0 左)       |
+|       **两向量夹角**       |       `Vector3.Angle(dirA, dirB);` (返回 0~180 度)       |
+|       **世界坐标转屏幕坐标**       |       `Camera.main.WorldToScreenPoint(worldPos)`       |
+|       **屏幕坐标转世界 (带深度)**       |       `Camera.main.ScreenToWorldPoint(new Vector3(x, y, depth))`       |

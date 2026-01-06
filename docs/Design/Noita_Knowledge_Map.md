@@ -38,22 +38,19 @@ Noita 的法杖系统是一个**编程语言**，每个法术槽位都是一条"
 - **散布 (Spread)**: 射击的随机偏移角度
 
 **核心公式**:
-
-$$
-TotalCastTime = \sum_{i=1}^{n} (CastDelay_i + SpellDelay_i) + RechargeTime
-$$
+$$TotalCastTime = \sum_{i=1}^{n} (CastDelay_i + SpellDelay_i) + RechargeTime$$
 
 #### B. 法术类型分类 (Spell Categories)
 
 Noita 的法术分为 4 大类：
 
-| 类型       | 英文              | 作用                 | 示例               |
-| ---------- | ----------------- | -------------------- | ------------------ |
-| 投射物     | Projectile        | 发射实体弹药         | 火球、闪电         |
-| 修饰符     | Modifier          | 改变下一个法术的属性 | 三连发、追踪       |
-| 静态投射物 | Static Projectile | 放置陷阱/墙          | 光盘、黑洞         |
-| 其他       | Other             | 特殊效果             | 传送、治疗         |
-| 多重施法   | Multicast         | 同时发射多个法术     | 双重施法、三重施法 |
+|       类型             |       英文                    |       作用                       |       示例                     |
+|       ----------       |       -----------------       |       --------------------       |       ------------------       |
+|       投射物           |       Projectile              |       发射实体弹药               |       火球、闪电               |
+|       修饰符           |       Modifier                |       改变下一个法术的属性       |       三连发、追踪             |
+|       静态投射物       |       Static Projectile       |       放置陷阱/墙                |       光盘、黑洞               |
+|       其他             |       Other                   |       特殊效果                   |       传送、治疗               |
+|       多重施法         |       Multicast               |       同时发射多个法术           |       双重施法、三重施法       |
 
 #### C. 修饰符堆叠规则 (Modifier Stacking)
 
@@ -384,12 +381,12 @@ Wand machinegunWand = new Wand {
 
 ### 3.2 Noita vs 其他法术构建游戏对比
 
-| 游戏                 | 法术系统 | 自由度     | 复杂度     | 学习曲线 |
-| -------------------- | -------- | ---------- | ---------- | -------- |
-| **Noita**            | 槽位编程 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 陡峭     |
-| **Magicka**          | 元素组合 | ⭐⭐⭐⭐   | ⭐⭐⭐     | 中等     |
-| **Wizard of Legend** | 预设法术 | ⭐⭐       | ⭐⭐       | 平缓     |
-| **Lichdom**          | 法术合成 | ⭐⭐⭐     | ⭐⭐⭐⭐   | 中等     |
+|       游戏                       |       法术系统       |       自由度           |       复杂度           |       学习曲线       |
+|       --------------------       |       --------       |       ----------       |       ----------       |       --------       |
+|       **Noita**                  |       槽位编程       |       ⭐⭐⭐⭐⭐       |       ⭐⭐⭐⭐⭐       |       陡峭           |
+|       **Magicka**                |       元素组合       |       ⭐⭐⭐⭐         |       ⭐⭐⭐           |       中等           |
+|       **Wizard of Legend**       |       预设法术       |       ⭐⭐             |       ⭐⭐             |       平缓           |
+|       **Lichdom**                |       法术合成       |       ⭐⭐⭐           |       ⭐⭐⭐⭐         |       中等           |
 
 **Noita 的独特之处**:
 
@@ -444,10 +441,7 @@ Wand machinegunWand = new Wand {
 ## 📊 高级法杖构筑理论
 
 ### A. DPS 计算公式
-
-$$
-\text{DPS} = \frac{\text{Damage} \times \text{ProjectileCount}}{\text{CastDelay} + \text{RechargeTime} / \text{SpellCount}}
-$$
+$$\text{DPS} = \frac{\text{Damage} \times \text{ProjectileCount}}{\text{CastDelay} + \text{RechargeTime} / \text{SpellCount}}$$
 
 **示例**:
 
@@ -456,16 +450,10 @@ $$
 - 施法延迟: 0.1s
 - 充能时间: 1.0s
 - 法术数量: 10
-
-$$
-\text{DPS} = \frac{100 \times 3}{0.1 + 1.0 / 10} = \frac{300}{0.2} = 1500
-$$
+$$\text{DPS} = \frac{100 \times 3}{0.1 + 1.0 / 10} = \frac{300}{0.2} = 1500$$
 
 ### B. 法力效率公式
-
-$$
-\text{ManaEfficiency} = \frac{\text{TotalDamage}}{\text{TotalManaCost}}
-$$
+$$\text{ManaEfficiency} = \frac{\text{TotalDamage}}{\text{TotalManaCost}}$$
 
 **优化目标**: 最大化法力效率，避免频繁充能。
 

@@ -127,12 +127,12 @@ void Update() {
 
 ## 5. 性能对比 (同屏 10,000 个方块)
 
-| 方法 | Draw Calls | FPS (PC) | CPU 开销 |
-| :--- | :--- | :--- | :--- |
-| **GameObjects** | ~10,000 | 4 fps | 100% (Main Thread) |
-| **Static Batching** | ~50 | 15 fps | High (Memory Overhead) |
-| **GPU Instancing** | ~10 | 45 fps | Medium (Matrix Upload) |
-| **Indirect** | **1** | **120+ fps** | **Zero** |
+|       方法       |       Draw Calls       |       FPS (PC)       |       CPU 开销       |
+|       :---       |       :---       |       :---       |       :---       |
+|       **GameObjects**       |       ~10,000       |       4 fps       |       100% (Main Thread)       |
+|       **Static Batching**       |       ~50       |       15 fps       |       High (Memory Overhead)       |
+|       **GPU Instancing**       |       ~10       |       45 fps       |       Medium (Matrix Upload)       |
+|       **Indirect**       |       **1**       |       **120+ fps**       |       **Zero**       |
 
 ---
 

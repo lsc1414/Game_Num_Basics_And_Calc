@@ -49,19 +49,18 @@ graph LR
 
 ### 3.1 基础评分器
 
-| 评分器名称              | 逻辑描述                                     | 适用场景                   |
-| :---------------------- | :------------------------------------------- | :------------------------- |
-| **DistanceScorer**      | 距离越近，分数越高 (线性或指数衰减)。        | 仇恨(近战怪)、塔防(近程塔) |
-| **HealthScorer**        | 生命值越低，分数越高 (斩杀逻辑)。            | 刺客型怪物、收割型防御塔   |
-| **TagSynergyScorer**    | 拥有相同标签 (Tag) 数量越多，分数越高。      | Perk 抽取、战利品生成      |
-| **FixedPriorityScorer** | 基于硬编码的优先级 (Boss > Elite > Minion)。 | 塔防(优先打大怪)           |
-| **MemoryScorer**        | 之前互动过 (造成伤害/被选中) 则加分。        | 仇恨(反击逻辑)、连击系统   |
+|       评分器名称                    |       逻辑描述                                           |       适用场景                         |
+|       :----------------------       |       :-------------------------------------------       |       :-------------------------       |
+|       **DistanceScorer**            |       距离越近，分数越高 (线性或指数衰减)。              |       仇恨(近战怪)、塔防(近程塔)       |
+|       **HealthScorer**              |       生命值越低，分数越高 (斩杀逻辑)。                  |       刺客型怪物、收割型防御塔         |
+|       **TagSynergyScorer**          |       拥有相同标签 (Tag) 数量越多，分数越高。            |       Perk 抽取、战利品生成            |
+|       **FixedPriorityScorer**       |       基于硬编码的优先级 (Boss > Elite > Minion)。       |       塔防(优先打大怪)                 |
+|       **MemoryScorer**              |       之前互动过 (造成伤害/被选中) 则加分。              |       仇恨(反击逻辑)、连击系统         |
 
 ### 3.2 评分公式
 
 标准的归一化评分公式：
-
-$$ FinalScore = \sum (RawScore_i \times Multiplier_i) + FlatBonus $$
+$$FinalScore = \sum (RawScore_i \times Multiplier_i) + FlatBonus$$
 
 - **Multiplier (乘区):** 用于调整权重（例如：刺客怪的 `HealthScorer` 权重是 5.0，而 `DistanceScorer` 权重是 0.5）。
 - **FlatBonus (加算):** 用于强制覆盖（例如：嘲讽状态直接 +10000 分）。

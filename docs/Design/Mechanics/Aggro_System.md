@@ -23,14 +23,14 @@
 
 #### 1.2.1 仇恨类型细分 (Aggro Types)
 
-| 仇恨类型 | 触发方式 | 初始仇恨值 | 衰减模式 | 优先级影响 |
-| :--- | :--- | :--- | :--- | :--- |
-| **基础寻路仇恨 (Base Pathfinding Threat)** | 怪物诞生时，自动对“基地核心”生成。 | 极高（无限趋近） | 无衰减 | 只有当其他仇恨源足够高时才转移目标。 |
-| **伤害仇恨 (Damage Threat)** | 对怪物造成伤害。 | 1 伤害 = 1 Threat | 线性衰减（脱战后清零） | 随伤害量动态变化。 |
-| **治疗仇恨 (Healing Threat)** | 治疗队友或玩家自身。 | 治疗量 * 0.5 Threat | 线性衰减 | 对所有感知范围内的怪物生效。 |
-| **嘲讽仇恨 (Taunt Threat)** | 嘲讽技能。 | 目标当前最高仇恨值 + 固定值 (如 100) | 短暂爆发，快速衰减 | 强制改变目标，优先级最高。 |
-| **环境仇恨 (Environmental Threat)** | 破坏怪物附近的阻挡物（如墙壁、陷阱）。 | 固定值（如 50） | 无衰减 | 优先级低于动态仇恨，高于基础寻路。 |
-| **技能仇恨 (Ability Threat)** | 释放特定技能（如范围控场）。 | 根据技能强度计算 | 线性衰减 | 特定技能可附带额外仇恨修正。 |
+|       仇恨类型       |       触发方式       |       初始仇恨值       |       衰减模式       |       优先级影响       |
+|       :---       |       :---       |       :---       |       :---       |       :---       |
+|       **基础寻路仇恨 (Base Pathfinding Threat)**       |       怪物诞生时，自动对“基地核心”生成。       |       极高（无限趋近）       |       无衰减       |       只有当其他仇恨源足够高时才转移目标。       |
+|       **伤害仇恨 (Damage Threat)**       |       对怪物造成伤害。       |       1 伤害 = 1 Threat       |       线性衰减（脱战后清零）       |       随伤害量动态变化。       |
+|       **治疗仇恨 (Healing Threat)**       |       治疗队友或玩家自身。       |       治疗量 * 0.5 Threat       |       线性衰减       |       对所有感知范围内的怪物生效。       |
+|       **嘲讽仇恨 (Taunt Threat)**       |       嘲讽技能。       |       目标当前最高仇恨值 + 固定值 (如 100)       |       短暂爆发，快速衰减       |       强制改变目标，优先级最高。       |
+|       **环境仇恨 (Environmental Threat)**       |       破坏怪物附近的阻挡物（如墙壁、陷阱）。       |       固定值（如 50）       |       无衰减       |       优先级低于动态仇恨，高于基础寻路。       |
+|       **技能仇恨 (Ability Threat)**       |       释放特定技能（如范围控场）。       |       根据技能强度计算       |       线性衰减       |       特定技能可附带额外仇恨修正。       |
 
 ---
 
@@ -40,17 +40,16 @@ Project Vampirefall 的特殊性在于：玩家不仅要杀怪，还要保护塔
 
 ### 2.1 优先级金字塔 (Target Priority Pyramid)
 除了动态的仇恨值，我们引入**静态优先级系数**来修正怪物的行为倾向。这个系数会乘以最终计算出的仇恨值，形成怪物的**“最终威胁值” (Final Threat)**。
+$$FinalThreat = (RawDynamicThreat + BasePathfindingThreat + EnvironmentalThreat) \times EntityTypePriorityMod \times DistanceFactor$$
 
-$$ FinalThreat = (RawDynamicThreat + BasePathfindingThreat + EnvironmentalThreat) \times EntityTypePriorityMod \times DistanceFactor $$
-
-| 实体类型 (EntityType) | 仇恨计算公式 | Priority Mod | 行为逻辑 |
-| :--- | :--- | :--- | :--- |
-| **基地核心 (Nexus)** | 仅 `BasePathfindingThreat` | 10.0x | 所有怪物的默认且最终目标。只有当其他目标提供足够高的 `FinalThreat` 才会转移。 |
-| **嘲讽单位 (Tank Tower)** | `DynamicThreat` (含嘲讽) | 5.0x | 强制吸引火力。高额 `PriorityMod` 确保其能稳稳地拉住仇恨。 |
-| **玩家 (Player)** | `DynamicThreat` | 2.0x | 怪物倾向于攻击高威胁的玩家。玩家的机动性是其优势，但高输出会快速积累仇恨。 |
-| **防御塔 (Standard Tower)** | `DynamicThreat` | 1.0x | 正常优先级。怪物会在 Nexus、玩家和防御塔之间平衡选择。 |
-| **召唤物 (Minions)** | `DynamicThreat` | 0.5x | 除非挡路或仇恨值极高，否则怪物懒得理会。 |
-| **阻挡物 (Wall/Obstacle)** | 仅 `EnvironmentalThreat` | 0.8x | 仅当路径受阻时才成为目标，其仇恨值仅影响破拆速度而非优先追击。 |
+|       实体类型 (EntityType)       |       仇恨计算公式       |       Priority Mod       |       行为逻辑       |
+|       :---       |       :---       |       :---       |       :---       |
+|       **基地核心 (Nexus)**       |       仅 `BasePathfindingThreat`       |       10.0x       |       所有怪物的默认且最终目标。只有当其他目标提供足够高的 `FinalThreat` 才会转移。       |
+|       **嘲讽单位 (Tank Tower)**       |       `DynamicThreat` (含嘲讽)       |       5.0x       |       强制吸引火力。高额 `PriorityMod` 确保其能稳稳地拉住仇恨。       |
+|       **玩家 (Player)**       |       `DynamicThreat`       |       2.0x       |       怪物倾向于攻击高威胁的玩家。玩家的机动性是其优势，但高输出会快速积累仇恨。       |
+|       **防御塔 (Standard Tower)**       |       `DynamicThreat`       |       1.0x       |       正常优先级。怪物会在 Nexus、玩家和防御塔之间平衡选择。       |
+|       **召唤物 (Minions)**       |       `DynamicThreat`       |       0.5x       |       除非挡路或仇恨值极高，否则怪物懒得理会。       |
+|       **阻挡物 (Wall/Obstacle)**       |       仅 `EnvironmentalThreat`       |       0.8x       |       仅当路径受阻时才成为目标，其仇恨值仅影响破拆速度而非优先追击。       |
 
 ### 2.2 风筝限制 (Anti-Kiting)
 为了防止玩家利用高移速将怪物无限拉离防线（导致塔防失效），引入 **Leash (牵引绳)** 机制。
@@ -76,8 +75,7 @@ $$ FinalThreat = (RawDynamicThreat + BasePathfindingThreat + EnvironmentalThreat
 
 ### 3.2 距离权重 (Distance Factor)
 为了避免怪物无视脸上的坦克去追远处的弓箭手，距离会影响仇恨判定。
-
-$$ DistanceFactor = 1 + \frac{K}{Distance} $$
+$$DistanceFactor = 1 + \frac{K}{Distance}$$
 
 *   $K$：距离敏感系数（近战怪 K 值高，远程怪 K 值低）。
 *   `EffectiveThreat = RawThreat * DistanceFactor`。

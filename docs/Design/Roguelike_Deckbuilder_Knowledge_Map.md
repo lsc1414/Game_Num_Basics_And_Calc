@@ -18,8 +18,7 @@
 #### A. 牌库循环率 (Deck Cycling Rate)
 
 衡量玩家多久能重新抽到核心卡牌。
-
-$$ CyclingRate = \frac{DrawPerTurn + ExtraDraw}{DeckSize} $$
+$$CyclingRate = \frac{DrawPerTurn + ExtraDraw}{DeckSize}$$
 
 - **StS 经验**: 初始卡组小（10-12 张），每回合抽 5 张，意味着大概 2-3 回合就能过穿一次牌库。这种**高频循环**是策略稳定性的来源。
 - **Vampirefall 应用**: 我们的“塔防卡组”如果过大，玩家会从“构筑者”变成“赌徒”。建议保持小而精的卡池。

@@ -96,13 +96,13 @@ HDR 不免费，它有代价。
 *   **设备:** 中低端 Android 设备 (Snapdragon 660 / Adreno 512, 1080p)。
 *   **场景:** 标准场景，包含 500 个 DrawCall，带有简单的 Bloom。
 
-| 指标 (Metric) | LDR (Standard RBG8) | HDR (R11G11B10) | 差异 (Diff) | 影响 |
-| :--- | :--- | :--- | :--- | :--- |
-| **Render Target Memory** | ~8 MB | ~8 MB | 0% (Trick) | **R11G11B10** 也是 32-bit，所以显存占用一样！但如果是 **FP16 (RGBAHalf)**，显存翻倍 (+100%)。 |
-| **Bandwidth (读写带宽)** | 2.5 GB/s | 3.2 GB/s | **+28%** | GPU 读写浮点数据的代价略高，尤其是在 Tile Memory 换入换出时。 |
-| **Shader ALU (计算量)** | 100% | 115% | **+15%** | 浮点数计算本身并不慢，但 Tone Mapping 和颜色空间转换需要额外指令。 |
-| **发热 (Heat)** | High | Very High | **Hotter** | 带宽增加直接导致发热增加。 |
-| **FPS** | 55 fps | 48 fps | **-12%** | 在 GPU Bound 情况下，帧率下降约 10-15%。 |
+|       指标 (Metric)       |       LDR (Standard RBG8)       |       HDR (R11G11B10)       |       差异 (Diff)       |       影响       |
+|       :---       |       :---       |       :---       |       :---       |       :---       |
+|       **Render Target Memory**       |       ~8 MB       |       ~8 MB       |       0% (Trick)       |       **R11G11B10** 也是 32-bit，所以显存占用一样！但如果是 **FP16 (RGBAHalf)**，显存翻倍 (+100%)。       |
+|       **Bandwidth (读写带宽)**       |       2.5 GB/s       |       3.2 GB/s       |       **+28%**       |       GPU 读写浮点数据的代价略高，尤其是在 Tile Memory 换入换出时。       |
+|       **Shader ALU (计算量)**       |       100%       |       115%       |       **+15%**       |       浮点数计算本身并不慢，但 Tone Mapping 和颜色空间转换需要额外指令。       |
+|       **发热 (Heat)**       |       High       |       Very High       |       **Hotter**       |       带宽增加直接导致发热增加。       |
+|       **FPS**       |       55 fps       |       48 fps       |       **-12%**       |       在 GPU Bound 情况下，帧率下降约 10-15%。       |
 
 ### 📊 结论
 *   **显存 (Memory):** 如果使用优化的 `R11G11B10` 格式，显存占用与 LDR **几乎相同** (都是 32位)。只有在使用 `FP16` (64位) 时才会翻倍。

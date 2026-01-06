@@ -148,8 +148,9 @@ public partial struct BuffProcessingSystem : ISystem
 5.  [ ] **混合同步**：仅在必要时（如播放死亡动画）将 ECS 数据同步回 GameObject。
 
 ## 7. 性能预算参考
-| 平台 | 同屏目标 (60FPS) | DrawCalls 限制 | 物理计算耗时 |
-| :--- | :--- | :--- | :--- |
-| PC (Mid) | 2000+ | < 1500 (Batching后) | < 3ms |
-| Mobile (High) | 500+ | < 300 | < 4ms |
-| Mobile (Low) | 100+ | < 100 | < 5ms |
+
+|       平台       |       同屏目标 (60FPS)       |       DrawCalls 限制       |       物理计算耗时       |
+|       :---       |       :---       |       :---       |       :---       |
+|       PC (Mid)       |       2000+       |       < 1500 (Batching后)       |       < 3ms       |
+|       Mobile (High)       |       500+       |       < 300       |       < 4ms       |
+|       Mobile (Low)       |       100+       |       < 100       |       < 5ms       |

@@ -162,53 +162,53 @@ public class DynamicFireball : MonoBehaviour
 
 ### 🔥 元素与属性 (Element & Type)
 
-| 元素 (CN)     | 关键字 (EN)     | 关联词 (Related)                                      |
-| :------------ | :-------------- | :---------------------------------------------------- |
-| **火**        | `Fire`, `Flame` | `Burn`, `Ignite`, `Heat`, `Hell`                      |
-| **冰/水**     | `Ice`, `Frost`  | `Freeze`, `Cold`, `Snow`, `Water`, `Splash`, `Bubble` |
-| **电**        | `Lightning`     | `Electric`, `Spark`, `Thunder`, `Shock`, `Zap`        |
-| **毒**        | `Poison`        | `Acid`, `Toxic`, `Venom`, `Goo`, `Slime`              |
-| **神圣/光**   | `Holy`          | `Divine`, `Light`, `Shine`, `Angel`, `Heal`           |
-| **暗影/邪恶** | `Dark`          | `Shadow`, `Evil`, `Curse`, `Void`, `Abyss`            |
-| **血**        | `Blood`         | `Gore`, `Bleed`, `Red`                                |
-| **土/石**     | `Earth`         | `Rock`, `Stone`, `Debris`, `Dust`, `Sand`             |
-| **风**        | `Wind`          | `Tornado`, `Swirl`, `Air`, `Breeze`                   |
+|       元素 (CN)           |       关键字 (EN)           |       关联词 (Related)                                            |
+|       :------------       |       :--------------       |       :----------------------------------------------------       |
+|       **火**              |       `Fire`, `Flame`       |       `Burn`, `Ignite`, `Heat`, `Hell`                            |
+|       **冰/水**           |       `Ice`, `Frost`        |       `Freeze`, `Cold`, `Snow`, `Water`, `Splash`, `Bubble`       |
+|       **电**              |       `Lightning`           |       `Electric`, `Spark`, `Thunder`, `Shock`, `Zap`              |
+|       **毒**              |       `Poison`              |       `Acid`, `Toxic`, `Venom`, `Goo`, `Slime`                    |
+|       **神圣/光**         |       `Holy`                |       `Divine`, `Light`, `Shine`, `Angel`, `Heal`                 |
+|       **暗影/邪恶**       |       `Dark`                |       `Shadow`, `Evil`, `Curse`, `Void`, `Abyss`                  |
+|       **血**              |       `Blood`               |       `Gore`, `Bleed`, `Red`                                      |
+|       **土/石**           |       `Earth`               |       `Rock`, `Stone`, `Debris`, `Dust`, `Sand`                   |
+|       **风**              |       `Wind`                |       `Tornado`, `Swirl`, `Air`, `Breeze`                         |
 
 ### 💥 动作与功能 (Action & Function)
 
-| 动作 (CN)     | 关键字 (EN)  | 描述                                            |
-| :------------ | :----------- | :---------------------------------------------- |
-| **抛射物**    | `Projectile` | `Missile`, `Bullet`, `Shot` (火球、箭矢)        |
-| **命中/受击** | `Hit`        | `Impact`, `Strike`, `Damage` (打中目标的瞬间)   |
-| **爆炸**      | `Explosion`  | `Bomb`, `Blast`, `Boom` (范围伤害)              |
-| **增益**      | `Buff`       | `PowerUp`, `Boost`, `Aura` (身上的光环)         |
-| **减益**      | `Debuff`     | `Curse`, `Stun`, `Slow` (头顶的晕眩星星)        |
-| **蓄力**      | `Charge`     | `Gather`, `Load` (技能释放前的聚气)             |
-| **施法**      | `Cast`       | `Spell`, `Skill`, `Attack` (挥手瞬间的光效)     |
-| **死亡**      | `Die`        | `Death`, `Disappear`, `Soul` (怪物消失)         |
-| **刀光**      | `Slash`      | `Trail`, `Sword`, `Cut`, `Swipe` (近战挥砍轨迹) |
+|       动作 (CN)           |       关键字 (EN)        |       描述                                                  |
+|       :------------       |       :-----------       |       :----------------------------------------------       |
+|       **抛射物**          |       `Projectile`       |       `Missile`, `Bullet`, `Shot` (火球、箭矢)              |
+|       **命中/受击**       |       `Hit`              |       `Impact`, `Strike`, `Damage` (打中目标的瞬间)         |
+|       **爆炸**            |       `Explosion`        |       `Bomb`, `Blast`, `Boom` (范围伤害)                    |
+|       **增益**            |       `Buff`             |       `PowerUp`, `Boost`, `Aura` (身上的光环)               |
+|       **减益**            |       `Debuff`           |       `Curse`, `Stun`, `Slow` (头顶的晕眩星星)              |
+|       **蓄力**            |       `Charge`           |       `Gather`, `Load` (技能释放前的聚气)                   |
+|       **施法**            |       `Cast`             |       `Spell`, `Skill`, `Attack` (挥手瞬间的光效)           |
+|       **死亡**            |       `Die`              |       `Death`, `Disappear`, `Soul` (怪物消失)               |
+|       **刀光**            |       `Slash`            |       `Trail`, `Sword`, `Cut`, `Swipe` (近战挥砍轨迹)       |
 
 ### 📐 形状与动态 (Shape & Motion)
 
-| 形状 (CN)       | 关键字 (EN) | 视觉特征                                           |
-| :-------------- | :---------- | :------------------------------------------------- |
-| **光环**        | `Aura`      | 围绕角色身体的持续光效 (升级、狂暴)。              |
-| **新星/冲击波** | `Nova`      | `Shockwave`, `Ripple`, `Ring` (向四周扩散的圆环)。 |
-| **光束**        | `Beam`      | `Laser`, `Ray` (持续连接两点的激光)。              |
-| **拖尾**        | `Trail`     | `Ribbon` (跟随运动物体的尾巴)。                    |
-| **护盾**        | `Shield`    | `Barrier`, `Dome`, `Sphere` (半球体防护罩)。       |
-| **区域**        | `Zone`      | `Area`, `Ground`, `Circle` (地面的法阵/预警圈)。   |
-| **漩涡**        | `Vortex`    | `Portal`, `Blackhole` (旋转的传送门)。             |
+|       形状 (CN)             |       关键字 (EN)       |       视觉特征                                                 |
+|       :--------------       |       :----------       |       :-------------------------------------------------       |
+|       **光环**              |       `Aura`            |       围绕角色身体的持续光效 (升级、狂暴)。                    |
+|       **新星/冲击波**       |       `Nova`            |       `Shockwave`, `Ripple`, `Ring` (向四周扩散的圆环)。       |
+|       **光束**              |       `Beam`            |       `Laser`, `Ray` (持续连接两点的激光)。                    |
+|       **拖尾**              |       `Trail`           |       `Ribbon` (跟随运动物体的尾巴)。                          |
+|       **护盾**              |       `Shield`          |       `Barrier`, `Dome`, `Sphere` (半球体防护罩)。             |
+|       **区域**              |       `Zone`            |       `Area`, `Ground`, `Circle` (地面的法阵/预警圈)。         |
+|       **漩涡**              |       `Vortex`          |       `Portal`, `Blackhole` (旋转的传送门)。                   |
 
 ### 🎨 风格 (Style)
 
-| 风格 (CN)     | 关键字 (EN) | 备注                                                   |
-| :------------ | :---------- | :----------------------------------------------------- |
-| **卡通**      | `Toon`      | `Cartoon`, `Stylized`, `Cel-Shaded` (适合 Vampirefall) |
-| **写实**      | `Realistic` | `Cinematic` (通常粒子数过多，慎用)                     |
-| **像素**      | `Pixel`     | `Retro`, `8-bit`, `Voxel` (适合像素游戏)               |
-| **低多边形**  | `LowPoly`   | `Flat` (棱角分明)                                      |
-| **发光/霓虹** | `Glow`      | `Neon`, `Cyberpunk` (赛博朋克风)                       |
+|       风格 (CN)           |       关键字 (EN)       |       备注                                                         |
+|       :------------       |       :----------       |       :-----------------------------------------------------       |
+|       **卡通**            |       `Toon`            |       `Cartoon`, `Stylized`, `Cel-Shaded` (适合 Vampirefall)       |
+|       **写实**            |       `Realistic`       |       `Cinematic` (通常粒子数过多，慎用)                           |
+|       **像素**            |       `Pixel`           |       `Retro`, `8-bit`, `Voxel` (适合像素游戏)                     |
+|       **低多边形**        |       `LowPoly`         |       `Flat` (棱角分明)                                            |
+|       **发光/霓虹**       |       `Glow`            |       `Neon`, `Cyberpunk` (赛博朋克风)                             |
 
 ---
 

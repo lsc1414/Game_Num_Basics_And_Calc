@@ -180,9 +180,9 @@ public class NavMeshMovement : MonoBehaviour
 
 ## 5. 常见坑点速查 (Troubleshooting)
 
-| 现象 | 原因 | 解决方案 |
-| :--- | :--- | :--- |
-| **怪物原地转圈** | 目标点在脚下，但因为 StoppingDistance 没停住。 | 增大 `StoppingDistance` 或检测 `agent.remainingDistance < Threshold` 手动 Stop。 |
-| **怪物穿墙** | 速度太快，或 `NavMeshObstacle` 没有开 `Carve`。 | 开启 `Carve`；对于极快单位，改用 Raycast 检测前方障碍。 |
-| **浮空/陷入地下** | Agent 的 `BaseOffset` 设置不对，或模型原点不在脚底。 | 调整 `BaseOffset`；确保美术模型的 Pivot 在脚底中心。 |
-| **性能暴跌** | 每一帧都对 100 个怪调用 `SetDestination`。 | 必须限制频率！使用协程每 0.2s 更新一次路径，或仅当目标移动超过 1米时更新。 |
+|       现象       |       原因       |       解决方案       |
+|       :---       |       :---       |       :---       |
+|       **怪物原地转圈**       |       目标点在脚下，但因为 StoppingDistance 没停住。       |       增大 `StoppingDistance` 或检测 `agent.remainingDistance < Threshold` 手动 Stop。       |
+|       **怪物穿墙**       |       速度太快，或 `NavMeshObstacle` 没有开 `Carve`。       |       开启 `Carve`；对于极快单位，改用 Raycast 检测前方障碍。       |
+|       **浮空/陷入地下**       |       Agent 的 `BaseOffset` 设置不对，或模型原点不在脚底。       |       调整 `BaseOffset`；确保美术模型的 Pivot 在脚底中心。       |
+|       **性能暴跌**       |       每一帧都对 100 个怪调用 `SetDestination`。       |       必须限制频率！使用协程每 0.2s 更新一次路径，或仅当目标移动超过 1米时更新。       |

@@ -49,8 +49,7 @@
 要抄 POE，必须抄它的数值逻辑。
 
 ### 2.1 期望收益公式
-
-$$ E(Ticket) = (P*{Drop} \times Value*{Drop}) - Cost*{Time} - Risk*{Fail} $$
+$$E(Ticket) = (P*{Drop} \times Value*{Drop}) - Cost*{Time} - Risk*{Fail}$$
 
 - **门票价格**: 由市场决定，通常略低于期望收益。
 - **打工陷阱**: 如果门票价格 100C，平均产出 110C。考虑到时间成本，打这个 BOSS 可能每小时只能赚 20C，还不如去搬砖。

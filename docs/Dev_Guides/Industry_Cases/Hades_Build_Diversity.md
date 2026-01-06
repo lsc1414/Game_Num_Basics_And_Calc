@@ -136,8 +136,7 @@ RPG 数值膨胀不崩坏的关键在于**属性系统 (Attribute System)**。Ha
 任何数值（攻击力、暴击率、移动速度）都不是简单的变量，而是一个**计算管道**。
 
 **公式模型：**
-
-$$ FinalValue = (Base + \sum Additive) \times \prod Multipliers $$
+$$FinalValue = (Base + \sum Additive) \times \prod Multipliers$$
 
 - **Base**: 武器基础伤害 (10)
 - **Additive**: 混沌恩赐 (+30%), 力量恩赐 (+10%) -> Base \* (1 + 0.3 + 0.1)
@@ -249,12 +248,12 @@ public class LightningBoon : BoonEffect {
 
 ## 4. 总结
 
-| 架构层级     | 传统做法 (Bad)                              | Hades/Vampirefall 做法 (Good)                |
-| :----------- | :------------------------------------------ | :------------------------------------------- |
-| **数值叠加** | 直接修改 `tower.damage += 10`               | 使用 `Stat.AddModifier()` 管道，保留溯源能力 |
-| **特殊效果** | 在 Tower 类里写 `if (hasZeus) ...`          | 塔持有 `List<BoonEffect>`，遍历调用接口      |
-| **连锁反应** | 硬编码函数调用 `DoKnockbackThenLightning()` | 事件驱动 `OnKnockback` -> 订阅者响应         |
-| **配置数据** | 散落在各个 Prefab 上                        | 集中在 ScriptableObject 或 Lua/Excel 表中    |
+|       架构层级           |       传统做法 (Bad)                                    |       Hades/Vampirefall 做法 (Good)                      |
+|       :-----------       |       :------------------------------------------       |       :-------------------------------------------       |
+|       **数值叠加**       |       直接修改 `tower.damage += 10`                     |       使用 `Stat.AddModifier()` 管道，保留溯源能力       |
+|       **特殊效果**       |       在 Tower 类里写 `if (hasZeus) ...`                |       塔持有 `List<BoonEffect>`，遍历调用接口            |
+|       **连锁反应**       |       硬编码函数调用 `DoKnockbackThenLightning()`       |       事件驱动 `OnKnockback` -> 订阅者响应               |
+|       **配置数据**       |       散落在各个 Prefab 上                              |       集中在 ScriptableObject 或 Lua/Excel 表中          |
 
 ---
 

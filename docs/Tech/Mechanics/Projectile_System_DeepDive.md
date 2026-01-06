@@ -14,26 +14,27 @@
 2.  **表现层 (View/Rendering):** 处理模型渲染、拖尾特效 (Trail)、粒子系统。只负责“跟随”逻辑层的位置。
 
 ### 1.2 运动模式 (Movement Types)
-| 类型 | 描述 | 适用场景 | 数学模型 |
-| :--- | :--- | :--- | :--- |
-| **直射 (Linear)** | 沿直线匀速/变速飞行。 | 箭矢、子弹、激光束。 | $P = P_0 + V \cdot t$ |
-| **抛射 (Lobbed)** | 受重力影响，呈抛物线。 | 迫击炮、手雷、投石车。 | $y = v_{0y}t - \frac{1}{2}gt^2$ |
-| **追踪 (Homing)** | 动态调整速度向量指向目标。 | 魔法飞弹、制导导弹。 | Steering Behavior (操纵行为) |
-| **贝塞尔 (Bezier)** | 沿预计算的曲线飞行，无物理模拟。 | 华丽的技能弹道、回旋镖。 | Bezier Curve Interpolation |
-| **环绕 (Orbital)** | 围绕宿主或定点旋转。 | 护盾球、环绕法球。 | Polar Coordinates (极坐标) |
-| **垂直发射 (Javelin)** | 先垂直升空，再转为追踪。 | 标枪导弹 (Javelin)、天降正义。 | State Machine (Ascend -> Lock -> Homing) |
+
+|       类型       |       描述       |       适用场景       |       数学模型       |
+|       :---       |       :---       |       :---       |       :---       |
+|       **直射 (Linear)**       |       沿直线匀速/变速飞行。       |       箭矢、子弹、激光束。       |       $P = P_0 + V \cdot t$       |
+|       **抛射 (Lobbed)**       |       受重力影响，呈抛物线。       |       迫击炮、手雷、投石车。       |       $y = v_{0y}t - \frac{1}{2}gt^2$       |
+|       **追踪 (Homing)**       |       动态调整速度向量指向目标。       |       魔法飞弹、制导导弹。       |       Steering Behavior (操纵行为)       |
+|       **贝塞尔 (Bezier)**       |       沿预计算的曲线飞行，无物理模拟。       |       华丽的技能弹道、回旋镖。       |       Bezier Curve Interpolation       |
+|       **环绕 (Orbital)**       |       围绕宿主或定点旋转。       |       护盾球、环绕法球。       |       Polar Coordinates (极坐标)       |
+|       **垂直发射 (Javelin)**       |       先垂直升空，再转为追踪。       |       标枪导弹 (Javelin)、天降正义。       |       State Machine (Ascend -> Lock -> Homing)       |
 
 ---
 
 ## 2. 弹道数学与实现 (Trajectory Mathematics)
 
 ### 2.1 抛物线弹道 (Parabolic Arc)
-给定起点 $S$、终点 $E$ 和飞行时间 $T$（或高度 $H$），如何计算初速度 $V_0$？
+给定起点 $S$、终点 $E$和飞行时间$T$（或高度 $H$），如何计算初速度 $V_0$？
 
 **公式推导 (基于时间 $T$):**
 
 1.  **水平速度:** $V_x = (E.x - S.x) / T$, $V_z = (E.z - S.z) / T$
-2.  **垂直速度:** $V_y = (E.y - S.y - 0.5 \cdot g \cdot T^2) / T$ (注意重力 $g$ 通常为负值，公式中 $g$ 取 $-9.8$)
+2.  **垂直速度:** $V_y = (E.y - S.y - 0.5 \cdot g \cdot T^2) / T$(注意重力$g$通常为负值，公式中$g$取$-9.8$)
 
 **代码片段:**
 ```csharp
@@ -79,7 +80,7 @@ public Vector3 CalculateLobVelocity(Vector3 start, Vector3 end, float time)
 *   目标位置 $P_T$，目标速度 $V_T$，子弹速度 $S_B$，子弹位置 $P_B$。
 *   我们需要找到一个时间 $t$，使得 $Distance(P_B, P_T + V_T \cdot t) = S_B \cdot t$。
 *   这转化为解方程：$| (P_T - P_B) + V_T \cdot t |^2 = (S_B \cdot t)^2$。
-*   求解 $t$ 后，预测点 $P_{Aim} = P_T + V_T \cdot t$。
+*   求解 $t$后，预测点$P_{Aim} = P_T + V_T \cdot t$。
 
 **迭代求解 (Iterative Solver):**
 当目标不是匀速直线运动（例如在做圆周运动或变速运动），解析解变得极其复杂。此时应使用迭代法：

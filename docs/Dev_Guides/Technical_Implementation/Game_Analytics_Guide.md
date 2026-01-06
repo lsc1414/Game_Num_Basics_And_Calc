@@ -28,21 +28,22 @@
 把握玩家从“下载”到“卸载”的全过程。
 
 ### 2.1 启动与系统 (System)
-| Event Name | 参数 (Params) | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `sys_app_launch` | `is_cold_start` (冷/热启动) | 游戏进程开始 | 计算 DAU (日活)。 |
-| `sys_device_info` | `cpu`, `ram`, `gpu`, `screen_res` | 首次启动/每日首次 | 了解机型分布，制定性能预算。 |
-| `sys_performance` | `avg_fps`, `min_fps`, `memory_peak` | 关卡结束/每5分钟 | 监控性能退化，定位卡顿机型。 |
-| `sys_error` | `error_msg`, `stack_trace`, `scene` | 发生 Exception | 线上 Bug 监控 (CrashRate)。 |
+
+|       Event Name       |       参数 (Params)       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `sys_app_launch`       |       `is_cold_start` (冷/热启动)       |       游戏进程开始       |       计算 DAU (日活)。       |
+|       `sys_device_info`       |       `cpu`, `ram`, `gpu`, `screen_res`       |       首次启动/每日首次       |       了解机型分布，制定性能预算。       |
+|       `sys_performance`       |       `avg_fps`, `min_fps`, `memory_peak`       |       关卡结束/每5分钟       |       监控性能退化，定位卡顿机型。       |
+|       `sys_error`       |       `error_msg`, `stack_trace`, `scene`       |       发生 Exception       |       线上 Bug 监控 (CrashRate)。       |
 
 ### 2.2 新手引导 (Tutorial)
 **流失率最高的阶段**，必须埋得最细，精确到每一步。
 
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `guide_step` | `step_id` (101, 102...), `duration` | 完成某一步引导 | **漏斗分析**：看玩家在哪一步卡住/退出了。 |
-| `guide_finish` | `total_time` | 引导全部完成 | 计算新手转化率。 |
-| `guide_skip` | `step_id` | 点击“跳过” | 验证引导是否太罗嗦。 |
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `guide_step`       |       `step_id` (101, 102...), `duration`       |       完成某一步引导       |       **漏斗分析**：看玩家在哪一步卡住/退出了。       |
+|       `guide_finish`       |       `total_time`       |       引导全部完成       |       计算新手转化率。       |
+|       `guide_skip`       |       `step_id`       |       点击“跳过”       |       验证引导是否太罗嗦。       |
 
 ---
 
@@ -51,20 +52,21 @@
 把握核心玩法的平衡性与难度曲线。
 
 ### 3.1 关卡流程
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `level_start` | `level_id`, `difficulty`, `hero_id`, `hero_power` | 点击开始战斗 | 关卡热度统计。 |
-| `level_finish` | `level_id`, `result` (Win/Lose/Quit), `duration`, `hp_percent` | 战斗结束 | **通过率分析**：如果某关通过率 < 20%，说明数值崩了。 |
-| `player_die` | `level_id`, `killer_id`, `killer_type`, `pos_x`, `pos_y` | 玩家死亡 | **死亡热力图**：看玩家经常死在哪里，死在谁手里。 |
+
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `level_start`       |       `level_id`, `difficulty`, `hero_id`, `hero_power`       |       点击开始战斗       |       关卡热度统计。       |
+|       `level_finish`       |       `level_id`, `result` (Win/Lose/Quit), `duration`, `hp_percent`       |       战斗结束       |       **通过率分析**：如果某关通过率 < 20%，说明数值崩了。       |
+|       `player_die`       |       `level_id`, `killer_id`, `killer_type`, `pos_x`, `pos_y`       |       玩家死亡       |       **死亡热力图**：看玩家经常死在哪里，死在谁手里。       |
 
 ### 3.2 战斗细节 (Combat)
 *注意：高频事件（如“造成伤害”）不要直接上报，而是在关卡结束时上报汇总数据。*
 
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `combat_summary` | `total_dmg_dealt`, `total_dmg_taken`, `max_combo`, `mvp_skill_id` | 关卡结束 (Win/Lose) | 验证 Build 强度，发现超模技能。 |
-| `skill_select` | `skill_id`, `reroll_count` | 肉鸽三选一环节 | 统计技能选取率 (Pick Rate)，平衡技能强弱。 |
-| `buff_acquired` | `buff_id`, `source` (Drop/Shop) | 获得强力 Buff | 关联分析：拿到这个 Buff 的玩家胜率提高了多少？ |
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `combat_summary`       |       `total_dmg_dealt`, `total_dmg_taken`, `max_combo`, `mvp_skill_id`       |       关卡结束 (Win/Lose)       |       验证 Build 强度，发现超模技能。       |
+|       `skill_select`       |       `skill_id`, `reroll_count`       |       肉鸽三选一环节       |       统计技能选取率 (Pick Rate)，平衡技能强弱。       |
+|       `buff_acquired`       |       `buff_id`, `source` (Drop/Shop)       |       获得强力 Buff       |       关联分析：拿到这个 Buff 的玩家胜率提高了多少？       |
 
 ---
 
@@ -75,9 +77,9 @@
 ### 4.1 资源产出与消耗 (Source & Sink)
 这是经济系统的总账。
 
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `eco_resource_change` | `currency_type` (Gold/Gem), `amount` (+/-), `balance` (变动后余额), `reason` | 货币变动 | **通胀监控**：如果 `balance` 曲线指数级上升，说明产出失控。 |
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `eco_resource_change`       |       `currency_type` (Gold/Gem), `amount` (+/-), `balance` (变动后余额), `reason`       |       货币变动       |       **通胀监控**：如果 `balance` 曲线指数级上升，说明产出失控。       |
 
 **Reason 枚举 (示例)**:
 
@@ -85,10 +87,11 @@
 *   `Sink`: `UpgradeHero`, `BuyItem`, `Revive`, `RerollSkill`
 
 ### 4.2 养成 (Progression)
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `meta_upgrade` | `talent_id`, `new_level`, `cost` | 升级局外天赋 | 了解玩家的加点偏好。 |
-| `item_equip` | `item_id`, `slot_index` | 穿戴装备 | 统计装备使用率。 |
+
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `meta_upgrade`       |       `talent_id`, `new_level`, `cost`       |       升级局外天赋       |       了解玩家的加点偏好。       |
+|       `item_equip`       |       `item_id`, `slot_index`       |       穿戴装备       |       统计装备使用率。       |
 
 ---
 
@@ -96,14 +99,14 @@
 
 对于独立/商业游戏，这是吃饭的家伙。
 
-| Event Name | 参数 | 触发时机 | 分析目的 |
-| :--- | :--- | :--- | :--- |
-| `iap_store_open` | `entry_point` (MainMenu/Pause/Die) | 打开商店界面 | 曝光率 (Impression)。 |
-| `iap_product_click` | `product_id`, `price` | 点击某个商品 | 点击率 (CTR)。 |
-| `iap_checkout` | `product_id`, `order_id` | 点击购买按钮（唤起支付） | **支付中断率**：点了买但没付钱，可能是支付渠道挂了。 |
-| `iap_purchase_verify` | `product_id`, `order_id`, `status` (Success/Fail) | 支付回调 | 实际收入 (Revenue)。 |
-| `ad_show` | `ad_type` (Reward/Interstitial), `placement` (Revive/DoubleGold) | 广告开始播放 | 广告变现效率。 |
-| `ad_complete` | `ad_type`, `reward_claimed` | 广告播放完成 | 完播率。 |
+|       Event Name       |       参数       |       触发时机       |       分析目的       |
+|       :---       |       :---       |       :---       |       :---       |
+|       `iap_store_open`       |       `entry_point` (MainMenu/Pause/Die)       |       打开商店界面       |       曝光率 (Impression)。       |
+|       `iap_product_click`       |       `product_id`, `price`       |       点击某个商品       |       点击率 (CTR)。       |
+|       `iap_checkout`       |       `product_id`, `order_id`       |       点击购买按钮（唤起支付）       |       **支付中断率**：点了买但没付钱，可能是支付渠道挂了。       |
+|       `iap_purchase_verify`       |       `product_id`, `order_id`, `status` (Success/Fail)       |       支付回调       |       实际收入 (Revenue)。       |
+|       `ad_show`       |       `ad_type` (Reward/Interstitial), `placement` (Revive/DoubleGold)       |       广告开始播放       |       广告变现效率。       |
+|       `ad_complete`       |       `ad_type`, `reward_claimed`       |       广告播放完成       |       完播率。       |
 
 ---
 
@@ -179,12 +182,12 @@
 - 活动期间需要实时调整策略
 - 崩溃或支付异常需要秒级响应
 
-| 指标类型 | 监控项 | 报警阈值 | 处理方案 |
-| :--- | :--- | :--- | :--- |
-| 📈 收入监控 | 小时收入同比下降 | > 30% | 立即检查支付渠道 |
-| 👥 用户活跃 | 实时在线人数异常 | < 历史均值 50% | 检查服务器状态 |
-| 🐛 稳定性 | 崩溃率 | > 2% | 回滚版本或热修复 |
-| ⚡ 性能 | 服务器响应时间 | > 1000ms | 扩容或优化查询 |
+|       指标类型       |       监控项       |       报警阈值       |       处理方案       |
+|       :---       |       :---       |       :---       |       :---       |
+|       📈 收入监控       |       小时收入同比下降       |       > 30%       |       立即检查支付渠道       |
+|       👥 用户活跃       |       实时在线人数异常       |       < 历史均值 50%       |       检查服务器状态       |
+|       🐛 稳定性       |       崩溃率       |       > 2%       |       回滚版本或热修复       |
+|       ⚡ 性能       |       服务器响应时间       |       > 1000ms       |       扩容或优化查询       |
 
 ### 7.2 实时活动追踪 (Event Tracking)
 ```csharp
@@ -222,11 +225,11 @@ public class RealTimeEventTracker
 - **Facebook** 通过A/B测试发现蓝色主题提升15%互动率
 - **Airbnb** 用A/B测试优化搜索算法，提升20%预订率
 
-| 实验类型 | 适用场景 | 最小样本量 | 运行时长 |
-| :--- | :--- | :--- | :--- |
-| 🎨 UI变化 | 按钮颜色、文案 | 1000用户/组 | 1-2周 |
-| 🎮 玩法调整 | 难度曲线、奖励 | 5000用户/组 | 2-4周 |
-| 💰 商业化 | 价格、礼包内容 | 10000用户/组 | 4-6周 |
+|       实验类型       |       适用场景       |       最小样本量       |       运行时长       |
+|       :---       |       :---       |       :---       |       :---       |
+|       🎨 UI变化       |       按钮颜色、文案       |       1000用户/组       |       1-2周       |
+|       🎮 玩法调整       |       难度曲线、奖励       |       5000用户/组       |       2-4周       |
+|       💰 商业化       |       价格、礼包内容       |       10000用户/组       |       4-6周       |
 
 ### 8.2 分流算法 (User Bucketing)
 ```csharp
@@ -324,11 +327,12 @@ public class DashboardGenerator
 ```
 
 ### 9.2 自动化报告系统
-| 报告类型 | 频率 | 关键指标 | 发送对象 |
-| :--- | :--- | :--- | :--- |
-| 📱 每日简报 | 早上9点 | DAU、收入、崩溃率 | 全团队 |
-| 📈 周度深度 | 周一 | 留存、关卡数据、商业化 | 产品经理 |
-| 🎯 月度复盘 | 月初 | 版本对比、竞品分析 | 高层管理 |
+
+|       报告类型       |       频率       |       关键指标       |       发送对象       |
+|       :---       |       :---       |       :---       |       :---       |
+|       📱 每日简报       |       早上9点       |       DAU、收入、崩溃率       |       全团队       |
+|       📈 周度深度       |       周一       |       留存、关卡数据、商业化       |       产品经理       |
+|       🎯 月度复盘       |       月初       |       版本对比、竞品分析       |       高层管理       |
 
 ## 10. 数据质量与监控 (Data Quality)
 
@@ -367,12 +371,13 @@ public class DataQualityMonitor
 ```
 
 ### 10.2 反作弊数据监控
-| 监控维度 | 异常阈值 | 检测算法 | 处理策略 |
-| :--- | :--- | :--- | :--- |
-| 💰 资源获取速度 | > 正常值5倍 | 统计分布 | 标记观察 |
-| ⚔️ 战斗数据 | 伤害超出理论上限 | 规则引擎 | 自动封禁 |
-| 🏃 移动速度 | > 最大移动速度 | 物理引擎验证 | 踢出游戏 |
-| ⏱️ 游戏时间 | > 24小时连续在线 | 行为模式 | 人工审核 |
+
+|       监控维度       |       异常阈值       |       检测算法       |       处理策略       |
+|       :---       |       :---       |       :---       |       :---       |
+|       💰 资源获取速度       |       > 正常值5倍       |       统计分布       |       标记观察       |
+|       ⚔️ 战斗数据       |       伤害超出理论上限       |       规则引擎       |       自动封禁       |
+|       🏃 移动速度       |       > 最大移动速度       |       物理引擎验证       |       踢出游戏       |
+|       ⏱️ 游戏时间       |       > 24小时连续在线       |       行为模式       |       人工审核       |
 
 ---
 

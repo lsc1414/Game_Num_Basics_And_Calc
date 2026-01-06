@@ -51,11 +51,11 @@ class Player : Character {
 ### 3.2 转变二：属性 -> 组件
 不要把所有数据都塞进一个类。根据**功能**拆分数据。
 
-| OOP 属性 | ECS 组件 |
-| :--- | :--- |
-| `class Monster { int hp; }` | `struct HealthComponent { int value; }` |
-| `class Monster { float speed; }` | `struct MoveSpeedComponent { float value; }` |
-| `class Monster { bool isStunned; }` | `struct StunTag : IComponentData {}` (空组件，仅作标记) |
+|       OOP 属性       |       ECS 组件       |
+|       :---       |       :---       |
+|       `class Monster { int hp; }`       |       `struct HealthComponent { int value; }`       |
+|       `class Monster { float speed; }`       |       `struct MoveSpeedComponent { float value; }`       |
+|       `class Monster { bool isStunned; }`       |       `struct StunTag : IComponentData {}` (空组件，仅作标记)       |
 
 ### 3.3 转变三：方法 -> 系统
 不要在类里写 `Update()`。思考“这个行为需要什么数据”。

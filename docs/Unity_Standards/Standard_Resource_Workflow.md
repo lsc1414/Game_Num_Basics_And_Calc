@@ -54,12 +54,12 @@ graph TD
 
 我们将目录结构直接映射到 YooAsset 的收集器规则中，实现**零配置**分包。
 
-| 目录路径                     | 收集规则 (Collector) | 打包方式 (Addressable)            | 对应 Package     |
-| :--------------------------- | :------------------- | :-------------------------------- | :--------------- |
-| `_Project/Art/UI/Common`     | `PackDirectory`      | `PackTogether` (打成一个大包)     | `DefaultPackage` |
-| `_Project/Scenes/Boot.unity` | `PackFile`           | -                                 | `DefaultPackage` |
-| `_Project/Features/Chapter1` | `PackDirectory`      | `PackSeparately` (每个文件单独打) | `LevelPackage`   |
-| `_Project/Features/Chapter2` | `PackDirectory`      | `PackSeparately`                  | `LevelPackage`   |
+|       目录路径                           |       收集规则 (Collector)       |       打包方式 (Addressable)                  |       对应 Package           |
+|       :---------------------------       |       :-------------------       |       :--------------------------------       |       :---------------       |
+|       `_Project/Art/UI/Common`           |       `PackDirectory`            |       `PackTogether` (打成一个大包)           |       `DefaultPackage`       |
+|       `_Project/Scenes/Boot.unity`       |       `PackFile`                 |       -                                       |       `DefaultPackage`       |
+|       `_Project/Features/Chapter1`       |       `PackDirectory`            |       `PackSeparately` (每个文件单独打)       |       `LevelPackage`         |
+|       `_Project/Features/Chapter2`       |       `PackDirectory`            |       `PackSeparately`                        |       `LevelPackage`         |
 
 - **Tag 自动化**:
   - `Features/Chapter1` 下的所有资源，自动打上 `Tag = "Chapter1"`。

@@ -1,4 +1,4 @@
-# 🎨 Shader 核心数学模式与实战指南 (The Math of Shaders)
+﻿# 🎨 Shader 核心数学模式与实战指南 (The Math of Shaders)
 
 Shader 编程的本质不是写代码，而是**数学建模**。
 我们要做的就是把光照、纹理、时间等输入，通过数学公式，映射为屏幕上的每一个像素颜色。
@@ -13,7 +13,7 @@ Shader 编程的本质不是写代码，而是**数学建模**。
 
 ### 1.1 `saturate(x)` —— 安全钳制
 
-- **公式:** $clamp(x, 0, 1)$
+- **公式:** $\text{clamp}(x, 0, 1)$
 - **作用:** 确保数值永远在 0 到 1 之间。
 - **为什么重要:** 颜色、透明度、UV 坐标通常都不应超过 1 或低于 0。任何光照计算后都建议加一个 saturate。
 
@@ -33,7 +33,7 @@ Shader 编程的本质不是写代码，而是**数学建模**。
 
 ### 1.4 `frac(x)` —— 周期循环
 
-- **公式:** $x - floor(x)$ (取小数部分)
+- **公式:** $x - \text{floor}(x)$ (取小数部分)
 - **图像:** 锯齿波 (0 -> 1, 0 -> 1...)
 - **应用:** 制作条纹 (Stripes)、时间循环 (`frac(_Time.y * speed)`).
 
@@ -53,14 +53,14 @@ Shader 编程的本质不是写代码，而是**数学建模**。
 **视觉:** 物体边缘发光（幽灵、能量盾、选中高亮）。
 **理论:** 当视线方向 ($V$) 与表面法线 ($N$) 垂直时，反射最强。
 
-- **核心公式:**
+**核心公式:**
 
-  $$ F = (1 - saturate(dot(N, V)))^P $$
+$$F = (1 - \text{saturate}(\text{dot}(N, V)))^P$$
 
 - **参数:**
   - $N$: World Normal (世界法线)
   - $V$: View Direction (视线方向，Camera 位置 - 像素位置)
-  - $dot(N, V)$: 越接近 1 代表正对着相机（中心），越接近 0 代表垂直相机（边缘）。
+  - $\text{dot}(N, V)$: 越接近 1 代表正对着相机（中心），越接近 0 代表垂直相机（边缘）。
   - $P$: Power (指数)，控制边缘光的宽窄。P 越大，光越细。
 
 ```hlsl
@@ -79,40 +79,39 @@ return _RimColor * rim;
 
 - **核心逻辑:**
 
-  1.  **采样:** $Height = tex2D(NoiseTexture, UV).r$
-  2.  **裁剪:** $if (Height < _Cutoff) \ discard;$
-  3.  **边缘光:** 处于裁剪边缘的像素 ($Height \approx _Cutoff$) 上色。
+  1.  **采样:** $Height = \text{tex2D}(NoiseTexture, UV).r$
+  2.  **裁剪:** $\text{if} (Height < \_Cutoff) \ \text{discard};$
+  3.  **边缘光:** 处于裁剪边缘的像素 ($Height \approx \_Cutoff$) 上色。
 
-- **数学技巧 (边缘带):**
+**数学技巧 (边缘带):**
 
-  $$ Edge = step(Height - \_Cutoff, \_EdgeWidth) $$
+$$Edge = \text{step}(Height - \_Cutoff, \_EdgeWidth)$$
 
-  - 这表示：比阈值高一点点的那部分区域，返回 1 (发光)，其余为 0。
+- 这表示：比阈值高一点点的那部分区域，返回 1 (发光)，其余为 0。
 
 ### 2.3 UV 流动与扭曲 (UV Scrolling & Distortion)
 
 **视觉:** 滚动的岩浆、流动的水面、被热浪扭曲的背景。
 **理论:** 在采样纹理**之前**，修改 UV 坐标。
 
-- **UV 滚动 (Scrolling):**
+**UV 滚动 (Scrolling):**
 
-  $$ UV\_{new} = UV + Speed \cdot Time $$
+$$UV_{new} = UV + Speed \cdot Time$$
 
-- **UV 扭曲 (Distortion):**
-  使用另一张噪点图来干扰当前的 UV。
+**UV 扭曲 (Distortion):** 使用另一张噪点图来干扰当前的 UV。
 
-  $$ UV\_{distorted} = UV + tex2D(Noise, UV + Time).xy \cdot Strength $$
+$$UV_{distorted} = UV + \text{tex2D}(Noise, UV + Time).xy \cdot Strength$$
 
-  - _解释:_ 就像透过凹凸不平的玻璃看东西，看到的像素位置被偏移了。
+- _解释:_ 就像透过凹凸不平的玻璃看东西，看到的像素位置被偏移了。
 
 ### 2.4 受击闪白 (Hit Flash)
 
 **视觉:** 怪物受击时瞬间变全白。
 **理论:** 简单的颜色插值，不涉及光照。
 
-- **公式:**
+**公式:**
 
-  $$ FinalColor = lerp(TextureColor, FlashColor, FlashStrength) $$
+$$FinalColor = \text{lerp}(TextureColor, FlashColor, FlashStrength)$$
 
 - **注意:** `FlashStrength` 通常由 C# 脚本控制协程或 AnimationCurve 来驱动 (0 -> 1 -> 0)。
 
@@ -121,13 +120,13 @@ return _RimColor * rim;
 **视觉:** 技能冷却时图标变黑白。
 **理论:** 人眼对绿色的敏感度最高，对蓝色最低。不能简单平均 RGB。
 
-- **亮度公式 (Luma):**
+**亮度公式 (Luma):**
 
-  $$ Gray = dot(Color.rgb, float3(0.299, 0.587, 0.114)) $$
+$$Gray = \text{dot}(Color.rgb, float3(0.299, 0.587, 0.114))$$
 
-- **可控饱和度:**
+**可控饱和度:**
 
-  $$ Final = lerp(Gray, Color.rgb, \_Saturation) $$
+$$Final = \text{lerp}(Gray, Color.rgb, \_Saturation)$$
 
 ---
 
@@ -138,21 +137,21 @@ return _RimColor * rim;
 
 ### 3.1 简单的旗帜飘动 (Sine Wave)
 
-**理论:** 将顶点的 Y 轴高度作为输入，用正弦波偏移 X 或 Z 轴。
+**理论:** 将顶点的 Y 轴高度作为输入，用正弦波偏移 X 轴或 Z 轴。
 
-- **公式:**
+**公式:**
 
-  $$ Offset.x = \sin(Vertex.y \cdot Frequency + Time \cdot Speed) \cdot Amplitude $$
+$$Offset.x = \sin(Vertex.y \cdot Frequency + Time \cdot Speed) \cdot Amplitude$$
 
-  - `Vertex.y` 作为相位偏移，确保旗帜不同高度的摆动不同步。
+- `Vertex.y` 作为相位偏移，确保旗帜不同高度的摆动不同步。
 
 ### 3.2 呼吸效果 (膨胀)
 
 **理论:** 沿**法线方向**移动顶点。
 
-- **公式:**
+**公式:**
 
-  $$ Pos\_{new} = Pos + Normal \cdot \sin(Time) \cdot Strength $$
+$$Pos_{new} = Pos + Normal \cdot \sin(Time) \cdot Strength$$
 
 - **应用:** 史莱姆怪物的呼吸、选中目标时的脉冲框。
 
@@ -201,11 +200,11 @@ return _RimColor * rim;
 **视觉:** 角色边缘有一圈亮色轮廓（选中效果）。
 **理论:** 检测当前像素周围是否是透明像素。如果我是透明的，但我旁边有不透明的像素，那我就是“外轮廓”。
 
-- **采样公式 (十字采样法):**
-  取上下左右 4 个点的 Alpha 值累加。
+**采样公式 (十字采样法):** 取上下左右 4 个点的 Alpha 值累加。
 
-  $$ SumAlpha = A*{up} + A*{down} + A*{left} + A*{right} $$
-    $$ Outline = step(\_Threshold, SumAlpha) \cdot (1 - CurrentPixel.a) $$
+$$SumAlpha = A_{up} + A_{down} + A_{left} + A_{right}$$
+
+$$Outline = \text{step}(\_Threshold, SumAlpha) \cdot (1 - CurrentPixel.a)$$
 
 - **优化:** 仅仅采样 4 次可能不够平滑，高质量描边通常采样 8 次（米字型）。
 
@@ -214,10 +213,11 @@ return _RimColor * rim;
 **视觉:** 2D 角色脚下有一个倾斜的黑色影子。
 **理论:** 利用顶点着色器，将顶点的 Y 轴映射到 X 轴偏移上。
 
-- **顶点变换:**
+**顶点变换:**
 
-  $$ WorldPos.x += WorldPos.y \cdot \tan(Angle) $$
-    $$ WorldPos.y = FloorHeight $$
+$$WorldPos.x += WorldPos.y \cdot \tan(Angle)$$
+
+$$WorldPos.y = FloorHeight$$
 
 - **注意:** 需要两个 Pass。第一个 Pass 渲染影子（纯黑、半透、无 ZWrite），第二个 Pass 渲染角色本身。
 
@@ -232,33 +232,37 @@ return _RimColor * rim;
 **视觉:** 屏幕四角变暗，模拟相机镜头或压抑氛围（低血量）。
 **理论:** 计算 UV 坐标距离中心 (0.5, 0.5) 的距离。
 
-- **公式:**
+**公式:**
 
-  $$ Dist = distance(i.uv, float2(0.5, 0.5)) $$
-    $$ Mask = smoothstep(0.5, 1.0, Dist \cdot Intensity) $$
-    $$ Final = Color \cdot (1 - Mask) $$
+$$Dist = \text{distance}(i.uv, float2(0.5, 0.5))$$
+
+$$Mask = \text{smoothstep}(0.5, 1.0, Dist \cdot Intensity)$$
+
+$$Final = Color \cdot (1 - Mask)$$
 
 ### 7.2 马赛克 (Pixelation)
 
 **视觉:** 画面变模糊成大方块（眩晕、复古滤镜）。
 **理论:** 降低 UV 的精度。将连续的 UV 坐标“量化”为台阶状。
 
-- **公式:**
+**公式:**
 
-  $$ UV\_{new} = floor(UV \cdot Resolution) / Resolution $$
+$$UV_{new} = \text{floor}(UV \cdot Resolution) / Resolution$$
 
-  - _例子:_ 如果 `Resolution` 是 100，那么 0.015 会变成 $floor(1.5)/100 = 0.01$。0.010 到 0.019 之间的所有 UV 都会变成同一个值，采到同一个颜色。
+- _例子:_ 如果 `Resolution` 是 100，那么 0.015 会变成 $\text{floor}(1.5)/100 = 0.01$。0.010 到 0.019 之间的所有 UV 都会变成同一个值，采到同一个颜色。
 
 ### 7.3 色差/故障风 (Chromatic Aberration / Glitch)
 
 **视觉:** RGB 三色分离，像旧电视或赛博朋克干扰。
 **理论:** 采样三次纹理，但每次给 R、G、B 通道不同的 UV 偏移。
 
-- **公式:**
+**公式:**
 
-  $$ R = tex2D(\_MainTex, UV + Offset).r $$
-    $$ G = tex2D(\_MainTex, UV).g $$
-    $$ B = tex2D(\_MainTex, UV - Offset).b $$
+$$R = \text{tex2D}(\_MainTex, UV + Offset).r$$
+
+$$G = \text{tex2D}(\_MainTex, UV).g$$
+
+$$B = \text{tex2D}(\_MainTex, UV - Offset).b$$
 
 - **Glitch 进阶:** `Offset` 可以是一个随时间快速变化的随机数 (`frac(sin(time)*large_number)`).
 
@@ -287,12 +291,12 @@ return _RimColor * rim;
 
 Shader 里没有 `Random.Range`。我们利用高频正弦波的 `frac` 部分来模拟随机。
 
-- **经典单次哈希 (One-line Hash):**
+**经典单次哈希 (One-line Hash):**
 
-  $$ Rand(uv) = frac(\sin(dot(uv, float2(12.9898, 78.233))) \cdot 43758.5453) $$
+$$Rand(uv) = \text{frac}(\sin(\text{dot}(uv, float2(12.9898, 78.233))) \cdot 43758.5453)$$
 
-  - **原理:** 将 UV 坐标投影到一个大数上，取正弦波极其细碎的部分，看起来就像电视雪花。
-  - **应用:** 故障风特效的随机跳变、星星闪烁。
+- **原理:** 将 UV 坐标投影到一个大数上，取正弦波极其细碎的部分，看起来就像电视雪花。
+- **应用:** 故障风特效的随机跳变、星星闪烁。
 
 ### 9.2 简单值噪声 (Value Noise)
 
@@ -314,7 +318,7 @@ Shader 里没有 `Random.Range`。我们利用高频正弦波的 `frac` 部分�
 - **数学推导:**
 
   1.  定义光带位置: $Pos = UV.x + UV.y$ (45 度斜线)。
-  2.  让光带移动: $Pos += _Time.y \cdot Speed$。
+  2.  让光带移动: $Pos += \_Time.y \cdot Speed$。
   3.  限制光带宽度: 使用 `smoothstep` 或 `pow` 提取中间亮的两边暗的区域。
 
   ```hlsl
@@ -336,29 +340,30 @@ Shader 里没有 `Random.Range`。我们利用高频正弦波的 `frac` 部分�
 
 - **核心函数:** `atan2(y, x)`
   - 返回值为 $(-\pi, \pi)$ (即 -3.14 到 3.14)。
-- **归一化角度:**
+    **归一化角度:**
 
-  $$ Angle = \frac{atan2(uv.y - 0.5, uv.x - 0.5)}{\pi \cdot 2} + 0.5 $$
+$$Angle = \frac{\text{atan2}(uv.y - 0.5, uv.x - 0.5)}{\pi \cdot 2} + 0.5$$
 
-  - 结果为 0 到 1 的线性增长值。
+- 结果为 0 到 1 的线性增长值。
 
-- **判断逻辑:**
+**判断逻辑:**
 
-  $$ Mask = step(Angle, \_FillAmount) $$
+$$Mask = \text{step}(Angle, \_FillAmount)$$
 
-  - 如果当前角度小于填充量，显示颜色，否则透明。
+- 如果当前角度小于填充量，显示颜色，否则透明。
 
 ### 10.3 全息投影/扫描网格 (Hologram / Scanline)
 
 **视觉:** 科幻风格的 UI，有水平扫描线上下移动。
 **理论:** 利用 WorldPos 或 ScreenPos 的 Y 轴分量，结合正弦波。
 
-- **公式:**
+**公式:**
 
-  $$ Scan = \sin(WorldPos.y \cdot Frequency + Time \cdot Speed) $$
-    $$ Line = step(0.95, Scan) $$
+$$Scan = \sin(WorldPos.y \cdot Frequency + Time \cdot Speed)$$
 
-  - 只取波峰最顶端的 5% 作为亮线。
+$$Line = \text{step}(0.95, Scan)$$
+
+- 只取波峰最顶端的 5% 作为亮线。
 
 ---
 

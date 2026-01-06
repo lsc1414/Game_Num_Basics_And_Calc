@@ -6,15 +6,15 @@
 
 ## ⚡ 速查表 (Cheat Sheet)
 
-| 资源类型 | 命名前缀 | 格式 | 关键设置 | 备注 |
-| :--- | :--- | :--- | :--- | :--- |
-| **模型 (Static)** | `SM_` | `.fbx` | Scale=1, Y-Up, Z-Forward | 轴心点在底部中心 |
-| **模型 (Skinned)** | `SK_` | `.fbx` | Bake Animation=On | 包含骨骼，轴心点在脚底 |
-| **贴图 (Albedo)** | `T_` | `.tga` / `.png` | sRGB=On | 必须是 2 的幂次方 (POT) |
-| **贴图 (Normal)** | `T_` ... `_N` | `.tga` / `.png` | sRGB=Off | 必须标记为 Normal Map |
-| **贴图 (Mask)** | `T_` ... `_M` | `.tga` / `.png` | sRGB=Off | R=Metal, G=Occ, B=Smooth |
-| **UI 图标** | `UI_Icon_` | `.png` | Alpha Is Transparency=On | **必须留 1px 透明边缘** |
-| **UI 背景** | `UI_Bg_` | `.png` | 9-Slice 预留 | 检查压缩格式 (ASTC/ETC2) |
+|       资源类型       |       命名前缀       |       格式       |       关键设置       |       备注       |
+|       :---       |       :---       |       :---       |       :---       |       :---       |
+|       **模型 (Static)**       |       `SM_`       |       `.fbx`       |       Scale=1, Y-Up, Z-Forward       |       轴心点在底部中心       |
+|       **模型 (Skinned)**       |       `SK_`       |       `.fbx`       |       Bake Animation=On       |       包含骨骼，轴心点在脚底       |
+|       **贴图 (Albedo)**       |       `T_`       |       `.tga` / `.png`       |       sRGB=On       |       必须是 2 的幂次方 (POT)       |
+|       **贴图 (Normal)**       |       `T_` ... `_N`       |       `.tga` / `.png`       |       sRGB=Off       |       必须标记为 Normal Map       |
+|       **贴图 (Mask)**       |       `T_` ... `_M`       |       `.tga` / `.png`       |       sRGB=Off       |       R=Metal, G=Occ, B=Smooth       |
+|       **UI 图标**       |       `UI_Icon_`       |       `.png`       |       Alpha Is Transparency=On       |       **必须留 1px 透明边缘**       |
+|       **UI 背景**       |       `UI_Bg_`       |       `.png`       |       9-Slice 预留       |       检查压缩格式 (ASTC/ETC2)       |
 
 ---
 
