@@ -1,4 +1,4 @@
-# 몬스터仇恨系统重构示例 (Monster Aggro System Refactor Demo)
+# 怪物仇恨系统重构示例 (Monster Aggro System Refactor Demo)
 
 本文档展示了如何将 `Design/Mechanics/Aggro_System.md` 中定义的怪物仇恨系统，通过我们设计的 `DecisionEngine` 进行重构。这使得仇恨逻辑更加模块化、可配置，并能轻松扩展新的仇恨考量因素。
 
@@ -21,7 +21,7 @@ public interface IAggroTargetRefactored : IPositionable, IHealth, IHasEntityType
 {
     // 可以保留原 Aggro_System.md 中的 GetThreatModifier 或 IsValid 方法，
     // 但 IsValid 最好转化为 IFilter，GetThreatModifier 的逻辑则融入 Score
-    // bool IsValid(); 
+    // bool IsValid();
 }
 
 // 模拟一个可被仇恨的目标（例如：玩家或防御塔）
@@ -105,7 +105,7 @@ public class AggroAgent : MonoBehaviour
             _threatTable[source.ID] = amount;
         }
         // 立即触发一次仇恨检查，防止反应迟钝
-        FindBestTarget(); 
+        FindBestTarget();
     }
 
     // --- Private Methods ---
@@ -212,7 +212,7 @@ public class AggroAgent : MonoBehaviour
     private float GetTargetScore(IAggroTargetRefactored target, DecisionContext ctx)
     {
         if (!(_decisionEngine as dynamic).PassesFilters(target, ctx)) return float.MinValue; // 过滤器判断
-        
+
         float score = 0f;
         foreach (var scorer in (_decisionEngine as dynamic)._scorers) // 反射访问私有字段，实际应该通过公有方法
         {
