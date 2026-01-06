@@ -13,6 +13,7 @@
 ### 🔪 代码二分法
 1.  **现象：** 游戏启动就崩，不知道是哪个系统的问题。
 2.  **操作：** 
+
     - 把 `GameBootstrapper` 里一半的 Manager 注释掉。
     - 跑一下。还崩吗？
     - **崩：** 问题在剩下的一半里。继续二分。
@@ -22,6 +23,7 @@
 ### 🕰️ 时间二分法 (Git Bisect)
 1.  **现象：** 昨天是好的，今天坏了。但我今天提交了 20 个 Commit。
 2.  **操作：** 使用 `git bisect`。
+
     - `git bisect start`
     - `git bisect bad` (当前版本)
     - `git bisect good <commit-hash>` (昨天的版本)
@@ -37,9 +39,13 @@
 ### 📸 内存快照对比 (Snapshot Diffing)
 1.  打开 Unity Memory Profiler。
 2.  进入主菜单，点击 **Capture (Snapshot A)**。
+
 3.  进入战斗，打一架，退回主菜单。
+
 4.  点击 **Capture (Snapshot B)**。
+
 5.  **核心操作：** 查看 Diff (B - A)。
+
     - 理论上，回到主菜单后，内存应该大致回到 A 的水平。
     - 如果你发现多了 100 个 `Texture2D` 或 500 个 `EnemyInstance`，那就是没卸载干净（比如被静态 Action 引用了）。
 
@@ -52,12 +58,16 @@
 ### 🎞️ 逐帧分析
 1.  在 Game 窗口点击右键 -> Load RenderDoc。
 2.  点击 Capture Frame。
+
 3.  在 RenderDoc 里打开这一帧。
+
 4.  **Event Browser:** 你可以看到这一帧 GPU 做的每一件事。
+
     - DrawSkybox
     - DrawOpaque
     - DrawTransparent
 5.  **查案：**
+
     - 为什么这个模型没有被合批 (Batching)？看它的 State，是不是材质不一样？是不是 Lightmap Index 不一样？
     - 为什么这个像素是黑的？点击 Pixel History，看是哪个 Shader 计算出了 (0,0,0)。
 

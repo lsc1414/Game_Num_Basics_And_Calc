@@ -13,6 +13,7 @@
 
 1.  **🔴 关键反馈 (Critical):** 必须被听到的声音。如：受击、低血量警报、大招就绪、击杀反馈。
 2.  **🟡 核心交互 (Core Interaction):** 玩家主动操作的反馈。如：普通攻击、脚步声、UI点击、拾取物品。
+
 3.  **🟢 氛围与环境 (Ambience/Foley):** 增强沉浸感，但可被忽略。如：风声、远处鸟叫、装备摩擦声。
 
 **实践技巧：** 使用 Audio Mixer 中的 `Duck Volume`（闪避）技术。当“关键反馈”声音播放时，自动压低“背景音乐”和“环境音”的音量。
@@ -33,11 +34,11 @@
 
 ### 2.1 📀 格式与压缩 (Format & Compression)
 
-|       音频类型       |       推荐格式 (Source)       |       Unity Load Type       |       Compression Format       |       解释       |
-|       :---       |       :---       |       :---       |       :---       |       :---       |
-|       **💥 短音效 (SFX)**<br>(UI, 枪声, 脚步)       |       WAV (16bit)       |       **Decompress On Load**       |       **PCM** 或 **ADPCM**       |       需要极低延迟。PCM无解码开销但占内存；ADPCM是平衡选择。       |
-|       **🗣️ 长音效/语音**<br>(Dialogue, Ambience)       |       WAV       |       **Compressed In Memory**       |       **Vorbis** (均可)       |       只有播放时才解压，节省内存，但有微小CPU开销。       |
-|       **🎼 背景音乐 (BGM)**       |       WAV       |       **Streaming**       |       **Vorbis**       |       直接从磁盘流式读取，几乎不占内存，但增加磁盘IO。       |
+|          音频类型          |          推荐格式 (Source)          |          Unity Load Type          |          Compression Format          |          解释          |
+|          :---          |          :---          |          :---          |          :---          |          :---          |
+|          **💥 短音效 (SFX)**<br>(UI, 枪声, 脚步)          |          WAV (16bit)          |          **Decompress On Load**          |          **PCM** 或 **ADPCM**          |          需要极低延迟。PCM无解码开销但占内存；ADPCM是平衡选择。          |
+|          **🗣️ 长音效/语音**<br>(Dialogue, Ambience)          |          WAV          |          **Compressed In Memory**          |          **Vorbis** (均可)          |          只有播放时才解压，节省内存，但有微小CPU开销。          |
+|          **🎼 背景音乐 (BGM)**          |          WAV          |          **Streaming**          |          **Vorbis**          |          直接从磁盘流式读取，几乎不占内存，但增加磁盘IO。          |
 
 **重要原则：**
 
@@ -81,7 +82,9 @@ public void PlaySoundWithVariation(AudioSource source, AudioClip clip)
 
 1.  建立一个 `AudioManager`。
 2.  初始化时生成一个包含 10-20 个 AudioSource 的池子（List）。
+
 3.  需要播放时，寻找一个 `!isPlaying` 的 AudioSource。
+
 4.  如果所有 Source 都在忙（极其罕见），根据优先级停掉最不重要的声音（如远处的环境音），或者暂时扩展池子。
 
 ### 3.3 🔇 限制同类声音并发 (Concurrency Limiting)
@@ -109,10 +112,12 @@ public void PlayClip(AudioClip clip)
 
 1.  **📁 分组 (Groups):** 创建 Master, Music, SFX, UI, Voice 分组。
 2.  **📸 快照 (Snapshots):** 定义不同的状态。
+
     *   *Normal:* 正常状态。
     *   *Pause:* 游戏暂停（SFX音量 -80dB，Music 压低并加 LowPass 滤镜）。
     *   *LowHealth:* 低血量（环境音变小，心跳声变大，加 HighPass 滤镜模仿耳鸣）。
 3.  **📉 侧链闪避 (Ducking):**
+
     *   当 "Voice" 组有信号输入时，自动降低 "Music" 组的音量。
     *   这能确保剧情对话或重要语音指示永远清晰。
 

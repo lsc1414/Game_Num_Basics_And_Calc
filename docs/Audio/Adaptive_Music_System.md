@@ -10,7 +10,9 @@
 
 1.  [理论基础 (Theoretical Basis)](#-1-理论基础-theoretical-basis)
 2.  [实践应用 (Practical Implementation)](#️-2-实践应用-practical-implementation)
+
 3.  [业界优秀案例 (Industry Best Practices)](#-3-业界优秀案例-industry-best-practices)
+
 4.  [参考资料 (References)](#-4-参考资料-references)
 
 ---
@@ -26,6 +28,7 @@
 1.  **Vertical Layering (垂直分层)**: 多条音轨同步播放，通过调整各轨道的音量（Volume Automation）来改变音乐的丰富度。
     - *例子*: 探索时只有鼓点，战斗时加入吉他，高潮时加入人声。
 2.  **Horizontal Resequencing (水平重排)**: 根据状态跳转到乐曲的不同段落（Intro, Loop A, Loop B, Outro）。
+
     - *例子*: Boss 进入二阶段，音乐无缝切换到更激昂的变奏。
 
 ### 1.2 设计心理学
@@ -50,12 +53,12 @@
 
 对于每一首战斗曲，我们需要作曲家提供 4 个同步轨道：
 
-|       轨道       |       内容       |       触发条件       |
-|       :---       |       :---       |       :---       |
-|       **Layer 1: Base**       |       氛围 Pad、低音 Bass       |       始终播放 (建造阶段)       |
-|       **Layer 2: Rhythm**       |       鼓组、打击乐       |       战斗开始 (第一只怪刷出)       |
-|       **Layer 3: Melody**       |       主旋律 (弦乐/合成器)       |       怪物数量 > 20 或 精英怪出现       |
-|       **Layer 4: Hype**       |       高潮乐器 (电吉他/人声)       |       Boss 战 或 基地血量 < 30%       |
+|          轨道          |          内容          |          触发条件          |
+|          :---          |          :---          |          :---          |
+|          **Layer 1: Base**          |          氛围 Pad、低音 Bass          |          始终播放 (建造阶段)          |
+|          **Layer 2: Rhythm**          |          鼓组、打击乐          |          战斗开始 (第一只怪刷出)          |
+|          **Layer 3: Melody**          |          主旋律 (弦乐/合成器)          |          怪物数量 > 20 或 精英怪出现          |
+|          **Layer 4: Hype**          |          高潮乐器 (电吉他/人声)          |          Boss 战 或 基地血量 < 30%          |
 
 ### 2.2 核心逻辑实现 (Unity Native)
 
@@ -187,6 +190,7 @@ public class BeatSynchronizer : MonoBehaviour
     - 重点: 两种核心技术的优缺点对比。
 
 2.  **"The Music of DOOM"**  
+
     - 来源: GDC Talk  
     - 重点: 如何让音乐听起来像是在"回应"玩家的操作。
 
@@ -197,6 +201,7 @@ public class BeatSynchronizer : MonoBehaviour
     - 链接: [YouTube](https://www.youtube.com/watch?v=2j3x0d8h0jU)
 
 2.  **"Mick Gordon on Composing for DOOM"**  
+
     - 频道: GDC  
     - 重点: 动态混音技术。
 
@@ -206,6 +211,7 @@ public class BeatSynchronizer : MonoBehaviour
     - 行业标准中间件（如果项目预算允许，建议使用）。
 
 2.  **Unity Audio Mixer**  
+
     - Unity 内置的混音器，支持 Ducking (侧链压缩) 和 Snapshots (快照)，是实现动态混音的基础。
 
 ---
@@ -216,6 +222,7 @@ public class BeatSynchronizer : MonoBehaviour
 
 1.  **4轨标准**: 向外包作曲家提需求时，明确要求提供 4 个同步分轨（Base, Rhythm, Melody, Hype）。
 2.  **强度检测**: 编写 `CombatIntensityEvaluator`，根据屏幕内怪物数量、精英怪权重、玩家血量计算一个 0-100 的强度值。
+
 3.  **侧链压缩**: 当重要音效（如爆炸、对话）播放时，自动压低背景音乐音量 (Auto-Ducking)，保证听感清晰。
 
 ---

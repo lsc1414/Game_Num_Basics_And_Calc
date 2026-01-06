@@ -38,7 +38,9 @@ graph LR
 
 1.  **候选人 (Candidate `T`):** 待选择的对象（Enemy, Tower, PerkData）。
 2.  **上下文 (Context `C`):** 决策时的环境信息（距离、玩家 HP、已拥有的 Tags）。
+
 3.  **评分器 (Scorer `IScorer<T, C>`):** 一个独立的逻辑单元，负责计算单项分数。
+
 4.  **选择器 (Selector):** 负责运行所有评分器并汇总结果。
 
 ---
@@ -49,17 +51,18 @@ graph LR
 
 ### 3.1 基础评分器
 
-|       评分器名称                    |       逻辑描述                                           |       适用场景                         |
-|       :----------------------       |       :-------------------------------------------       |       :-------------------------       |
-|       **DistanceScorer**            |       距离越近，分数越高 (线性或指数衰减)。              |       仇恨(近战怪)、塔防(近程塔)       |
-|       **HealthScorer**              |       生命值越低，分数越高 (斩杀逻辑)。                  |       刺客型怪物、收割型防御塔         |
-|       **TagSynergyScorer**          |       拥有相同标签 (Tag) 数量越多，分数越高。            |       Perk 抽取、战利品生成            |
-|       **FixedPriorityScorer**       |       基于硬编码的优先级 (Boss > Elite > Minion)。       |       塔防(优先打大怪)                 |
-|       **MemoryScorer**              |       之前互动过 (造成伤害/被选中) 则加分。              |       仇恨(反击逻辑)、连击系统         |
+|          评分器名称                       |          逻辑描述                                              |          适用场景                            |
+|          :----------------------          |          :-------------------------------------------          |          :-------------------------          |
+|          **DistanceScorer**               |          距离越近，分数越高 (线性或指数衰减)。                 |          仇恨(近战怪)、塔防(近程塔)          |
+|          **HealthScorer**                 |          生命值越低，分数越高 (斩杀逻辑)。                     |          刺客型怪物、收割型防御塔            |
+|          **TagSynergyScorer**             |          拥有相同标签 (Tag) 数量越多，分数越高。               |          Perk 抽取、战利品生成               |
+|          **FixedPriorityScorer**          |          基于硬编码的优先级 (Boss > Elite > Minion)。          |          塔防(优先打大怪)                    |
+|          **MemoryScorer**                 |          之前互动过 (造成伤害/被选中) 则加分。                 |          仇恨(反击逻辑)、连击系统            |
 
 ### 3.2 评分公式
 
 标准的归一化评分公式：
+
 $$FinalScore = \sum (RawScore_i \times Multiplier_i) + FlatBonus$$
 
 - **Multiplier (乘区):** 用于调整权重（例如：刺客怪的 `HealthScorer` 权重是 5.0，而 `DistanceScorer` 权重是 0.5）。
@@ -74,28 +77,28 @@ $$FinalScore = \sum (RawScore_i \times Multiplier_i) + FlatBonus$$
 - **目标:** 选一个攻击目标。
 - **选择模式:** `Top 1` (确定性)。
 - **配置:**
-  - `DamageReceivedScorer`: 权重 1.0 (谁打我，我打谁)。
-  - `DistanceScorer`: 权重 2.0 (谁离我近，我打谁)。
-  - `TauntStatusScorer`: 权重 100.0 (嘲讽强制最高)。
+    - `DamageReceivedScorer`: 权重 1.0 (谁打我，我打谁)。
+    - `DistanceScorer`: 权重 2.0 (谁离我近，我打谁)。
+    - `TauntStatusScorer`: 权重 100.0 (嘲讽强制最高)。
 
 ### Case B: 狙击塔索敌 (Sniper Tower Targeting)
 
 - **目标:** 选一个敌人开火。
 - **选择模式:** `Top 1` (确定性)。
 - **配置:**
-  - `DistanceScorer`: 权重 **-1.0** (反向，优先打远的)。
-  - `HealthScorer`: 权重 2.0 (优先打残血，确保击杀)。
-  - `ArmorTypeScorer`: 若目标是重甲，权重 0.5 (打不动)；若轻甲，权重 1.5。
+    - `DistanceScorer`: 权重 **-1.0** (反向，优先打远的)。
+    - `HealthScorer`: 权重 2.0 (优先打残血，确保击杀)。
+    - `ArmorTypeScorer`: 若目标是重甲，权重 0.5 (打不动)；若轻甲，权重 1.5。
 
 ### Case C: 肉鸽 Perk 抽取 (Perk Drafting)
 
 - **目标:** 选 3 个 Perk 给玩家。
 - **选择模式:** `Weighted Random` (加权随机)。
 - **配置:**
-  - `RarityBaseScorer`: 传说(5) < 史诗(15) < 稀有(30) < 普通(50)。
-  - `TagSynergyScorer`: 玩家若有[Fire]，火系 Perk 权重 x 1.5。
-  - `BanListFilter`: 若玩家选了[NoMagic]，剔除所有法术 Perk。
-  - `PityTimerScorer`: 若连续 10 次没出传说，传说权重 x 10。
+    - `RarityBaseScorer`: 传说(5) < 史诗(15) < 稀有(30) < 普通(50)。
+    - `TagSynergyScorer`: 玩家若有[Fire]，火系 Perk 权重 x 1.5。
+    - `BanListFilter`: 若玩家选了[NoMagic]，剔除所有法术 Perk。
+    - `PityTimerScorer`: 若连续 10 次没出传说，传说权重 x 10。
 
 ---
 
@@ -169,5 +172,7 @@ public class DecisionEngine<T> {
 
 1.  **分帧计算 (Time-Slicing):** 不要让所有怪物在同一帧跑决策逻辑。将怪物分组，每帧只更新一组。
 2.  **空间划分 (Spatial Partitioning):** 在运行 `DistanceScorer` 之前，先通过四叉树 (QuadTree) 或网格系统获取附近的候选人，避免遍历全图。
+
 3.  **脏标记 (Dirty Flags):** 对于 Perk 系统，只有当玩家获得新 Perk 或进入新房间时才重新计算权重，而不是每帧计算。
+
 4.  **提前退出 (Early Exit):** 在寻找 `SelectBest` 时，如果发现一个“绝对优先”的目标（如嘲讽），直接返回，跳过后续计算。

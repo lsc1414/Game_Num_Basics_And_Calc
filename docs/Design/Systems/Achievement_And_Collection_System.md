@@ -10,20 +10,22 @@
 
 1. **延长游戏寿命** - 提供通关后的目标
 2. **引导玩法探索** - 鼓励尝试不同玩法
+
 3. **提供社交资本** - 展示稀有成就/收集品
+
 4. **数据分析工具** - 了解玩家行为
 
 ### 📐 成就设计原则
 
 #### 1. 成就分类矩阵
 
-|       类型       |       难度       |       发现性       |       用途       |
-|      ------      |      ------      |      --------      |      ------      |
-|       **进度成就**       |       简单       |       显而易见       |       新手引导（"完成第 1 关"）       |
-|       **挑战成就**       |       困难       |       显而易见       |       技术展示（"无伤通关 Boss"）       |
-|       **收集成就**       |       中等       |       需探索       |       长期目标（"收集全部武器"）       |
-|       **隐藏成就**       |       多样       |       隐藏       |       彩蛋奖励（"击败隐藏 Boss"）       |
-|       **统计成就**       |       简单-困难       |       显而易见       |       肝帝奖励（"击杀 10000 敌人"）       |
+|          类型          |          难度          |          发现性          |          用途          |
+|         ------         |         ------         |         --------         |         ------         |
+|          **进度成就**          |          简单          |          显而易见          |          新手引导（"完成第 1 关"）          |
+|          **挑战成就**          |          困难          |          显而易见          |          技术展示（"无伤通关 Boss"）          |
+|          **收集成就**          |          中等          |          需探索          |          长期目标（"收集全部武器"）          |
+|          **隐藏成就**          |          多样          |          隐藏          |          彩蛋奖励（"击败隐藏 Boss"）          |
+|          **统计成就**          |          简单-困难          |          显而易见          |          肝帝奖励（"击杀 10000 敌人"）          |
 
 #### 2. 成就难度曲线
 
@@ -560,12 +562,12 @@ Steam 通过数十万游戏数据总结出的成就设计黄金法则：
 
 **2. 避免的设计错误**
 
-|       ❌ 糟糕设计       |       ✅ 良好设计       |
-|      -----------      |      -----------      |
-|       "启动游戏" 成就       |       "完成教学" 成就       |
-|       "花费 1000 小时"       |       "精通 10 种武器"       |
-|       "购买 DLC"（氪金）       |       "发现隐藏区域"       |
-|       "联机 100 次"（依赖他人）       |       "单人完成挑战"       |
+|          ❌ 糟糕设计          |          ✅ 良好设计          |
+|         -----------         |         -----------         |
+|          "启动游戏" 成就          |          "完成教学" 成就          |
+|          "花费 1000 小时"          |          "精通 10 种武器"          |
+|          "购买 DLC"（氪金）          |          "发现隐藏区域"          |
+|          "联机 100 次"（依赖他人）          |          "单人完成挑战"          |
 
 **3. 成就命名艺术**
 
@@ -598,17 +600,21 @@ Hollow Knight 的收集系统是"完成主义者天堂"。
 
 ```
 1. 护符（40 个）
+
    - 功能性收集（影响玩法）
    - 有明确的获取提示
    - 部分需要探索发现
 2. 日记条目（168 个）
+
    - 纯收集（不影响玩法）
    - 需要击杀每种敌人解锁
    - 提供 Lore 奖励
 3. 地图（17 个）
+
    - 功能性 + 收集
    - 引导探索
 4. 记忆（全14 个）
+
    - 隐藏收集
    - 解锁剧情
 ```
@@ -624,11 +630,13 @@ Hollow Knight 的收集系统是"完成主义者天堂"。
 ```
 
 2. **进度可视化**
+
 - 日记显示完成度：147/168 (87%)
 - 地图上标记缺失位置
 - Hunter's Mark（100% 日记）给予视觉炫耀
 
 3. **适度提示**
+
 - NPC 会暗示收集品位置
 - 不直接给坐标（保持探索乐趣）
 
@@ -685,16 +693,18 @@ Boss Cells（Boss 细胞）:
 **进度感设计**:
 
 1. **初期快速解锁** （前 10 次 Run）
-   - 每次都能解锁新东西
-   - 保持新鲜感
+    - 每次都能解锁新东西
+    - 保持新鲜感
    
 2. **中期稳定解锁** （10-50 次）
-   - 3-5 次 Run 解锁 1 样
-   - 长期目标感
+
+    - 3-5 次 Run 解锁 1 样
+    - 长期目标感
    
 3. **后期稀有解锁** （50+ 次）
-   - 10+ 次 Run 才解锁 1 样
-   - 但都是超强力/超稀有物品
+
+    - 10+ 次 Run 才解锁 1 样
+    - 但都是超强力/超稀有物品
 
 **Vampirefall 借鉴**:
 
@@ -759,47 +769,47 @@ Boss Cells（Boss 细胞）:
 ### 📄 理论与设计
 
 1. **The Design of Everyday Achievements**  
-   *Scott Rigby (Immersive Effects)*  
-   [论文 PDF](https://immersiveeffects.com/research/achievements)
+    *Scott Rigby (Immersive Effects)*  
+    [论文 PDF](https://immersiveeffects.com/research/achievements)
 
 2. **Steam Achievement Design Best Practices**  
-   *Valve Corporation*  
-   [官方指南](https://partner.steamgames.com/doc/features/achievements)
+    *Valve Corporation*  
+    [官方指南](https://partner.steamgames.com/doc/features/achievements)
 
 3. **The Psychology of Collecting**  
-   *Extra Credits*  
-   [YouTube 视频](https://www.youtube.com/watch?v=collecting_psychology)
+    *Extra Credits*  
+    [YouTube 视频](https://www.youtube.com/watch?v=collecting_psychology)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2018] Achievements: More Than Just Bragging Rights**  
-   演讲者: Lucas Pope (Return of the Obra Dinn)  
-   [GDC Vault](https://www.gdcvault.com/play/achievements_2018)
+    演讲者: Lucas Pope (Return of the Obra Dinn)  
+    [GDC Vault](https://www.gdcvault.com/play/achievements_2018)
 
 2. **[GDC 2015] Hollow Knight: Creating a Rich World Through Secrets**  
-   演讲者: Ari Gibson & William Pellen (Team Cherry)  
-   [YouTube 链接](https://www.youtube.com/watch?v=hollow_knight_secrets)
+    演讲者: Ari Gibson & William Pellen (Team Cherry)  
+    [YouTube 链接](https://www.youtube.com/watch?v=hollow_knight_secrets)
 
 ### 🌐 技术博客
 
 1. **Steam Achievement Statistics Analysis**  
-   [Steam Spy 数据](https://steamspy.com/achievements)
+    [Steam Spy 数据](https://steamspy.com/achievements)
 
 2. **How to Design Good Achievements - Gamasutra**  
-   [文章链接](https://www.gamasutra.com/view/feature/achievement_design.php)
+    [文章链接](https://www.gamasutra.com/view/feature/achievement_design.php)
 
 3. **Completionism in Game Design**  
-   [Medium 深度分析](https://medium.com/@gamedesign/completionism)
+    [Medium 深度分析](https://medium.com/@gamedesign/completionism)
 
 ### 📚 推荐书籍
 
 1. **《游戏化设计》** (Gamification by Design)  
-   作者: Gabe Zichermann, Christopher Cunningham  
-   第 5 章: "成就系统设计"
+    作者: Gabe Zichermann, Christopher Cunningham  
+    第 5 章: "成就系统设计"
 
 2. **《游戏心理学》** (The Psychology of Video Games)  
-   作者: Celia Hodent  
-   第 7 章: "收集与完成主义"
+    作者: Celia Hodent  
+    第 7 章: "收集与完成主义"
 
 ---
 

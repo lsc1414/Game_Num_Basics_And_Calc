@@ -8,16 +8,17 @@
 
 1. **提升技能上限 (Skill Ceiling)** - 熟练玩家有展示空间
 2. **增强爽感 (Game Feel)** - 流畅连击带来满足感
+
 3. **丰富策略深度 (Strategic Depth)** - 不同连招应对不同情况
 
 ### 📐 连招系统分类
 
 #### 1. 硬连锁 vs 软连锁
 
-|       类型       |       定义       |       使用场景       |       代表作       |
-|      ------      |      ------      |      ----------      |      --------      |
-|       **硬连锁**       |       敌人被连击时无法反击       |       格斗游戏       |       Street Fighter       |
-|       **软连锁**       |       连击不保证命中，可以中断       |       动作游戏       |       Devil May Cry       |
+|          类型          |          定义          |          使用场景          |          代表作          |
+|         ------         |         ------         |         ----------         |         --------         |
+|          **硬连锁**          |          敌人被连击时无法反击          |          格斗游戏          |          Street Fighter          |
+|          **软连锁**          |          连击不保证命中，可以中断          |          动作游戏          |          Devil May Cry          |
 
 **Vampirefall 推荐**: 软连锁（塔防+动作混合，需要保持灵活性）
 
@@ -107,11 +108,11 @@ gantt
 
 **窗口设计原则**:
 
-|       连招难度       |       窗口时长       |       玩家体验       |
-|      ---------      |      ---------      |      ---------      |
-|       简单       |       0.4-0.6s       |       新手友好       |
-|       中等       |       0.25-0.4s       |       平衡挑战       |
-|       困难       |       0.1-0.25s       |       高手专属       |
+|          连招难度          |          窗口时长          |          玩家体验          |
+|         ---------         |         ---------         |         ---------         |
+|          简单          |          0.4-0.6s          |          新手友好          |
+|          中等          |          0.25-0.4s          |          平衡挑战          |
+|          困难          |          0.1-0.25s          |          高手专属          |
 
 #### 3. 取消技系统 (Cancel System)
 
@@ -150,11 +151,11 @@ gantt
 
 Vampirefall 的**塔防 + 动作**混合带来独特问题：
 
-|       传统动作游戏       |       Vampirefall 特殊性       |
-|      -------------      |      -------------------      |
-|       纯 1v1/1vN 战斗       |       需要分心建塔/管理资源       |
-|       连续输入       |       可能被打断（建塔操作）       |
-|       单一目标锁定       |       多目标威胁（塔防特性）       |
+|          传统动作游戏          |          Vampirefall 特殊性          |
+|         -------------         |         -------------------         |
+|          纯 1v1/1vN 战斗          |          需要分心建塔/管理资源          |
+|          连续输入          |          可能被打断（建塔操作）          |
+|          单一目标锁定          |          多目标威胁（塔防特性）          |
 
 **解决方案**:
 
@@ -554,11 +555,11 @@ Street Fighter 系列确立了格斗游戏连招的黄金标准。
 
 **帧数据系统**:
 
-|       攻击       |       启动帧       |       活跃帧       |       硬直帧       |       命中优势       |
-|      ------      |      --------      |      --------      |      --------      |      ----------      |
-|       轻拳       |       3f       |       2f       |       6f       |       +2f       |
-|       中拳       |       5f       |       3f       |       8f       |       +3f       |
-|       重拳       |       8f       |       4f       |       12f       |       +5f       |
+|          攻击          |          启动帧          |          活跃帧          |          硬直帧          |          命中优势          |
+|         ------         |         --------         |         --------         |         --------         |         ----------         |
+|          轻拳          |          3f          |          2f          |          6f          |          +2f          |
+|          中拳          |          5f          |          3f          |          8f          |          +3f          |
+|          重拳          |          8f          |          4f          |          12f          |          +5f          |
 
 **设计哲学**:
 > "连招应该奖励精准的输入，而非盲目的按键连打。"
@@ -626,13 +627,13 @@ Hades 在肉鸽框架下实现了流畅的连招系统。
 
 **武器多样性**:
 
-|       武器       |       连招特性       |       难度       |
-|      ------      |      ---------      |      ------      |
-|       **剑**       |       传统 AAA 连击       |       简单       |
-|       **矛**       |       蓄力投掷 + 回收       |       中等       |
-|       **盾**       |       格挡反击 + 投掷       |       中等       |
-|       **弓**       |       蓄力射击 + 特殊箭       |       困难       |
-|       **拳套**       |       快速连打 + 冲刺取消       |       中等       |
+|          武器          |          连招特性          |          难度          |
+|         ------         |         ---------         |         ------         |
+|          **剑**          |          传统 AAA 连击          |          简单          |
+|          **矛**          |          蓄力投掷 + 回收          |          中等          |
+|          **盾**          |          格挡反击 + 投掷          |          中等          |
+|          **弓**          |          蓄力射击 + 特殊箭          |          困难          |
+|          **拳套**          |          快速连打 + 冲刺取消          |          中等          |
 
 **祝福联动**:
 
@@ -719,50 +720,50 @@ R1+L1: 符文攻击 (冷却 15 秒)
 ### 📄 理论与设计
 
 1. **Fighting Game Fundamentals**  
-   *Core-A Gaming YouTube 系列*  
-   [播放列表](https://www.youtube.com/playlist?list=PLj34EySs1IeZ8GpjufgsGK-68PBnJbGIe)
+    *Core-A Gaming YouTube 系列*  
+    [播放列表](https://www.youtube.com/playlist?list=PLj34EySs1IeZ8GpjufgsGK-68PBnJbGIe)
 
 2. **The Design of Devil May Cry's Combat**  
-   *Game Maker's Toolkit*  
-   [YouTube 视频](https://www.youtube.com/watch?v=SyoW8OZh3_w)
+    *Game Maker's Toolkit*  
+    [YouTube 视频](https://www.youtube.com/watch?v=SyoW8OZh3_w)
 
 3. **Combo Systems in Action Games**  
-   *Gamasutra Deep Dive*  
-   [文章链接](https://www.gamasutra.com/view/feature/combo_systems_action.php)
+    *Gamasutra Deep Dive*  
+    [文章链接](https://www.gamasutra.com/view/feature/combo_systems_action.php)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2018] Building the Combat of God of War**  
-   演讲者: Rob Meyer (Santa Monica Studio)  
-   [GDC Vault](https://www.gdcvault.com/play/1025234/)
+    演讲者: Rob Meyer (Santa Monica Studio)  
+    [GDC Vault](https://www.gdcvault.com/play/1025234/)
 
 2. **[GDC 2019] Designing Hades**  
-   演讲者: Greg Kasavin (Supergiant Games)  
-   [YouTube 链接](https://www.youtube.com/watch?v=JzyE9hi912c)
+    演讲者: Greg Kasavin (Supergiant Games)  
+    [YouTube 链接](https://www.youtube.com/watch?v=JzyE9hi912c)
 
 3. **[GDC 2015] The Animation Pipeline of Devil May Cry 4**  
-   演讲者: Hiroshi Yajima (Capcom)  
-   [GDC Vault](https://www.gdcvault.com/play/1022115/)
+    演讲者: Hiroshi Yajima (Capcom)  
+    [GDC Vault](https://www.gdcvault.com/play/1022115/)
 
 ### 🌐 技术博客
 
 1. **Input Buffering in Fighting Games**  
-   [How Fighting Games Use Input Buffering](https://www.reddit.com/r/Fighters/comments/input_buffering/)
+    [How Fighting Games Use Input Buffering](https://www.reddit.com/r/Fighters/comments/input_buffering/)
 
 2. **Cancel Systems Explained**  
-   [Fighting Game Glossary - Cancels](https://glossary.infil.net/?t=Cancel)
+    [Fighting Game Glossary - Cancels](https://glossary.infil.net/?t=Cancel)
 
 3. **Combo System Implementation**  
-   [Unity Forum - Combo System Thread](https://forum.unity.com/threads/combo-system.html)
+    [Unity Forum - Combo System Thread](https://forum.unity.com/threads/combo-system.html)
 
 ### 📚 推荐书籍
 
 1. **《格斗游戏设计》** (The Design of Fighting Games)  
-   作者: Various  
-   （合集，包含多个开发者访谈）
+    作者: Various  
+    （合集，包含多个开发者访谈）
 
 2. **《游戏动画设计》** (Game Animation Design)  
-   作者: Jonathan Cooper
+    作者: Jonathan Cooper
 
 ---
 

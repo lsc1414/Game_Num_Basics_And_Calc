@@ -10,6 +10,7 @@
 
 1. **Build 多样性** - 支持多种玩法风格
 2. **成长可感知** - 玩家能明显感受到变强
+
 3. **选择有意义** - 每个决策都有权衡
 
 ### 📐 技能树类型分类
@@ -59,10 +60,10 @@
 
 #### 2. 主动技能 vs 被动加成
 
-|       类型       |       玩家体验       |       设计难度       |       推荐比例       |
-|      ------      |      ---------      |       ---------      |      ---------      |
-|       **主动技能**       |       爽感强，操作复杂度 ↑       |       高（需动画/特效）       |       20-30%       |
-|       **被动加成**       |       无感知，但持续有效       |      低（纯数值）       |       70-80%       |
+|          类型          |          玩家体验          |          设计难度          |          推荐比例          |
+|         ------         |         ---------         |          ---------         |         ---------         |
+|          **主动技能**          |          爽感强，操作复杂度 ↑          |          高（需动画/特效）          |          20-30%          |
+|          **被动加成**          |          无感知，但持续有效          |         低（纯数值）          |          70-80%          |
 
 **设计公式**:
 
@@ -145,12 +146,12 @@ if (选择率 > 90% AND 无替代方案):
 
 #### 1. 免费 vs 付费重置
 
-|       模式       |       优点       |       缺点       |       适用场景       |
-|      ------      |      ------      |      ------      |      ----------      |
-|       **完全免费**       |       鼓励实验，友好       |       失去决策重量感       |       肉鸽类       |
-|       **货币重置**       |       保留选择意义       |       可能导致囤积不敢点       |       RPG       |
-|       **首次免费**       |       平衡两者       |       实现复杂度中等       |       推荐       |
-|       **禁止重置**       |       选择极重要       |       新手可能废号       |       硬核游戏       |
+|          模式          |          优点          |          缺点          |          适用场景          |
+|         ------         |         ------         |         ------         |         ----------         |
+|          **完全免费**          |          鼓励实验，友好          |          失去决策重量感          |          肉鸽类          |
+|          **货币重置**          |          保留选择意义          |          可能导致囤积不敢点          |          RPG          |
+|          **首次免费**          |          平衡两者          |          实现复杂度中等          |          推荐          |
+|          **禁止重置**          |          选择极重要          |          新手可能废号          |          硬核游戏          |
 
 **Vampirefall 推荐**: 
 
@@ -707,12 +708,16 @@ Hades 的"镜子"是**肉鸽类技能树**的优秀范例。
 
 ```
 1. 生命系
+
    - +50 生命 vs +25% 死亡挑战伤害
 2. 进攻系
+
    - +10% 攻击 vs +10% 技能伤害
 3. 防御系
+
    - 20% 伤害减免 vs 100% 死亡后复活 1 次
 4. 特殊系
+
    - +20% 稀有祝福概率 vs +1 额外冲刺次数
 ```
 
@@ -797,47 +802,47 @@ Grim Dawn 除了职业技能树，还有独特的**星座系统**。
 ### 📄 理论与设计
 
 1. **Skill Trees and Player Choice**  
-   *Damion Schubert (BioWare)*  
-   [GDC 论文](https://www.gdcvault.com/skill_trees_player_choice)
+    *Damion Schubert (BioWare)*  
+    [GDC 论文](https://www.gdcvault.com/skill_trees_player_choice)
 
 2. **The Math of Skill Trees**  
-   *Game Balance Concepts*  
-   [在线课程](https://gamebalanceconcepts.wordpress.com/)
+    *Game Balance Concepts*  
+    [在线课程](https://gamebalanceconcepts.wordpress.com/)
 
 3. **Build Diversity in RPGs**  
-   *Extra Credits*  
-   [YouTube 视频](https://www.youtube.com/watch?v=build_diversity)
+    *Extra Credits*  
+    [YouTube 视频](https://www.youtube.com/watch?v=build_diversity)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2013] Path of Exile: Designing the Passive Tree**  
-   演讲者: Chris Wilson (Grinding Gear Games)  
-   [GDC Vault](https://www.gdcvault.com/play/poe_passive_tree)
+    演讲者: Chris Wilson (Grinding Gear Games)  
+    [GDC Vault](https://www.gdcvault.com/play/poe_passive_tree)
 
 2. **[GDC 2020] Hades: Balancing Roguelike Progression**  
-   演讲者: Greg Kasavin (Supergiant Games)  
-   [YouTube 链接](https://www.youtube.com/watch?v=hades_progression)
+    演讲者: Greg Kasavin (Supergiant Games)  
+    [YouTube 链接](https://www.youtube.com/watch?v=hades_progression)
 
 ### 🌐 技术博客
 
 1. **Skill Tree Design Patterns - Gamasutra**  
-   [文章链接](https://www.gamasutra.com/view/feature/skill_tree_patterns.php)
+    [文章链接](https://www.gamasutra.com/view/feature/skill_tree_patterns.php)
 
 2. **Build Entropy Analysis**  
-   [Reddit 深度讨论](https://www.reddit.com/r/gamedev/skill_tree_entropy/)
+    [Reddit 深度讨论](https://www.reddit.com/r/gamedev/skill_tree_entropy/)
 
 3. **Balancing Skill Trees**  
-   [Game Developer 文章](https://www.gamedeveloper.com/design/balancing-skill-trees)
+    [Game Developer 文章](https://www.gamedeveloper.com/design/balancing-skill-trees)
 
 ### 📚 推荐书籍
 
 1. **《RPG 设计指南》** (Tabletop RPG Design)  
-   作者: Jennifer Scheurle  
-   第 8 章: "角色成长系统"
+    作者: Jennifer Scheurle  
+    第 8 章: "角色成长系统"
 
 2. **《游戏平衡艺术》** (Game Balance)  
-   作者: Ian Schreiber, Brenda Romero  
-   第 12 章: "技能树平衡"
+    作者: Ian Schreiber, Brenda Romero  
+    第 12 章: "技能树平衡"
 
 ---
 

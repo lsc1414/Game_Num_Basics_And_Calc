@@ -15,6 +15,7 @@
 *   **作用:**
     1.  **旋转中心:** 物体绕着 Pivot 旋转。
     2.  **坐标原点:** `transform.position` 指的就是 Pivot 在世界空间的位置。
+
     3.  **缩放中心:** 物体向着 Pivot 收缩。
 
 ### 1.2 Anchors (锚点) —— 父级的参考系
@@ -54,6 +55,7 @@
 
 ### 3.1 `sizeDelta` 的真相
 很多人以为 `rectTransform.sizeDelta` 就是宽高。**大错特错！**
+
 $$sizeDelta = \text{ElementSize} - \text{AnchorSize}$$
 
 *   **在点模式下:** AnchorSize 为 0，所以 `sizeDelta` **等于** 宽高。
@@ -88,13 +90,13 @@ public static void StretchToFill(RectTransform rt) {
 不要自己算坐标！不要自己算坐标！不要自己算坐标！
 Unity 提供了 `RectTransformUtility` 处理复杂的 Pivot 和 Canvas 缩放。
 
-|       API       |       作用       |       典型场景       |
-|       :---       |       :---       |       :---       |
-|       `ScreenPointToLocalPointInRectangle`       |       屏幕点 -> 局部点       |       鼠标点击 UI、物体飞向 UI       |
-|       `WorldToScreenPoint`       |       世界(UI) -> 屏幕       |       UI 坐标转回屏幕 (跨 Canvas)       |
-|       `ScreenPointToWorldPointInRectangle`       |       屏幕点 -> 世界(UI)       |       拖拽物体跟随鼠标       |
-|       `FlipLayoutOnAxis`       |       翻转布局       |       镜像 UI       |
-|       `PixelAdjustPoint`       |       像素对齐       |       消除 UI 模糊       |
+|          API          |          作用          |          典型场景          |
+|          :---          |          :---          |          :---          |
+|          `ScreenPointToLocalPointInRectangle`          |          屏幕点 -> 局部点          |          鼠标点击 UI、物体飞向 UI          |
+|          `WorldToScreenPoint`          |          世界(UI) -> 屏幕          |          UI 坐标转回屏幕 (跨 Canvas)          |
+|          `ScreenPointToWorldPointInRectangle`          |          屏幕点 -> 世界(UI)          |          拖拽物体跟随鼠标          |
+|          `FlipLayoutOnAxis`          |          翻转布局          |          镜像 UI          |
+|          `PixelAdjustPoint`          |          像素对齐          |          消除 UI 模糊          |
 
 ### 4.1 为什么需要 `Camera` 参数？
 *   **Overlay Canvas:** 不需要 Camera（传 `null`），因为 UI 直接渲染在屏幕上。
@@ -233,19 +235,21 @@ void Update() {
     *   将**动态**元素（如血条、倒计时）和**静态**元素（如背景板、固定图标）放在**不同**的 Canvas (或 Sub-Canvas) 中。
     *   当一个 UI 元素变动时，同一个 Canvas 下的所有元素都可能需要重新生成网格。
 2.  **少用 `LayoutGroup`:** 
+
     *   `VerticalLayoutGroup`, `GridLayoutGroup` 等自动布局组件性能开销大。
     *   如果是列表，务必使用 **对象池 (Object Pooling)** + **无限滚动 (Infinite Scroll)**，而不是实例化 100 个 Item。
 3.  **Pixel Perfect:** 
+
     *   Canvas 上的 `Pixel Perfect` 选项会增加计算量，非像素风游戏通常不需要开启。
 
 ---
 
 ## 7. 速查表：我该用哪个属性？
 
-|       我想改变...       |       模式       |       使用属性       |
-|       :---       |       :---       |       :---       |
-|       **绝对位置**       |       点模式       |       `anchoredPosition`       |
-|       **固定宽高**       |       点模式       |       `sizeDelta`       |
-|       **贴边距离**       |       拉伸模式       |       `offsetMin` (左下), `offsetMax` (右上)       |
-|       **全屏铺满**       |       任意       |       `anchorMin=0`, `anchorMax=1`, `offsetMin/Max=0`       |
-|       **鼠标跟随**       |       任意       |       `RectTransformUtility.ScreenPointToLocalPointInRectangle`       |
+|          我想改变...          |          模式          |          使用属性          |
+|          :---          |          :---          |          :---          |
+|          **绝对位置**          |          点模式          |          `anchoredPosition`          |
+|          **固定宽高**          |          点模式          |          `sizeDelta`          |
+|          **贴边距离**          |          拉伸模式          |          `offsetMin` (左下), `offsetMax` (右上)          |
+|          **全屏铺满**          |          任意          |          `anchorMin=0`, `anchorMax=1`, `offsetMin/Max=0`          |
+|          **鼠标跟随**          |          任意          |          `RectTransformUtility.ScreenPointToLocalPointInRectangle`          |

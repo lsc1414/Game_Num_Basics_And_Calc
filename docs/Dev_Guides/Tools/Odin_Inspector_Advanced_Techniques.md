@@ -55,6 +55,7 @@ Inspector 绘制性能瓶颈：
 
 1. 成本必须为 10 的倍数
 2. 攻击范围不能超过建筑等级的 1.5 倍
+
 3. 特殊塔种类的攻击力必须满足特定公式
 
 #### 解决方案：自定义 Validator
@@ -699,8 +700,8 @@ public class TowerDatabase : ScriptableObject
 - **优势**：使用类似 Odin 的标签系统，策划可以无需程序员直接配置技能。
 - **实现**：每个技能都是一个 ScriptableObject，使用 `[ShowIf]` 根据技能类型显示不同参数。
 - **借鉴点**：
-  - 使用 `[EnumToggleButtons]` 让类型选择更直观
-  - 结合 `[ValidateInput]` 确保数值平衡（如伤害/冷却比率）
+    - 使用 `[EnumToggleButtons]` 让类型选择更直观
+    - 结合 `[ValidateInput]` 确保数值平衡（如伤害/冷却比率）
 
 ### 3.2 案例二：《Oxygen Not Included》的资源配置
 
@@ -708,12 +709,12 @@ public class TowerDatabase : ScriptableObject
 
 - **优势**：超过 200+ 种资源，但配置界面条理清晰。
 - **实现**：
-  - 使用 `[TableList]` 显示资源列表
-  - `[Searchable]` 快速定位资源
-  - 自定义验证器确保资源转换链没有循环依赖
+    - 使用 `[TableList]` 显示资源列表
+    - `[Searchable]` 快速定位资源
+    - 自定义验证器确保资源转换链没有循环依赖
 - **借鉴点**：
-  - 对于大型数据库，使用 `ShowPaging` + `Searchable`
-  - 添加批量验证按钮（"检查所有配置的合法性"）
+    - 对于大型数据库，使用 `ShowPaging` + `Searchable`
+    - 添加批量验证按钮（"检查所有配置的合法性"）
 
 ### 3.3 案例三：《Dead Cells》的武器系统
 
@@ -721,11 +722,11 @@ public class TowerDatabase : ScriptableObject
 
 - **优势**：武器配置复杂（基础属性 + 词缀 + 特效），但编辑器简洁。
 - **实现**：
-  - 使用 `[InlineEditor]` 嵌套编辑子配置
-  - 动态预览武器在游戏中的效果
+    - 使用 `[InlineEditor]` 嵌套编辑子配置
+    - 动态预览武器在游戏中的效果
 - **借鉴点**：
-  - 结合 `[PreviewField]` 显示武器图标
-  - 使用 `[InfoBox]` 显示计算后的最终属性
+    - 结合 `[PreviewField]` 显示武器图标
+    - 使用 `[InfoBox]` 显示计算后的最终属性
 
 ---
 
@@ -757,14 +758,19 @@ public class TowerDatabase : ScriptableObject
 ### ✅ DO（推荐做法）
 1. **使用 `[ValidateInput]` 而非运行时检查** - 在 Inspector 层面就捕获错误。
 2. **善用 `@` 表达式** - 减少硬编码，提高配置灵活性。
+
 3. **为大型列表启用 `ShowPaging`** - 避免 Inspector 卡顿。
+
 4. **使用 `[Button]` 自动化重复任务** - 如批量重命名、重新计算数值。
+
 5. **结合 `[OnValueChanged]` 保持数据一致性** - 如品质改变时清除不相关属性。
 
 ### ❌ DON'T（避免做法）
 1. **不要在 `ValueDropdown` 中执行耗时操作** - 会导致每次绘制都卡顿。
 2. **不要过度使用 `[ShowInInspector]`** - 显示过多计算属性会增加 GC 压力。
+
 3. **不要在 Validator 中修改数据** - 验证器应该只读，修改应在 `OnValueChanged` 中。
+
 4. **避免循环引用** - 如 A 的 `ValueDropdown` 依赖 B，B 的又依赖 A。
 
 ---

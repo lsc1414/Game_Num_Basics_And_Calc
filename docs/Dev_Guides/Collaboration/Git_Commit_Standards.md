@@ -122,10 +122,15 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 ### 3.2 工作流 (Workflow)
 1.  接到任务 "开发登录系统"。
 2.  基于 `develop` 切出 `feat/login`。
+
 3.  开发... 提交... (多次 Commit)。
+
 4.  开发完毕，推送到远程。
+
 5.  发起 **Pull Request (PR)** 合入 `develop`。
+
 6.  **Code Review**: 同事检查代码，确认无误后 Approve。
+
 7.  合并。
 
 ## 4. 工具强制约束 (Enforcement)

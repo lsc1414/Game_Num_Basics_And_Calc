@@ -10,7 +10,9 @@
 
 1.  [理论基础 (Theoretical Basis)](#-1-理论基础-theoretical-basis)
 2.  [实践应用 (Practical Implementation)](#️-2-实践应用-practical-implementation)
+
 3.  [业界优秀案例 (Industry Best Practices)](#-3-业界优秀案例-industry-best-practices)
+
 4.  [参考资料 (References)](#-4-参考资料-references)
 
 ---
@@ -78,6 +80,7 @@ graph LR
 
 1.  **Accessibility (可达性)**: 让新手也能体验"命中即爽快"
 2.  **Skill Expression (技术表达)**: 不能完全剥夺玩家操作空间
+
 3.  **Perception (感知)**: 玩家不应明显感觉到"被系统控制"
 
 > [!IMPORTANT]
@@ -127,12 +130,12 @@ flowchart TD
 
 #### 📊 难度分级辅助表
 
-|       难度等级        |       磁吸半径       |       子弹磁吸       |       自动旋转       |       锁定持续时间       |
-|      -----------      |      ----------      |      ----------      |      ----------      |      --------------      |
-|       简单            |       150px          |       强 (20°)       |       弱 (10%)       |       1.5s               |
-|       普通            |       100px          |       中 (10°)       |       无             |       1.0s               |
-|       困难            |       60px           |       弱 (5°)        |       无             |       0.5s               |
-|       专家            |       30px           |       无             |       无             |       0.2s               |
+|          难度等级           |          磁吸半径          |          子弹磁吸          |          自动旋转          |          锁定持续时间          |
+|         -----------         |         ----------         |         ----------         |         ----------         |         --------------         |
+|          简单               |          150px             |          强 (20°)          |          弱 (10%)          |          1.5s                  |
+|          普通               |          100px             |          中 (10°)          |          无                |          1.0s                  |
+|          困难               |          60px              |          弱 (5°)           |          无                |          0.5s                  |
+|          专家               |          30px              |          无                |          无                |          0.2s                  |
 
 ### 2.2 数据结构设计
 
@@ -447,11 +450,13 @@ public class AimAssistPreset : ScriptableObject
     - **Target Acquisition (目标捕获)**: 武器开镜时自动轻微拉向最近敌人
 
 2.  **武器差异化**
+
     - 手枪和自动步枪：强磁吸（易于瞄准移动目标）
     - 狙击枪：弱磁吸 + 强子弹磁吸（奖励精准瞄准）
     - 火箭筒：锁定系统（完全不同的机制）
 
 3.  **PvE vs PvP 平衡**
+
     - PvE 模式：强辅助（30% 磁吸强度）
     - PvP 模式：弱辅助（15% 磁吸强度）+ 反作弊检测
 
@@ -464,9 +469,9 @@ public class AimAssistPreset : ScriptableObject
 
 - 针对**不同武器类型**设计不同辅助强度
 - 在 Vampirefall 中：
-  - **霰弹枪**: 强磁吸（散弹武器需要快速反应）
-  - **狙击枪**: 仅子弹磁吸（奖励精准）
-  - **自动步枪**: 中等磁吸 + 轨迹补偿
+    - **霰弹枪**: 强磁吸（散弹武器需要快速反应）
+    - **狙击枪**: 仅子弹磁吸（奖励精准）
+    - **自动步枪**: 中等磁吸 + 轨迹补偿
 
 ---
 
@@ -480,10 +485,12 @@ public class AimAssistPreset : ScriptableObject
     - 熟练玩家命中率 > 40%：弱辅助
 
 2.  **建造模式无辅助**
+
     - 射击模式：开启辅助
     - 建造模式：完全禁用（避免干扰建造操作）
 
 3.  **移动端特殊优化**
+
     - **Fire Button Lock (射击锁定)**: 按住射击键时自动跟踪目标
     - **Tap to Fire (点击射击)**: 轻触自动瞄准最近敌人
 
@@ -510,10 +517,12 @@ public class AimAssistPreset : ScriptableObject
     - **士兵 76**: 中等辅助 + 自瞄大招（新手友好）
 
 2.  **视觉反馈**
+
     - 准星在辅助生效时变红
     - 击杀回放中显示"瞄准辅助贡献度"
 
 3.  **控制台专用优化**
+
     - **Dual-Zone (双区域)**: 摇杆推动小幅度时精细瞄准，推满时快速转向
     - **Exponential Ramp (指数加速)**: 摇杆推动越久，灵敏度越高
 
@@ -535,9 +544,9 @@ public class AimAssistPreset : ScriptableObject
 
 - 当敌人在**有效射程内**且**准星接近**时，准星变红
 - 红准星触发时：
-  - 子弹扩散减少 50%
-  - 磁吸强度提升至 1.5 倍
-  - 等同于给玩家一个"最佳射击时机"的提示
+    - 子弹扩散减少 50%
+    - 磁吸强度提升至 1.5 倍
+    - 等同于给玩家一个"最佳射击时机"的提示
 
 **启发**：
 
@@ -556,6 +565,7 @@ public class AimAssistPreset : ScriptableObject
     - 摘要: 研究发现 70% 的手柄玩家希望有"隐形辅助"，但不希望被明确告知
 
 2.  **"Input Prediction and Compensation in Network Games"**  
+
     - 作者: Bernier, Y. (Valve Software)  
     - 链接: [Valve Developer Community](https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization)
 
@@ -567,6 +577,7 @@ public class AimAssistPreset : ScriptableObject
     - 要点: 详细讲解 Destiny 的三层辅助系统（摩擦 + 磁吸 + 子弹弯曲）
 
 2.  **"The Feel of Combat: Shooting and Melee in The Last of Us"**  
+
     - 演讲者: Richard Cambier (Naughty Dog)  
     - 链接: [YouTube - GDC](https://www.youtube.com/watch?v=wBuoexbVEFE)  
     - 要点: 讨论如何通过瞄准辅助让"紧张刺激的战斗"保持平衡
@@ -579,11 +590,13 @@ public class AimAssistPreset : ScriptableObject
     - 数据实测: 不同武器的磁吸半径和强度
 
 2.  **"Unity Aim Assist Tutorial"**  
+
     - 作者: Brackeys  
     - 链接: [GitHub Repo](https://github.com/Brackeys/Aim-Assist)  
     - 包含完整 Unity 示例项目
 
 3.  **"Mobile FPS Controls: A Deep Dive"**  
+
     - 作者: Gamasutra (Indie Developers)  
     - 链接: [Gamasutra Article](https://www.gamasutra.com/blogs/JoshBycer/20180205/313866/Mobile_FPS_Controls_A_Deep_Dive.php)
 
@@ -594,6 +607,7 @@ public class AimAssistPreset : ScriptableObject
     - [GitHub - Lyra](https://github.com/EpicGames/UnrealEngine/tree/release/Samples/Games/Lyra)
 
 2.  **Unity Standard Assets - Aim Controller**  
+
     - [Unity Asset Store](https://assetstore.unity.com/packages/essentials/tutorial-projects/standard-assets-for-unity-2018-4-32351)
 
 ---
@@ -609,11 +623,13 @@ public class AimAssistPreset : ScriptableObject
     - P3: 自适应辅助强度
 
 2.  **关键设计原则**
+
     - ✅ **透明但隐形**: 玩家能感觉到流畅，但不觉得"被操控"
     - ✅ **公平平衡**: PvE 强辅助，PvP（如果有）弱辅助
     - ✅ **设备适配**: 移动端 > 手柄 > 鼠标键盘（辅助强度递减）
 
 3.  **测试指标**
+
     - 新手玩家前 3 局命中率应 > 30%
     - 熟练玩家命中率应在 50-70% 之间
     - 辅助系统不应显著改变武器平衡

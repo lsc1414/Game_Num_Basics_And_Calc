@@ -9,11 +9,11 @@
 
 在动手写代码前，必须根据游戏类型选择架构。
 
-|       方案       |       实现方式       |       优点       |       缺点       |       适用场景       |
-|       :---       |       :---       |       :---       |       :---       |       :---       |
-|       **A. World Space Canvas**       |       每个单位头顶挂一个 World Space 的 Canvas。       |       1. 开发极快<br>2. 物理依附，自带透视缩放       |       1. **性能最差** (每个 Canvas 都是独立 DrawCall)<br>2. 远距离看不清 (太小)       |       少量精英怪、主角、BOSS       |
-|       **B. Screen Space Mapping**       |       一个全屏 UI Canvas，通过脚本计算坐标跟随 3D 单位。       |       1. **性能较好** (UI 合批)<br>2. 大小恒定，清晰锐利<br>3. 不会穿模       |       1. 需要数学计算 (WorldToScreen)<br>2. 需要处理遮挡剔除       |       大多数 RPG、MOBA (英雄联盟方式)       |
-|       **C. GPU Instancing / Mesh**       |       不使用 uGUI，直接在怪的模型上方画一个 Quad 面片，用 Shader 控制进度。       |       1. **性能极致** (支持海量单位)<br>2. 0 GC       |       1. 制作复杂 (需写 Shader)<br>2. 难以实现复杂 UI 动画       |       **吸血鬼幸存者类**、超多单位塔防       |
+|          方案          |          实现方式          |          优点          |          缺点          |          适用场景          |
+|          :---          |          :---          |          :---          |          :---          |          :---          |
+|          **A. World Space Canvas**          |          每个单位头顶挂一个 World Space 的 Canvas。          |          1. 开发极快<br>2. 物理依附，自带透视缩放          |          1. **性能最差** (每个 Canvas 都是独立 DrawCall)<br>2. 远距离看不清 (太小)          |          少量精英怪、主角、BOSS          |
+|          **B. Screen Space Mapping**          |          一个全屏 UI Canvas，通过脚本计算坐标跟随 3D 单位。          |          1. **性能较好** (UI 合批)<br>2. 大小恒定，清晰锐利<br>3. 不会穿模          |          1. 需要数学计算 (WorldToScreen)<br>2. 需要处理遮挡剔除          |          大多数 RPG、MOBA (英雄联盟方式)          |
+|          **C. GPU Instancing / Mesh**          |          不使用 uGUI，直接在怪的模型上方画一个 Quad 面片，用 Shader 控制进度。          |          1. **性能极致** (支持海量单位)<br>2. 0 GC          |          1. 制作复杂 (需写 Shader)<br>2. 难以实现复杂 UI 动画          |          **吸血鬼幸存者类**、超多单位塔防          |
 
 > 💡 **Vampirefall 建议:** 
 > *   **普通怪物:** 方案 B (对象池管理 UI) 或 方案 C (如果同屏 > 200)。
@@ -145,6 +145,7 @@ public class UI_HealthBar_Juice : MonoBehaviour {
 ### 4.1 原理
 1.  在每个敌人模型头顶放一个极简单的 `Quad` (面片) 或 `SpriteRenderer`。
 2.  使用支持 **GPU Instancing** 的 Shader。
+
 3.  使用 `MaterialPropertyBlock` 修改单个血条的进度，而不是 `material.SetFloat` (后者会破坏合批，导致 500 个 DrawCall)。
 
 ### 4.2 代码实现片段
@@ -195,6 +196,9 @@ fixed4 frag (v2f i) : SV_Target {
 
 1.  **永远不要** 在 Update 中用 `GetComponent` 或 `Find`。
 2.  **事件驱动:** 血条脚本应该订阅 `HealthChanged` 事件，而不是每帧去查 `player.currentHp`。
+
 3.  **可见性优化:** 屏幕外的血条**停止更新位置**，甚至直接 Disable。
+
 4.  **层级管理:** 血条应该在所有 3D 物体之上，但在全屏 UI (如暂停菜单) 之下。通常设置 Canvas 的 `Sort Order`。
+
 5.  **整数对齐:** 如果使用像素风 UI，确保坐标 `RoundToInt`，否则血条边缘会模糊。

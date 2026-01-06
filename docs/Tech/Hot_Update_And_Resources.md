@@ -26,6 +26,7 @@
 ### 1.2 构建管线 (Build Pipeline)
 1.  **资源收集**: 通过 `AssetBundleCollector` 自动扫描 `Assets/Art` 和 `Assets/Res` 下的目录。
 2.  **加密**: 对 `DefaultPackage` 中的敏感数据 (如配置表) 应用 `Offset` 偏移加密。
+
 3.  **版本号**: 采用 `v1.0.build_timestamp` 格式。
 
 ### 1.3 运行模式
@@ -55,7 +56,9 @@ HybridCLR 使得 Unity 的 IL2CPP 后端也能加载动态 DLL，实现了 C# �
 ### 2.3 工作流 (Workflow)
 1.  **Compile**: 菜单栏 `HybridCLR/CompileDll` (生成热更 DLL)。
 2.  **Copy**: 自动脚本将生成的 DLL 复制到 YooAsset 的 `RawFile` 收集目录。
+
 3.  **Build**: 运行 YooAsset 构建资源包。
+
 4.  **Upload**: 将构建结果上传至 CDN。
 
 ## 3. 🚀 启动流程 (Boot Sequence)

@@ -57,14 +57,14 @@
 
 ## 4. Vampirefall 字体方案建议
 
-|       UI 元素       |       建议字体 (免费商用)       |       字重       |       颜色       |       备注       |
-|       :---       |       :---       |       :---       |       :---       |       :---       |
-|       **LOGO / 大标题**       |       **阿里妈妈刀隶体** 或 **方正黑变 (需授权)**       |       Heavy       |       金色/血红       |       突出东方/奇幻韵味       |
-|       **伤害数字 (Crit)**       |       **Alimama ShuHeiTi**       |       Bold       |       亮黄/橙       |       必须要是等宽数字 (Monospaced)       |
-|       **普通伤害**       |       **Roboto Condensed** (仅数字)       |       Bold       |       白色       |       紧凑，不挡视线       |
-|       **UI 标题**       |       **HarmonyOS Sans**       |       Bold       |       浅灰       |             |
-|       **技能描述**       |       **HarmonyOS Sans**       |       Regular       |       白色       |       行间距设为 1.2 倍       |
-|       **Lore (故事)**       |       **Noto Serif SC (思源宋体)**       |       Regular       |       暗金       |       宋体仅用于装饰性很强的长文本       |
+|          UI 元素          |          建议字体 (免费商用)          |          字重          |          颜色          |          备注          |
+|          :---          |          :---          |          :---          |          :---          |          :---          |
+|          **LOGO / 大标题**          |          **阿里妈妈刀隶体** 或 **方正黑变 (需授权)**          |          Heavy          |          金色/血红          |          突出东方/奇幻韵味          |
+|          **伤害数字 (Crit)**          |          **Alimama ShuHeiTi**          |          Bold          |          亮黄/橙          |          必须要是等宽数字 (Monospaced)          |
+|          **普通伤害**          |          **Roboto Condensed** (仅数字)          |          Bold          |          白色          |          紧凑，不挡视线          |
+|          **UI 标题**          |          **HarmonyOS Sans**          |          Bold          |          浅灰          |                   |
+|          **技能描述**          |          **HarmonyOS Sans**          |          Regular          |          白色          |          行间距设为 1.2 倍          |
+|          **Lore (故事)**          |          **Noto Serif SC (思源宋体)**          |          Regular          |          暗金          |          宋体仅用于装饰性很强的长文本          |
 
 ## 5. TextMeshPro (TMP) 深度优化指南
 
@@ -73,6 +73,7 @@
 *   **解决方案**:
     1.  **使用 SetText()**: `tmp.SetText("Score: {0}", score);` (避免字符串拼接)。
     2.  **字符数组池**: 对于极高频更新的伤害数字，使用 `char[]` 缓存，直接操作数组内容。
+
     3.  **避免 Rich Text 解析**: 如果不需要颜色标签，勾选 `Parse Escape Characters` 关闭解析，能省一点 CPU。
 
 ### 5.2 Shader 选型与 DrawCall
@@ -134,14 +135,14 @@
 
 ### 7.1 关键参数推荐
 
-|       参数       |       推荐值 (中文)       |       推荐值 (英文/数字)       |       解释       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **Character Set**       |       `Custom Characters`       |       `ASCII`       |       英文选 ASCII 就够了。       |
-|       **Custom Character List**       |       *Common 3500/7000.txt*       |       -       |       去网上找“常用汉字3500字表”贴进去。不要选 Unicode 全集，会炸内存。       |
-|       **Sampling Point Size**       |       **Auto Sizing** (或 40-60)       |       **Auto Sizing**       |       让 TMP 自己算能塞下多大的字。       |
-|       **Padding**       |       **5 - 10**       |       **10 - 20**       |       **极其重要**。决定了描边能多粗。英文/数字通常需要更夸张的描边，所以 Padding 给大点。       |
-|       **Atlas Resolution**       |       **2048 x 2048**       |       **512 x 512**       |       中文 2048 是起步，甚至需要 4096 (但要注意低端机内存)。       |
-|       **Render Mode**       |       **SDFAA**       |       **SDF**       |       **SDFAA** (SDF + Anti-Aliasing) 对尖角处理更好，虽然生成慢点，但运行时效果更佳。       |
+|          参数          |          推荐值 (中文)          |          推荐值 (英文/数字)          |          解释          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **Character Set**          |          `Custom Characters`          |          `ASCII`          |          英文选 ASCII 就够了。          |
+|          **Custom Character List**          |          *Common 3500/7000.txt*          |          -          |          去网上找“常用汉字3500字表”贴进去。不要选 Unicode 全集，会炸内存。          |
+|          **Sampling Point Size**          |          **Auto Sizing** (或 40-60)          |          **Auto Sizing**          |          让 TMP 自己算能塞下多大的字。          |
+|          **Padding**          |          **5 - 10**          |          **10 - 20**          |          **极其重要**。决定了描边能多粗。英文/数字通常需要更夸张的描边，所以 Padding 给大点。          |
+|          **Atlas Resolution**          |          **2048 x 2048**          |          **512 x 512**          |          中文 2048 是起步，甚至需要 4096 (但要注意低端机内存)。          |
+|          **Render Mode**          |          **SDFAA**          |          **SDF**          |          **SDFAA** (SDF + Anti-Aliasing) 对尖角处理更好，虽然生成慢点，但运行时效果更佳。          |
 
 ### 7.2 常见误区 (Pitfalls)
 *   **误区 1**: "Atlas 越大越好"。

@@ -22,6 +22,7 @@
     - _Android:_ Adreno (高通), Mali (联发科/麒麟/Exynos), PowerVR.
     - _iOS:_ Apple A series GPU.
 2.  **显存/内存 (SystemMemorySize):** 决定能不能开高精细度贴图。
+
 3.  **API 支持:** Vulkan vs OpenGL ES 3.x.
 
 ---
@@ -32,27 +33,27 @@
 
 建议将设备分为 4 档：**High, Medium, Low, Potato (土豆)**。
 
-|       档位             |       标杆机型 (Android)           |       标杆机型 (iOS)       |       GPU 特征 (Regex)       |       目标帧率            |
-|       :---------       |       :---------------------       |       :-------------       |       :---------------       |       :------------       |
-|       **High**         |       骁龙 8+ Gen 1, 8 Gen 2       |       iPhone 13 Pro+       |       Adreno 7xx, 660+       |       60/120 FPS          |
-|       **Medium**       |       骁龙 865, 870                |       iPhone 11, 12        |       Adreno 640, 650        |       60 FPS              |
-|       **Low**          |       骁龙 660, 845                |       iPhone 8, X          |       Adreno 61x, 5xx        |       30 FPS              |
-|       **Potato**       |       骁龙 4xx, 老旧麒麟           |       iPhone 6s, 7         |       Adreno 4xx, 3xx        |       30 FPS (稳住)       |
+|          档位                |          标杆机型 (Android)              |          标杆机型 (iOS)          |          GPU 特征 (Regex)          |          目标帧率               |
+|          :---------          |          :---------------------          |          :-------------          |          :---------------          |          :------------          |
+|          **High**            |          骁龙 8+ Gen 1, 8 Gen 2          |          iPhone 13 Pro+          |          Adreno 7xx, 660+          |          60/120 FPS             |
+|          **Medium**          |          骁龙 865, 870                   |          iPhone 11, 12           |          Adreno 640, 650           |          60 FPS                 |
+|          **Low**             |          骁龙 660, 845                   |          iPhone 8, X             |          Adreno 61x, 5xx           |          30 FPS                 |
+|          **Potato**          |          骁龙 4xx, 老旧麒麟              |          iPhone 6s, 7            |          Adreno 4xx, 3xx           |          30 FPS (稳住)          |
 
 ### ⚙️ 2. 画质配置映射 (Quality Mapping)
 
 针对不同档位，我们需要调整以下核心参数：
 
-|       参数 (Feature)             |       High (旗舰)             |       Medium (主流)            |       Low (低配)               |       Potato (极简)              |
-|       :-------------------       |       :----------------       |       :-----------------       |       :-----------------       |       :-------------------       |
-|       **Resolution Scale**       |       1.0 (Native)            |       0.85                     |       0.75                     |       0.6                        |
-|       **HDR**                    |       ✅ On                   |       ✅ On                    |       ❌ Off (LDR Bloom)       |       ❌ Off                     |
-|       **Shadows**                |       Hard + Soft (40m)       |       Hard Only (25m)          |       Hard Only (15m)          |       ❌ Off (Blob Shadow)       |
-|       **Anti-Aliasing**          |       MSAA 4x                 |       MSAA 2x                  |       FXAA / Off               |       Off                        |
-|       **VFX Max Count**          |       500                     |       200                      |       100                      |       50                         |
-|       **LOD Bias**               |       1.5                     |       1.0                      |       0.7                      |       0.5                        |
-|       **Skinning**               |       GPU (4 weights)         |       GPU (2 weights)          |       CPU (2 weights)          |       CPU (1 weight)             |
-|       **Post-Processing**        |       Full Stack              |       Bloom + ColorGrade       |       ColorGrade Only          |       Off                        |
+|          参数 (Feature)                |          High (旗舰)                |          Medium (主流)               |          Low (低配)                  |          Potato (极简)                 |
+|          :-------------------          |          :----------------          |          :-----------------          |          :-----------------          |          :-------------------          |
+|          **Resolution Scale**          |          1.0 (Native)               |          0.85                        |          0.75                        |          0.6                           |
+|          **HDR**                       |          ✅ On                      |          ✅ On                       |          ❌ Off (LDR Bloom)          |          ❌ Off                        |
+|          **Shadows**                   |          Hard + Soft (40m)          |          Hard Only (25m)             |          Hard Only (15m)             |          ❌ Off (Blob Shadow)          |
+|          **Anti-Aliasing**             |          MSAA 4x                    |          MSAA 2x                     |          FXAA / Off                  |          Off                           |
+|          **VFX Max Count**             |          500                        |          200                         |          100                         |          50                            |
+|          **LOD Bias**                  |          1.5                        |          1.0                         |          0.7                         |          0.5                           |
+|          **Skinning**                  |          GPU (4 weights)            |          GPU (2 weights)             |          CPU (2 weights)             |          CPU (1 weight)                |
+|          **Post-Processing**           |          Full Stack                 |          Bloom + ColorGrade          |          ColorGrade Only             |          Off                           |
 
 ### 🖥️ 3. 代码实现逻辑 (C# Detection)
 

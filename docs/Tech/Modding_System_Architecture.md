@@ -54,10 +54,12 @@ Vampirefall_Data/
 
 1.  **初始化**: 扫描 `Mods` 目录下所有文件夹。
 2.  **排序**: 根据 `mod_info.json` 里的 `order` 或 `dependencies` 排序。
+
     *   Core (Order: 0)
     *   Community_Patch (Order: 10)
     *   CrazyMod (Order: 100)
 3.  **合并**:
+
     *   加载 Core 的 `FireTower.json`。
     *   加载 CrazyMod 的 `FireTower.json`（如果存在）。
     *   如果 CrazyMod 里只写了 `{"damage": 999}`，则只修改 damage 字段，保留其他字段不变 (**Deep Merge**)。
@@ -124,8 +126,10 @@ Harmony 不修改磁盘上的 DLL 文件，而是在内存中修改机器码。
 1.  **Prefix (前置补丁)**: 在原方法执行**前**运行。
     *   *用途*: 修改输入参数，或者拦截执行（直接 `return false` 跳过原方法）。
 2.  **Postfix (后置补丁)**: 在原方法执行**后**运行。
+
     *   *用途*: 修改返回值，或者读取原方法的计算结果。
 3.  **Transpiler (转译补丁)**: 修改原方法的 IL 指令。
+
     *   *用途*: 高级黑魔法，修改方法中间的某一行逻辑。
 
 ### 3.2 如何在官方项目中集成 Harmony？
@@ -133,6 +137,7 @@ Harmony 不修改磁盘上的 DLL 文件，而是在内存中修改机器码。
 
 1.  **引入库**: 将 `0Harmony.dll` 放进 Plugins。
 2.  **Mod Loader**: 编写一个加载器，扫描 Mods 文件夹下的 `.dll`。
+
 3.  **执行加载**:
     ```csharp
     // 在游戏启动时执行
@@ -172,11 +177,11 @@ public class DamagePatch {
 
 ### 3.4 Harmony 的优缺点
 
-|       维度       |       优点       |       缺点       |
-|       :---       |       :---       |       :---       |
-|       **能力**       |       **无限**。可以修改游戏里任何一行私有代码。       |       **不安全**。Mod 可以轻易崩溃游戏，甚至写病毒。       |
-|       **性能**       |       极高。修改的是 JIT 后的机器码，几乎无损耗。       |       如果 100 个 Mod 同时 Patch 一个方法，调用栈会很深。       |
-|       **维护**       |       社区生态成熟 (*RimWorld*, *Cities: Skylines* 都用它)。       |       如果官方更新改了方法名，Mod 直接失效 (红字报错)。       |
+|          维度          |          优点          |          缺点          |
+|          :---          |          :---          |          :---          |
+|          **能力**          |          **无限**。可以修改游戏里任何一行私有代码。          |          **不安全**。Mod 可以轻易崩溃游戏，甚至写病毒。          |
+|          **性能**          |          极高。修改的是 JIT 后的机器码，几乎无损耗。          |          如果 100 个 Mod 同时 Patch 一个方法，调用栈会很深。          |
+|          **维护**          |          社区生态成熟 (*RimWorld*, *Cities: Skylines* 都用它)。          |          如果官方更新改了方法名，Mod 直接失效 (红字报错)。          |
 
 ### 3.5 建议
 对于 *Vampirefall*：
@@ -197,6 +202,7 @@ public class DamagePatch {
 ### 4.2 它是怎么工作的？(原理)
 1.  **Doorstop**: BepInEx 利用了一个名为 `winhttp.dll` 或 `version.dll` 的劫持技术。当 Windows 启动游戏 exe 时，会优先加载游戏目录下的这个“假 DLL”。
 2.  **注入**: 这个假 DLL 启动后，会拉起 BepInEx 的核心逻辑，然后再启动 Mono 虚拟机。
+
 3.  **加载**: BepInEx 扫描 `BepInEx/plugins` 目录下的所有用户 DLL，并自动执行它们。
 
 ### 4.3 官方需要做什么？(Action Items)
@@ -204,6 +210,7 @@ public class DamagePatch {
 
 1.  **不要使用 IL2CPP**: IL2CPP 会把 C# 代码编译成 C++ 机器码，导致 metadata 丢失，BepInEx 极其难用（需要复杂的 Cpp2IL 转换）。**请务必使用 Mono 后端打包** (PC端)。
 2.  **不要混淆代码**: 除非你有极高的商业机密，否则不要开代码混淆。混淆后 `DamageCalculator` 变成了 `A` 类，`Calculate` 变成了 `b` 方法，Modder 会疯掉。
+
 3.  **保持 API 稳定**: 核心类（如 `Tower`, `Enemy`）的方法签名尽量不要频繁改动。如果改了，社区 Mod 会全部报错。
 
 ### 4.4 官方集成策略
@@ -218,6 +225,7 @@ public class DamagePatch {
 
 1.  **ID 管理**: 必须使用字符串 ID (`"tower_fire"`) 而不是枚举 (`Enum.TowerFire`)。枚举是编译死的，字符串是灵活的。
 2.  **路径大小写**: Windows 不区分大小写，Linux/Android 区分。Mod 加载代码最好统一转小写处理路径。
+
 3.  **沙盒**: 不要允许 Mod 访问 `System.IO` 里的删除/写入 API（除了 Mod 自己的临时文件夹），防止恶意 Mod 格式化玩家硬盘。
 
 ## 6. Steam Workshop 集成
@@ -233,6 +241,7 @@ public class DamagePatch {
 
 1.  **第一步**: 确保你的 Config (Luban) 可以导出为 **JSON** 并在运行时读取。
 2.  **第二步**: 编写一个 `ResourceManager`，支持从 StreamingAssets 加载 `.png` 覆盖默认 Sprite。
+
 3.  **第三步 (进阶)**: 使用 **Mono** 编译构建，不要用 IL2CPP，为 Harmony/BepInEx 社区留一扇门。
 
 ---

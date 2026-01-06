@@ -10,7 +10,9 @@
 
 1. **输入响应** - 按键后多快看到反应（<100ms 为佳）
 2. **视觉反馈** - 特效、震动、顿帧
+
 3. **听觉反馈** - 音效与画面同步
+
 4. **触觉反馈** - 震动（移动端）
 
 ### 📐 打击感公式
@@ -138,13 +140,13 @@ graph LR
 
 **粒子类型与用途**:
 
-|       粒子类型       |       用途       |       数量       |       生命周期       |
-|      ---------      |      ------      |      ------      |      ----------      |
-|       **火花**       |       刀剑碰撞       |       5-10       |       0.1-0.2s       |
-|       **碎片**       |       破坏效果       |       10-20       |       0.3-0.5s       |
-|       **烟雾**       |       爆炸残留       |       3-5       |       0.5-1.0s       |
-|       **光芒**       |       能量爆发       |       1-3       |       0.2-0.4s       |
-|       **数字**       |       伤害显示       |       1       |       1.0s       |
+|          粒子类型          |          用途          |          数量          |          生命周期          |
+|         ---------         |         ------         |         ------         |         ----------         |
+|          **火花**          |          刀剑碰撞          |          5-10          |          0.1-0.2s          |
+|          **碎片**          |          破坏效果          |          10-20          |          0.3-0.5s          |
+|          **烟雾**          |          爆炸残留          |          3-5          |          0.5-1.0s          |
+|          **光芒**          |          能量爆发          |          1-3          |          0.2-0.4s          |
+|          **数字**          |          伤害显示          |          1          |          1.0s          |
 
 **移动端性能约束**:
 
@@ -639,14 +641,14 @@ Hellfire（地狱火）:
 
 **分层打击感**:
 
-|       攻击等级       |       顿帧       |       震动       |       粒子数       |       音效层数       |
-|      ---------      |      ------      |      ------      |      --------      |      ----------      |
-|       E 级       |       1 帧       |       无       |       5-10       |       1 层       |
-|       D 级       |       2 帧       |       轻微       |       10-20       |       2 层       |
-|       C 级       |       3 帧       |       中等       |       20-40       |       2 层       |
-|       B 级       |       4 帧       |       强烈       |       40-60       |       3 层       |
-|       A 级       |       5 帧       |       极强       |       60-100       |       3 层       |
-|       S 级       |       6 帧       |       极限       |       100+       |       4 层       |
+|          攻击等级          |          顿帧          |          震动          |          粒子数          |          音效层数          |
+|         ---------         |         ------         |         ------         |         --------         |         ----------         |
+|          E 级          |          1 帧          |          无          |          5-10          |          1 层          |
+|          D 级          |          2 帧          |          轻微          |          10-20          |          2 层          |
+|          C 级          |          3 帧          |          中等          |          20-40          |          2 层          |
+|          B 级          |          4 帧          |          强烈          |          40-60          |          3 层          |
+|          A 级          |          5 帧          |          极强          |          60-100          |          3 层          |
+|          S 级          |          6 帧          |          极限          |          100+          |          4 层          |
 
 **设计哲学**:
 > "每一击都要让玩家感觉像打在实体上，而非空气。"
@@ -718,12 +720,12 @@ VS 在极简画风下仍然有强烈打击感。
 
 **枪械打击感差异化**:
 
-|       武器类型       |       后坐力       |       震动       |       音效       |       弹壳特效       |
-|      ---------      |      --------      |      ------      |      ------      |      ----------      |
-|       手枪       |       小       |       无       |       "pew"       |       √       |
-|       霰弹枪       |       大       |       强       |       "BOOM"       |       √√√       |
-|       机枪       |       中持续       |       轻持续       |       "哒哒哒"       |       √√       |
-|       火箭筒       |       极大       |       极强       |       "KABOOM"       |       无（爆炸）       |
+|          武器类型          |          后坐力          |          震动          |          音效          |          弹壳特效          |
+|         ---------         |         --------         |         ------         |         ------         |         ----------         |
+|          手枪          |          小          |          无          |          "pew"          |          √          |
+|          霰弹枪          |          大          |          强          |          "BOOM"          |          √√√          |
+|          机枪          |          中持续          |          轻持续          |          "哒哒哒"          |          √√          |
+|          火箭筒          |          极大          |          极强          |          "KABOOM"          |          无（爆炸）          |
 
 **后坐力实现**:
 
@@ -841,45 +843,45 @@ Hades 在保持流畅性的同时实现强烈打击感。
 ### 📄 理论与设计
 
 1. **Game Feel: A Game Designer's Guide to Virtual Sensation**  
-   作者: Steve Swink  
-   [书籍链接](https://www.amazon.com/Game-Feel-Designers-Sensation-Kaufmann/dp/0123743281)
+    作者: Steve Swink  
+    [书籍链接](https://www.amazon.com/Game-Feel-Designers-Sensation-Kaufmann/dp/0123743281)
 
 2. **The Art of Screenshake**  
-   *Jan Willem Nijman (Vlambeer)*  
-   [GDC 演讲](https://www.youtube.com/watch?v=AJdEqssNZ-U)
+    *Jan Willem Nijman (Vlambeer)*  
+    [GDC 演讲](https://www.youtube.com/watch?v=AJdEqssNZ-U)
 
 3. **Juicing Your Cameras With Math**  
-   *Squirrel Eiserloh*  
-   [GDC Vault](https://www.gdcvault.com/play/juicing_cameras_math)
+    *Squirrel Eiserloh*  
+    [GDC Vault](https://www.gdcvault.com/play/juicing_cameras_math)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2014] Secrets of Great Combat in 'Devil May Cry'**  
-   演讲者: Hideaki Itsuno (Capcom)  
-   [YouTube 链接](https://www.youtube.com/watch?v=dmc_combat)
+    演讲者: Hideaki Itsuno (Capcom)  
+    [YouTube 链接](https://www.youtube.com/watch?v=dmc_combat)
 
 2. **[GDC 2020] The Sound Design of 'Enter the Gungeon'**  
-   演讲者: David Wehle  
-   [GDC Vault](https://www.gdcvault.com/play/gungeon_sound)
+    演讲者: David Wehle  
+    [GDC Vault](https://www.gdcvault.com/play/gungeon_sound)
 
 ### 🌐 技术博客
 
 1. **Hitstop and Screen Shake - Game Maker's Toolkit**  
-   [YouTube 视频](https://www.youtube.com/watch?v=game_feel_gmtk)
+    [YouTube 视频](https://www.youtube.com/watch?v=game_feel_gmtk)
 
 2. **Particle Systems Optimization - Unity Blog**  
-   [文章链接](https://blog.unity.com/technology/particle-optimization)
+    [文章链接](https://blog.unity.com/technology/particle-optimization)
 
 3. **Mobile Game Feel Design**  
-   [Gamasutra 文章](https://www.gamasutra.com/view/feature/mobile_game_feel.php)
+    [Gamasutra 文章](https://www.gamasutra.com/view/feature/mobile_game_feel.php)
 
 ### 📚 推荐书籍
 
 1. **《游戏感：游戏动作设计师指南》** (Game Feel)  
-   作者: Steve Swink
+    作者: Steve Swink
 
 2. **《游戏动画设计》** (Game Animation Design)  
-   作者: Jonathan Cooper
+    作者: Jonathan Cooper
 
 ---
 

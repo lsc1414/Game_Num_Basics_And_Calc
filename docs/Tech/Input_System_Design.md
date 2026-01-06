@@ -10,27 +10,27 @@
 
 ### 1.1 Gameplay (战斗状态)
 
-|       动作       |       键鼠 (PC)       |       手柄 (Xbox)       |       说明       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **Move**       |       WASD       |       左摇杆       |       角色移动       |
-|       **Aim**       |       鼠标位置       |       右摇杆       |       瞄准方向       |
-|       **Primary Fire**       |       左键       |       RT / R2       |       普通攻击       |
-|       **Secondary Fire**       |       右键       |       LT / L2       |       特殊攻击/格挡       |
-|       **Skill 1**       |       Q       |       LB / L1       |       技能槽位 1       |
-|       **Skill 2**       |       E       |       RB / R1       |       技能槽位 2       |
-|       **Dash**       |       Space       |       A / Cross       |       闪避/冲刺       |
-|       **Interact**       |       F       |       X / Square       |       与塔、NPC、掉落物交互       |
-|       **Build Mode**       |       B / Tab       |       Y / Triangle       |       切换到建造模式       |
+|          动作          |          键鼠 (PC)          |          手柄 (Xbox)          |          说明          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **Move**          |          WASD          |          左摇杆          |          角色移动          |
+|          **Aim**          |          鼠标位置          |          右摇杆          |          瞄准方向          |
+|          **Primary Fire**          |          左键          |          RT / R2          |          普通攻击          |
+|          **Secondary Fire**          |          右键          |          LT / L2          |          特殊攻击/格挡          |
+|          **Skill 1**          |          Q          |          LB / L1          |          技能槽位 1          |
+|          **Skill 2**          |          E          |          RB / R1          |          技能槽位 2          |
+|          **Dash**          |          Space          |          A / Cross          |          闪避/冲刺          |
+|          **Interact**          |          F          |          X / Square          |          与塔、NPC、掉落物交互          |
+|          **Build Mode**          |          B / Tab          |          Y / Triangle          |          切换到建造模式          |
 
 ### 1.2 BuildMode (建造模式)
 进入此模式后，时间流速减慢 (Time Scale = 0.1)，方便从容布局。
 
-|       动作       |       键鼠 (PC)       |       手柄 (Xbox)       |       说明       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **Select Tower**       |       1-4 / 滚轮       |       D-Pad 左右       |       切换待建造的塔类型       |
-|       **Rotate**       |       R       |       RB / LB       |       旋转塔朝向       |
-|       **Place**       |       左键       |       A / Cross       |       确认建造       |
-|       **Cancel**       |       右键 / Esc       |       B / Circle       |       退出建造模式       |
+|          动作          |          键鼠 (PC)          |          手柄 (Xbox)          |          说明          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **Select Tower**          |          1-4 / 滚轮          |          D-Pad 左右          |          切换待建造的塔类型          |
+|          **Rotate**          |          R          |          RB / LB          |          旋转塔朝向          |
+|          **Place**          |          左键          |          A / Cross          |          确认建造          |
+|          **Cancel**          |          右键 / Esc          |          B / Circle          |          退出建造模式          |
 
 ### 1.3 UI (界面导航)
 当打开暂停菜单或全屏界面时激活。
@@ -57,7 +57,9 @@
 *   当按下 `Interact` 键时，根据优先级判定：
     1.  **复活队友** (如果是多人模式)。
     2.  **维修/升级塔** (如果准星对准塔)。
+
     3.  **开启宝箱**。
+
     4.  **拾取关键道具**。
 
 ## 4. UI 提示 (Glyphs)

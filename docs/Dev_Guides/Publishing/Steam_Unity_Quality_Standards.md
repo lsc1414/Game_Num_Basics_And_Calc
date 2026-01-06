@@ -25,10 +25,10 @@
 
 - **🚫 错误做法**：只提供 1920x1080 选项，或者强制全屏无法切出。
 - **✅ 正确做法**：
-  - **支持任意比例**：动态读取 `Screen.resolutions`，不要硬编码。
-  - **支持超宽屏 (21:9)**：UI 锚点（Anchors）必须设置正确，核心玩法画面不能被拉伸或裁剪（使用 Camera Viewport 适配）。
-  - **窗口模式三剑客**：全屏 (Exclusive Fullscreen)、无边框窗口 (Borderless Window)、窗口化 (Windowed)。
-  - _Unity 提示_：使用 `Screen.SetResolution(w, h, mode)`。
+    - **支持任意比例**：动态读取 `Screen.resolutions`，不要硬编码。
+    - **支持超宽屏 (21:9)**：UI 锚点（Anchors）必须设置正确，核心玩法画面不能被拉伸或裁剪（使用 Camera Viewport 适配）。
+    - **窗口模式三剑客**：全屏 (Exclusive Fullscreen)、无边框窗口 (Borderless Window)、窗口化 (Windowed)。
+    - _Unity 提示_：使用 `Screen.SetResolution(w, h, mode)`。
 
 #### B. 音频控制 (Audio Control)
 
@@ -63,29 +63,29 @@
 #### A. 极致的 Steam 生态整合
 
 - **🌟 Steam Cloud (云存档)**：
-  - **自动同步**：对 Roguelike 至关重要。
-  - **双存档架构**：本地 `SaveData.json` + `Meta.json`（全局解锁）。Unity 中配合 Steamworks.NET 的 `SteamRemoteStorage`。
+    - **自动同步**：对 Roguelike 至关重要。
+    - **双存档架构**：本地 `SaveData.json` + `Meta.json`（全局解锁）。Unity 中配合 Steamworks.NET 的 `SteamRemoteStorage`。
 - **🌟 Rich Presence (富豪状态)**：
-  - 好友列表不仅显示“游戏中”，还要显示“正在攻打第 3 层 BOSS [困难]”。
-  - _实现_：`SteamFriends.SetRichPresence("status", "Level 3 - Hard Mode")`。
+    - 好友列表不仅显示“游戏中”，还要显示“正在攻打第 3 层 BOSS [困难]”。
+    - _实现_：`SteamFriends.SetRichPresence("status", "Level 3 - Hard Mode")`。
 - **🌟 动态按键绑定 (Key Rebinding)**：
-  - 允许玩家重定义所有按键。使用新版 Input System (Input Action Assets) 实现 Rebinding UI 相对容易。
+    - 允许玩家重定义所有按键。使用新版 Input System (Input Action Assets) 实现 Rebinding UI 相对容易。
 
 #### B. 硬件潜力挖掘
 
 - **🌟 高刷新率支持**：
-  - 不要锁死 60fps。提供 30/60/120/144/Inifite 选项。
-  - 物理更新（FixedUpdate）与渲染帧率解耦（插值）。
+    - 不要锁死 60fps。提供 30/60/120/144/Inifite 选项。
+    - 物理更新（FixedUpdate）与渲染帧率解耦（插值）。
 - **🌟 Steam Deck 完美适配 (Verified)**：
-  - **字体大小**：最小字体在 720p 屏幕上依然清晰可读。
-  - **虚拟键盘**：输入文本框被点击时，自动呼出 Deck 键盘 (`SteamUtils.ShowGamepadTextInput`)。
+    - **字体大小**：最小字体在 720p 屏幕上依然清晰可读。
+    - **虚拟键盘**：输入文本框被点击时，自动呼出 Deck 键盘 (`SteamUtils.ShowGamepadTextInput`)。
 
 #### C. 数据与反馈
 
 - **🌟 崩溃报告 (Crash Reporting)**：
-  - 接入 Sentry 或 Unity Cloud Diagnostics。Steam 玩家遇到闪退如果不报错，会直接差评；如果弹窗“已发送错误报告”，他们通常会宽容很多。
+    - 接入 Sentry 或 Unity Cloud Diagnostics。Steam 玩家遇到闪退如果不报错，会直接差评；如果弹窗“已发送错误报告”，他们通常会宽容很多。
 - **🌟 详细的统计数据 (Stats)**：
-  - 不只是成就，还要统计“总杀敌数”、“总死亡数”、“造成总伤害”。这些数据可以在 Steam 社区展示，增加粘性。
+    - 不只是成就，还要统计“总杀敌数”、“总死亡数”、“造成总伤害”。这些数据可以在 Steam 社区展示，增加粘性。
 
 ## 🌟 3. 业界优秀案例 (Industry Best Practices)
 
@@ -93,14 +93,14 @@
 
 - **下限稳固**：完美适配各种分辨率，从未出现 UI 拉伸。
 - **上限突破**：
-  - **God Mode (神力模式)**：动态难度调节，死亡增加减伤。照顾了手残玩家，又不影响硬核玩家体验。
-  - **Vulkan/DX11 切换**：启动项提供图形 API 选择，最大限度兼容老旧显卡。
+    - **God Mode (神力模式)**：动态难度调节，死亡增加减伤。照顾了手残玩家，又不影响硬核玩家体验。
+    - **Vulkan/DX11 切换**：启动项提供图形 API 选择，最大限度兼容老旧显卡。
 
 ### 3.2 🏆 《Vampire Survivors》 (Poncle)
 
 - **从下限到上限的进化**：
-  - 它是反面教材转正的典型。早期版本是 WebGL 暴力转制，全屏适配极差，性能卡顿。
-  - **后期优化**：重写了引擎（从 Phaser 到 Unity/Custom），完美适配 Steam Deck，增加了详细的成就系统（结合游戏内解锁表）。这告诉我们，**核心玩法好可以掩盖技术缺陷，但要长卖必须补齐短板**。
+    - 它是反面教材转正的典型。早期版本是 WebGL 暴力转制，全屏适配极差，性能卡顿。
+    - **后期优化**：重写了引擎（从 Phaser 到 Unity/Custom），完美适配 Steam Deck，增加了详细的成就系统（结合游戏内解锁表）。这告诉我们，**核心玩法好可以掩盖技术缺陷，但要长卖必须补齐短板**。
 
 ### 3.3 借鉴点 (Takeaways for Vampirefall)
 

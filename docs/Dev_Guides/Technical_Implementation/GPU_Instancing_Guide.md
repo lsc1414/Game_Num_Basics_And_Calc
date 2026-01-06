@@ -10,7 +10,9 @@
 
 1.  CPU 告诉 GPU：“准备好，我要画史莱姆 A 了，它在 (1,0,1)。”
 2.  GPU 绘制 A。
+
 3.  CPU 告诉 GPU：“准备好，我要画史莱姆 B 了，它在 (2,0,1)。”
+
 4.  GPU 绘制 B。
 
 **问题**：CPU 和 GPU 之间的通讯（Draw Call）太慢了。GPU 可以在 1 毫秒内画完 1000 个史莱姆，但 CPU 发送 1000 条指令需要 10 毫秒。
@@ -92,6 +94,7 @@ public class BulletRenderer : MonoBehaviour
 
 1.  **ComputeBuffer**: 存储所有怪物数据的结构体（位置、旋转、缩放、颜色）。
 2.  **ArgsBuffer**: 存储绘制参数（Mesh 顶点数、实例数量、起始索引等）。
+
 3.  **Shader**: 修改顶点着色器，直接从 Buffer 读取数据。
 
 ### 💻 Shader 示例 (HLSL)
@@ -127,12 +130,12 @@ void Update() {
 
 ## 5. 性能对比 (同屏 10,000 个方块)
 
-|       方法       |       Draw Calls       |       FPS (PC)       |       CPU 开销       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **GameObjects**       |       ~10,000       |       4 fps       |       100% (Main Thread)       |
-|       **Static Batching**       |       ~50       |       15 fps       |       High (Memory Overhead)       |
-|       **GPU Instancing**       |       ~10       |       45 fps       |       Medium (Matrix Upload)       |
-|       **Indirect**       |       **1**       |       **120+ fps**       |       **Zero**       |
+|          方法          |          Draw Calls          |          FPS (PC)          |          CPU 开销          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **GameObjects**          |          ~10,000          |          4 fps          |          100% (Main Thread)          |
+|          **Static Batching**          |          ~50          |          15 fps          |          High (Memory Overhead)          |
+|          **GPU Instancing**          |          ~10          |          45 fps          |          Medium (Matrix Upload)          |
+|          **Indirect**          |          **1**          |          **120+ fps**          |          **Zero**          |
 
 ---
 
@@ -140,6 +143,7 @@ void Update() {
 
 1.  **阴影 (Shadows)**：自定义 Shader 需要手动添加 `SHADOW_CASTER` pass 并支持 Instancing 宏，否则阴影会消失或不跟随。
 2.  **LOD**：Indirect 模式下做 LOD 比较麻烦，需要把不同 LOD 的单位分到不同的 Buffer 绘制，或者在 Shader 中通过距离丢弃顶点（退化为点）。
+
 3.  **设备兼容性**：Compute Shader 在古老的手机（OpenGLES 3.0 以下）上不支持。需要回退方案。
 
 ## 7. 结论

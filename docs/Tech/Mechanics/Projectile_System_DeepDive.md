@@ -15,14 +15,14 @@
 
 ### 1.2 运动模式 (Movement Types)
 
-|       类型       |       描述       |       适用场景       |       数学模型       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **直射 (Linear)**       |       沿直线匀速/变速飞行。       |       箭矢、子弹、激光束。       |       $P = P_0 + V \cdot t$       |
-|       **抛射 (Lobbed)**       |       受重力影响，呈抛物线。       |       迫击炮、手雷、投石车。       |       $y = v_{0y}t - \frac{1}{2}gt^2$       |
-|       **追踪 (Homing)**       |       动态调整速度向量指向目标。       |       魔法飞弹、制导导弹。       |       Steering Behavior (操纵行为)       |
-|       **贝塞尔 (Bezier)**       |       沿预计算的曲线飞行，无物理模拟。       |       华丽的技能弹道、回旋镖。       |       Bezier Curve Interpolation       |
-|       **环绕 (Orbital)**       |       围绕宿主或定点旋转。       |       护盾球、环绕法球。       |       Polar Coordinates (极坐标)       |
-|       **垂直发射 (Javelin)**       |       先垂直升空，再转为追踪。       |       标枪导弹 (Javelin)、天降正义。       |       State Machine (Ascend -> Lock -> Homing)       |
+|          类型          |          描述          |          适用场景          |          数学模型          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **直射 (Linear)**          |          沿直线匀速/变速飞行。          |          箭矢、子弹、激光束。          |          $P = P_0 + V \cdot t$          |
+|          **抛射 (Lobbed)**          |          受重力影响，呈抛物线。          |          迫击炮、手雷、投石车。          |          $y = v_{0y}t - \frac{1}{2}gt^2$          |
+|          **追踪 (Homing)**          |          动态调整速度向量指向目标。          |          魔法飞弹、制导导弹。          |          Steering Behavior (操纵行为)          |
+|          **贝塞尔 (Bezier)**          |          沿预计算的曲线飞行，无物理模拟。          |          华丽的技能弹道、回旋镖。          |          Bezier Curve Interpolation          |
+|          **环绕 (Orbital)**          |          围绕宿主或定点旋转。          |          护盾球、环绕法球。          |          Polar Coordinates (极坐标)          |
+|          **垂直发射 (Javelin)**          |          先垂直升空，再转为追踪。          |          标枪导弹 (Javelin)、天降正义。          |          State Machine (Ascend -> Lock -> Homing)          |
 
 ---
 
@@ -65,7 +65,9 @@ public Vector3 CalculateLobVelocity(Vector3 start, Vector3 end, float time)
 
 1.  计算理想速度向量: `DesiredVelocity = (TargetPos - CurrentPos).normalized * Speed`
 2.  计算转向力: `Steering = DesiredVelocity - CurrentVelocity`
+
 3.  限制转向力: `Steering = Vector3.ClampMagnitude(Steering, TurnRate * dt)`
+
 4.  应用速度: `CurrentVelocity += Steering`
 
 #### 2.2.1 旋转数学 (Rotation Math)
@@ -86,8 +88,10 @@ public Vector3 CalculateLobVelocity(Vector3 start, Vector3 end, float time)
 当目标不是匀速直线运动（例如在做圆周运动或变速运动），解析解变得极其复杂。此时应使用迭代法：
 
 1.  假设碰撞时间 $t_0 = Distance / Speed$。
-2.  预测 $t_0$ 后的目标位置 $P_1$。
+2.  预测 $t_0$后的目标位置$P_1$。
+
 3.  更新碰撞时间 $t_1 = Distance(Start, P_1) / Speed$。
+
 4.  重复步骤 2-3，直到 $t_n - t_{n-1}$ 小于阈值。通常 3-5 次迭代即可获得极高精度。
 
 ### 2.4 物理模拟进阶 (Advanced Physics)
@@ -140,6 +144,7 @@ public Vector3 CalculateLobVelocity(Vector3 start, Vector3 end, float time)
     *   施加较小的重力或甚至反重力，使其快速爬升到指定高度（如 20米）。
     *   在此阶段忽略目标位置，纯粹向上。
 2.  **巡航/下落阶段 (Cruise/Descend Phase):**
+
     *   当到达最高点或飞行时间 > $t_1$。
     *   开启 **Homing Logic**。
     *   设置极高的 `TurnRate`（或者直接 `Slerp` 旋转），让导弹头朝下对准目标。
@@ -218,8 +223,11 @@ public class ProjectileManager : MonoBehaviour {
 
 1.  **分离逻辑与表现:** 永远不要让渲染卡顿影响子弹的判定。逻辑层可以跑在 FixedUpdate 或独立线程。
 2.  **防穿模是底线:** 对于高速投射物，必须使用射线步进，严禁仅使用 `OnTriggerEnter`。
+
 3.  **智能优于真实:** 塔防游戏中，如果箭矢因为物理反弹飞出地图是很糟糕的体验。优先使用智能弹射（必中下一个怪）。
+
 4.  **性能分级:** 
+
     *   **Hero Projectiles:** 可以用粒子、模型、SphereCast。
     *   **Minion Projectiles:** 使用 Billboard 面片、Raycast。
     *   **Massive Projectiles:** 使用 GPU Instancing + 纯距离判定。

@@ -13,10 +13,13 @@
     *   **现象**: 怪物数据 (`Enemy` 类) 散落在堆内存的各个角落。
     *   **原理**: CPU 读取内存的速度远慢于计算速度。当 CPU 处理 `EnemyA` 时，它会将附近内存块加载到 L1/L2 缓存（Prefetching）。但如果 `EnemyB` 在内存的另一头，预取失效，CPU 必须停下来等待内存读取（Cache Miss）。这是性能的头号杀手。
 2.  **GC 压力 (Garbage Collection)**：
+
     *   大量的临时对象实例化和销毁（如子弹、掉落物）导致 GC 频繁触发，造成卡顿。
 3.  **Transform 同步开销**：
+
     *   Unity 引擎层 (C++) 和脚本层 (C#) 之间的 `transform.position` 交互有封送（Marshalling）开销。
 4.  **Update() 调用开销**：
+
     *   500 个 `Update()` 方法的虚函数调用本身就是巨大的 CPU 负担。
 
 ---
@@ -95,11 +98,14 @@
 
 1.  **触发 (Mono)**: 电塔 (GameObject) 的 `GA_ChainLightning` 触发。
 2.  **查询 (ECS)**: 通过 `EntityQuery` 瞬间找到范围内最近的 50 个带有 `Tag_Enemy` 的实体。
+
 3.  **应用 (ECS Job)**:
+
     *   创建一个 `ApplyEffectJob`。
     *   并行写入：扣除 HP (`Health -= Damage`)。
     *   并行写入：向实体的 `BuffBuffer` 添加 `GE_Shock` (感电) 的 ID。
 4.  **表现 (Hybrid)**:
+
     *   Job 输出被击中实体的坐标列表。
     *   主线程根据坐标生成 50 条闪电链 VFX (使用 ParticleSystem 或 LineRenderer)。
 
@@ -143,14 +149,17 @@ public partial struct BuffProcessingSystem : ISystem
 
 1.  [ ] **去 Mono化**：核心高频逻辑（移动、碰撞）剥离 MonoBehaviour。
 2.  [ ] **关闭物理**：小怪禁用 Rigidbody，使用自定义轻量级碰撞。
+
 3.  [ ] **批量渲染**：确保怪物材质支持 GPU Instancing。
+
 4.  [ ] **结构体代替类**：数据层尽可能使用 `struct` 以利用 SoA 优势。
+
 5.  [ ] **混合同步**：仅在必要时（如播放死亡动画）将 ECS 数据同步回 GameObject。
 
 ## 7. 性能预算参考
 
-|       平台       |       同屏目标 (60FPS)       |       DrawCalls 限制       |       物理计算耗时       |
-|       :---       |       :---       |       :---       |       :---       |
-|       PC (Mid)       |       2000+       |       < 1500 (Batching后)       |       < 3ms       |
-|       Mobile (High)       |       500+       |       < 300       |       < 4ms       |
-|       Mobile (Low)       |       100+       |       < 100       |       < 5ms       |
+|          平台          |          同屏目标 (60FPS)          |          DrawCalls 限制          |          物理计算耗时          |
+|          :---          |          :---          |          :---          |          :---          |
+|          PC (Mid)          |          2000+          |          < 1500 (Batching后)          |          < 3ms          |
+|          Mobile (High)          |          500+          |          < 300          |          < 4ms          |
+|          Mobile (Low)          |          100+          |          < 100          |          < 5ms          |

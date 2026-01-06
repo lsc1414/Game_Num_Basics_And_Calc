@@ -10,7 +10,9 @@
 
 1.  [理论基础 (Theoretical Basis)](#-1-理论基础-theoretical-basis)
 2.  [实践应用 (Practical Implementation)](#️-2-实践应用-practical-implementation)
+
 3.  [业界优秀案例 (Industry Best Practices)](#-3-业界优秀案例-industry-best-practices)
+
 4.  [参考资料 (References)](#-4-参考资料-references)
 
 ---
@@ -31,13 +33,13 @@
 
 在游戏设计中，色彩首先是**功能性**的，其次才是装饰性的。
 
-|       颜色       |       心理暗示       |       Vampirefall 功能定义       |
-|       :---       |       :---       |       :---       |
-|       🔴 **红**       |       危险、生命、愤怒       |       敌人血条、Boss 攻击预警、吸血特效       |
-|       🟢 **绿**       |       安全、恢复、毒素       |       玩家生命恢复、毒属性塔、友军单位       |
-|       🔵 **蓝**       |       魔法、冷静、护盾       |       玩家法力值、护盾特效、冰霜塔       |
-|       🟡 **黄**       |       警告、高价值、神圣       |       暴击伤害数字、精英怪光环、金币掉落       |
-|       🟣 **紫**       |       神秘、诅咒、暗影       |       诅咒状态、暗影伤害、稀有掉落 (Epic)       |
+|          颜色          |          心理暗示          |          Vampirefall 功能定义          |
+|          :---          |          :---          |          :---          |
+|          🔴 **红**          |          危险、生命、愤怒          |          敌人血条、Boss 攻击预警、吸血特效          |
+|          🟢 **绿**          |          安全、恢复、毒素          |          玩家生命恢复、毒属性塔、友军单位          |
+|          🔵 **蓝**          |          魔法、冷静、护盾          |          玩家法力值、护盾特效、冰霜塔          |
+|          🟡 **黄**          |          警告、高价值、神圣          |          暴击伤害数字、精英怪光环、金币掉落          |
+|          🟣 **紫**          |          神秘、诅咒、暗影          |          诅咒状态、暗影伤害、稀有掉落 (Epic)          |
 
 ### 1.3 视觉层级 (Visual Hierarchy)
 
@@ -45,7 +47,9 @@
 
 1.  **Tier 1 (最高级)**: 玩家角色、Boss 核心、致命攻击预警 (Telegraphs)。
 2.  **Tier 2 (次级)**: 精英怪、高威胁小怪、关键掉落物。
+
 3.  **Tier 3 (普通)**: 普通小怪、塔防建筑、伤害数字。
+
 4.  **Tier 4 (背景)**: 地图地块、装饰物、尸体。
 
 ---
@@ -165,6 +169,7 @@ float4 Frag(v2f i) : SV_Target
     - 重点: 极其详尽地解释了如何通过形状、色彩和层级来保证竞技游戏的清晰度。
 
 2.  **"Art Direction of Hades"**  
+
     - 来源: Supergiant Games (Jen Zee)  
     - 重点: 角色设计与背景设计的平衡。
 
@@ -175,6 +180,7 @@ float4 Frag(v2f i) : SV_Target
     - 链接: [YouTube](https://www.youtube.com/watch?v=l9x53q5AdwM)
 
 2.  **"The Art of Color in Games"**  
+
     - 频道: Game Maker's Toolkit  
     - 重点: 色彩如何引导玩家和传达情绪。
 
@@ -184,6 +190,7 @@ float4 Frag(v2f i) : SV_Target
     - 在线配色工具，用于生成和谐的色板。
 
 2.  **Unity Post Processing Stack v2**  
+
     - 必用的后处理插件（Bloom, Color Grading, Vignette）。
 
 ---
@@ -194,7 +201,9 @@ float4 Frag(v2f i) : SV_Target
 
 1.  **制定色板**: 必须产出一份 `Vampirefall_Color_Palette.png`，规定所有阵营和属性的标准色值。
 2.  **Shader 统一**: 编写一个标准 `ToonLit` Shader，强制所有美术资产使用。
+
 3.  **层级测试**: 每周进行一次"眯眼测试" (Squint Test) —— 眯起眼睛看游戏截图，如果还能分清主角和敌人，说明层级合格。
+
 4.  **光污染控制**: 严格限制粒子特效的 Overdraw 和亮度，避免"瞎眼"特效。
 
 ---

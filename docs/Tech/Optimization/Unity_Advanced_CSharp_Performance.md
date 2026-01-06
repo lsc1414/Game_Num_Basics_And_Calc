@@ -7,17 +7,16 @@
 在此之前，我们必须明确 C# 在 Unity 中的内存管理方式。
 
 - **栈 (Stack)**:
-
-  - **特性**: 极快，LIFO (后进先出)，由 CPU 指令直接支持。
-  - **内容**: 局部变量、参数传递、函数调用上下文、**值类型 (Value Types)** (除非被装箱或作为类字段)。
-  - **生命周期**: 随作用域结束自动弹出，无 GC 开销。
-  - **限制**: 空间有限 (通常几 MB)，数据生命周期短。
+    - **特性**: 极快，LIFO (后进先出)，由 CPU 指令直接支持。
+    - **内容**: 局部变量、参数传递、函数调用上下文、**值类型 (Value Types)** (除非被装箱或作为类字段)。
+    - **生命周期**: 随作用域结束自动弹出，无 GC 开销。
+    - **限制**: 空间有限 (通常几 MB)，数据生命周期短。
 
 - **堆 (Heap)**:
-  - **特性**: 较慢，动态分配，需要内存管理器查找空闲块。
-  - **内容**: **引用类型 (Reference Types)** (类实例、数组、字符串)、装箱的值类型。
-  - **生命周期**: 由垃圾回收器 (GC) 管理，不确定性释放。
-  - **代价**: 分配产生内存碎片，回收产生 CPU 峰值 (Stop-the-World)。
+    - **特性**: 较慢，动态分配，需要内存管理器查找空闲块。
+    - **内容**: **引用类型 (Reference Types)** (类实例、数组、字符串)、装箱的值类型。
+    - **生命周期**: 由垃圾回收器 (GC) 管理，不确定性释放。
+    - **代价**: 分配产生内存碎片，回收产生 CPU 峰值 (Stop-the-World)。
 
 ![Stack vs Heap Memory](https://media.geeksforgeeks.org/wp-content/uploads/20230623123101/Stack-vs-Heap-Memory-Allocation.png)
 
@@ -42,7 +41,6 @@
 #### 💻 编码实战指南
 
 1.  **数组是王道 (Arrays are King)**
-
     - 数组在内存中是**连续**的。遍历 `int[]` 时，CPU 抓一次能处理 16 个 int (64/4)，极致高效。
     - **链表 (LinkedList)** 是性能毒药：每个节点都在内存的不同角落，每次 `next` 都是一次 Cache Miss。
 
@@ -55,10 +53,11 @@
 
     - **错误**: 一个巨大的 `Monster` 类，包含 `HP` (每帧用) 和 `Description` (只有 UI 用)。读取 HP 时，Description 也会被加载进缓存 (占用了宝贵的 64 字节)，浪费了缓存空间。
     - **优化**: 将数据拆分。
-      - `int[] allHp;` (热数据，紧凑，缓存利用率 100%)
-      - `string[] allDescriptions;` (冷数据，如果不处理就不加载)
+        - `int[] allHp;` (热数据，紧凑，缓存利用率 100%)
+        - `string[] allDescriptions;` (冷数据，如果不处理就不加载)
 
 4.  **多维数组遍历顺序**
+
     - C# 数组是**行优先** (Row-major) 存储。
     - ✅ `for (i) for (j) arr[i][j]` (顺着内存读)
     - ❌ `for (j) for (i) arr[i][j]` (跳着读，Cache Miss 激增)
@@ -73,11 +72,14 @@
 
 - **理想情况**: 所有方块严丝合缝，没有空隙。
 - **现实情况**:
-  1.  你申请了一个 1KB 的对象 A。
-  2.  你申请了一个 10MB 的纹理 B。
-  3.  A 被释放了，B 还在。
-  4.  **结果**: 内存出现了一个 1KB 的“洞”。
-  5.  你现在想申请一个 2KB 的对象 C。虽然可能有 100MB 的总空闲，但那个 1KB 的洞塞不进去！
+    1.  你申请了一个 1KB 的对象 A。
+    2.  你申请了一个 10MB 的纹理 B。
+
+    3.  A 被释放了，B 还在。
+
+    4.  **结果**: 内存出现了一个 1KB 的“洞”。
+
+    5.  你现在想申请一个 2KB 的对象 C。虽然可能有 100MB 的总空闲，但那个 1KB 的洞塞不进去！
 
 随着时间推移，堆内存会变成一块布满小洞的**瑞士奶酪**。
 
@@ -89,7 +91,6 @@
 #### 🛡️ 避坑指南
 
 1.  **对象池 (Object Pooling)**
-
     - **核心**: 不要反复 New 和 Destroy。用一个 `Queue<T>` 把不用的对象存起来，下次要用直接拿。
     - **场景**: 子弹、特效、伤害飘字、小怪。
     - **收益**: 0 分配，0 碎片。
@@ -102,6 +103,7 @@
     - ❌ `new List<int>();` (随着 Add 产生大量废弃数组碎片)
 
 3.  **避免频繁的大块内存分配**
+
     - 如果要处理大文件或大数组，尽量复用 buffer，不要每次都 `new byte[1024*1024]`。
 
 ---
@@ -218,9 +220,9 @@ public void ProcessData() {
 很多开发者懒得写 `sealed`，觉得没必要。但在 Unity (IL2CPP) 中，这是一个**免费的性能开关**。
 
 - **原理 (Devirtualization)**:
-  - 调用虚函数 (`virtual`/`override`) 通常需要查虚函数表 (vtable)。
-  - 如果类被标记为 `sealed`，编译器十分确定“这个类绝后了”。
-  - 于是，IL2CPP 可以大胆地把所有虚函数调用优化为**直接函数调用** (Direct Call)，省去了查表和跳转的开销。
+    - 调用虚函数 (`virtual`/`override`) 通常需要查虚函数表 (vtable)。
+    - 如果类被标记为 `sealed`，编译器十分确定“这个类绝后了”。
+    - 于是，IL2CPP 可以大胆地把所有虚函数调用优化为**直接函数调用** (Direct Call)，省去了查表和跳转的开销。
 - **收益**: 在高频调用 (如 Update 中每帧几千次) 的虚函数上，性能提升显著。
 
 ```csharp
@@ -273,11 +275,11 @@ public readonly struct ImmutableData {
 
 - 定义: 值类型 -> `Object` 或 接口。
 - 场景:
-  - `string.Format("HP: {0}", hp)` (int 被装箱)。
-  - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
-  - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
-  - 将 struct 存入 `List<object>` (尽量不要这么做)。
-  - **枚举 (Enum)**: `enum` 是值类型，直接 `Debug.Log(myEnum)` 会导致装箱。应该使用 `myEnum.ToString()` (虽然生成字符串但至少不装箱) 或者使用 [C# 8.0 `Enum.TryFormat`](https://learn.microsoft.com/en-us/dotnet/api/system.enum.tryformat?view=netcore-3.1)。
+    - `string.Format("HP: {0}", hp)` (int 被装箱)。
+    - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
+    - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
+    - 将 struct 存入 `List<object>` (尽量不要这么做)。
+    - **枚举 (Enum)**: `enum` 是值类型，直接 `Debug.Log(myEnum)` 会导致装箱。应该使用 `myEnum.ToString()` (虽然生成字符串但至少不装箱) 或者使用 [C# 8.0 `Enum.TryFormat`](https://learn.microsoft.com/en-us/dotnet/api/system.enum.tryformat?view=netcore-3.1)。
 
 #### 🚫 字符串拼接 (String Concatenation)
 
@@ -347,9 +349,9 @@ ProcessList(x => x.Id == 1);
 ### 3.1 Unity DOTS (Data-Oriented Technology Stack)
 
 - **分析**: DOTS 的核心就是利用这一文档所述的所有原理：
-  - **ECS**: 强制数据在内存中连续 (Archetype Chunk) -> 极致 Cache Hit。
-  - **Burst Compiler**: 强制使用栈上数据和原生指针，利用 SIMD 指令集。
-  - **Job System**: 多线程，消除竞争。
+    - **ECS**: 强制数据在内存中连续 (Archetype Chunk) -> 极致 Cache Hit。
+    - **Burst Compiler**: 强制使用栈上数据和原生指针，利用 SIMD 指令集。
+    - **Job System**: 多线程，消除竞争。
 - **借鉴**: 即使不完全上 DOTS，也要学习其“数据为先”的思维。如果是处理 1000+ 怪物逻辑，尽量把数据 (HP, Pos) 抽离成数组，而不是分散在 1000 个 `Monobehaviour` 对象里。
 
 ### 3.2 《Minecraft》区块优化

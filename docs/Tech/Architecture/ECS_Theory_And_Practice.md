@@ -28,8 +28,10 @@ class Player : Character {
 1.  **继承的噩梦 (Diamond Problem)**:
     *   如果需要一个“既能飞又能游泳”的怪物，是继承 `FlyingMonster` 还是 `SwimmingMonster`？多重继承极其复杂。
 2.  **缓存未命中 (Cache Miss)**:
+
     *   OOP 对象在堆内存中是随机分布的。CPU 在处理 `Player` 时，预取不到下一个对象的数据，导致 CPU 经常停下来等待内存（性能杀手）。
 3.  **耦合过重**:
+
     *   `Player` 类往往包含了移动、攻击、动画、音效等所有逻辑，变成一个几千行的 "God Class"。
 
 ### 2.2 DOD 的救赎
@@ -51,11 +53,11 @@ class Player : Character {
 ### 3.2 转变二：属性 -> 组件
 不要把所有数据都塞进一个类。根据**功能**拆分数据。
 
-|       OOP 属性       |       ECS 组件       |
-|       :---       |       :---       |
-|       `class Monster { int hp; }`       |       `struct HealthComponent { int value; }`       |
-|       `class Monster { float speed; }`       |       `struct MoveSpeedComponent { float value; }`       |
-|       `class Monster { bool isStunned; }`       |       `struct StunTag : IComponentData {}` (空组件，仅作标记)       |
+|          OOP 属性          |          ECS 组件          |
+|          :---          |          :---          |
+|          `class Monster { int hp; }`          |          `struct HealthComponent { int value; }`          |
+|          `class Monster { float speed; }`          |          `struct MoveSpeedComponent { float value; }`          |
+|          `class Monster { bool isStunned; }`          |          `struct StunTag : IComponentData {}` (空组件，仅作标记)          |
 
 ### 3.3 转变三：方法 -> 系统
 不要在类里写 `Update()`。思考“这个行为需要什么数据”。
@@ -96,8 +98,11 @@ class MovementSystem : System {
 ### 4.1 OOP 实现 (痛苦面具)
 1.  `Player` 碰撞到 `Magnet`。
 2.  `Player` 调用 `GameManager.Instance.GetAllGems()`。
+
 3.  遍历所有 `Gem` 对象，调用 `gem.SetTarget(player)`。
+
 4.  `Gem.Update()` 中判断如果有 Target，则向 Target 移动。
+
 *   *缺点*: 需要维护全局列表，Gem 类逻辑变复杂，内存跳跃访问。
 
 ### 4.2 ECS 实现 (优雅高效)
@@ -105,6 +110,7 @@ class MovementSystem : System {
     *   `MagnetBuffComponent`: 标记玩家捡到了磁铁。
     *   `MoveToTargetComponent { Entity target; }`: 给宝石用的组件。
 2.  **系统设计**:
+
     *   `MagnetSystem`:
         *   检测到玩家有 `MagnetBuff`。
         *   查询所有拥有 `GemTag` 的实体。
@@ -124,6 +130,7 @@ class MovementSystem : System {
 
 1.  **组件里写逻辑**: ❌ 绝对禁止。组件必须是纯数据 Struct。
 2.  **系统间直接调用**: ❌ 系统应该通过**修改组件数据**来通信，而不是直接调用另一个系统的方法。
+
 3.  **过度拆分**: ⚠️ 不要把 `x` 和 `y` 拆成两个组件。通常相关联的数据（如位置和旋转）可以放在一起，或者根据访问频率拆分。
 
 ---

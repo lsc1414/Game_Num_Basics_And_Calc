@@ -10,7 +10,9 @@
 
 1.  [理论基础 (Theoretical Basis)](#-1-理论基础-theoretical-basis)
 2.  [实践应用 (Practical Implementation)](#️-2-实践应用-practical-implementation)
+
 3.  [业界优秀案例 (Industry Best Practices)](#-3-业界优秀案例-industry-best-practices)
+
 4.  [参考资料 (References)](#-4-参考资料-references)
 
 ---
@@ -298,6 +300,7 @@ void HandleCornerSliding(Vector3 moveDir)
     - 重点: 分析了 Hyper Light Drifter 和 Furi 的冲刺设计差异。
 
 2.  **"Celeste's Player Movement"**  
+
     - 作者: Maddy Thorson  
     - 链接: [Twitter Thread / GitHub Code](https://github.com/NoelFB/Celeste/tree/master/Source/Player)  
     - 重点: 公开了 Celeste 的移动代码，是手感调优的教科书。
@@ -309,6 +312,7 @@ void HandleCornerSliding(Vector3 moveDir)
     - 链接: [YouTube](https://www.youtube.com/watch?v=216_5nu4aVQ)
 
 2.  **"How Hades Makes You Feel Like a God"**  
+
     - 频道: Adam Millard  
     - 重点: 分析 Hades 的 Dash-Strike 和取消机制。
 
@@ -318,6 +322,7 @@ void HandleCornerSliding(Vector3 moveDir)
     - 专业的角色控制器插件，处理了所有物理边缘情况（虽然我们可能自己写简单的，但值得参考其文档）。
 
 2.  **DOTween**  
+
     - 用于实现平滑的冲刺相机跟随和视野拉伸效果。
 
 ---
@@ -328,7 +333,9 @@ void HandleCornerSliding(Vector3 moveDir)
 
 1.  **手感优先**: 必须实现**转角修正**，因为塔防地图障碍物极多，卡顿感是致命的。
 2.  **视觉反馈**: 冲刺必须有**残影**和**音效**，明确传达无敌状态。
+
 3.  **资源循环**: 采用**充能制**，并与杀敌挂钩，鼓励进攻性走位。
+
 4.  **技能联动**: 冲刺不只是移动，更是触发器（如：冲刺路径留下毒雾、冲刺结束释放冲击波）。
 
 ---

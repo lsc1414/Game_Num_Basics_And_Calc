@@ -13,8 +13,8 @@
 - **内容:** 天赋树解锁状态、全局货币 (Soul Shards)、解锁的图鉴、设置选项。
 - **特点:** 必须高安全性，防止修改。
 - **存储:**
-  - 本地: 加密二进制文件 (`user.dat`).
-  - 云端: Steam Cloud / PlayFab.
+    - 本地: 加密二进制文件 (`user.dat`).
+    - 云端: Steam Cloud / PlayFab.
 
 ### 1.2 游戏存档数据 (Game Session) - _Run State_
 
@@ -44,7 +44,9 @@
     string json = JsonConvert.SerializeObject(data); // 几毫秒，主线程
     await File.WriteAllTextAsync(path, json);        // 几十毫秒，线程池，不卡顿 UI
     ```
+
 2.  **脏标记 (Dirty Flags):** 只有当背包/数据发生实际变化时，才标记为 `IsDirty = true`。自动保存触发时，检测 `IsDirty`，如果为 `false` 则直接跳过。
+
 3.  **增量存档 (Incremental Save) - _不推荐_:** 除非存档达到 MB 级别（如《缺氧》），否则**不要**尝试拆分文件存储单个道具。维护一致性（Transaction）的代价远高于全量重写的开销。
 
 ## 3. 存档安全性与原子性 (Atomicity & Safety)
@@ -57,7 +59,9 @@
 
 1.  **写入临时文件:** 将数据写入 `save_slot_0.tmp`。
 2.  **强制刷盘 (Flush):** 确保操作系统将缓冲区写入物理磁盘。
+
 3.  **原子重命名:** 调用 `File.Move` 将 `save_slot_0.tmp` 替换为 `save_slot_0.dat`。
+
     - 如果第 1、2 步失败，原存档 `save_slot_0.dat` 依然完好。
     - 第 3 步是原子的（在大多数现代文件系统上），要么成功，要么失败，不会出现“只有一半”的情况。
 
@@ -89,10 +93,12 @@
 - **当前代码版本:** 5
 - **存档版本:** 3
 - **流程:**
-  1.  检测 Version 3 < 5。
-  2.  运行 `Migrator_3_to_4.Execute(jsonDoc)`。
-  3.  运行 `Migrator_4_to_5.Execute(jsonDoc)`。
-  4.  反序列化为当前对象。
+    1.  检测 Version 3 < 5。
+    2.  运行 `Migrator_3_to_4.Execute(jsonDoc)`。
+
+    3.  运行 `Migrator_4_to_5.Execute(jsonDoc)`。
+
+    4.  反序列化为当前对象。
 
 > [!WARNING] > **降级保护:** 严格**禁止**旧版本客户端加载新版本存档（如 v4 客户端加载 v5 存档）。应直接报错提示“请更新游戏”。
 
@@ -102,6 +108,7 @@
 
 1.  **哈希签名 (HMAC):** 存档文件末尾附加内容的 SHA256 签名（加盐）。加载时比对。
 2.  **简单混淆:** 避免明文存储 `gold: 99999`，可存为 Base64 或 XOR 处理后的值，防止小学生用记事本修改。
+
 3.  **注意:** 不要过度设计，本地反作弊永远防不住有心人，防君子不防小人。
 
 ## 6. 存档文件结构示例 (Schema)

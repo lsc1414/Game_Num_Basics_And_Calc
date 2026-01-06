@@ -24,15 +24,15 @@
 
 ### 2.1 核心数据字段
 
-|       字段名       |       类型       |       说明       |
-|       :---       |       :---       |       :---       |
-|       `MailUID`       |       UUID       |       唯一标识符。       |
-|       `TemplateID`       |       Int       |       引用本地化文本模板 (支持多语言)。       |
-|       `Parameters`       |       List<String>       |       动态参数 (如: "恭喜你在[S1赛季]获得第[3]名")。       |
-|       `Attachments`       |       List<Item>       |       附件列表 (ID, 数量, 类型)。       |
-|       `State`       |       Enum       |       未读 (Unread) / 已读 (Read) / 已领取 (Claimed)。       |
-|       `CreateTime`       |       Timestamp       |       发送时间。       |
-|       `ExpireTime`       |       Timestamp       |       过期时间 (TTL)。       |
+|          字段名          |          类型          |          说明          |
+|          :---          |          :---          |          :---          |
+|          `MailUID`          |          UUID          |          唯一标识符。          |
+|          `TemplateID`          |          Int          |          引用本地化文本模板 (支持多语言)。          |
+|          `Parameters`          |          List<String>          |          动态参数 (如: "恭喜你在[S1赛季]获得第[3]名")。          |
+|          `Attachments`          |          List<Item>          |          附件列表 (ID, 数量, 类型)。          |
+|          `State`          |          Enum          |          未读 (Unread) / 已读 (Read) / 已领取 (Claimed)。          |
+|          `CreateTime`          |          Timestamp          |          发送时间。          |
+|          `ExpireTime`          |          Timestamp          |          过期时间 (TTL)。          |
 
 ### 2.2 生命周期管理 (TTL Policy)
 *   **有效期**:
@@ -48,6 +48,7 @@
 ### 3.1 交互流
 1.  **红点 (Red Dot)**: 仅当有 [未读] 或 [有未领取附件] 的邮件时显示。
 2.  **一键领取 (Claim All)**:
+
     *   **必须功能**。玩家极其厌恶一封封点。
     *   *逻辑*: 遍历所有邮件 -> 领取附件 -> 标记为已读 & 已领取 -> 弹窗汇总显示获得的物品。
 3.  **一键删除 (Delete Read)**: 仅删除 [已读] 且 [无附件/已领取] 的邮件。

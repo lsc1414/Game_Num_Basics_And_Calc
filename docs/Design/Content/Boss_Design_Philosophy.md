@@ -15,6 +15,7 @@
 
 1. **技能检验点 (Skill Gate)** - 确保玩家掌握了核心机制
 2. **高潮节点 (Climax)** - 提供情绪上的爆发点
+
 3. **奖励发放点 (Reward Node)** - 给予重要战利品和成就感
 
 ### 📐 设计理论
@@ -67,6 +68,7 @@ Boss 的攻击必须有**可读懂的前摇 (Tell)**，遵循"电报原则"：
 
 1. **视觉提示**: 蓄力特效、发光、颜色变化
 2. **听觉提示**: 音效提前 0.2 秒播放
+
 3. **位置提示**: 攻击范围指示器（红圈、扇形区域）
 
 #### 3. 学习曲线模型 (Learning Curve)
@@ -105,12 +107,12 @@ graph LR
 
 ##### 挫败感控制
 
-|       糟糕设计       |       优秀设计       |
-|      ---------      |      ---------      |
-|       ❌ 一击秒杀（无法学习）       |       ✅ 留活命机会（1-2 次容错）       |
-|       ❌ 随机不可预测攻击       |       ✅ 有规律可循的循环       |
-|       ❌ 过长的无敌时间       |       ✅ 伤害窗口明确       |
-|       ❌ 战斗后无存档点       |       ✅ Boss 门前自动存档       |
+|          糟糕设计          |          优秀设计          |
+|         ---------         |         ---------         |
+|          ❌ 一击秒杀（无法学习）          |          ✅ 留活命机会（1-2 次容错）          |
+|          ❌ 随机不可预测攻击          |          ✅ 有规律可循的循环          |
+|          ❌ 过长的无敌时间          |          ✅ 伤害窗口明确          |
+|          ❌ 战斗后无存档点          |          ✅ Boss 门前自动存档          |
 
 ---
 
@@ -122,12 +124,12 @@ graph LR
 
 Vampirefall 的**塔防 + 肉鸽 + Looter** 架构为 Boss 战带来独特可能性：
 
-|       维度       |       传统 Boss 设计       |       Vampirefall 创新点       |
-|      ------      |      ---------------      |      -------------------      |
-|       **空间**       |       固定竞技场       |       **塔防地图上的移动 Boss**       |
-|       **资源**       |       玩家技能为主       |       **塔 + 角色联动输出**       |
-|       **奖励**       |       固定掉落       |       **智能掉落 + 词条强化**       |
-|       **重玩性**       |       记忆攻击模式       |       **随机词条改变 Boss 属性**       |
+|          维度          |          传统 Boss 设计          |          Vampirefall 创新点          |
+|         ------         |         ---------------         |         -------------------         |
+|          **空间**          |          固定竞技场          |          **塔防地图上的移动 Boss**          |
+|          **资源**          |          玩家技能为主          |          **塔 + 角色联动输出**          |
+|          **奖励**          |          固定掉落          |          **智能掉落 + 词条强化**          |
+|          **重玩性**          |          记忆攻击模式          |          **随机词条改变 Boss 属性**          |
 
 #### 三层 Boss 设计系统
 
@@ -446,6 +448,7 @@ Hades 的 Boss 设计是**肉鸽类的教科书**，每个 Boss 都有：
 
 1. 固定的核心模式（可学习）
 2. 随机的词条变异（重玩性）
+
 3. 对话与剧情整合（情感联结）
 
 **经典案例: 九头蛇 Lernie（第一关 Boss）**
@@ -490,6 +493,7 @@ Run 3: "召唤增援" → 周期性刷小怪
 
 1. **所有攻击都可以通过翻滚/格挡/走位躲避**
 2. **每次死亡都能学到新东西**
+
 3. **击败后的成就感极强**
 
 **经典案例: Ornstein & Smough（双人 Boss）**
@@ -508,11 +512,11 @@ Run 3: "召唤增援" → 周期性刷小怪
 
 **电报系统大师课**:
 
-|       攻击       |       前摇       |       视觉提示       |       听觉提示       |       危险度       |
-|      ------      |      ------      |      ----------      |      ----------      |      --------      |
-|       普通刺击       |       0.4s       |       举枪动作       |       轻微破风声       |       低       |
-|       跳跃猛击       |       1.2s       |       高高跃起       |       大吼       |       中高       |
-|       闪电冲锋       |       2.0s       |       全身发光       |       电流爆鸣       |       极高       |
+|          攻击          |          前摇          |          视觉提示          |          听觉提示          |          危险度          |
+|         ------         |         ------         |         ----------         |         ----------         |         --------         |
+|          普通刺击          |          0.4s          |          举枪动作          |          轻微破风声          |          低          |
+|          跳跃猛击          |          1.2s          |          高高跃起          |          大吼          |          中高          |
+|          闪电冲锋          |          2.0s          |          全身发光          |          电流爆鸣          |          极高          |
 
 **Vampirefall 借鉴**:
 
@@ -569,47 +573,47 @@ Cuphead 的 Boss 设计是**纯粹的模式记忆 + 反应力测试**。
 ### 📄 学术与理论
 
 1. **Boss Fight Design and Structure**  
-   *Mark Brown - Game Maker's Toolkit*  
-   [YouTube 视频](https://www.youtube.com/watch?v=8LhoIQ1h-yQ)
+    *Mark Brown - Game Maker's Toolkit*  
+    [YouTube 视频](https://www.youtube.com/watch?v=8LhoIQ1h-yQ)
 
 2. **The Art of Boss Battles**  
-   *Extra Credits*  
-   [YouTube 播放列表](https://www.youtube.com/watch?v=K1xgMrMvN8I)
+    *Extra Credits*  
+    [YouTube 播放列表](https://www.youtube.com/watch?v=K1xgMrMvN8I)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2018] Designing Cuphead's Bosses**  
-   演讲者: Jared Moldenhauer (Studio MDHR)  
-   [GDC Vault](https://www.gdcvault.com/play/1024998/)
+    演讲者: Jared Moldenhauer (Studio MDHR)  
+    [GDC Vault](https://www.gdcvault.com/play/1024998/)
 
 2. **[GDC 2019] The Boss Design of 'Furi'**  
-   演讲者: Emeric Thoa (The Game Bakers)  
-   [YouTube 链接](https://www.youtube.com/watch?v=wJY2puGPcP8)
+    演讲者: Emeric Thoa (The Game Bakers)  
+    [YouTube 链接](https://www.youtube.com/watch?v=wJY2puGPcP8)
 
 3. **[GDC 2015] Dark Souls: Difficulty Done Right**  
-   演讲者: Hidetaka Miyazaki (FromSoftware)  
-   [GDC Vault](https://www.gdcvault.com/play/1022054/)
+    演讲者: Hidetaka Miyazaki (FromSoftware)  
+    [GDC Vault](https://www.gdcvault.com/play/1022054/)
 
 ### 🌐 技术博客
 
 1. **Boss Design 101 - Gamasutra**  
-   [文章链接](https://www.gamasutra.com/view/feature/134503/boss_design_101.php)
+    [文章链接](https://www.gamasutra.com/view/feature/134503/boss_design_101.php)
 
 2. **The Psychology of Boss Fights**  
-   [Medium 深度分析](https://medium.com/@gamedesignthoughts/psychology-of-boss-fights)
+    [Medium 深度分析](https://medium.com/@gamedesignthoughts/psychology-of-boss-fights)
 
 3. **Telegraph System in Action Games**  
-   [AI and Games 频道](https://www.youtube.com/@AIandGames)
+    [AI and Games 频道](https://www.youtube.com/@AIandGames)
 
 ### 📚 推荐书籍
 
 1. **《游戏关卡设计》** (Level Up! The Guide to Great Video Game Design)  
-   作者: Scott Rogers  
-   第 12 章: "Boss Fights and Big Baddies"
+    作者: Scott Rogers  
+    第 12 章: "Boss Fights and Big Baddies"
 
 2. **《游戏设计梦工厂》** (Challenges for Game Designers)  
-   作者: Brenda Romero, Ian Schreiber  
-   第 8 章: "Combat and Challenge Design"
+    作者: Brenda Romero, Ian Schreiber  
+    第 8 章: "Combat and Challenge Design"
 
 ---
 

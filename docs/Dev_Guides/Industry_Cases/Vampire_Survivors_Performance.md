@@ -54,6 +54,7 @@ VS 后来移植到了 Unity (New Engine update)。
 
 1.  **ECS / DOTS**：处理海量怪物的移动逻辑（参考 `ECS_Performance_Optimization.md`）。
 2.  **GPU Instancing**：处理同屏精灵的渲染（参考 `GPU_Instancing_Guide.md`）。
+
 3.  **Texture Array**：将不同怪物的帧动画打包到一个 Texture Array 中，避免切换材质。
 
 ---

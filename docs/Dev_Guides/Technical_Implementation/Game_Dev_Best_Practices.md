@@ -191,7 +191,9 @@ Asset Store 上有成熟的插件（如 "Hot Reload"），允许你在 Play Mode
 
 1.  **Tag 系统**：采用基于 `ScriptableObject` 的 `GameplayTag` 方案，确保性能和可维护性。
 2.  **热重载**：优先做好极致的数据驱动（通过 ScriptableObject 和外部配置文件）。如有预算和需求，考虑购买 "Hot Reload" 插件以提升 C# 代码修改的实时性。
+
 3.  **快速测试**：
+
     *   必须将**开发者控制台**作为核心开发工具，支持各种调试指令。
     *   充分利用 **Unity 的 Play Mode**，设计快捷键或按钮，实现场景快速跳转、存档加载和 `Time.timeScale` 调整。
     *   在数值平衡阶段，积极引入**无头模拟**来加速迭代。

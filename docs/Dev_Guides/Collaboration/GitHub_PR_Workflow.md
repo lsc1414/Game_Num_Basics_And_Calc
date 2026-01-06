@@ -12,12 +12,17 @@
 ### 1.2 完整生命周期
 1.  **新建分支**: 基于最新 `develop` 创建 `feat/tower_fire`。
 2.  **提交代码**: 在 `feat/tower_fire` 上 commit。
+
 3.  **发起 PR**: 在 GitHub/Gitea 网页上点击 "New Pull Request"。
+
     *   *Source*: `feat/tower_fire`
     *   *Target*: `develop`
 4.  **Code Review**: 你的同事收到通知，进来检查代码，写评论。
+
 5.  **修改反馈**: 根据同事的建议，继续在 `feat/tower_fire` 上提交修改。
+
 6.  **合并 (Merge)**: 同事点赞 (Approve) 后，点击 "Squash and Merge"。
+
 7.  **删除分支**: 完事后删掉 `feat/tower_fire`。
 
 ## 2. 如何写一个优秀的 PR 描述？

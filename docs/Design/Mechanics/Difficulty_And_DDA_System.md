@@ -96,12 +96,12 @@ graph LR
 
 借鉴 **Skinner Box** 理论，难度应该配合奖励节奏：
 
-|       阶段       |       难度       |       奖励类型       |       心理效果       |
-|      ------      |      ------      |      ----------      |      ----------      |
-|       **准备期**       |       低 (80%)       |       固定奖励 (FR)       |       建立信心       |
-|       **挑战期**       |       中高 (120%)       |       变量奖励 (VR)       |       提高期待值       |
-|       **高潮期**       |       峰值 (150%)       |       超级奖励       |       成就感爆发       |
-|       **恢复期**       |       低 (70%)       |       保底奖励       |       防止流失       |
+|          阶段          |          难度          |          奖励类型          |          心理效果          |
+|         ------         |         ------         |         ----------         |         ----------         |
+|          **准备期**          |          低 (80%)          |          固定奖励 (FR)          |          建立信心          |
+|          **挑战期**          |          中高 (120%)          |          变量奖励 (VR)          |          提高期待值          |
+|          **高潮期**          |          峰值 (150%)          |          超级奖励          |          成就感爆发          |
+|          **恢复期**          |          低 (70%)          |          保底奖励          |          防止流失          |
 
 ---
 
@@ -113,11 +113,11 @@ graph LR
 
 Vampirefall 的**塔防 + 肉鸽 + Looter** 三位一体架构带来独特挑战：
 
-|       维度       |       难度来源       |       调整策略       |
-|      ------      |      ----------      |      ----------      |
-|       **塔防层**       |       敌人波次、精英刷新       |       基于通关时间动态调整波次间隔       |
-|       **肉鸽层**       |       词条组合、随机事件       |       保底机制 + 标签加权防脸黑       |
-|       **Looter层**       |       装备差距、数值碾压       |       装备分数归一化 + 百分比提升       |
+|          维度          |          难度来源          |          调整策略          |
+|         ------         |         ----------         |         ----------         |
+|          **塔防层**          |          敌人波次、精英刷新          |          基于通关时间动态调整波次间隔          |
+|          **肉鸽层**          |          词条组合、随机事件          |          保底机制 + 标签加权防脸黑          |
+|          **Looter层**          |          装备差距、数值碾压          |          装备分数归一化 + 百分比提升          |
 
 #### 四层难度系统架构
 
@@ -333,12 +333,12 @@ elif Tension_Score > Threshold_High:
 
 RE4 的 DDA 极其隐蔽，玩家通常不会察觉：
 
-|       玩家表现       |       系统响应       |
-|      ----------      |      ----------      |
-|       生命值 < 30%       |       敌人命中率 -20%       |
-|       连续死亡 ≥ 3 次       |       Boss 削弱 15% 攻击力       |
-|       完美通关（无伤）       |       下一章敌人血量 +10%       |
-|       弹药富余       |       掉落弹药箱概率 -30%       |
+|          玩家表现          |          系统响应          |
+|         ----------         |         ----------         |
+|          生命值 < 30%          |          敌人命中率 -20%          |
+|          连续死亡 ≥ 3 次          |          Boss 削弱 15% 攻击力          |
+|          完美通关（无伤）          |          下一章敌人血量 +10%          |
+|          弹药富余          |          掉落弹药箱概率 -30%          |
 
 **设计哲学**:
 > "玩家永远不应该知道系统在帮助他们。"
@@ -432,52 +432,52 @@ Celeste 提供无数辅助选项，但**不羞辱玩家**：
 ### 📄 学术论文
 
 1. **Hunicke, R., & Chapman, V. (2004)**  
-   *"AI for Dynamic Difficulty Adjustment in Games"*  
-   GDC Proceedings  
-   [链接](http://www.cs.northwestern.edu/~hunicke/pubs/Hamlet.pdf)
+    *"AI for Dynamic Difficulty Adjustment in Games"*  
+    GDC Proceedings  
+    [链接](http://www.cs.northwestern.edu/~hunicke/pubs/Hamlet.pdf)
 
 2. **Csikszentmihalyi, M. (1990)**  
-   *"Flow: The Psychology of Optimal Experience"*  
-   Harper & Row
+    *"Flow: The Psychology of Optimal Experience"*  
+    Harper & Row
 
 3. **Andrade, G., et al. (2005)**  
-   *"Dynamic Game Difficulty Balancing"*  
-   University of Alberta
+    *"Dynamic Game Difficulty Balancing"*  
+    University of Alberta
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2009] Left 4 Dead: The AI Director**  
-   演讲者: Michael Booth (Valve)  
-   [YouTube 链接](https://www.youtube.com/watch?v=KM68vYH2jn8)
+    演讲者: Michael Booth (Valve)  
+    [YouTube 链接](https://www.youtube.com/watch?v=KM68vYH2jn8)
 
 2. **[GDC 2018] Designing Celeste's Difficulty**  
-   演讲者: Maddy Thorson  
-   [GDC Vault](https://www.gdcvault.com/play/1025238/)
+    演讲者: Maddy Thorson  
+    [GDC Vault](https://www.gdcvault.com/play/1025238/)
 
 3. **[GDC 2021] Balancing Hades**  
-   演讲者: Greg Kasavin (Supergiant Games)  
-   [YouTube 链接](https://www.youtube.com/watch?v=PaZVQu0ex7A)
+    演讲者: Greg Kasavin (Supergiant Games)  
+    [YouTube 链接](https://www.youtube.com/watch?v=PaZVQu0ex7A)
 
 ### 🌐 技术博客
 
 1. **Game Maker's Toolkit - Difficulty in Video Games**  
-   [YouTube 系列](https://www.youtube.com/watch?v=A4_auMe1HsY)
+    [YouTube 系列](https://www.youtube.com/watch?v=A4_auMe1HsY)
 
 2. **Gamasutra - The Chemistry Of Game Design**  
-   [文章链接](https://www.gamasutra.com/view/feature/129948/the_chemistry_of_game_design.php)
+    [文章链接](https://www.gamasutra.com/view/feature/129948/the_chemistry_of_game_design.php)
 
 3. **AI and Games - Dynamic Difficulty Adjustment**  
-   [YouTube 频道](https://www.youtube.com/@AIandGames)
+    [YouTube 频道](https://www.youtube.com/@AIandGames)
 
 ### 📚 相关书籍
 
 1. **《游戏设计艺术》** (The Art of Game Design: A Book of Lenses)  
-   作者: Jesse Schell  
-   第 25 章: "The Lens of Challenge"
+    作者: Jesse Schell  
+    第 25 章: "The Lens of Challenge"
 
 2. **《游戏感：游戏动作设计师指南》** (Game Feel)  
-   作者: Steve Swink  
-   第 7 章: "Challenge and Pacing"
+    作者: Steve Swink  
+    第 7 章: "Challenge and Pacing"
 
 ---
 

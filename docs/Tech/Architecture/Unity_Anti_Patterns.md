@@ -26,9 +26,11 @@ void Start() {
     UIManager.Instance.ShowPanel("Main");
 }
 ```
+
 *   **后果：** 
     1.  **竞态条件 (Race Conditions):** `Awake` 和 `Start` 的执行顺序在不同对象间是不确定的（除非手动设置 Script Execution Order，但那是另一个坑）。
     2.  **紧耦合:** 所有系统都如果不引用 `Instance` 就无法工作，导致无法单独测试某个模块。
+
     3.  **场景切换崩溃:** 忘记处理 `DontDestroyOnLoad` 导致的重复实例，或者引用了已销毁的单例。
 
 ### ✅ 解药：依赖注入 (Dependency Injection) 或 服务定位器 (Service Locator)
@@ -45,6 +47,7 @@ void Start() {
         }
     }
     ```
+
 *   **工业级解药:** 使用 Zenject / VContainer 等 DI 框架。
 
 ---
@@ -61,6 +64,7 @@ void Update() {
     text.text = "Score: " + score; // 还有字符串拼接产生的 GC
 }
 ```
+
 *   **后果：** 手机发烫，掉帧严重。`GameObject.Find` 是非常昂贵的操作。
 
 ### ✅ 解药：缓存引用 (Cache References)
@@ -103,6 +107,7 @@ void Update() {
     // 订阅
     EventBus.Subscribe<PlayerDiedEvent>(OnPlayerDied);
     ```
+
 *   **工具推荐:** 使用 UniRx 或由我们自己维护的轻量级 EventBus，且必须带有 **Logger** 功能，能打印出“谁在什么时候发出了什么事件”。
 
 ---
@@ -146,6 +151,7 @@ void OnDisable() {
     }
 }
 ```
+
 *   **进阶:** 使用 `UniTask` 代替协程，支持 `.ToCancellationToken(this.GetCancellationTokenOnDestroy())` 自动管理生命周期。
 
 ---
@@ -158,6 +164,7 @@ void Update() {
     var nearestEnemy = enemies.OrderBy(e => Vector3.Distance(transform.position, e.position)).FirstOrDefault();
 }
 ```
+
 *   **后果：** `OrderBy` 会产生大量的临时对象（委托、闭包、迭代器），导致 Garbage Collector (GC) 频繁触发（Stop-The-World），游戏卡顿。
 
 ### ✅ 解药：原生循环
@@ -201,6 +208,7 @@ for (int i = 0; i < enemies.Count; i++) {
 ```csharp
 public int Health; // 为了在 Inspector 里能填数值，设为 public
 ```
+
 *   **后果：** 任何脚本都能修改 `Health`。当你发现血量莫名其妙变成 0 时，你根本不知道是哪个脚本改的。
 
 ### ✅ 解药：SerializeField + 属性

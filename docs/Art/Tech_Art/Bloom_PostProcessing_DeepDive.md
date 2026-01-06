@@ -14,7 +14,9 @@
 *   **渲染原理:** 
     1.  **提取 (Pre-filter):** 找出屏幕上所有亮度超过 `Threshold` (阈值) 的像素。
     2.  **降采样 (Downsample):** 把这些亮像素缩小（变糊）。
+
     3.  **高斯模糊 (Blur):** 横向纵向多次模糊。
+
     4.  **叠加 (Upsample + Combine):** 把糊掉的亮光叠加回原图。
 
 ### 🌈 HDR 与发光的本质
@@ -68,7 +70,9 @@
 
 1.  **Shader:** 使用 `URP/Lit` 或 `Particles/Standard`。
 2.  **Emission:** 勾选 Emission。
+
 3.  **HDR Color:** 点击颜色，你需要关注 **Intensity** (下方的小滑块) 或者直接输入 RGB 值。
+
     *   **R: 191, G: 0, B: 0** -> 暗红色，不发光。
     *   **R: 191, G: 0, B: 0, Intensity: 2.0** (即 R: 382) -> **亮红色，带红色光晕**。
     *   **R: 191, G: 0, B: 0, Intensity: 10.0** -> **中心变白（过曝），周围是大红光晕**。
@@ -79,7 +83,9 @@ Bloom 是移动端最昂贵的后处理之一。
 
 1.  **High Quality Filtering:** **关掉 (Uncheck)**。用双线性过滤代替双三次过滤，手机看不出区别。
 2.  **Downsample:** 无论如何 Bloom 都是在低分辨率下计算的，不用太担心分辨率。
+
 3.  **Fast Mode:** 如果是 URP，确保开启 Fast Mode (如果有)。
+
 4.  **Clamp:** 设置为 **5.0 ~ 10.0**。防止某个像素亮度异常（比如 10000），导致整个屏幕闪白 (Fireflies artifact)。
 
 ---

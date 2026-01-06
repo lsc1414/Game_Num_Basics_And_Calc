@@ -11,6 +11,7 @@
 
 1.  **状态 (State):** 角色当前在做什么？ (e.g., `Idle`, `Chase`, `Attack`)
 2.  **转换 (Transition):** 什么条件下切换到另一个状态？ (e.g., `Distance < 5m` -> 切换到 `Attack`)
+
 3.  **行为 (Action):** 进入/退出/保持该状态时做什么？ (e.g., `OnEnter`: 播放吼叫动画)
 
 ---

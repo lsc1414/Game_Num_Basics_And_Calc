@@ -50,7 +50,7 @@ Shader 编程的本质不是写代码，而是**数学建模**。
 
 ### 2.1 菲涅尔效应 (Fresnel / Rim Light)
 
-**视觉:** 物体边缘发光（幽灵、能量盾、选中高亮）。
+**视觉:** 物体边缘发光（幽灵、能量盾、选中高亮）。  
 **理论:** 当视线方向 ($V$) 与表面法线 ($N$) 垂直时，反射最强。
 
 **核心公式:**
@@ -74,13 +74,14 @@ return _RimColor * rim;
 
 ### 2.2 溶解/燃烧 (Dissolve / Burn)
 
-**视觉:** 物体像纸烧焦一样消失，边缘有亮光。
+**视觉:** 物体像纸烧焦一样消失，边缘有亮光。  
 **理论:** 使用一张噪点图 (Noise) 作为高度图，切掉 (Clip) 低于阈值的像素。
 
 - **核心逻辑:**
 
   1.  **采样:** $Height = \text{tex2D}(NoiseTexture, UV).r$
   2.  **裁剪:** $\text{if} (Height < \_Cutoff) \ \text{discard};$
+
   3.  **边缘光:** 处于裁剪边缘的像素 ($Height \approx \_Cutoff$) 上色。
 
 **数学技巧 (边缘带):**
@@ -91,7 +92,7 @@ $$Edge = \text{step}(Height - \_Cutoff, \_EdgeWidth)$$
 
 ### 2.3 UV 流动与扭曲 (UV Scrolling & Distortion)
 
-**视觉:** 滚动的岩浆、流动的水面、被热浪扭曲的背景。
+**视觉:** 滚动的岩浆、流动的水面、被热浪扭曲的背景。  
 **理论:** 在采样纹理**之前**，修改 UV 坐标。
 
 **UV 滚动 (Scrolling):**
@@ -106,7 +107,7 @@ $$UV_{distorted} = UV + \text{tex2D}(Noise, UV + Time).xy \cdot Strength$$
 
 ### 2.4 受击闪白 (Hit Flash)
 
-**视觉:** 怪物受击时瞬间变全白。
+**视觉:** 怪物受击时瞬间变全白。  
 **理论:** 简单的颜色插值，不涉及光照。
 
 **公式:**
@@ -117,7 +118,7 @@ $$FinalColor = \text{lerp}(TextureColor, FlashColor, FlashStrength)$$
 
 ### 2.5 UI 去色 (Grayscale)
 
-**视觉:** 技能冷却时图标变黑白。
+**视觉:** 技能冷却时图标变黑白。  
 **理论:** 人眼对绿色的敏感度最高，对蓝色最低。不能简单平均 RGB。
 
 **亮度公式 (Luma):**
@@ -173,21 +174,17 @@ $$Pos_{new} = Pos + Normal \cdot \sin(Time) \cdot Strength$$
 
 ## 5. 性能优化 (Optimization)
 
-1.  **避免 `if-else` 吗?**
-
-    - 现代 GPU 对分支预测已经做得很好。但如果是复杂的逻辑分支，且不同像素走向不同分支（Divergency），依然会降速。
-    - _技巧:_ 尽量用 `step` 或 `lerp` 代替 `if`。
-      - _Bad:_ `if (x > 0.5) col = white; else col = black;`
-      - _Good:_ `col = lerp(black, white, step(0.5, x));`
-
-2.  **纹理采样 (Texture Fetch) 是昂贵的:**
-
-    - 尽量利用纹理的 RGBA 四个通道。比如 R 放噪点，G 放遮罩，B 放高光强度。不要为了一个遮罩单独读一张图。
-
-3.  **浮点精度:**
-    - 在移动端 (Mobile)，`float` (32bit) 比 `half` (16bit) 慢且费电。
-    - 位置、UV 用 `float`。
-    - 颜色、法线、方向通常用 `half` 足够。
+1. **避免 `if-else` 吗?**
+   - 现代 GPU 对分支预测已经做得很好。但如果是复杂的逻辑分支，且不同像素走向不同分支（Divergency），依然会降速。
+   - _技巧:_ 尽量用 `step` 或 `lerp` 代替 `if`。
+     - _Bad:_ `if (x > 0.5) col = white; else col = black;`
+     - _Good:_ `col = lerp(black, white, step(0.5, x));`
+2. **纹理采样 (Texture Fetch) 是昂贵的:**
+   - 尽量利用纹理的 RGBA 四个通道。比如 R 放噪点，G 放遮罩，B 放高光强度。不要为了一个遮罩单独读一张图。
+3. **浮点精度:**
+   - 在移动端 (Mobile)，`float` (32bit) 比 `half` (16bit) 慢且费电。
+   - 位置、UV 用 `float`。
+   - 颜色、法线、方向通常用 `half` 足够。
 
 ---
 
@@ -197,7 +194,7 @@ $$Pos_{new} = Pos + Normal \cdot \sin(Time) \cdot Strength$$
 
 ### 6.1 2D 描边 (Outline)
 
-**视觉:** 角色边缘有一圈亮色轮廓（选中效果）。
+**视觉:** 角色边缘有一圈亮色轮廓（选中效果）。  
 **理论:** 检测当前像素周围是否是透明像素。如果我是透明的，但我旁边有不透明的像素，那我就是“外轮廓”。
 
 **采样公式 (十字采样法):** 取上下左右 4 个点的 Alpha 值累加。
@@ -210,7 +207,7 @@ $$Outline = \text{step}(\_Threshold, SumAlpha) \cdot (1 - CurrentPixel.a)$$
 
 ### 6.2 2D 投影/斜切 (2D Planar Shadow)
 
-**视觉:** 2D 角色脚下有一个倾斜的黑色影子。
+**视觉:** 2D 角色脚下有一个倾斜的黑色影子。  
 **理论:** 利用顶点着色器，将顶点的 Y 轴映射到 X 轴偏移上。
 
 **顶点变换:**
@@ -229,7 +226,7 @@ $$WorldPos.y = FloorHeight$$
 
 ### 7.1 暗角 (Vignette)
 
-**视觉:** 屏幕四角变暗，模拟相机镜头或压抑氛围（低血量）。
+**视觉:** 屏幕四角变暗，模拟相机镜头或压抑氛围（低血量）。  
 **理论:** 计算 UV 坐标距离中心 (0.5, 0.5) 的距离。
 
 **公式:**
@@ -242,7 +239,7 @@ $$Final = Color \cdot (1 - Mask)$$
 
 ### 7.2 马赛克 (Pixelation)
 
-**视觉:** 画面变模糊成大方块（眩晕、复古滤镜）。
+**视觉:** 画面变模糊成大方块（眩晕、复古滤镜）。  
 **理论:** 降低 UV 的精度。将连续的 UV 坐标“量化”为台阶状。
 
 **公式:**
@@ -253,7 +250,7 @@ $$UV_{new} = \text{floor}(UV \cdot Resolution) / Resolution$$
 
 ### 7.3 色差/故障风 (Chromatic Aberration / Glitch)
 
-**视觉:** RGB 三色分离，像旧电视或赛博朋克干扰。
+**视觉:** RGB 三色分离，像旧电视或赛博朋克干扰。  
 **理论:** 采样三次纹理，但每次给 R、G、B 通道不同的 UV 偏移。
 
 **公式:**
@@ -312,13 +309,14 @@ $$Rand(uv) = \text{frac}(\sin(\text{dot}(uv, float2(12.9898, 78.233))) \cdot 437
 
 ### 10.1 扫光/流光 (Sheen / Shiny Effect)
 
-**视觉:** 一道亮光快速划过卡牌表面。
+**视觉:** 一道亮光快速划过卡牌表面。  
 **理论:** 在 UV 空间定义一条倾斜的线，计算当前像素距离这条线的距离。
 
 - **数学推导:**
 
   1.  定义光带位置: $Pos = UV.x + UV.y$ (45 度斜线)。
   2.  让光带移动: $Pos += \_Time.y \cdot Speed$。
+
   3.  限制光带宽度: 使用 `smoothstep` 或 `pow` 提取中间亮的两边暗的区域。
 
   ```hlsl
@@ -335,7 +333,7 @@ $$Rand(uv) = \text{frac}(\sin(\text{dot}(uv, float2(12.9898, 78.233))) \cdot 437
 
 ### 10.2 圆形进度/冷却 (Radial Fill)
 
-**视觉:** 技能 CD 转圈，或者圆环血条。
+**视觉:** 技能 CD 转圈，或者圆环血条。  
 **理论:** 笛卡尔坐标 (x, y) 转 极坐标 (Angle, Distance)。
 
 - **核心函数:** `atan2(y, x)`
@@ -354,7 +352,7 @@ $$Mask = \text{step}(Angle, \_FillAmount)$$
 
 ### 10.3 全息投影/扫描网格 (Hologram / Scanline)
 
-**视觉:** 科幻风格的 UI，有水平扫描线上下移动。
+**视觉:** 科幻风格的 UI，有水平扫描线上下移动。  
 **理论:** 利用 WorldPos 或 ScreenPos 的 Y 轴分量，结合正弦波。
 
 **公式:**

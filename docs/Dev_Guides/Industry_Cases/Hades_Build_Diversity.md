@@ -53,20 +53,20 @@ Duo Boons 通常遵循以下三种逻辑模板：
 #### A. 机制融合 (Fusion)
 
 - **Ares (Doom) + Aphrodite (Weak) = Curse of Longing**
-  - _效果_：Doom 伤害结算后，不会消失，而是持续对 Weak 敌人造成 50% 的后续伤害。
-  - _分析_：将 Ares 的“爆发”变成了“持续输出”，完美契合 Aphrodite 的减伤站撸流。
+    - _效果_：Doom 伤害结算后，不会消失，而是持续对 Weak 敌人造成 50% 的后续伤害。
+    - _分析_：将 Ares 的“爆发”变成了“持续输出”，完美契合 Aphrodite 的减伤站撸流。
 
 #### B. 触发联动 (Trigger Chain)
 
 - **Poseidon (Knockback) + Zeus (Lightning) = Sea Storm**
-  - _效果_：每当敌人被击退，就落下一道闪电。
-  - _分析_：击退通常会降低 DPS（把怪推远了），但这个祝福把“负面位移”变成了“高频触发器”。攻速越快 -> 击退越多 -> 闪电越多。
+    - _效果_：每当敌人被击退，就落下一道闪电。
+    - _分析_：击退通常会降低 DPS（把怪推远了），但这个祝福把“负面位移”变成了“高频触发器”。攻速越快 -> 击退越多 -> 闪电越多。
 
 #### C. 缺陷互补 (Coverage)
 
 - **Athena (Deflect) + Ares (Doom) = Merciful End**
-  - _效果_：反弹攻击会立刻结算 Doom 伤害。
-  - _分析_：解决了 Ares 伤害延迟的痛点，把“挂 Debuff -> 等待”的节奏变成了“挂 Debuff -> 主动引爆”的快节奏连招。
+    - _效果_：反弹攻击会立刻结算 Doom 伤害。
+    - _分析_：解决了 Ares 伤害延迟的痛点，把“挂 Debuff -> 等待”的节奏变成了“挂 Debuff -> 主动引爆”的快节奏连招。
 
 ---
 
@@ -136,6 +136,7 @@ RPG 数值膨胀不崩坏的关键在于**属性系统 (Attribute System)**。Ha
 任何数值（攻击力、暴击率、移动速度）都不是简单的变量，而是一个**计算管道**。
 
 **公式模型：**
+
 $$FinalValue = (Base + \sum Additive) \times \prod Multipliers$$
 
 - **Base**: 武器基础伤害 (10)
@@ -147,14 +148,14 @@ $$FinalValue = (Base + \sum Additive) \times \prod Multipliers$$
 Hades 中复杂的连锁反应（如“海神+雷神：击退触发闪电”）依赖于**全局事件总线**。
 
 - **Hooks (钩子)**：游戏中的每个原子动作都会广播信号。
-  - `OnEnemyHit(target, damageInfo)`
-  - `OnDashStart`
-  - `OnKill(target)`
-  - `OnKnockbackApplied(target)`
+    - `OnEnemyHit(target, damageInfo)`
+    - `OnDashStart`
+    - `OnKill(target)`
+    - `OnKnockbackApplied(target)`
 - **动态订阅**：
-  - 当拾取 **Sea Storm** (海神雷神双重恩赐) 时，该恩赐脚本会自动订阅 `OnKnockbackApplied`。
-  - 逻辑：`function OnKnockbackApplied(target) { SpawnLightning(target) }`
-  - 这使得海神的击退系统完全不需要知道雷神系统的存在，两者通过事件解耦。
+    - 当拾取 **Sea Storm** (海神雷神双重恩赐) 时，该恩赐脚本会自动订阅 `OnKnockbackApplied`。
+    - 逻辑：`function OnKnockbackApplied(target) { SpawnLightning(target) }`
+    - 这使得海神的击退系统完全不需要知道雷神系统的存在，两者通过事件解耦。
 
 ---
 
@@ -233,27 +234,28 @@ public class LightningBoon : BoonEffect {
 为了实现 Duo Boons（双重恩赐），我们需要检查玩家是否凑齐了特定的标签组合。
 
 - **数据结构**：
-  `Dictionary<string, int> globalTags;` // 记录当前拥有多少个 "Zeus", "Fire", "Melee" 标签
+    `Dictionary<string, int> globalTags;` // 记录当前拥有多少个 "Zeus", "Fire", "Melee" 标签
 
 - **检查逻辑**：
-  当生成随机掉落池时：
+    当生成随机掉落池时：
   ```csharp
   bool CanSpawnSeaStorm() {
       return globalTags["Poseidon_Knockback"] > 0 && globalTags["Zeus_Lightning"] > 0;
   }
   ```
+
 - **应用场景**：
-  - 防御塔变异：当塔拥有 `#Fire` 标签时，普通的物理箭矢自动替换为燃烧箭矢模型。
-  - 元素反应：当攻击命中带有 `#Wet` 标签的敌人，且本次攻击带有 `#Lightning` 标签 -> 触发感电伤害。
+    - 防御塔变异：当塔拥有 `#Fire` 标签时，普通的物理箭矢自动替换为燃烧箭矢模型。
+    - 元素反应：当攻击命中带有 `#Wet` 标签的敌人，且本次攻击带有 `#Lightning` 标签 -> 触发感电伤害。
 
 ## 4. 总结
 
-|       架构层级           |       传统做法 (Bad)                                    |       Hades/Vampirefall 做法 (Good)                      |
-|       :-----------       |       :------------------------------------------       |       :-------------------------------------------       |
-|       **数值叠加**       |       直接修改 `tower.damage += 10`                     |       使用 `Stat.AddModifier()` 管道，保留溯源能力       |
-|       **特殊效果**       |       在 Tower 类里写 `if (hasZeus) ...`                |       塔持有 `List<BoonEffect>`，遍历调用接口            |
-|       **连锁反应**       |       硬编码函数调用 `DoKnockbackThenLightning()`       |       事件驱动 `OnKnockback` -> 订阅者响应               |
-|       **配置数据**       |       散落在各个 Prefab 上                              |       集中在 ScriptableObject 或 Lua/Excel 表中          |
+|          架构层级              |          传统做法 (Bad)                                       |          Hades/Vampirefall 做法 (Good)                         |
+|          :-----------          |          :------------------------------------------          |          :-------------------------------------------          |
+|          **数值叠加**          |          直接修改 `tower.damage += 10`                        |          使用 `Stat.AddModifier()` 管道，保留溯源能力          |
+|          **特殊效果**          |          在 Tower 类里写 `if (hasZeus) ...`                   |          塔持有 `List<BoonEffect>`，遍历调用接口               |
+|          **连锁反应**          |          硬编码函数调用 `DoKnockbackThenLightning()`          |          事件驱动 `OnKnockback` -> 订阅者响应                  |
+|          **配置数据**          |          散落在各个 Prefab 上                                 |          集中在 ScriptableObject 或 Lua/Excel 表中             |
 
 ---
 

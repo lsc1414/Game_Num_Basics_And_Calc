@@ -6,15 +6,15 @@
 
 ## ⚡ 速查表 (Cheat Sheet)
 
-|       资源类型       |       命名前缀       |       格式       |       关键设置       |       备注       |
-|       :---       |       :---       |       :---       |       :---       |       :---       |
-|       **模型 (Static)**       |       `SM_`       |       `.fbx`       |       Scale=1, Y-Up, Z-Forward       |       轴心点在底部中心       |
-|       **模型 (Skinned)**       |       `SK_`       |       `.fbx`       |       Bake Animation=On       |       包含骨骼，轴心点在脚底       |
-|       **贴图 (Albedo)**       |       `T_`       |       `.tga` / `.png`       |       sRGB=On       |       必须是 2 的幂次方 (POT)       |
-|       **贴图 (Normal)**       |       `T_` ... `_N`       |       `.tga` / `.png`       |       sRGB=Off       |       必须标记为 Normal Map       |
-|       **贴图 (Mask)**       |       `T_` ... `_M`       |       `.tga` / `.png`       |       sRGB=Off       |       R=Metal, G=Occ, B=Smooth       |
-|       **UI 图标**       |       `UI_Icon_`       |       `.png`       |       Alpha Is Transparency=On       |       **必须留 1px 透明边缘**       |
-|       **UI 背景**       |       `UI_Bg_`       |       `.png`       |       9-Slice 预留       |       检查压缩格式 (ASTC/ETC2)       |
+|          资源类型          |          命名前缀          |          格式          |          关键设置          |          备注          |
+|          :---          |          :---          |          :---          |          :---          |          :---          |
+|          **模型 (Static)**          |          `SM_`          |          `.fbx`          |          Scale=1, Y-Up, Z-Forward          |          轴心点在底部中心          |
+|          **模型 (Skinned)**          |          `SK_`          |          `.fbx`          |          Bake Animation=On          |          包含骨骼，轴心点在脚底          |
+|          **贴图 (Albedo)**          |          `T_`          |          `.tga` / `.png`          |          sRGB=On          |          必须是 2 的幂次方 (POT)          |
+|          **贴图 (Normal)**          |          `T_` ... `_N`          |          `.tga` / `.png`          |          sRGB=Off          |          必须标记为 Normal Map          |
+|          **贴图 (Mask)**          |          `T_` ... `_M`          |          `.tga` / `.png`          |          sRGB=Off          |          R=Metal, G=Occ, B=Smooth          |
+|          **UI 图标**          |          `UI_Icon_`          |          `.png`          |          Alpha Is Transparency=On          |          **必须留 1px 透明边缘**          |
+|          **UI 背景**          |          `UI_Bg_`          |          `.png`          |          9-Slice 预留          |          检查压缩格式 (ASTC/ETC2)          |
 
 ---
 
@@ -90,12 +90,15 @@ Blender 的坐标系坑最大 (Z-Up)，必须强制转换。
 
 如果你的目标是清洗外部杂乱资源，请在运行导出脚本前，手动执行以下“洗澡”步骤：
 1.  **清理层级 (Clear Hierarchy)**:
+
     *   很多外部 FBX 有多层空物体 (Empty Nodes)。
     *   *操作*: 选中模型 -> `Alt+P` -> `Clear and Keep Transformation` (解除父子关系)。
 2.  **重置轴心 (Reset Pivot)**:
+
     *   *操作*: 选中模型 -> `Right Click` -> `Set Origin` -> `Origin to Geometry` (或者手动移到底部)。
     *   *注意*: 确保模型位于世界坐标 (0,0,0)。
 3.  **检查 UV**:
+
     *   外部模型的 UV 往往是乱的。进入 `UV Editing` 快速看一眼。
 
 > **💡 脚本增强**: 上面的 Python 脚本包含 `transform_apply`，这会自动修复大部分缩放和旋转问题，但**不会**修复轴心点位置。
@@ -171,7 +174,7 @@ def process_icon(path):
     # 1. Trim transparent borders
     bbox = img.getbbox()
     if bbox:
-        img = img.crop(bbox)
+    img = img.crop(bbox)
     
     # 2. Add 1px padding
     new_size = (img.width + 2, img.height + 2)

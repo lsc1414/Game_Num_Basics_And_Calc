@@ -114,15 +114,18 @@ Assets/
     *   *后果：* 看起来像个 Demo，不像正经项目。
 
 2.  **滥用 Resources：**
+
     *   ❌ `Assets/Resources/Textures/All_Game_Textures...`
     *   *后果：* 见《资产管理实战指南》，这是性能杀手。
 
 3.  **拼写不一致：**
+
     *   ❌ `Assets/Script` (单数)
     *   ❌ `Assets/Prefabs` (复数)
     *   *规范：* 建议统用**复数** (Scripts, Prefabs, Models, Textures)。
 
 4.  **空文件夹：**
+
     *   Git 默认不上传空文件夹。如果一定要保留结构，在里面放一个 `.keep` 文件。
 
 ---

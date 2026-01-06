@@ -17,10 +17,12 @@
     - **例子:** 怪物受击飙血、Boss 技能预警圈 (Telegraph)、玩家升级金光、掉落传说装备的光柱。
     - **特点:** 高亮度、高饱和度、永远渲染 (Always Simulate)。
 2.  **环境氛围特效 (Medium Priority)**
+
     - **定义:** 增强沉浸感，但如果不显示也不影响玩。
     - **例子:** 场景中的火把、漂浮的尘埃、远处的雷电、雨雪。
     - **特点:** 只有在视野内渲染，低透明度。
 3.  **修饰性特效 (Low Priority)**
+
     - **定义:** 纯粹的 "Juice"。
     - **例子:** 跑步脚下的烟尘、UI 按钮的流光、子弹拖尾的微弱扰动。
     - **特点:** 性能吃紧时第一个被剔除。
@@ -31,6 +33,7 @@
 
 1.  **Anticipation (预备):** 聚气、发光变亮。 (0.1 - 0.3s)
 2.  **Climax (爆发):** 粒子瞬间大量发射 (Burst)、冲击波扩散。 (1 帧 - 0.2s)
+
 3.  **Dissipation (消散):** 速度减缓、透明度渐变至 0、体积变大。 (0.5s - 2s)
 
 ---
@@ -47,10 +50,10 @@
 
 - **碎块 (Debris):** 在 Blender 中破碎一个石头模型，导入 Unity 作为粒子发射的 `Renderer -> Mesh`。
 - **特殊光效形状:**
-  - 制作一个半球体或圆锥体模型。
-  - 在 Unity 中给它上一个溶解 Shader。
-  - 通过粒子系统控制其旋转和缩放，做出“旋风斩”或“护盾”效果。
-  - _UV 技巧:_ 在 Blender 展 UV 时将 UV 拉直，可以让纹理在 Unity 里沿着模型“流动”。
+    - 制作一个半球体或圆锥体模型。
+    - 在 Unity 中给它上一个溶解 Shader。
+    - 通过粒子系统控制其旋转和缩放，做出“旋风斩”或“护盾”效果。
+    - _UV 技巧:_ 在 Blender 展 UV 时将 UV 拉直，可以让纹理在 Unity 里沿着模型“流动”。
 
 #### B. Shader: 灵魂注入
 
@@ -120,14 +123,18 @@ public class DynamicFireball : MonoBehaviour
     - `Rate over Time`: 持续喷射（如喷火器）。
     - `Bursts`: 瞬间爆发（如爆炸、开枪）。**打击感来源**。
 2.  **Shape (形状):**
+
     - `Cone`: 最常用，调节 Angle 可以变成扇形或圆柱。
     - `Mesh`: 从模型表面发射（如全身燃烧的效果）。
 3.  **Velocity over Lifetime:**
+
     - 模拟空气阻力（Linear Drag）。
     - `Orbital`: 制作围绕中心旋转的魔法粒子。
 4.  **Size over Lifetime:**
+
     - **必调曲线:** 同样是 `0 -> 1 -> 0` (从小变大再消失)，这比突然消失要自然得多。
 5.  **Render Mode:**
+
     - `Billboard`: 永远朝向摄像机（性能最好）。
     - `Stretched Billboard`: 速度越快拉得越长（模拟速度线、火花）。
 
@@ -162,53 +169,53 @@ public class DynamicFireball : MonoBehaviour
 
 ### 🔥 元素与属性 (Element & Type)
 
-|       元素 (CN)           |       关键字 (EN)           |       关联词 (Related)                                            |
-|       :------------       |       :--------------       |       :----------------------------------------------------       |
-|       **火**              |       `Fire`, `Flame`       |       `Burn`, `Ignite`, `Heat`, `Hell`                            |
-|       **冰/水**           |       `Ice`, `Frost`        |       `Freeze`, `Cold`, `Snow`, `Water`, `Splash`, `Bubble`       |
-|       **电**              |       `Lightning`           |       `Electric`, `Spark`, `Thunder`, `Shock`, `Zap`              |
-|       **毒**              |       `Poison`              |       `Acid`, `Toxic`, `Venom`, `Goo`, `Slime`                    |
-|       **神圣/光**         |       `Holy`                |       `Divine`, `Light`, `Shine`, `Angel`, `Heal`                 |
-|       **暗影/邪恶**       |       `Dark`                |       `Shadow`, `Evil`, `Curse`, `Void`, `Abyss`                  |
-|       **血**              |       `Blood`               |       `Gore`, `Bleed`, `Red`                                      |
-|       **土/石**           |       `Earth`               |       `Rock`, `Stone`, `Debris`, `Dust`, `Sand`                   |
-|       **风**              |       `Wind`                |       `Tornado`, `Swirl`, `Air`, `Breeze`                         |
+|          元素 (CN)              |          关键字 (EN)              |          关联词 (Related)                                               |
+|          :------------          |          :--------------          |          :----------------------------------------------------          |
+|          **火**                 |          `Fire`, `Flame`          |          `Burn`, `Ignite`, `Heat`, `Hell`                               |
+|          **冰/水**              |          `Ice`, `Frost`           |          `Freeze`, `Cold`, `Snow`, `Water`, `Splash`, `Bubble`          |
+|          **电**                 |          `Lightning`              |          `Electric`, `Spark`, `Thunder`, `Shock`, `Zap`                 |
+|          **毒**                 |          `Poison`                 |          `Acid`, `Toxic`, `Venom`, `Goo`, `Slime`                       |
+|          **神圣/光**            |          `Holy`                   |          `Divine`, `Light`, `Shine`, `Angel`, `Heal`                    |
+|          **暗影/邪恶**          |          `Dark`                   |          `Shadow`, `Evil`, `Curse`, `Void`, `Abyss`                     |
+|          **血**                 |          `Blood`                  |          `Gore`, `Bleed`, `Red`                                         |
+|          **土/石**              |          `Earth`                  |          `Rock`, `Stone`, `Debris`, `Dust`, `Sand`                      |
+|          **风**                 |          `Wind`                   |          `Tornado`, `Swirl`, `Air`, `Breeze`                            |
 
 ### 💥 动作与功能 (Action & Function)
 
-|       动作 (CN)           |       关键字 (EN)        |       描述                                                  |
-|       :------------       |       :-----------       |       :----------------------------------------------       |
-|       **抛射物**          |       `Projectile`       |       `Missile`, `Bullet`, `Shot` (火球、箭矢)              |
-|       **命中/受击**       |       `Hit`              |       `Impact`, `Strike`, `Damage` (打中目标的瞬间)         |
-|       **爆炸**            |       `Explosion`        |       `Bomb`, `Blast`, `Boom` (范围伤害)                    |
-|       **增益**            |       `Buff`             |       `PowerUp`, `Boost`, `Aura` (身上的光环)               |
-|       **减益**            |       `Debuff`           |       `Curse`, `Stun`, `Slow` (头顶的晕眩星星)              |
-|       **蓄力**            |       `Charge`           |       `Gather`, `Load` (技能释放前的聚气)                   |
-|       **施法**            |       `Cast`             |       `Spell`, `Skill`, `Attack` (挥手瞬间的光效)           |
-|       **死亡**            |       `Die`              |       `Death`, `Disappear`, `Soul` (怪物消失)               |
-|       **刀光**            |       `Slash`            |       `Trail`, `Sword`, `Cut`, `Swipe` (近战挥砍轨迹)       |
+|          动作 (CN)              |          关键字 (EN)           |          描述                                                     |
+|          :------------          |          :-----------          |          :----------------------------------------------          |
+|          **抛射物**             |          `Projectile`          |          `Missile`, `Bullet`, `Shot` (火球、箭矢)                 |
+|          **命中/受击**          |          `Hit`                 |          `Impact`, `Strike`, `Damage` (打中目标的瞬间)            |
+|          **爆炸**               |          `Explosion`           |          `Bomb`, `Blast`, `Boom` (范围伤害)                       |
+|          **增益**               |          `Buff`                |          `PowerUp`, `Boost`, `Aura` (身上的光环)                  |
+|          **减益**               |          `Debuff`              |          `Curse`, `Stun`, `Slow` (头顶的晕眩星星)                 |
+|          **蓄力**               |          `Charge`              |          `Gather`, `Load` (技能释放前的聚气)                      |
+|          **施法**               |          `Cast`                |          `Spell`, `Skill`, `Attack` (挥手瞬间的光效)              |
+|          **死亡**               |          `Die`                 |          `Death`, `Disappear`, `Soul` (怪物消失)                  |
+|          **刀光**               |          `Slash`               |          `Trail`, `Sword`, `Cut`, `Swipe` (近战挥砍轨迹)          |
 
 ### 📐 形状与动态 (Shape & Motion)
 
-|       形状 (CN)             |       关键字 (EN)       |       视觉特征                                                 |
-|       :--------------       |       :----------       |       :-------------------------------------------------       |
-|       **光环**              |       `Aura`            |       围绕角色身体的持续光效 (升级、狂暴)。                    |
-|       **新星/冲击波**       |       `Nova`            |       `Shockwave`, `Ripple`, `Ring` (向四周扩散的圆环)。       |
-|       **光束**              |       `Beam`            |       `Laser`, `Ray` (持续连接两点的激光)。                    |
-|       **拖尾**              |       `Trail`           |       `Ribbon` (跟随运动物体的尾巴)。                          |
-|       **护盾**              |       `Shield`          |       `Barrier`, `Dome`, `Sphere` (半球体防护罩)。             |
-|       **区域**              |       `Zone`            |       `Area`, `Ground`, `Circle` (地面的法阵/预警圈)。         |
-|       **漩涡**              |       `Vortex`          |       `Portal`, `Blackhole` (旋转的传送门)。                   |
+|          形状 (CN)                |          关键字 (EN)          |          视觉特征                                                    |
+|          :--------------          |          :----------          |          :-------------------------------------------------          |
+|          **光环**                 |          `Aura`               |          围绕角色身体的持续光效 (升级、狂暴)。                       |
+|          **新星/冲击波**          |          `Nova`               |          `Shockwave`, `Ripple`, `Ring` (向四周扩散的圆环)。          |
+|          **光束**                 |          `Beam`               |          `Laser`, `Ray` (持续连接两点的激光)。                       |
+|          **拖尾**                 |          `Trail`              |          `Ribbon` (跟随运动物体的尾巴)。                             |
+|          **护盾**                 |          `Shield`             |          `Barrier`, `Dome`, `Sphere` (半球体防护罩)。                |
+|          **区域**                 |          `Zone`               |          `Area`, `Ground`, `Circle` (地面的法阵/预警圈)。            |
+|          **漩涡**                 |          `Vortex`             |          `Portal`, `Blackhole` (旋转的传送门)。                      |
 
 ### 🎨 风格 (Style)
 
-|       风格 (CN)           |       关键字 (EN)       |       备注                                                         |
-|       :------------       |       :----------       |       :-----------------------------------------------------       |
-|       **卡通**            |       `Toon`            |       `Cartoon`, `Stylized`, `Cel-Shaded` (适合 Vampirefall)       |
-|       **写实**            |       `Realistic`       |       `Cinematic` (通常粒子数过多，慎用)                           |
-|       **像素**            |       `Pixel`           |       `Retro`, `8-bit`, `Voxel` (适合像素游戏)                     |
-|       **低多边形**        |       `LowPoly`         |       `Flat` (棱角分明)                                            |
-|       **发光/霓虹**       |       `Glow`            |       `Neon`, `Cyberpunk` (赛博朋克风)                             |
+|          风格 (CN)              |          关键字 (EN)          |          备注                                                            |
+|          :------------          |          :----------          |          :-----------------------------------------------------          |
+|          **卡通**               |          `Toon`               |          `Cartoon`, `Stylized`, `Cel-Shaded` (适合 Vampirefall)          |
+|          **写实**               |          `Realistic`          |          `Cinematic` (通常粒子数过多，慎用)                              |
+|          **像素**               |          `Pixel`              |          `Retro`, `8-bit`, `Voxel` (适合像素游戏)                        |
+|          **低多边形**           |          `LowPoly`            |          `Flat` (棱角分明)                                               |
+|          **发光/霓虹**          |          `Glow`               |          `Neon`, `Cyberpunk` (赛博朋克风)                                |
 
 ---
 
@@ -219,28 +226,28 @@ public class DynamicFireball : MonoBehaviour
 ### 🔥 1. Additive vs Alpha Blend (基础混合)
 
 - **Additive (线性减淡):**
-  - **原理:** `SrcAlpha One`。将像素亮度**叠加**到背景上。
-  - **用途:** 光效、火焰、魔法、激光。
-  - **特点:** **越叠越亮**，永远不会产生黑色。不会有排序问题（不用管谁在前谁在后）。
+    - **原理:** `SrcAlpha One`。将像素亮度**叠加**到背景上。
+    - **用途:** 光效、火焰、魔法、激光。
+    - **特点:** **越叠越亮**，永远不会产生黑色。不会有排序问题（不用管谁在前谁在后）。
 - **Alpha Blend (透明混合):**
-  - **原理:** `SrcAlpha OneMinusSrcAlpha`。标准的透明度混合。
-  - **用途:** 黑烟、灰尘、碎片、深色魔法。
-  - **缺点:** 有排序问题 (Sorting Issue)，如果两个烟雾重叠，很容易穿帮。
+    - **原理:** `SrcAlpha OneMinusSrcAlpha`。标准的透明度混合。
+    - **用途:** 黑烟、灰尘、碎片、深色魔法。
+    - **缺点:** 有排序问题 (Sorting Issue)，如果两个烟雾重叠，很容易穿帮。
 
 ### 🌫️ 2. Dissolve / Erosion (溶解/侵蚀)
 
 - **原理:** 读取一张**噪声图 (Noise Texture)**，根据一个 `Cutoff` 值裁剪像素。
-  - `if (noise_value < cutoff) discard;`
+    - `if (noise_value < cutoff) discard;`
 - **用途:**
-  - **消失:** 火球消散、传送门关闭。
-  - **形状变化:** 用圆形 mask 配合噪声，可以做出边缘不规则的火球。
-  - **Remap:** 将溶解边缘映射为发光色 (Edge Color)，做出燃烧殆尽的余烬效果。
+    - **消失:** 火球消散、传送门关闭。
+    - **形状变化:** 用圆形 mask 配合噪声，可以做出边缘不规则的火球。
+    - **Remap:** 将溶解边缘映射为发光色 (Edge Color)，做出燃烧殆尽的余烬效果。
 
 ### 😵 3. Distortion / Refraction (扭曲/热扰动)
 
 - **原理:**
-  - **GrabPass:** 先把当前屏幕截图。
-  - **Offset:** 根据法线贴图 (Normal Map) 偏移 UV 采样屏幕截图。
+    - **GrabPass:** 先把当前屏幕截图。
+    - **Offset:** 根据法线贴图 (Normal Map) 偏移 UV 采样屏幕截图。
 - **用途:** 爆炸时的热浪 (Heat Haze)、剑气划过空气的波动、水波纹。
 - **性能警示:** 尤其在移动端，GrabPass 开销很大。URP 下建议使用 Opaque Texture。
 
@@ -248,16 +255,16 @@ public class DynamicFireball : MonoBehaviour
 
 - **原理:** `dot(Normal, ViewDir)`。计算表面法线和视线角度的点积。
 - **用途:**
-  - **能量罩:** 边缘亮，中间透。
-  - **体积感:** 让球形粒子看起来像个球，而不是平面圆。
+    - **能量罩:** 边缘亮，中间透。
+    - **体积感:** 让球形粒子看起来像个球，而不是平面圆。
 
 ### 🌊 5. UV Scroll / Flow (UV 流动)
 
 - **原理:** `UV += Time * Speed`。
 - **用途:**
-  - **激光:** 纹理快速在一根极长的 Quad 上流动。
-  - **熔岩/水流:** 缓慢流动。
-  - **拖尾:** 让剑光的纹理动起来，而不是僵硬的拖拽。
+    - **激光:** 纹理快速在一根极长的 Quad 上流动。
+    - **熔岩/水流:** 缓慢流动。
+    - **拖尾:** 让剑光的纹理动起来，而不是僵硬的拖拽。
 
 ### 🌉 6. Soft Particles (软粒子/深度消隐)
 
@@ -268,8 +275,8 @@ public class DynamicFireball : MonoBehaviour
 
 - **原理:** 不改变 Shader，而是由粒子系统控制 UV 跳变。
 - **用途:**
-  - **爆炸:** 从 4x4 或 8x8 的图集中播放一段手绘动画。
-  - **性能:** 相比发射 64 个粒子模拟爆炸，播放 1 个序列帧粒子虽然显存占用高点，但 CPU/GPU 运算压力极小。
+    - **爆炸:** 从 4x4 或 8x8 的图集中播放一段手绘动画。
+    - **性能:** 相比发射 64 个粒子模拟爆炸，播放 1 个序列帧粒子虽然显存占用高点，但 CPU/GPU 运算压力极小。
 
 ---
 
@@ -302,8 +309,8 @@ public class DynamicFireball : MonoBehaviour
 - **效果:** 像玻璃或烟雾一样遮挡背景。
 - **适用:** 泥土、灰尘、浓烟、石头。
 - **缺点:** **排序敏感 (Sorting Dependent)**。
-  - 必须**从后往前**画。如果先画了前面的烟雾，深度写入了缓冲区，后面的烟雾因为深度测试失败就不画了，会导致“切边”。
-  - _优化:_ 通常关闭 Alpha Blend 粒子的 Z-Write (深度写入) 来缓解切边，但会导致透视关系错误。
+    - 必须**从后往前**画。如果先画了前面的烟雾，深度写入了缓冲区，后面的烟雾因为深度测试失败就不画了，会导致“切边”。
+    - _优化:_ 通常关闭 Alpha Blend 粒子的 Z-Write (深度写入) 来缓解切边，但会导致透视关系错误。
 
 #### 3. Premultiplied Alpha (预乘 Alpha)
 
@@ -351,24 +358,25 @@ GPU 计算最终颜色通常遵循这个公式：
 
 - **设置:** 在 Material 面板里设置。
 - **用法:**
-  - 通常设为 **纯白 (255, 255, 255, 255)**。
-  - **为什么？** 因为白色是乘法的“单位元” (`1 * x = x`)。设为白色意味着完全由粒子系统来接管颜色控制。
-  - _例外:_ 如果你想统一调整整个特效的亮度（比如夜间模式整体变暗），可以改这里。
+    - 通常设为 **纯白 (255, 255, 255, 255)**。
+    - **为什么？** 因为白色是乘法的“单位元” (`1 * x = x`)。设为白色意味着完全由粒子系统来接管颜色控制。
+    - _例外:_ 如果你想统一调整整个特效的亮度（比如夜间模式整体变暗），可以改这里。
 
 #### 2. Particle System Color (顶点色) -> "动态"
 
 - **设置:** `Start Color`, `Color over Lifetime`, `Color by Speed`。
 - **用法:** **绝大多数颜色变化都在这里做。**
-  - **Start Color:** 用于做随机性（比如随机出红色火和黄色火）。
-  - **Color over Lifetime:** 这一项至关重要。
-    - **Fade In/Out:** 必须把两端的 Alpha 设为 0，让粒子产生淡入淡出的效果，避免生硬的出现和消失。
-    - **变色:** 火焰从中心（黄色）飞向边缘变成（红色）再变成烟雾（灰色）。
+    - **Start Color:** 用于做随机性（比如随机出红色火和黄色火）。
+    - **Color over Lifetime:** 这一项至关重要。
+        - **Fade In/Out:** 必须把两端的 Alpha 设为 0，让粒子产生淡入淡出的效果，避免生硬的出现和消失。
+        - **变色:** 火焰从中心（黄色）飞向边缘变成（红色）再变成烟雾（灰色）。
 
 ### ⚠️ 常见坑点
 
 1.  **Shader 设了颜色，粒子也设了颜色：** 结果颜色变脏或变得过暗。
     - _例:_ Shader 是红色，粒子是绿色 -> 结果是黑色/深棕色 (R _ 0 + 0 _ G)。
 2.  **材质不支持顶点色 (Vertex Color):**
+
     - 如果你自己写 Shader，必须在 Vertex Shader 里把 `appdata.color` 传给 Fragment Shader，并在 Fragment Shader 里乘上去。
     - _症状:_ 无论怎么调 `Color over Lifetime`，粒子颜色都不变。说明你的 Shader 忘了乘 Vertex Color。
     - _Unity 自带 Shader:_ `Particles/Standard` 默认是支持的。
@@ -379,6 +387,7 @@ GPU 计算最终颜色通常遵循这个公式：
     - 如果是黑白图，你可以在粒子系统里随便把它染成红色、蓝色、绿色。
     - 如果是红色的火贴图，你就很难把它染成蓝色（只能得到紫色或黑色）。
 2.  **材质 (Material):** 设为**白色**。
+
 3.  **粒子 (System):** 在这里尽情挥洒颜色。
 
 ---

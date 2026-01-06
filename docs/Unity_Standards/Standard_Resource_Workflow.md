@@ -29,8 +29,8 @@ graph TD
 - **规则**: 所有进入项目的资源必须符合 `[前缀]_[模块]_[名称]_[变体]`。
 - **工具**: 启用 `AssetNamingValidator.cs`，任何不合规资源导入时会在 Console 报错。
 - **案例**:
-  - 美术提交 `goblin_red.fbx` -> **打回**。
-  - 美术提交 `SK_Goblin_Red.fbx` -> **通过**。
+    - 美术提交 `goblin_red.fbx` -> **打回**。
+    - 美术提交 `SK_Goblin_Red.fbx` -> **通过**。
 
 ### 2.2 物理归档 (Physical Layout)
 
@@ -54,16 +54,16 @@ graph TD
 
 我们将目录结构直接映射到 YooAsset 的收集器规则中，实现**零配置**分包。
 
-|       目录路径                           |       收集规则 (Collector)       |       打包方式 (Addressable)                  |       对应 Package           |
-|       :---------------------------       |       :-------------------       |       :--------------------------------       |       :---------------       |
-|       `_Project/Art/UI/Common`           |       `PackDirectory`            |       `PackTogether` (打成一个大包)           |       `DefaultPackage`       |
-|       `_Project/Scenes/Boot.unity`       |       `PackFile`                 |       -                                       |       `DefaultPackage`       |
-|       `_Project/Features/Chapter1`       |       `PackDirectory`            |       `PackSeparately` (每个文件单独打)       |       `LevelPackage`         |
-|       `_Project/Features/Chapter2`       |       `PackDirectory`            |       `PackSeparately`                        |       `LevelPackage`         |
+|          目录路径                              |          收集规则 (Collector)          |          打包方式 (Addressable)                     |          对应 Package              |
+|          :---------------------------          |          :-------------------          |          :--------------------------------          |          :---------------          |
+|          `_Project/Art/UI/Common`              |          `PackDirectory`               |          `PackTogether` (打成一个大包)              |          `DefaultPackage`          |
+|          `_Project/Scenes/Boot.unity`          |          `PackFile`                    |          -                                          |          `DefaultPackage`          |
+|          `_Project/Features/Chapter1`          |          `PackDirectory`               |          `PackSeparately` (每个文件单独打)          |          `LevelPackage`            |
+|          `_Project/Features/Chapter2`          |          `PackDirectory`               |          `PackSeparately`                           |          `LevelPackage`            |
 
 - **Tag 自动化**:
-  - `Features/Chapter1` 下的所有资源，自动打上 `Tag = "Chapter1"`。
-  - 游戏运行时，进入第一章前调用 `package.DownloadAsync("Chapter1")` 即可一键下载该目录下所有内容。
+    - `Features/Chapter1` 下的所有资源，自动打上 `Tag = "Chapter1"`。
+    - 游戏运行时，进入第一章前调用 `package.DownloadAsync("Chapter1")` 即可一键下载该目录下所有内容。
 
 ### 3.2 依赖管理 (Dependency Management)
 
@@ -76,10 +76,12 @@ graph TD
 
 - **问题**: 修改了 C# 代码 (例如增加了新怪物逻辑)，同时增加了新怪物的 Prefab。
 - **同步流**:
-  1.  运行 `HybridCLR/CompileDll` 生成 `Assembly-CSharp.dll`。
-  2.  脚本自动将 DLL 复制到 `_Project/StreamingAssets/RawFiles/` (归属 `RawFilePackage`)。
-  3.  运行 YooAsset 构建，生成资源版本 `v1.0.100`。
-  4.  **原子性发布**: 客户端检测到版本 `v1.0.100` 时，会同时下载新的 DLL 和新的 AssetBundle，确保逻辑与资源匹配。
+    1.  运行 `HybridCLR/CompileDll` 生成 `Assembly-CSharp.dll`。
+    2.  脚本自动将 DLL 复制到 `_Project/StreamingAssets/RawFiles/` (归属 `RawFilePackage`)。
+
+    3.  运行 YooAsset 构建，生成资源版本 `v1.0.100`。
+
+    4.  **原子性发布**: 客户端检测到版本 `v1.0.100` 时，会同时下载新的 DLL 和新的 AssetBundle，确保逻辑与资源匹配。
 
 ### 4.2 兜底策略 (Fallback)
 
@@ -99,11 +101,11 @@ graph TD
 我们坚持 **"维护性 > 性能"** 的原则进行物理存放，性能问题交给构建管线解决。
 
 - `Assets/_Project/Features/Inventory/Art/UI_Inventory_Bg.png`
-  - _理由_: 这是模块独有的，删了背包模块，这个图也该消失。
+    - _理由_: 这是模块独有的，删了背包模块，这个图也该消失。
 - `Assets/_Project/Art/UI/Common/UI_Common_Frame.png`
-  - _理由_: 这是通用的，属于核心资产。
+    - _理由_: 这是通用的，属于核心资产。
 - `Assets/_Project/Art/UI/Icons/Items/UI_Icon_Sword.png`
-  - _理由_: 图标库通常极其庞大，且被多个模块（商城、背包、战斗）引用，必须独立存放。
+    - _理由_: 图标库通常极其庞大，且被多个模块（商城、背包、战斗）引用，必须独立存放。
 
 ### 5.2 图集打包 (Sprite Atlas 策略)
 
@@ -112,16 +114,20 @@ graph TD
 1.  **Common Atlas**: 包含 `_Project/Art/UI/Common` 下的所有小图。
     - _结果_: 背包面板加载时，常驻内存。
 2.  **Icon Atlas**: 包含 `_Project/Art/UI/Icons` 下的所有图标。
+
     - _策略_: 如果图标太多 (1000+)，按功能拆分 (e.g., `Icon_Weapon_Atlas`, `Icon_Potion_Atlas`)。
     - _结果_: 打开背包时加载。
 3.  **Unique BG**: **不打入图集**。
+
     - _理由_: 全屏背景图通常很大 (1024x1024+)，打入图集会造成巨大的内存浪费（因为你很难填满剩余空间）。直接作为 `Sprite (Single)` 加载即可。
 
 ### 5.3 运行时 DrawCall 估算
 
 1.  **BG (Unique)**: 1 DrawCall (独立纹理)。
 2.  **Frame/Buttons (Common)**: 1 DrawCall (Common Atlas)。
+
 3.  **Icons (Item)**: 1 DrawCall (Icon Atlas)。
+
 4.  **Text**: 1 DrawCall (Font Texture)。
 
 - **总计**: 约 4-5 DrawCalls。这是非常健康的。
@@ -132,6 +138,8 @@ graph TD
 
 1.  [ ] **命名**: 新建文件是否符合 `Prefix_Name` 规范？
 2.  [ ] **位置**: 它是通用资源还是模块独享资源？放对文件夹了吗？
+
 3.  [ ] **引用**: 核心 UI 是否错误引用了关卡内的大贴图？
+
 4.  [ ] **测试**: 提交前是否在 `EditorSimulateMode` 下运行测试过？
 

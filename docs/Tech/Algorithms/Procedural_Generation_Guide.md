@@ -10,12 +10,14 @@
 
 1. **无限内容** - 避免重复感
 2. **降低成本** - 减少手工设计工作量
+
 3. **增加寿命** - 每次游玩都不同
 
 **PCG的挑战**:
 
 1. **质量控制** - 生成结果可能不可玩
 2. **性能开销** - 生成算法可能很慢
+
 3. **平衡性** - 难度/奖励可能失衡
 
 ### 📐 核心算法分类
@@ -428,6 +430,7 @@ Spelunky使用**预制房间模板 + 智能拼接**生成关卡。
 4. 填充房间模板
    从模板库中随机选择符合规则的房间
 5. 添加细节
+
    - 陷阱放置
    - 敌人刷新
    - 宝箱分布
@@ -560,30 +563,30 @@ Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
 ### 📄 理论
 
 1. **Procedural Content Generation in Games**  
-   作者: Noor Shaker, Julian Togelius, Mark J. Nelson  
-   [书籍链接](http://pcgbook.com/)
+    作者: Noor Shaker, Julian Togelius, Mark J. Nelson  
+    [书籍链接](http://pcgbook.com/)
 
 2. **Wave Function Collapse Algorithm**  
-   *Maxim Gumin*  
-   [GitHub](https://github.com/mxgmn/WaveFunctionCollapse)
+    *Maxim Gumin*  
+    [GitHub](https://github.com/mxgmn/WaveFunctionCollapse)
 
 ### 📺 GDC
 
 1. **[GDC 2017] Spelunky Level Generation**  
-   演讲者: Derek Yu  
-   [YouTube](https://www.youtube.com/watch?v=Uqk5Zf0tw3o)
+    演讲者: Derek Yu  
+    [YouTube](https://www.youtube.com/watch?v=Uqk5Zf0tw3o)
 
 2. **[GDC 2015] Diablo's Dungeon Generation**  
-   演讲者: Mike Barlow (Blizzard)  
-   [GDC Vault](https://www.gdcvault.com/play/diablo_dungeon)
+    演讲者: Mike Barlow (Blizzard)  
+    [GDC Vault](https://www.gdcvault.com/play/diablo_dungeon)
 
 ### 🌐 博客
 
 1. **The Binding of Isaac Room Design**  
-   [Edmund McMillen Blog](https://edmundm.com/post/isaac-room-design)
+    [Edmund McMillen Blog](https://edmundm.com/post/isaac-room-design)
 
 2. **Procedural Map Generation Techniques**  
-   [RogueBasin Wiki](http://www.roguebasin.com/index.php?title=Articles)
+    [RogueBasin Wiki](http://www.roguebasin.com/index.php?title=Articles)
 
 ---
 

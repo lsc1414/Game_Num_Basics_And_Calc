@@ -13,7 +13,9 @@ Unity 原生支持在 Animation Clip 的特定帧插入 Event，调用挂在同�
 ### 1.1 工作流
 1.  打开 Animation 窗口。
 2.  在第 20 帧右键 -> `Add Animation Event`。
+
 3.  填写函数名 `OnHit` 和参数 `1.0`。
+
 4.  代码中实现 `void OnHit(float damageMultiplier) { ... }`。
 
 ### 1.2 致命缺陷 (The "Traps")
@@ -33,6 +35,7 @@ Unity 原生支持在 Animation Clip 的特定帧插入 Event，调用挂在同�
 ### 2.1 工作流
 1.  在 Animator 窗口选中 "Attack_Slash" 状态。
 2.  点击 `Add Behaviour` -> 新建脚本 `SkillState`.
+
 3.  利用 `OnStateEnter`, `OnStateUpdate`, `OnStateExit` 钩子。
 
 ### 2.2 优缺点
@@ -80,6 +83,7 @@ Unity 内置的 Timeline 功能强大，但原生主要用于过场动画 (Cutsc
         public string parameter;
     }
     ```
+
 *   **运行时驱动**:
     在 `Update` 中计时：
     ```csharp
@@ -95,7 +99,9 @@ Unity 内置的 Timeline 功能强大，但原生主要用于过场动画 (Cutsc
 ### 3.3 为什么它更优雅？
 1.  **确定性 (Determinism)**: 逻辑完全由时间驱动，不依赖动画系统的混合状态。即使模型丢失、动画卡住，伤害判定依然会准时触发。
 2.  **可视化 (Visualization)**: 策划可以直观地看到：伤害是在刀光特效出现的 0.1秒 后触发的。
+
 3.  **热重载**: 可以在 Play Mode 下拖动时间轴上的滑块，实时调整手感（例如修改前摇时间），无需重编译。
+
 4.  **健壮性**: 所有的配置都是强引用的 Asset，不会因为改了函数名而崩坏。
 
 ---
@@ -112,6 +118,7 @@ Unity 内置的 Timeline 功能强大，但原生主要用于过场动画 (Cutsc
     *   `BackswingTime: 0.8s` (后摇结束，可进行下一次攻击时间)
     *   `TotalDuration: 1.2s` (动作总时长)
 2.  **预览**: 写一个简单的 Editor 脚本，在 Scene View 中根据当前选中的帧，画出怪物的 Hitbox 范围，方便对齐。
+
 3.  **执行**: 使用 Coroutine 或 Timer 在代码中严格执行上述时间点，**动画仅作为视觉表现配合逻辑播放**，而不是逻辑驱动动画。
 
 **黄金法则**: **Logic Drives Animation, Never the Other Way Around.** (逻辑驱动表现，永远不要反过来。)

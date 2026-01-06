@@ -29,6 +29,7 @@
     *   CPU 无法处理 5000+ 弹幕的位移和碰撞。
     *   **方案**: Compute Shader 计算位置 -> `AppendStructuredBuffer` 存储结果 -> `DrawMeshInstancedIndirect` 渲染。
 2.  **流场生成 (Flow Field)**:
+
     *   地图格子 100x100，每帧更新。
     *   **方案**: 一个 Kernel 计算所有格子的向量，性能比 C# Job System 快 10-50 倍。
 

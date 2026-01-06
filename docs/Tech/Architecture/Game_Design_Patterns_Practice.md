@@ -66,6 +66,7 @@
 
 1.  **Component (接口)**: `IAttack`
 2.  **Concrete (本体)**: `SwordAttack` (最里面的娃娃)
+
 3.  **Decorator (包装)**: `FireDecorator` (包在外面)
 
 **调用链:** `Game -> LifeSteal -> Fire -> Sword`
@@ -115,6 +116,7 @@ public class CritDecorator : AttackDecorator {
 
 1.  **移除困难:** 想要移除中间的一层包装（如 Buff 过期），需要解构整个链条。
 2.  **顺序混乱:** 先加后乘 `(10+5)*1.5` vs 先乘后加 `(10*1.5)+5`，结果截然不同。
+
 3.  **互斥管理:** 如何实现“武器附魔只能有一个”？
 
 **解决方案：Modifier Pipeline (中间件模式)**
@@ -176,6 +178,7 @@ public class AttackPipeline {
 
 1.  **过度单例 (Singleton Abuse):** 导致代码变成一团乱麻，哪里都能改数据，无法追踪 Bug 来源。
 2.  **上帝类 (God Class):** 一个 `PlayerController` 写了 3000 行代码，包含输入、移动、动画、音效。**解法:** 使用组件模式 (Component)，拆分为 `PlayerInput`, `PlayerMover`, `PlayerAnimator`。
+
 3.  **过度设计 (Over-Engineering):** 为还没出现的需求写复杂的接口。**YAGNI (You Aren't Gonna Need It)** 原则是王道。
 
 ---

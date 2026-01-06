@@ -14,7 +14,9 @@
 
 1.  **圈地 (Broad Phase):** 快速获取射程内的所有潜在目标（利用空间划分，如 QuadTree 或 Physics.OverlapSphere）。
 2.  **初筛 (Filtering):** 剔除无效目标（无敌状态、隐身状态、已死亡、阻挡视线）。
+
 3.  **评分 (Scoring):** 对剩下的每个目标运行一组 `Scorer`，计算总分。
+
 4.  **择优 (Selection):** 选取分数最高的 Top 1 作为目标。
 
 ### 1.2 为什么需要评分制？
@@ -68,38 +70,38 @@
 ### 🏹 Case A: 基础箭塔 (Basic Ballista)
 *定位：清理冲到脸上的杂兵，防漏怪。*
 
-|       评分器       |       权重 (Weight)       |       说明       |
-|       :---       |       :---       |       :---       |
-|       **DistanceScorer**       |       **3.0**       |       极度优先攻击最近的单位。       |
-|       **FixedPriorityScorer**       |       0.5       |       稍微偏好精英怪，但主要还是看距离。       |
-|       **HealthScorer (Low)**       |       1.0       |       优先补刀残血。       |
+|          评分器          |          权重 (Weight)          |          说明          |
+|          :---          |          :---          |          :---          |
+|          **DistanceScorer**          |          **3.0**          |          极度优先攻击最近的单位。          |
+|          **FixedPriorityScorer**          |          0.5          |          稍微偏好精英怪，但主要还是看距离。          |
+|          **HealthScorer (Low)**          |          1.0          |          优先补刀残血。          |
 
 ### 🔫 Case B: 狙击塔 (Sniper Turret)
 *定位：高单发伤害，极慢攻速。必须避免伤害溢出。*
 
-|       评分器       |       权重 (Weight)       |       说明       |
-|       :---       |       :---       |       :---       |
-|       **Filter: Overkill**       |       N/A       |       **[关键]** 如果目标的 `HP < 塔攻击力`，直接剔除（防止大炮打蚊子）。       |
-|       **FixedPriorityScorer**       |       **5.0**       |       必须优先打 Boss 和 Elite。       |
-|       **HealthScorer (High)**       |       2.0       |       在同级怪物中，选血最多的打。       |
-|       **DistanceScorer**       |       -0.5       |       稍微偏好远处的（反向权重），避免转火频繁。       |
+|          评分器          |          权重 (Weight)          |          说明          |
+|          :---          |          :---          |          :---          |
+|          **Filter: Overkill**          |          N/A          |          **[关键]** 如果目标的 `HP < 塔攻击力`，直接剔除（防止大炮打蚊子）。          |
+|          **FixedPriorityScorer**          |          **5.0**          |          必须优先打 Boss 和 Elite。          |
+|          **HealthScorer (High)**          |          2.0          |          在同级怪物中，选血最多的打。          |
+|          **DistanceScorer**          |          -0.5          |          稍微偏好远处的（反向权重），避免转火频繁。          |
 
 ### ⚡ Case C: 特斯拉电圈 (Tesla Coil)
 *定位：AOE 连锁攻击，依赖元素反应。*
 
-|       评分器       |       权重 (Weight)       |       说明       |
-|       :---       |       :---       |       :---       |
-|       **TagSynergyScorer**       |       **4.0**       |       寻找带有 `[Wet]` 或 `[Conductive]` 标签的敌人。       |
-|       **ClusterScorer**       |       2.0       |       **[高级]** 寻找周围敌人最密集的那个点作为主目标（最大化弹射收益）。       |
+|          评分器          |          权重 (Weight)          |          说明          |
+|          :---          |          :---          |          :---          |
+|          **TagSynergyScorer**          |          **4.0**          |          寻找带有 `[Wet]` 或 `[Conductive]` 标签的敌人。          |
+|          **ClusterScorer**          |          2.0          |          **[高级]** 寻找周围敌人最密集的那个点作为主目标（最大化弹射收益）。          |
 
 ### 👹 Case D: 刺客型怪物 (Assassin Enemy)
 *定位：切后排，恶心玩家。*
 
-|       评分器       |       权重 (Weight)       |       说明       |
-|       :---       |       :---       |       :---       |
-|       **FixedPriorityScorer**       |       **10.0**       |       `Player` > `SupportTower` > `TankTower`。       |
-|       **HealthScorer (Low)**       |       3.0       |       专挑血少的打。       |
-|       **DistanceScorer**       |       0.0       |       **无视距离**。哪怕要绕路，也要去切后排。       |
+|          评分器          |          权重 (Weight)          |          说明          |
+|          :---          |          :---          |          :---          |
+|          **FixedPriorityScorer**          |          **10.0**          |          `Player` > `SupportTower` > `TankTower`。          |
+|          **HealthScorer (Low)**          |          3.0          |          专挑血少的打。          |
+|          **DistanceScorer**          |          0.0          |          **无视距离**。哪怕要绕路，也要去切后排。          |
 
 ---
 

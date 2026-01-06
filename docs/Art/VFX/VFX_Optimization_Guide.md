@@ -18,6 +18,7 @@
 ### 📉 优化手段
 1.  **减少粒子面积：** 尽量只让必要的像素半透明。不要用一张大大的空图，中间只有一小团烟雾。使用 **Mesh Emitter** 代替 Quad，裁剪掉空白区域 (Tight Geometry)。
 2.  **粒子剔除 (Culling):** 屏幕外的粒子必须停止渲染。启用 Particle System 的 `Culling Mode: Pause and Catchup` 或 `Always Simulate` (但在屏幕外不渲染)。
+
 3.  **避免全屏特效：** 尽量不要做全屏的受击红光或泛光，或者使用极低分辨率的 RT 实现。
 
 ---

@@ -116,6 +116,7 @@ public class GameFeelManager : MonoBehaviour {
 
 1.  **Impact (低频)**: 拳头打在肉上的闷响 (Thud)。
 2.  **Body (中频)**: 材质的声音 (金属撞击、骨折声)。
+
 3.  **Top (高频)**: 细节 (风声、刀剑划破空气的尖啸)。
 
 ---

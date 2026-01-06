@@ -122,7 +122,9 @@
 *   **自动绑定**:
     1.  约定命名规范（如 `btn_Close`, `txt_Title`）。
     2.  编写编辑器脚本，遍历 Prefab。
+
     3.  自动生成 `XXView.cs`，包含 `public Button btn_Close;`。
+
     4.  自动挂载脚本并序列化引用。
 
 ### 3.2 设计稿直通车 (Figma to Unity)
@@ -130,7 +132,9 @@
 *   **流程**:
     1.  美术在 Figma 中按规范作图（使用 Auto Layout）。
     2.  使用插件 (如 **Doozy UI**, **Nova**, 或开源的 **Figma Converter for Unity**) 导出。
+
     3.  Unity 中一键导入，自动生成 RectTransform, Image, Text，甚至自动切图。
+
 *   **价值**: 还原度 100%，程序只需关注逻辑。
 
 ---
@@ -180,8 +184,8 @@
             *   挂 `Content Size Fitter`。
             *   设置 `Vertical Fit` = **Preferred Size**。
             *   **关键**: 这会让 Content 的高度等于所有 Module 高度之和，从而让 ScrollRect 能够滚动。
-
     2.  **强制刷新 (The Force Refresh)**:
+
         *   **为什么需要?**: Unity UI 的 Layout 计算通常在帧末尾进行。当你在一帧内 `Instantiate` -> `SetParent` -> `SetActive`，Layout 系统还没来得及计算新高度，ScrollRect 就可能认为 Content 还是 0 高度。
         *   **正确代码**:
         ```csharp
@@ -203,6 +207,7 @@
         ```
 
     3.  **异步加载防抖 (Anti-Jitter)**:
+
         *   **问题**: 图片异步下载回来前，Image 组件可能大小为 0，导致 Item 高度为 0；图片回来后 Item 突然变大，把下面的模块顶下去。
         *   **解决**: 在 Item 上挂 `Layout Element`，并设置 `Preferred Height` 为图片的目标高度（如 200）。这样即使图片没加载出来，位置也已经占好了。
 

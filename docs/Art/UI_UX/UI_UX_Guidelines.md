@@ -23,12 +23,16 @@ Unity Canvas 的 `Sorting Order` 规划：
 1.  **World Space UI (Order -10):** 
     *   血条 (Health Bars)、伤害飘字 (Floating Text)。跟随单位移动。
 2.  **Gameplay HUD (Order 0):** 
+
     *   技能栏、小地图、任务追踪。常驻屏幕。
 3.  **Windows / Panels (Order 100):** 
+
     *   背包、角色面板、商店。打断操作，半透明背景遮罩。
 4.  **Popups / Dialogs (Order 500):** 
+
     *   确认框 ("Are you sure?"), 剧情对话。模态窗口 (Modal)。
 5.  **System Overlay (Order 1000):** 
+
     *   Loading 界面、网络断开提示、版本号水印。
 
 ## 3. 交互反馈 (Interaction Feedback)

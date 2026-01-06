@@ -9,12 +9,12 @@
 
 ### 1.1 数据源扫描 (Data Source Mapping)
 
-|       数据类型       |       常见存储位置       |       提取方式       |       推荐方案       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **基础数值** (伤害公式、常量)       |       `C# static const` / `Enums`       |       源码解析 (Roslyn) 或 反射       |       **C# 反射** (最简单)       |
-|       **配置数据** (英雄、装备、怪物)       |       `ScriptableObject` (.asset)       |       `AssetDatabase` 加载       |       **Unity Editor 脚本**       |
-|       **实体数据** (塔、单位属性)       |       `Prefab` (MonoBehaviour 字段)       |       `PrefabUtility` 加载       |       **Unity Editor 脚本**       |
-|       **文本描述** (名称、技能说明)       |       `Localization` (.csv/.json)       |       文本解析       |       **CSV/JSON 库读取**       |
+|          数据类型          |          常见存储位置          |          提取方式          |          推荐方案          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **基础数值** (伤害公式、常量)          |          `C# static const` / `Enums`          |          源码解析 (Roslyn) 或 反射          |          **C# 反射** (最简单)          |
+|          **配置数据** (英雄、装备、怪物)          |          `ScriptableObject` (.asset)          |          `AssetDatabase` 加载          |          **Unity Editor 脚本**          |
+|          **实体数据** (塔、单位属性)          |          `Prefab` (MonoBehaviour 字段)          |          `PrefabUtility` 加载          |          **Unity Editor 脚本**          |
+|          **文本描述** (名称、技能说明)          |          `Localization` (.csv/.json)          |          文本解析          |          **CSV/JSON 库读取**          |
 
 ## 2. 🏗️ 架构设计：Wiki 导出器 (The Wiki Exporter)
 
@@ -52,7 +52,9 @@ public class TowerData : ScriptableObject {
 
 1.  **收集类型**: 扫描所有包含 `[WikiExport]` 的类。
 2.  **加载资产**: 使用 `AssetDatabase.FindAssets("t:TowerData")` 找到所有实例。
+
 3.  **反射读取**: 遍历实例字段，读取值和 Attribute 描述。
+
 4.  **格式化输出**: 使用 `StringBuilder` 拼接 Markdown 表格。
 
 ```csharp
@@ -84,7 +86,9 @@ public static void GenerateWiki() {
 ### 3.1 本地开发流
 1.  程序员/策划修改 `ScriptableObject` 数值。
 2.  点击菜单栏 `Tools > Vampirefall > Generate Wiki`。
+
 3.  脚本在 `Docs/` 目录下生成最新的 `.md` 文件。
+
 4.  提交 Git。
 
 ### 3.2 CI/CD 集成 (进阶)
@@ -112,13 +116,16 @@ public static void GenerateWiki() {
     ## 技能描述
     > {SkillDescription}
     ```
+
 2.  **生成器逻辑**: 读取模板 -> 替换占位符 -> 输出文件。
 
 ## 5. 🚀 实施步骤 (Action Plan)
 
 1.  **第一周**: 定义 `[WikiExport]` Attribute，并给核心类 (`EnemyData`, `TowerData`, `ItemData`) 加上标签。
 2.  **第二周**: 编写最简单的 Editor 脚本，仅导出 "怪物列表.md" (包含名称、HP、攻击力)，验证流程。
+
 3.  **第三周**: 接入本地化文件，确保 Wiki 显示的是中文名称而不是 `ENEMY_001`。
+
 4.  **第四周**: 优化排版，支持图片导出 (自动将 Icon 转换并引用)。
 
 ## 6. 💡 常见问题解决方案

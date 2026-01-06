@@ -36,6 +36,7 @@ Unity 默认将 `AudioListener` 组件挂在 `Main Camera` 上。这在第一人
 *   **脚本逻辑**:
     1.  让这个 Rig 的 X/Z 坐标始终跟随 Camera 的视点中心（即 Camera 射线与地面的交点）。
     2.  让这个 Rig 的 Y 坐标（高度）保持固定（例如离地 2 米），或者跟随 Camera 高度但按比例缩小（Camera 升高 10米，耳朵只升高 2米）。
+
     3.  **关键**: 强制 Rig 的旋转 (`Rotation`) 始终为 `(0, 0, 0)` 或者与世界坐标对齐，**不要**跟随 Camera 的俯仰角旋转。
 
 ## 3. 代码实现 (VirtualListener.cs)
@@ -95,8 +96,8 @@ public class VirtualAudioListener : MonoBehaviour
 
 ## 5. 总结
 
-|       游戏类型       |       AudioListener 挂载点       |       理由       |
-|       :---       |       :---       |       :---       |
-|       **FPS / TPS**       |       Main Camera       |       视听一致。       |
-|       **Roguelike (吸血鬼幸存者)**       |       **主角 (Player)**       |       强调主角身边的威胁感。       |
-|       **RTS / 塔防 (Vampirefall)**       |       **虚拟耳朵 (Virtual Rig)**       |       关注屏幕中心，听感稳定，不受相机缩放影响。       |
+|          游戏类型          |          AudioListener 挂载点          |          理由          |
+|          :---          |          :---          |          :---          |
+|          **FPS / TPS**          |          Main Camera          |          视听一致。          |
+|          **Roguelike (吸血鬼幸存者)**          |          **主角 (Player)**          |          强调主角身边的威胁感。          |
+|          **RTS / 塔防 (Vampirefall)**          |          **虚拟耳朵 (Virtual Rig)**          |          关注屏幕中心，听感稳定，不受相机缩放影响。          |

@@ -10,6 +10,7 @@
 
 1. **提供情感锚点 (Emotional Anchor)** - 让玩家关心游戏世界
 2. **增强代入感 (Immersion)** - 解释"为什么要战斗"
+
 3. **差异化包装 (Differentiation)** - 避免成为"纯数值计算器"
 
 ### 📐 叙事类型分类
@@ -54,12 +55,12 @@
 
 游戏规则本身就是叙事工具：
 
-|       游戏       |       机制       |       叙事含义       |
-|      ------      |      ------      |      ----------      |
-|       **Dark Souls**       |       死亡重生       |       "你是不死人，永远被诅咒"       |
-|       **Hades**       |       逃脱失败       |       "你永远无法逃离冥界"       |
-|       **Vampire Survivors**       |       30 分钟死亡       |       "死神最终会降临"       |
-|       **Loop Hero**       |       循环地图       |       "你被困在时间循环中"       |
+|          游戏          |          机制          |          叙事含义          |
+|         ------         |         ------         |         ----------         |
+|          **Dark Souls**          |          死亡重生          |          "你是不死人，永远被诅咒"          |
+|          **Hades**          |          逃脱失败          |          "你永远无法逃离冥界"          |
+|          **Vampire Survivors**          |          30 分钟死亡          |          "死神最终会降临"          |
+|          **Loop Hero**          |          循环地图          |          "你被困在时间循环中"          |
 
 **Vampirefall 潜在机制叙事**:
 
@@ -437,17 +438,19 @@ Hades 是**肉鸽类叙事设计的巅峰**，解决了"重复游玩 = 重复剧
 **设计亮点**:
 
 1. **2000+ 行独特对话**
-   - 基于进度的动态对话
-   - 每次死亡后都有新反馈
+    - 基于进度的动态对话
+    - 每次死亡后都有新反馈
    
 2. **角色关系网络**
-   - 送礼物 → 解锁新对话分支
-   - 角色之间会互相提及
+
+    - 送礼物 → 解锁新对话分支
+    - 角色之间会互相提及
    
 3. **"永远有新内容"的错觉**
-   - 前 20 次 Run：几乎每次都有新对话
-   - 20-50 次：逐渐减少但仍有惊喜
-   - 50+ 次：进入"真结局"剧情
+
+    - 前 20 次 Run：几乎每次都有新对话
+    - 20-50 次：逐渐减少但仍有惊喜
+    - 50+ 次：进入"真结局"剧情
 
 **Vampirefall 借鉴**:
 
@@ -465,13 +468,13 @@ Slay the Spire 几乎没有显性剧情，但通过**碎片化文本**构建了�
 
 **叙事载体**:
 
-|       元素       |       叙事方式       |       例子       |
-|      ------      |      ----------      |      ------      |
-|       **卡牌名称**       |       暗示技能来源       |       "献祭" → 邪教仪式       |
-|       **卡牌描述**       |       风味文本       |       "疼痛是暂时的，力量是永恒的"       |
-|       **敌人名称**       |       暗示生态       |       "培养者" → 他们在培养怪物       |
-|       **事件文本**       |       环境叙事       |       "你发现了一座古老的神龛..."       |
-|       **遗物描述**       |       历史碎片       |       "曾属于第一位攀登者"       |
+|          元素          |          叙事方式          |          例子          |
+|         ------         |         ----------         |         ------         |
+|          **卡牌名称**          |          暗示技能来源          |          "献祭" → 邪教仪式          |
+|          **卡牌描述**          |          风味文本          |          "疼痛是暂时的，力量是永恒的"          |
+|          **敌人名称**          |          暗示生态          |          "培养者" → 他们在培养怪物          |
+|          **事件文本**          |          环境叙事          |          "你发现了一座古老的神龛..."          |
+|          **遗物描述**          |          历史碎片          |          "曾属于第一位攀登者"          |
 
 **设计哲学**:
 > "玩家会自己脑补完整的故事。"
@@ -564,6 +567,7 @@ Vampire Survivors 证明了：**即使叙事极简，包装仍然重要**。
 
 1. **主题一致性**: 所有元素都围绕"吸血鬼猎人"主题
 2. **命名艺术**: 所有名称都有意大利风格（致敬《恶魔城》）
+
 3. **音乐氛围**: 哥特式 BGM 强化主题
 
 **Vampirefall 借鉴**:
@@ -579,53 +583,53 @@ Vampire Survivors 证明了：**即使叙事极简，包装仍然重要**。
 ### 📄 理论与设计
 
 1. **Environmental Storytelling**  
-   *Henry Jenkins (MIT)*  
-   [论文 PDF](http://web.mit.edu/~21fms/People/henry3/games&narrative.html)
+    *Henry Jenkins (MIT)*  
+    [论文 PDF](http://web.mit.edu/~21fms/People/henry3/games&narrative.html)
 
 2. **Narrative Design in Roguelikes**  
-   *GDC 2021 - Greg Kasavin (Supergiant Games)*  
-   [YouTube 链接](https://www.youtube.com/watch?v=bwdYL0KFA_U)
+    *GDC 2021 - Greg Kasavin (Supergiant Games)*  
+    [YouTube 链接](https://www.youtube.com/watch?v=bwdYL0KFA_U)
 
 3. **The Narrative Potential of Replay**  
-   *Extra Credits*  
-   [YouTube 视频](https://www.youtube.com/watch?v=VXBHdGZl_iE)
+    *Extra Credits*  
+    [YouTube 视频](https://www.youtube.com/watch?v=VXBHdGZl_iE)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2021] Writing Hades**  
-   演讲者: Greg Kasavin  
-   [GDC Vault](https://www.gdcvault.com/play/1027260/)
+    演讲者: Greg Kasavin  
+    [GDC Vault](https://www.gdcvault.com/play/1027260/)
 
 2. **[GDC 2018] Narrative Design in Slay the Spire**  
-   演讲者: Anthony Giovannetti  
-   [YouTube 链接](https://www.youtube.com/watch?v=5swWx75w6kQ)
+    演讲者: Anthony Giovannetti  
+    [YouTube 链接](https://www.youtube.com/watch?v=5swWx75w6kQ)
 
 3. **[GDC 2017] Environmental Storytelling in The Last of Us**  
-   演讲者: Richard Cambier (Naughty Dog)  
-   [GDC Vault](https://www.gdcvault.com/play/1024700/)
+    演讲者: Richard Cambier (Naughty Dog)  
+    [GDC Vault](https://www.gdcvault.com/play/1024700/)
 
 ### 🌐 技术博客
 
 1. **Writing for Roguelikes - Gamasutra**  
-   [文章链接](https://www.gamasutra.com/view/feature/writing_for_roguelikes.php)
+    [文章链接](https://www.gamasutra.com/view/feature/writing_for_roguelikes.php)
 
 2. **The Power of Flavor Text**  
-   [Medium 分析](https://medium.com/@gamedesign/power-of-flavor-text)
+    [Medium 分析](https://medium.com/@gamedesign/power-of-flavor-text)
 
 3. **Narrative Systems in Games**  
-   [Game Developer 深度文章](https://www.gamedeveloper.com/design/narrative-systems)
+    [Game Developer 深度文章](https://www.gamedeveloper.com/design/narrative-systems)
 
 ### 📚 推荐书籍
 
 1. **《游戏叙事设计》** (Interactive Storytelling for Video Games)  
-   作者: Josiah Lebowitz, Chris Klug
+    作者: Josiah Lebowitz, Chris Klug
 
 2. **《游戏写作手册》** (The Game Narrative Toolbox)  
-   作者: Tobias Heussner 等
+    作者: Tobias Heussner 等
 
 3. **《故事》** (Story)  
-   作者: Robert McKee  
-   （虽然不是游戏专著，但叙事原理通用）
+    作者: Robert McKee  
+    （虽然不是游戏专著，但叙事原理通用）
 
 ---
 

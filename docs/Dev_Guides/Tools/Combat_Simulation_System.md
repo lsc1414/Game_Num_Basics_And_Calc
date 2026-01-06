@@ -83,8 +83,11 @@ def simulate_battle(hero, monster_list):
 
 1.  策划在 CSV 中配置数值。
 2.  运行 `python run_sim.py`。
+
 3.  脚本自动读取 CSV，跑 1000 局模拟。
+
 4.  输出 `report.html` (使用 Matplotlib 绘图)。
+
 5.  如果平衡性通过，再让程序在 Unity 中实装数值。
 
 **核心价值**：**Fail Fast**。在写一行 C# 代码之前，先确无数值模型是成立的。

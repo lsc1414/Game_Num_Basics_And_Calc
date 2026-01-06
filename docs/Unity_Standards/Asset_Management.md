@@ -53,7 +53,9 @@ Unity 有一个特殊的文件夹叫 `Resources`。
 *   **代价：**
     1.  **🐢 启动慢：** 游戏启动时，Unity 会建立一个红黑树索引，把 `Resources` 下所有文件的路径记下来。文件越多，启动黑屏越久。
     2.  **💧 内存无法释放：** 极其容易造成内存泄漏。
+
     3.  **🔒 无法热更：** 打包后就封死在包里了，想改一张图必须重新发包。
+
 *   **结论：** **严禁使用 Resources 文件夹**（除非是极其核心的配置，如 Logo 或启动预制体）。
 
 ---
@@ -84,6 +86,7 @@ Unity 有一个特殊的文件夹叫 `Resources`。
     *.wav filter=lfs diff=lfs merge=lfs -text
     *.mp4 filter=lfs diff=lfs merge=lfs -text
     ```
+
 *   **效果：** Git 仓库里只存一个指针（几KB），真正的文件存在专门的 LFS 服务器上。拉取速度飞快。
 
 ---

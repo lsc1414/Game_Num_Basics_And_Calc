@@ -65,6 +65,7 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
 #### A. 文本文件冲突
 1.  **定位**: 打开冲突文件，找到 `<<<<<<<`, `=======`, `>>>>>>>` 标记。
 2.  **修改**: 决定保留哪部分代码（或者都保留），删除标记符号。
+
 3.  **提交**: `git add` + `git commit`。
 
 #### B. 二进制文件冲突 (Binary Conflict) - **关键！**
@@ -77,17 +78,20 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
     git checkout --ours path/to/image.png
     git add path/to/image.png
     ```
+
 *   **保留他的 (Theirs)**: 别人的图是对的，我放弃我的修改。
     ```bash
     git checkout --theirs path/to/image.png
     git add path/to/image.png
     ```
+
 *   注意：在 `git merge` 时，`--ours` 是指当前分支，`--theirs` 是指要合并进来的分支。但在 `git rebase` 时，逻辑是反的！务必先备份。
 
 **GUI 方案 (Sourcetree / TortoiseGit)**:
 
 1.  在冲突文件上右键。
 2.  选择 `Resolve using 'Mine'` (使用我的版本) 或 `Resolve using 'Theirs'` (使用远程版本)。
+
 3.  工具会自动执行上述命令并标记为已解决。
 
 **终极方案: 锁定 (Locking)**
@@ -107,7 +111,9 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
 
 1.  **下载**: 去 [Gitea 官网](https://gitea.io) 下载对应系统的可执行文件。
 2.  **运行**: 直接双击运行 (会启动 Web 服务器，默认端口 3000)。
+
 3.  **配置**: 浏览器访问 `localhost:3000`，首次运行会进入安装向导。
+
     *   数据库选 `SQLite3` (最简单，无需安装 MySQL)。
     *   设置管理员账号。
 4.  **局域网访问**: 确保防火墙开放 3000 端口。队友可以通过 `http://192.168.x.x:3000` 访问。
@@ -121,7 +127,9 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
     cd vampirefall.git
     git init --bare  # 初始化裸仓库 (没有工作区，只有数据库)
     ```
+
 2.  **共享**: 将 `vampirefall.git` 文件夹设置为**网络共享文件夹** (Windows SMB)。
+
 3.  **客户端**:
     ```bash
     git clone //SERVER_IP/Shared/vampirefall.git
@@ -162,6 +170,7 @@ Thumbs.db
     git lfs track "*.fbx"
     git lfs track "*.wav"
     ```
+
 3.  **提交**: 这会生成一个 `.gitattributes` 文件，务必把它提交上去。
 
 ---

@@ -10,7 +10,9 @@
 
 1.  [理论基础 (Theoretical Basis)](#-1-理论基础-theoretical-basis)
 2.  [实践应用 (Practical Implementation)](#️-2-实践应用-practical-implementation)
+
 3.  [业界优秀案例 (Industry Best Practices)](#-3-业界优秀案例-industry-best-practices)
+
 4.  [参考资料 (References)](#-4-参考资料-references)
 
 ---
@@ -67,7 +69,7 @@ Vampirefall 倾向于 **软互赖**，但在 Boss 战引入少量 **硬互赖** 
 
 - **金币 (Gold)**: **独立掉落 (Instanced)**。每个人看到的金币都是自己的，互不抢夺。
 - **以太 (Aether)**: **共享资源 (Shared)**。用于建造防御塔的特殊资源。
-  - **设计意图**: 金币用于强化个人（Roguelike部分），以太用于强化团队防线（塔防部分）。这迫使玩家交流："我这波钱够升级主塔了，你留着钱买陷阱。"
+    - **设计意图**: 金币用于强化个人（Roguelike部分），以太用于强化团队防线（塔防部分）。这迫使玩家交流："我这波钱够升级主塔了，你留着钱买陷阱。"
 
 #### 🏰 建造权限
 
@@ -84,12 +86,12 @@ Vampirefall 倾向于 **软互赖**，但在 Boss 战引入少量 **硬互赖** 
 
 Vampirefall 的角色设计应天然互补：
 
-|       角色原型       |       塔防定位       |       战斗定位       |       协同效应       |
-|       :---       |       :---       |       :---       |       :---       |
-|       **鲜血领主** (Tank)       |       建造高血量路障       |       聚怪、承受伤害       |       将怪聚在队友的AOE塔下       |
-|       **暗影刺客** (DPS)       |       建造单体高伤塔       |       切后排、秒杀精英       |       处理漏网之鱼       |
-|       **死灵法师** (Support)       |       建造减速/削弱塔       |       召唤炮灰、削甲       |       放大队友伤害       |
-|       **炼金术士** (Tech)       |       建造光环/Buff塔       |       埋雷、大范围AOE       |       提供控制链       |
+|          角色原型          |          塔防定位          |          战斗定位          |          协同效应          |
+|          :---          |          :---          |          :---          |          :---          |
+|          **鲜血领主** (Tank)          |          建造高血量路障          |          聚怪、承受伤害          |          将怪聚在队友的AOE塔下          |
+|          **暗影刺客** (DPS)          |          建造单体高伤塔          |          切后排、秒杀精英          |          处理漏网之鱼          |
+|          **死灵法师** (Support)          |          建造减速/削弱塔          |          召唤炮灰、削甲          |          放大队友伤害          |
+|          **炼金术士** (Tech)          |          建造光环/Buff塔          |          埋雷、大范围AOE          |          提供控制链          |
 
 ### 2.3 动态难度调整 (Dynamic Scaling)
 
@@ -154,6 +156,7 @@ public void OnPlayerCountChanged(int newCount)
     - 重点: 互补性、沟通、共享目标、去中心化。
 
 2.  **"Left 4 Dead: The Director"**  
+
     - 来源: Valve Publications  
     - 重点: 动态节奏控制算法。
 
@@ -164,6 +167,7 @@ public void OnPlayerCountChanged(int newCount)
     - 链接: [YouTube](https://www.youtube.com/watch?v=sJd2f763VCA)
 
 2.  **"How Deep Rock Galactic Solves the Co-op Problem"**  
+
     - 频道: Snoman Gaming  
     - 重点: 职业工具的设计。
 
@@ -175,7 +179,9 @@ public void OnPlayerCountChanged(int newCount)
 
 1.  **资源分离**: 坚守"金币独立，以太共享"的原则，这是平衡个人爽感与团队策略的关键。
 2.  **物理互补**: 设计至少 3 种能够改变地形或怪物路径的技能，促进物理层面的配合。
+
 3.  **动态伸缩**: 编写 `DifficultyScaler` 模块，支持热插拔（中途加入/退出）。
+
 4.  **社交标记**: 实现类似 Apex Legends 的 **Ping 系统**（"这里造塔"、"集火这个怪"），降低沟通成本。
 
 ---

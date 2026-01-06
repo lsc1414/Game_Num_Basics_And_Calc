@@ -95,9 +95,11 @@
     *   修饰器: `MoveSpeed` * 0.5。
     *   授予标签: `State.Debuff.Cold`。
 2.  **创建 GE_FrostDamage (冰霜伤害)**:
+
     *   类型: `Instant`。
     *   修饰器: `Health` - 50。
 3.  **创建 GA_FrostNova (冰霜新星技能)**:
+
     *   逻辑: 半径 5米的球形检测。
     *   应用: 对所有带有 `Unit.Team.Enemy` 标签的目标应用 `GE_FrostSlow` 和 `GE_FrostDamage`。
     *   表现: 生成 VFX "FrostExplosion"。

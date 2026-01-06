@@ -20,8 +20,8 @@
 ### 2.1 🎨 美术管线 (Art Pipeline)
 
 - **资产导入后处理 (AssetPostprocessor)**:
-  - **痛点**: 美术每次导入贴图都要手动选 "Android", "Override", "ASTC_6x6"。
-  - **解决**: 编写 `OnPreprocessTexture` 脚本。根据文件夹路径（如 `Assets/UI/Icons`），自动设置压缩格式、Mipmap 开关。
+    - **痛点**: 美术每次导入贴图都要手动选 "Android", "Override", "ASTC_6x6"。
+    - **解决**: 编写 `OnPreprocessTexture` 脚本。根据文件夹路径（如 `Assets/UI/Icons`），自动设置压缩格式、Mipmap 开关。
     ```csharp
     // 示例: Assets/Editor/TextureImporterAutomation.cs
     public class TextureImporterAutomation : AssetPostprocessor
@@ -45,19 +45,20 @@
         }
     }
     ```
+
 - **TA 工具集**:
-  - **Shader 变体剔除 (Shader Stripping)**: 自动剔除用不到的 Shader 变体，大幅减小包体，加快打包速度。
-  - **Substance to Unity**: 材质库自动化桥接。
+    - **Shader 变体剔除 (Shader Stripping)**: 自动剔除用不到的 Shader 变体，大幅减小包体，加快打包速度。
+    - **Substance to Unity**: 材质库自动化桥接。
 - **UI 自动化**:
-  - **Figma Importer**: 直接从设计稿生成 Unity UI 预制体（推荐 `Doozy UI` 或自研工具）。
-  - **图集自动打包 (Sprite Atlas)**: 避免运行时 DrawCall 爆炸。
+    - **Figma Importer**: 直接从设计稿生成 Unity UI 预制体（推荐 `Doozy UI` 或自研工具）。
+    - **图集自动打包 (Sprite Atlas)**: 避免运行时 DrawCall 爆炸。
 
 ### 2.2 🧠 策划管线 (Design Pipeline)
 
 - **配置表工作流 (Data Workflow)**:
-  - **工具**: **Luban** (强烈推荐) 或 **EasyTables**。
-  - **流程**: Excel/Google Sheets -> 导表工具 -> 生成 C# 代码 + 二进制数据 -> Unity。
-  - **优势**: 强类型检查（填错 ID 直接报错），支持复杂数据结构（嵌套列表、多态），加载速度极快。
+    - **工具**: **Luban** (强烈推荐) 或 **EasyTables**。
+    - **流程**: Excel/Google Sheets -> 导表工具 -> 生成 C# 代码 + 二进制数据 -> Unity。
+    - **优势**: 强类型检查（填错 ID 直接报错），支持复杂数据结构（嵌套列表、多态），加载速度极快。
     ```xml
     <!-- 示例: Luban 定义 (Defines.xml) -->
     <bean name="Item">
@@ -67,11 +68,12 @@
     </bean>
     <table name="TbItem" value="Item" input="Item.xlsx" output="Item.bin"/>
     ```
+
 - **关卡设计工具**:
-  - **Tilemap 笔刷**: 自动处理转角连接 (Rule Tile)。
-  - **随机种子预览**: 在编辑器里直接预览不同 Seed 生成的地图，不需要运行游戏。
+    - **Tilemap 笔刷**: 自动处理转角连接 (Rule Tile)。
+    - **随机种子预览**: 在编辑器里直接预览不同 Seed 生成的地图，不需要运行游戏。
 - **静态分析 (Static Analysis)**:
-  - 编写编辑器菜单 `Tools/Verify All Data`。一键检查所有掉落表是否配置了不存在的物品 ID，怪物数值是否为负数。
+    - 编写编辑器菜单 `Tools/Verify All Data`。一键检查所有掉落表是否配置了不存在的物品 ID，怪物数值是否为负数。
     ```csharp
     // 示例: Luban 自定义验证器 (LubanValidator.cs)
     // 在加载完所有配置表后，执行深度检查
@@ -103,11 +105,11 @@
 ### 2.3 💻 程序管线 (Engineering Pipeline)
 
 - **代码生成 (Code Generation)**:
-  - **网络协议**: 使用 Protobuf 或 Flatbuffers 定义协议，自动生成 C# 和服务器端代码。
-  - **事件总线**: 自动扫描所有事件类型，生成强类型的订阅/发布接口，避免字符串拼写错误。
-  - **UI 代码生成 (UI Binding)**:
-    - **痛点**: 手写 `public Button btnStart;` 然后在 Inspector 里拖拽，容易丢失引用。
-    - **解决**: 编写工具遍历 Prefab，自动生成 View 类并绑定引用。
+    - **网络协议**: 使用 Protobuf 或 Flatbuffers 定义协议，自动生成 C# 和服务器端代码。
+    - **事件总线**: 自动扫描所有事件类型，生成强类型的订阅/发布接口，避免字符串拼写错误。
+    - **UI 代码生成 (UI Binding)**:
+        - **痛点**: 手写 `public Button btnStart;` 然后在 Inspector 里拖拽，容易丢失引用。
+        - **解决**: 编写工具遍历 Prefab，自动生成 View 类并绑定引用。
       {% raw %}
     ```csharp
     // 示例: 自动生成 UI 绑定代码 (UIGenerator.cs)
@@ -141,9 +143,9 @@
     {% endraw %}
 
 - **构建自动化 (Build Automation)**:
-  - **Jenkins / GitHub Actions / TeamCity**:
-    - **Commit Build**: 每次提交，跑一遍单元测试。
-    - **Nightly Build**: 每晚自动打出 Android/iOS 包，上传到内网服务器，并通过飞书/钉钉机器人通知群组。
+    - **Jenkins / GitHub Actions / TeamCity**:
+        - **Commit Build**: 每次提交，跑一遍单元测试。
+        - **Nightly Build**: 每晚自动打出 Android/iOS 包，上传到内网服务器，并通过飞书/钉钉机器人通知群组。
       {% raw %}
     ```yaml
     # 示例: GitHub Actions (main.yml)
@@ -164,9 +166,8 @@
     {% endraw %}
 
 - **质量控制**:
-
-  - **Roslyn Analyzers**: 强制执行代码规范（如：禁止在 Update 里使用 `FindObjectOfType`）。
-  - **Odin Inspector**: 极速扩展编辑器。用几行代码给策划做出好用的技能编辑器，而不是写几百行 `OnInspectorGUI`。
+    - **Roslyn Analyzers**: 强制执行代码规范（如：禁止在 Update 里使用 `FindObjectOfType`）。
+    - **Odin Inspector**: 极速扩展编辑器。用几行代码给策划做出好用的技能编辑器，而不是写几百行 `OnInspectorGUI`。
 
     ```csharp
     // 示例: 技能编辑器 (SkillData.cs)
@@ -197,12 +198,12 @@
 ### 3.2 独立/中型团队 (Indie/Mid-size)
 
 - **借力打力**: 没资源自研引擎，就买最好的插件。
-  - **Odin Inspector**: 编辑器扩展神器。
-  - **Rewired / Input System**: 输入管理。
-  - **A\* Pathfinding Pro**: 寻路。
-  - **DOTween**: 动画。
+    - **Odin Inspector**: 编辑器扩展神器。
+    - **Rewired / Input System**: 输入管理。
+    - **A\* Pathfinding Pro**: 寻路。
+    - **DOTween**: 动画。
 - **小团队的自动化**:
-  - 不要搭建复杂的 Jenkins 集群。写一个简单的 `BuildScript.cs`，配合 Windows 计划任务，每晚在一台闲置的 PC 上打包即可。
+    - 不要搭建复杂的 Jenkins 集群。写一个简单的 `BuildScript.cs`，配合 Windows 计划任务，每晚在一台闲置的 PC 上打包即可。
 
 ### 2.4 🔍 调试与性能分析工具 (Debug & Profiling Tools)
 
@@ -210,9 +211,9 @@
 
 - **痛点**: Profiler 数据太多，不知道看哪里。
 - **技巧**:
-  - **Deep Profile**: 精确到每个函数，但会拖慢游戏。只在定位性能瓶颈时开启。
-  - **Hierarchy 视图**: 按调用栈查看，找出最耗时的调用链。
-  - **Timeline 视图**: 查看单帧内的详细时序，诊断卡顿。
+    - **Deep Profile**: 精确到每个函数，但会拖慢游戏。只在定位性能瓶颈时开启。
+    - **Hierarchy 视图**: 按调用栈查看，找出最耗时的调用链。
+    - **Timeline 视图**: 查看单帧内的详细时序，诊断卡顿。
 
     ```csharp
     // 自定义性能标记 (ProfilerMarker)
@@ -236,12 +237,12 @@
 #### 2.4.2 内存分析工具
 
 - **Memory Profiler Package**: Unity 官方插件，可视化内存占用。
-  - **快照对比**: 抓两个快照，对比内存增长，找内存泄漏。
-  - **引用查看**: 点击某个对象，看谁持有它的引用（为什么没被 GC 回收）。
+    - **快照对比**: 抓两个快照，对比内存增长，找内存泄漏。
+    - **引用查看**: 点击某个对象，看谁持有它的引用（为什么没被 GC 回收）。
 - **常见问题**:
-  - **闭包捕获**: Lambda 表达式意外捕获了大对象。
-  - **静态变量**: 长生命周期的 `static List` 积累了大量数据。
-  - **事件未注销**: `OnEnable` 注册了事件，但 `OnDisable` 忘记注销。
+    - **闭包捕获**: Lambda 表达式意外捕获了大对象。
+    - **静态变量**: 长生命周期的 `static List` 积累了大量数据。
+    - **事件未注销**: `OnEnable` 注册了事件，但 `OnDisable` 忘记注销。
 
     ```csharp
     // 错误示例: 事件泄漏
@@ -260,12 +261,12 @@
 #### 2.4.3 崩溃收集与分析
 
 - **工具选择**:
-  - **Unity Cloud Diagnostics**: Unity 官方免费方案，自动收集崩溃日志。
-  - **Bugly / Crashlytics**: 腾讯和 Google 的方案，支持符号表还原堆栈。
-  - **Sentry**: 开源方案，支持自建服务器。
+    - **Unity Cloud Diagnostics**: Unity 官方免费方案，自动收集崩溃日志。
+    - **Bugly / Crashlytics**: 腾讯和 Google 的方案，支持符号表还原堆栈。
+    - **Sentry**: 开源方案，支持自建服务器。
 - **最佳实践**:
-  - **符号表上传**: 打包时自动上传 Symbols 文件，否则看到的堆栈都是地址，无法定位。
-  - **自定义错误上报**:
+    - **符号表上传**: 打包时自动上传 Symbols 文件，否则看到的堆栈都是地址，无法定位。
+    - **自定义错误上报**:
     ```csharp
     // 关键逻辑加 try-catch，主动上报
     try
@@ -293,9 +294,10 @@
   adb tcpip 5555
   adb connect 192.168.1.100:5555
   ```
+
 - **在屏调试菜单 (In-Game Debug Menu)**:
-  - **痛点**: 手机上无法打断点，难以调试。
-  - **解决**: 做一个浮窗，显示 FPS、内存、网络延迟，提供作弊按钮（一键通关、无限金币）。
+    - **痛点**: 手机上无法打断点，难以调试。
+    - **解决**: 做一个浮窗，显示 FPS、内存、网络延迟，提供作弊按钮（一键通关、无限金币）。
     ```csharp
     // 示例: 简易调试菜单 (DebugMenu.cs)
     public class DebugMenu : MonoBehaviour
@@ -513,20 +515,20 @@
 #### 2.6.3 分支策略 (Branching Strategy)
 
 - **Git Flow** (适合大团队):
-  - `main`: 线上版本，只接受发布分支合并。
-  - `develop`: 开发主分支，所有功能分支合并到这里。
-  - `feature/*`: 功能分支（如 `feature/new-tower`）。
-  - `release/*`: 发布候选分支，锁定功能，只修 Bug。
-  - `hotfix/*`: 紧急修复，直接从 `main` 拉出。
+    - `main`: 线上版本，只接受发布分支合并。
+    - `develop`: 开发主分支，所有功能分支合并到这里。
+    - `feature/*`: 功能分支（如 `feature/new-tower`）。
+    - `release/*`: 发布候选分支，锁定功能，只修 Bug。
+    - `hotfix/*`: 紧急修复，直接从 `main` 拉出。
 - **Trunk-Based** (适合小团队):
-  - 只有一个 `main` 分支，所有人都往这里提交。
-  - 用 Feature Flags 控制未完成功能（代码里加开关，默认关闭）。
+    - 只有一个 `main` 分支，所有人都往这里提交。
+    - 用 Feature Flags 控制未完成功能（代码里加开关，默认关闭）。
 
 #### 2.6.4 冲突处理技巧
 
 - **预制体/场景冲突**: 使用 **UnityYAMLMerge** 工具智能合并。
-  - 配置路径：`C:\Program Files\Unity\Hub\Editor\2021.3.0f1\Editor\Data\Tools\UnityYAMLMerge.exe`
-  - 修改 `.git/config`:
+    - 配置路径：`C:\Program Files\Unity\Hub\Editor\2021.3.0f1\Editor\Data\Tools\UnityYAMLMerge.exe`
+    - 修改 `.git/config`:
 
     ```ini
     [merge]
@@ -536,6 +538,7 @@
     cmd = 'C:/Program Files/Unity/Hub/Editor/2021.3.0f1/Editor/Data/Tools/UnityYAMLMerge.exe' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"
     trustExitCode = false
     ```
+
 - **避免冲突**: 策划和美术不要直接改场景文件，而是改成 Prefab 嵌套。每人负责不同的 Prefab。
 
 #### 2.6.5 Git Hooks 自动化
@@ -574,9 +577,9 @@
 
 - **工具**: GitHub Pull Request、GitLab Merge Request。
 - **最佳实践**:
-  - **小 PR**: 每次不超过 300 行改动，方便审查。
-  - **自动化检查**: CI 自动跑单元测试，通过才能合并。
-  - **模板**: Pull Request 描述模板，强制填写"改了什么"、"为什么改"、"怎么测试"。
+    - **小 PR**: 每次不超过 300 行改动，方便审查。
+    - **自动化检查**: CI 自动跑单元测试，通过才能合并。
+    - **模板**: Pull Request 描述模板，强制填写"改了什么"、"为什么改"、"怎么测试"。
 
     ```markdown
     ## 改动说明
@@ -617,21 +620,21 @@
 #### 2.8.1 音效管理
 
 - **FMOD / Wwise**: 行业标准中间件，支持动态音乐、3D 音效、参数化控制。
-  - **优势**: 不用写代码就能调音效参数（音量、混响、滤波器）。
-  - **自动化**: 音频师在 FMOD Studio 里调好，导出 Bank 文件，Unity 自动加载。
+    - **优势**: 不用写代码就能调音效参数（音量、混响、滤波器）。
+    - **自动化**: 音频师在 FMOD Studio 里调好，导出 Bank 文件，Unity 自动加载。
 - **Unity AudioMixer**: Unity 内置方案，适合简单项目。
-  - **技巧**: 用 Snapshot 切换场景音效（如进入洞穴，自动加混响）。
+    - **技巧**: 用 Snapshot 切换场景音效（如进入洞穴，自动加混响）。
 
 #### 2.8.2 音频资源优化
 
 - **压缩格式选择**:
-  - **背景音乐**: Vorbis (OGG)，压缩比高，适合长音频。
-  - **短音效**: ADPCM，解压快，适合频繁播放的脚步声、枪声。
-  - **对白**: MP3，兼容性好。
+    - **背景音乐**: Vorbis (OGG)，压缩比高，适合长音频。
+    - **短音效**: ADPCM，解压快，适合频繁播放的脚步声、枪声。
+    - **对白**: MP3，兼容性好。
 - **Load Type**:
-  - **Decompress On Load**: 一次性解压到内存，占内存但性能好。适合短音效。
-  - **Compressed In Memory**: 播放时解压，省内存但耗 CPU。适合背景音乐。
-  - **Streaming**: 边播边读，最省内存，但读盘可能卡顿。
+    - **Decompress On Load**: 一次性解压到内存，占内存但性能好。适合短音效。
+    - **Compressed In Memory**: 播放时解压，省内存但耗 CPU。适合背景音乐。
+    - **Streaming**: 边播边读，最省内存，但读盘可能卡顿。
 
 #### 2.8.3 音频自动化工具
 
@@ -649,8 +652,8 @@
 
 - **官方插件**: 支持多语言字符串、资产本地化（如中文用宋体，日文用黑体）。
 - **流程**:
-  1. 创建 String Table，填入所有文本（ID + 各语言翻译）。
-  2. 代码里用 `LocalizedString` 引用，自动根据当前语言切换。
+    1. 创建 String Table，填入所有文本（ID + 各语言翻译）。
+    2. 代码里用 `LocalizedString` 引用，自动根据当前语言切换。
 
      ```csharp
      using UnityEngine.Localization;
@@ -666,6 +669,7 @@
          };
      }
      ```
+
 - **资产本地化**: 不同语言用不同图片（如游戏 Logo）。
 
 #### 2.9.2 翻译协作
@@ -699,11 +703,11 @@
 #### 2.10.1 热更新方案
 
 - **HybridCLR (原 huatuo)**: Unity 官方支持的 C# 热更新方案，基于 IL2CPP。
-  - **优势**: 可以热更新业务逻辑代码（策划改数值不用重新发包）。
-  - **限制**: 不能新增原生插件（Android .so 文件）。
+    - **优势**: 可以热更新业务逻辑代码（策划改数值不用重新发包）。
+    - **限制**: 不能新增原生插件（Android .so 文件）。
 - **AssetBundle**: 资源热更新，常用于更新美术资源、配置表。
-  - **工具**: **Addressables** (Unity 官方推荐) 或 **YooAsset** (国内开源方案)。
-  - **流程**: 服务器放新的 AssetBundle，客户端启动时检查版本号，下载更新。
+    - **工具**: **Addressables** (Unity 官方推荐) 或 **YooAsset** (国内开源方案)。
+    - **流程**: 服务器放新的 AssetBundle，客户端启动时检查版本号，下载更新。
 
 #### 2.10.2 运营活动配置化
 
@@ -742,10 +746,10 @@
 
 - **工具**: **Unity Analytics** (免费) / **Firebase Analytics** / **神策数据** (国内)。
 - **关键指标**:
-  - **DAU/MAU**: 日活/月活。
-  - **留存率**: 首日留存、7 日留存。
-  - **ARPPU**: 付费玩家平均收入。
-  - **漏斗分析**: 新手教程各步骤的流失率。
+    - **DAU/MAU**: 日活/月活。
+    - **留存率**: 首日留存、7 日留存。
+    - **ARPPU**: 付费玩家平均收入。
+    - **漏斗分析**: 新手教程各步骤的流失率。
 - **埋点示例**:
   ```csharp
   // 记录玩家完成新手教程
@@ -760,9 +764,9 @@
 
 - **服务器监控**: **Prometheus** + **Grafana**，监控服务器 CPU、内存、在线人数。
 - **客户端监控**:
-  - **崩溃率**: 每日崩溃率不超过 0.5%。
-  - **卡顿率**: 统计低于 30 FPS 的玩家占比。
-  - **关卡通过率**: 某关卡通过率低于 10%，说明难度设计有问题。
+    - **崩溃率**: 每日崩溃率不超过 0.5%。
+    - **卡顿率**: 统计低于 30 FPS 的玩家占比。
+    - **关卡通过率**: 某关卡通过率低于 10%，说明难度设计有问题。
 
 #### 2.11.3 日志聚合
 
@@ -775,9 +779,9 @@
 
 - **工具**: **Shortcut Manager** (Unity 2019.1+)。
 - **推荐自定义**:
-  - `Ctrl+Shift+C`: 快速创建空 GameObject 并重命名。
-  - `Ctrl+D` 改为 `Ctrl+Shift+D`: 避免误触复制。
-  - `Alt+G`: 快速分组选中的对象。
+    - `Ctrl+Shift+C`: 快速创建空 GameObject 并重命名。
+    - `Ctrl+D` 改为 `Ctrl+Shift+D`: 避免误触复制。
+    - `Alt+G`: 快速分组选中的对象。
 
 ### 3.3.2 ScriptableObject 作为配置中心
 
@@ -840,13 +844,13 @@
 ### 3.3.5 资产商店插件推荐
 
 - **必备插件**:
-  - **Odin Inspector**: 编辑器增强，提升 10 倍生产力。
-  - **DOTween**: 补间动画，性能优于 Unity 自带。
-  - **UniRx**: 响应式编程，优雅处理异步逻辑。
-  - **Extenject (Zenject)**: 依赖注入框架，解耦代码。
+    - **Odin Inspector**: 编辑器增强，提升 10 倍生产力。
+    - **DOTween**: 补间动画，性能优于 Unity 自带。
+    - **UniRx**: 响应式编程，优雅处理异步逻辑。
+    - **Extenject (Zenject)**: 依赖注入框架，解耦代码。
 - **美术工具**:
-  - **Amplify Shader Editor**: 可视化 Shader 编辑器。
-  - **Bakery GPU Lightmapper**: 超快的光照烘焙。
+    - **Amplify Shader Editor**: 可视化 Shader 编辑器。
+    - **Bakery GPU Lightmapper**: 超快的光照烘焙。
 
 ### 3.3.6 跨平台构建自动化
 
@@ -887,8 +891,11 @@
 
 1. **自动化一切可自动化的**：如果某个操作重复超过 3 次，就考虑写脚本。
 2. **尽早集成 CI/CD**：不要等项目后期才搞持续集成，越早越好。
+
 3. **投资编辑器工具**：花 1 天时间写一个工具，能节省团队 100 天的手动操作。
+
 4. **数据驱动设计**：策划能在 Excel 里改的，就不要写死在代码里。
+
 5. **监控和反馈**：没有数据支持的优化都是盲目的。
 
 工具链没有银弹，根据团队规模和项目需求灵活选择。小团队不要过度工程化，大团队不要忽视工具投资。

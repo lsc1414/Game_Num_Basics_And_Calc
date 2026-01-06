@@ -206,7 +206,9 @@ Shader "Custom/InstancedEffect"
 *   **做法：**
     1.  创建一个 `EnemyData : ScriptableObject`，里面存 HP, Atk, Speed, Prefab。
     2.  在 Project 窗口右键创建 `Goblin_Lv1.asset`, `Dragon_Lv99.asset`。
+
     3.  怪物逻辑 `Monster.cs` 里只有一个变量：`public EnemyData data;`。
+
 *   **好处：**
     *   策划可以直接在编辑器里调数值，不用改代码，不用重新编译。
     *   内存里只有一份数据，1000 个哥布林共用一个 SO，省内存。

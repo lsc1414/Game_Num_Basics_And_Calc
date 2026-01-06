@@ -44,10 +44,12 @@
     *   Mode: **ACES**。
     *   *作用:* 将 HDR 的高动态范围颜色正确映射到屏幕上。没有它，你的亮部只会是一片惨白，开启后亮部会有丰富的色彩层次（如火焰中心的橙黄过渡）。
 2.  **Bloom (泛光):** 
+
     *   *设置:* Threshold (0.9), Intensity (0.2 - 0.5), Scatter (0.4)。
     *   *性能:* 开启 `High Quality Filtering` 会很耗，手游建议关掉高品质过滤，适当调低 `Downsample`。
     *   *作用:* 让“发光”的东西真正发光（如技能特效、霓虹灯）。避免全局泛光，只让高亮部分泛光。
 3.  **Vignette (暗角):**
+
     *   *设置:* Intensity (0.25), Smoothness (0.4)。
     *   *作用:* 压暗四角，引导玩家视线集中在屏幕中心，极其廉价的“电影感”来源。
 
@@ -56,12 +58,14 @@
     *   **性能杀手。** 尤其是在 Bokeh (散景) 模式下。
     *   *建议:* 仅在 UI 对话界面、特写镜头或 Build Mode（静止时）开启。战斗中关闭。
 2.  **Color Grading (调色):**
+
     *   使用 `Lift, Gamma, Gain` 微调环境氛围。
     *   *性能:* 只要开了 Tonemapping，Color Grading 几乎是免费的（它们在同一个 Pass 处理）。但不要调得太重口味。
 
 ### ❌ 禁区 (Avoid on Mobile)
 1.  **Motion Blur (动态模糊):** 手游上采样率不足会导致画面脏糊，且消耗巨大。
 2.  **Ambient Occlusion (SSAO):** 屏幕空间环境光遮蔽在手机上极耗 GPU。
+
     *   *替代:* 使用烘焙的 Lightmap AO 或者材质自带的 AO 贴图。
 
 ---
