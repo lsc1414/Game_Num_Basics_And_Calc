@@ -73,4 +73,4 @@
 ### 📖 心理学理论
 
 - **[Flow Theory (心流理论)[斯金纳箱](../Psychology/Skinner_Box_and_Addiction.md)**: 难度与能力的动态平衡是留存的关键。
-- **[Cognitive Load (认知负荷)[UI 信息密度](../../Art/UI_Info_Density_Guide.md)**: 为什么不能一次性给玩家太多信息。
+- **[Cognitive Load (认知负荷)[UI 信息密度](../../Art/UI_UX/UI_Info_Density_Guide.md)**: 为什么不能一次性给玩家太多信息。

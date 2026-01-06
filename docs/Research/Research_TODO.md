@@ -3,36 +3,30 @@
 ## 📊 已完成的研究
 
 ### ✅ 核心机制研究
+
 - [x] **[难度曲线与 DDA 系统](../Design/Mechanics/Difficulty_And_DDA_System.md)** (2025-12-04)
   - 心流理论、动态难度调整算法
   - Left 4 Dead、RE4、Hades、Celeste 案例分析
-  
 - [x] **[Boss 设计哲学](../Design/Content/Boss_Design_Philosophy.md)** (2025-12-04)
   - 柱阶段系统、电报机制
   - Kingdom Rush、Hades、Dark Souls、Cuphead 案例分析
-  
 - [x] **[游戏剧情与包装](../Design/Narrative/Game_Narrative_And_Presentation.md)** (2025-12-04)
   - 环境叙事、机制驱动叙事、重复游玩叙事设计
   - Hades、Slay the Spire、Dead Cells、Vampire Survivors 案例分析
-  
 - [x] **[连招系统设计](../Tech/Mechanics/Combo_System_Design.md)** (2025-12-04)
   - 输入缓冲、连锁窗口、取消系统理论与实现
   - Street Fighter、Devil May Cry、Hades、God of War 案例分析
-  
 - [x] **[成就与收集系统](../Design/Systems/Achievement_And_Collection_System.md)** (2025-12-04)
   - 成就分类、收集心理学、蔡加尼克效应、完成主义
   - Steam、Hollow Knight、Dead Cells、Genshin Impact 案例分析
-  
 - [x] **[技能树设计](../Design/Systems/Skill_Tree_Design.md)** (2025-12-04)
-  - 线性/分支/网格树、Build多样性数学、重置机制
+  - 线性/分支/网格树、Build 多样性数学、重置机制
   - Path of Exile、Borderlands、Hades、Grim Dawn 案例分析
-  
-- [x] **[特效与打击感](../Art/VFX_And_Game_Feel.md)** (2025-12-04)
-  - 屏幕震动、顿帧、粒子系统、Game Feel设计
+- [x] **[特效与打击感](../Art/VFX/VFX_And_Game_Feel.md)** (2025-12-04)
+  - 屏幕震动、顿帧、粒子系统、Game Feel 设计
   - Devil May Cry、Vampire Survivors、Enter the Gungeon、Hades 案例分析
-  
 - [x] **[程序化生成指南](../Tech/Algorithms/Procedural_Generation_Guide.md)** (2025-12-04)
-  - WFC、BSP、Cellular Automata算法原理
+  - WFC、BSP、Cellular Automata 算法原理
   - Spelunky、The Binding of Isaac、Enter the Gungeon 案例分析
 
 ---
@@ -42,6 +36,7 @@
 ### 🎮 核心玩法机制 (Core Gameplay)
 
 #### 2. 🎯 瞄准辅助系统 (Aim Assist)
+
 **优先级**: ⭐⭐⭐⭐ (中高)  
 **研究重点**:
 
@@ -60,6 +55,7 @@
 ---
 
 #### 3. 🏃 移动与冲刺系统 (Movement & Dash)
+
 **优先级**: ⭐⭐⭐⭐ (中高)  
 **研究重点**:
 
@@ -80,6 +76,7 @@
 ### 📖 叙事与表现 (Narrative & Presentation)
 
 #### 5. 🎨 美术风格一致性 (Art Direction)
+
 **优先级**: ⭐⭐⭐ (中)  
 **研究重点**:
 
@@ -100,6 +97,7 @@
 ### 🏆 长期系统 (Meta Systems)
 
 #### 8. 👥 多人协作平衡 (Co-op Balancing)
+
 **优先级**: ⭐⭐⭐ (中)  
 **研究重点**:
 
@@ -118,11 +116,13 @@
 7. ✅ 关卡生成算法
 
 ### 第三批（体验优化）
+
 8. [x] 瞄准辅助系统
 9. [x] 移动与冲刺系统
 10. ✅ 特效与打击感
 
 ### 第四批（扩展功能）
+
 11. [x] 多人协作平衡
 12. [x] 美术风格一致性
 13. [x] 动态音乐系统
