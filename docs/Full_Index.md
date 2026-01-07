@@ -2,9 +2,7 @@
 
 这里列出了 `docs/` 目录下所有的文档，按照文件夹结构自动整理。
 
-
 ## Art
-
 
 ### Tech_Art
 
@@ -41,14 +39,13 @@
 
 ## Design
 
-
 ### CaseStudies
 
 - [🎯 正中靶心 - 深度设计拆解](Design/CaseStudies/BangBangSurvivor_DeepDive.md)
 
 ### Content
 
-- [👹 怪物图鉴与AI行为](Design/Content/Enemy_Bestiary.md)
+- [👹 怪物图鉴与 AI 行为](Design/Content/Enemy_Bestiary.md)
 - [🗺️ 关卡与波次设计指南](Design/Content/Level_Design_Guide.md)
 - [🗺️ 关卡设计理论：节奏、空间与引导](Design/Content/Level_Design_Theory.md)
 - [🧙‍♂️ Boss 战设计哲学深度研究](Design/Content/Boss_Design_Philosophy.md)
@@ -58,7 +55,7 @@
 - [🌟 业界优秀运营系统研究](Design/LiveOps/Advanced_LiveOps_Systems.md)
 - [🎫 通行证经济学](Design/LiveOps/Battle_Pass_Economy.md)
 - [📅 活动排期策略](Design/LiveOps/Event_Cadence_Strategy.md)
-- [📚 社区WIKI与攻略站构建策略](Design/LiveOps/Wiki_And_Strategy_Station_Guide.md)
+- [📚 社区 WIKI 与攻略站构建策略](Design/LiveOps/Wiki_And_Strategy_Station_Guide.md)
 
 ### Mechanics
 
@@ -135,7 +132,6 @@
 
 ## Dev_Guides
 
-
 ### Art_Pipeline
 
 - [⬜ Unity 灰盒工作流](Dev_Guides/Art_Pipeline/Unity_Greybox_Workflow.md)
@@ -163,7 +159,6 @@
 - [🕵️‍♂️ 福尔摩斯调试法：像侦探一样修 Bug](Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide.md)
 
 ### Industry_Cases
-
 
 #### Failure_Analysis
 
@@ -197,8 +192,8 @@
 - [波函数坍缩 (WFC) 生成](Dev_Guides/Technical_Implementation/Procedural_Generation_WFC.md)
 - [🎨 GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall](Dev_Guides/Technical_Implementation/GPU_Instancing_Guide.md)
 - [🎬 技能动画管线：从 Animator Event 到可视化时间轴](Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline.md)
-- [🎮 游戏开发最佳实践：Tag系统、热重载与快速测试](Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices.md)
-- [🎲 PRD算法完整实现指南](Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md)
+- [🎮 游戏开发最佳实践：Tag 系统、热重载与快速测试](Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices.md)
+- [🎲 PRD 算法完整实现指南](Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md)
 - [💰 掉落蓄水池算法：恒定 DPM 的 0GC 实现](Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm.md)
 - [📈 全局埋点实战指南：用数据上帝视角“看”游戏](Dev_Guides/Technical_Implementation/Game_Analytics_Guide.md)
 - [📝 游戏文本配置方案：富文本、动态参数与多语言架构](Dev_Guides/Technical_Implementation/Skill_Text_Localization_System.md)
@@ -214,12 +209,12 @@
 - [⏱️ 性能监控脚本集：Unity 实战性能守门员](Dev_Guides/Tools/Performance_Monitoring_Scripts.md)
 - [⚔️ 战斗仿真系统：Python 极速模拟](Dev_Guides/Tools/Combat_Simulation_System.md)
 - [蒙特卡洛模拟](Dev_Guides/Tools/Monte_Carlo_Simulation.md)
-- [📊 Excel三表法数值模板指南](Dev_Guides/Tools/Excel_Numerical_Templates.md)
+- [📊 Excel 三表法数值模板指南](Dev_Guides/Tools/Excel_Numerical_Templates.md)
 - [🔗 Odin Inspector + Luban 深度集成指南](Dev_Guides/Tools/Odin_Luban_Integration_Guide.md)
 - [🛠️ Unity PRD 算法插件：伪随机分布的 C# 实现](Dev_Guides/Tools/Unity_PRD_Plugin.md)
 - [🛠️ 游戏开发工具链指南：加速迭代的秘密武器](Dev_Guides/Tools/Game_Dev_Toolchain_Guide.md)
 - [🛠️ 自动化 WIKI 生成指南：从零散项目资源到结构化文档](Dev_Guides/Tools/Automated_Wiki_Generation.md)
-- [🛠️ 调试指令与GM工具](Dev_Guides/Tools/Debug_Console_And_Cheats.md)
+- [🛠️ 调试指令与 GM 工具](Dev_Guides/Tools/Debug_Console_And_Cheats.md)
 - [🤖 AI 平衡测试工具：利用 LLM 进行自动化数值验收](Dev_Guides/Tools/AI_Balance_Testing.md)
 - [🧙‍♂️ Odin Inspector 高级使用技巧深度研究](Dev_Guides/Tools/Odin_Inspector_Advanced_Techniques.md)
 - [🧮 数值计算器套装：可视化你的设计](Dev_Guides/Tools/Numerical_Calculator_Suite.md)
@@ -228,7 +223,6 @@
 - [🛠️ Unity 游戏开发实战锦囊](Dev_Guides/Unity_Practical_Tips.md)
 
 ## Tech
-
 
 ### Algorithms
 
@@ -258,6 +252,7 @@
 - [⚡ Compute Shader 移动端深度指南](Tech/Graphics/Compute_Shader_Mobile_Guide.md)
 - [🎨 Shader 核心数学模式与实战指南](Tech/Graphics/Shader_Math_Patterns.md)
 - [🎨 Unity SpriteAtlas 优化与实践深度研究](Tech/Graphics/Unity_SpriteAtlas_DeepDive.md)
+- [🎨 Linear 与 Gamma 渲染空间深度解析](Tech/Graphics/Linear_vs_Gamma_Rendering.md)
 
 ### Math
 

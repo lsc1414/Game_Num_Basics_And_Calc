@@ -80,6 +80,26 @@ description: 生成游戏机制深度研究文档（理论/实践/案例）
 
     常见需要包装的函数：`saturate`, `lerp`, `step`, `smoothstep`, `frac`, `floor`, `ceil`, `tex2D`, `dot`, `cross`, `normalize`, `clamp`, `abs`, `pow`, `atan2`
 
+    ### 4.4 提示框 (Admonition) 规则
+
+    MkDocs 不支持 GitHub 风格的 `> [!TYPE]` 语法，必须使用标准 Admonition 语法：
+
+    | ❌ 错误写法 (GitHub Style) | ✅ 正确写法 (MkDocs Style)                   |
+    | :------------------------- | :------------------------------------------- |
+    | `> [!NOTE]`                | `!!! note`                                   |
+    | `> [!WARNING]`             | `!!! warning`                                |
+    | `> [!TIP]`                 | `!!! tip`                                    |
+    | `> [!IMPORTANT]`           | `!!! failure "Important"` (或 `!!! example`) |
+
+    **语法示例**:
+
+    ```markdown
+    !!! note "标题 (可选)"
+    这是内容，注意必须**缩进 4 个空格**。
+
+        可以包含列表或其他 Markdown 元素。
+    ```
+
 5.  **自我审查**
 
     - 检查是否涵盖了理论、实践和案例三个维度。

@@ -113,7 +113,7 @@ extra:
   # 社交链接
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/your-username
+      link: https://github.com/lsc1414
 
   # 页面分析 (可选)
   # analytics:
@@ -324,6 +324,7 @@ nav:
           - ⚡ Compute Shader 移动端深度指南: Tech/Graphics/Compute_Shader_Mobile_Guide.md
           - 🎨 Shader 核心数学模式与实战指南: Tech/Graphics/Shader_Math_Patterns.md
           - 🎨 Unity SpriteAtlas 优化与实践深度研究: Tech/Graphics/Unity_SpriteAtlas_DeepDive.md
+          - 🎨 Linear与Gamma渲染空间深度解析: Tech/Graphics/Linear_vs_Gamma_Rendering.md
       - Math:
           - 📈 游戏中的曲线艺术: Tech/Math/Game_Curves_DeepDive.md
       - Mechanics:
