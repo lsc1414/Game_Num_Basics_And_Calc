@@ -148,90 +148,90 @@ Roguelike + 塔防意味着海量实体，CPU 是最大瓶颈。
 
 ### 优化技术栈 (Tech Stack)
 
-1.  **DOTS (Data-Oriented Technology Stack):**
+#### 1. DOTS (Data-Oriented Technology Stack)
 
-    - 对于海量怪物的移动和简单逻辑，考虑使用 ECS (Entities) + Burst Compiler。这是解决千人同屏的终极方案。
+对于海量怪物的移动和简单逻辑，考虑使用 ECS (Entities) + Burst Compiler。这是解决千人同屏的终极方案。
 
-    ***
+---
 
-    #### 🧠 DOTS 性能提升原理详解
+#### 🧠 DOTS 性能提升原理详解
 
-    DOTS 的核心不是"新技术"，而是**让代码适配现代 CPU 的物理特性**。
+DOTS 的核心不是"新技术"，而是**让代码适配现代 CPU 的物理特性**。
 
-    ##### 1. 内存布局：AoS vs SoA
+##### 1. 内存布局：AoS vs SoA
 
-    传统 OOP (Array of Structs):
+传统 OOP (Array of Structs):
 
-    ```
-    [Entity1: Position, Rotation, Health, AI...]
-    [Entity2: Position, Rotation, Health, AI...]  ← 内存中交错排列
-    [Entity3: Position, Rotation, Health, AI...]
-    ```
+```text
+[Entity1: Position, Rotation, Health, AI...]
+[Entity2: Position, Rotation, Health, AI...]  ← 内存中交错排列
+[Entity3: Position, Rotation, Health, AI...]
+```
 
-    ECS (Struct of Arrays):
+ECS (Struct of Arrays):
 
-    ```
-    Positions: [Pos1, Pos2, Pos3, ...]   ← 同类型数据连续存储
-    Rotations: [Rot1, Rot2, Rot3, ...]
-    Healths:   [HP1,  HP2,  HP3,  ...]
-    ```
+```text
+Positions: [Pos1, Pos2, Pos3, ...]   ← 同类型数据连续存储
+Rotations: [Rot1, Rot2, Rot3, ...]
+Healths:   [HP1,  HP2,  HP3,  ...]
+```
 
-    **为什么 SoA 更快？** 参考 [CPU 下的 Cache Miss](#cpu-下的-cache-miss隐形杀手)：
+**为什么 SoA 更快？** 参考 [CPU 下的 Cache Miss](#cpu-下的-cache-miss：隐形杀手)：
 
-    | 场景                       | OOP (AoS)                            | ECS (SoA)                       | 原因                 |
-    | :------------------------- | :----------------------------------- | :------------------------------ | :------------------- |
-    | **遍历 10000 个 Position** | 加载整个 Entity (~100 bytes)         | 只加载 Position (12 bytes)      | 减少 **8x** 内存读取 |
-    | **Cache Line 利用率**      | 每条 Cache Line (64B) 只有 ~12B 有用 | 整条 Cache Line 全部是 Position | **5x** 利用率提升    |
-    | **Prefetch 效率**          | 随机跳转，Prefetcher 失效            | 顺序访问，Prefetcher 全中       | **100x** 速度差距    |
+| 场景                       | OOP (AoS)                            | ECS (SoA)                       | 原因                 |
+| :------------------------- | :----------------------------------- | :------------------------------ | :------------------- |
+| **遍历 10000 个 Position** | 加载整个 Entity (~100 bytes)         | 只加载 Position (12 bytes)      | 减少 **8x** 内存读取 |
+| **Cache Line 利用率**      | 每条 Cache Line (64B) 只有 ~12B 有用 | 整条 Cache Line 全部是 Position | **5x** 利用率提升    |
+| **Prefetch 效率**          | 随机跳转，Prefetcher 失效            | 顺序访问，Prefetcher 全中       | **100x** 速度差距    |
 
-    ##### 2. Burst Compiler：SIMD 向量化
+##### 2. Burst Compiler：SIMD 向量化
 
-    Burst 将 C# 代码编译为**原生机器码**，并自动应用 SIMD (Single Instruction, Multiple Data)：
+Burst 将 C# 代码编译为**原生机器码**，并自动应用 SIMD (Single Instruction, Multiple Data)：
 
-    | 操作                | 普通 C#  | Burst + SIMD      | 加速比     |
-    | :------------------ | :------- | :---------------- | :--------- |
-    | **4 个 float 加法** | 4 条指令 | 1 条 SSE/AVX 指令 | **4x**     |
-    | **8 个 float 乘法** | 8 条指令 | 1 条 AVX 指令     | **8x**     |
-    | **循环 + 条件判断** | 逐个处理 | 自动展开 + 无分支 | **10-50x** |
+| 操作                | 普通 C#  | Burst + SIMD      | 加速比     |
+| :------------------ | :------- | :---------------- | :--------- |
+| **4 个 float 加法** | 4 条指令 | 1 条 SSE/AVX 指令 | **4x**     |
+| **8 个 float 乘法** | 8 条指令 | 1 条 AVX 指令     | **8x**     |
+| **循环 + 条件判断** | 逐个处理 | 自动展开 + 无分支 | **10-50x** |
 
-    ##### 3. Job System：多核并行
+##### 3. Job System：多核并行
 
-    Unity 传统 MonoBehaviour 只能跑在**主线程**。Job System 让逻辑分发到所有 CPU 核心：
+Unity 传统 MonoBehaviour 只能跑在**主线程**。Job System 让逻辑分发到所有 CPU 核心：
 
-    | CPU 核心数 | MonoBehaviour | Jobs (理论) | 实际加速       |
-    | :--------- | :------------ | :---------- | :------------- |
-    | 4 核       | 1x            | 4x          | ~3x (调度开销) |
-    | 8 核       | 1x            | 8x          | ~5-6x          |
-    | 16 核      | 1x            | 16x         | ~8-10x         |
+| CPU 核心数 | MonoBehaviour | Jobs (理论) | 实际加速       |
+| :--------- | :------------ | :---------- | :------------- |
+| 4 核       | 1x            | 4x          | ~3x (调度开销) |
+| 8 核       | 1x            | 8x          | ~5-6x          |
+| 16 核      | 1x            | 16x         | ~8-10x         |
 
-    ##### 4. 综合性能对比 (实测参考)
+##### 4. 综合性能对比 (实测参考)
 
-    场景：**移动 10000 个 Entity** (每帧更新 Position)
+场景：**移动 10000 个 Entity** (每帧更新 Position)
 
-    | 方案                          | 耗时 (每帧)   | 对比基准     |
-    | :---------------------------- | :------------ | :----------- |
-    | **MonoBehaviour + Transform** | ~15-25 ms     | 100% (基准)  |
-    | **纯 C# 脚本 (无 Burst)**     | ~5-10 ms      | ~50%         |
-    | **ECS (无 Burst)**            | ~2-4 ms       | ~20%         |
-    | **ECS + Burst**               | ~0.3-0.8 ms   | **~3%**      |
-    | **ECS + Burst + Jobs (8 核)** | ~0.05-0.15 ms | **~0.5%** 🚀 |
+| 方案                          | 耗时 (每帧)   | 对比基准     |
+| :---------------------------- | :------------ | :----------- |
+| **MonoBehaviour + Transform** | ~15-25 ms     | 100% (基准)  |
+| **纯 C# 脚本 (无 Burst)**     | ~5-10 ms      | ~50%         |
+| **ECS (无 Burst)**            | ~2-4 ms       | ~20%         |
+| **ECS + Burst**               | ~0.3-0.8 ms   | **~3%**      |
+| **ECS + Burst + Jobs (8 核)** | ~0.05-0.15 ms | **~0.5%** 🚀 |
 
-    > **🚀 结论:** DOTS 全栈可以带来 **50-200x** 的性能提升，核心原因：
-    >
-    > - **Cache 友好**: 连续内存，Prefetch 全中
-    > - **SIMD**: 一条指令处理多个数据
-    > - **多核**: 充分利用现代 CPU 所有核心
-    > - **无 GC**: 使用 NativeArray，战斗中零分配
+> **🚀 结论:** DOTS 全栈可以带来 **50-200x** 的性能提升，核心原因：
+>
+> - **Cache 友好**: 连续内存，Prefetch 全中
+> - **SIMD**: 一条指令处理多个数据
+> - **多核**: 充分利用现代 CPU 所有核心
+> - **无 GC**: 使用 NativeArray，战斗中零分配
 
-    ***
+---
 
-2.  **GPU Skinning:**
+#### 2. GPU Skinning
 
-    - 将骨骼动画计算从 CPU 转移到 GPU Shader，解放 CPU 算力。
+将骨骼动画计算从 CPU 转移到 GPU Shader，解放 CPU 算力。
 
-3.  **Addressables:**
+#### 3. Addressables
 
-    - 资源按需加载，避免启动时加载所有资源导致内存溢出。
+资源按需加载，避免启动时加载所有资源导致内存溢出。
 
 ### CPU 微观基准 (CPU Micro-Benchmarks)
 
@@ -604,6 +604,7 @@ GPU Instancing 让相同 Mesh + Material 的物体**一次 Draw Call 批量渲�
 
 1. **CPU→GPU 通信**：状态切换、缓冲区绑定 (~5-50 us/次)
 2. **驱动验证**：参数校验、着色器编译检查
+
 3. **命令队列**：提交渲染命令到 GPU
 
 > **经验法则:**
