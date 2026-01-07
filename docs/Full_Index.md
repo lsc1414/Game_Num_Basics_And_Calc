@@ -253,6 +253,7 @@
 - [🎨 Shader 核心数学模式与实战指南](Tech/Graphics/Shader_Math_Patterns.md)
 - [🎨 Unity SpriteAtlas 优化与实践深度研究](Tech/Graphics/Unity_SpriteAtlas_DeepDive.md)
 - [🎨 Linear 与 Gamma 渲染空间深度解析](Tech/Graphics/Linear_vs_Gamma_Rendering.md)
+- [🧙‍♂️ 粒子特效材质透明度混合模式深度研究](Tech/Graphics/Particle_Blending_Modes.md)
 
 ### Math
 
