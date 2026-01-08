@@ -188,7 +188,7 @@ public class WaveData
 
 **🔑 关键点**：
 
-- `@` 语法可以调用外部方法：`@FindObjectOfType<T>()`
+- `@` 语法可以调用外部方法：`@`FindObjectOfType<T>`()`
 - `ListElementLabelName` 使用属性/字段自定义列表项显示名称
 - `PreviewField` 的第一个参数控制预览大小
 

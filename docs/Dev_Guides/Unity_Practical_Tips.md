@@ -195,7 +195,7 @@ Shader "Custom/InstancedEffect"
 *   **场景：** 怪物死了，需要：1.加分 2.播音效 3.掉落金币 4.任务计数。
 *   **错误写法：** 在 `Monster.cs` 里调用 `ScoreManager.Add()`, `AudioManager.Play()`, `LootManager.Spawn()`...
 *   **正确写法 (解耦):**
-    *   `Monster.cs`: `public static event Action<Monster> OnMonsterDied;`
+    *   `Monster.cs`: `public static event `Action<Monster>` OnMonsterDied;`
     *   怪物死的时候：`OnMonsterDied?.Invoke(this);` 我只管喊一声“我死啦！”，谁爱管谁管。
     *   `ScoreManager.cs`: 监听 `OnMonsterDied`，听到就加分。
     *   **好处：** 你删掉音效管理器，怪物代码一行都不用改。

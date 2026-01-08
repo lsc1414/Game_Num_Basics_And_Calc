@@ -13,8 +13,8 @@
 *   **Unity 痛点:** 传统的 `Instance` 静态变量会导致紧耦合，且难以测试。
 *   **最佳实践:** **服务定位器 (Service Locator)** 或 **依赖注入 (DI)**。
     *   不要直接调用 `AudioManager.Instance.Play()`。
-    *   而是让系统在启动时注册: `ServiceLocator.Register<IAudioService>(new AudioManager())`。
-    *   业务逻辑只依赖接口: `ServiceLocator.Get<IAudioService>().Play()`。
+    *   而是让系统在启动时注册: `ServiceLocator.`Register<IAudioService>`(new AudioManager())`。
+    *   业务逻辑只依赖接口: `ServiceLocator.`Get<IAudioService>`().Play()`。
 *   **Vampirefall 应用:** `GameManager`, `SaveSystem`, `LootManager`。
 
 ### 1.2 对象池模式 (Object Pool)

@@ -40,7 +40,7 @@
     - **方案**: 维护一张全局 `Vector2[,]` 流场图。每当玩家改变地形（造塔）时，重新计算一次流场。所有怪物每帧只需读取当前格子的向量即可。
 - **弹幕与碰撞 - 空间哈希**:
     - 大量子弹和怪物碰撞。
-    - **方案**: 使用 `Dictionary<int, List<Entity>>` 或扁平数组作为 Grid。Grid 大小设为最大单位直径的 1-2 倍。
+    - **方案**: 使用 `Dictionary<int, `List<Entity>`>` 或扁平数组作为 Grid。Grid 大小设为最大单位直径的 1-2 倍。
 - **Roguelike - 伪随机 (PRNG)**:
     - 使用种子 (Seed) 驱动所有随机。确保同一局游戏（Seed 相同）的回放完全一致。
     - **C#**: 避免使用 `System.Random` (不可控)，推荐使用 `Unity.Mathematics.Random` 或自定义 `Xorshift`。

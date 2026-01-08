@@ -14,7 +14,7 @@
 2.  **禁止每帧分配内存 (No GC in Update)**:
 
     - ❌ `string text = "HP: " + hp;`
-    - ❌ `new List<Enemy>()`
+    - ❌ `new `List<Enemy>`()`
     - ❌ `foreach (var x in list)` (在老版本编译器会有 GC，养成习惯用 `for`)。
 3.  **禁止直接 Destroy/Instantiate**: 任何高频对象（子弹、特效、怪物、伤害数字）**必须**走 `ObjectPoolManager`。
 

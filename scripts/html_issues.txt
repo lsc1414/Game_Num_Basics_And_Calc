@@ -1,0 +1,145 @@
+﻿扫描 VitePress HTML 语法问题...
+============================================================
+
+发现 31 个文件有潜在问题:
+
+[FILE] Art\Visual_Hierarchy_In_Chaos.md
+  行 9: 可能未闭合的标签: <spa>
+  行 9: 可能未闭合的标签: <spa>
+  行 11: 可能未闭合的标签: <spa>
+  行 11: 可能未闭合的标签: <spa>
+  行 13: 可能未闭合的标签: <spa>
+  ... 还有 8 个问题
+
+[FILE] Audio\Lightweight_Audio_Framework.md
+  行 169: 可能未闭合的标签: <AudioSource>
+  行 190: 可能未闭合的标签: <SoundData>
+
+[FILE] Audio\Practical_Guide.md
+  行 94: 泛型语法未转义: ictionary<string, float>
+  行 94: 可能未闭合的标签: <string>
+
+[FILE] Design\Content\Enemy_Bestiary.md
+  行 9: 可能未闭合的标签: <spa>
+  行 13: 可能未闭合的标签: <spa>
+  行 17: 可能未闭合的标签: <spa>
+
+[FILE] Design\Enter_the_Gungeon_Knowledge_Map.md
+  行 188: 可能未闭合的标签: <50>
+
+[FILE] Design\Mechanics\Roguelike_Perks.md
+  行 503: 可能未闭合的标签: <5秒>
+
+[FILE] Design\Numerical_Manual.md
+  行 348: 可能未闭合的标签: <colo>
+  行 851: 可能未闭合的标签: <https>
+
+[FILE] Design\Roguelike_Deckbuilder_Knowledge_Map.md
+  行 118: 可能未闭合的标签: <GameAction>
+
+[FILE] Design\Systems\Mail_System_Design.md
+  行 31: 泛型语法未转义: List<String>
+  行 31: 可能未闭合的标签: <String>
+  行 32: 泛型语法未转义: List<Item>
+  行 32: 可能未闭合的标签: <Item>
+
+[FILE] Dev_Guides\Collaboration\GitHub_PR_Workflow.md
+  行 33: 可能未闭合的标签: <Type>
+  行 33: 可能未闭合的标签: <Subject>
+
+[FILE] Dev_Guides\Collaboration\Git_Commit_Standards.md
+  行 141: 可能未闭合的标签: <type>
+  行 141: 可能未闭合的标签: <scope>
+  行 141: 可能未闭合的标签: <subject>
+
+[FILE] Dev_Guides\Debugging\Sherlock_Holmes_Debugging_Guide.md
+  行 29: 可能未闭合的标签: <commit>
+
+[FILE] Dev_Guides\Industry_Cases\Hades_Build_Diversity.md
+  行 237: 泛型语法未转义: ictionary<string, int>
+  行 237: 可能未闭合的标签: <string>
+  行 256: 可能未闭合的标签: <BoonEffect>
+
+[FILE] Dev_Guides\Project_Cheat_Sheet.md
+  行 17: 泛型语法未转义: List<Enemy>
+  行 17: 可能未闭合的标签: <Enemy>
+
+[FILE] Dev_Guides\Technical_Implementation\Skill_Text_Localization_System.md
+  行 14: 可能未闭合的标签: <color>
+  行 14: 可能未闭合的标签: <c>
+  行 15: 可能未闭合的标签: <l>
+  行 36: 可能未闭合的标签: <c>
+  行 37: 可能未闭合的标签: <l>
+  ... 还有 3 个问题
+
+[FILE] Dev_Guides\Tools\Automated_Wiki_Generation.md
+  行 134: 泛型语法未转义: etComponent<MyScript>
+  行 134: 可能未闭合的标签: <MyScript>
+
+[FILE] Dev_Guides\Tools\Odin_Inspector_Advanced_Techniques.md
+  行 191: 泛型语法未转义: FindObjectOfType<T>
+  行 191: 可能未闭合的标签: <T>
+
+[FILE] Dev_Guides\Tools\Performance_Monitoring_Scripts.md
+  行 26: 可能未闭合的标签: <16ms>
+
+[FILE] Dev_Guides\Unity_Practical_Tips.md
+  行 198: 泛型语法未转义: Action<Monster>
+  行 198: 可能未闭合的标签: <Monster>
+
+[FILE] Tech\Algorithms\Common_Game_Algorithms.md
+  行 43: 泛型语法未转义: List<Entity>
+  行 43: 可能未闭合的标签: <int>
+
+[FILE] Tech\Architecture\Decision_System_Diagrams.md
+  行 174: 可能未闭合的标签: <string>
+  行 180: 可能未闭合的标签: <string>
+  行 189: 泛型语法未转义: ist<float>
+  行 189: 可能未闭合的标签: <float>
+
+[FILE] Tech\Architecture\Game_Design_Patterns_Practice.md
+  行 16: 泛型语法未转义: Register<IAudioService>
+  行 16: 可能未闭合的标签: <IAudioService>
+  行 17: 泛型语法未转义: Get<IAudioService>
+  行 17: 可能未闭合的标签: <IAudioService>
+
+[FILE] Tech\Architecture\Unified_Decision_System.md
+  行 42: 可能未闭合的标签: <T>
+
+[FILE] Tech\Code_Snippets\DecisionSystem_Core_Classes.md
+  行 127: 可能未闭合的标签: <T>
+  行 150: 可能未闭合的标签: <T>
+  行 170: 可能未闭合的标签: <T>
+
+[FILE] Tech\Code_Snippets\TowerTargeting_Refactor_Demo.md
+  行 183: 可能未闭合的标签: <T>
+
+[FILE] Tech\Mechanics\Projectile_System_DeepDive.md
+  行 125: 泛型语法未转义: ist<int>
+  行 125: 可能未闭合的标签: <int>
+
+[FILE] Tech\Mechanics\Targeting_Pipeline_DeepDive.md
+  行 25: 可能未闭合的标签: <Enemy>
+  行 30: 可能未闭合的标签: <Unit>
+  行 118: 可能未闭合的标签: <float3>
+
+[FILE] Tech\Mechanics\Unity_HUD_HealthBar_DeepDive.md
+  行 14: 泛型语法未转义: 开发极快<br>
+  行 15: 泛型语法未转义: 清晰锐利<br>
+
+[FILE] Tech\Optimization\Unity_Advanced_CSharp_Performance.md
+  行 94: 可能未闭合的标签: <T>
+  行 100: 可能未闭合的标签: <T>
+  行 102: 泛型语法未转义: List<int>
+  行 102: 可能未闭合的标签: <int>
+  行 103: 泛型语法未转义: List<int>
+  ... 还有 8 个问题
+
+[FILE] Tech\Performance_Budget.md
+  行 265: 泛型语法未转义: etComponent<T>
+  行 265: 可能未闭合的标签: <T>
+
+[FILE] Unity_Standards\Asset_Management.md
+  行 71: 泛型语法未转义: LoadAssetAsync<GameObject>
+  行 71: 可能未闭合的标签: <GameObject>
+

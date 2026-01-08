@@ -138,7 +138,7 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 为了防止人为偷懒，建议部署 **Git Hooks**。
 
 ### 4.1 commit-msg Hook
-在 `.git/hooks/commit-msg` 中添加脚本，使用正则表达式检查 Commit Message 格式。如果不符合 `<type>(<scope>): <subject>` 格式，直接拒绝提交。
+在 `.git/hooks/commit-msg` 中添加脚本，使用正则表达式检查 Commit Message 格式。如果不符合 `<type>(`<scope>`): <subject>` 格式，直接拒绝提交。
 
 ### 4.2 pre-commit Hook
 在提交前自动运行：

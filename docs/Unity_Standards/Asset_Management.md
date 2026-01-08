@@ -68,7 +68,7 @@ Unity 有一个特殊的文件夹叫 `Resources`。
 *   **优势：**
     *   **💾 内存管理：** 自动计算引用计数。引用为 0 时自动卸载（Unload），杜绝内存泄漏。
     *   **📡 热更新 (DLC):** 只要把资源包 (AssetBundle) 扔到服务器上，勾选“Remote”，玩家就能边玩边下载，无需更新 App。
-    *   **⏳ 异步加载：** `Addressables.LoadAssetAsync<GameObject>("Hero")`。
+    *   **⏳ 异步加载：** `Addressables.`LoadAssetAsync<GameObject>`("Hero")`。
 *   **实战建议：** 不要等项目快上线了再切 Addressables，**立项第一天就用**。
 
 ---
