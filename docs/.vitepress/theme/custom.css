@@ -1,0 +1,57 @@
+/* 自定义样式 */
+
+/* 主色调 - 深紫色 */
+:root {
+  --vp-c-brand-1: #673ab7;
+  --vp-c-brand-2: #7c4dff;
+  --vp-c-brand-3: #9575cd;
+  --vp-c-brand-soft: rgba(103, 58, 183, 0.14);
+  
+  /* 侧边栏宽度 */
+  --vp-sidebar-width: 300px;
+}
+
+.dark {
+  --vp-c-brand-1: #b39ddb;
+  --vp-c-brand-2: #7c4dff;
+  --vp-c-brand-3: #9575cd;
+  --vp-c-brand-soft: rgba(179, 157, 219, 0.14);
+}
+
+/* MathJax 公式样式 */
+mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* 代码块样式优化 */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+}
+
+/* 表格样式优化 */
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+.vp-doc th,
+.vp-doc td {
+  padding: 8px 16px;
+}
+
+/* 告示框样式 (GitHub Alerts) */
+.vp-doc .tip,
+.vp-doc .warning,
+.vp-doc .danger,
+.vp-doc .info {
+  border-radius: 8px;
+}
+
+/* 侧边栏文字完整显示 */
+.VPSidebarItem .text {
+  white-space: normal;
+  word-break: break-word;
+}
+

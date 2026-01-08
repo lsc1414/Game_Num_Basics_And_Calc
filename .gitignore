@@ -157,3 +157,7 @@ site/
 .cache/
 __pycache__/
 *.pyc
+
+# =============== VitePress ================
+docs/.vitepress/dist/
+docs/.vitepress/cache/
