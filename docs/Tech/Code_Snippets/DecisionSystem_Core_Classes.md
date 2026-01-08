@@ -124,7 +124,7 @@ namespace Vampirefall.DecisionSystem
 }
 ```
 
-### `IScorer<T>` (评分器)
+### IScorer<T>` (评分器)
 核心逻辑单元。
 
 ```csharp
@@ -147,7 +147,7 @@ namespace Vampirefall.DecisionSystem
 }
 ```
 
-### `IFilter<T>` (过滤器)
+### IFilter<T>` (过滤器)
 用于在评分前剔除无效目标（硬性门槛）。
 
 ```csharp
@@ -167,7 +167,7 @@ namespace Vampirefall.DecisionSystem
 
 ## 2. 核心引擎 (Core Engine)
 
-### `DecisionEngine<T>`
+### DecisionEngine<T>`
 负责组装评分器并执行选择逻辑。
 
 ```csharp

@@ -180,7 +180,7 @@ public static class EnemySpawnManager // 简化的伪代码
 
 ## 3. 标准过滤器实现 (Standard Filter Implementations)
 
-在 `Tech/Code_Snippets/DecisionSystem_Core_Classes.md` 中只定义了 `IFilter<T>` 接口，这里提供一些常用的过滤器实现。
+在 `Tech/Code_Snippets/DecisionSystem_Core_Classes.md` 中只定义了 IFilter<T>` 接口，这里提供一些常用的过滤器实现。
 
 ### `AliveFilter` (存活过滤器)
 ```csharp

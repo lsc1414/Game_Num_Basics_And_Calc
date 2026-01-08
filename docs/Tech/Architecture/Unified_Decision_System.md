@@ -39,7 +39,7 @@ graph LR
 1.  **候选人 (Candidate `T`):** 待选择的对象（Enemy, Tower, PerkData）。
 2.  **上下文 (Context `C`):** 决策时的环境信息（距离、玩家 HP、已拥有的 Tags）。
 
-3.  **评分器 (Scorer `IScorer<T, C>`):** 一个独立的逻辑单元，负责计算单项分数。
+3.  **评分器 (Scorer IScorer<T, C>`):** 一个独立的逻辑单元，负责计算单项分数。
 
 4.  **选择器 (Selector):** 负责运行所有评分器并汇总结果。
 

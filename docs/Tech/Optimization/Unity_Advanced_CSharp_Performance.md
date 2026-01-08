@@ -95,7 +95,7 @@
 
 1.  **对象池 (Object Pooling)**
 
-    - **核心**: 不要反复 New 和 Destroy。用一个 `Queue<T>` 把不用的对象存起来，下次要用直接拿。
+    - **核心**: 不要反复 New 和 Destroy。用一个 Queue<T>` 把不用的对象存起来，下次要用直接拿。
     - **场景**: 子弹、特效、伤害飘字、小怪。
     - **收益**: 0 分配，0 碎片。
 
@@ -127,7 +127,7 @@ var nearest = enemies.OrderBy(e => Vector3.Distance(e.pos, myPos)).First();
 
 #### ✅ 优化方案 (In-Place Sort)
 
-使用 `List<T>.Sort` 并传入自定义 `IComparer<T>` 结构体 (避免装箱)。
+使用 `List<T>.Sort` 并传入自定义 IComparer<T>` 结构体 (避免装箱)。
 
 ```csharp
 // 0 GC, 极快
@@ -205,7 +205,7 @@ item.value = 999; // 直接修改了数组里的值！0 拷贝！
 
 ### 2.3 高级语法 (Advanced Syntax)
 
-#### `Span<T>` 与 `StackAlloc`
+#### Span<T>` 与 `StackAlloc`
 
 在不产生 GC 的情况下操作数组切片或在栈上分配临时数组。
 
@@ -280,9 +280,9 @@ public readonly struct ImmutableData {
 - 定义: 值类型 -> `Object` 或 接口。
 - 场景:
   - `string.Format("HP: {0}", hp)` (int 被装箱)。
+  - Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
   - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
-  - `Dictionary<struct, string>` (如果你没以此 struct 实现 IEquatable 接口)。
-  - 将 struct 存入 `List<object>` (尽量不要这么做)。
+  - 将 struct 存入 List<object>` (尽量不要这么做)。
   - **枚举 (Enum)**: `enum` 是值类型，直接 `Debug.Log(myEnum)` 会导致装箱。应该使用 `myEnum.ToString()` (虽然生成字符串但至少不装箱) 或者使用 [C# 8.0 `Enum.TryFormat`](https://learn.microsoft.com/en-us/dotnet/api/system.enum.tryformat?view=netcore-3.1)。
 
 #### 🚫 字符串拼接 (String Concatenation)

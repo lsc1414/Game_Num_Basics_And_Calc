@@ -22,7 +22,7 @@ graph TD
 
 ## 1. 圈地 (Broad Phase): 高效的空间查询
 
-这是第一步，也是对性能影响最大的一步。**绝对禁止**使用 `FindObjectsOfType` 或遍历全图 `List<Enemy>`。
+这是第一步，也是对性能影响最大的一步。**绝对禁止**使用 `FindObjectsOfType` 或遍历全图 List<Enemy>`。
 
 ### 1.1 2D 地图方案 (Grid System)
 如果游戏地形平坦（标准塔防或俯视角 Roguelike），推荐使用 **均匀网格 (Uniform Grid)**。
@@ -115,7 +115,7 @@ graph TD
 
 *   **性能敏感:** 这里是数学密集区。
 *   **避免:** 不要在 `Evaluate` 里做 `GetComponent` 或 `Find`。数据应预取到 `Context` 中。
-*   **SIMD 优化:** 如果单位极多，可以将位置数据放入 `NativeArray<float3>`，用 Unity Job System 并行计算距离分数。
+*   **SIMD 优化:** 如果单位极多，可以将位置数据放入 NativeArray<float3>`，用 Unity Job System 并行计算距离分数。
 
 ---
 

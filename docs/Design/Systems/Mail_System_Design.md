@@ -28,8 +28,8 @@
 |          :---          |          :---          |          :---          |
 |          `MailUID`          |          UUID          |          唯一标识符。          |
 |          `TemplateID`          |          Int          |          引用本地化文本模板 (支持多语言)。          |
-|          `Parameters`          |          `List<String>`          |          动态参数 (如: "恭喜你在[S1赛季]获得第[3]名")。          |
-|          `Attachments`          |          `List<Item>`          |          附件列表 (ID, 数量, 类型)。          |
+|          `Parameters`          |          List<String>`          |          动态参数 (如: "恭喜你在[S1赛季]获得第[3]名")。          |
+|          `Attachments`          |          List<Item>`          |          附件列表 (ID, 数量, 类型)。          |
 |          `State`          |          Enum          |          未读 (Unread) / 已读 (Read) / 已领取 (Claimed)。          |
 |          `CreateTime`          |          Timestamp          |          发送时间。          |
 |          `ExpireTime`          |          Timestamp          |          过期时间 (TTL)。          |

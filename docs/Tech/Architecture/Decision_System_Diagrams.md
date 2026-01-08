@@ -171,13 +171,13 @@ sequenceDiagram
 为了支持通用的 `Context`，我们需要一个灵活的黑板机制。
 
 ### 3.1 Context Blackboard 结构
-`DecisionContext` 不仅仅是位置信息，它包含了一个 `Dictionary<string, object>` 或强类型的 `Blackboard` 结构，用于传递特定业务参数。
+`DecisionContext` 不仅仅是位置信息，它包含了一个 Dictionary<string, object>` 或强类型的 `Blackboard` 结构，用于传递特定业务参数。
 
 |          Key (String)          |          Type          |          Description          |          Used By          |
 |          :---          |          :---          |          :---          |          :---          |
 |          `"AttackerPos"`          |          `Vector3`          |          发起者的位置          |          DistanceScorer          |
 |          `"PlayerHP"`          |          `float`          |          玩家当前血量百分比          |          MercyScorer (低血量降低怪物攻击欲望)          |
-|          `"PlayerTags"`          |          `List<string>`          |          玩家拥有的流派标签          |          SynergyScorer          |
+|          `"PlayerTags"`          |          List<string>`          |          玩家拥有的流派标签          |          SynergyScorer          |
 |          `"PityCounter"`          |          `int`          |          保底计数器          |          RarityScorer          |
 |          `"LastTarget"`          |          `Entity`          |          上一次攻击的目标          |          StickinessScorer (粘性评分，防止频繁切换)          |
 

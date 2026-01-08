@@ -115,7 +115,7 @@ public class EffectDealDamage : CardEffect {
 
 为了解决复杂的结算顺序（例如：打出一张牌 -> 触发遗物 A -> 触发怪物被动 B -> 触发遗物 C），参考 StS 采用 **命令队列模式**。
 
-- **ActionManager**: 维护一个 `Queue<GameAction>`。
+- **ActionManager**: 维护一个 Queue<GameAction>`。
 - **GameAction**: 所有游戏行为的基类（抽牌、造成伤害、获得格挡、等待）。
 - **执行流程**:
     1.  玩家打出卡牌 -> 生成多个 Actions 入队。

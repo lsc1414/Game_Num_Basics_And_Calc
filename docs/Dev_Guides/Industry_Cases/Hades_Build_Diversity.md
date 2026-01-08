@@ -253,7 +253,7 @@ public class LightningBoon : BoonEffect {
 |          架构层级              |          传统做法 (Bad)                                       |          Hades/Vampirefall 做法 (Good)                         |
 |          :-----------          |          :------------------------------------------          |          :-------------------------------------------          |
 |          **数值叠加**          |          直接修改 `tower.damage += 10`                        |          使用 `Stat.AddModifier()` 管道，保留溯源能力          |
-|          **特殊效果**          |          在 Tower 类里写 `if (hasZeus) ...`                   |          塔持有 `List<BoonEffect>`，遍历调用接口               |
+|          **特殊效果**          |          在 Tower 类里写 `if (hasZeus) ...`                   |          塔持有 List<BoonEffect>`，遍历调用接口               |
 |          **连锁反应**          |          硬编码函数调用 `DoKnockbackThenLightning()`          |          事件驱动 `OnKnockback` -> 订阅者响应                  |
 |          **配置数据**          |          散落在各个 Prefab 上                                 |          集中在 ScriptableObject 或 Lua/Excel 表中             |
 

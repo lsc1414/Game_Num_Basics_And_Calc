@@ -166,7 +166,7 @@ public class SimpleAudioManager : MonoBehaviour
 ## 3. 使用指南 (Usage)
 
 ### 3.1 基础调用
-在任何代码中，不再需要 `GetComponent<AudioSource>`，直接调用单例：
+在任何代码中，不再需要 GetComponent<AudioSource>`，直接调用单例：
 
 ```csharp
 // 播放 UI 点击声 (2D)
@@ -187,7 +187,7 @@ public class SoundData : ScriptableObject {
     // ... 其他参数
 }
 ```
-然后 `AudioManager` 只需持有一个 `List<SoundData>`。
+然后 `AudioManager` 只需持有一个 List<SoundData>`。
 
 ### 3.3 关于 Audio Mixer
 建议在项目中创建 `MainMixer`：
