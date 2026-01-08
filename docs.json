@@ -16,15 +16,6 @@
     "navigation": {
       "tabs": [
         {
-          "tab": "开始",
-          "hidden": true,
-          "pages": [
-            "docs/index",
-            "docs/START_HERE",
-            "docs/Full_Index"
-          ]
-        },
-        {
           "tab": "Art",
           "groups": [
             {
