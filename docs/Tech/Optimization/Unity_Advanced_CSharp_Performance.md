@@ -127,7 +127,7 @@ var nearest = enemies.OrderBy(e => Vector3.Distance(e.pos, myPos)).First();
 
 #### ✅ 优化方案 (In-Place Sort)
 
-使用 `List<T>.Sort` 并传入自定义 IComparer<T>` 结构体 (避免装箱)。
+使用 `List<T>.Sort` 并传入自定义 `IComparer<T>` 结构体 (避免装箱)。
 
 ```csharp
 // 0 GC, 极快
@@ -205,7 +205,7 @@ item.value = 999; // 直接修改了数组里的值！0 拷贝！
 
 ### 2.3 高级语法 (Advanced Syntax)
 
-#### Span<T>` 与 `StackAlloc`
+#### Span<T>`与`StackAlloc`
 
 在不产生 GC 的情况下操作数组切片或在栈上分配临时数组。
 
