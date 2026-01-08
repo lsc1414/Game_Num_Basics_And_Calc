@@ -13,6 +13,19 @@ export default withMermaid(
     // 最后更新时间
     lastUpdated: true,
 
+    // Vue 编译器选项 - 忽略自定义元素
+    vue: {
+      template: {
+        compilerOptions: {
+          // 将以下标签视为自定义元素，不作为 Vue 组件解析
+          isCustomElement: (tag) => {
+            // 忽略自定义颜色标签 <c=xxx>, 链接标签 <l=xxx>, 精灵标签 <s=xxx> 等
+            return /^[cls]=/.test(tag) || tag.startsWith('/c') || tag.startsWith('/l') || tag.startsWith('/s')
+          }
+        }
+      }
+    },
+
     // Markdown 配置
     markdown: {
       math: true,
