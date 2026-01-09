@@ -10,6 +10,29 @@
     "light": "#F59E0B",
     "dark": "#B45309"
   },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/lsc1414"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "开始阅读",
+    "url": "docs/START_HERE"
+  },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
+  "metadata": {
+    "og:site_name": "游戏开发101",
+    "og:title": "游戏开发101 - 独立游戏开发全栈指南",
+    "og:description": "从技术、美术到设计的全方位独立游戏开发知识库",
+    "og:image": "/docs/assets/favicon.png"
+  },
+  "search": {
+    "prompt": "搜索文档..."
+  },
   "font": {
     "headings": {
       "family": "Inter",
