@@ -416,5 +416,8 @@
           ]
         }
       ]
+    },
+    "styling": {
+      "latex": true
     }
 }
