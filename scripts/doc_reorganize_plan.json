@@ -1,0 +1,209 @@
+{
+  "moves": [
+    {
+      "source": "Design/Dead_Cells_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Dead_Cells.md"
+    },
+    {
+      "source": "Design/Risk_of_Rain_2_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Risk_of_Rain_2.md"
+    },
+    {
+      "source": "Design/Enter_the_Gungeon_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Enter_the_Gungeon.md"
+    },
+    {
+      "source": "Design/Binding_of_Isaac_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Binding_of_Isaac.md"
+    },
+    {
+      "source": "Design/Noita_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Noita.md"
+    },
+    {
+      "source": "Design/Darkest_Dungeon_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Darkest_Dungeon.md"
+    },
+    {
+      "source": "Design/Roguelike_Deckbuilder_Knowledge_Map.md",
+      "destination": "Case_Studies/Roguelike/Slay_the_Spire.md"
+    },
+    {
+      "source": "Design/They_Are_Billions_Knowledge_Map.md",
+      "destination": "Case_Studies/Tower_Defense/They_Are_Billions.md"
+    },
+    {
+      "source": "Design/Dome_Keeper_Knowledge_Map.md",
+      "destination": "Case_Studies/Hybrid/Dome_Keeper.md"
+    },
+    {
+      "source": "Design/Minimalist_Strategy_Design_Knowledge.md",
+      "destination": "Case_Studies/Hybrid/Thronefall.md"
+    },
+    {
+      "source": "Design/Magicka_Knowledge_Map.md",
+      "destination": "Case_Studies/Magic_System/Magicka.md"
+    },
+    {
+      "source": "Design/Magicraft_Knowledge_Map.md",
+      "destination": "Case_Studies/Magic_System/Magicraft.md"
+    },
+    {
+      "source": "Design/Deep_Rock_Galactic_Knowledge_Map.md",
+      "destination": "Case_Studies/Coop/Deep_Rock_Galactic.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Hades_Build_Diversity.md",
+      "destination": "Case_Studies/Roguelike/Hades.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Brotato_Numerical_Analysis.md",
+      "destination": "Case_Studies/Roguelike/Brotato.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Vampire_Survivors_Performance.md",
+      "destination": "Case_Studies/Survivors/Vampire_Survivors.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Bloons_TD6_Damage_Matrix.md",
+      "destination": "Case_Studies/Tower_Defense/Bloons_TD6.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Kingdom_Rush_Numerical_Model.md",
+      "destination": "Case_Studies/Tower_Defense/Kingdom_Rush.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Thronefall_Minimalist_Hybrid.md",
+      "destination": "Case_Studies/Hybrid/Thronefall_Analysis.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Loop_Hero_Loop_Mechanics.md",
+      "destination": "Case_Studies/Hybrid/Loop_Hero.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Factorio_Optimization_Study.md",
+      "destination": "Case_Studies/Sandbox/Factorio.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Palworld_Production_Model.md",
+      "destination": "Case_Studies/Sandbox/Palworld.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Failure_Analysis/Anthem_Failure_Analysis.md",
+      "destination": "Case_Studies/Failure/Anthem.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Failure_Analysis/Battleborn_Failure_Analysis.md",
+      "destination": "Case_Studies/Failure/Battleborn.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Failure_Analysis/Concord_Failure_Analysis.md",
+      "destination": "Case_Studies/Failure/Concord.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Failure_Analysis/Paragon_Complexity_Trap.md",
+      "destination": "Case_Studies/Failure/Paragon.md"
+    },
+    {
+      "source": "Dev_Guides/Industry_Cases/Failure_Analysis/The_Day_Before_Failure_Analysis.md",
+      "destination": "Case_Studies/Failure/The_Day_Before.md"
+    }
+  ],
+  "merges": [
+    {
+      "name": "决策系统合并",
+      "target": "Tech/Architecture/Decision_System.md",
+      "sources": [
+        "Tech/Architecture/Unified_Decision_System.md",
+        "Tech/Architecture/Decision_System_Diagrams.md",
+        "Tech/Code_Snippets/DecisionSystem_Core_Classes.md",
+        "Tech/Code_Snippets/DecisionSystem_Performance_Demo.md"
+      ],
+      "description": "合并决策系统相关的 4 个文件为一个完整文档"
+    },
+    {
+      "name": "索敌系统合并",
+      "target": "Tech/Mechanics/Targeting_System_Complete.md",
+      "sources": [
+        "Tech/Mechanics/Targeting_System_DeepDive.md",
+        "Tech/Mechanics/Targeting_Pipeline_DeepDive.md"
+      ],
+      "description": "合并索敌系统的两个文档"
+    },
+    {
+      "name": "Git 指南合并",
+      "target": "Guides/Collaboration/Git_Complete_Guide.md",
+      "sources": [
+        "Dev_Guides/Collaboration/Git_Advanced_Guide_For_Programmers.md",
+        "Dev_Guides/Collaboration/Git_Commit_Standards.md",
+        "Dev_Guides/Collaboration/GitHub_PR_Workflow.md",
+        "Dev_Guides/Collaboration/SVN_vs_Git_Migration_Guide.md"
+      ],
+      "description": "合并 Git 相关的 4 个文档"
+    },
+    {
+      "name": "Steam 发行合并",
+      "target": "Guides/Publishing/Steam_Complete_Guide.md",
+      "sources": [
+        "Dev_Guides/Publishing/Steam_Strategy.md",
+        "Dev_Guides/Publishing/Steam_Unity_Indie_Game_Guide.md",
+        "Dev_Guides/Publishing/Steam_Unity_Quality_Standards.md",
+        "Dev_Guides/Publishing/Steam_Unity_Steamworks_Checklist.md"
+      ],
+      "description": "合并 Steam 发行相关的 4 个文档"
+    },
+    {
+      "name": "Odin 工具合并",
+      "target": "Tools/Odin_Inspector_Complete.md",
+      "sources": [
+        "Dev_Guides/Tools/Odin_Inspector_Advanced_Techniques.md",
+        "Dev_Guides/Tools/Odin_Luban_Integration_Guide.md"
+      ],
+      "description": "合并 Odin Inspector 相关的 2 个文档"
+    },
+    {
+      "name": "移动优化合并",
+      "target": "Tech/Performance/Mobile_Optimization_Complete.md",
+      "sources": [
+        "Tech/Mobile_Optimization_Guide.md",
+        "Tech/Mobile_Optimization/Device_Grading_And_Scalability.md"
+      ],
+      "description": "合并移动优化相关的 2 个文档"
+    },
+    {
+      "name": "ECS 合并",
+      "target": "Tech/Architecture/ECS_Complete_Guide.md",
+      "sources": [
+        "Tech/Architecture/ECS_Theory_And_Practice.md",
+        "Dev_Guides/Technical_Implementation/ECS_Performance_Optimization.md"
+      ],
+      "description": "合并 ECS 理论与实践文档"
+    },
+    {
+      "name": "PCG 算法合并",
+      "target": "Tech/Algorithms/Procedural_Generation_Complete.md",
+      "sources": [
+        "Tech/Algorithms/Procedural_Generation_Guide.md",
+        "Dev_Guides/Technical_Implementation/Procedural_Generation_WFC.md"
+      ],
+      "description": "合并程序生成相关文档"
+    }
+  ],
+  "new_directories": [
+    "Case_Studies\\Coop",
+    "Case_Studies\\Failure",
+    "Case_Studies\\Hybrid",
+    "Case_Studies\\Magic_System",
+    "Case_Studies\\Roguelike",
+    "Case_Studies\\Sandbox",
+    "Case_Studies\\Survivors",
+    "Case_Studies\\Tower_Defense",
+    "Guides\\Collaboration",
+    "Guides\\Publishing",
+    "Tech\\Algorithms",
+    "Tech\\Architecture",
+    "Tech\\Mechanics",
+    "Tech\\Performance",
+    "Tools"
+  ]
+}

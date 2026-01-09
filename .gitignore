@@ -157,3 +157,6 @@ site/
 .cache/
 __pycache__/
 *.pyc
+
+.vitepress
+build_output.txt
