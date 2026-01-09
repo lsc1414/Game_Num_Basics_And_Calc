@@ -202,6 +202,12 @@
               "docs/Design/UX/Accessibility_Standards",
               "docs/Design/UX/FTUE_Best_Practices"
             ]
+          },
+          {
+            "group": "数据分析",
+            "pages": [
+              "docs/Design/Analytics/Event_Tracking_Design.md"
+            ]
           }
         ]
       },

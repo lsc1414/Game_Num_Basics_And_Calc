@@ -1,109 +1,262 @@
 ---
-sidebarTitle: "🧙‍♂️ 游戏常用算法深度研究"
+title: "游戏常用算法深度研究"
+sidebarTitle: "🧙‍♂️ 常用算法与实践"
+description: "Vampirefall 项目中使用的核心算法理论与 Unity 工程实践指南，涵盖寻路、空间管理、随机系统及性能优化。"
+icon: "function"
 ---
 
-# 🧙‍♂️ 游戏常用算法深度研究
+# 🧙‍♂️ 游戏常用算法深度研究 (Common Game Algorithms)
 
-## 📚 1. 理论基础 (Theoretical Basis)
-
-### 1.1 寻路算法 (Pathfinding)
-
-- **核心定义**: 在图或网格中寻找从起点到终点的最优路径。
-- **数学模型**:
-    - **A\* (A-Star)**: \( f(n) = g(n) + h(n) \)。最通用的寻路算法，结合了 Dijkstra 的广度优先和贪婪最佳优先搜索。
-    - **Dijkstra**: 适用于计算移动范围或无启发式信息的图。
-    - **Flow Field (流场)**: 适用于大量单位移动到同一目标（如塔防游戏中的怪物群）。通过计算全图到目标的矢量场，避免对每个单位单独寻路。
-- **设计心理学**:
-    - **智能感**: 怪物不卡墙、能绕路，给玩家带来"敌人很聪明"的压力。
-    - **预期性**: 玩家预判怪物路径进行塔防布局，路径显示必须准确。
-
-### 1.2 空间划分 (Spatial Partitioning)
-
-- **核心定义**: 将空间划分为子区域，以加速碰撞检测、视锥剔除等查询。
-- **常用结构**:
-    - **Quadtree (四叉树)**: 适用于 2D 空间，动态对象较少或分布不均时。
-    - **Spatial Hashing (空间哈希)**: 将空间划分为网格，通过哈希函数映射。适用于大量动态对象（如弹幕游戏）。
-    - **BVH (层次包围盒)**: 适用于复杂形状的物理检测。
-
-### 1.3 随机与噪声 (RNG & Noise)
-
-- **核心定义**: 生成不可预测但可控的数值或结构。
-- **算法**:
-    - **Perlin/Simplex Noise**: 生成平滑连续的随机值，用于地形生成。
-    - **Fisher-Yates Shuffle**: 洗牌算法，用于随机掉落或卡牌抽取。
-    - **Weighted Random**: 加权随机，用于 Looter 游戏的掉落表。
+本文档旨在作为 **Vampirefall** 项目的技术算法手册。我们不只罗列理论，更注重**理论与工程实践的结合**，特别是针对 Unity DOTS/Jobs System 的优化实现。
 
 ---
 
-## 🛠️ 2. 实践应用 (Practical Implementation)
+## 🗺️ 1. 寻路与导航 (Pathfinding & Navigation)
 
-### 2.1 Vampirefall 适配 (TD + Roguelike + Looter)
+寻路是塔防(TD)和 Roguelike 游戏的核心。我们需要处理成千上万个单位的移动，同时保证性能。
 
-- **塔防 (TD) - 流场寻路**:
-    - 由于怪物数量巨大（数百/千），对每个怪物运行 A\* 是性能杀手。
-    - **方案**: 维护一张全局 `Vector2[,]` 流场图。每当玩家改变地形（造塔）时，重新计算一次流场。所有怪物每帧只需读取当前格子的向量即可。
-- **弹幕与碰撞 - 空间哈希**:
-    - 大量子弹和怪物碰撞。
-    - **方案**: 使用 `Dictionary<int, List<Entity>>` 或扁平数组作为 Grid。Grid 大小设为最大单位直径的 1-2 倍。
-- **Roguelike - 伪随机 (PRNG)**:
-    - 使用种子 (Seed) 驱动所有随机。确保同一局游戏（Seed 相同）的回放完全一致。
-    - **C#**: 避免使用 `System.Random` (不可控)，推荐使用 `Unity.Mathematics.Random` 或自定义 `Xorshift`。
+### 1.1 理论基础：A\* 与 Dijkstra
 
-### 2.2 数据结构建议 (C#)
+> [!NOTE] > **A\* (A-Star)** 是在静态地图中寻找单体最优路径的标准解法。
+
+- **公式**: $f(n) = g(n) + h(n)$
+  - $g(n)$: 从起点到当前节点的实际代价。
+  - $h(n)$: 启发函数(Heuristic)，预估从当前节点到终点的代价（通常用曼哈顿距离或欧几里得距离）。
+- **适用场景**: 玩家寻路、精英怪寻路（数量少，精度要求高）。
+
+### 1.2 实践：流场寻路 (Flow Field)
+
+在 Vampirefall 中，我们需要处理海量怪物（Swarm）涌向同一个目标（基地）。对 500 个怪物运行 500 次 A\* 是极其浪费的。
+
+**核心思想**:
+不计算"怪物到终点"的路径，而是计算"地图上每个点到终点"的方向。所有怪物共享同一张流场图。
+
+**实现步骤**:
+
+1.  **生成热力图 (Integration Field)**: 使用 Dijkstra 算法，从终点扩散，计算全图每个格子到终点的步数（代价）。
+    - 终点 = 0
+    - 障碍物 = $\infty$
+    - 相邻格 = +1 (或地形权重)
+2.  **生成流场 (Vector Field)**: 遍历每个格子，指向其邻居中数值最小的那个格子。
+
+**Unity 实践 (Job System)**:
 
 ```csharp
-// 简单的空间哈希网格接口
-public interface ISpatialGrid<T>
+[BurstCompile]
+public struct CalculateFlowFieldJob : IJob
 {
-    void Insert(T item, Vector2 position);
-    void Remove(T item, Vector2 position);
-    void Query(Vector2 position, float radius, List<T> results);
-}
+    public int2 TargetPos;
+    public int2 GridSize;
+    [ReadOnly] public NativeArray<bool> Obstacles;
+    public NativeArray<float2> FlowMap; // 输出结果
 
-// 流场节点
-public struct FlowNode
-{
-    public Vector2 Direction; // 移动方向
-    public int Distance;      // 距离目标的步数（用于Dijkstra生成流场）
-    public bool IsBlocked;    // 是否阻挡
+    public void Execute()
+    {
+        // 1. Dijkstra 广度优先搜索计算距离场
+        // ... (省略队列实现细节)
+
+        // 2. 根据距离场计算向量
+        for (int x = 0; x < GridSize.x; x++)
+        {
+            for (int y = 0; y < GridSize.y; y++)
+            {
+                int index = x + y * GridSize.x;
+                \text{if} (Obstacles[index])
+                {
+                    FlowMap[index] = float2.zero;
+                    continue;
+                }
+
+                // 寻找距离最小的邻居
+                FlowMap[index] = CalculateGradient(x, y);
+            }
+        }
+    }
 }
 ```
 
-### 2.3 Unity 实现注意事项
+### 1.3 避障与群聚 (Steering Behaviors)
 
-- **Jobs System & Burst Compiler**:
-    - 寻路和空间查询是计算密集型任务，**必须**使用 Job System 并开启 Burst 编译。
-    - 避免在 Job 中分配内存（GC Alloc），使用 `NativeArray`。
-- **分帧处理**:
-    - 如果流场计算过重，可以分帧更新（Time Slicing），虽然会有短暂的路径延迟，但能保证帧率平滑。
+寻路解决了"怎么去"的问题，**Steering Behaviors** 解决"怎么动"的问题，避免怪物重叠。
 
----
+- **Separation (分离)**: 离太近的邻居远一点。
+- **Alignment (对齐)**: 和邻居保持相同方向（可选）。
+- **Cohesion (凝聚)**: 往邻居的中心靠（可选）。
 
-## 🌟 3. 业界优秀案例 (Industry Best Practices)
-
-### 3.1 Factorio (异星工厂) - 极致优化
-
-- **机制**: 传送带和大量虫群的模拟。
-- **优点**: 极其高效的内存布局和缓存命中率（Data-Oriented Design）。
-- **借鉴**: 我们的怪物数据应尽量紧凑（Struct of Arrays），便于批量处理。
-
-### 3.2 Rimworld (环世界) - 实用主义 AI
-
-- **机制**: 复杂的环境交互和寻路。
-- **优点**: 使用区域（Region）分层寻路，先在大区域间寻路，再在区域内精细寻路。
-- **借鉴**: 如果地图过大，流场计算太慢，可以引入分层图。
-
-### 3.3 Vampire Survivors (吸血鬼幸存者) - 简单暴力
-
-- **机制**: 同屏成千上万怪物。
-- **优点**: 简单的物理碰撞（圆与圆），极简的 AI（直奔玩家）。
-- **借鉴**: 对于普通怪物，不要做复杂的避障，直接挤开（Boids/Steering Behaviors）效果更好且性能更高。
+> [!TIP]
+> 在吸血鬼幸存者类游戏中，只需要实现**强硬的分离 (Hard Separation)**。如果两个怪物碰撞，直接推开，性能最高且视觉效果足够。
 
 ---
 
-## 🔗 4. 参考资料 (References)
+## 📦 2. 空间管理 (Spatial Partitioning)
 
-- 📄 **Flow Fields for Pathfinding**: [Leif Erkenbrach's Blog](https://leifnode.com/2013/12/flow-field-pathfinding/)
-- 📺 **GDC: AI Pathfinding in Unity**: [YouTube Link](https://www.youtube.com/watch?v=j1k438m0DRc)
-- 🌐 **Red Blob Games (算法宝藏)**: [Introduction to A\*](https://www.redblobgames.com/pathfinding/a-star/introduction.html) - _强烈推荐，包含交互式演示_
-- 📄 **Unity DOTS Physics**: [Unity Documentation](https://docs.unity3d.com/Packages/com.unity.physics@1.0/manual/index.html)
+当屏幕上有 1000 个子弹和 500 个怪物时，暴力检测碰撞 ($O(N^2)$) 会导致卡死。我们需要空间划分算法将复杂度降至 $O(N)$ 或 $O(N \log N)$。
+
+### 2.1 理论：空间哈希 (Spatial Hashing)
+
+将 2D 空间划分为固定的网格（Grid），每个网格存储其中的物体列表。
+
+- **优点**: 插入和查询接近 $O(1)$，实现极其简单。
+- **缺点**: 网格大小选取敏感，跨网格物体处理稍繁琐。
+- **适用**: 均匀分布的大量动态物体（如弹幕、怪物群）。
+
+### 2.2 理论：四叉树 (Quadtree)
+
+递归地将空间划分为四个象限，直到区域内物体数量少于阈值。
+
+- **优点**: 适应非均匀分布（空旷区域不占用内存）。
+- **缺点**: 动态物体频繁移动导致树结构重建开销大。
+- **适用**: 静态物体管理（建筑物、地形），或物体移动不频繁的场景。
+
+### 2.3 Vampirefall 实践：Flat Grid 优化
+
+对于高频变动的 ECS 架构，可以使用**扁平化数组链表**实现空间哈希。
+
+```csharp
+// 概念伪代码
+public struct SpatialMap
+{
+    // 单元格大小 (例如 2.0f)
+    public float CellSize;
+    // 这里的 Key 是 gridX + gridY * width
+    // Value 是该个格子里第一个 Entity 的索引
+    public NativeMultiHashMap<int, Entity> Map;
+
+    public void Add(Entity entity, float2 pos)
+    {
+        int2 cell = (int2)math.\text{floor}(pos / CellSize);
+        int key = GetHash(cell);
+        Map.Add(key, entity);
+    }
+
+    // 查询附近的实体
+    public void Query(float2 pos, float radius, NativeList<Entity> result)
+    {
+        // 计算覆盖的网格范围 (minCell 到 maxCell)
+        // 遍历这些网格中的所有 Key
+    }
+}
+```
+
+---
+
+## 🎲 3. 随机与概率 (RNG & Probability)
+
+### 3.1 理论：真随机 vs 伪随机 (PRNG)
+
+- **Input Randomness**: 在做决定前随机（如：地图生成）。
+- **Output Randomness**: 在做决定后随机（如：攻击命中率）。**Roguelike 应尽量避免这种体验较差的随机，或者用"保底"机制修饰。**
+
+### 3.2 实践：加权随机 (Weighted Random)
+
+用于 Loot Table（掉落表）。
+
+**算法**:
+
+1. 计算总权重 (Total Weight)。
+2. 生成 0 到 Total Weight 之间的随机数 `r`。
+3. 遍历列表，`r -= 当前项权重`。
+4. 当 `r <= 0` 时，选中当前项。
+
+**优化 (Alias Method)**:
+如果有大量且不变的权重表，预处理成 Alias Table 可将抽取复杂度降为 $O(1)$。但对于一般游戏，普通的 $O(N)$ 线性扫描足够。
+
+```csharp
+public static T GetWeightedRandom<T>(List<T> items, System.Func<T, float> weightSelector)
+{
+    float totalWeight = 0;
+    foreach(var item in items) totalWeight += weightSelector(item);
+
+    float r = UnityEngine.Random.Range(0, totalWeight);
+    foreach(var item in items)
+    {
+        float w = weightSelector(item);
+        \text{if} (r <= w) return item;
+        r -= w;
+    }
+    return default;
+}
+```
+
+### 3.3 实践：洗牌算法 (Fisher-Yates Shuffle)
+
+用于抽卡或"俄罗斯方块式"的掉落（保证一轮内不重复）。
+
+```csharp
+public static void Shuffle<T>(IList<T> list)
+{
+    int n = list.Count;
+    while (n > 1)
+    {
+        n--;
+        int k = UnityEngine.Random.Range(0, n + 1);
+        (list[k], list[n]) = (list[n], list[k]); // Swap
+    }
+}
+```
+
+---
+
+## 📈 4. 数值插值与平滑 (Math & Interpolation)
+
+### 4.1 线性与非线性插值
+
+- **Lerp (Linear)**: $a + (b - a) * t$。简单，由于且仅用于位置直连。
+- **Slerp (Spherical)**: 弧形插值，用于**旋转**，保证角速度恒定。
+- **SmoothDamp**: 类似弹簧阻尼，用于摄像机跟随或 UI 动效，比 Lerp 更自然（Lerp 会在接近终点时无限变慢）。
+
+### 4.2 缓动函数 (Easing Functions)
+
+UI 动效的灵魂。不要只用线性变化。
+推荐使用公式库（如 $t^2$, $t^3$, $1-(1-t)^2$ 等）。
+
+---
+
+## 🚀 5. 性能优化模式 (Optimization Patterns)
+
+### 5.1 对象池 (Object Pooling)
+
+**理论**:
+内存分配 (Allocation) 和垃圾回收 (GC) 是 Unity 移动端卡顿的主因。对象池通过复用对象避免频繁的 `Instantiate` 和 `Destroy`。
+
+**Vampirefall 规范**:
+
+- 所有特效 (VFX)、伤害数字 (Popups)、子弹 (Projectiles) **必须**使用对象池。
+- 只有关卡切换时才允许大规模销毁。
+
+### 5.2 脏标记模式 (Dirty Flag)
+
+**理论**:
+避免每一帧都重新计算复杂数据。只在数据发生变化时标记为 `isDirty = true`，在获取数据时如果发现脏标记才重新计算，否则返回缓存值。
+
+**应用**:
+
+- **UI**: 只有当金币变化时才更新 Text 组件。
+- **属性**: 只有当装备变动时才重新计算 `FinalAttack = Base + Buffs`。
+
+```csharp
+public class StatSystem
+{
+    private float _cacheValue;
+    private bool _isDirty = true;
+
+    public void AddBuff() { _isDirty = true; }
+
+    public float Helpers
+    {
+        get
+        {
+            \text{if} (_isDirty) Recalculate();
+            return _cacheValue;
+        }
+    }
+}
+```
+
+---
+
+## 🔗 参考资料
+
+- 📄 **Game Programming Patterns**: 必读经典。
+- 🌐 **Red Blob Games**: 几何与寻路算法的宝库。
+- 📺 **GDC: "I Shot You First"**: 守望先锋网络同步与插值算法。
