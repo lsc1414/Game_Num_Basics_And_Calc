@@ -179,6 +179,8 @@ def generate_index(files_by_dir: Dict[str, List[Tuple[Path, str]]]) -> str:
             # 文件列表
             for rel_path, title in sorted(files, key=lambda x: x[1]):
                 link = str(rel_path).replace('\\', '/')
+                if link.endswith('.md'):
+                    link = link[:-3]
                 lines.append(f'- [{title}]({link})')
             lines.append('')
     
