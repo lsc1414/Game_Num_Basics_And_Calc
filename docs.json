@@ -104,7 +104,8 @@
           {
             "group": "案例研究",
             "pages": [
-              "docs/Design/CaseStudies/BangBangSurvivor_DeepDive"
+              "docs/Design/CaseStudies/BangBangSurvivor_DeepDive",
+              "docs/Design/Industry_CaseStudies"
             ]
           },
           {
@@ -146,13 +147,15 @@
           {
             "group": "数值体系",
             "pages": [
-              "docs/Design/Numerical/Numerical_Framework_Methodology"
+              "docs/Design/Numerical/Numerical_Framework_Methodology",
+              "docs/Design/Numerical_Manual"
             ]
           },
           {
             "group": "设计哲学",
             "pages": [
-              "docs/Design/Philosophy_And_Systems/Hybrid_Genre_Analysis"
+              "docs/Design/Philosophy_And_Systems/Hybrid_Genre_Analysis",
+              "docs/Design/Philosophy_And_Systems"
             ]
           },
           {
@@ -171,7 +174,8 @@
           {
             "group": "心理学",
             "pages": [
-              "docs/Design/Psychology/Skinner_Box_and_Addiction"
+              "docs/Design/Psychology/Skinner_Box_and_Addiction",
+              "docs/Design/Game_Psychology_DeepDive"
             ]
           },
           {
@@ -197,15 +201,6 @@
             "pages": [
               "docs/Design/UX/Accessibility_Standards",
               "docs/Design/UX/FTUE_Best_Practices"
-            ]
-          },
-          {
-            "group": "🎲 游戏案例图谱",
-            "pages": [
-              "docs/Design/Industry_CaseStudies",
-              "docs/Design/Numerical_Manual",
-              "docs/Design/Philosophy_And_Systems",
-              "docs/Design/Game_Psychology_DeepDive"
             ]
           }
         ]
