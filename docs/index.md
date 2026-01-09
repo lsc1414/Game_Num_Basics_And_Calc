@@ -9,10 +9,10 @@ sidebarTitle: "首页"
 ## 🚀 快速导航
 
 <CardGroup cols={2}>
-  <Card title="新手上路" icon="rocket" href="START_HERE">
+  <Card title="新手上路" icon="rocket" href="/docs/START_HERE">
     首次访问？从这里开始
   </Card>
-  <Card title="全站索引" icon="book" href="Full_Index">
+  <Card title="全站索引" icon="book" href="/docs/Full_Index">
     按目录浏览所有文档
   </Card>
 </CardGroup>
