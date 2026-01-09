@@ -2,7 +2,7 @@
 sidebarTitle: "🐙 Git 版本管理与 Commit Log 规范"
 ---
 
-# 🐙 Git 版本管理与 Commit Log 规范 (Git Standards)
+# 🐙 Git 版本管理与 Commit Log 规范
 
 > **核心理念**: **Commit Log 是写给人看的，不是写给机器看的。**
 > 一个好的 Commit Log 应该能回答三个问题：

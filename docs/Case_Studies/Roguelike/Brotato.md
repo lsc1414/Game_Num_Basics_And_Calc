@@ -2,7 +2,7 @@
 sidebarTitle: "🥔 土豆兄弟"
 ---
 
-# 🥔 土豆兄弟 (Brotato) 数值体系全解 (Numerical Deep Dive)
+# 🥔 土豆兄弟 (Brotato) 数值体系全解
 
 > **"看起来像简笔画，玩起来像数学题。"**
 >

@@ -2,7 +2,7 @@
 sidebarTitle: "动态音乐系统"
 ---
 
-# 🎵 动态音乐系统 (Adaptive Music System) 深度研究
+# 🎵 动态音乐系统 (Adaptive Music System)
 
 > **研究归属**: Project Vampirefall - Audio  
 > **创建日期**: 2025-12-04  

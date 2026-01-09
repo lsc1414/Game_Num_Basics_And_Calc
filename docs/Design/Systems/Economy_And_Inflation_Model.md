@@ -2,7 +2,7 @@
 sidebarTitle: "💰 经济系统与通胀控制模型"
 ---
 
-# 💰 经济系统与通胀控制模型 (Economy & Inflation Model)
+# 💰 经济系统与通胀控制模型
 
 ## 1. 核心理念 (Core Philosophy)
 虚拟经济系统本质上是一个通过 **源头 (Sources/Taps)** 与 **汇点 (Sinks/Drains)** 控制资源流动的封闭或半封闭系统。

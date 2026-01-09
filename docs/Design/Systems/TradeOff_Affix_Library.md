@@ -2,7 +2,7 @@
 sidebarTitle: "⚖️ 权衡词条库"
 ---
 
-# ⚖️ 权衡词条库 (The Trade-off Affix Library)
+# ⚖️ 权衡词条库
 
 > **文档目标 (Goal)**：提供 150 个“有代价的强力词条”灵感，用于构建 Roguelike、装备或天赋系统。
 > **核心逻辑 (Core Logic)**：**缺陷即特色 (Flaw is Feature)**。通过剥夺玩家的一部分能力，迫使玩家走上极端的流派构建之路。

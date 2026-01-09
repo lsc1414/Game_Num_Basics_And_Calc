@@ -2,7 +2,7 @@
 sidebarTitle: "🛡️ 装备与物品化设计"
 ---
 
-# 🛡️ 装备与物品化设计 (Itemization System)
+# 🛡️ 装备与物品化设计
 
 装备是 RPG 的核心驱动力。本系统参考 *Path of Exile* 和 *Diablo II* 的词缀机制，强调随机性与深度的结合。
 

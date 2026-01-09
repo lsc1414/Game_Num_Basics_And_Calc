@@ -2,7 +2,7 @@
 sidebarTitle: "🪄 《Magicraft》核心设计知识图谱"
 ---
 
-# 🪄 《Magicraft》核心设计知识图谱 (Magicraft Knowledge Map)
+# 🪄 《Magicraft》核心设计知识图谱
 
 > **"用魔法零件组装你的终极武器"** - Magicraft 的核心玩法
 

@@ -2,7 +2,7 @@
 sidebarTitle: "🏰 构建《王权陨落》类极简策略游戏知识图谱"
 ---
 
-# 🏰 构建《王权陨落》类极简策略游戏知识图谱 (Minimalist Strategy Knowledge Map)
+# 🏰 构建《王权陨落》类极简策略游戏知识图谱
 
 这份文档旨在拆解《Thronefall》、《Kingdom Two Crowns》、《Bad North》这类“极简策略”游戏背后的设计理论与核心知识体系。
 

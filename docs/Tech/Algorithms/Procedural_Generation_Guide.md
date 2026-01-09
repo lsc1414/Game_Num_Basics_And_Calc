@@ -2,7 +2,7 @@
 sidebarTitle: "关卡生成算法"
 ---
 
-# 🧙‍♂️ 关卡生成算法(PCG)深度研究
+# 🧙‍♂️ 关卡生成算法(PCG)
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

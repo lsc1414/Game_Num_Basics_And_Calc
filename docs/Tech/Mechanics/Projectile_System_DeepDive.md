@@ -2,7 +2,7 @@
 sidebarTitle: "🏹 投射物系统深度解析"
 ---
 
-# 🏹 投射物系统深度解析 (Projectile System Deep Dive)
+# 🏹 投射物系统深度解析
 
 本文档旨在构建一个**通用、高性能、高扩展性**的投射物系统理论框架。
 在 Project Vampirefall 中，投射物（Projectiles）是塔防与战斗的核心交互载体。与 Hitscan（射线判定）不同，投射物拥有**飞行时间 (Travel Time)**、**独立轨迹**和**物理交互**。

@@ -2,7 +2,7 @@
 sidebarTitle: "🧠 通用加权决策系统"
 ---
 
-# 🧠 通用加权决策系统 (Unified Weighted Decision System)
+# 🧠 通用加权决策系统
 
 本文档旨在抽象 Project Vampirefall 中多个核心系统的底层逻辑，构建一个**通用的、基于上下文的加权选择器 (Context-Aware Weighted Selector)**。
 

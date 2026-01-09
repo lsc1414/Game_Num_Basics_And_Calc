@@ -2,7 +2,7 @@
 sidebarTitle: "Odin Inspector 高级使用技巧深度研究"
 ---
 
-# 🧙‍♂️ Odin Inspector 高级使用技巧深度研究
+# 🧙‍♂️ Odin Inspector 高级使用技巧
 
 > 🎯 **目标读者**: 已掌握 Odin 基础用法的 Unity 开发者  
 > 📌 **定位**: 提供官方 Demo 未涵盖的实战技巧、复杂场景解决方案和性能优化策略

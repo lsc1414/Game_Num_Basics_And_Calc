@@ -2,7 +2,7 @@
 sidebarTitle: "📈 游戏中的曲线艺术"
 ---
 
-# 📈 游戏中的曲线艺术 (The Art of Curves in Games)
+# 📈 游戏中的曲线艺术
 
 > [!TIP] > **"God does not build in straight lines."** (上帝不造直线) — Prometheus
 > 在游戏开发中，直线通常代表着机械与僵硬，而曲线则赋予了生命、动感与平衡。

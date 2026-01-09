@@ -2,7 +2,7 @@
 sidebarTitle: "多人协作平衡"
 ---
 
-# 👥 多人协作平衡 (Co-op Balance Design) 深度研究
+# 👥 多人协作平衡 (Co-op Balance Design)
 
 > **研究归属**: Project Vampirefall - Design/Systems  
 > **创建日期**: 2025-12-04  

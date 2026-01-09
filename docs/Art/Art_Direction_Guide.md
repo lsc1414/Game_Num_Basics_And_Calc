@@ -2,7 +2,7 @@
 sidebarTitle: "🎨 美术风格一致性指南"
 ---
 
-# 🎨 美术风格一致性指南 (Art Direction Guide)
+# 🎨 美术风格一致性指南
 
 > **研究归属**: Project Vampirefall - Art/Direction  
 > **创建日期**: 2025-12-04  

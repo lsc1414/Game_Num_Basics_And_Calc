@@ -2,7 +2,7 @@
 sidebarTitle: "Unity Steamworks 核心功能开发清单 深度研究"
 ---
 
-# 🧙‍♂️ Unity Steamworks 核心功能开发清单 深度研究
+# 🧙‍♂️ Unity Steamworks 核心功能开发清单
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

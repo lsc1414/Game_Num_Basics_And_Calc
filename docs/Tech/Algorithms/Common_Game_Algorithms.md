@@ -2,7 +2,7 @@
 sidebarTitle: "🧙‍♂️ 游戏常用算法深度研究"
 ---
 
-# 🧙‍♂️ 游戏常用算法深度研究 (Common Game Algorithms)
+# 🧙‍♂️ 游戏常用算法深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

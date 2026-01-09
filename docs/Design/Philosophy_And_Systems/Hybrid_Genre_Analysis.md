@@ -2,7 +2,7 @@
 sidebarTitle: "⚔️ Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡"
 ---
 
-# ⚔️ Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡 (Hybrid Genre Analysis)
+# ⚔️ Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡
 
 > **核心矛盾**:
 > *   **塔防** 需要 **确定性** (这里放个塔就能守住)。

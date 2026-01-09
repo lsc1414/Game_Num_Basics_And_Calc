@@ -2,7 +2,7 @@
 sidebarTitle: "🗺️ 关卡词条库"
 ---
 
-# 🗺️ 关卡词条库 (Map Affix Library)
+# 🗺️ 关卡词条库
 
 > **文档目标 (Goal)**：提供 100+ 个中英文对照的关卡/地图词条（Map Mods），用于构建 Roguelike、异界地图（PoE Maps）或高难挑战系统。
 > **核心逻辑 (Core Logic)**：**风险与收益并存 (Risk vs Reward)**。词条不仅增加难度，通常也隐含着掉落数量或稀有度的提升。

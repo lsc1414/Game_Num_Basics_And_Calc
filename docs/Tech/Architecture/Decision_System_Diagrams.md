@@ -2,7 +2,7 @@
 sidebarTitle: "🏗️ 通用决策系统架构图"
 ---
 
-# 🏗️ 通用决策系统架构图 (Unified Decision System Architecture)
+# 🏗️ 通用决策系统架构图
 
 本文档作为系统的工程蓝图，详细定义了类结构、接口关系及运行时序。
 

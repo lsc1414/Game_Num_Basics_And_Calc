@@ -2,7 +2,7 @@
 sidebarTitle: "📦 斯金纳箱与成瘾设计"
 ---
 
-# 📦 斯金纳箱与成瘾设计 (Skinner Box & Addiction Mechanics)
+# 📦 斯金纳箱与成瘾设计
 
 > **核心理论**: 行为是由其后果塑造的。通过特定的**强化程序 (Reinforcement Schedules)**，我们可以让玩家（就像箱子里的老鼠）不停地按下按钮（肝游戏/充值）。
 

@@ -2,7 +2,7 @@
 sidebarTitle: "Boss 战设计哲学深度研究"
 ---
 
-# 🧙‍♂️ Boss 战设计哲学深度研究
+# 🧙‍♂️ Boss 战设计哲学
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

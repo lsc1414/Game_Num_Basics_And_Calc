@@ -2,7 +2,7 @@
 sidebarTitle: "🎨 UI/UX 设计与交互规范"
 ---
 
-# 🎨 UI/UX 设计与交互规范 (Interface Guidelines)
+# 🎨 UI/UX 设计与交互规范
 
 本文档定义了 Project Vampirefall 的用户界面风格、层级结构及交互反馈标准。
 

@@ -2,7 +2,7 @@
 sidebarTitle: "波函数坍缩"
 ---
 
-# 波函数坍缩 (WFC) 生成 (Wave Function Collapse)
+# 波函数坍缩 (WFC) 生成
 
 > [!NOTE]
 > **核心思想**: WFC 是一种基于**约束 (Constraint)** 的生成算法。它不是告诉计算机“怎么画”，而是告诉它“什么不能画”。

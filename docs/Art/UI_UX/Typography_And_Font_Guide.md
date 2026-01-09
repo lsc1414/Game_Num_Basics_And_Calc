@@ -2,7 +2,7 @@
 sidebarTitle: "🔠 游戏字体排印指南"
 ---
 
-# 🔠 游戏字体排印指南 (Typography & Font Guide)
+# 🔠 游戏字体排印指南
 
 > **核心原则**: 
 > 1.  **易读性 (Legibility)** > 风格 (Style)。看不清数字的塔防游戏是灾难。

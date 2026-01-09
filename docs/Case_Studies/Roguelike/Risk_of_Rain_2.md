@@ -2,7 +2,7 @@
 sidebarTitle: "🌧️ 《Risk of Rain 2》核心设计知识图谱"
 ---
 
-# 🌧️ 《Risk of Rain 2》核心设计知识图谱 (RoR2 Knowledge Map)
+# 🌧️ 《Risk of Rain 2》核心设计知识图谱
 
 这份文档拆解《雨中冒险2》的核心设计哲学，重点研究其**时间压力系统**、**物品协同机制**和**多人动态平衡**。
 

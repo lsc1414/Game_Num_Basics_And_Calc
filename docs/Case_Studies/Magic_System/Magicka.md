@@ -2,7 +2,7 @@
 sidebarTitle: "🔮 《Magicka》核心设计知识图谱"
 ---
 
-# 🔮 《Magicka》核心设计知识图谱 (Magicka Knowledge Map)
+# 🔮 《Magicka》核心设计知识图谱
 
 > **"如果你能想象它，你就能施放它"** - Magicka 的设计哲学
 

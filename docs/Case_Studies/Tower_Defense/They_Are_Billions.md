@@ -2,7 +2,7 @@
 sidebarTitle: "🧟 《They Are Billions》核心设计知识图谱"
 ---
 
-# 🧟 《They Are Billions》核心设计知识图谱 (TAB Knowledge Map)
+# 🧟 《They Are Billions》核心设计知识图谱
 
 这份文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
 

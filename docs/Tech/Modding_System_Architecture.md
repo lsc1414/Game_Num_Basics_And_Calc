@@ -2,7 +2,7 @@
 sidebarTitle: "🛠️ Mod 系统架构指南"
 ---
 
-# 🛠️ Mod 系统架构指南 (Modding System Architecture)
+# 🛠️ Mod 系统架构指南
 
 > **核心哲学**: 游戏本体应该只是一个 **"引擎" (Engine)**，而所有的官方内容（塔、怪、装备）都应该被视为 **"官方 Mod" (Core Mod)**。
 > 当你把官方内容也当成 Mod 来加载时，Mod 支持就自然完成了。

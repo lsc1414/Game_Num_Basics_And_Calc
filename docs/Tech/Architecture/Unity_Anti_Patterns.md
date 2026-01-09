@@ -2,7 +2,7 @@
 sidebarTitle: "☠️ Unity 代码毒药：那些毁灭项目的反模式"
 ---
 
-# ☠️ Unity 代码毒药：那些毁灭项目的反模式 (Unity Anti-Patterns)
+# ☠️ Unity 代码毒药：那些毁灭项目的反模式
 
 > **"能跑就行" 是通往重构地狱的特快列车。**
 > 

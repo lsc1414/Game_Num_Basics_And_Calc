@@ -2,7 +2,7 @@
 sidebarTitle: "🧙‍♂️ 游戏设计哲学与系统架构"
 ---
 
-# 🧙‍♂️ 游戏设计哲学与系统架构 (Game Design Philosophy & Systems)
+# 🧙‍♂️ 游戏设计哲学与系统架构
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

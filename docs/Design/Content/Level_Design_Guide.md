@@ -2,7 +2,7 @@
 sidebarTitle: "🗺️ 关卡与波次设计指南"
 ---
 
-# 🗺️ 关卡与波次设计指南 (Level Design & Wave Pacing)
+# 🗺️ 关卡与波次设计指南
 
 本文档指导如何构建游戏地图以及控制刷怪节奏 (Pacing)。
 

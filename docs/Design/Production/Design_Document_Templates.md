@@ -2,7 +2,7 @@
 sidebarTitle: "📝 策划文档标准模板库"
 ---
 
-# 📝 策划文档标准模板库 (Design Document Templates)
+# 📝 策划文档标准模板库
 
 > **使用说明**:
 > 1.  点击代码块右上角的 "Copy" 按钮。

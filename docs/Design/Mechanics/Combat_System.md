@@ -2,7 +2,7 @@
 sidebarTitle: "⚔️ 战斗系统详解"
 ---
 
-# ⚔️ 战斗系统详解 (Combat System Mechanics)
+# ⚔️ 战斗系统详解
 
 本文档定义了 Project Vampirefall 的核心战斗规则，包括伤害计算流程、属性相互作用、异常状态及控制机制。
 

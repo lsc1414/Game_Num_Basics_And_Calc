@@ -2,7 +2,7 @@
 sidebarTitle: "🛡️ 《Dome Keeper》核心设计知识图谱"
 ---
 
-# 🛡️ 《Dome Keeper》核心设计知识图谱 (Dome Keeper Knowledge Map)
+# 🛡️ 《Dome Keeper》核心设计知识图谱
 
 这份文档拆解《圆顶守护者》的**双阶段循环**、**资源管理博弈**和**时间压力递增**。
 

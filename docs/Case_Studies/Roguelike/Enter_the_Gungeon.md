@@ -2,7 +2,7 @@
 sidebarTitle: "🔫 《Enter the Gungeon》核心设计知识图谱"
 ---
 
-# 🔫 《Enter the Gungeon》核心设计知识图谱 (EtG Knowledge Map)
+# 🔫 《Enter the Gungeon》核心设计知识图谱
 
 这份文档拆解《挺进地牢》的**武器多样性设计**、**弹道系统优化**和**房间生成算法**。
 

@@ -2,7 +2,7 @@
 sidebarTitle: "📂 Unity 项目文件夹结构规范"
 ---
 
-# 📂 Unity 项目文件夹结构规范 (Folder Structure Standards)
+# 📂 Unity 项目文件夹结构规范
 
 **文档目标：** 终结“按类型放”还是“按模块放”的争论。
 **核心结论：** 采用 **“混合式架构” (Hybrid Approach)**。底层通用资源按类型，上层业务逻辑按模块。

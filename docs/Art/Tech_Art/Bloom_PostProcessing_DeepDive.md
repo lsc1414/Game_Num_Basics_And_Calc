@@ -2,7 +2,7 @@
 sidebarTitle: "🌤️ Bloom 后处理深度研究"
 ---
 
-# 🌤️ Bloom 后处理深度研究 (Bloom Post-Processing)
+# 🌤️ Bloom 后处理
 
 > **"没有 Bloom，霓虹灯只是一块带颜色的板子。"**
 >

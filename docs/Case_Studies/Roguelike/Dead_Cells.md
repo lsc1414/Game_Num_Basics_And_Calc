@@ -2,7 +2,7 @@
 sidebarTitle: "⚔️ 《Dead Cells》核心设计知识图谱"
 ---
 
-# ⚔️ 《Dead Cells》核心设计知识图谱 (Dead Cells Knowledge Map)
+# ⚔️ 《Dead Cells》核心设计知识图谱
 
 这份文档拆解《死亡细胞》的**颜色分级词缀系统**、**关卡分支设计**和**打击感优化**。
 

@@ -2,7 +2,7 @@
 sidebarTitle: "👶 《Binding of Isaac》核心设计知识图谱"
 ---
 
-# 👶 《Binding of Isaac》核心设计知识图谱 (BoI Knowledge Map)
+# 👶 《Binding of Isaac》核心设计知识图谱
 
 这份文档拆解《以撒的结合》的**道具协同数学**、**房间生成**和**诅咒机制**。
 

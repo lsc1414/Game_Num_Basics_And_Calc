@@ -2,7 +2,7 @@
 sidebarTitle: "游戏手感与 "Juice""
 ---
 
-# 游戏手感与 "Juice" (Game Feel & Juice)
+# 游戏手感与 "Juice"
 
 > [!TIP]
 > **定义**: "Juice" 是指那些不改变游戏核心机制，但能极大提升玩家交互反馈和满足感的视听元素。

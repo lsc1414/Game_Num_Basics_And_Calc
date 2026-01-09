@@ -2,7 +2,7 @@
 sidebarTitle: "移动与冲刺系统"
 ---
 
-# 🏃 移动与冲刺系统 (Movement & Dash System) 深度研究
+# 🏃 移动与冲刺系统 (Movement & Dash System)
 
 > **研究归属**: Project Vampirefall - Tech/Mechanics  
 > **创建日期**: 2025-12-04  

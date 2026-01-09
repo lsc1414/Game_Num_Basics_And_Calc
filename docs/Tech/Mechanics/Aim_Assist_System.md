@@ -2,7 +2,7 @@
 sidebarTitle: "瞄准辅助系统"
 ---
 
-# 🎯 瞄准辅助系统 (Aim Assist System) 深度研究
+# 🎯 瞄准辅助系统 (Aim Assist System)
 
 > **研究归属**: Project Vampirefall - Tech/Mechanics  
 > **创建日期**: 2025-12-04  

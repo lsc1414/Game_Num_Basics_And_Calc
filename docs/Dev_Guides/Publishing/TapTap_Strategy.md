@@ -2,7 +2,7 @@
 sidebarTitle: "📱 TapTap 发行策略研究"
 ---
 
-# 📱 TapTap 发行策略研究 (TapTap Publishing Strategy)
+# 📱 TapTap 发行策略研究
 
 TapTap 不仅仅是一个应用商店，它更像是一个**垂直的游戏社区**（类似于豆瓣 + Steam）。
 在 TapTap 上发行的核心逻辑不是“买量”，而是**“社区运营”**。

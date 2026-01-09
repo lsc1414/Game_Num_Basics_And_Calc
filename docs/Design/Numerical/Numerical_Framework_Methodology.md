@@ -2,7 +2,7 @@
 sidebarTitle: "🧙‍♂️ 游戏数值框架构建指南"
 ---
 
-# 🧙‍♂️ 游戏数值框架构建指南 (Numerical Framework Construction Guide)
+# 🧙‍♂️ 游戏数值框架构建指南
 
 > **"数值不是数学题，而是体验的翻译官。"**
 >
