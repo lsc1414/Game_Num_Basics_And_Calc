@@ -1,3 +1,7 @@
+---
+sidebarTitle: "瞄准辅助系统"
+---
+
 # 🎯 瞄准辅助系统 (Aim Assist System) 深度研究
 
 > **研究归属**: Project Vampirefall - Tech/Mechanics  

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "难度曲线与动态难度调整"
+---
+
 # 🧙‍♂️ 难度曲线与动态难度调整 (DDA) 深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

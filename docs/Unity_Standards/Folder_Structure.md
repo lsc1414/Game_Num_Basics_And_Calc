@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📂 Unity 项目文件夹结构规范"
+---
+
 # 📂 Unity 项目文件夹结构规范 (Folder Structure Standards)
 
 **文档目标：** 终结“按类型放”还是“按模块放”的争论。

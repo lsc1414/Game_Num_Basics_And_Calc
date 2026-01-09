@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🗼 防御塔索敌系统重构示例"
+---
+
 # 🗼 防御塔索敌系统重构示例 (Tower Targeting System Refactor Demo)
 
 本文档展示了如何将 `Design/Mechanics/Tower_Defense_System.md` 中定义的防御塔索敌逻辑，通过我们设计的 `DecisionEngine` 进行重构。这使得不同的防御塔可以灵活配置其索敌策略，而无需编写重复的逻辑。

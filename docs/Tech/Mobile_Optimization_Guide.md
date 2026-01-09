@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📱 移动端深度优化指南"
+---
+
 # 📱 移动端深度优化指南 (Mobile Optimization Guide)
 
 **文档目标：** 让 Vampirefall 在 iPhone 8 / 小米 6 级别的设备上稳定运行，且**不烫手**。

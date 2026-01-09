@@ -1,3 +1,7 @@
+---
+sidebarTitle: "⚖️ 权衡词条库"
+---
+
 # ⚖️ 权衡词条库 (The Trade-off Affix Library)
 
 > **文档目标 (Goal)**：提供 150 个“有代价的强力词条”灵感，用于构建 Roguelike、装备或天赋系统。

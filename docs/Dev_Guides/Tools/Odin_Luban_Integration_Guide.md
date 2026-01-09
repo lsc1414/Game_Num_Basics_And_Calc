@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Odin Inspector + Luban 深度集成指南"
+---
+
 # 🔗 Odin Inspector + Luban 深度集成指南
 
 > 🎯 **目标**: 结合 Odin 的强大 Inspector 可视化能力与 Luban 的配置表生成能力，打造双向编辑工作流  

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Palworld 生产模式分析：Triple-I 与自动化管线"
+---
+
 # 🌐 Palworld 生产模式分析：Triple-I 与自动化管线
 
 **文档目标**：深度解析 *Palworld* (幻兽帕鲁) 作为“Triple-I”（独立游戏 AAA 制作标准）代表的成功之道，特别是其**内容生产模式**、**技术自动化管线**，以及对 *Vampirefall* 项目的借鉴意义。

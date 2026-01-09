@@ -1,3 +1,7 @@
+---
+sidebarTitle: "⚡ Compute Shader 移动端深度指南"
+---
+
 # ⚡ Compute Shader 移动端深度指南
 
 ## 📚 1. 理论基础 (Theoretical Basis)

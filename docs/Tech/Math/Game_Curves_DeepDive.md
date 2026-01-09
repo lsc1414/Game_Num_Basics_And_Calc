@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📈 游戏中的曲线艺术"
+---
+
 # 📈 游戏中的曲线艺术 (The Art of Curves in Games)
 
 > [!TIP] > **"God does not build in straight lines."** (上帝不造直线) — Prometheus

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "蒙特卡洛模拟"
+---
+
 # 蒙特卡洛模拟 (Monte Carlo Simulation)
 
 > [!WARNING]

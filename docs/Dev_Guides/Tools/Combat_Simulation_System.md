@@ -1,3 +1,7 @@
+---
+sidebarTitle: "战斗仿真系统"
+---
+
 # ⚔️ 战斗仿真系统 (Combat Simulation System)：Python 极速模拟
 
 **文档目标**：在不启动 Unity 的情况下，通过纯数据模拟进行数万次战斗迭代，验证 PRD、暴击率、闪避率及数值成长的数学期望。

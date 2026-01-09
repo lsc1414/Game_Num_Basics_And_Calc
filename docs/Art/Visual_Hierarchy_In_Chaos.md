@@ -1,3 +1,7 @@
+---
+sidebarTitle: "👁️ 视觉层级：混乱中的秩序"
+---
+
 # 👁️ 视觉层级：混乱中的秩序 (Visual Hierarchy in Chaos)
 
 > **核心问题**: 在 *Vampirefall* 这种同屏 500+ 单位的游戏中，如何防止画面变成一锅“光污染”的粥？

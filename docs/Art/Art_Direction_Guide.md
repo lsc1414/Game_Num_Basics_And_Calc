@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🎨 美术风格一致性指南"
+---
+
 # 🎨 美术风格一致性指南 (Art Direction Guide)
 
 > **研究归属**: Project Vampirefall - Art/Direction  

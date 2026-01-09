@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🏰 塔防建筑机制设计"
+---
+
 # 🏰 塔防建筑机制设计 (Tower Defense Mechanics)
 
 本文档详细定义了 Project Vampirefall 中“塔防”部分的玩法规则。由于本作混合了 ARPG 元素，塔的设计必须考虑到与主角的协同作战。

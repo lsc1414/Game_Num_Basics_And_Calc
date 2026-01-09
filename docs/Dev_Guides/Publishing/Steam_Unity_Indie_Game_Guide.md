@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Steam Unity 独立游戏开发实战指南：从入门到上线"
+---
+
 # 🚀 Steam Unity 独立游戏开发实战指南：从入门到上线
 
 ## 📚 1. 理论基础 (Theoretical Basis)

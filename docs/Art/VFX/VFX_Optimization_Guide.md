@@ -1,3 +1,7 @@
+---
+sidebarTitle: "✨ 特效优化黑魔法"
+---
+
 # ✨ 特效优化黑魔法 (VFX Optimization Guide)
 
 > **"好看的特效让人惊叹，好跑的特效让人留存。"**

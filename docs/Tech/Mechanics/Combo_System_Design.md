@@ -1,3 +1,7 @@
+---
+sidebarTitle: "连招系统深度研究"
+---
+
 # 🧙‍♂️ 连招系统深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

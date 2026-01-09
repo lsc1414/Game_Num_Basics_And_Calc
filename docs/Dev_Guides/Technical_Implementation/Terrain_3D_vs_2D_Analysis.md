@@ -1,3 +1,7 @@
+---
+sidebarTitle: "⛰️ 3D 地形 vs 平面地形选型分析"
+---
+
 # ⛰️ 3D 地形 vs 平面地形选型分析 (3D Terrain vs Flat Terrain)
 
 > **决策背景**: *Vampirefall* 是一个拥有海量单位（同屏 500+）的混合塔防游戏。

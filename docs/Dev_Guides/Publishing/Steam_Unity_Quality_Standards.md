@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Steam Unity 游戏开发标准：下限与上限深度研究"
+---
+
 # 🧙‍♂️ Steam Unity 游戏开发标准：下限与上限深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

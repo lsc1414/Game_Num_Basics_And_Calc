@@ -1,3 +1,7 @@
+---
+sidebarTitle: "多人协作平衡"
+---
+
 # 👥 多人协作平衡 (Co-op Balance Design) 深度研究
 
 > **研究归属**: Project Vampirefall - Design/Systems  

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "游戏手感与 "Juice""
+---
+
 # 游戏手感与 "Juice" (Game Feel & Juice)
 
 > [!TIP]

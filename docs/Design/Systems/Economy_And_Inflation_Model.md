@@ -1,3 +1,7 @@
+---
+sidebarTitle: "💰 经济系统与通胀控制模型"
+---
+
 # 💰 经济系统与通胀控制模型 (Economy & Inflation Model)
 
 ## 1. 核心理念 (Core Philosophy)

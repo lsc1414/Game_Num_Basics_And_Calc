@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🛑 失败案例复盘：Concord"
+---
+
 # 🛑 失败案例复盘：Concord (星鸣特攻)
 
 ## 1. 项目概况

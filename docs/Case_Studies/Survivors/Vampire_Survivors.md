@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Vampire Survivors 性能奇迹：如何渲染与逻辑解耦"
+---
+
 # 🧛 Vampire Survivors 性能奇迹：如何渲染与逻辑解耦
 
 **文档目标**：深入分析 *Vampire Survivors* (VS) 如何处理 300,000+ 累计杀怪量的极端压力，并提炼对 Unity 开发的启示。

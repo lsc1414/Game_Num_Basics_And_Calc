@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🎥 摄像机设计深度指南"
+---
+
 # 🎥 摄像机设计深度指南 (Camera Deep Dive)
 
 本文档深入拆解 Unity Camera 的核心参数及 Cinemachine 的调优细节。

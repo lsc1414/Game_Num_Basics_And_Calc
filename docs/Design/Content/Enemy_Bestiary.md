@@ -1,3 +1,7 @@
+---
+sidebarTitle: "👹 怪物图鉴与AI行为"
+---
+
 # 👹 怪物图鉴与AI行为 (Enemy Bestiary & AI)
 
 本文档定义了怪物的分类、AI 行为模式及特殊词缀设计。

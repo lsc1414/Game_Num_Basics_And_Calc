@@ -1,3 +1,7 @@
+---
+sidebarTitle: "⛏️ 《Deep Rock Galactic》核心设计知识图谱"
+---
+
 # ⛏️ 《Deep Rock Galactic》核心设计知识图谱 (DRG Knowledge Map)
 
 这份文档拆解《深岩银河》的**职业互补设计**、**程序生成洞穴**和**强制合作机制**。

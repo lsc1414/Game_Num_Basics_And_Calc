@@ -1,3 +1,7 @@
+---
+sidebarTitle: "伤害判定机制详解：Hitbox vs. Distance vs. Raycast"
+---
+
 # 🥊 伤害判定机制详解：Hitbox vs. Distance vs. Raycast
 
 本文档详细解析游戏中伤害判定的三种核心流派：**基于数值的距离判定 (Distance Check)**、**基于模型的物理判定 (Hitbox/Collider)** 以及 **射线检测 (Raycast/Hitscan)**。

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🎧 Wwise 音频中间件：工业级声音引擎详解"
+---
+
 # 🎧 Wwise 音频中间件：工业级声音引擎详解 (Wwise Middleware Guide)
 
 > **核心定义**: Wwise 是一个独立于游戏引擎（Unity/Unreal）运行的**专业音频制作与管理工具**。它将音频逻辑从代码中剥离，让声音设计师（Sound Designer）拥有对声音的完全控制权，而无需程序员反复修改代码。

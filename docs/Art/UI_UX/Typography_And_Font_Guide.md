@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🔠 游戏字体排印指南"
+---
+
 # 🔠 游戏字体排印指南 (Typography & Font Guide)
 
 > **核心原则**: 

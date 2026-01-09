@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🎮 输入与交互系统设计"
+---
+
 # 🎮 输入与交互系统设计 (Input & Interaction Framework)
 
 本文档定义了游戏的输入映射、跨平台适配策略以及 UI 导航逻辑。建议使用 Unity 的新版 Input System 包。

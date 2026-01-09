@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🗺️ 关卡词条库"
+---
+
 # 🗺️ 关卡词条库 (Map Affix Library)
 
 > **文档目标 (Goal)**：提供 100+ 个中英文对照的关卡/地图词条（Map Mods），用于构建 Roguelike、异界地图（PoE Maps）或高难挑战系统。

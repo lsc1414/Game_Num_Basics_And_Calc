@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🩸 Unity HUD & 血条系统最佳实践"
+---
+
 # 🩸 Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)
 
 在 RPG、塔防或 Roguelike 游戏中，血条（Health Bar）不仅是数据显示，更是战斗反馈的核心。

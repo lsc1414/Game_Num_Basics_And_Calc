@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🛑 失败案例复盘：Anthem"
+---
+
 # 🛑 失败案例复盘：Anthem (圣歌)
 
 ## 1. 项目概况

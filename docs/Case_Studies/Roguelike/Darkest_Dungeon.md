@@ -1,3 +1,7 @@
+---
+sidebarTitle: "😰 《Darkest Dungeon》核心设计知识图谱"
+---
+
 # 😰 《Darkest Dungeon》核心设计知识图谱 (DD Knowledge Map)
 
 这份文档拆解《暗黑地牢》的**压力系统设计**、**永久损失机制**和**叙事驱动机制**。

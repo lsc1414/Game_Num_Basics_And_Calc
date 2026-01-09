@@ -1,3 +1,7 @@
+---
+sidebarTitle: "游戏剧情与包装深度研究"
+---
+
 # 🧙‍♂️ 游戏剧情与包装深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

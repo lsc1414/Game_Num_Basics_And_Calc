@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🌲 局外成长系统"
+---
+
 # 🌲 局外成长系统 (Meta-Progression)
 
 本文档定义了 **Project Vampirefall** 的长期留存动力引擎。

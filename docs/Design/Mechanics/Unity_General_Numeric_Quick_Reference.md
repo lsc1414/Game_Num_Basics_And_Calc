@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Unity 游戏开发通用经验数值速查表"
+---
+
 # 🧙‍♂️ Unity 游戏开发通用经验数值速查表
 
 ## 📚 1. 理论基础 (Theoretical Basis)

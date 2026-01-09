@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Utility AI 决策系统"
+---
+
 # Utility AI 决策系统 (Utility AI Decision System)
 
 > [!IMPORTANT]

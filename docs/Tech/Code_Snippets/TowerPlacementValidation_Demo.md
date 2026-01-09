@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🚧 防御塔放置校验逻辑"
+---
+
 # 🚧 防御塔放置校验逻辑 (Tower Placement Validation Logic)
 
 本文档详细描述了在塔防游戏中，如何利用 Unity 的 `NavMesh` 系统来校验玩家的防御塔放置，防止玩家通过放置塔来**完全堵死敌人路径** (Maze Blocking)。这是一个在设计塔防地图和平衡性时至关重要的机制。

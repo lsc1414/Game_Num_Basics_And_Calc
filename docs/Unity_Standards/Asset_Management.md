@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📦 Unity 资产管理实战指南"
+---
+
 # 📦 Unity 资产管理实战指南 (Unity Asset Management Guide)
 
 **文档目标：** 解决“包体过大”、“加载过慢”和“资源丢失”的三大顽疾。

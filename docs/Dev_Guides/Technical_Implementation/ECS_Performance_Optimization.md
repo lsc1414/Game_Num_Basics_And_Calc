@@ -1,3 +1,7 @@
+---
+sidebarTitle: "ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS"
+---
+
 # 🚀 ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS
 
 **文档目标**：解析如何在 Unity 中实现同屏 500+ 敌人的高性能逻辑，参考 *Vampire Survivors* 的优化思路，并映射到 Unity DOTS (Data-Oriented Technology Stack) 的最佳实践。同时结合本项目特有的 **GAS (Gameplay Ability System)** 进行混合架构设计。

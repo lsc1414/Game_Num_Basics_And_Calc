@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
+---
+
 # 👑 Thronefall 机制分析：极简主义与日夜循环的完美融合
 
 **文档目标**：解析 *Thronefall* (王权陨落) 如何在“极简主义”的设计哲学下，成功融合了**塔防 (TD)**、**动作 (Hack & Slash)** 与 **经济策略**，并提炼对 *Vampirefall* 的关键启示。

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📝 策划文档标准模板库"
+---
+
 # 📝 策划文档标准模板库 (Design Document Templates)
 
 > **使用说明**:

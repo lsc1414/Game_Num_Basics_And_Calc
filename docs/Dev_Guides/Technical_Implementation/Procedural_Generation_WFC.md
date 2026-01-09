@@ -1,3 +1,7 @@
+---
+sidebarTitle: "波函数坍缩"
+---
+
 # 波函数坍缩 (WFC) 生成 (Wave Function Collapse)
 
 > [!NOTE]

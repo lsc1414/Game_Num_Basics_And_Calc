@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📚 社区WIKI与攻略站构建策略"
+---
+
 # 📚 社区WIKI与攻略站构建策略 (Community Wiki & Strategy Station Strategy)
 
 > **核心理念**: 攻略站 (Wiki) 不仅仅是信息的集合，它是 **降低玩家认知门槛**、**建立社区生态** 以及 **延长游戏寿命** 的关键基础设施。一个优秀的 Wiki 能让新手快速上手，让老手钻研深度机制。

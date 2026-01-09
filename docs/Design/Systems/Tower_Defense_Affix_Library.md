@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🏰 塔防词条库"
+---
+
 # 🏰 塔防词条库 (Tower Defense Affix Library)
 
 > **文档目标 (Goal)**：提供 100+ 个中英文对照的塔防专用词条（TD Mods），涵盖防御塔、敌人、经济和基地机制。

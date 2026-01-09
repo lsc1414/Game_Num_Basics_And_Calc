@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Vampirefall 游戏技能系统"
+---
+
 # ⚔️ Vampirefall 游戏技能系统 (GAS) 设计方案
 
 ## 1. 概述 (Overview)

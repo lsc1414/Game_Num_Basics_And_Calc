@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🧭 NavMesh 寻路与状态控制指南"
+---
+
 # 🧭 NavMesh 寻路与状态控制指南 (NavMesh Pathfinding & CC Interaction)
 
 本文档详细阐述 Project Vampirefall 中敌人如何利用 Unity NavMesh 系统进行寻路，重点解析**异常状态 (CC)** 下的寻路控制，以及**动态阻挡 (塔防)** 的实现细节。

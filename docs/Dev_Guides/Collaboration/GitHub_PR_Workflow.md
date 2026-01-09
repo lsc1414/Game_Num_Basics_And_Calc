@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🐙 GitHub 工作流与 PR 最佳实践"
+---
+
 # 🐙 GitHub 工作流与 PR 最佳实践 (GitHub Flow & PR Guide)
 
 > **核心理念**: **主分支 (main/develop) 是神圣不可侵犯的**。任何代码想要进入主分支，必须经过至少一双眼睛的检查 (Code Review)。这个过程就叫 **Pull Request (PR)**。

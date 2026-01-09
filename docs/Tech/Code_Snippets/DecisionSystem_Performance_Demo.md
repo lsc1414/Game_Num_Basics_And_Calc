@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🚀 决策系统性能优化示例"
+---
+
 # 🚀 决策系统性能优化示例 (Decision System Performance Optimization Demo)
 
 本文档展示了如何将时间分片 (Time-Slicing) 和空间划分 (Spatial Partitioning) 策略集成到 `DecisionEngine` 的工作流中，以确保游戏在高并发计算时依然流畅。

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "成就与收集系统深度研究"
+---
+
 # 🧙‍♂️ 成就与收集系统深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

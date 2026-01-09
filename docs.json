@@ -1,11 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "游戏开发101",
-  "theme": "willow",
+  "theme": "maple",
+  "appearance": {
+    "default": "light"
+  },
   "colors": {
-    "primary": "#673AB7",
-    "light": "#9575CD",
-    "dark": "#512DA8"
+    "primary": "#0D9373",
+    "light": "#07C983",
+    "dark": "#0D9373"
   },
   "favicon": "/docs/assets/favicon.png",
   "logo": {
@@ -17,7 +20,11 @@
     "tabs": [
       {
         "tab": "🚀 开始",
-        "pages": ["docs/index", "docs/START_HERE", "docs/Full_Index"]
+        "pages": [
+          "docs/index",
+          "docs/START_HERE",
+          "docs/Full_Index"
+        ]
       },
       {
         "tab": "🎨 美术",
@@ -75,7 +82,9 @@
         "groups": [
           {
             "group": "案例研究",
-            "pages": ["docs/Design/CaseStudies/BangBangSurvivor_DeepDive"]
+            "pages": [
+              "docs/Design/CaseStudies/BangBangSurvivor_DeepDive"
+            ]
           },
           {
             "group": "内容设计",
@@ -109,11 +118,15 @@
           },
           {
             "group": "叙事设计",
-            "pages": ["docs/Design/Narrative/Game_Narrative_And_Presentation"]
+            "pages": [
+              "docs/Design/Narrative/Game_Narrative_And_Presentation"
+            ]
           },
           {
             "group": "数值体系",
-            "pages": ["docs/Design/Numerical/Numerical_Framework_Methodology"]
+            "pages": [
+              "docs/Design/Numerical/Numerical_Framework_Methodology"
+            ]
           },
           {
             "group": "设计哲学",
@@ -136,7 +149,9 @@
           },
           {
             "group": "心理学",
-            "pages": ["docs/Design/Psychology/Skinner_Box_and_Addiction"]
+            "pages": [
+              "docs/Design/Psychology/Skinner_Box_and_Addiction"
+            ]
           },
           {
             "group": "游戏系统",
@@ -179,7 +194,9 @@
         "groups": [
           {
             "group": "👥 合作游戏",
-            "pages": ["docs/Case_Studies/Coop/Deep_Rock_Galactic"]
+            "pages": [
+              "docs/Case_Studies/Coop/Deep_Rock_Galactic"
+            ]
           },
           {
             "group": "💀 失败复盘",
@@ -230,7 +247,9 @@
           },
           {
             "group": "🧛 幸存者类",
-            "pages": ["docs/Case_Studies/Survivors/Vampire_Survivors"]
+            "pages": [
+              "docs/Case_Studies/Survivors/Vampire_Survivors"
+            ]
           },
           {
             "group": "🏰 塔防",
@@ -269,7 +288,9 @@
           },
           {
             "group": "社区运营",
-            "pages": ["docs/Dev_Guides/Community/Community_Crisis_Management"]
+            "pages": [
+              "docs/Dev_Guides/Community/Community_Crisis_Management"
+            ]
           },
           {
             "group": "调试技巧",
@@ -330,7 +351,9 @@
           },
           {
             "group": "测试",
-            "pages": ["docs/Dev_Guides/Testing/Roguelike_Rapid_Testing_System"]
+            "pages": [
+              "docs/Dev_Guides/Testing/Roguelike_Rapid_Testing_System"
+            ]
           },
           {
             "group": "工具",
@@ -403,7 +426,9 @@
           },
           {
             "group": "数学",
-            "pages": ["docs/Tech/Math/Game_Curves_DeepDive"]
+            "pages": [
+              "docs/Tech/Math/Game_Curves_DeepDive"
+            ]
           },
           {
             "group": "机制实现",

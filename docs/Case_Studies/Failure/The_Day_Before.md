@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🛑 失败案例复盘：The Day Before"
+---
+
 # 🛑 失败案例复盘：The Day Before (浩劫前夕)
 
 ## 1. 项目概况

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🌈 HDR 渲染深度研究"
+---
+
 # 🌈 HDR 渲染深度研究 (High Dynamic Range)
 
 > **"屏幕只能显示 1.0 的亮度，但太阳的亮度是 100000.0。"**

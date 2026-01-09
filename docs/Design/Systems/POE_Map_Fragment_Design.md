@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🗺️ POE 门票关卡机制深度解析"
+---
+
 # 🗺️ POE 门票关卡机制深度解析 (Deep Dive into POE Fragments)
 
 > **核心定义**: 门票 (Fragment) 是 POE 中用于开启特定**高收益副本**的消耗品。它不仅是入场券，更是**调节游戏经济和玩家进度的阀门**。

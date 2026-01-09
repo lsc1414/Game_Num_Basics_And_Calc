@@ -1,3 +1,7 @@
+---
+sidebarTitle: "📱 设备分级与画质自适应"
+---
+
 # 📱 设备分级与画质自适应 (Device Grading & Scalability)
 
 > **"让 iPhone 15 Pro 跑满 120 帧，让红米 Note 7 也能活着玩下去。"**

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🌪️ 社区危机公关指南"
+---
+
 # 🌪️ 社区危机公关指南 (Community Crisis Management)
 
 > **"好名声建立需要三年，毁掉只需要三天。"**

@@ -1,3 +1,7 @@
+---
+sidebarTitle: "ECS 理论与实践：从面向对象"
+---
+
 # 🧩 ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁
 
 ## 1. 什么是 ECS？ (What is ECS?)

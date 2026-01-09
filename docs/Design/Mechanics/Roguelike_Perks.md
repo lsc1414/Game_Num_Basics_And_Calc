@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🎲 肉鸽强化系统"
+---
+
 # 🎲 肉鸽强化系统 (Roguelike Perks & Boons)
 
 本文档定义了局内成长系统（Level Up Bonuses），这是 Roguelike 体验的核心，决定了单局游戏的重玩价值。

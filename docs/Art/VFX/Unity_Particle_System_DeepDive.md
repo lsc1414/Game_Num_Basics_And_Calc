@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🧙‍♂️ Unity 粒子系统深度研究"
+---
+
 # 🧙‍♂️ Unity 粒子系统深度研究 (Particle System Deep Dive)
 
 > **"特效是游戏的化妆术，但也可能是显卡的火葬场。"**

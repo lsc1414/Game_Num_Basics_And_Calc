@@ -1,3 +1,7 @@
+---
+sidebarTitle: "⚡ 性能预算与优化标准"
+---
+
 # ⚡ 性能预算与优化标准 (Performance Budget)
 
 为了确保游戏在目标平台（PC 中低配 / Steam Deck / 潜在的主机）上稳定运行 60FPS，必须严格执行此预算。

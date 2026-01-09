@@ -1,3 +1,7 @@
+---
+sidebarTitle: "技能树设计深度研究"
+---
+
 # 🧙‍♂️ 技能树设计深度研究
 
 ## 📚 1. 理论基础 (Theoretical Basis)

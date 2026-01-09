@@ -1,3 +1,7 @@
+---
+sidebarTitle: "Factorio"
+---
+
 # 🏭 Factorio (异星工厂) 深度研究：极致优化与自动化
 
 ## 📚 1. 理论基础 (Theoretical Basis)

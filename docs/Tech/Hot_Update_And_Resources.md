@@ -1,3 +1,7 @@
+---
+sidebarTitle: "🔄 热更新与资源管理"
+---
+
 # 🔄 热更新与资源管理 (Hot Update & Resource Management)
 
 > **技术栈**: **YooAsset** (资源管理) + **HybridCLR** (代码热更)

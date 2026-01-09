@@ -1,3 +1,7 @@
+---
+sidebarTitle: "PRD算法完整实现指南"
+---
+
 # 🎲 PRD算法完整实现指南
 
 > **伪随机分布 (Pseudo-Random Distribution, PRD)** 是游戏开发中确保概率事件稳定性的核心技术，广泛应用于暴击、闪避、掉落等关键游戏机制。
