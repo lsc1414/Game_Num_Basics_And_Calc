@@ -309,7 +309,7 @@ public class MovementTracker {
 | 玩家位置 | 60/秒    | 1/秒       | 采样 + 变化检测 |
 | 战斗伤害 | 10/秒    | 1/战斗     | 本地汇总        |
 | UI 点击  | 不定     | 批量发送   | 30 秒批量       |
-| 付费事件 | \<1/天   | 实时       | 无需优化        |
+| 付费事件 | \\<1/天   | 实时       | 无需优化        |
 
 ---
 
@@ -525,7 +525,8 @@ graph TB
 - `platform`：平台（iOS/Android/PC）
 - `app_version`：应用版本号
 - `ab_test_group`：A/B 测试分组
-  </Accordion>
+
+</Accordion>
 
 <Accordion title="事件属性（Event Properties）">
   描述"这次事件"的具体信息： - `level_id`：关卡 ID - `difficulty`：难度等级 -

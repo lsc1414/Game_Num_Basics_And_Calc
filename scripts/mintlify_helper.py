@@ -249,6 +249,31 @@ def lint_file(file_path: Path, fix: bool = False):
     # 3. Convert Admonitions
     content = convert_admonitions(content)
     
+    # 4. Fix Common Mintlify/MDX Issues
+    
+    # 4.1 Unclosed <br> tags -> <br />
+    content = re.sub(r'<br>(?![\s\S]*?>)', r'<br />', content)
+    # Also handle table specific <br> which are common source of errors
+    content = content.replace('| <br> |', '| <br /> |')
+    content = re.sub(r'(?<=\|)(.*?)<br>(?=.*?\|)', r'\1<br />', content)
+
+    # 4.2 Unescaped < followed by numbers (e.g., <10, < 20%)
+    # This regex looks for < followed by a digit, and NOT followed by a valid HTML tag start
+    content = re.sub(r'<(\d)', r'\\<\1', content)
+    
+    # 4.3 Unescaped < followed by common non-tag text in typical contexts (like "A < B")
+    # This is trickier, usage of space helps identify comparisons
+    content = re.sub(r' (\s*)<(\s*) ', r' \1\\<\2 ', content)
+
+    # 4.4 Remove Liquid tags (Jekyll legacy)
+    content = re.sub(r'\{%\s*raw\s*%\}', '', content)
+    content = re.sub(r'\{%\s*endraw\s*%\}', '', content)
+
+    # 4.5 Convert HTML comments to MDX comments
+    # standard <!-- comment --> to {/* comment */}
+    # Note: simple replacement, might need robustness for multi-line
+    content = re.sub(r'<!--(.*?)-->', r'{/*\1*/}', content, flags=re.DOTALL)
+
     if content != original_content:
         if fix:
             file_path.write_text(content, encoding='utf-8')

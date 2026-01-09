@@ -44,27 +44,26 @@ $$C_{final} = C_{src} \times F_{src} + C_{dst} \times F_{dst}$$
 
 | 模式名称                                | 视觉效果               | 混合因子 (Src, Dst)            | 适用场景                            | 备注                                                                  |
 | :-------------------------------------- | :--------------------- | :----------------------------- | :---------------------------------- | :-------------------------------------------------------------------- |
-| **Alpha Blending**<br>(常规透明)        | 正常的遮挡关系，半透明 | `SrcAlpha`, `OneMinusSrcAlpha` | 🌫️ 烟雾、灰尘、幽灵、玻璃           | 最符合直觉，但如果是大量重叠会导致变暗或排序问题。                    |
-| **Additive**<br>(线性减淡 / 叠加)       | 越叠越亮，无黑色       | `SrcAlpha`, `One`              | 🔥 火焰、辉光、电火花、激光         | **最常用**的特效模式。黑色背景会被滤除。不会产生深度排序错误。        |
-| **Soft Additive**<br>(柔和叠加)         | 比 Additive 更柔和     | `OneMinusDstColor`, `One`      | ✨ 柔和的光晕、残影                 | 类似 Photoshop 的"滤色" (Screen) 变种，不会过度曝光。                 |
-| **Premultiplied**<br>(预乘 Alpha)       | 兼顾 Alpha 和 Additive | `One`, `OneMinusSrcAlpha`      | 🪄 复杂的魔法弹道、带发光边缘的实体 | 需要贴图制作时预先将 RGB 乘以 Alpha。可以同材质实现发光与半透明混合。 |
-| **Multiplicative**<br>(乘法 / 正片叠底) | 变暗                   | `DstColor`, `Zero`             | 🌑 阴影、烧焦痕迹、黑暗魔法         | 使场景变暗。                                                          |
+| **Alpha Blending**<br />(常规透明)        | 正常的遮挡关系，半透明 | `SrcAlpha`, `OneMinusSrcAlpha` | 🌫️ 烟雾、灰尘、幽灵、玻璃           | 最符合直觉，但如果是大量重叠会导致变暗或排序问题。                    |
+| **Additive**<br />(线性减淡 / 叠加)       | 越叠越亮，无黑色       | `SrcAlpha`, `One`              | 🔥 火焰、辉光、电火花、激光         | **最常用**的特效模式。黑色背景会被滤除。不会产生深度排序错误。        |
+| **Soft Additive**<br />(柔和叠加)         | 比 Additive 更柔和     | `OneMinusDstColor`, `One`      | ✨ 柔和的光晕、残影                 | 类似 Photoshop 的"滤色" (Screen) 变种，不会过度曝光。                 |
+| **Premultiplied**<br />(预乘 Alpha)       | 兼顾 Alpha 和 Additive | `One`, `OneMinusSrcAlpha`      | 🪄 复杂的魔法弹道、带发光边缘的实体 | 需要贴图制作时预先将 RGB 乘以 Alpha。可以同材质实现发光与半透明混合。 |
+| **Multiplicative**<br />(乘法 / 正片叠底) | 变暗                   | `DstColor`, `Zero`             | 🌑 阴影、烧焦痕迹、黑暗魔法         | 使场景变暗。                                                          |
 
 ### 🎨 贴图制作指南 (Texture Authoring Guide)
 
 混合模式与贴图的制作方式 **高度相关**。错误的贴图背景或通道设置会导致严重的视觉瑕疵（如黑边、去不掉的底色）。
 
-| 混合模式           | 贴图背景底色           | Alpha 通道要求      | 制作要点 (Photoshop / Substance)                                                                                                                                    |
-| :----------------- | :--------------------- | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Alpha Blending** | **透明** (Transparent) | **必须** (Required) | Alpha 通道定义形状和透明度。RGB 通道定义颜色。<br>❌ 不要把背景涂黑，必须是透明的通过 Alpha 切割。                                                                  |
-| **Additive**       | **纯黑** (Black)       | 可选 (Optional)     | **黑色 (0,0,0) = 透明**。颜色越亮，叠加效果越强。<br>✅ 制作时可以直接在黑色背景上通过明度控制透明度，不需要严格的 Alpha 通道。                                     |
-| **Multiply**       | **纯白** (White)       | 不常用              | **白色 (1,1,1) = 透明**。颜色越深，变暗效果越强。<br>✅ 制作类似"AO 阴影"的贴图，背景必须保留纯白。                                                                 |
-| **Premultiplied**  | **纯黑** (Black)       | **必须** (Required) | **关键点**: 导出时 RGB 必须乘以 Alpha。<br>例如 50% 透明度的红色，RGB 值应为 `(128, 0, 0)` 而不是 `(255, 0, 0)`。<br>✅ 解决 Alpha Blend 在线性空间下的"黑边"问题。 |
+| 混合模式           | 贴图背景底色           | Alpha 通道要求      | 制作要点 (Photoshop / Substance)                                                                                                                                        |
+| :----------------- | :--------------------- | :------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Alpha Blending** | **透明** (Transparent) | **必须** (Required) | Alpha 通道定义形状和透明度。RGB 通道定义颜色。<br />❌ 不要把背景涂黑，必须是透明的通过 Alpha 切割。                                                                    |
+| **Additive**       | **纯黑** (Black)       | 可选 (Optional)     | **黑色 (0,0,0) = 透明**。颜色越亮，叠加效果越强。<br />✅ 制作时可以直接在黑色背景上通过明度控制透明度，不需要严格的 Alpha 通道。                                       |
+| **Multiply**       | **纯白** (White)       | 不常用              | **白色 (1,1,1) = 透明**。颜色越深，变暗效果越强。<br />✅ 制作类似"AO 阴影"的贴图，背景必须保留纯白。                                                                   |
+| **Premultiplied**  | **纯黑** (Black)       | **必须** (Required) | **关键点**: 导出时 RGB 必须乘以 Alpha。<br />例如 50% 透明度的红色，RGB 值应为 `(128, 0, 0)` 而不是 `(255, 0, 0)`。<br />✅ 解决 Alpha Blend 在线性空间下的"黑边"问题。 |
 
-> [!TIP]
-> **美术小贴士: Additive 为什么好用？**
+> [!TIP] > **美术小贴士: Additive 为什么好用？**
 > 对于特效师来说，**Additive** 是最省事的模式。因为你不需要抠图（Alpha Channel）。只要把背景涂黑及任何你不想要的地方涂黑，它就自然透明了。这使得制作光效、辉光非常容易。
->
+
 ### 🔮 深度解析：什么是 Premultiplied Alpha？
 
 这通常是美术和程序最容易产生误解的地方。简单来说，区别在于 **"透明度是在存贴图时乘，还是在渲染时乘？"**
@@ -72,11 +71,11 @@ $$C_{final} = C_{src} \times F_{src} + C_{dst} \times F_{dst}$$
 #### 1. 直观理解 (Intuition)
 
 - **Straight Alpha (常规)**: 颜色是颜色，透明是透明。
-    - 像素: `(R=1, G=1, B=1, A=0.5)` $\rightarrow$ 代表 "50% 透明度的纯白色"。
-    - 渲染时: GPU 计算 `RGB * A` $\rightarrow$ `(0.5, 0.5, 0.5)`。
+  - 像素: `(R=1, G=1, B=1, A=0.5)` $\rightarrow$ 代表 "50% 透明度的纯白色"。
+  - 渲染时: GPU 计算 `RGB * A` $\rightarrow$ `(0.5, 0.5, 0.5)`。
 - **Premultiplied Alpha (预乘)**: 颜色里已经包含了透明度信息。
-    - 像素: `(R=0.5, G=0.5, B=0.5, A=0.5)` $\rightarrow$ 代表 "50% 透明度的纯白色"。
-    - 渲染时: GPU 不需要再乘 Alpha，直接用。
+  - 像素: `(R=0.5, G=0.5, B=0.5, A=0.5)` $\rightarrow$ 代表 "50% 透明度的纯白色"。
+  - 渲染时: GPU 不需要再乘 Alpha，直接用。
 
 #### 2. 为什么要这么麻烦？(Why use it?)
 
@@ -141,10 +140,8 @@ Shader "Vampirefall/Particles/Standard_Additive"
 4.  **如果既要有实体感又要发光** $\rightarrow$ 使用 **Premultiplied** (`One`, `OneMinusSrcAlpha`)
     - _例子_: 发光的魔法水晶（边缘半透明，中心亮）、UI 上的特效流光。
 
-> [!WARNING]
-> **性能警示 (Performance Warning)**
-> **Additive** 和 **Alpha Blending** 都会产生 Overdraw。在移动端（Mobile），如果粒子面积过大且层叠过多，会严重消耗 GPU 填充率（Fillrate）。
-对于大面积的特效（如全屏迷雾），尽量减少粒子数量，或使用网格发射器（Mesh Emitter）代替默认的广告牌（Billboard）以减少透明像素面积。
+> [!WARNING] > **性能警示 (Performance Warning)** > **Additive** 和 **Alpha Blending** 都会产生 Overdraw。在移动端（Mobile），如果粒子面积过大且层叠过多，会严重消耗 GPU 填充率（Fillrate）。
+> 对于大面积的特效（如全屏迷雾），尽量减少粒子数量，或使用网格发射器（Mesh Emitter）代替默认的广告牌（Billboard）以减少透明像素面积。
 
 ## 🌟 3. 业界优秀案例 (Industry Best Practices)
 
@@ -152,16 +149,16 @@ Shader "Vampirefall/Particles/Standard_Additive"
 
 - **特点**: 极度绚丽的色彩，大量的粒子特效。
 - **分析**:
-    - 攻击特效几乎全部使用 **Additive** 混合，保证在暗色调的地下城背景中极为醒目。
-    - 环境特效（如雾气）使用 **Alpha Blending**，并严格控制粒子密度。
-    - 使用了 **Premultiplied Alpha** 来处理手绘风格的特效贴图，避免了传统 Alpha Blending 常见的"黑边"问题。
+  - 攻击特效几乎全部使用 **Additive** 混合，保证在暗色调的地下城背景中极为醒目。
+  - 环境特效（如雾气）使用 **Alpha Blending**，并严格控制粒子密度。
+  - 使用了 **Premultiplied Alpha** 来处理手绘风格的特效贴图，避免了传统 Alpha Blending 常见的"黑边"问题。
 
 ### 案例 2: 《Diablo III / IV》 (Blizzard)
 
 - **特点**: 清晰的战斗可读性 (Readability)。
 - **分析**:
-    - **优先级管理**: 技能特效的亮度与其伤害/威胁度成正比。普通攻击比较暗，大招极其明亮（Additive）。
-    - **软粒子 (Soft Particles)**: 使用深度纹理（Depth Texture）计算淡入淡出，避免粒子与地面相交时产生生硬的切边线。
+  - **优先级管理**: 技能特效的亮度与其伤害/威胁度成正比。普通攻击比较暗，大招极其明亮（Additive）。
+  - **软粒子 (Soft Particles)**: 使用深度纹理（Depth Texture）计算淡入淡出，避免粒子与地面相交时产生生硬的切边线。
 
 ## 🔗 4. 参考资料 (References)
 
