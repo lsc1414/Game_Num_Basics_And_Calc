@@ -1,173 +1,173 @@
----
-sidebarTitle: "PCG 算法综合指南"
----
-
-# PCG 算法综合指南
-
-> 本文档由以下文件合并生成 (2026-01-09)
-
-
-
+﻿---
+sidebarTitle: "PCG 绠楁硶缁煎悎鎸囧崡"
 ---
 
+# PCG 绠楁硶缁煎悎鎸囧崡
 
-<!-- 来源: Tech\Algorithms\Procedural_Generation_Guide.md -->
+> 鏈枃妗ｇ敱浠ヤ笅鏂囦欢鍚堝苟鐢熸垚 (2026-01-09)
 
-## 🧙‍♂️ 关卡生成算法(PCG)深度研究
 
-## 📚 1. 理论基础 (Theoretical Basis)
-
-### 🎯 核心定义
-
-**程序化内容生成 (Procedural Content Generation, PCG)** 是通过算法自动创建游戏内容的技术。对于Roguelike游戏，PCG是核心支柱。
-
-**PCG的优势**:
-
-1. **无限内容** - 避免重复感
-2. **降低成本** - 减少手工设计工作量
-
-3. **增加寿命** - 每次游玩都不同
-
-**PCG的挑战**:
-
-1. **质量控制** - 生成结果可能不可玩
-2. **性能开销** - 生成算法可能很慢
-
-3. **平衡性** - 难度/奖励可能失衡
-
-### 📐 核心算法分类
-
-#### 1. WFC (Wave Function Collapse) - 波函数坍缩
-
-**原理**: 基于约束传播的瓦片拼接算法。
-
-```
-基本流程:
-1. 定义瓦片集合及其相邻规则
-2. 随机选择一个位置，坍缩为确定状态
-3. 传播约束到邻居
-4. 重复直到所有位置确定
-
-示例 - 简单地牢:
-瓦片类型: 墙、地板、门
-规则:
-- 墙只能邻接墙或门
-- 地板只能邻接地板或门
-- 门必须连接墙和地板
-```
-
-**优点**:
-
-- ✅ 生成结果始终符合规则
-- ✅ 适合复杂约束
-- ✅ 可以生成有机感的关卡
-
-**缺点**:
-
-- ❌ 可能陷入无解状态（需要回溯）
-- ❌ 性能较慢
-- ❌ 规则定义复杂
-
-#### 2. BSP (Binary Space Partitioning) - 二叉空间分割
-
-**原理**: 递归分割空间，创建房间和走廊。
-
-```
-基本流程:
-1. 从整个区域开始
-2. 随机选择水平或垂直分割
-3. 递归分割子区域
-4. 在叶节点创建房间
-5. 连接相邻房间
-
-示例:
-┌─────────────────┐
-│     房间A       │ ← 叶节点1
-├────────┬────────┤
-│ 房间B  │ 房间C  │ ← 叶节点2、3
-└────────┴────────┘
-   ↑ 走廊连接
-```
-
-**优点**:
-
-- ✅ 简单易实现
-- ✅ 生成速度快
-- ✅ 房间分布均匀
-
-**缺点**:
-
-- ❌ 生成结果较规整（缺乏有机感）
-- ❌ 走廊可能冗长
-- ❌ 不够随机
-
-#### 3. Cellular Automata - 元胞自动机
-
-**原理**: 基于简单规则的迭代演化。
-
-```
-经典规则 (4-5规则):
-- 如果邻居墙 >= 5: 变成墙
-- 如果邻居墙 <= 4: 变成地板
-
-迭代过程:
-初始: 随机噪声 (50% 墙)
-  ■□■■□
-  □■□□■
-  ■■■□□
-
-迭代1: 应用规则
-  ■■■■□
-  ■■■□■
-  ■■■■□
-
-迭代5: 收敛
-  ■■■■■
-  ■□□□■
-  ■■■■■
-  ↑ 生成洞穴状结构
-```
-
-**优点**:
-
-- ✅ 生成自然的洞穴/有机形状
-- ✅ 实现简单
-- ✅ 参数易调
-
-**缺点**:
-
-- ❌ 不保证连通性
-- ❌ 难以控制具体形状
-- ❌ 需要后处理（连通性检测）
 
 ---
 
-## 🛠️ 2. 实践应用 (Practical Implementation)
 
-### 🎮 Vampirefall 地图生成框架
+{/* 鏉ユ簮: Tech\Algorithms\Procedural_Generation_Guide.md */}
 
-#### 混合生成策略
+## 馃鈥嶁檪锔?鍏冲崱鐢熸垚绠楁硶(PCG)娣卞害鐮旂┒
 
-Vampirefall的塔防+肉鸽特性需要**手工设计 + 程序生成**混合：
+## 馃摎 1. 鐞嗚鍩虹 (Theoretical Basis)
+
+### 馃幆 鏍稿績瀹氫箟
+
+**绋嬪簭鍖栧唴瀹圭敓鎴?(Procedural Content Generation, PCG)** 鏄€氳繃绠楁硶鑷姩鍒涘缓娓告垙鍐呭鐨勬妧鏈€傚浜嶳oguelike娓告垙锛孭CG鏄牳蹇冩敮鏌便€?
+
+**PCG鐨勪紭鍔?*:
+
+1. **鏃犻檺鍐呭** - 閬垮厤閲嶅鎰?
+2. **闄嶄綆鎴愭湰** - 鍑忓皯鎵嬪伐璁捐宸ヤ綔閲?
+
+3. **澧炲姞瀵垮懡** - 姣忔娓哥帺閮戒笉鍚?
+
+**PCG鐨勬寫鎴?*:
+
+1. **璐ㄩ噺鎺у埗** - 鐢熸垚缁撴灉鍙兘涓嶅彲鐜?
+2. **鎬ц兘寮€閿€** - 鐢熸垚绠楁硶鍙兘寰堟參
+
+3. **骞宠　鎬?* - 闅惧害/濂栧姳鍙兘澶辫　
+
+### 馃搻 鏍稿績绠楁硶鍒嗙被
+
+#### 1. WFC (Wave Function Collapse) - 娉㈠嚱鏁板潔缂?
+
+**鍘熺悊**: 鍩轰簬绾︽潫浼犳挱鐨勭摝鐗囨嫾鎺ョ畻娉曘€?
 
 ```
-┌─────────────────────────────────────┐
-│ 第1层：手工模板（塔防布局）          │
-│ - 预设路径节点                      │
-│ - 关键塔位标记                      │
-├─────────────────────────────────────┤
-│ 第2层：程序变化（肉鸽随机性）        │
-│ - 敌人刷新点随机                    │
-│ - 资源点分布                        │
-│ - 地形障碍物                        │
-├─────────────────────────────────────┤
-│ 第3层：词条修饰（肉鸽增强）          │
-│ - "迷雾战场"（降低视野）            │
-│ - "狭窄通道"（路径变窄）            │
-└─────────────────────────────────────┘
+鍩烘湰娴佺▼:
+1. 瀹氫箟鐡︾墖闆嗗悎鍙婂叾鐩搁偦瑙勫垯
+2. 闅忔満閫夋嫨涓€涓綅缃紝鍧嶇缉涓虹‘瀹氱姸鎬?
+3. 浼犳挱绾︽潫鍒伴偦灞?
+4. 閲嶅鐩村埌鎵€鏈変綅缃‘瀹?
+
+绀轰緥 - 绠€鍗曞湴鐗?
+鐡︾墖绫诲瀷: 澧欍€佸湴鏉裤€侀棬
+瑙勫垯:
+- 澧欏彧鑳介偦鎺ュ鎴栭棬
+- 鍦版澘鍙兘閭绘帴鍦版澘鎴栭棬
+- 闂ㄥ繀椤昏繛鎺ュ鍜屽湴鏉?
 ```
 
-### 🗂️ 数据结构
+**浼樼偣**:
+
+- 鉁?鐢熸垚缁撴灉濮嬬粓绗﹀悎瑙勫垯
+- 鉁?閫傚悎澶嶆潅绾︽潫
+- 鉁?鍙互鐢熸垚鏈夋満鎰熺殑鍏冲崱
+
+**缂虹偣**:
+
+- 鉂?鍙兘闄峰叆鏃犺В鐘舵€侊紙闇€瑕佸洖婧級
+- 鉂?鎬ц兘杈冩參
+- 鉂?瑙勫垯瀹氫箟澶嶆潅
+
+#### 2. BSP (Binary Space Partitioning) - 浜屽弶绌洪棿鍒嗗壊
+
+**鍘熺悊**: 閫掑綊鍒嗗壊绌洪棿锛屽垱寤烘埧闂村拰璧板粖銆?
+
+```
+鍩烘湰娴佺▼:
+1. 浠庢暣涓尯鍩熷紑濮?
+2. 闅忔満閫夋嫨姘村钩鎴栧瀭鐩村垎鍓?
+3. 閫掑綊鍒嗗壊瀛愬尯鍩?
+4. 鍦ㄥ彾鑺傜偣鍒涘缓鎴块棿
+5. 杩炴帴鐩搁偦鎴块棿
+
+绀轰緥:
+鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+鈹?    鎴块棿A       鈹?鈫?鍙惰妭鐐?
+鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+鈹?鎴块棿B  鈹?鎴块棿C  鈹?鈫?鍙惰妭鐐?銆?
+鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹粹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+   鈫?璧板粖杩炴帴
+```
+
+**浼樼偣**:
+
+- 鉁?绠€鍗曟槗瀹炵幇
+- 鉁?鐢熸垚閫熷害蹇?
+- 鉁?鎴块棿鍒嗗竷鍧囧寑
+
+**缂虹偣**:
+
+- 鉂?鐢熸垚缁撴灉杈冭鏁达紙缂轰箯鏈夋満鎰燂級
+- 鉂?璧板粖鍙兘鍐楅暱
+- 鉂?涓嶅闅忔満
+
+#### 3. Cellular Automata - 鍏冭優鑷姩鏈?
+
+**鍘熺悊**: 鍩轰簬绠€鍗曡鍒欑殑杩唬婕斿寲銆?
+
+```
+缁忓吀瑙勫垯 (4-5瑙勫垯):
+- 濡傛灉閭诲眳澧?>= 5: 鍙樻垚澧?
+- 濡傛灉閭诲眳澧?<= 4: 鍙樻垚鍦版澘
+
+杩唬杩囩▼:
+鍒濆: 闅忔満鍣０ (50% 澧?
+  鈻犫枴鈻犫枲鈻?
+  鈻♀枲鈻♀枴鈻?
+  鈻犫枲鈻犫枴鈻?
+
+杩唬1: 搴旂敤瑙勫垯
+  鈻犫枲鈻犫枲鈻?
+  鈻犫枲鈻犫枴鈻?
+  鈻犫枲鈻犫枲鈻?
+
+杩唬5: 鏀舵暃
+  鈻犫枲鈻犫枲鈻?
+  鈻犫枴鈻♀枴鈻?
+  鈻犫枲鈻犫枲鈻?
+  鈫?鐢熸垚娲炵┐鐘剁粨鏋?
+```
+
+**浼樼偣**:
+
+- 鉁?鐢熸垚鑷劧鐨勬礊绌?鏈夋満褰㈢姸
+- 鉁?瀹炵幇绠€鍗?
+- 鉁?鍙傛暟鏄撹皟
+
+**缂虹偣**:
+
+- 鉂?涓嶄繚璇佽繛閫氭€?
+- 鉂?闅句互鎺у埗鍏蜂綋褰㈢姸
+- 鉂?闇€瑕佸悗澶勭悊锛堣繛閫氭€ф娴嬶級
+
+---
+
+## 馃洜锔?2. 瀹炶返搴旂敤 (Practical Implementation)
+
+### 馃幃 Vampirefall 鍦板浘鐢熸垚妗嗘灦
+
+#### 娣峰悎鐢熸垚绛栫暐
+
+Vampirefall鐨勫闃?鑲夐附鐗规€ч渶瑕?*鎵嬪伐璁捐 + 绋嬪簭鐢熸垚**娣峰悎锛?
+
+```
+鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+鈹?绗?灞傦細鎵嬪伐妯℃澘锛堝闃插竷灞€锛?         鈹?
+鈹?- 棰勮璺緞鑺傜偣                      鈹?
+鈹?- 鍏抽敭濉斾綅鏍囪                      鈹?
+鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+鈹?绗?灞傦細绋嬪簭鍙樺寲锛堣倝楦介殢鏈烘€э級        鈹?
+鈹?- 鏁屼汉鍒锋柊鐐归殢鏈?                   鈹?
+鈹?- 璧勬簮鐐瑰垎甯?                       鈹?
+鈹?- 鍦板舰闅滅鐗?                       鈹?
+鈹溾攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+鈹?绗?灞傦細璇嶆潯淇グ锛堣倝楦藉寮猴級          鈹?
+鈹?- "杩烽浘鎴樺満"锛堥檷浣庤閲庯級            鈹?
+鈹?- "鐙獎閫氶亾"锛堣矾寰勫彉绐勶級            鈹?
+鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+```
+
+### 馃梻锔?鏁版嵁缁撴瀯
 
 #### MapTemplate.cs
 
@@ -175,17 +175,17 @@ Vampirefall的塔防+肉鸽特性需要**手工设计 + 程序生成**混合：
 [CreateAssetMenu(fileName = "MapTemplate", menuName = "PCG/Map Template")]
 public class MapTemplate : ScriptableObject
 {
-    [Header("模板信息")]
-    public string templateName = "森林地图";
+    [Header("妯℃澘淇℃伅")]
+    public string templateName = "妫灄鍦板浘";
     public Vector2Int size = new Vector2Int(50, 50);
     
-    [Header("路径定义")]
-    public PathNode[] pathNodes;  // 敌人行走路径
+    [Header("璺緞瀹氫箟")]
+    public PathNode[] pathNodes;  // 鏁屼汉琛岃蛋璺緞
     
-    [Header("塔位定义")]
-    public TowerSlot[] towerSlots;  // 可建塔位置
+    [Header("濉斾綅瀹氫箟")]
+    public TowerSlot[] towerSlots;  // 鍙缓濉斾綅缃?
     
-    [Header("生成规则")]
+    [Header("鐢熸垚瑙勫垯")]
     public GenerationRule[] rules;
 }
 
@@ -193,30 +193,30 @@ public class MapTemplate : ScriptableObject
 public class PathNode
 {
     public Vector2Int position;
-    public PathNode[] nextNodes;  // 支持分支路径
+    public PathNode[] nextNodes;  // 鏀寔鍒嗘敮璺緞
 }
 
 [System.Serializable]
 public class TowerSlot
 {
     public Vector2Int position;
-    public TowerSlotType type;  // Normal, Strategic(战略点位)
+    public TowerSlotType type;  // Normal, Strategic(鎴樼暐鐐逛綅)
 }
 
 [System.Serializable]
 public class GenerationRule
 {
     public RuleType type;
-    public float probability;  // 触发概率
-    public string parameters;  // JSON参数
+    public float probability;  // 瑙﹀彂姒傜巼
+    public string parameters;  // JSON鍙傛暟
 }
 
 public enum RuleType
 {
-    SpawnObstacle,    // 生成障碍物
-    SpawnResource,    // 生成资源点
-    ModifyPath,       // 修改路径
-    AddEnemySpawn     // 添加刷怪点
+    SpawnObstacle,    // 鐢熸垚闅滅鐗?
+    SpawnResource,    // 鐢熸垚璧勬簮鐐?
+    ModifyPath,       // 淇敼璺緞
+    AddEnemySpawn     // 娣诲姞鍒锋€偣
 }
 ```
 
@@ -239,23 +239,23 @@ public class ProceduralMapGenerator : MonoBehaviour
             tiles = new TileType[template.size.x, template.size.y]
         };
         
-        // 1. 初始化基础地形
+        // 1. 鍒濆鍖栧熀纭€鍦板舰
         InitializeBaseTerrain(map);
         
-        // 2. 放置路径
+        // 2. 鏀剧疆璺緞
         PlacePaths(map, template.pathNodes);
         
-        // 3. 放置塔位
+        // 3. 鏀剧疆濉斾綅
         PlaceTowerSlots(map, template.towerSlots);
         
-        // 4. 应用生成规则
+        // 4. 搴旂敤鐢熸垚瑙勫垯
         ApplyGenerationRules(map, template.rules);
         
-        // 5. 验证可玩性
-        if (!ValidateMap(map))
+        // 5. 楠岃瘉鍙帺鎬?
+        \text{if} (!ValidateMap(map))
         {
-            Debug.LogWarning($"[PCG] 地图生成失败(种子:{seed})，重新生成");
-            return Generate(seed + 1);  // 换一个种子
+            Debug.LogWarning($"[PCG] 鍦板浘鐢熸垚澶辫触(绉嶅瓙:{seed})锛岄噸鏂扮敓鎴?);
+            return Generate(seed + 1);  // 鎹竴涓瀛?
         }
         
         return map;
@@ -276,7 +276,7 @@ public class ProceduralMapGenerator : MonoBehaviour
     {
         foreach (var node in nodes)
         {
-            // 从节点到下一个节点绘制路径
+            // 浠庤妭鐐瑰埌涓嬩竴涓妭鐐圭粯鍒惰矾寰?
             foreach (var next in node.nextNodes)
             {
                 DrawPath(map, node.position, next.position);
@@ -286,21 +286,21 @@ public class ProceduralMapGenerator : MonoBehaviour
     
     private void DrawPath(GeneratedMap map, Vector2Int from, Vector2Int to)
     {
-        // A* 或 Bresenham 算法绘制路径
+        // A* 鎴?Bresenham 绠楁硶缁樺埗璺緞
         var points = CalculatePathPoints(from, to);
         
         foreach (var point in points)
         {
-            if (IsInBounds(map, point))
+            \text{if} (IsInBounds(map, point))
             {
                 map.tiles[point.x, point.y] = TileType.Path;
                 
-                // 加一点随机宽度
-                if (Random.value < 0.3f)
+                // 鍔犱竴鐐归殢鏈哄搴?
+                \text{if} (Random.value < 0.3f)
                 {
                     var offset = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
                     var widePoint = point + offset;
-                    if (IsInBounds(map, widePoint))
+                    \text{if} (IsInBounds(map, widePoint))
                     {
                         map.tiles[widePoint.x, widePoint.y] = TileType.Path;
                     }
@@ -311,16 +311,16 @@ public class ProceduralMapGenerator : MonoBehaviour
     
     private bool ValidateMap(GeneratedMap map)
     {
-        // 1. 检查路径连通性
-        if (!IsPathConnected(map))
+        // 1. 妫€鏌ヨ矾寰勮繛閫氭€?
+        \text{if} (!IsPathConnected(map))
             return false;
         
-        // 2. 检查塔位可达性
-        if (!AreTowerSlotsValid(map))
+        // 2. 妫€鏌ュ浣嶅彲杈炬€?
+        \text{if} (!AreTowerSlotsValid(map))
             return false;
         
-        // 3. 检查敌人无法到达塔位
-        if (!IsTowerSafety(map))
+        // 3. 妫€鏌ユ晫浜烘棤娉曞埌杈惧浣?
+        \text{if} (!IsTowerSafety(map))
             return false;
         
         return true;
@@ -328,7 +328,7 @@ public class ProceduralMapGenerator : MonoBehaviour
     
     private bool IsPathConnected(GeneratedMap map)
     {
-        // BFS/DFS 检查从起点到终点是否连通
+        // BFS/DFS 妫€鏌ヤ粠璧风偣鍒扮粓鐐规槸鍚﹁繛閫?
         var start = FindStartPoint(map);
         var end = FindEndPoint(map);
         
@@ -355,27 +355,27 @@ public enum TileType
 }
 ```
 
-### 🎨 路径保证算法
+### 馃帹 璺緞淇濊瘉绠楁硶
 
-**问题**: 程序生成可能产生不可通行的路径。
+**闂**: 绋嬪簭鐢熸垚鍙兘浜х敓涓嶅彲閫氳鐨勮矾寰勩€?
 
-**解决方案**: 路径优先生成 + 验证 + 修复。
+**瑙ｅ喅鏂规**: 璺緞浼樺厛鐢熸垚 + 楠岃瘉 + 淇銆?
 
 ```csharp
 public class PathGuarantee
 {
     public static bool EnsurePathExists(GeneratedMap map, Vector2Int start, Vector2Int end)
     {
-        // 1. A* 寻找路径
+        // 1. A* 瀵绘壘璺緞
         var path = AStar.FindPath(map, start, end);
         
-        if (path != null)
-            return true;  // 路径已存在
+        \text{if} (path != null)
+            return true;  // 璺緞宸插瓨鍦?
         
-        // 2. 强制打通路径
+        // 2. 寮哄埗鎵撻€氳矾寰?
         path = ForceCreatePath(map, start, end);
         
-        // 3. 应用到地图
+        // 3. 搴旂敤鍒板湴鍥?
         foreach (var point in path)
         {
             map.tiles[point.x, point.y] = TileType.Path;
@@ -393,10 +393,10 @@ public class PathGuarantee
         {
             path.Add(current);
             
-            // 简单策略：每次移动到更接近终点的方向
+            // 绠€鍗曠瓥鐣ワ細姣忔绉诲姩鍒版洿鎺ヨ繎缁堢偣鐨勬柟鍚?
             var toEnd = end - current;
             
-            if (Mathf.Abs(toEnd.x) > Mathf.Abs(toEnd.y))
+            \text{if} (Mathf.Abs(toEnd.x) > Mathf.Abs(toEnd.y))
             {
                 current += new Vector2Int(toEnd.x > 0 ? 1 : -1, 0);
             }
@@ -405,8 +405,8 @@ public class PathGuarantee
                 current += new Vector2Int(0, toEnd.y > 0 ? 1 : -1);
             }
             
-            // 防止无限循环
-            if (path.Count > map.size.x * map.size.y)
+            // 闃叉鏃犻檺寰幆
+            \text{if} (path.Count > map.size.x * map.size.y)
                 break;
         }
         
@@ -418,184 +418,184 @@ public class PathGuarantee
 
 ---
 
-## 🌟 3. 业界优秀案例 (Industry Best Practices)
+## 馃専 3. 涓氱晫浼樼妗堜緥 (Industry Best Practices)
 
-### 🎮 案例 1: **Spelunky - 模板拼接大师**
+### 馃幃 妗堜緥 1: **Spelunky - 妯℃澘鎷兼帴澶у笀**
 
-#### 核心机制
+#### 鏍稿績鏈哄埗
 
-Spelunky使用**预制房间模板 + 智能拼接**生成关卡。
+Spelunky浣跨敤**棰勫埗鎴块棿妯℃澘 + 鏅鸿兘鎷兼帴**鐢熸垚鍏冲崱銆?
 
-**生成流程**:
+**鐢熸垚娴佺▼**:
 
 ```
-1. 生成4x4房间网格
+1. 鐢熸垚4x4鎴块棿缃戞牸
    [A][B][C][D]
    [E][F][G][H]
    [I][J][K][L]
    [M][N][O][P]
-2. 标记关键房间
-   入口: A
-   出口: P
-   商店: 随机1个
-   暗室: 随机1-2个
-3. 确保连通性
-   A → ... → P 必须可达
-   使用BFS生成主路径
-4. 填充房间模板
-   从模板库中随机选择符合规则的房间
-5. 添加细节
+2. 鏍囪鍏抽敭鎴块棿
+   鍏ュ彛: A
+   鍑哄彛: P
+   鍟嗗簵: 闅忔満1涓?
+   鏆楀: 闅忔満1-2涓?
+3. 纭繚杩為€氭€?
+   A 鈫?... 鈫?P 蹇呴』鍙揪
+   浣跨敤BFS鐢熸垚涓昏矾寰?
+4. 濉厖鎴块棿妯℃澘
+   浠庢ā鏉垮簱涓殢鏈洪€夋嫨绗﹀悎瑙勫垯鐨勬埧闂?
+5. 娣诲姞缁嗚妭
 
-   - 陷阱放置
-   - 敌人刷新
-   - 宝箱分布
+   - 闄烽槺鏀剧疆
+   - 鏁屼汉鍒锋柊
+   - 瀹濈鍒嗗竷
 ```
 
-**模板库设计**:
+**妯℃澘搴撹璁?*:
 
 ```
-房间标签:
-- 入口房 (ENT)
-- 出口房 (EXIT)
-- 普通房 (NORMAL)
-- 陷阱房 (TRAP)
-- 宝藏房 (TREASURE)
+鎴块棿鏍囩:
+- 鍏ュ彛鎴?(ENT)
+- 鍑哄彛鎴?(EXIT)
+- 鏅€氭埧 (NORMAL)
+- 闄烽槺鎴?(TRAP)
+- 瀹濊棌鎴?(TREASURE)
 
-连接规则:
-- 每个房间4个门（上下左右）
-- 门必须对齐
-- 每个门有"必须"或"可选"属性
+杩炴帴瑙勫垯:
+- 姣忎釜鎴块棿4涓棬锛堜笂涓嬪乏鍙筹級
+- 闂ㄥ繀椤诲榻?
+- 姣忎釜闂ㄦ湁"蹇呴』"鎴?鍙€?灞炴€?
 ```
 
-**Vampirefall 借鉴**:
+**Vampirefall 鍊熼壌**:
 
-- 预制塔防模板（不同地形）
-- 模板库分类（简单/困难/Boss）
-- 主路径保证算法
+- 棰勫埗濉旈槻妯℃澘锛堜笉鍚屽湴褰級
+- 妯℃澘搴撳垎绫伙紙绠€鍗?鍥伴毦/Boss锛?
+- 涓昏矾寰勪繚璇佺畻娉?
 
 ---
 
-### 🎮 案例 2: **The Binding of Isaac - 房间库系统**
+### 馃幃 妗堜緥 2: **The Binding of Isaac - 鎴块棿搴撶郴缁?*
 
-#### 核心机制
+#### 鏍稿績鏈哄埗
 
-Isaac使用**大量手工设计房间 + 随机组合**。
+Isaac浣跨敤**澶ч噺鎵嬪伐璁捐鎴块棿 + 闅忔満缁勫悎**銆?
 
-**房间库规模**:
+**鎴块棿搴撹妯?*:
 
 ```
-普通房: 500+ 个
-Boss房: 50+ 个
-商店: 20+ 个
-宝藏房: 30+ 个
-秘密房: 20+ 个
+鏅€氭埧: 500+ 涓?
+Boss鎴? 50+ 涓?
+鍟嗗簵: 20+ 涓?
+瀹濊棌鎴? 30+ 涓?
+绉樺瘑鎴? 20+ 涓?
 
-总计: 600+ 个手工房间
+鎬昏: 600+ 涓墜宸ユ埧闂?
 ```
 
-**房间选择算法**:
+**鎴块棿閫夋嫨绠楁硶**:
 
 ```csharp
 Room SelectRoom(RoomType type, int difficulty, HashSet<int> usedRooms)
 {
-    // 1. 筛选候选房间
+    // 1. 绛涢€夊€欓€夋埧闂?
     var candidates = roomDatabase
         .Where(r => r.type == type)
         .Where(r => r.difficulty <= difficulty)
         .Where(r => !usedRooms.Contains(r.id))
         .ToList();
     
-    // 2. 权重随机选择
+    // 2. 鏉冮噸闅忔満閫夋嫨
     var weights = candidates.Select(r => r.weight).ToArray();
     var selected = WeightedRandom.Select(candidates, weights);
     
-    // 3. 标记已使用（避免重复）
+    // 3. 鏍囪宸蹭娇鐢紙閬垮厤閲嶅锛?
     usedRooms.Add(selected.id);
     
     return selected;
 }
 ```
 
-**设计哲学**:
-> "程序生成不是为了减少工作量，而是为了增加重玩价值。"
+**璁捐鍝插**:
+> "绋嬪簭鐢熸垚涓嶆槸涓轰簡鍑忓皯宸ヤ綔閲忥紝鑰屾槸涓轰簡澧炲姞閲嶇帺浠峰€笺€?
 
-**Vampirefall 借鉴**:
+**Vampirefall 鍊熼壌**:
 
-- 建立塔防场景库（100+）
-- 基于难度分级
-- 避免同一局重复
-
----
-
-### 🎮 案例 3: **Enter the Gungeon - 程序化地牢**
-
-#### 核心机制
-
-Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
-
-**生成算法**:
-
-```
-1. BSP生成房间布局
-   ├ 分割次数: 5-7次
-   ├ 房间数量: 15-25个
-   └ 房间大小: 10x10 到 30x30
-2. 分配房间类型
-   ├ 1个Boss房（必须在边缘）
-   ├ 1个商店
-   ├ 1-2个宝藏房
-   ├ 2-3个挑战房
-   └ 其余为普通战斗房
-3. 生成走廊
-   ├ 最短路径连接
-   ├ 添加环路（30%概率）
-   └ 秘密房间连接（需要炸墙）
-4. 填充内容
-   ├ 房间从模板库选择
-   ├ 敌人根据难度曲线生成
-   └ 物品根据掉落表放置
-```
-
-**特殊规则**:
-
-```
-- Boss房必须从入口走最远路径
-- 商店必须在主路径上
-- 宝藏房可能在分支
-- 秘密房邻接至少2个房间
-```
-
-**Vampirefall 借鉴**:
-
-- BSP用于大区域划分
-- 关键房间（Boss/商店）位置规则
-- 秘密区域设计
+- 寤虹珛濉旈槻鍦烘櫙搴擄紙100+锛?
+- 鍩轰簬闅惧害鍒嗙骇
+- 閬垮厤鍚屼竴灞€閲嶅
 
 ---
 
-## 🔗 4. 参考资料 (References)
+### 馃幃 妗堜緥 3: **Enter the Gungeon - 绋嬪簭鍖栧湴鐗?*
 
-### 📄 理论
+#### 鏍稿績鏈哄埗
+
+Gungeon缁撳悎浜?*BSP鍒嗗壊 + 鎵嬪伐鎴块棿 + 鐗规畩瑙勫垯**銆?
+
+**鐢熸垚绠楁硶**:
+
+```
+1. BSP鐢熸垚鎴块棿甯冨眬
+   鈹?鍒嗗壊娆℃暟: 5-7娆?
+   鈹?鎴块棿鏁伴噺: 15-25涓?
+   鈹?鎴块棿澶у皬: 10x10 鍒?30x30
+2. 鍒嗛厤鎴块棿绫诲瀷
+   鈹?1涓狟oss鎴匡紙蹇呴』鍦ㄨ竟缂橈級
+   鈹?1涓晢搴?
+   鈹?1-2涓疂钘忔埧
+   鈹?2-3涓寫鎴樻埧
+   鈹?鍏朵綑涓烘櫘閫氭垬鏂楁埧
+3. 鐢熸垚璧板粖
+   鈹?鏈€鐭矾寰勮繛鎺?
+   鈹?娣诲姞鐜矾锛?0%姒傜巼锛?
+   鈹?绉樺瘑鎴块棿杩炴帴锛堥渶瑕佺偢澧欙級
+4. 濉厖鍐呭
+   鈹?鎴块棿浠庢ā鏉垮簱閫夋嫨
+   鈹?鏁屼汉鏍规嵁闅惧害鏇茬嚎鐢熸垚
+   鈹?鐗╁搧鏍规嵁鎺夎惤琛ㄦ斁缃?
+```
+
+**鐗规畩瑙勫垯**:
+
+```
+- Boss鎴垮繀椤讳粠鍏ュ彛璧版渶杩滆矾寰?
+- 鍟嗗簵蹇呴』鍦ㄤ富璺緞涓?
+- 瀹濊棌鎴垮彲鑳藉湪鍒嗘敮
+- 绉樺瘑鎴块偦鎺ヨ嚦灏?涓埧闂?
+```
+
+**Vampirefall 鍊熼壌**:
+
+- BSP鐢ㄤ簬澶у尯鍩熷垝鍒?
+- 鍏抽敭鎴块棿锛圔oss/鍟嗗簵锛変綅缃鍒?
+- 绉樺瘑鍖哄煙璁捐
+
+---
+
+## 馃敆 4. 鍙傝€冭祫鏂?(References)
+
+### 馃搫 鐞嗚
 
 1. **Procedural Content Generation in Games**  
-    作者: Noor Shaker, Julian Togelius, Mark J. Nelson  
-    [书籍链接](http://pcgbook.com/)
+    浣滆€? Noor Shaker, Julian Togelius, Mark J. Nelson  
+    [涔︾睄閾炬帴](http://pcgbook.com/)
 
 2. **Wave Function Collapse Algorithm**  
     *Maxim Gumin*  
     [GitHub](https://github.com/mxgmn/WaveFunctionCollapse)
 
-### 📺 GDC
+### 馃摵 GDC
 
 1. **[GDC 2017] Spelunky Level Generation**  
-    演讲者: Derek Yu  
+    婕旇鑰? Derek Yu  
     [YouTube](https://www.youtube.com/watch?v=Uqk5Zf0tw3o)
 
 2. **[GDC 2015] Diablo's Dungeon Generation**  
-    演讲者: Mike Barlow (Blizzard)  
+    婕旇鑰? Mike Barlow (Blizzard)  
     [GDC Vault](https://www.gdcvault.com/play/diablo_dungeon)
 
-### 🌐 博客
+### 馃寪 鍗氬
 
 1. **The Binding of Isaac Room Design**  
     [Edmund McMillen Blog](https://edmundm.com/post/isaac-room-design)
@@ -605,125 +605,125 @@ Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
 
 ---
 
-## 🎯 附录：Vampirefall PCG实施检查清单
+## 馃幆 闄勫綍锛歏ampirefall PCG瀹炴柦妫€鏌ユ竻鍗?
 
-### ✅ 阶段1: 模板系统（必须）
-- [ ] 创建10+塔防地图模板
-- [ ] 定义路径节点和塔位
-- [ ] 建立模板库管理器
+### 鉁?闃舵1: 妯℃澘绯荤粺锛堝繀椤伙級
+- [ ] 鍒涘缓10+濉旈槻鍦板浘妯℃澘
+- [ ] 瀹氫箟璺緞鑺傜偣鍜屽浣?
+- [ ] 寤虹珛妯℃澘搴撶鐞嗗櫒
 
-### ✅ 阶段2: 生成算法（必须）
-- [ ] 实现BSP或房间拼接
-- [ ] 路径保证算法
-- [ ] 连通性验证
+### 鉁?闃舵2: 鐢熸垚绠楁硶锛堝繀椤伙級
+- [ ] 瀹炵幇BSP鎴栨埧闂存嫾鎺?
+- [ ] 璺緞淇濊瘉绠楁硶
+- [ ] 杩為€氭€ч獙璇?
 
-### ✅ 阶段3: 随机性（推荐）
-- [ ] 障碍物随机放置
-- [ ] 资源点分布
-- [ ] 敌人刷新点变化
+### 鉁?闃舵3: 闅忔満鎬э紙鎺ㄨ崘锛?
+- [ ] 闅滅鐗╅殢鏈烘斁缃?
+- [ ] 璧勬簮鐐瑰垎甯?
+- [ ] 鏁屼汉鍒锋柊鐐瑰彉鍖?
 
-### ✅ 阶段4: 验证系统（必须）
-- [ ] 可玩性检测
-- [ ] 难度评估
-- [ ] 种子记录（用于bug复现）
+### 鉁?闃舵4: 楠岃瘉绯荤粺锛堝繀椤伙級
+- [ ] 鍙帺鎬ф娴?
+- [ ] 闅惧害璇勪及
+- [ ] 绉嶅瓙璁板綍锛堢敤浜巄ug澶嶇幇锛?
 
-### ✅ 阶段5: 调试工具（推荐）
-- [ ] 可视化生成过程
-- [ ] 种子输入功能
-- [ ] 性能监控
-
----
-
-**最后更新**: 2025-12-04  
-**维护者**: Vampirefall 设计团队
-
-
-
+### 鉁?闃舵5: 璋冭瘯宸ュ叿锛堟帹鑽愶級
+- [ ] 鍙鍖栫敓鎴愯繃绋?
+- [ ] 绉嶅瓙杈撳叆鍔熻兘
+- [ ] 鎬ц兘鐩戞帶
 
 ---
 
+**鏈€鍚庢洿鏂?*: 2025-12-04  
+**缁存姢鑰?*: Vampirefall 璁捐鍥㈤槦
 
-<!-- 来源: Dev_Guides\Technical_Implementation\Procedural_Generation_WFC.md -->
 
-## 波函数坍缩 (WFC) 生成 (Wave Function Collapse)
+
+
+---
+
+
+{/* 鏉ユ簮: Dev_Guides\Technical_Implementation\Procedural_Generation_WFC.md */}
+
+## 娉㈠嚱鏁板潔缂?(WFC) 鐢熸垚 (Wave Function Collapse)
 
 > [!NOTE]
-> **核心思想**: WFC 是一种基于**约束 (Constraint)** 的生成算法。它不是告诉计算机“怎么画”，而是告诉它“什么不能画”。
+> **鏍稿績鎬濇兂**: WFC 鏄竴绉嶅熀浜?*绾︽潫 (Constraint)** 鐨勭敓鎴愮畻娉曘€傚畠涓嶆槸鍛婅瘔璁＄畻鏈衡€滄€庝箞鐢烩€濓紝鑰屾槸鍛婅瘔瀹冣€滀粈涔堜笉鑳界敾鈥濄€?
 
-在 Roguelike 地牢生成中，WFC 能比传统的“房间+走廊”算法生成更自然、更有机的结构。
-
----
-
-## 1. 核心概念 (Core Concepts)
-
-### 1.1 叠加态 (Superposition)
-在算法开始时，地图上的每一个格子都同时处于“所有可能状态”的叠加中。
-
-*   例如：一个格子既可能是“草地”，也可能是“墙壁”，也可能是“水”。
-
-### 1.2 熵 (Entropy)
-熵是衡量不确定性的指标。
-
-*   **高熵**: 该格子有很多种可能性 (例如：草地/墙/水/路)。
-*   **低熵**: 该格子只有很少的可能性 (例如：只能是墙)。
-*   **熵为0**: 该格子状态已确定 (坍缩)。
-
-### 1.3 坍缩 (Collapse)
-观测导致坍缩。我们人为地（或随机地）选择一个格子，将其状态固定下来。
-
-### 1.4 约束传播 (Constraint Propagation)
-一旦一个格子确定了（例如变成了“水”），它的邻居就不可能是“岩浆”（假设水火不容）。这种约束会像波纹一样向四周传播，减少邻居的熵。
+鍦?Roguelike 鍦扮墷鐢熸垚涓紝WFC 鑳芥瘮浼犵粺鐨勨€滄埧闂?璧板粖鈥濈畻娉曠敓鎴愭洿鑷劧銆佹洿鏈夋満鐨勭粨鏋勩€?
 
 ---
 
-## 2. 算法流程 (Algorithm Flow)
+## 1. 鏍稿績姒傚康 (Core Concepts)
 
-1.  **初始化**: 将网格中所有单元格设为叠加态 (包含所有可能的 Tile)。
-2.  **寻找最小熵**: 找到当前网格中熵最小（可能性最少）但尚未坍缩的单元格。
+### 1.1 鍙犲姞鎬?(Superposition)
+鍦ㄧ畻娉曞紑濮嬫椂锛屽湴鍥句笂鐨勬瘡涓€涓牸瀛愰兘鍚屾椂澶勪簬鈥滄墍鏈夊彲鑳界姸鎬佲€濈殑鍙犲姞涓€?
 
-    *   如果有多个最小熵，随机选一个。
-3.  **观测/坍缩**: 根据权重随机选择该单元格的一个状态，将其固定。
+*   渚嬪锛氫竴涓牸瀛愭棦鍙兘鏄€滆崏鍦扳€濓紝涔熷彲鑳芥槸鈥滃澹佲€濓紝涔熷彲鑳芥槸鈥滄按鈥濄€?
 
-4.  **传播**: 
+### 1.2 鐔?(Entropy)
+鐔垫槸琛￠噺涓嶇‘瀹氭€х殑鎸囨爣銆?
 
-    *   更新该单元格的所有邻居。
-    *   如果邻居的可能性减少了，继续更新邻居的邻居 (递归或堆栈)。
-    *   如果在传播过程中某个单元格的可能性变为 0 (无解)，则生成失败，需要回溯或重试。
-5.  **循环**: 重复步骤 2-4，直到所有单元格都坍缩完成。
+*   **楂樼喌**: 璇ユ牸瀛愭湁寰堝绉嶅彲鑳芥€?(渚嬪锛氳崏鍦?澧?姘?璺?銆?
+*   **浣庣喌**: 璇ユ牸瀛愬彧鏈夊緢灏戠殑鍙兘鎬?(渚嬪锛氬彧鑳芥槸澧?銆?
+*   **鐔典负0**: 璇ユ牸瀛愮姸鎬佸凡纭畾 (鍧嶇缉)銆?
 
----
+### 1.3 鍧嶇缉 (Collapse)
+瑙傛祴瀵艰嚧鍧嶇缉銆傛垜浠汉涓哄湴锛堟垨闅忔満鍦帮級閫夋嫨涓€涓牸瀛愶紝灏嗗叾鐘舵€佸浐瀹氫笅鏉ャ€?
 
-## 3. 实现指南 (Implementation Guide)
-
-### 3.1 定义 Tile 与 Socket (接口)
-为了判断两个 Tile 是否能相邻，我们需要定义它们的边缘接口 (Socket)。
-
-假设我们有 4 个方向：上、下、左、右。
-
-*   **草地 Tile**: `[Grass, Grass, Grass, Grass]`
-*   **海岸 Tile**: `[Water, Grass, Coast, Coast]` (假设)
-
-**规则**: Tile A 的“右”接口必须与 Tile B 的“左”接口匹配 (可以是相同 ID，也可以是定义的对称 ID)。
-
-### 3.2 旋转与镜像
-为了节省美术资源，我们可以自动生成旋转变体。
-
-*   一个不对称的 Tile 可以生成 4 个旋转版本。
-*   接口数据也需要随之旋转。
-
-### 3.3 回溯与重试 (Backtracking)
-WFC 可能会遇到“死胡同” (Contradiction)。
-
-*   **简单策略**: 遇到冲突直接清空整个地图重来 (对于小地图非常快)。
-*   **高级策略**: 记录每一步的状态，遇到冲突回退到上一步，并标记导致冲突的分支为不可行。
-
-### 3.4 性能优化
-*   **最小堆 (Min-Heap)**: 用最小堆维护所有格子的熵，以便 O(1) 取出最小熵格子。
-*   **脏标记 (Dirty Flags)**: 传播时只处理受影响的区域。
+### 1.4 绾︽潫浼犳挱 (Constraint Propagation)
+涓€鏃︿竴涓牸瀛愮‘瀹氫簡锛堜緥濡傚彉鎴愪簡鈥滄按鈥濓級锛屽畠鐨勯偦灞呭氨涓嶅彲鑳芥槸鈥滃博娴嗏€濓紙鍋囪姘寸伀涓嶅锛夈€傝繖绉嶇害鏉熶細鍍忔尝绾逛竴鏍峰悜鍥涘懆浼犳挱锛屽噺灏戦偦灞呯殑鐔点€?
 
 ---
 
-## 4. Unity 代码片段 (伪代码)
+## 2. 绠楁硶娴佺▼ (Algorithm Flow)
+
+1.  **鍒濆鍖?*: 灏嗙綉鏍间腑鎵€鏈夊崟鍏冩牸璁句负鍙犲姞鎬?(鍖呭惈鎵€鏈夊彲鑳界殑 Tile)銆?
+2.  **瀵绘壘鏈€灏忕喌**: 鎵惧埌褰撳墠缃戞牸涓喌鏈€灏忥紙鍙兘鎬ф渶灏戯級浣嗗皻鏈潔缂╃殑鍗曞厓鏍笺€?
+
+    *   濡傛灉鏈夊涓渶灏忕喌锛岄殢鏈洪€変竴涓€?
+3.  **瑙傛祴/鍧嶇缉**: 鏍规嵁鏉冮噸闅忔満閫夋嫨璇ュ崟鍏冩牸鐨勪竴涓姸鎬侊紝灏嗗叾鍥哄畾銆?
+
+4.  **浼犳挱**: 
+
+    *   鏇存柊璇ュ崟鍏冩牸鐨勬墍鏈夐偦灞呫€?
+    *   濡傛灉閭诲眳鐨勫彲鑳芥€у噺灏戜簡锛岀户缁洿鏂伴偦灞呯殑閭诲眳 (閫掑綊鎴栧爢鏍?銆?
+    *   濡傛灉鍦ㄤ紶鎾繃绋嬩腑鏌愪釜鍗曞厓鏍肩殑鍙兘鎬у彉涓?0 (鏃犺В)锛屽垯鐢熸垚澶辫触锛岄渶瑕佸洖婧垨閲嶈瘯銆?
+5.  **寰幆**: 閲嶅姝ラ 2-4锛岀洿鍒版墍鏈夊崟鍏冩牸閮藉潔缂╁畬鎴愩€?
+
+---
+
+## 3. 瀹炵幇鎸囧崡 (Implementation Guide)
+
+### 3.1 瀹氫箟 Tile 涓?Socket (鎺ュ彛)
+涓轰簡鍒ゆ柇涓や釜 Tile 鏄惁鑳界浉閭伙紝鎴戜滑闇€瑕佸畾涔夊畠浠殑杈圭紭鎺ュ彛 (Socket)銆?
+
+鍋囪鎴戜滑鏈?4 涓柟鍚戯細涓娿€佷笅銆佸乏銆佸彸銆?
+
+*   **鑽夊湴 Tile**: `[Grass, Grass, Grass, Grass]`
+*   **娴峰哺 Tile**: `[Water, Grass, Coast, Coast]` (鍋囪)
+
+**瑙勫垯**: Tile A 鐨勨€滃彸鈥濇帴鍙ｅ繀椤讳笌 Tile B 鐨勨€滃乏鈥濇帴鍙ｅ尮閰?(鍙互鏄浉鍚?ID锛屼篃鍙互鏄畾涔夌殑瀵圭О ID)銆?
+
+### 3.2 鏃嬭浆涓庨暅鍍?
+涓轰簡鑺傜渷缇庢湳璧勬簮锛屾垜浠彲浠ヨ嚜鍔ㄧ敓鎴愭棆杞彉浣撱€?
+
+*   涓€涓笉瀵圭О鐨?Tile 鍙互鐢熸垚 4 涓棆杞増鏈€?
+*   鎺ュ彛鏁版嵁涔熼渶瑕侀殢涔嬫棆杞€?
+
+### 3.3 鍥炴函涓庨噸璇?(Backtracking)
+WFC 鍙兘浼氶亣鍒扳€滄鑳″悓鈥?(Contradiction)銆?
+
+*   **绠€鍗曠瓥鐣?*: 閬囧埌鍐茬獊鐩存帴娓呯┖鏁翠釜鍦板浘閲嶆潵 (瀵逛簬灏忓湴鍥鹃潪甯稿揩)銆?
+*   **楂樼骇绛栫暐**: 璁板綍姣忎竴姝ョ殑鐘舵€侊紝閬囧埌鍐茬獊鍥為€€鍒颁笂涓€姝ワ紝骞舵爣璁板鑷村啿绐佺殑鍒嗘敮涓轰笉鍙銆?
+
+### 3.4 鎬ц兘浼樺寲
+*   **鏈€灏忓爢 (Min-Heap)**: 鐢ㄦ渶灏忓爢缁存姢鎵€鏈夋牸瀛愮殑鐔碉紝浠ヤ究 O(1) 鍙栧嚭鏈€灏忕喌鏍煎瓙銆?
+*   **鑴忔爣璁?(Dirty Flags)**: 浼犳挱鏃跺彧澶勭悊鍙楀奖鍝嶇殑鍖哄煙銆?
+
+---
+
+## 4. Unity 浠ｇ爜鐗囨 (浼唬鐮?
 
 ```csharp
 public class WFCGenerator : MonoBehaviour {
@@ -758,8 +758,8 @@ public class WFCGenerator : MonoBehaviour {
         while (stack.Count > 0) {
             var current = stack.Pop();
             foreach (var neighbor in GetNeighbors(current)) {
-                if (Constrain(current, neighbor)) {
-                    stack.Push(neighbor); // 如果邻居被修改了，继续传播
+                \text{if} (Constrain(current, neighbor)) {
+                    stack.Push(neighbor); // 濡傛灉閭诲眳琚慨鏀逛簡锛岀户缁紶鎾?
                 }
             }
         }
@@ -769,24 +769,26 @@ public class WFCGenerator : MonoBehaviour {
 
 ---
 
-## 5. 业界案例 (Industry Cases)
+## 5. 涓氱晫妗堜緥 (Industry Cases)
 
 ### Townscaper
-*   **特点**: 极其流畅的实时 WFC。
-*   **机制**: 玩家点击只是“观测”了一个格子，算法自动计算周围格子的最优解（屋顶、地基、楼梯）。
+*   **鐗圭偣**: 鏋佸叾娴佺晠鐨勫疄鏃?WFC銆?
+*   **鏈哄埗**: 鐜╁鐐瑰嚮鍙槸鈥滆娴嬧€濅簡涓€涓牸瀛愶紝绠楁硶鑷姩璁＄畻鍛ㄥ洿鏍煎瓙鐨勬渶浼樿В锛堝眿椤躲€佸湴鍩恒€佹ゼ姊級銆?
 
-### Bad North (北方绝境)
-*   **特点**: 微型岛屿生成。
-*   **应用**: 保证岛屿边缘总是平滑的海岸线，且高低差有梯子连接。
+### Bad North (鍖楁柟缁濆)
+*   **鐗圭偣**: 寰瀷宀涘笨鐢熸垚銆?
+*   **搴旂敤**: 淇濊瘉宀涘笨杈圭紭鎬绘槸骞虫粦鐨勬捣宀哥嚎锛屼笖楂樹綆宸湁姊瓙杩炴帴銆?
 
 ### Caves of Qud
-*   **特点**: 极其复杂的文本描述生成。
-*   **应用**: 利用 WFC 生成历史传说和地貌描述。
+*   **鐗圭偣**: 鏋佸叾澶嶆潅鐨勬枃鏈弿杩扮敓鎴愩€?
+*   **搴旂敤**: 鍒╃敤 WFC 鐢熸垚鍘嗗彶浼犺鍜屽湴璨屾弿杩般€?
 
 ---
 
-## 6. 扩展阅读
+## 6. 鎵╁睍闃呰
 *   [Maxim Gumin's Original WFC Repo](https://github.com/mxgmn/WaveFunctionCollapse)
-*   [Oskar Stålberg (Townscaper) Talks](https://www.youtube.com/watch?v=0bcZb-SsnrA)
+*   [Oskar St氓lberg (Townscaper) Talks](https://www.youtube.com/watch?v=0bcZb-SsnrA)
+
+
 
 

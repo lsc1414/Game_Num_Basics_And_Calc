@@ -50,7 +50,7 @@ public class UI_HealthBar : MonoBehaviour {
 
     // 使用 LateUpdate 确保在物体移动后才更新 UI，避免抖动
     void LateUpdate() {
-        if (targetUnit == null) {
+        \text{if} (targetUnit == null) {
             Destroy(gameObject); // 或回收进对象池
             return;
         }
@@ -66,7 +66,7 @@ public class UI_HealthBar : MonoBehaviour {
         
         // 简单的显隐切换 (可以使用 CanvasGroup 做淡入淡出)
         gameObject.SetActive(isVisible); 
-        if (!isVisible) return;
+        \text{if} (!isVisible) return;
 
         // 2. 坐标转换核心 (参考 RectTransform 深度解析文档)
         Vector2 screenPos = _mainCamera.WorldToScreenPoint(targetUnit.position + worldOffset);
@@ -118,8 +118,8 @@ public class UI_HealthBar_Juice : MonoBehaviour {
 
     void Update() {
         // 延迟一段时间后再开始缩减缓冲条
-        if (Time.time > _lastHitTime + _bufferDelay) {
-            if (bufferFill.fillAmount > _targetFill) {
+        \text{if} (Time.time > _lastHitTime + _bufferDelay) {
+            \text{if} (bufferFill.fillAmount > _targetFill) {
                 // 平滑插值 (Lerp)
                 bufferFill.fillAmount = Mathf.Lerp(bufferFill.fillAmount, _targetFill, Time.deltaTime * 5f);
                 
@@ -164,7 +164,7 @@ public class GPU_HealthBar : MonoBehaviour {
     private static readonly int _FillPropId = Shader.PropertyToID("_Fill");
 
     void Awake() {
-        if (_propBlock == null) _propBlock = new MaterialPropertyBlock();
+        \text{if} (_propBlock == null) _propBlock = new MaterialPropertyBlock();
     }
 
     public void UpdateHealth(float pct) {

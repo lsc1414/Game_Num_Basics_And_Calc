@@ -11,11 +11,11 @@ sidebarTitle: "Odin 工具综合指南"
 ---
 
 
-<!-- 来源: Dev_Guides\Tools\Odin_Inspector_Advanced_Techniques.md -->
+{/* 来源: Dev_Guides\Tools\Odin_Inspector_Advanced_Techniques.md */}
 
-## 🧙‍♂️ Odin Inspector 高级使用技巧深度研究
+## 🧙‍♂�?Odin Inspector 高级使用技巧深度研�?
 
-> 🎯 **目标读者**: 已掌握 Odin 基础用法的 Unity 开发者  
+> 🎯 **目标读�?*: 已掌�?Odin 基础用法�?Unity 开发�? 
 > 📌 **定位**: 提供官方 Demo 未涵盖的实战技巧、复杂场景解决方案和性能优化策略
 
 ---
@@ -24,11 +24,11 @@ sidebarTitle: "Odin 工具综合指南"
 
 ### 1.1 核心定义
 
-**Odin Inspector** 是一个增强 Unity Inspector 的插件，通过 C# 特性（Attributes）驱动的声明式编程范式，实现了：
+**Odin Inspector** 是一个增�?Unity Inspector 的插件，通过 C# 特性（Attributes）驱动的声明式编程范式，实现了：
 
-- **声明式 UI 构建**: 通过特性标签直接描述 Inspector 布局，而非命令式代码。
-- **数据验证层**: 在序列化层面提供类型安全和约束检查。
-- **Editor 自动化**: 减少手动编写 `CustomEditor` 的需求。
+- **声明�?UI 构建**: 通过特性标签直接描�?Inspector 布局，而非命令式代码�?
+- **数据验证�?*: 在序列化层面提供类型安全和约束检查�?
+- **Editor 自动�?*: 减少手动编写 `CustomEditor` 的需求�?
 
 ### 1.2 设计模式
 
@@ -36,10 +36,10 @@ Odin 的架构基于以下设计模式：
 
 ```mermaid
 graph TD
-    A[Property System] --> B[Attribute Processor]
-    B --> C[Drawer System]
-    C --> D[Value Resolver]
-    D --> E[Inspector Rendering]
+    A[Property System] */} B[Attribute Processor]
+    B */} C[Drawer System]
+    C */} D[Value Resolver]
+    D */} E[Inspector Rendering]
     
     style A fill:#ff9999
     style C fill:#99ccff
@@ -47,31 +47,31 @@ graph TD
 ```
 
 
-- **Property System**: Odin 的属性系统（OdinPropertyTree）独立于 Unity 的 SerializedProperty。
-- **Resolver Pattern**: `@` 语法的动态值解析器，支持成员引用、表达式求值。
-- **Decorator Chain**: 多个特性按优先级链式处理。
+- **Property System**: Odin 的属性系统（OdinPropertyTree）独立于 Unity �?SerializedProperty�?
+- **Resolver Pattern**: `@` 语法的动态值解析器，支持成员引用、表达式求值�?
+- **Decorator Chain**: 多个特性按优先级链式处理�?
 
 ### 1.3 性能模型
 
-Inspector 绘制性能瓶颈：
+Inspector 绘制性能瓶颈�?
 
-- **GC 分配**: 每帧的 `GetValue()` 调用可能触发装箱。
-- **反射开销**: 动态解析表达式的成本。
-- **重绘频率**: `OnInspectorGUI` 的调用次数与选中对象数成正比。
+- **GC 分配**: 每帧�?`GetValue()` 调用可能触发装箱�?
+- **反射开销**: 动态解析表达式的成本�?
+- **重绘频率**: `OnInspectorGUI` 的调用次数与选中对象数成正比�?
 
 ---
 
-## 🛠️ 2. 实践应用 (Practical Implementation)
+## 🛠�?2. 实践应用 (Practical Implementation)
 
-### 2.1 高级技巧一：自定义验证器组合
+### 2.1 高级技巧一：自定义验证器组�?
 
 #### 问题场景
-在 **Vampirefall** 中，我们需要确保塔防建筑的配置数据同时满足：
+�?**Vampirefall** 中，我们需要确保塔防建筑的配置数据同时满足�?
 
-1. 成本必须为 10 的倍数
-2. 攻击范围不能超过建筑等级的 1.5 倍
+1. 成本必须�?10 的倍数
+2. 攻击范围不能超过建筑等级�?1.5 �?
 
-3. 特殊塔种类的攻击力必须满足特定公式
+3. 特殊塔种类的攻击力必须满足特定公�?
 
 #### 解决方案：自定义 Validator
 
@@ -80,26 +80,26 @@ using Sirenix.OdinInspector;
 
 public class TowerConfig : ScriptableObject
 {
-    [Title("基础属性")]
-    [ValidateInput("@Cost % 10 == 0", "成本必须是10的倍数")]
+    [Title("基础属�?)]
+    [ValidateInput("@Cost % 10 == 0", "成本必须�?0的倍数")]
     [SuffixLabel("金币", true)]
     public int Cost;
 
     [Range(1, 10)]
     public int Level;
 
-    [ValidateInput("ValidateAttackRange", "攻击范围不合理")]
-    [SuffixLabel("米", true)]
+    [ValidateInput("ValidateAttackRange", "攻击范围不合�?)]
+    [SuffixLabel("�?, true)]
     public float AttackRange;
 
     [ShowIf("@TowerType == TowerType.Special")]
-    [ValidateInput("ValidateSpecialDamage", "特殊塔伤害必须 >= 基础值 * 1.2")]
+    [ValidateInput("ValidateSpecialDamage", "特殊塔伤害必�?>= 基础�?* 1.2")]
     public float Damage;
 
     [EnumToggleButtons]
     public TowerType TowerType;
 
-    // ⚡ 技巧：使用私有方法作为验证函数，避免污染公共API
+    // �?技巧：使用私有方法作为验证函数，避免污染公共API
     private bool ValidateAttackRange(float range)
     {
         return range <= Level * 1.5f;
@@ -107,12 +107,12 @@ public class TowerConfig : ScriptableObject
 
     private bool ValidateSpecialDamage(float damage, ref string errorMessage)
     {
-        if (TowerType != TowerType.Special) return true;
+        \text{if} (TowerType != TowerType.Special) return true;
         
         float minDamage = GetBaseDamage() * 1.2f;
-        if (damage < minDamage)
+        \text{if} (damage < minDamage)
         {
-            errorMessage = $"特殊塔伤害至少需要 {minDamage:F1} (当前: {damage:F1})";
+            errorMessage = $"特殊塔伤害至少需�?{minDamage:F1} (当前: {damage:F1})";
             return false;
         }
         return true;
@@ -122,20 +122,20 @@ public class TowerConfig : ScriptableObject
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
 - `ValidateInput` 的第二个参数支持动态表达式：`"@SomeMethod($value)"`
-- 验证函数可以返回 `bool` 或使用 `ref string` 提供详细错误信息
-- 多个验证特性会按顺序执行
+- 验证函数可以返回 `bool` 或使�?`ref string` 提供详细错误信息
+- 多个验证特性会按顺序执�?
 
 ---
 
-### 2.2 高级技巧二：动态下拉列表 + 图标预览
+### 2.2 高级技巧二：动态下拉列�?+ 图标预览
 
 #### 问题场景
-在选择敌人类型时，我们希望：
+在选择敌人类型时，我们希望�?
 
-- 下拉列表动态读取所有敌人配置
+- 下拉列表动态读取所有敌人配�?
 - 显示敌人图标预览
 - 支持搜索过滤
 
@@ -158,7 +158,7 @@ public class WaveConfig : ScriptableObject
     [ListDrawerSettings(ShowIndexLabels = true, ListElementLabelName = "WaveName")]
     public List<WaveData> Waves;
 
-    // ⚡ 技巧：返回 IEnumerable<ValueDropdownItem<T>> 可以自定义显示文本
+    // �?技巧：返回 IEnumerable<ValueDropdownItem<T>> 可以自定义显示文�?
     private IEnumerable<ValueDropdownItem<EnemyConfig>> GetEnemyList()
     {
         var allEnemies = Resources.LoadAll<EnemyConfig>("Enemies");
@@ -179,7 +179,7 @@ public class WaveConfig : ScriptableObject
             EnemyType.Grunt => "👹",
             EnemyType.Elite => "😈",
             EnemyType.Boss => "💀",
-            _ => "❓"
+            _ => "�?
         };
     }
 }
@@ -201,11 +201,11 @@ public class WaveData
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
 - `@` 语法可以调用外部方法：`@FindObjectOfType<T>()`
-- `ListElementLabelName` 使用属性/字段自定义列表项显示名称
-- `PreviewField` 的第一个参数控制预览大小
+- `ListElementLabelName` 使用属�?字段自定义列表项显示名称
+- `PreviewField` 的第一个参数控制预览大�?
 
 ---
 
@@ -214,11 +214,11 @@ public class WaveData
 #### 问题场景
 物品配置中，不同品质的装备有不同的属性组合：
 
-- 普通装备：只有基础属性
-- 稀有装备：基础属性 + 1 个特殊效果
-- 传说装备：基础属性 + 2 个特殊效果 + 套装效果
+- 普通装备：只有基础属�?
+- 稀有装备：基础属�?+ 1 个特殊效�?
+- 传说装备：基础属�?+ 2 个特殊效�?+ 套装效果
 
-#### 解决方案：ShowIf 的高级用法
+#### 解决方案：ShowIf 的高级用�?
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -236,17 +236,17 @@ public class ItemConfig : ScriptableObject
     [OnValueChanged("OnRarityChanged")]
     public ItemRarity Rarity;
 
-    [Title("属性")]
+    [Title("属�?)]
     public int BaseAttack;
     public int BaseDefense;
 
-    // ⚡ 技巧1：组合多个条件
+    // �?技�?：组合多个条�?
     [ShowIf("@Rarity == ItemRarity.Rare || Rarity == ItemRarity.Legendary")]
     [BoxGroup("特殊效果")]
     [ValueDropdown("GetAvailableEffects")]
     public string SpecialEffect1;
 
-    // ⚡ 技巧2：使用方法名作为条件
+    // �?技�?：使用方法名作为条件
     [ShowIf("IsLegendary")]
     [BoxGroup("特殊效果")]
     [ValueDropdown("GetAvailableEffects")]
@@ -257,7 +257,7 @@ public class ItemConfig : ScriptableObject
     [AssetsOnly]
     public SetBonusConfig SetBonus;
 
-    // ⚡ 技巧3：动态启用/禁用
+    // �?技�?：动态启�?禁用
     [EnableIf("@BaseAttack > 0")]
     [ProgressBar(0, 100, ColorGetter = "GetAttackColor")]
     public int AttackBonus;
@@ -265,24 +265,24 @@ public class ItemConfig : ScriptableObject
     // 条件方法
     private bool IsLegendary() => Rarity == ItemRarity.Legendary;
 
-    // 动态颜色
+    // 动态颜�?
     private Color GetAttackColor()
     {
-        if (AttackBonus < 30) return Color.gray;
-        if (AttackBonus < 60) return Color.yellow;
+        \text{if} (AttackBonus < 30) return Color.gray;
+        \text{if} (AttackBonus < 60) return Color.yellow;
         return Color.red;
     }
 
     // 清理数据
     private void OnRarityChanged()
     {
-        if (Rarity == ItemRarity.Common)
+        \text{if} (Rarity == ItemRarity.Common)
         {
             SpecialEffect1 = null;
             SpecialEffect2 = null;
             SetBonus = null;
         }
-        else if (Rarity == ItemRarity.Rare)
+        else \text{if} (Rarity == ItemRarity.Rare)
         {
             SpecialEffect2 = null;
             SetBonus = null;
@@ -296,18 +296,18 @@ public class ItemConfig : ScriptableObject
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
-- `ShowIf` 支持 `||` 和 `&&` 逻辑运算符
-- `OnValueChanged` 可以在值改变时清理不相关数据
-- `ColorGetter` 可以动态改变 ProgressBar 颜色
+- `ShowIf` 支持 `||` �?`&&` 逻辑运算�?
+- `OnValueChanged` 可以在值改变时清理不相关数�?
+- `ColorGetter` 可以动态改�?ProgressBar 颜色
 
 ---
 
-### 2.4 高级技巧四：表格视图 + 批量编辑
+### 2.4 高级技巧四：表格视�?+ 批量编辑
 
 #### 问题场景
-需要一次性配置 50+ 关卡的基础参数（难度、奖励、解锁条件）。
+需要一次性配�?50+ 关卡的基础参数（难度、奖励、解锁条件）�?
 
 #### 解决方案：TableList + Button 组合
 
@@ -318,11 +318,11 @@ using UnityEngine;
 
 public class LevelDatabase : ScriptableObject
 {
-    [Title("关卡配置表")]
+    [Title("关卡配置�?)]
     [TableList(ShowIndexLabels = true, AlwaysExpanded = true)]
     public List<LevelData> Levels;
 
-    // ⚡ 技巧：批量操作按钮
+    // �?技巧：批量操作按钮
     [Button(ButtonSizes.Large), GUIColor(0.4f, 0.8f, 1f)]
     private void AutoGenerateLevels()
     {
@@ -339,7 +339,7 @@ public class LevelDatabase : ScriptableObject
         }
     }
 
-    [Button("重新计算所有奖励"), GUIColor(1f, 0.8f, 0.4f)]
+    [Button("重新计算所有奖�?), GUIColor(1f, 0.8f, 0.4f)]
     private void RecalculateRewards()
     {
         foreach (var level in Levels)
@@ -373,7 +373,7 @@ public class LevelData
     [HideLabel]
     public LevelType Type;
 
-    // 动态颜色
+    // 动态颜�?
     private Color GetDifficultyColor()
     {
         return Difficulty switch
@@ -388,18 +388,18 @@ public class LevelData
 public enum LevelType { Normal, Elite, Boss }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
-- `TableList` 的 `AlwaysExpanded = true` 避免默认折叠
+- `TableList` �?`AlwaysExpanded = true` 避免默认折叠
 - `TableColumnWidth` 控制列宽，`Resizable = false` 禁止调整
-- `Button` 特性可以直接执行批量操作
+- `Button` 特性可以直接执行批量操�?
 
 ---
 
 ### 2.5 高级技巧五：自定义 Property Drawer
 
 #### 问题场景
-需要一个可视化的伤害类型选择器，显示图标 + 伤害值的组合输入。
+需要一个可视化的伤害类型选择器，显示图标 + 伤害值的组合输入�?
 
 #### 解决方案：自定义 Drawer
 
@@ -423,7 +423,7 @@ public class DamageTypeData
 
     [VerticalGroup("Split/Right")]
     [MinValue(0)]
-    [SuffixLabel("点", true)]
+    [SuffixLabel("�?, true)]
     public float Value;
 
     [VerticalGroup("Split/Right")]
@@ -446,7 +446,7 @@ public class WeaponConfig : ScriptableObject
     [ListDrawerSettings(Expanded = true, DraggableItems = true)]
     public List<DamageTypeData> DamageComponents;
 
-    [InfoBox("总伤害: $TotalDamage")]
+    [InfoBox("总伤�? $TotalDamage")]
     [ShowInInspector, ReadOnly, ProgressBar(0, 1000, ColorGetter = "GetTotalDamageColor")]
     private float TotalDamage => DamageComponents?.Sum(d => d.Value) ?? 0;
 
@@ -462,20 +462,20 @@ public class WeaponConfig : ScriptableObject
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
-- `HorizontalGroup` 和 `VerticalGroup` 可以嵌套使用
-- `$PropertyName` 可以在 InfoBox 中引用属性值
-- `ShowInInspector` + `ReadOnly` 显示只读的计算属性
+- `HorizontalGroup` �?`VerticalGroup` 可以嵌套使用
+- `$PropertyName` 可以�?InfoBox 中引用属性�?
+- `ShowInInspector` + `ReadOnly` 显示只读的计算属�?
 
 ---
 
-### 2.6 高级技巧六：多态序列化 + 可视化编辑
+### 2.6 高级技巧六：多态序列化 + 可视化编�?
 
 #### 问题场景
-技能系统中，不同技能有不同的参数（伤害技能有伤害值，治疗技能有治疗量）。
+技能系统中，不同技能有不同的参数（伤害技能有伤害值，治疗技能有治疗量）�?
 
-#### 解决方案：多态配置
+#### 解决方案：多态配�?
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -510,7 +510,7 @@ public class DamageSkill : SkillBase
     [EnumToggleButtons]
     public DamageType DamageType;
 
-    protected override string GetSkillTitle() => $"⚔️ 攻击技能: {SkillName}";
+    protected override string GetSkillTitle() => $"⚔️ 攻击技�? {SkillName}";
 }
 
 public class HealSkill : SkillBase
@@ -524,39 +524,39 @@ public class HealSkill : SkillBase
     [ToggleLeft]
     public bool CanRevive;
 
-    protected override string GetSkillTitle() => $"💚 治疗技能: {SkillName}";
+    protected override string GetSkillTitle() => $"💚 治疗技�? {SkillName}";
 }
 
 public class CharacterConfig : ScriptableObject
 {
-    [Title("角色技能")]
+    [Title("角色技�?)]
     [ListDrawerSettings(CustomAddFunction = "AddSkill")]
     [Searchable]
     public List<SkillBase> Skills;
 
-    // ⚡ 技巧：自定义添加按钮
+    // �?技巧：自定义添加按�?
     private SkillBase AddSkill()
     {
         // 这里可以弹出一个选择窗口
-        return new DamageSkill { SkillName = "新技能" };
+        return new DamageSkill { SkillName = "新技�? };
     }
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
-- Odin 原生支持多态序列化（Unity 2021.2+ 也支持了）
-- `$MethodName` 可以动态生成标题
-- `CustomAddFunction` 自定义列表添加行为
+- Odin 原生支持多态序列化（Unity 2021.2+ 也支持了�?
+- `$MethodName` 可以动态生成标�?
+- `CustomAddFunction` 自定义列表添加行�?
 
 ---
 
 ### 2.7 高级技巧七：性能优化 - 延迟加载
 
 #### 问题场景
-大型配置表（如 1000+ 个道具）会导致 Inspector 卡顿。
+大型配置表（�?1000+ 个道具）会导�?Inspector 卡顿�?
 
-#### 解决方案：分页加载 + 搜索
+#### 解决方案：分页加�?+ 搜索
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -569,16 +569,16 @@ public class MassiveItemDatabase : ScriptableObject
     [HideInInspector]
     public List<ItemConfig> AllItems = new();
 
-    // ⚡ 技巧：只显示当前页
+    // �?技巧：只显示当前页
     [ShowInInspector, ReadOnly]
     [ListDrawerSettings(ShowPaging = true, NumberOfItemsPerPage = 20)]
     private List<ItemConfig> DisplayedItems => GetFilteredItems();
 
-    [BoxGroup("过滤器")]
+    [BoxGroup("过滤�?)]
     [OnValueChanged("RefreshDisplay")]
     public string SearchQuery;
 
-    [BoxGroup("过滤器")]
+    [BoxGroup("过滤�?)]
     [OnValueChanged("RefreshDisplay")]
     public ItemRarity FilterRarity;
 
@@ -586,12 +586,12 @@ public class MassiveItemDatabase : ScriptableObject
     {
         var query = AllItems.AsEnumerable();
 
-        if (!string.IsNullOrEmpty(SearchQuery))
+        \text{if} (!string.IsNullOrEmpty(SearchQuery))
         {
             query = query.Where(i => i.name.Contains(SearchQuery, System.StringComparison.OrdinalIgnoreCase));
         }
 
-        if (FilterRarity != ItemRarity.Common) // 假设 Common 代表 "全部"
+        \text{if} (FilterRarity != ItemRarity.Common) // 假设 Common 代表 "全部"
         {
             query = query.Where(i => i.Rarity == FilterRarity);
         }
@@ -617,10 +617,10 @@ public class MassiveItemDatabase : ScriptableObject
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
 - `ShowPaging = true` 启用分页，显著提升大列表性能
-- 使用私有属性 + `ShowInInspector` 实现动态过滤
+- 使用私有属�?+ `ShowInInspector` 实现动态过�?
 - `OnValueChanged` 触发视图更新
 
 ---
@@ -628,7 +628,7 @@ public class MassiveItemDatabase : ScriptableObject
 ### 2.8 高级技巧八：编辑器工具集成
 
 #### 问题场景
-需要在配置文件中直接调用编辑器工具（如生成预制体、导出 JSON）。
+需要在配置文件中直接调用编辑器工具（如生成预制体、导�?JSON）�?
 
 #### 解决方案：Button + Editor API
 
@@ -651,7 +651,7 @@ public class TowerDatabase : ScriptableObject
     private void ExportToJSON()
     {
         #if UNITY_EDITOR
-        if (!Directory.Exists(ExportPath))
+        \text{if} (!Directory.Exists(ExportPath))
         {
             Directory.CreateDirectory(ExportPath);
         }
@@ -661,16 +661,16 @@ public class TowerDatabase : ScriptableObject
         File.WriteAllText(filePath, json);
 
         AssetDatabase.Refresh();
-        Debug.Log($"✅ 导出成功: {filePath}");
+        Debug.Log($"�?导出成功: {filePath}");
         #endif
     }
 
-    [Button("生成预制体"), GUIColor(1f, 0.8f, 0.3f)]
+    [Button("生成预制�?), GUIColor(1f, 0.8f, 0.3f)]
     private void GeneratePrefabs()
     {
         #if UNITY_EDITOR
         string prefabPath = "Assets/Prefabs/Towers";
-        if (!AssetDatabase.IsValidFolder(prefabPath))
+        \text{if} (!AssetDatabase.IsValidFolder(prefabPath))
         {
             AssetDatabase.CreateFolder("Assets/Prefabs", "Towers");
         }
@@ -686,7 +686,7 @@ public class TowerDatabase : ScriptableObject
         }
 
         AssetDatabase.Refresh();
-        Debug.Log($"✅ 生成了 {Towers.Count} 个预制体");
+        Debug.Log($"�?生成�?{Towers.Count} 个预制体");
         #endif
     }
 
@@ -698,9 +698,9 @@ public class TowerDatabase : ScriptableObject
 }
 ```
 
-**🔑 关键点**：
+**🔑 关键�?*�?
 
-- `FolderPath` 提供文件夹选择器
+- `FolderPath` 提供文件夹选择�?
 - `#if UNITY_EDITOR` 确保编辑器代码不会被打包
 - `Button` 可以直接调用复杂的编辑器逻辑
 
@@ -708,44 +708,44 @@ public class TowerDatabase : ScriptableObject
 
 ## 🌟 3. 业界优秀案例 (Industry Best Practices)
 
-### 3.1 案例一：《Hades》的技能配置系统
+### 3.1 案例一：《Hades》的技能配置系�?
 
-**分析**：
+**分析**�?
 
-- **优势**：使用类似 Odin 的标签系统，策划可以无需程序员直接配置技能。
-- **实现**：每个技能都是一个 ScriptableObject，使用 `[ShowIf]` 根据技能类型显示不同参数。
-- **借鉴点**：
-    - 使用 `[EnumToggleButtons]` 让类型选择更直观
-    - 结合 `[ValidateInput]` 确保数值平衡（如伤害/冷却比率）
+- **优势**：使用类�?Odin 的标签系统，策划可以无需程序员直接配置技能�?
+- **实现**：每个技能都是一�?ScriptableObject，使�?`[ShowIf]` 根据技能类型显示不同参数�?
+- **借鉴�?*�?
+    - 使用 `[EnumToggleButtons]` 让类型选择更直�?
+    - 结合 `[ValidateInput]` 确保数值平衡（如伤�?冷却比率�?
 
 ### 3.2 案例二：《Oxygen Not Included》的资源配置
 
-**分析**：
+**分析**�?
 
-- **优势**：超过 200+ 种资源，但配置界面条理清晰。
-- **实现**：
+- **优势**：超�?200+ 种资源，但配置界面条理清晰�?
+- **实现**�?
     - 使用 `[TableList]` 显示资源列表
-    - `[Searchable]` 快速定位资源
-    - 自定义验证器确保资源转换链没有循环依赖
-- **借鉴点**：
+    - `[Searchable]` 快速定位资�?
+    - 自定义验证器确保资源转换链没有循环依�?
+- **借鉴�?*�?
     - 对于大型数据库，使用 `ShowPaging` + `Searchable`
-    - 添加批量验证按钮（"检查所有配置的合法性"）
+    - 添加批量验证按钮�?检查所有配置的合法�?�?
 
 ### 3.3 案例三：《Dead Cells》的武器系统
 
-**分析**：
+**分析**�?
 
-- **优势**：武器配置复杂（基础属性 + 词缀 + 特效），但编辑器简洁。
-- **实现**：
-    - 使用 `[InlineEditor]` 嵌套编辑子配置
+- **优势**：武器配置复杂（基础属�?+ 词缀 + 特效），但编辑器简洁�?
+- **实现**�?
+    - 使用 `[InlineEditor]` 嵌套编辑子配�?
     - 动态预览武器在游戏中的效果
-- **借鉴点**：
+- **借鉴�?*�?
     - 结合 `[PreviewField]` 显示武器图标
-    - 使用 `[InfoBox]` 显示计算后的最终属性
+    - 使用 `[InfoBox]` 显示计算后的最终属�?
 
 ---
 
-## 🔗 4. 参考资料 (References)
+## 🔗 4. 参考资�?(References)
 
 ### 📄 官方文档
 - [Odin 官方文档](https://odininspector.com/documentation)
@@ -755,55 +755,55 @@ public class TowerDatabase : ScriptableObject
 - [Odin Inspector - Advanced Techniques (GDC 2020)](https://www.youtube.com/watch?v=example) *(虚构链接)*
 - [Unity Data-Driven Design with Odin](https://www.youtube.com/watch?v=example2)
 
-### 🌐 技术博客
+### 🌐 技术博�?
 - [Data-Oriented Design in Unity](https://raphlinus.github.io/gpu/2020/02/12/gpu-resources.html)
 - [ScriptableObject Architecture](https://unity.com/how-to/architect-game-code-scriptable-objects)
 
-### 🛠️ 开源项目
-- [Odin Validator](https://github.com/example/odin-validator) - 自定义验证器库
-- [Odin Utils](https://github.com/example/odin-utils) - 社区工具集
+### 🛠�?开源项�?
+- [Odin Validator](https://github.com/example/odin-validator) - 自定义验证器�?
+- [Odin Utils](https://github.com/example/odin-utils) - 社区工具�?
 
 ### 🔗 相关文档
-- **[Odin + Luban 集成指南](Odin_Luban_Integration_Guide.md)** - 将 Odin 可视化编辑与 Luban 配置表生成结合的完整工作流
+- **[Odin + Luban 集成指南](Odin_Luban_Integration_Guide.md)** - �?Odin 可视化编辑与 Luban 配置表生成结合的完整工作�?
 
 ---
 
 ## 🎯 5. 最佳实践总结
 
-### ✅ DO（推荐做法）
-1. **使用 `[ValidateInput]` 而非运行时检查** - 在 Inspector 层面就捕获错误。
-2. **善用 `@` 表达式** - 减少硬编码，提高配置灵活性。
+### �?DO（推荐做法）
+1. **使用 `[ValidateInput]` 而非运行时检�?* - �?Inspector 层面就捕获错误�?
+2. **善用 `@` 表达�?* - 减少硬编码，提高配置灵活性�?
 
-3. **为大型列表启用 `ShowPaging`** - 避免 Inspector 卡顿。
+3. **为大型列表启�?`ShowPaging`** - 避免 Inspector 卡顿�?
 
-4. **使用 `[Button]` 自动化重复任务** - 如批量重命名、重新计算数值。
+4. **使用 `[Button]` 自动化重复任�?* - 如批量重命名、重新计算数值�?
 
-5. **结合 `[OnValueChanged]` 保持数据一致性** - 如品质改变时清除不相关属性。
+5. **结合 `[OnValueChanged]` 保持数据一致�?* - 如品质改变时清除不相关属性�?
 
-### ❌ DON'T（避免做法）
-1. **不要在 `ValueDropdown` 中执行耗时操作** - 会导致每次绘制都卡顿。
-2. **不要过度使用 `[ShowInInspector]`** - 显示过多计算属性会增加 GC 压力。
+### �?DON'T（避免做法）
+1. **不要�?`ValueDropdown` 中执行耗时操作** - 会导致每次绘制都卡顿�?
+2. **不要过度使用 `[ShowInInspector]`** - 显示过多计算属性会增加 GC 压力�?
 
-3. **不要在 Validator 中修改数据** - 验证器应该只读，修改应在 `OnValueChanged` 中。
+3. **不要�?Validator 中修改数�?* - 验证器应该只读，修改应在 `OnValueChanged` 中�?
 
-4. **避免循环引用** - 如 A 的 `ValueDropdown` 依赖 B，B 的又依赖 A。
+4. **避免循环引用** - �?A �?`ValueDropdown` 依赖 B，B 的又依赖 A�?
 
 ---
 
 ## 📊 6. 性能优化 Checklist
 
-- [ ] 大型列表启用 `ShowPaging`（20+ 项）
+- [ ] 大型列表启用 `ShowPaging`�?0+ 项）
 - [ ] 复杂对象使用 `[InlineEditor]` 而非默认展开
-- [ ] `ValueDropdown` 结果缓存（使用静态变量或 `[SerializeField]`）
-- [ ] 避免在 `@` 表达式中使用 `FindObjectOfType`
+- [ ] `ValueDropdown` 结果缓存（使用静态变量或 `[SerializeField]`�?
+- [ ] 避免�?`@` 表达式中使用 `FindObjectOfType`
 - [ ] 使用 `[HideInInspector]` 隐藏不需要编辑的大型数组
-- [ ] 考虑使用 `[Delayed]` 减少频繁的 `OnValueChanged` 触发
+- [ ] 考虑使用 `[Delayed]` 减少频繁�?`OnValueChanged` 触发
 
 ---
 
 **🔖 版本信息**  
 文档版本: v1.0  
-最后更新: 2025-12-06  
+最后更�? 2025-12-06  
 适用 Odin 版本: 3.1.x+
 
 
@@ -812,33 +812,33 @@ public class TowerDatabase : ScriptableObject
 ---
 
 
-<!-- 来源: Dev_Guides\Tools\Odin_Luban_Integration_Guide.md -->
+{/* 来源: Dev_Guides\Tools\Odin_Luban_Integration_Guide.md */}
 
 ## 🔗 Odin Inspector + Luban 深度集成指南
 
-> 🎯 **目标**: 结合 Odin 的强大 Inspector 可视化能力与 Luban 的配置表生成能力，打造双向编辑工作流  
-> 💡 **核心理念**: 策划在 Unity 中用 Odin 可视化编辑，导出为 Luban 格式；程序用 Luban 生成高性能运行时数据
+> 🎯 **目标**: 结合 Odin 的强�?Inspector 可视化能力与 Luban 的配置表生成能力，打造双向编辑工作流  
+> 💡 **核心理念**: 策划�?Unity 中用 Odin 可视化编辑，导出�?Luban 格式；程序用 Luban 生成高性能运行时数�?
 
 ---
 
-## 📚 1. 理论基础：两者的定位与协作模式
+## 📚 1. 理论基础：两者的定位与协作模�?
 
 ### 1.1 工具定位
 
 |          工具          |          核心职责          |          优势          |          劣势          |
 |         ------         |         ---------         |         ------         |         ------         |
-|          **Odin Inspector**          |          Unity 编辑器增强          |          可视化强、验证丰富、策划友好          |          运行时性能一般、不支持热更          |
-|          **Luban**          |          配置表代码生成          |          多语言支持、类型安全、热更友好          |          Excel 编辑体验差、无可视化          |
+|          **Odin Inspector**          |          Unity 编辑器增�?         |          可视化强、验证丰富、策划友�?         |          运行时性能一般、不支持热更          |
+|          **Luban**          |          配置表代码生�?         |          多语言支持、类型安全、热更友�?         |          Excel 编辑体验差、无可视�?         |
 
 ### 1.2 协作模式
 
 ```mermaid
 graph LR
-    A[策划在 Unity<br/>用 Odin 编辑] --> B[ScriptableObject<br/>配置文件]
-    B --> C[Odin 导出工具<br/>生成 JSON/Excel]
-    C --> D[Luban 处理]
-    D --> E[生成 C# 代码<br/>+ 二进制数据]
-    E --> F[运行时加载]
+    A[策划�?Unity<br/>�?Odin 编辑] */} B[ScriptableObject<br/>配置文件]
+    B */} C[Odin 导出工具<br/>生成 JSON/Excel]
+    C */} D[Luban 处理]
+    D */} E[生成 C# 代码<br/>+ 二进制数据]
+    E */} F[运行时加载]
     
     style A fill:#99ccff
     style C fill:#ffcc99
@@ -846,30 +846,30 @@ graph LR
 ```
 
 
-**三种集成策略**：
+**三种集成策略**�?
 
-#### 策略 A：Odin 编辑 → Luban 生成（推荐）
+#### 策略 A：Odin 编辑 �?Luban 生成（推荐）
 - **适用场景**: 复杂配置（技能、敌人、关卡）
-- **流程**: Unity 中编辑 → 导出 JSON → Luban 生成代码
+- **流程**: Unity 中编�?�?导出 JSON �?Luban 生成代码
 - **优势**: 策划享受可视化，程序享受类型安全
 
-#### 策略 B：Luban 生成 → Odin 增强显示
+#### 策略 B：Luban 生成 �?Odin 增强显示
 - **适用场景**: 简单数值表（经验表、商店价格）
-- **流程**: Excel 填表 → Luban 生成 → Odin 特性美化 Inspector
-- **优势**: 策划继续用 Excel，Unity 中查看更清晰
+- **流程**: Excel 填表 �?Luban 生成 �?Odin 特性美�?Inspector
+- **优势**: 策划继续�?Excel，Unity 中查看更清晰
 
-#### 策略 C：双向同步（高级）
-- **适用场景**: 大型团队，策划/程序混合编辑
-- **流程**: Git 管理源数据 + CI/CD 自动转换
-- **优势**: 各取所需，版本可控
+#### 策略 C：双向同步（高级�?
+- **适用场景**: 大型团队，策�?程序混合编辑
+- **流程**: Git 管理源数�?+ CI/CD 自动转换
+- **优势**: 各取所需，版本可�?
 
 ---
 
-## 🛠️ 2. 实战：策略 A 实现（Odin → Luban）
+## 🛠�?2. 实战：策�?A 实现（Odin �?Luban�?
 
-### 2.1 步骤一：定义 Luban Schema
+### 2.1 步骤一：定�?Luban Schema
 
-假设我们要配置塔防建筑，先定义 Luban 表结构：
+假设我们要配置塔防建筑，先定�?Luban 表结构：
 
 ```csharp
 // Luban 配置定义（在 Luban 项目中）
@@ -897,7 +897,7 @@ namespace cfg
 }
 ```
 
-### 2.2 步骤二：在 Unity 中创建对应的 ScriptableObject
+### 2.2 步骤二：�?Unity 中创建对应的 ScriptableObject
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -916,20 +916,20 @@ public class TowerConfigSO : ScriptableObject
     [Required]
     public string Name;
 
-    [Title("数值属性")]
-    [ValidateInput("@Cost % 10 == 0", "成本必须是 10 的倍数")]
+    [Title("数值属�?)]
+    [ValidateInput("@Cost % 10 == 0", "成本必须�?10 的倍数")]
     [SuffixLabel("金币", true)]
     public int Cost;
 
     [MinValue(0)]
-    [SuffixLabel("米", true)]
+    [SuffixLabel("�?, true)]
     public float AttackRange;
 
     [MinValue(0)]
-    [SuffixLabel("点", true)]
+    [SuffixLabel("�?, true)]
     public float Damage;
 
-    [Title("类型与标签")]
+    [Title("类型与标�?)]
     [EnumToggleButtons]
     public ETowerType Type;
 
@@ -943,7 +943,7 @@ public class TowerConfigSO : ScriptableObject
         return new[] { "AOE", "Slow", "Stun", "ArmorPierce", "Flying", "Boss" };
     }
 
-    // ⚡ 关键：提供转换为 Luban JSON 的方法
+    // �?关键：提供转换为 Luban JSON 的方�?
     [Button(ButtonSizes.Large), GUIColor(0.3f, 0.8f, 1f)]
     private void ExportToLubanJSON()
     {
@@ -959,7 +959,7 @@ public class TowerConfigSO : ScriptableObject
         };
 
         string json = JsonUtility.ToJson(data, true);
-        Debug.Log($"✅ Luban JSON:\n{json}");
+        Debug.Log($"�?Luban JSON:\n{json}");
 
         // 可选：直接写入文件
         #if UNITY_EDITOR
@@ -970,7 +970,7 @@ public class TowerConfigSO : ScriptableObject
     }
 }
 
-// Luban JSON 数据结构（与 Luban 定义匹配）
+// Luban JSON 数据结构（与 Luban 定义匹配�?
 [Serializable]
 public class TowerLubanData
 {
@@ -988,7 +988,7 @@ public enum ETowerType { Physical, Magic, Support }
 
 ### 2.3 步骤三：批量导出工具
 
-为了一次性导出所有配置，创建一个编辑器工具：
+为了一次性导出所有配置，创建一个编辑器工具�?
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -1007,7 +1007,7 @@ public class LubanExportWindow : OdinEditorWindow
         GetWindow<LubanExportWindow>().Show();
     }
 
-    [Title("配置导出管理器")]
+    [Title("配置导出管理�?)]
     [FolderPath]
     [LabelText("导出路径")]
     public string ExportPath = "Assets/LubanExport";
@@ -1024,24 +1024,24 @@ public class LubanExportWindow : OdinEditorWindow
             .Select(path => AssetDatabase.LoadAssetAtPath<TowerConfigSO>(path))
             .ToList();
 
-        Debug.Log($"✅ 加载了 {TowerConfigs.Count} 个塔配置");
+        Debug.Log($"�?加载�?{TowerConfigs.Count} 个塔配置");
     }
 
     [Button(ButtonSizes.Large), GUIColor(0.3f, 1f, 0.3f)]
     private void ExportAllToLuban()
     {
-        if (TowerConfigs.Count == 0)
+        \text{if} (TowerConfigs.Count == 0)
         {
             Debug.LogWarning("⚠️ 没有配置可导出！");
             return;
         }
 
-        if (!Directory.Exists(ExportPath))
+        \text{if} (!Directory.Exists(ExportPath))
         {
             Directory.CreateDirectory(ExportPath);
         }
 
-        // 方案 1：导出为单独的 JSON 文件
+        // 方案 1：导出为单独�?JSON 文件
         foreach (var config in TowerConfigs)
         {
             var data = new TowerLubanData
@@ -1060,7 +1060,7 @@ public class LubanExportWindow : OdinEditorWindow
             File.WriteAllText(filePath, json);
         }
 
-        // 方案 2：导出为 Luban 的数组 JSON（推荐）
+        // 方案 2：导出为 Luban 的数�?JSON（推荐）
         var allData = TowerConfigs.Select(c => new TowerLubanData
         {
             id = c.Id,
@@ -1072,13 +1072,13 @@ public class LubanExportWindow : OdinEditorWindow
             tags = c.Tags
         }).ToList();
 
-        // 包装为 Luban 期望的格式
+        // 包装�?Luban 期望的格�?
         var wrapper = new { towers = allData };
         string jsonArray = JsonUtility.ToJson(wrapper, true);
         File.WriteAllText(Path.Combine(ExportPath, "TowerTable.json"), jsonArray);
 
         AssetDatabase.Refresh();
-        Debug.Log($"✅ 成功导出 {TowerConfigs.Count} 个配置到 {ExportPath}");
+        Debug.Log($"�?成功导出 {TowerConfigs.Count} 个配置到 {ExportPath}");
     }
 
     [Button("打开导出目录"), GUIColor(1f, 0.8f, 0.3f)]
@@ -1091,10 +1091,10 @@ public class LubanExportWindow : OdinEditorWindow
 
 ### 2.4 步骤四：Luban 配置文件
 
-在 Luban 项目中配置读取 Unity 导出的 JSON：
+�?Luban 项目中配置读�?Unity 导出�?JSON�?
 
 ```xml
-<!-- Luban 配置示例 -->
+{/* Luban 配置示例 */}
 <bean name="TowerConfig">
   <var name="id" type="string"/>
   <var name="name" type="string"/>
@@ -1110,14 +1110,14 @@ public class LubanExportWindow : OdinEditorWindow
 
 ---
 
-## 🔄 3. 实战：策略 B 实现（Luban → Odin 增强显示）
+## 🔄 3. 实战：策�?B 实现（Luban �?Odin 增强显示�?
 
-### 3.1 场景：Luban 生成的代码 + Odin 美化
+### 3.1 场景：Luban 生成的代�?+ Odin 美化
 
 假设 Luban 已经生成了配置代码：
 
 ```csharp
-// Luban 自动生成的代码
+// Luban 自动生成的代�?
 namespace cfg
 {
     public partial class EnemyConfig
@@ -1131,7 +1131,7 @@ namespace cfg
 }
 ```
 
-### 3.2 创建 Odin 包装类用于 Inspector 显示
+### 3.2 创建 Odin 包装类用�?Inspector 显示
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -1141,8 +1141,8 @@ using cfg;
 [CreateAssetMenu(fileName = "EnemyViewer", menuName = "Viewers/Enemy")]
 public class EnemyConfigViewer : ScriptableObject
 {
-    [Title("敌人配置查看器")]
-    [InfoBox("此数据由 Luban 生成，仅供查看")]
+    [Title("敌人配置查看�?)]
+    [InfoBox("此数据由 Luban 生成，仅供查�?)]
     
     [ValueDropdown("GetAllEnemyIds")]
     [OnValueChanged("LoadEnemyData")]
@@ -1151,17 +1151,17 @@ public class EnemyConfigViewer : ScriptableObject
     [BoxGroup("基础信息"), ReadOnly, ShowInInspector]
     private string EnemyName => _currentEnemy?.Name ?? "未选择";
 
-    [BoxGroup("数值属性")]
+    [BoxGroup("数值属�?)]
     [ProgressBar(0, 10000, ColorGetter = "GetHpColor")]
     [ShowInInspector, ReadOnly]
     private int MaxHp => _currentEnemy?.MaxHp ?? 0;
 
-    [BoxGroup("数值属性")]
-    [SuffixLabel("米/秒", true)]
+    [BoxGroup("数值属�?)]
+    [SuffixLabel("�?�?, true)]
     [ShowInInspector, ReadOnly]
     private float MoveSpeed => _currentEnemy?.MoveSpeed ?? 0;
 
-    [BoxGroup("技能列表")]
+    [BoxGroup("技能列�?)]
     [ListDrawerSettings(Expanded = true)]
     [ShowInInspector, ReadOnly]
     private List<string> Skills => _currentEnemy?.Skills ?? new List<string>();
@@ -1182,21 +1182,21 @@ public class EnemyConfigViewer : ScriptableObject
 
     private Color GetHpColor()
     {
-        if (MaxHp < 1000) return Color.green;
-        if (MaxHp < 5000) return Color.yellow;
+        \text{if} (MaxHp < 1000) return Color.green;
+        \text{if} (MaxHp < 5000) return Color.yellow;
         return Color.red;
     }
 
     [Button(ButtonSizes.Large), GUIColor(0.3f, 0.8f, 1f)]
     private void ExportToJSON()
     {
-        if (_currentEnemy == null)
+        \text{if} (_currentEnemy == null)
         {
-            Debug.LogWarning("⚠️ 请先选择一个敌人");
+            Debug.LogWarning("⚠️ 请先选择一个敌�?);
             return;
         }
 
-        // 可以导出为修改后的格式，反向同步到 Excel
+        // 可以导出为修改后的格式，反向同步�?Excel
         var json = JsonUtility.ToJson(new
         {
             id = _currentEnemy.Id,
@@ -1213,13 +1213,13 @@ public class EnemyConfigViewer : ScriptableObject
 
 ---
 
-## 🎨 4. 高级技巧：多态数据的可视化编辑
+## 🎨 4. 高级技巧：多态数据的可视化编�?
 
 ### 4.1 问题场景
 
-Luban 的多态配置（如 `DamageEffect#amt=100;type=Fire`）在 Unity 中编辑很痛苦。
+Luban 的多态配置（�?`DamageEffect#amt=100;type=Fire`）在 Unity 中编辑很痛苦�?
 
-### 4.2 解决方案：抽象基类 + Odin 序列化
+### 4.2 解决方案：抽象基�?+ Odin 序列�?
 
 ```csharp
 using Sirenix.OdinInspector;
@@ -1234,7 +1234,7 @@ public abstract class SkillEffectBase
     [HideInInspector]
     public string EffectType => GetType().Name;
 
-    // 导出为 Luban 格式
+    // 导出�?Luban 格式
     public abstract string ToLubanString();
 }
 
@@ -1243,7 +1243,7 @@ public abstract class SkillEffectBase
 public class DamageEffect : SkillEffectBase
 {
     [MinValue(0)]
-    [SuffixLabel("点", true)]
+    [SuffixLabel("�?, true)]
     public float Amount;
 
     [EnumToggleButtons]
@@ -1260,7 +1260,7 @@ public class DamageEffect : SkillEffectBase
 public class HealEffect : SkillEffectBase
 {
     [MinValue(0)]
-    [SuffixLabel("点", true)]
+    [SuffixLabel("�?, true)]
     public float Amount;
 
     public override string ToLubanString()
@@ -1271,22 +1271,22 @@ public class HealEffect : SkillEffectBase
 
 public enum DamageType { Physical, Fire, Ice, Lightning }
 
-// 技能配置
+// 技能配�?
 [CreateAssetMenu(fileName = "SkillConfig", menuName = "Configs/Skill")]
 public class SkillConfigSO : ScriptableObject
 {
-    [Title("技能信息")]
+    [Title("技能信�?)]
     public string SkillId;
     public string SkillName;
 
-    [Title("技能效果")]
+    [Title("技能效�?)]
     [ListDrawerSettings(CustomAddFunction = "AddEffect")]
     public List<SkillEffectBase> Effects = new();
 
     // 自定义添加按钮，显示类型选择
     private SkillEffectBase AddEffect()
     {
-        // 这里可以弹窗选择类型，简化示例直接返回
+        // 这里可以弹窗选择类型，简化示例直接返�?
         return new DamageEffect();
     }
 
@@ -1311,17 +1311,17 @@ public class SkillConfigSO : ScriptableObject
 }
 ```
 
-**优势**：
+**优势**�?
 
-- ✅ 策划在 Unity 中看到的是清晰的字段
-- ✅ 导出时自动转换为 Luban 的多态字符串
-- ✅ 支持多态序列化，Inspector 中可选择不同类型
+- �?策划�?Unity 中看到的是清晰的字段
+- �?导出时自动转换为 Luban 的多态字符串
+- �?支持多态序列化，Inspector 中可选择不同类型
 
 ---
 
-## 🔧 5. 自动化工具：一键同步
+## 🔧 5. 自动化工具：一键同�?
 
-### 5.1 Editor 插件：监听文件变化自动导出
+### 5.1 Editor 插件：监听文件变化自动导�?
 
 ```csharp
 #if UNITY_EDITOR
@@ -1340,13 +1340,13 @@ public class AutoLubanExporter
 
     private static void OnProjectChanged()
     {
-        // 检查是否有配置文件被修改
+        // 检查是否有配置文件被修�?
         var changedConfigs = AssetDatabase.FindAssets("t:TowerConfigSO")
             .Select(guid => AssetDatabase.GUIDToAssetPath(guid))
             .Where(path => File.GetLastWriteTime(path) > DateTime.Now.AddMinutes(-1))
             .ToList();
 
-        if (changedConfigs.Any())
+        \text{if} (changedConfigs.Any())
         {
             Debug.Log($"🔄 检测到 {changedConfigs.Count} 个配置变更，准备导出...");
             // 调用导出逻辑
@@ -1358,7 +1358,7 @@ public class AutoLubanExporter
     private static void ExportToLuban()
     {
         // 执行导出逻辑
-        // ...（调用之前的批量导出代码）
+        // ...（调用之前的批量导出代码�?
     }
 }
 #endif
@@ -1367,7 +1367,7 @@ public class AutoLubanExporter
 ### 5.2 命令行工具：CI/CD 集成
 
 ```bash
-# 在 Unity 项目中调用
+# �?Unity 项目中调�?
 Unity.exe -quit -batchmode -projectPath "." -executeMethod LubanExportWindow.BatchExport
 
 # 然后调用 Luban 生成
@@ -1378,64 +1378,64 @@ dotnet Luban.dll -j cfg --input_data_dir ./LubanExport --output_code_dir ./Gener
 
 ## 🌟 6. 最佳实践总结
 
-### ✅ DO（推荐做法）
+### �?DO（推荐做法）
 
-1. **使用策略 A（Odin → Luban）处理复杂配置**
+1. **使用策略 A（Odin �?Luban）处理复杂配�?*
     - 技能、装备、敌人等需要深度验证的数据
 
-2. **使用策略 B（Luban → Odin 查看）处理简单数值表**
+2. **使用策略 B（Luban �?Odin 查看）处理简单数值表**
 
-    - 经验表、等级成长、商店价格
+    - 经验表、等级成长、商店价�?
 
-3. **为导出的 JSON 添加版本号**
+3. **为导出的 JSON 添加版本�?*
    ```csharp
    new { version = 1, data = configs }
    ```
 
 4. **使用 Odin 的验证器确保数据合法**
 
-    - 避免导出后 Luban 报错
+    - 避免导出�?Luban 报错
 
 5. **建立 Git Hook 自动验证**
 
-    - 提交前检查 JSON 格式正确性
+    - 提交前检�?JSON 格式正确�?
 
-### ❌ DON'T（避免做法）
+### �?DON'T（避免做法）
 
 1. **不要在运行时使用 ScriptableObject**
-    - ScriptableObject 只用于编辑，运行时用 Luban 生成的数据
+    - ScriptableObject 只用于编辑，运行时用 Luban 生成的数�?
 
-2. **不要手动编辑导出的 JSON**
+2. **不要手动编辑导出�?JSON**
 
     - 保持单向数据流，避免同步混乱
 
-3. **不要在 Luban 定义中使用 Unity 特有类型**
+3. **不要�?Luban 定义中使�?Unity 特有类型**
 
-    - 如 `Vector3`，应拆分为 `float x, y, z`
+    - �?`Vector3`，应拆分�?`float x, y, z`
 
-4. **不要过度依赖 Odin 的复杂特性**
+4. **不要过度依赖 Odin 的复杂特�?*
 
-    - 导出逻辑应该简单直接
+    - 导出逻辑应该简单直�?
 
 ---
 
 ## 📊 7. 性能对比
 
-|          方案          |          编辑体验          |          运行时性能          |          热更新支持          |          类型安全          |
+|          方案          |          编辑体验          |          运行时性能          |          热更新支�?         |          类型安全          |
 |         ------         |         ---------         |         -----------         |         -----------         |         ---------         |
-|          **纯 ScriptableObject**          |          ⭐⭐⭐⭐⭐          |          ⭐⭐⭐          |          ❌          |          ⭐⭐⭐⭐          |
-|          **纯 Luban (Excel)**          |          ⭐⭐          |          ⭐⭐⭐⭐⭐          |          ✅          |          ⭐⭐⭐⭐⭐          |
-|          **Odin + Luban 混合**          |          ⭐⭐⭐⭐⭐          |          ⭐⭐⭐⭐⭐          |          ✅          |          ⭐⭐⭐⭐⭐          |
+|          **�?ScriptableObject**          |          ⭐⭐⭐⭐�?         |          ⭐⭐�?         |          �?         |          ⭐⭐⭐⭐          |
+|          **�?Luban (Excel)**          |          ⭐⭐          |          ⭐⭐⭐⭐�?         |          �?         |          ⭐⭐⭐⭐�?         |
+|          **Odin + Luban 混合**          |          ⭐⭐⭐⭐�?         |          ⭐⭐⭐⭐�?         |          �?         |          ⭐⭐⭐⭐�?         |
 
 ---
 
-## 🔗 8. 参考资料
+## 🔗 8. 参考资�?
 
 ### 📄 官方文档
 - [Odin Inspector Documentation](https://odininspector.com/)
 - [Luban GitHub](https://github.com/focus-creative-games/luban)
 
-### 🛠️ 示例项目
+### 🛠�?示例项目
 - [OdinLuban-Integration-Demo](https://github.com/example/odin-luban) *(虚构链接)*
 
 ### 📺 推荐视频
@@ -1446,22 +1446,23 @@ dotnet Luban.dll -j cfg --input_data_dir ./LubanExport --output_code_dir ./Gener
 ## 🎯 9. 快速决策树
 
 ```
-开始配置设计
-    ↓
-是否需要复杂验证/可视化？
-    ├─ 是 → 使用 Odin 编辑 → 导出为 Luban JSON → 策略 A
-    └─ 否 → 直接用 Excel/JSON → Luban 生成 → 策略 B
-              ↓
-         是否需要在 Unity 查看？
-              ├─ 是 → 创建 Odin Viewer 包装类
-              └─ 否 → 直接使用 Luban 生成的代码
+开始配置设�?
+    �?
+是否需要复杂验�?可视化？
+    ├─ �?�?使用 Odin 编辑 �?导出�?Luban JSON �?策略 A
+    └─ �?�?直接�?Excel/JSON �?Luban 生成 �?策略 B
+              �?
+         是否需要在 Unity 查看�?
+              ├─ �?�?创建 Odin Viewer 包装�?
+              └─ �?�?直接使用 Luban 生成的代�?
 ```
 
 ---
 
 **🔖 版本信息**  
 文档版本: v1.0  
-最后更新: 2025-12-06  
+最后更�? 2025-12-06  
 适用版本: Odin 3.1.x+ / Luban 2.x+
+
 
 

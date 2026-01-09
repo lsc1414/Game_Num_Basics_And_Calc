@@ -61,9 +61,10 @@ $$C_{final} = C_{src} \times F_{src} + C_{dst} \times F_{dst}$$
 | **Multiply**       | **纯白** (White)       | 不常用              | **白色 (1,1,1) = 透明**。颜色越深，变暗效果越强。<br>✅ 制作类似"AO 阴影"的贴图，背景必须保留纯白。                                                                 |
 | **Premultiplied**  | **纯黑** (Black)       | **必须** (Required) | **关键点**: 导出时 RGB 必须乘以 Alpha。<br>例如 50% 透明度的红色，RGB 值应为 `(128, 0, 0)` 而不是 `(255, 0, 0)`。<br>✅ 解决 Alpha Blend 在线性空间下的"黑边"问题。 |
 
-!!! tip "美术小贴士: Additive 为什么好用？"
-    对于特效师来说，**Additive** 是最省事的模式。因为你不需要抠图（Alpha Channel）。只要把背景涂黑及任何你不想要的地方涂黑，它就自然透明了。这使得制作光效、辉光非常容易。
-
+> [!TIP]
+> **美术小贴士: Additive 为什么好用？**
+> 对于特效师来说，**Additive** 是最省事的模式。因为你不需要抠图（Alpha Channel）。只要把背景涂黑及任何你不想要的地方涂黑，它就自然透明了。这使得制作光效、辉光非常容易。
+>
 ### 🔮 深度解析：什么是 Premultiplied Alpha？
 
 这通常是美术和程序最容易产生误解的地方。简单来说，区别在于 **"透明度是在存贴图时乘，还是在渲染时乘？"**
@@ -120,7 +121,7 @@ Shader "Vampirefall/Particles/Standard_Additive"
             // ... 顶点和片元着色器代码 ...
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = \text{tex2D}(_MainTex, i.uv);
                 return col * _TintColor * i.color; // 顶点颜色用于粒子系统控制
             }
             ENDCG
@@ -140,8 +141,9 @@ Shader "Vampirefall/Particles/Standard_Additive"
 4.  **如果既要有实体感又要发光** $\rightarrow$ 使用 **Premultiplied** (`One`, `OneMinusSrcAlpha`)
     - _例子_: 发光的魔法水晶（边缘半透明，中心亮）、UI 上的特效流光。
 
-!!! warning "性能警示 (Performance Warning)"
-    **Additive** 和 **Alpha Blending** 都会产生 Overdraw。在移动端（Mobile），如果粒子面积过大且层叠过多，会严重消耗 GPU 填充率（Fillrate）。
+> [!WARNING]
+> **性能警示 (Performance Warning)**
+> **Additive** 和 **Alpha Blending** 都会产生 Overdraw。在移动端（Mobile），如果粒子面积过大且层叠过多，会严重消耗 GPU 填充率（Fillrate）。
 对于大面积的特效（如全屏迷雾），尽量减少粒子数量，或使用网格发射器（Mesh Emitter）代替默认的广告牌（Billboard）以减少透明像素面积。
 
 ## 🌟 3. 业界优秀案例 (Industry Best Practices)

@@ -8,16 +8,16 @@ sidebarTitle: "关卡生成算法"
 
 ### 🎯 核心定义
 
-**程序化内容生成 (Procedural Content Generation, PCG)** 是通过算法自动创建游戏内容的技术。对于Roguelike游戏，PCG是核心支柱。
+**程序化内容生成 (Procedural Content Generation, PCG)** 是通过算法自动创建游戏内容的技术。对于 Roguelike 游戏，PCG 是核心支柱。
 
-**PCG的优势**:
+**PCG 的优势**:
 
 1. **无限内容** - 避免重复感
 2. **降低成本** - 减少手工设计工作量
 
 3. **增加寿命** - 每次游玩都不同
 
-**PCG的挑战**:
+**PCG 的挑战**:
 
 1. **质量控制** - 生成结果可能不可玩
 2. **性能开销** - 生成算法可能很慢
@@ -97,7 +97,7 @@ sidebarTitle: "关卡生成算法"
 ```
 经典规则 (4-5规则):
 - 如果邻居墙 >= 5: 变成墙
-- 如果邻居墙 <= 4: 变成地板
+- 如果邻居墙 \<= 4: 变成地板
 
 迭代过程:
 初始: 随机噪声 (50% 墙)
@@ -137,7 +137,7 @@ sidebarTitle: "关卡生成算法"
 
 #### 混合生成策略
 
-Vampirefall的塔防+肉鸽特性需要**手工设计 + 程序生成**混合：
+Vampirefall 的塔防+肉鸽特性需要**手工设计 + 程序生成**混合：
 
 ```
 ┌─────────────────────────────────────┐
@@ -167,13 +167,13 @@ public class MapTemplate : ScriptableObject
     [Header("模板信息")]
     public string templateName = "森林地图";
     public Vector2Int size = new Vector2Int(50, 50);
-    
+
     [Header("路径定义")]
     public PathNode[] pathNodes;  // 敌人行走路径
-    
+
     [Header("塔位定义")]
     public TowerSlot[] towerSlots;  // 可建塔位置
-    
+
     [Header("生成规则")]
     public GenerationRule[] rules;
 }
@@ -216,40 +216,40 @@ public class ProceduralMapGenerator : MonoBehaviour
 {
     public MapTemplate template;
     private int seed;
-    
+
     public GeneratedMap Generate(int seed)
     {
         this.seed = seed;
         Random.InitState(seed);
-        
+
         var map = new GeneratedMap
         {
             size = template.size,
             tiles = new TileType[template.size.x, template.size.y]
         };
-        
+
         // 1. 初始化基础地形
         InitializeBaseTerrain(map);
-        
+
         // 2. 放置路径
         PlacePaths(map, template.pathNodes);
-        
+
         // 3. 放置塔位
         PlaceTowerSlots(map, template.towerSlots);
-        
+
         // 4. 应用生成规则
         ApplyGenerationRules(map, template.rules);
-        
+
         // 5. 验证可玩性
         if (!ValidateMap(map))
         {
             Debug.LogWarning($"[PCG] 地图生成失败(种子:{seed})，重新生成");
             return Generate(seed + 1);  // 换一个种子
         }
-        
+
         return map;
     }
-    
+
     private void InitializeBaseTerrain(GeneratedMap map)
     {
         for (int x = 0; x < map.size.x; x++)
@@ -260,7 +260,7 @@ public class ProceduralMapGenerator : MonoBehaviour
             }
         }
     }
-    
+
     private void PlacePaths(GeneratedMap map, PathNode[] nodes)
     {
         foreach (var node in nodes)
@@ -272,18 +272,18 @@ public class ProceduralMapGenerator : MonoBehaviour
             }
         }
     }
-    
+
     private void DrawPath(GeneratedMap map, Vector2Int from, Vector2Int to)
     {
         // A* 或 Bresenham 算法绘制路径
         var points = CalculatePathPoints(from, to);
-        
+
         foreach (var point in points)
         {
             if (IsInBounds(map, point))
             {
                 map.tiles[point.x, point.y] = TileType.Path;
-                
+
                 // 加一点随机宽度
                 if (Random.value < 0.3f)
                 {
@@ -297,30 +297,30 @@ public class ProceduralMapGenerator : MonoBehaviour
             }
         }
     }
-    
+
     private bool ValidateMap(GeneratedMap map)
     {
         // 1. 检查路径连通性
         if (!IsPathConnected(map))
             return false;
-        
+
         // 2. 检查塔位可达性
         if (!AreTowerSlotsValid(map))
             return false;
-        
+
         // 3. 检查敌人无法到达塔位
         if (!IsTowerSafety(map))
             return false;
-        
+
         return true;
     }
-    
+
     private bool IsPathConnected(GeneratedMap map)
     {
         // BFS/DFS 检查从起点到终点是否连通
         var start = FindStartPoint(map);
         var end = FindEndPoint(map);
-        
+
         return BFS(map, start, end);
     }
 }
@@ -357,34 +357,34 @@ public class PathGuarantee
     {
         // 1. A* 寻找路径
         var path = AStar.FindPath(map, start, end);
-        
+
         if (path != null)
             return true;  // 路径已存在
-        
+
         // 2. 强制打通路径
         path = ForceCreatePath(map, start, end);
-        
+
         // 3. 应用到地图
         foreach (var point in path)
         {
             map.tiles[point.x, point.y] = TileType.Path;
         }
-        
+
         return true;
     }
-    
+
     private static List<Vector2Int> ForceCreatePath(GeneratedMap map, Vector2Int start, Vector2Int end)
     {
         var path = new List<Vector2Int>();
         var current = start;
-        
+
         while (current != end)
         {
             path.Add(current);
-            
+
             // 简单策略：每次移动到更接近终点的方向
             var toEnd = end - current;
-            
+
             if (Mathf.Abs(toEnd.x) > Mathf.Abs(toEnd.y))
             {
                 current += new Vector2Int(toEnd.x > 0 ? 1 : -1, 0);
@@ -393,12 +393,12 @@ public class PathGuarantee
             {
                 current += new Vector2Int(0, toEnd.y > 0 ? 1 : -1);
             }
-            
+
             // 防止无限循环
             if (path.Count > map.size.x * map.size.y)
                 break;
         }
-        
+
         path.Add(end);
         return path;
     }
@@ -413,7 +413,7 @@ public class PathGuarantee
 
 #### 核心机制
 
-Spelunky使用**预制房间模板 + 智能拼接**生成关卡。
+Spelunky 使用**预制房间模板 + 智能拼接**生成关卡。
 
 **生成流程**:
 
@@ -468,7 +468,7 @@ Spelunky使用**预制房间模板 + 智能拼接**生成关卡。
 
 #### 核心机制
 
-Isaac使用**大量手工设计房间 + 随机组合**。
+Isaac 使用**大量手工设计房间 + 随机组合**。
 
 **房间库规模**:
 
@@ -493,19 +493,20 @@ Room SelectRoom(RoomType type, int difficulty, HashSet<int> usedRooms)
         .Where(r => r.difficulty <= difficulty)
         .Where(r => !usedRooms.Contains(r.id))
         .ToList();
-    
+
     // 2. 权重随机选择
     var weights = candidates.Select(r => r.weight).ToArray();
     var selected = WeightedRandom.Select(candidates, weights);
-    
+
     // 3. 标记已使用（避免重复）
     usedRooms.Add(selected.id);
-    
+
     return selected;
 }
 ```
 
 **设计哲学**:
+
 > "程序生成不是为了减少工作量，而是为了增加重玩价值。"
 
 **Vampirefall 借鉴**:
@@ -520,7 +521,7 @@ Room SelectRoom(RoomType type, int difficulty, HashSet<int> usedRooms)
 
 #### 核心机制
 
-Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
+Gungeon 结合了**BSP 分割 + 手工房间 + 特殊规则**。
 
 **生成算法**:
 
@@ -556,7 +557,7 @@ Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
 
 **Vampirefall 借鉴**:
 
-- BSP用于大区域划分
+- BSP 用于大区域划分
 - 关键房间（Boss/商店）位置规则
 - 秘密区域设计
 
@@ -567,56 +568,61 @@ Gungeon结合了**BSP分割 + 手工房间 + 特殊规则**。
 ### 📄 理论
 
 1. **Procedural Content Generation in Games**  
-    作者: Noor Shaker, Julian Togelius, Mark J. Nelson  
-    [书籍链接](http://pcgbook.com/)
+   作者: Noor Shaker, Julian Togelius, Mark J. Nelson  
+   [书籍链接](http://pcgbook.com/)
 
 2. **Wave Function Collapse Algorithm**  
-    *Maxim Gumin*  
-    [GitHub](https://github.com/mxgmn/WaveFunctionCollapse)
+   _Maxim Gumin_  
+   [GitHub](https://github.com/mxgmn/WaveFunctionCollapse)
 
 ### 📺 GDC
 
 1. **[GDC 2017] Spelunky Level Generation**  
-    演讲者: Derek Yu  
-    [YouTube](https://www.youtube.com/watch?v=Uqk5Zf0tw3o)
+   演讲者: Derek Yu  
+   [YouTube](https://www.youtube.com/watch?v=Uqk5Zf0tw3o)
 
 2. **[GDC 2015] Diablo's Dungeon Generation**  
-    演讲者: Mike Barlow (Blizzard)  
-    [GDC Vault](https://www.gdcvault.com/play/diablo_dungeon)
+   演讲者: Mike Barlow (Blizzard)  
+   [GDC Vault](https://www.gdcvault.com/play/diablo_dungeon)
 
 ### 🌐 博客
 
 1. **The Binding of Isaac Room Design**  
-    [Edmund McMillen Blog](https://edmundm.com/post/isaac-room-design)
+   [Edmund McMillen Blog](https://edmundm.com/post/isaac-room-design)
 
 2. **Procedural Map Generation Techniques**  
-    [RogueBasin Wiki](http://www.roguebasin.com/index.php?title=Articles)
+   [RogueBasin Wiki](http://www.roguebasin.com/index.php?title=Articles)
 
 ---
 
-## 🎯 附录：Vampirefall PCG实施检查清单
+## 🎯 附录：Vampirefall PCG 实施检查清单
 
-### ✅ 阶段1: 模板系统（必须）
-- [ ] 创建10+塔防地图模板
+### ✅ 阶段 1: 模板系统（必须）
+
+- [ ] 创建 10+塔防地图模板
 - [ ] 定义路径节点和塔位
 - [ ] 建立模板库管理器
 
-### ✅ 阶段2: 生成算法（必须）
-- [ ] 实现BSP或房间拼接
+### ✅ 阶段 2: 生成算法（必须）
+
+- [ ] 实现 BSP 或房间拼接
 - [ ] 路径保证算法
 - [ ] 连通性验证
 
-### ✅ 阶段3: 随机性（推荐）
+### ✅ 阶段 3: 随机性（推荐）
+
 - [ ] 障碍物随机放置
 - [ ] 资源点分布
 - [ ] 敌人刷新点变化
 
-### ✅ 阶段4: 验证系统（必须）
+### ✅ 阶段 4: 验证系统（必须）
+
 - [ ] 可玩性检测
 - [ ] 难度评估
-- [ ] 种子记录（用于bug复现）
+- [ ] 种子记录（用于 bug 复现）
 
-### ✅ 阶段5: 调试工具（推荐）
+### ✅ 阶段 5: 调试工具（推荐）
+
 - [ ] 可视化生成过程
 - [ ] 种子输入功能
 - [ ] 性能监控

@@ -66,7 +66,7 @@ sidebarTitle: "🔊 游戏音效设计与实现实战指南"
 ```csharp
 public void PlaySoundWithVariation(AudioSource source, AudioClip clip)
 {
-    if (source == null || clip == null) return;
+    \text{if} (source == null || clip == null) return;
 
     // 1. 随机音高：防止听觉疲劳
     source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
@@ -99,7 +99,7 @@ public void PlaySoundWithVariation(AudioSource source, AudioClip clip)
 ```csharp
 public void PlayClip(AudioClip clip)
 {
-    if (Time.time - lastPlayTimes[clip.name] < 0.1f) 
+    \text{if} (Time.time - lastPlayTimes[clip.name] < 0.1f) 
     {
         return; // 0.1秒内同一音效不重复播放
     }

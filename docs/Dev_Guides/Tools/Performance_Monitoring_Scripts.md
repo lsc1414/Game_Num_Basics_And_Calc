@@ -13,9 +13,9 @@ sidebarTitle: "⏱️ 性能监控脚本集：Unity 实战性能守门员"
 Unity Profiler 开销很大，且只能连接开发机。
 我们需要在**QA 测试包**或**每日构建包**中，直观地看到：
 
-*   是不是掉帧了？
-*   是不是内存泄漏了？
-*   是不是同屏怪太多了？
+- 是不是掉帧了？
+- 是不是内存泄漏了？
+- 是不是同屏怪太多了？
 
 ---
 
@@ -24,10 +24,11 @@ Unity Profiler 开销很大，且只能连接开发机。
 将以下脚本放入 `Assets/Scripts/Debug/Performance`。
 
 ### 2.1 `FPSMonitor.cs` (帧时间直方图)
+
 不只是显示 "60 FPS"。因为 "平均 60 FPS" 可能意味着 59 帧是 1ms，第 60 帧是 500ms（卡顿）。
 
-*   **功能**：显示 1% Low FPS 和帧生成时间 (ms)。
-*   **颜色编码**：<16ms (绿), 16-33ms (黄), >33ms (红)。
+- **功能**：显示 1% Low FPS 和帧生成时间 (ms)。
+- **颜色编码**：\<16ms (绿), 16-33ms (黄), >33ms (红)。
 
 ```csharp
 void Update() {
@@ -38,17 +39,19 @@ void Update() {
 ```
 
 ### 2.2 `ObjectCountTracker.cs` (实体预算监控)
+
 防止策划或生成器配置错误导致爆内存。
 
-*   **功能**：每秒统计场景中特定 Tag (Enemy, Bullet, VFX) 的数量。
-*   **报警**：
-    *   `Enemy Count > 500`: ⚠️ Warning
-    *   `Bullet Count > 2000`: ❌ Critical
-*   **UI**：在屏幕左上角显示红字警告。
+- **功能**：每秒统计场景中特定 Tag (Enemy, Bullet, VFX) 的数量。
+- **报警**：
+  - `Enemy Count > 500`: ⚠️ Warning
+  - `Bullet Count > 2000`: ❌ Critical
+- **UI**：在屏幕左上角显示红字警告。
 
 ### 2.3 `MemoryWatcher.cs` (GC 监控)
-*   **功能**：监控 `GC.GetTotalMemory` 的变化率。
-*   **检测泄漏**：如果在非战斗场景（如主菜单），内存依然每秒持续上涨，说明有 UI 或静态引用泄漏。
+
+- **功能**：监控 `GC.GetTotalMemory` 的变化率。
+- **检测泄漏**：如果在非战斗场景（如主菜单），内存依然每秒持续上涨，说明有 UI 或静态引用泄漏。
 
 ---
 
@@ -62,17 +65,17 @@ void Update() {
 #endif
 ```
 
-*   **快捷键**：在 PC 包中按 `F3` 开启/关闭。
-*   **手势**：在手机包中三指点击屏幕开启。
+- **快捷键**：在 PC 包中按 `F3` 开启/关闭。
+- **手势**：在手机包中三指点击屏幕开启。
 
 ---
 
 ## 4. 验收标准
 
-*   **战斗场景**：
-    *   Enemy < 500
-    *   DrawCalls < 300 (Mobile) / 1500 (PC)
-    *   FrameTime < 16.6ms (保持 60fps)
-    *   GC Alloc < 50KB / frame (理想是 0)
+- **战斗场景**：
+  - Enemy < 500
+  - DrawCalls < 300 (Mobile) / 1500 (PC)
+  - FrameTime < 16.6ms (保持 60fps)
+  - GC Alloc < 50KB / frame (理想是 0)
 
 任何超出上述标准的情况，测试人员应截图并将 `FPSMonitor` 的数据附在 Bug 单中。

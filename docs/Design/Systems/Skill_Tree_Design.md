@@ -64,10 +64,10 @@ sidebarTitle: "技能树设计深度研究"
 
 #### 2. 主动技能 vs 被动加成
 
-|          类型          |          玩家体验          |          设计难度          |          推荐比例          |
-|         ------         |         ---------         |          ---------         |         ---------         |
-|          **主动技能**          |          爽感强，操作复杂度 ↑          |          高（需动画/特效）          |          20-30%          |
-|          **被动加成**          |          无感知，但持续有效          |         低（纯数值）          |          70-80%          |
+| 类型         | 玩家体验             | 设计难度          | 推荐比例 |
+| ------------ | -------------------- | ----------------- | -------- |
+| **主动技能** | 爽感强，操作复杂度 ↑ | 高（需动画/特效） | 20-30%   |
+| **被动加成** | 无感知，但持续有效   | 低（纯数值）      | 70-80%   |
 
 **设计公式**:
 
@@ -82,6 +82,7 @@ sidebarTitle: "技能树设计深度研究"
 #### 3. 递进式 vs 横向式
 
 **递进式（纵向成长）**:
+
 ```
 攻击力 +10% → 攻击力 +20% → 攻击力 +30%
 
@@ -90,6 +91,7 @@ sidebarTitle: "技能树设计深度研究"
 ```
 
 **横向式（扩展玩法）**:
+
 ```
 攻击力 +10% → 范围伤害 → 生命偷取
 
@@ -123,7 +125,7 @@ Build Entropy = -Σ (P(Build_i) × log P(Build_i))
 其中 P(Build_i) = 玩家选择该 Build 的概率
 
 理想值:
-- 低熵 (<2.0): Build 单一，平衡问题
+- 低熵 (\<2.0): Build 单一，平衡问题
 - 中熵 (2.0-3.5): 健康多样性
 - 高熵 (>3.5): 选择过载，无最优解
 
@@ -137,7 +139,7 @@ Build Entropy = -Σ (P(Build_i) × log P(Build_i))
 90%+ 玩家都会点的技能
 
 识别方法:
-if (选择率 > 90% AND 无替代方案):
+\text{if} (选择率 > 90% AND 无替代方案):
     标记为必点节点
     → 考虑改为基础能力或降低吸引力
 
@@ -150,14 +152,14 @@ if (选择率 > 90% AND 无替代方案):
 
 #### 1. 免费 vs 付费重置
 
-|          模式          |          优点          |          缺点          |          适用场景          |
-|         ------         |         ------         |         ------         |         ----------         |
-|          **完全免费**          |          鼓励实验，友好          |          失去决策重量感          |          肉鸽类          |
-|          **货币重置**          |          保留选择意义          |          可能导致囤积不敢点          |          RPG          |
-|          **首次免费**          |          平衡两者          |          实现复杂度中等          |          推荐          |
-|          **禁止重置**          |          选择极重要          |          新手可能废号          |          硬核游戏          |
+| 模式         | 优点           | 缺点               | 适用场景 |
+| ------------ | -------------- | ------------------ | -------- |
+| **完全免费** | 鼓励实验，友好 | 失去决策重量感     | 肉鸽类   |
+| **货币重置** | 保留选择意义   | 可能导致囤积不敢点 | RPG      |
+| **首次免费** | 平衡两者       | 实现复杂度中等     | 推荐     |
+| **禁止重置** | 选择极重要     | 新手可能废号       | 硬核游戏 |
 
-**Vampirefall 推荐**: 
+**Vampirefall 推荐**:
 
 - 局外成长：货币重置（低成本）
 - 局内成长：每关卡免费重置
@@ -204,7 +206,7 @@ Vampirefall 的混合品类需要**局外成长 + 局内成长**双层设计：
 
 **区分原则**:
 
-- **局外**: 影响起始状态（增加基础属性10%）
+- **局外**: 影响起始状态（增加基础属性 10%）
 - **局内**: 影响当局玩法（获得新技能）
 
 #### 技能树分支设计
@@ -222,6 +224,7 @@ Vampirefall 的混合品类需要**局外成长 + 局内成长**双层设计：
 **分支特色**:
 
 1. **战士分支（近战 + 塔防协同）**
+
 ```
 - 近战伤害 +20%
 - 塔的攻击速度 +15%
@@ -229,6 +232,7 @@ Vampirefall 的混合品类需要**局外成长 + 局内成长**双层设计：
 ```
 
 2. **射手分支（远程 + 机动性）**
+
 ```
 - 远程伤害 +25%
 - 移动速度 +20%
@@ -236,6 +240,7 @@ Vampirefall 的混合品类需要**局外成长 + 局内成长**双层设计：
 ```
 
 3. **法师分支（元素 + AOE）**
+
 ```
 - 元素伤害 +30%
 - 技能范围 +25%
@@ -253,10 +258,10 @@ public class SkillTreeConfig : ScriptableObject
     [Header("技能树信息")]
     public string treeName = "猎人天赋树";
     public SkillTreeType treeType = SkillTreeType.Meta;  // Meta or InRun
-    
+
     [Header("技能节点")]
     public SkillNode[] nodes;
-    
+
     [Header("重置设置")]
     public bool allowReset = true;
     public int baseResetCost = 100;
@@ -269,25 +274,25 @@ public class SkillNode
     [Header("基础信息")]
     public string nodeID = "SKILL_001";
     public string displayName = "剑术精通";
-    
+
     [TextArea(2, 5)]
     public string description = "近战伤害 +20%";
-    
+
     [Header("类型")]
     public SkillNodeType nodeType = SkillNodeType.Passive;
     public SkillCategory category = SkillCategory.Warrior;
-    
+
     [Header("连接")]
     public string[] prerequisiteIDs;  // 前置技能 ID
     public Vector2 position;  // UI 位置
-    
+
     [Header("消耗")]
     public int pointCost = 1;
     public int levelRequirement = 1;
-    
+
     [Header("效果")]
     public SkillEffect[] effects;
-    
+
     [Header("视觉")]
     public Sprite icon;
     public Sprite connectorSprite;
@@ -314,7 +319,7 @@ public class SkillEffect
     public EffectType type;
     public float value;
     public string targetStat;  // 例如: "AttackDamage", "MoveSpeed"
-    
+
     public void Apply(PlayerStats stats)
     {
         switch (type)
@@ -346,19 +351,19 @@ public enum EffectType
 public class SkillTreeManager : MonoBehaviour
 {
     public static SkillTreeManager Instance { get; private set; }
-    
+
     [Header("配置")]
     public SkillTreeConfig metaTree;   // 局外成长树
     public SkillTreeConfig inRunTree;  // 局内成长树（可选）
-    
+
     private Dictionary<string, SkillNode> allNodes;
     private HashSet<string> unlockedNodes;
     private int availablePoints = 0;
     private int resetCount = 0;
-    
+
     void Awake()
     {
-        if (Instance == null)
+        \text{if} (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -369,158 +374,158 @@ public class SkillTreeManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     private void InitializeSkillTree()
     {
         allNodes = new Dictionary<string, SkillNode>();
-        
+
         foreach (var node in metaTree.nodes)
         {
             allNodes[node.nodeID] = node;
         }
-        
+
         // 加载已解锁节点
         unlockedNodes = LoadUnlockedNodesFromSave();
         availablePoints = CalculateAvailablePoints();
     }
-    
+
     public bool CanUnlockNode(string nodeID)
     {
-        if (!allNodes.ContainsKey(nodeID))
+        \text{if} (!allNodes.ContainsKey(nodeID))
             return false;
-        
+
         var node = allNodes[nodeID];
-        
+
         // 1. 检查是否已解锁
-        if (unlockedNodes.Contains(nodeID))
+        \text{if} (unlockedNodes.Contains(nodeID))
             return false;
-        
+
         // 2. 检查技能点
-        if (availablePoints < node.pointCost)
+        \text{if} (availablePoints < node.pointCost)
             return false;
-        
+
         // 3. 检查等级需求
-        if (PlayerLevel.Current < node.levelRequirement)
+        \text{if} (PlayerLevel.Current < node.levelRequirement)
             return false;
-        
+
         // 4. 检查前置技能
         foreach (var prereqID in node.prerequisiteIDs)
         {
-            if (!unlockedNodes.Contains(prereqID))
+            \text{if} (!unlockedNodes.Contains(prereqID))
                 return false;
         }
-        
+
         return true;
     }
-    
+
     public void UnlockNode(string nodeID)
     {
-        if (!CanUnlockNode(nodeID))
+        \text{if} (!CanUnlockNode(nodeID))
         {
             Debug.LogWarning($"[SkillTree] 无法解锁: {nodeID}");
             return;
         }
-        
+
         var node = allNodes[nodeID];
-        
+
         // 1. 扣除点数
         availablePoints -= node.pointCost;
-        
+
         // 2. 标记解锁
         unlockedNodes.Add(nodeID);
-        
+
         // 3. 应用效果
         ApplyNodeEffects(node);
-        
+
         // 4. 保存
         SaveUnlockedNodesToSave();
-        
+
         // 5. 触发事件
         OnNodeUnlocked?.Invoke(node);
-        
+
         Debug.Log($"[SkillTree] 解锁: {node.displayName}");
     }
-    
+
     private void ApplyNodeEffects(SkillNode node)
     {
         var playerStats = PlayerStats.Instance;
-        
+
         foreach (var effect in node.effects)
         {
             effect.Apply(playerStats);
         }
-        
+
         // 特殊处理核心节点
-        if (node.nodeType == SkillNodeType.Keystone)
+        \text{if} (node.nodeType == SkillNodeType.Keystone)
         {
             ApplyKeystoneEffect(node);
         }
     }
-    
+
     public int CalculateResetCost()
     {
-        if (resetCount == 0)
+        \text{if} (resetCount == 0)
             return 0;  // 首次免费
-        
+
         return Mathf.RoundToInt(
-            metaTree.baseResetCost * 
+            metaTree.baseResetCost *
             (1 + metaTree.resetCostMultiplier * resetCount)
         );
     }
-    
+
     public void ResetSkillTree()
     {
         int cost = CalculateResetCost();
-        
+
         // 扣除货币
-        if (!CurrencySystem.TrySpend(CurrencyType.Gold, cost))
+        \text{if} (!CurrencySystem.TrySpend(CurrencyType.Gold, cost))
         {
             Debug.LogWarning("[SkillTree] 金币不足，无法重置");
             return;
         }
-        
+
         // 移除所有效果
         foreach (var nodeID in unlockedNodes)
         {
             RemoveNodeEffects(allNodes[nodeID]);
         }
-        
+
         // 清空解锁记录
         int totalPoints = unlockedNodes.Sum(id => allNodes[id].pointCost);
         unlockedNodes.Clear();
-        
+
         // 返还点数
         availablePoints += totalPoints;
-        
+
         // 增加重置计数
         resetCount++;
-        
+
         // 保存
         SaveUnlockedNodesToSave();
-        
+
         // 事件
         OnSkillTreeReset?.Invoke();
-        
+
         Debug.Log($"[SkillTree] 重置技能树（花费 {cost} 金币）");
     }
-    
+
     public Dictionary<SkillCategory, int> GetCategoryDistribution()
     {
         var distribution = new Dictionary<SkillCategory, int>();
-        
+
         foreach (var nodeID in unlockedNodes)
         {
             var category = allNodes[nodeID].category;
-            
-            if (!distribution.ContainsKey(category))
+
+            \text{if} (!distribution.ContainsKey(category))
                 distribution[category] = 0;
-            
+
             distribution[category]++;
         }
-        
+
         return distribution;
     }
-    
+
     // 事件
     public System.Action<SkillNode> OnNodeUnlocked;
     public System.Action OnSkillTreeReset;
@@ -594,6 +599,7 @@ POE 的天赋树是**网格树的极致**，拥有 1300+ 个节点。
 ```
 
 **设计哲学**:
+
 > "给玩家无限可能，让他们自己创造 Build。"
 
 **优点**:
@@ -656,6 +662,7 @@ Borderlands 的技能树是**分支树的典范**，简洁但有深度。
 **设计巧思**:
 
 1. **层级依赖**
+
 ```
 解锁第 N 层需要:
 - 已点第 N-1 层至少 1 个技能
@@ -663,6 +670,7 @@ Borderlands 的技能树是**分支树的典范**，简洁但有深度。
 ```
 
 2. **点数上限**
+
 ```
 最大技能点: ~70 点
 单棵树消耗: ~35 点
@@ -673,6 +681,7 @@ Borderlands 的技能树是**分支树的典范**，简洁但有深度。
 ```
 
 3. **终极技能吸引力**
+
 ```
 每棵树底部的终极技能都很强
 → 吸引玩家深入投资某条路径
@@ -726,6 +735,7 @@ Hades 的"镜子"是**肉鸽类技能树**的优秀范例。
 ```
 
 **设计哲学**:
+
 > "让玩家轻松尝试，频繁切换，找到最适合自己的玩法。"
 
 **优点**:
@@ -776,17 +786,20 @@ Grim Dawn 除了职业技能树，还有独特的**星座系统**。
 **设计巧思**:
 
 1. **收集感**
+
 ```
 玩家会想"集齐所有星座"
 → 长期目标
 ```
 
 2. **组合爆炸**
+
 ```
 职业技能树 × 星座系统 = 海量组合
 ```
 
 3. **分离资源**
+
 ```
 技能点 → 职业技能
 属性点 → 星座
@@ -806,82 +819,88 @@ Grim Dawn 除了职业技能树，还有独特的**星座系统**。
 ### 📄 理论与设计
 
 1. **Skill Trees and Player Choice**  
-    *Damion Schubert (BioWare)*  
-    [GDC 论文](https://www.gdcvault.com/skill_trees_player_choice)
+   _Damion Schubert (BioWare)_  
+   [GDC 论文](https://www.gdcvault.com/skill_trees_player_choice)
 
 2. **The Math of Skill Trees**  
-    *Game Balance Concepts*  
-    [在线课程](https://gamebalanceconcepts.wordpress.com/)
+   _Game Balance Concepts_  
+   [在线课程](https://gamebalanceconcepts.wordpress.com/)
 
 3. **Build Diversity in RPGs**  
-    *Extra Credits*  
-    [YouTube 视频](https://www.youtube.com/watch?v=build_diversity)
+   _Extra Credits_  
+   [YouTube 视频](https://www.youtube.com/watch?v=build_diversity)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2013] Path of Exile: Designing the Passive Tree**  
-    演讲者: Chris Wilson (Grinding Gear Games)  
-    [GDC Vault](https://www.gdcvault.com/play/poe_passive_tree)
+   演讲者: Chris Wilson (Grinding Gear Games)  
+   [GDC Vault](https://www.gdcvault.com/play/poe_passive_tree)
 
 2. **[GDC 2020] Hades: Balancing Roguelike Progression**  
-    演讲者: Greg Kasavin (Supergiant Games)  
-    [YouTube 链接](https://www.youtube.com/watch?v=hades_progression)
+   演讲者: Greg Kasavin (Supergiant Games)  
+   [YouTube 链接](https://www.youtube.com/watch?v=hades_progression)
 
 ### 🌐 技术博客
 
 1. **Skill Tree Design Patterns - Gamasutra**  
-    [文章链接](https://www.gamasutra.com/view/feature/skill_tree_patterns.php)
+   [文章链接](https://www.gamasutra.com/view/feature/skill_tree_patterns.php)
 
 2. **Build Entropy Analysis**  
-    [Reddit 深度讨论](https://www.reddit.com/r/gamedev/skill_tree_entropy/)
+   [Reddit 深度讨论](https://www.reddit.com/r/gamedev/skill_tree_entropy/)
 
 3. **Balancing Skill Trees**  
-    [Game Developer 文章](https://www.gamedeveloper.com/design/balancing-skill-trees)
+   [Game Developer 文章](https://www.gamedeveloper.com/design/balancing-skill-trees)
 
 ### 📚 推荐书籍
 
 1. **《RPG 设计指南》** (Tabletop RPG Design)  
-    作者: Jennifer Scheurle  
-    第 8 章: "角色成长系统"
+   作者: Jennifer Scheurle  
+   第 8 章: "角色成长系统"
 
 2. **《游戏平衡艺术》** (Game Balance)  
-    作者: Ian Schreiber, Brenda Romero  
-    第 12 章: "技能树平衡"
+   作者: Ian Schreiber, Brenda Romero  
+   第 12 章: "技能树平衡"
 
 ---
 
 ## 🎯 附录：Vampirefall 技能树实施检查清单
 
 ### ✅ 阶段 1: 基础框架（必须）
+
 - [ ] 设计技能树结构（3 分支 × 6 层）
 - [ ] 实现 SkillTreeManager
 - [ ] 创建 SkillNode 配置格式
 - [ ] 设计 UI 布局
 
 ### ✅ 阶段 2: 技能内容（必须）
+
 - [ ] 设计 18-30 个技能节点
 - [ ] 包含 3-5 个核心节点（改变玩法）
 - [ ] 平衡被动/主动比例（70/30）
 - [ ] 撰写技能描述
 
 ### ✅ 阶段 3: 平衡调优（推荐）
+
 - [ ] 计算理论 Build 数量
 - [ ] 测试常见 Build 路径
-- [ ] 检查必点节点（应 <20%）
+- [ ] 检查必点节点（应 \<20%）
 - [ ] 调整数值平衡
 
 ### ✅ 阶段 4: 重置系统（推荐）
+
 - [ ] 实现重置功能
 - [ ] 设计重置成本曲线
 - [ ] 添加"首次免费"机制
 - [ ] UI 提示重置成本
 
 ### ✅ 阶段 5: 双层成长（可选）
+
 - [ ] 区分局外/局内技能树
 - [ ] 实现 In-Run 临时技能
 - [ ] 设计双层交互（局外影响局内）
 
 ### ✅ 阶段 6: 数据分析（可选）
+
 - [ ] 追踪玩家 Build 分布
 - [ ] 分析技能选择率
 - [ ] 识别冷门/热门节点

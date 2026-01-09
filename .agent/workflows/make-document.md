@@ -58,8 +58,8 @@ description: 生成游戏机制深度研究文档（理论/实践/案例）
     | `$$A=B$$`<br>`$$C=D$$`        | `$$A=B$$`<br><br>`$$C=D$$`    | 连续公式块之间**必须有空行**           |
     | `  $$F=ma$$`                  | `  $$F=ma$$` (列表内)         | 列表内的公式块**必须保持缩进**         |
     | `$ expr $`                    | `$expr$`                      | 内联公式**紧贴** `$` 符号，无空格      |
-    | `UV\_{new}`                   | `UV_{new}`                    | 下标**不需要**转义                     |
-    | `A*{up}`                      | `A_{up}`                      | 下标用 `_` 不是 `*`                    |
+    | `UV_{new}`                   | `UV_{new}`                    | 下标**不需要**转义                     |
+    | `A_{up}`                      | `A_{up}`                      | 下标用 `_` 不是 `*`                    |
 
     ### 4.2 表格规则
 
@@ -75,7 +75,7 @@ description: 生成游戏机制深度研究文档（理论/实践/案例）
 
     ```latex
     ✅ $$F = \text{lerp}(A, B, t)$$
-    ❌ $$F = lerp(A, B, t)$$
+    ❌ $$F = \text{lerp}(A, B, t)$$
     ```
 
     常见需要包装的函数：`saturate`, `lerp`, `step`, `smoothstep`, `frac`, `floor`, `ceil`, `tex2D`, `dot`, `cross`, `normalize`, `clamp`, `abs`, `pow`, `atan2`
@@ -94,7 +94,8 @@ description: 生成游戏机制深度研究文档（理论/实践/案例）
     **语法示例**:
 
     ```markdown
-    !!! note "标题 (可选)"
+> [!NOTE]
+> **标题 (可选)**
     这是内容，注意必须**缩进 4 个空格**。
 
         可以包含列表或其他 Markdown 元素。

@@ -12,7 +12,7 @@ sidebarTitle: "特效与打击感深度研究"
 
 **核心要素**:
 
-1. **输入响应** - 按键后多快看到反应（<100ms 为佳）
+1. **输入响应** - 按键后多快看到反应（\<100ms 为佳）
 2. **视觉反馈** - 特效、震动、顿帧
 
 3. **听觉反馈** - 音效与画面同步
@@ -60,7 +60,7 @@ sidebarTitle: "特效与打击感深度研究"
 
 ```
 振幅
-  │     
+  │
   │ ╱╲    指数衰减（推荐）
   │╱  ╲___
   │      ╲___
@@ -68,7 +68,7 @@ sidebarTitle: "特效与打击感深度研究"
        0.1s  0.3s
 
 振幅
-  │     
+  │
   │ ╱╲╱╲  弹性衰减（夸张）
   │╱╲  ╲╱╲
   │      ╲╱_
@@ -135,22 +135,21 @@ graph LR
     A[生成 Spawn] --> B[激活 Active]
     B --> C[衰减 Decay]
     C --> D[消亡 Death]
-    
+
     B --> B1[移动]
     B --> B2[变色]
     B --> B3[缩放]
 ```
 
-
 **粒子类型与用途**:
 
-|          粒子类型          |          用途          |          数量          |          生命周期          |
-|         ---------         |         ------         |         ------         |         ----------         |
-|          **火花**          |          刀剑碰撞          |          5-10          |          0.1-0.2s          |
-|          **碎片**          |          破坏效果          |          10-20          |          0.3-0.5s          |
-|          **烟雾**          |          爆炸残留          |          3-5          |          0.5-1.0s          |
-|          **光芒**          |          能量爆发          |          1-3          |          0.2-0.4s          |
-|          **数字**          |          伤害显示          |          1          |          1.0s          |
+| 粒子类型 | 用途     | 数量  | 生命周期 |
+| -------- | -------- | ----- | -------- |
+| **火花** | 刀剑碰撞 | 5-10  | 0.1-0.2s |
+| **碎片** | 破坏效果 | 10-20 | 0.3-0.5s |
+| **烟雾** | 爆炸残留 | 3-5   | 0.5-1.0s |
+| **光芒** | 能量爆发 | 1-3   | 0.2-0.4s |
+| **数字** | 伤害显示 | 1     | 1.0s     |
 
 **移动端性能约束**:
 
@@ -250,25 +249,25 @@ public class HitFeedbackConfig : ScriptableObject
     public GameObject hitEffectPrefab;
     public Vector3 effectScale = Vector3.one;
     public float effectDuration = 0.5f;
-    
+
     [Header("屏幕震动")]
     public bool enableScreenShake = true;
     public float shakeIntensity = 5f;     // 振幅（像素）
     public float shakeFrequency = 15f;    // 频率（Hz）
     public float shakeDuration = 0.15f;   // 持续时间
     public AnimationCurve shakeDecay;     // 衰减曲线
-    
+
     [Header("顿帧")]
     public bool enableHitstop = true;
     public int hitstopFrames = 2;         // 顿帧帧数
     public bool freezeAttacker = true;    // 是否冻结攻击者
     public bool freezeVictim = true;      // 是否冻结被击者
-    
+
     [Header("音效")]
     public AudioClip hitSound;
     public float pitchVariation = 0.1f;   // 音调随机 ±10%
     public float volumeScale = 1.0f;
-    
+
     [Header("震动反馈（移动端）")]
     public bool enableHapticFeedback = true;
     public HapticFeedbackType hapticType = HapticFeedbackType.Medium;
@@ -288,19 +287,19 @@ public enum HapticFeedbackType
 public class GameFeelManager : MonoBehaviour
 {
     public static GameFeelManager Instance { get; private set; }
-    
+
     [Header("屏幕震动")]
     private Camera mainCamera;
     private Vector3 originalCameraPos;
     private Coroutine shakeCoroutine;
-    
+
     [Header("时间控制")]
     private float defaultTimeScale = 1.0f;
     private Coroutine hitstopCoroutine;
-    
+
     void Awake()
     {
-        if (Instance == null)
+        \text{if} (Instance == null)
         {
             Instance = this;
             mainCamera = Camera.main;
@@ -311,69 +310,69 @@ public class GameFeelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     public void TriggerHitFeedback(HitFeedbackConfig config, Vector3 hitPosition)
     {
         // 1. 特效
-        if (config.hitEffectPrefab != null)
+        \text{if} (config.hitEffectPrefab != null)
         {
             SpawnHitEffect(config, hitPosition);
         }
-        
+
         // 2. 屏幕震动
-        if (config.enableScreenShake)
+        \text{if} (config.enableScreenShake)
         {
-            ScreenShake(config.shakeIntensity, config.shakeFrequency, 
+            ScreenShake(config.shakeIntensity, config.shakeFrequency,
                         config.shakeDuration, config.shakeDecay);
         }
-        
+
         // 3. 顿帧
-        if (config.enableHitstop)
+        \text{if} (config.enableHitstop)
         {
             Hitstop(config.hitstopFrames);
         }
-        
+
         // 4. 音效
-        if (config.hitSound != null)
+        \text{if} (config.hitSound != null)
         {
             PlayHitSound(config);
         }
-        
+
         // 5. 震动反馈
-        if (config.enableHapticFeedback && Application.isMobilePlatform)
+        \text{if} (config.enableHapticFeedback && Application.isMobilePlatform)
         {
             TriggerHaptic(config.hapticType);
         }
     }
-    
+
     private void SpawnHitEffect(HitFeedbackConfig config, Vector3 position)
     {
         var effect = Instantiate(config.hitEffectPrefab, position, Quaternion.identity);
         effect.transform.localScale = config.effectScale;
         Destroy(effect, config.effectDuration);
     }
-    
+
     public void ScreenShake(float intensity, float frequency, float duration, AnimationCurve decay = null)
     {
-        if (shakeCoroutine != null)
+        \text{if} (shakeCoroutine != null)
         {
             StopCoroutine(shakeCoroutine);
         }
-        
+
         shakeCoroutine = StartCoroutine(ScreenShakeCoroutine(intensity, frequency, duration, decay));
     }
-    
+
     private IEnumerator ScreenShakeCoroutine(float intensity, float frequency, float duration, AnimationCurve decay)
     {
         float elapsed = 0f;
-        
+
         while (elapsed < duration)
         {
             float progress = elapsed / duration;
-            
+
             // 应用衰减曲线
             float currentIntensity = intensity;
-            if (decay != null)
+            \text{if} (decay != null)
             {
                 currentIntensity *= decay.Evaluate(progress);
             }
@@ -382,70 +381,70 @@ public class GameFeelManager : MonoBehaviour
                 // 默认指数衰减
                 currentIntensity *= Mathf.Exp(-5 * progress);
             }
-            
+
             // 计算震动偏移
             float offsetX = Mathf.PerlinNoise(elapsed * frequency, 0f) * 2f - 1f;
             float offsetY = Mathf.PerlinNoise(0f, elapsed * frequency) * 2f - 1f;
-            
+
             Vector3 shakeOffset = new Vector3(
                 offsetX * currentIntensity * 0.01f,
                 offsetY * currentIntensity * 0.01f,
                 0f
             );
-            
+
             mainCamera.transform.localPosition = originalCameraPos + shakeOffset;
-            
+
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        
+
         // 恢复原位
         mainCamera.transform.localPosition = originalCameraPos;
     }
-    
+
     public void Hitstop(int frames)
     {
-        if (hitstopCoroutine != null)
+        \text{if} (hitstopCoroutine != null)
         {
             StopCoroutine(hitstopCoroutine);
         }
-        
+
         hitstopCoroutine = StartCoroutine(HitstopCoroutine(frames));
     }
-    
+
     private IEnumerator HitstopCoroutine(int frames)
     {
         // 保存当前时间缩放
         float originalTimeScale = Time.timeScale;
-        
+
         // 冻结时间
         Time.timeScale = 0f;
-        
+
         // 等待指定帧数（使用 unscaled time）
         float frameDuration = 1f / 60f;  // 假设 60fps
         yield return new WaitForSecondsRealtime(frames * frameDuration);
-        
+
         // 恢复时间
         Time.timeScale = originalTimeScale;
     }
-    
+
     private void PlayHitSound(HitFeedbackConfig config)
     {
-        if (config.hitSound == null) return;
-        
+        \text{if} (config.hitSound == null) return;
+
         // 随机音调变化
         float randomPitch = 1.0f + Random.Range(-config.pitchVariation, config.pitchVariation);
-        
+
         // 播放音效
         AudioSource.PlayClipAtPoint(
             config.hitSound,
             mainCamera.transform.position,
             config.volumeScale
         );
-        
+
         // 注意：PlayClipAtPoint 不支持 pitch，这里需要用 AudioSource 对象池
     }
-    
+
     private void TriggerHaptic(HapticFeedbackType type)
     {
         #if UNITY_ANDROID || UNITY_IOS
@@ -463,17 +462,17 @@ public class GameFeelManager : MonoBehaviour
         }
         #endif
     }
-    
+
     // 慢动作效果
     public void SlowMotion(float timeScale, float duration)
     {
         StartCoroutine(SlowMotionCoroutine(timeScale, duration));
     }
-    
+
     private IEnumerator SlowMotionCoroutine(float targetTimeScale, float duration)
     {
         float originalTimeScale = Time.timeScale;
-        
+
         // 渐入慢动作
         float elapsed = 0f;
         while (elapsed < 0.1f)
@@ -482,12 +481,12 @@ public class GameFeelManager : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        
+
         Time.timeScale = targetTimeScale;
-        
+
         // 维持慢动作
         yield return new WaitForSecondsRealtime(duration);
-        
+
         // 渐出慢动作
         elapsed = 0f;
         while (elapsed < 0.1f)
@@ -496,7 +495,7 @@ public class GameFeelManager : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
-        
+
         Time.timeScale = originalTimeScale;
     }
 }
@@ -510,19 +509,19 @@ public class GameFeelManager : MonoBehaviour
 public class VFXPool : MonoBehaviour
 {
     private Dictionary<string, Queue<GameObject>> pools = new Dictionary<string, Queue<GameObject>>();
-    
+
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         string key = prefab.name;
-        
-        if (!pools.ContainsKey(key))
+
+        \text{if} (!pools.ContainsKey(key))
         {
             pools[key] = new Queue<GameObject>();
         }
-        
+
         GameObject obj;
-        
-        if (pools[key].Count > 0)
+
+        \text{if} (pools[key].Count > 0)
         {
             obj = pools[key].Dequeue();
             obj.transform.position = position;
@@ -533,27 +532,27 @@ public class VFXPool : MonoBehaviour
         {
             obj = Instantiate(prefab, position, rotation);
         }
-        
+
         return obj;
     }
-    
+
     public void Recycle(GameObject obj, float delay = 0f)
     {
         StartCoroutine(RecycleAfterDelay(obj, delay));
     }
-    
+
     private IEnumerator RecycleAfterDelay(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
-        
+
         obj.SetActive(false);
-        
+
         string key = obj.name.Replace("(Clone)", "");
-        if (!pools.ContainsKey(key))
+        \text{if} (!pools.ContainsKey(key))
         {
             pools[key] = new Queue<GameObject>();
         }
-        
+
         pools[key].Enqueue(obj);
     }
 }
@@ -566,37 +565,37 @@ public class ParticleLOD : MonoBehaviour
 {
     private ParticleSystem ps;
     private Transform player;
-    
+
     [Header("LOD 设置")]
     public float highDetailDistance = 10f;
     public float midDetailDistance = 20f;
     public float lowDetailDistance = 30f;
-    
+
     public int highDetailCount = 50;
     public int midDetailCount = 20;
     public int lowDetailCount = 5;
-    
+
     void Update()
     {
-        if (player == null)
+        \text{if} (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             return;
         }
-        
+
         float distance = Vector3.Distance(transform.position, player.position);
-        
+
         var main = ps.main;
-        
-        if (distance < highDetailDistance)
+
+        \text{if} (distance < highDetailDistance)
         {
             main.maxParticles = highDetailCount;
         }
-        else if (distance < midDetailDistance)
+        else \text{if} (distance < midDetailDistance)
         {
             main.maxParticles = midDetailCount;
         }
-        else if (distance < lowDetailDistance)
+        else \text{if} (distance < lowDetailDistance)
         {
             main.maxParticles = lowDetailCount;
         }
@@ -645,16 +644,17 @@ Hellfire（地狱火）:
 
 **分层打击感**:
 
-|          攻击等级          |          顿帧          |          震动          |          粒子数          |          音效层数          |
-|         ---------         |         ------         |         ------         |         --------         |         ----------         |
-|          E 级          |          1 帧          |          无          |          5-10          |          1 层          |
-|          D 级          |          2 帧          |          轻微          |          10-20          |          2 层          |
-|          C 级          |          3 帧          |          中等          |          20-40          |          2 层          |
-|          B 级          |          4 帧          |          强烈          |          40-60          |          3 层          |
-|          A 级          |          5 帧          |          极强          |          60-100          |          3 层          |
-|          S 级          |          6 帧          |          极限          |          100+          |          4 层          |
+| 攻击等级 | 顿帧 | 震动 | 粒子数 | 音效层数 |
+| -------- | ---- | ---- | ------ | -------- |
+| E 级     | 1 帧 | 无   | 5-10   | 1 层     |
+| D 级     | 2 帧 | 轻微 | 10-20  | 2 层     |
+| C 级     | 3 帧 | 中等 | 20-40  | 2 层     |
+| B 级     | 4 帧 | 强烈 | 40-60  | 3 层     |
+| A 级     | 5 帧 | 极强 | 60-100 | 3 层     |
+| S 级     | 6 帧 | 极限 | 100+   | 4 层     |
 
 **设计哲学**:
+
 > "每一击都要让玩家感觉像打在实体上，而非空气。"
 
 **Vampirefall 借鉴**:
@@ -724,12 +724,12 @@ VS 在极简画风下仍然有强烈打击感。
 
 **枪械打击感差异化**:
 
-|          武器类型          |          后坐力          |          震动          |          音效          |          弹壳特效          |
-|         ---------         |         --------         |         ------         |         ------         |         ----------         |
-|          手枪          |          小          |          无          |          "pew"          |          √          |
-|          霰弹枪          |          大          |          强          |          "BOOM"          |          √√√          |
-|          机枪          |          中持续          |          轻持续          |          "哒哒哒"          |          √√          |
-|          火箭筒          |          极大          |          极强          |          "KABOOM"          |          无（爆炸）          |
+| 武器类型 | 后坐力 | 震动   | 音效     | 弹壳特效   |
+| -------- | ------ | ------ | -------- | ---------- |
+| 手枪     | 小     | 无     | "pew"    | √          |
+| 霰弹枪   | 大     | 强     | "BOOM"   | √√√        |
+| 机枪     | 中持续 | 轻持续 | "哒哒哒" | √√         |
+| 火箭筒   | 极大   | 极强   | "KABOOM" | 无（爆炸） |
 
 **后坐力实现**:
 
@@ -738,20 +738,20 @@ void FireWeapon()
 {
     // 1. 播放开火动画
     animator.SetTrigger("Fire");
-    
+
     // 2. 生成子弹
     SpawnBullet();
-    
+
     // 3. 后坐力（相机反冲）
     Vector3 recoilDir = -transform.right;  // 后方
     CameraRecoil(recoilDir, recoilStrength, recoilDuration);
-    
+
     // 4. 音效
     AudioManager.PlaySFX(gunfireSound);
-    
+
     // 5. 弹壳抛出
     EjectCasing();
-    
+
     // 6. 枪口火光
     muzzleFlash.Play();
 }
@@ -765,7 +765,7 @@ IEnumerator CameraRecoilCoroutine(Vector3 dir, float strength, float duration)
 {
     Vector3 startPos = cameraTransform.localPosition;
     Vector3 recoilPos = startPos + dir * strength;
-    
+
     // 快速后退
     float elapsed = 0f;
     while (elapsed < duration * 0.3f)
@@ -774,7 +774,7 @@ IEnumerator CameraRecoilCoroutine(Vector3 dir, float strength, float duration)
         elapsed += Time.deltaTime;
         yield return null;
     }
-    
+
     // 缓慢恢复
     elapsed = 0f;
     while (elapsed < duration * 0.7f)
@@ -783,7 +783,7 @@ IEnumerator CameraRecoilCoroutine(Vector3 dir, float strength, float duration)
         elapsed += Time.deltaTime;
         yield return null;
     }
-    
+
     cameraTransform.localPosition = startPos;
 }
 ```
@@ -808,7 +808,7 @@ Hades 在保持流畅性的同时实现强烈打击感。
 攻击反馈速度:
 - 顿帧只有 1-2 帧（极短）
 - 震动只在暴击和必杀
-- 粒子轻量级（每次 <20 个）
+- 粒子轻量级（每次 \<20 个）
 
 流畅性优先:
 - 攻击动画可以随时取消（冲刺取消）
@@ -847,80 +847,86 @@ Hades 在保持流畅性的同时实现强烈打击感。
 ### 📄 理论与设计
 
 1. **Game Feel: A Game Designer's Guide to Virtual Sensation**  
-    作者: Steve Swink  
-    [书籍链接](https://www.amazon.com/Game-Feel-Designers-Sensation-Kaufmann/dp/0123743281)
+   作者: Steve Swink  
+   [书籍链接](https://www.amazon.com/Game-Feel-Designers-Sensation-Kaufmann/dp/0123743281)
 
 2. **The Art of Screenshake**  
-    *Jan Willem Nijman (Vlambeer)*  
-    [GDC 演讲](https://www.youtube.com/watch?v=AJdEqssNZ-U)
+   _Jan Willem Nijman (Vlambeer)_  
+   [GDC 演讲](https://www.youtube.com/watch?v=AJdEqssNZ-U)
 
 3. **Juicing Your Cameras With Math**  
-    *Squirrel Eiserloh*  
-    [GDC Vault](https://www.gdcvault.com/play/juicing_cameras_math)
+   _Squirrel Eiserloh_  
+   [GDC Vault](https://www.gdcvault.com/play/juicing_cameras_math)
 
 ### 📺 GDC 演讲
 
 1. **[GDC 2014] Secrets of Great Combat in 'Devil May Cry'**  
-    演讲者: Hideaki Itsuno (Capcom)  
-    [YouTube 链接](https://www.youtube.com/watch?v=dmc_combat)
+   演讲者: Hideaki Itsuno (Capcom)  
+   [YouTube 链接](https://www.youtube.com/watch?v=dmc_combat)
 
 2. **[GDC 2020] The Sound Design of 'Enter the Gungeon'**  
-    演讲者: David Wehle  
-    [GDC Vault](https://www.gdcvault.com/play/gungeon_sound)
+   演讲者: David Wehle  
+   [GDC Vault](https://www.gdcvault.com/play/gungeon_sound)
 
 ### 🌐 技术博客
 
 1. **Hitstop and Screen Shake - Game Maker's Toolkit**  
-    [YouTube 视频](https://www.youtube.com/watch?v=game_feel_gmtk)
+   [YouTube 视频](https://www.youtube.com/watch?v=game_feel_gmtk)
 
 2. **Particle Systems Optimization - Unity Blog**  
-    [文章链接](https://blog.unity.com/technology/particle-optimization)
+   [文章链接](https://blog.unity.com/technology/particle-optimization)
 
 3. **Mobile Game Feel Design**  
-    [Gamasutra 文章](https://www.gamasutra.com/view/feature/mobile_game_feel.php)
+   [Gamasutra 文章](https://www.gamasutra.com/view/feature/mobile_game_feel.php)
 
 ### 📚 推荐书籍
 
 1. **《游戏感：游戏动作设计师指南》** (Game Feel)  
-    作者: Steve Swink
+   作者: Steve Swink
 
 2. **《游戏动画设计》** (Game Animation Design)  
-    作者: Jonathan Cooper
+   作者: Jonathan Cooper
 
 ---
 
 ## 🎯 附录：Vampirefall 打击感实施检查清单
 
 ### ✅ 阶段 1: 基础反馈（必须）
+
 - [ ] 实现 GameFeel Manager
 - [ ] 配置 HitFeedback Config
 - [ ] 创建基础打击特效（火花/碎片）
 - [ ] 添加打击音效库（至少 5-10 个）
 
 ### ✅ 阶段 2: 屏幕震动（推荐）
+
 - [ ] 实现屏幕震动系统
 - [ ] 设计衰减曲线（AnimationCurve）
 - [ ] 测试不同强度参数
 - [ ] 添加震动开关选项（部分玩家会晕）
 
 ### ✅ 阶段 3: 顿帧系统（推荐）
+
 - [ ] 实现顿帧功能
 - [ ] 测试不同帧数效果（1-6 帧）
 - [ ] 实现分离顿帧（攻击者/被击者）
 - [ ] 确保不影响 UI 和背景
 
 ### ✅ 阶段 4: 移动端优化（必须）
+
 - [ ] 实现粒子对象池
 - [ ] 添加粒子 LOD 系统
-- [ ] 限制同屏粒子总数（<200）
+- [ ] 限制同屏粒子总数（\<200）
 - [ ] 测试低端设备性能
 
 ### ✅ 阶段 5: 触觉反馈（推荐）
+
 - [ ] 集成设备震动 API
 - [ ] 区分轻/中/重震动
 - [ ] 添加震动开关选项
 
 ### ✅ 阶段 6: 高级特效（可选）
+
 - [ ] 慢动作系统（大招）
 - [ ] 后处理效果（伤害闪红）
 - [ ] 数字飘字系统

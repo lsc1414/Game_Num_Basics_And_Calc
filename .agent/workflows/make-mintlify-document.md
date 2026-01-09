@@ -2,6 +2,8 @@
 description: 创建 Mintlify 风格的文档并自动配置导航
 ---
 
+// turbo-all
+
 # 📝 Workflow: Make Mintlify Document
 
 这个工作流涵盖了从创建 Markdown 文档到自动化配置 docs.json 的全过程。

@@ -34,7 +34,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
         {
             TextureImporter importer = (TextureImporter)assetImporter;
             // 自动识别 UI 文件夹
-            if (assetPath.Contains("Assets/UI"))
+            \text{if} (assetPath.Contains("Assets/UI"))
             {
                 importer.textureType = TextureImporterType.Sprite;
                 importer.mipmapEnabled = false; // UI 不需要 Mipmap
@@ -88,7 +88,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
         foreach (var monster in tables.TbMonster.DataList)
         {
             // 验证 1: 掉落 ID 是否存在于掉落表中 (外键检查)
-            if (!tables.TbLoot.ContainsKey(monster.DropId))
+            \text{if} (!tables.TbLoot.ContainsKey(monster.DropId))
             {
                 Debug.LogError($"配置错误: 怪物 {monster.Id} 的掉落ID {monster.DropId} 不存在！");
             }
@@ -96,7 +96,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
             // 验证 2: 技能 ID 列表检查
             foreach (int skillId in monster.SkillIds)
             {
-                if (!tables.TbSkill.ContainsKey(skillId))
+                \text{if} (!tables.TbSkill.ContainsKey(skillId))
                 {
                     Debug.LogError($"配置错误: 怪物 {monster.Id} 引用了无效技能 {skillId}");
                 }
@@ -130,11 +130,11 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
             foreach (Transform child in prefab.GetComponentsInChildren<Transform>(true))
             {
                 // 约定优于配置: 以 btn_ 开头的节点自动生成 Button 引用
-                if (child.name.StartsWith("btn_"))
+                \text{if} (child.name.StartsWith("btn_"))
                 {
                     sb.AppendLine($"    public Button {child.name};");
                 }
-                else if (child.name.StartsWith("txt_"))
+                else \text{if} (child.name.StartsWith("txt_"))
                 {
                     sb.AppendLine($"    public TextMeshProUGUI {child.name};");
                 }
@@ -311,7 +311,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
         void Update()
         {
             // 三指同时点击屏幕，开启调试菜单
-            if (Input.touchCount == 3)
+            \text{if} (Input.touchCount == 3)
             {
                 showMenu = !showMenu;
             }
@@ -319,18 +319,18 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
 
         void OnGUI()
         {
-            if (!showMenu) return;
+            \text{if} (!showMenu) return;
 
             GUILayout.BeginArea(new Rect(10, 10, 300, 400));
             GUILayout.Label("FPS: " + (1.0f / Time.deltaTime).ToString("F1"));
             GUILayout.Label("Memory: " + (GC.GetTotalMemory(false) / 1024 / 1024) + " MB");
 
-            if (GUILayout.Button("无敌模式"))
+            \text{if} (GUILayout.Button("无敌模式"))
             {
                 PlayerController.Instance.SetGodMode(true);
             }
 
-            if (GUILayout.Button("跳过当前关卡"))
+            \text{if} (GUILayout.Button("跳过当前关卡"))
             {
                 LevelManager.Instance.CompleteLevel();
             }
@@ -732,7 +732,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
       bool isDoubleExpEvent = ConfigManager.appConfig.GetBool("doubleExpEvent");
       float discountRate = ConfigManager.appConfig.GetFloat("shopDiscount");
 
-      if (isDoubleExpEvent)
+      \text{if} (isDoubleExpEvent)
       {
           GameManager.Instance.ExpMultiplier = 2.0f;
       }
@@ -810,7 +810,7 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
       {
           get
           {
-              if (_instance == null)
+              \text{if} (_instance == null)
                   _instance = Resources.Load<GameConfig>("GameConfig");
               return _instance;
           }

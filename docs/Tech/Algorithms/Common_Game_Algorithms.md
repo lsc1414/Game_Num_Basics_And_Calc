@@ -1,45 +1,45 @@
----
-title: "游戏常用算法深度研究"
-sidebarTitle: "🧙‍♂️ 常用算法与实践"
-description: "Vampirefall 项目中使用的核心算法理论与 Unity 工程实践指南，涵盖寻路、空间管理、随机系统及性能优化。"
+﻿---
+title: "娓告垙甯哥敤绠楁硶娣卞害鐮旂┒"
+sidebarTitle: "馃鈥嶁檪锔?甯哥敤绠楁硶涓庡疄璺?
+description: "Vampirefall 椤圭洰涓娇鐢ㄧ殑鏍稿績绠楁硶鐞嗚涓?Unity 宸ョ▼瀹炶返鎸囧崡锛屾兜鐩栧璺€佺┖闂寸鐞嗐€侀殢鏈虹郴缁熷強鎬ц兘浼樺寲銆?
 icon: "function"
 ---
 
-# 🧙‍♂️ 游戏常用算法深度研究 (Common Game Algorithms)
+# 馃鈥嶁檪锔?娓告垙甯哥敤绠楁硶娣卞害鐮旂┒ (Common Game Algorithms)
 
-本文档旨在作为 **Vampirefall** 项目的技术算法手册。我们不只罗列理论，更注重**理论与工程实践的结合**，特别是针对 Unity DOTS/Jobs System 的优化实现。
+鏈枃妗ｆ棬鍦ㄤ綔涓?**Vampirefall** 椤圭洰鐨勬妧鏈畻娉曟墜鍐屻€傛垜浠笉鍙綏鍒楃悊璁猴紝鏇存敞閲?*鐞嗚涓庡伐绋嬪疄璺电殑缁撳悎**锛岀壒鍒槸閽堝 Unity DOTS/Jobs System 鐨勪紭鍖栧疄鐜般€?
 
 ---
 
-## 🗺️ 1. 寻路与导航 (Pathfinding & Navigation)
+## 馃椇锔?1. 瀵昏矾涓庡鑸?(Pathfinding & Navigation)
 
-寻路是塔防(TD)和 Roguelike 游戏的核心。我们需要处理成千上万个单位的移动，同时保证性能。
+瀵昏矾鏄闃?TD)鍜?Roguelike 娓告垙鐨勬牳蹇冦€傛垜浠渶瑕佸鐞嗘垚鍗冧笂涓囦釜鍗曚綅鐨勭Щ鍔紝鍚屾椂淇濊瘉鎬ц兘銆?
 
-### 1.1 理论基础：A\* 与 Dijkstra
+### 1.1 鐞嗚鍩虹锛欰\* 涓?Dijkstra
 
-> [!NOTE] > **A\* (A-Star)** 是在静态地图中寻找单体最优路径的标准解法。
+> [!NOTE] > **A\* (A-Star)** 鏄湪闈欐€佸湴鍥句腑瀵绘壘鍗曚綋鏈€浼樿矾寰勭殑鏍囧噯瑙ｆ硶銆?
 
-- **公式**: $f(n) = g(n) + h(n)$
-  - $g(n)$: 从起点到当前节点的实际代价。
-  - $h(n)$: 启发函数(Heuristic)，预估从当前节点到终点的代价（通常用曼哈顿距离或欧几里得距离）。
-- **适用场景**: 玩家寻路、精英怪寻路（数量少，精度要求高）。
+- **鍏紡**: $f(n) = g(n) + h(n)$
+  - $g(n)$: 浠庤捣鐐瑰埌褰撳墠鑺傜偣鐨勫疄闄呬唬浠枫€?
+  - $h(n)$: 鍚彂鍑芥暟(Heuristic)锛岄浼颁粠褰撳墠鑺傜偣鍒扮粓鐐圭殑浠ｄ环锛堥€氬父鐢ㄦ浖鍝堥】璺濈鎴栨鍑犻噷寰楄窛绂伙級銆?
+- **閫傜敤鍦烘櫙**: 鐜╁瀵昏矾銆佺簿鑻辨€璺紙鏁伴噺灏戯紝绮惧害瑕佹眰楂橈級銆?
 
-### 1.2 实践：流场寻路 (Flow Field)
+### 1.2 瀹炶返锛氭祦鍦哄璺?(Flow Field)
 
-在 Vampirefall 中，我们需要处理海量怪物（Swarm）涌向同一个目标（基地）。对 500 个怪物运行 500 次 A\* 是极其浪费的。
+鍦?Vampirefall 涓紝鎴戜滑闇€瑕佸鐞嗘捣閲忔€墿锛圫warm锛夋秾鍚戝悓涓€涓洰鏍囷紙鍩哄湴锛夈€傚 500 涓€墿杩愯 500 娆?A\* 鏄瀬鍏舵氮璐圭殑銆?
 
-**核心思想**:
-不计算"怪物到终点"的路径，而是计算"地图上每个点到终点"的方向。所有怪物共享同一张流场图。
+**鏍稿績鎬濇兂**:
+涓嶈绠?鎬墿鍒扮粓鐐?鐨勮矾寰勶紝鑰屾槸璁＄畻"鍦板浘涓婃瘡涓偣鍒扮粓鐐?鐨勬柟鍚戙€傛墍鏈夋€墿鍏变韩鍚屼竴寮犳祦鍦哄浘銆?
 
-**实现步骤**:
+**瀹炵幇姝ラ**:
 
-1.  **生成热力图 (Integration Field)**: 使用 Dijkstra 算法，从终点扩散，计算全图每个格子到终点的步数（代价）。
-    - 终点 = 0
-    - 障碍物 = $\infty$
-    - 相邻格 = +1 (或地形权重)
-2.  **生成流场 (Vector Field)**: 遍历每个格子，指向其邻居中数值最小的那个格子。
+1.  **鐢熸垚鐑姏鍥?(Integration Field)**: 浣跨敤 Dijkstra 绠楁硶锛屼粠缁堢偣鎵╂暎锛岃绠楀叏鍥炬瘡涓牸瀛愬埌缁堢偣鐨勬鏁帮紙浠ｄ环锛夈€?
+    - 缁堢偣 = 0
+    - 闅滅鐗?= $\infty$
+    - 鐩搁偦鏍?= +1 (鎴栧湴褰㈡潈閲?
+2.  **鐢熸垚娴佸満 (Vector Field)**: 閬嶅巻姣忎釜鏍煎瓙锛屾寚鍚戝叾閭诲眳涓暟鍊兼渶灏忕殑閭ｄ釜鏍煎瓙銆?
 
-**Unity 实践 (Job System)**:
+**Unity 瀹炶返 (Job System)**:
 
 ```csharp
 [BurstCompile]
@@ -48,14 +48,14 @@ public struct CalculateFlowFieldJob : IJob
     public int2 TargetPos;
     public int2 GridSize;
     [ReadOnly] public NativeArray<bool> Obstacles;
-    public NativeArray<float2> FlowMap; // 输出结果
+    public NativeArray<float2> FlowMap; // 杈撳嚭缁撴灉
 
     public void Execute()
     {
-        // 1. Dijkstra 广度优先搜索计算距离场
-        // ... (省略队列实现细节)
+        // 1. Dijkstra 骞垮害浼樺厛鎼滅储璁＄畻璺濈鍦?
+        // ... (鐪佺暐闃熷垪瀹炵幇缁嗚妭)
 
-        // 2. 根据距离场计算向量
+        // 2. 鏍规嵁璺濈鍦鸿绠楀悜閲?
         for (int x = 0; x < GridSize.x; x++)
         {
             for (int y = 0; y < GridSize.y; y++)
@@ -67,7 +67,7 @@ public struct CalculateFlowFieldJob : IJob
                     continue;
                 }
 
-                // 寻找距离最小的邻居
+                // 瀵绘壘璺濈鏈€灏忕殑閭诲眳
                 FlowMap[index] = CalculateGradient(x, y);
             }
         }
@@ -75,51 +75,51 @@ public struct CalculateFlowFieldJob : IJob
 }
 ```
 
-### 1.3 避障与群聚 (Steering Behaviors)
+### 1.3 閬块殰涓庣兢鑱?(Steering Behaviors)
 
-寻路解决了"怎么去"的问题，**Steering Behaviors** 解决"怎么动"的问题，避免怪物重叠。
+瀵昏矾瑙ｅ喅浜?鎬庝箞鍘?鐨勯棶棰橈紝**Steering Behaviors** 瑙ｅ喅"鎬庝箞鍔?鐨勯棶棰橈紝閬垮厤鎬墿閲嶅彔銆?
 
-- **Separation (分离)**: 离太近的邻居远一点。
-- **Alignment (对齐)**: 和邻居保持相同方向（可选）。
-- **Cohesion (凝聚)**: 往邻居的中心靠（可选）。
+- **Separation (鍒嗙)**: 绂诲お杩戠殑閭诲眳杩滀竴鐐广€?
+- **Alignment (瀵归綈)**: 鍜岄偦灞呬繚鎸佺浉鍚屾柟鍚戯紙鍙€夛級銆?
+- **Cohesion (鍑濊仛)**: 寰€閭诲眳鐨勪腑蹇冮潬锛堝彲閫夛級銆?
 
 > [!TIP]
-> 在吸血鬼幸存者类游戏中，只需要实现**强硬的分离 (Hard Separation)**。如果两个怪物碰撞，直接推开，性能最高且视觉效果足够。
+> 鍦ㄥ惛琛€楝煎垢瀛樿€呯被娓告垙涓紝鍙渶瑕佸疄鐜?*寮虹‖鐨勫垎绂?(Hard Separation)**銆傚鏋滀袱涓€墿纰版挒锛岀洿鎺ユ帹寮€锛屾€ц兘鏈€楂樹笖瑙嗚鏁堟灉瓒冲銆?
 
 ---
 
-## 📦 2. 空间管理 (Spatial Partitioning)
+## 馃摝 2. 绌洪棿绠＄悊 (Spatial Partitioning)
 
-当屏幕上有 1000 个子弹和 500 个怪物时，暴力检测碰撞 ($O(N^2)$) 会导致卡死。我们需要空间划分算法将复杂度降至 $O(N)$ 或 $O(N \log N)$。
+褰撳睆骞曚笂鏈?1000 涓瓙寮瑰拰 500 涓€墿鏃讹紝鏆村姏妫€娴嬬鎾?($O(N^2)$) 浼氬鑷村崱姝汇€傛垜浠渶瑕佺┖闂村垝鍒嗙畻娉曞皢澶嶆潅搴﹂檷鑷?$O(N)$ 鎴?$O(N \log N)$銆?
 
-### 2.1 理论：空间哈希 (Spatial Hashing)
+### 2.1 鐞嗚锛氱┖闂村搱甯?(Spatial Hashing)
 
-将 2D 空间划分为固定的网格（Grid），每个网格存储其中的物体列表。
+灏?2D 绌洪棿鍒掑垎涓哄浐瀹氱殑缃戞牸锛圙rid锛夛紝姣忎釜缃戞牸瀛樺偍鍏朵腑鐨勭墿浣撳垪琛ㄣ€?
 
-- **优点**: 插入和查询接近 $O(1)$，实现极其简单。
-- **缺点**: 网格大小选取敏感，跨网格物体处理稍繁琐。
-- **适用**: 均匀分布的大量动态物体（如弹幕、怪物群）。
+- **浼樼偣**: 鎻掑叆鍜屾煡璇㈡帴杩?$O(1)$锛屽疄鐜版瀬鍏剁畝鍗曘€?
+- **缂虹偣**: 缃戞牸澶у皬閫夊彇鏁忔劅锛岃法缃戞牸鐗╀綋澶勭悊绋嶇箒鐞愩€?
+- **閫傜敤**: 鍧囧寑鍒嗗竷鐨勫ぇ閲忓姩鎬佺墿浣擄紙濡傚脊骞曘€佹€墿缇わ級銆?
 
-### 2.2 理论：四叉树 (Quadtree)
+### 2.2 鐞嗚锛氬洓鍙夋爲 (Quadtree)
 
-递归地将空间划分为四个象限，直到区域内物体数量少于阈值。
+閫掑綊鍦板皢绌洪棿鍒掑垎涓哄洓涓薄闄愶紝鐩村埌鍖哄煙鍐呯墿浣撴暟閲忓皯浜庨槇鍊笺€?
 
-- **优点**: 适应非均匀分布（空旷区域不占用内存）。
-- **缺点**: 动态物体频繁移动导致树结构重建开销大。
-- **适用**: 静态物体管理（建筑物、地形），或物体移动不频繁的场景。
+- **浼樼偣**: 閫傚簲闈炲潎鍖€鍒嗗竷锛堢┖鏃峰尯鍩熶笉鍗犵敤鍐呭瓨锛夈€?
+- **缂虹偣**: 鍔ㄦ€佺墿浣撻绻佺Щ鍔ㄥ鑷存爲缁撴瀯閲嶅缓寮€閿€澶с€?
+- **閫傜敤**: 闈欐€佺墿浣撶鐞嗭紙寤虹瓚鐗┿€佸湴褰級锛屾垨鐗╀綋绉诲姩涓嶉绻佺殑鍦烘櫙銆?
 
-### 2.3 Vampirefall 实践：Flat Grid 优化
+### 2.3 Vampirefall 瀹炶返锛欶lat Grid 浼樺寲
 
-对于高频变动的 ECS 架构，可以使用**扁平化数组链表**实现空间哈希。
+瀵逛簬楂橀鍙樺姩鐨?ECS 鏋舵瀯锛屽彲浠ヤ娇鐢?*鎵佸钩鍖栨暟缁勯摼琛?*瀹炵幇绌洪棿鍝堝笇銆?
 
 ```csharp
-// 概念伪代码
+// 姒傚康浼唬鐮?
 public struct SpatialMap
 {
-    // 单元格大小 (例如 2.0f)
+    // 鍗曞厓鏍煎ぇ灏?(渚嬪 2.0f)
     public float CellSize;
-    // 这里的 Key 是 gridX + gridY * width
-    // Value 是该个格子里第一个 Entity 的索引
+    // 杩欓噷鐨?Key 鏄?gridX + gridY * width
+    // Value 鏄涓牸瀛愰噷绗竴涓?Entity 鐨勭储寮?
     public NativeMultiHashMap<int, Entity> Map;
 
     public void Add(Entity entity, float2 pos)
@@ -129,37 +129,37 @@ public struct SpatialMap
         Map.Add(key, entity);
     }
 
-    // 查询附近的实体
+    // 鏌ヨ闄勮繎鐨勫疄浣?
     public void Query(float2 pos, float radius, NativeList<Entity> result)
     {
-        // 计算覆盖的网格范围 (minCell 到 maxCell)
-        // 遍历这些网格中的所有 Key
+        // 璁＄畻瑕嗙洊鐨勭綉鏍艰寖鍥?(minCell 鍒?maxCell)
+        // 閬嶅巻杩欎簺缃戞牸涓殑鎵€鏈?Key
     }
 }
 ```
 
 ---
 
-## 🎲 3. 随机与概率 (RNG & Probability)
+## 馃幉 3. 闅忔満涓庢鐜?(RNG & Probability)
 
-### 3.1 理论：真随机 vs 伪随机 (PRNG)
+### 3.1 鐞嗚锛氱湡闅忔満 vs 浼殢鏈?(PRNG)
 
-- **Input Randomness**: 在做决定前随机（如：地图生成）。
-- **Output Randomness**: 在做决定后随机（如：攻击命中率）。**Roguelike 应尽量避免这种体验较差的随机，或者用"保底"机制修饰。**
+- **Input Randomness**: 鍦ㄥ仛鍐冲畾鍓嶉殢鏈猴紙濡傦細鍦板浘鐢熸垚锛夈€?
+- **Output Randomness**: 鍦ㄥ仛鍐冲畾鍚庨殢鏈猴紙濡傦細鏀诲嚮鍛戒腑鐜囷級銆?*Roguelike 搴斿敖閲忛伩鍏嶈繖绉嶄綋楠岃緝宸殑闅忔満锛屾垨鑰呯敤"淇濆簳"鏈哄埗淇グ銆?*
 
-### 3.2 实践：加权随机 (Weighted Random)
+### 3.2 瀹炶返锛氬姞鏉冮殢鏈?(Weighted Random)
 
-用于 Loot Table（掉落表）。
+鐢ㄤ簬 Loot Table锛堟帀钀借〃锛夈€?
 
-**算法**:
+**绠楁硶**:
 
-1. 计算总权重 (Total Weight)。
-2. 生成 0 到 Total Weight 之间的随机数 `r`。
-3. 遍历列表，`r -= 当前项权重`。
-4. 当 `r <= 0` 时，选中当前项。
+1. 璁＄畻鎬绘潈閲?(Total Weight)銆?
+2. 鐢熸垚 0 鍒?Total Weight 涔嬮棿鐨勯殢鏈烘暟 `r`銆?
+3. 閬嶅巻鍒楄〃锛宍r -= 褰撳墠椤规潈閲峘銆?
+4. 褰?`r \<= 0` 鏃讹紝閫変腑褰撳墠椤广€?
 
-**优化 (Alias Method)**:
-如果有大量且不变的权重表，预处理成 Alias Table 可将抽取复杂度降为 $O(1)$。但对于一般游戏，普通的 $O(N)$ 线性扫描足够。
+**浼樺寲 (Alias Method)**:
+濡傛灉鏈夊ぇ閲忎笖涓嶅彉鐨勬潈閲嶈〃锛岄澶勭悊鎴?Alias Table 鍙皢鎶藉彇澶嶆潅搴﹂檷涓?$O(1)$銆備絾瀵逛簬涓€鑸父鎴忥紝鏅€氱殑 $O(N)$ 绾挎€ф壂鎻忚冻澶熴€?
 
 ```csharp
 public static T GetWeightedRandom<T>(List<T> items, System.Func<T, float> weightSelector)
@@ -178,9 +178,9 @@ public static T GetWeightedRandom<T>(List<T> items, System.Func<T, float> weight
 }
 ```
 
-### 3.3 实践：洗牌算法 (Fisher-Yates Shuffle)
+### 3.3 瀹炶返锛氭礂鐗岀畻娉?(Fisher-Yates Shuffle)
 
-用于抽卡或"俄罗斯方块式"的掉落（保证一轮内不重复）。
+鐢ㄤ簬鎶藉崱鎴?淇勭綏鏂柟鍧楀紡"鐨勬帀钀斤紙淇濊瘉涓€杞唴涓嶉噸澶嶏級銆?
 
 ```csharp
 public static void Shuffle<T>(IList<T> list)
@@ -197,42 +197,42 @@ public static void Shuffle<T>(IList<T> list)
 
 ---
 
-## 📈 4. 数值插值与平滑 (Math & Interpolation)
+## 馃搱 4. 鏁板€兼彃鍊间笌骞虫粦 (Math & Interpolation)
 
-### 4.1 线性与非线性插值
+### 4.1 绾挎€т笌闈炵嚎鎬ф彃鍊?
 
-- **Lerp (Linear)**: $a + (b - a) * t$。简单，由于且仅用于位置直连。
-- **Slerp (Spherical)**: 弧形插值，用于**旋转**，保证角速度恒定。
-- **SmoothDamp**: 类似弹簧阻尼，用于摄像机跟随或 UI 动效，比 Lerp 更自然（Lerp 会在接近终点时无限变慢）。
+- **Lerp (Linear)**: $a + (b - a) * t$銆傜畝鍗曪紝鐢变簬涓斾粎鐢ㄤ簬浣嶇疆鐩磋繛銆?
+- **Slerp (Spherical)**: 寮у舰鎻掑€硷紝鐢ㄤ簬**鏃嬭浆**锛屼繚璇佽閫熷害鎭掑畾銆?
+- **SmoothDamp**: 绫讳技寮圭哀闃诲凹锛岀敤浜庢憚鍍忔満璺熼殢鎴?UI 鍔ㄦ晥锛屾瘮 Lerp 鏇磋嚜鐒讹紙Lerp 浼氬湪鎺ヨ繎缁堢偣鏃舵棤闄愬彉鎱級銆?
 
-### 4.2 缓动函数 (Easing Functions)
+### 4.2 缂撳姩鍑芥暟 (Easing Functions)
 
-UI 动效的灵魂。不要只用线性变化。
-推荐使用公式库（如 $t^2$, $t^3$, $1-(1-t)^2$ 等）。
+UI 鍔ㄦ晥鐨勭伒榄傘€備笉瑕佸彧鐢ㄧ嚎鎬у彉鍖栥€?
+鎺ㄨ崘浣跨敤鍏紡搴擄紙濡?$t^2$, $t^3$, $1-(1-t)^2$ 绛夛級銆?
 
 ---
 
-## 🚀 5. 性能优化模式 (Optimization Patterns)
+## 馃殌 5. 鎬ц兘浼樺寲妯″紡 (Optimization Patterns)
 
-### 5.1 对象池 (Object Pooling)
+### 5.1 瀵硅薄姹?(Object Pooling)
 
-**理论**:
-内存分配 (Allocation) 和垃圾回收 (GC) 是 Unity 移动端卡顿的主因。对象池通过复用对象避免频繁的 `Instantiate` 和 `Destroy`。
+**鐞嗚**:
+鍐呭瓨鍒嗛厤 (Allocation) 鍜屽瀮鍦惧洖鏀?(GC) 鏄?Unity 绉诲姩绔崱椤跨殑涓诲洜銆傚璞℃睜閫氳繃澶嶇敤瀵硅薄閬垮厤棰戠箒鐨?`Instantiate` 鍜?`Destroy`銆?
 
-**Vampirefall 规范**:
+**Vampirefall 瑙勮寖**:
 
-- 所有特效 (VFX)、伤害数字 (Popups)、子弹 (Projectiles) **必须**使用对象池。
-- 只有关卡切换时才允许大规模销毁。
+- 鎵€鏈夌壒鏁?(VFX)銆佷激瀹虫暟瀛?(Popups)銆佸瓙寮?(Projectiles) **蹇呴』**浣跨敤瀵硅薄姹犮€?
+- 鍙湁鍏冲崱鍒囨崲鏃舵墠鍏佽澶ц妯￠攢姣併€?
 
-### 5.2 脏标记模式 (Dirty Flag)
+### 5.2 鑴忔爣璁版ā寮?(Dirty Flag)
 
-**理论**:
-避免每一帧都重新计算复杂数据。只在数据发生变化时标记为 `isDirty = true`，在获取数据时如果发现脏标记才重新计算，否则返回缓存值。
+**鐞嗚**:
+閬垮厤姣忎竴甯ч兘閲嶆柊璁＄畻澶嶆潅鏁版嵁銆傚彧鍦ㄦ暟鎹彂鐢熷彉鍖栨椂鏍囪涓?`isDirty = true`锛屽湪鑾峰彇鏁版嵁鏃跺鏋滃彂鐜拌剰鏍囪鎵嶉噸鏂拌绠楋紝鍚﹀垯杩斿洖缂撳瓨鍊笺€?
 
-**应用**:
+**搴旂敤**:
 
-- **UI**: 只有当金币变化时才更新 Text 组件。
-- **属性**: 只有当装备变动时才重新计算 `FinalAttack = Base + Buffs`。
+- **UI**: 鍙湁褰撻噾甯佸彉鍖栨椂鎵嶆洿鏂?Text 缁勪欢銆?
+- **灞炴€?*: 鍙湁褰撹澶囧彉鍔ㄦ椂鎵嶉噸鏂拌绠?`FinalAttack = Base + Buffs`銆?
 
 ```csharp
 public class StatSystem
@@ -255,8 +255,9 @@ public class StatSystem
 
 ---
 
-## 🔗 参考资料
+## 馃敆 鍙傝€冭祫鏂?
 
-- 📄 **Game Programming Patterns**: 必读经典。
-- 🌐 **Red Blob Games**: 几何与寻路算法的宝库。
-- 📺 **GDC: "I Shot You First"**: 守望先锋网络同步与插值算法。
+- 馃搫 **Game Programming Patterns**: 蹇呰缁忓吀銆?
+- 馃寪 **Red Blob Games**: 鍑犱綍涓庡璺畻娉曠殑瀹濆簱銆?
+- 馃摵 **GDC: "I Shot You First"**: 瀹堟湜鍏堥攱缃戠粶鍚屾涓庢彃鍊肩畻娉曘€?
+

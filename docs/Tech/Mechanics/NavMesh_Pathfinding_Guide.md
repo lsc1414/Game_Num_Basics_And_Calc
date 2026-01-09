@@ -1,159 +1,159 @@
----
-sidebarTitle: "🧭 NavMesh 寻路与状态控制指南"
----
-
-# 🧭 NavMesh 寻路与状态控制指南
-
-本文档详细阐述 Project Vampirefall 中敌人如何利用 Unity NavMesh 系统进行寻路，重点解析**异常状态 (CC)** 下的寻路控制，以及**动态阻挡 (塔防)** 的实现细节。
-
+﻿---
+sidebarTitle: "馃Л NavMesh 瀵昏矾涓庣姸鎬佹帶鍒舵寚鍗?
 ---
 
-## 1. 核心组件架构 (Core Components)
+# 馃Л NavMesh 瀵昏矾涓庣姸鎬佹帶鍒舵寚鍗?
 
-在 Unity 中，寻路不仅仅是 `SetDestination`。对于复杂的 ARPG + TD 游戏，我们需要精细控制 `NavMeshAgent`。
-
-### 1.1 Agent 配置的最佳实践
-*   **Acceleration (加速度):** 设为极高 (如 60-100)。防止怪物起步“滑步”或转弯“漂移”。我们需要响应灵敏的移动。
-*   **Angular Speed (转速):** 设为 360 或更高。怪物应该能瞬间转身，而不是像坦克一样慢慢转。
-*   **Auto Braking (自动刹车):** 
-    *   **近战怪:** `True`。防止冲过头。
-    *   **远程怪:** `False`。它们需要平滑地移动到射程边缘并停止。
-*   **Avoidance Priority (避让优先级):**
-    *   **Boss/Elite:** 0-20 (优先级高，推着别人走)。
-    *   **Minion:** 50-99 (优先级低，会被挤开)。
-    *   *技巧:* 动态调整优先级。当怪物进入攻击状态时，提高优先级，防止被路过的队友挤歪。
+鏈枃妗ｈ缁嗛槓杩?Project Vampirefall 涓晫浜哄浣曞埄鐢?Unity NavMesh 绯荤粺杩涜瀵昏矾锛岄噸鐐硅В鏋?*寮傚父鐘舵€?(CC)** 涓嬬殑瀵昏矾鎺у埗锛屼互鍙?*鍔ㄦ€侀樆鎸?(濉旈槻)** 鐨勫疄鐜扮粏鑺傘€?
 
 ---
 
-## 2. 状态控制与寻路交互 (CC & Pathfinding)
+## 1. 鏍稿績缁勪欢鏋舵瀯 (Core Components)
 
-这是 ARPG 开发中最容易出 Bug 的地方：如何让 `NavMeshAgent` 正确响应“冰冻”、“击退”等物理效果？
+鍦?Unity 涓紝瀵昏矾涓嶄粎浠呮槸 `SetDestination`銆傚浜庡鏉傜殑 ARPG + TD 娓告垙锛屾垜浠渶瑕佺簿缁嗘帶鍒?`NavMeshAgent`銆?
 
-### ❄️ 2.1 减速 (Slow)
-*   **实现:** 直接修改 `agent.speed`。
-*   **叠加规则:** 
-    *   建议使用 **乘法叠加**：`FinalSpeed = BaseSpeed * (1 - SlowA) * (1 - SlowB)`。
-    *   设置下限：`Mathf.Max(FinalSpeed, 0.5f)`，防止速度减为 0 导致动画播放异常。
+### 1.1 Agent 閰嶇疆鐨勬渶浣冲疄璺?
+*   **Acceleration (鍔犻€熷害):** 璁句负鏋侀珮 (濡?60-100)銆傞槻姝㈡€墿璧锋鈥滄粦姝モ€濇垨杞集鈥滄紓绉烩€濄€傛垜浠渶瑕佸搷搴旂伒鏁忕殑绉诲姩銆?
+*   **Angular Speed (杞€?:** 璁句负 360 鎴栨洿楂樸€傛€墿搴旇鑳界灛闂磋浆韬紝鑰屼笉鏄儚鍧﹀厠涓€鏍锋參鎱㈣浆銆?
+*   **Auto Braking (鑷姩鍒硅溅):** 
+    *   **杩戞垬鎬?** `True`銆傞槻姝㈠啿杩囧ご銆?
+    *   **杩滅▼鎬?** `False`銆傚畠浠渶瑕佸钩婊戝湴绉诲姩鍒板皠绋嬭竟缂樺苟鍋滄銆?
+*   **Avoidance Priority (閬胯浼樺厛绾?:**
+    *   **Boss/Elite:** 0-20 (浼樺厛绾ч珮锛屾帹鐫€鍒汉璧?銆?
+    *   **Minion:** 50-99 (浼樺厛绾т綆锛屼細琚尋寮€)銆?
+    *   *鎶€宸?* 鍔ㄦ€佽皟鏁翠紭鍏堢骇銆傚綋鎬墿杩涘叆鏀诲嚮鐘舵€佹椂锛屾彁楂樹紭鍏堢骇锛岄槻姝㈣璺繃鐨勯槦鍙嬫尋姝€?
 
-### 🧊 2.2 定身/冰冻 (Root / Freeze)
-*   **错误做法:** `agent.enabled = false`。这会导致怪物失去碰撞体积，或者瞬间重置路径。
-*   **正确做法:** `agent.isStopped = true`。
-    *   保留路径数据 (Path Pending)，只是暂停移动。
-    *   同时禁用 `Animator` 的移动参数，防止原地太空步。
-*   **恢复:** `agent.isStopped = false`。
+---
 
-### 💫 2.3 眩晕 (Stun)
-*   **区别:** 定身时怪物还能攻击/转头，眩晕时完全瘫痪。
-*   **实现:**
-    1.  `agent.isStopped = true`。
-    2.  `agent.updateRotation = false` (禁止转头)。
+## 2. 鐘舵€佹帶鍒朵笌瀵昏矾浜や簰 (CC & Pathfinding)
 
-    3.  逻辑层禁用 AI 状态机 (`FSM.Pause()`)。
+杩欐槸 ARPG 寮€鍙戜腑鏈€瀹规槗鍑?Bug 鐨勫湴鏂癸細濡備綍璁?`NavMeshAgent` 姝ｇ‘鍝嶅簲鈥滃啺鍐烩€濄€佲€滃嚮閫€鈥濈瓑鐗╃悊鏁堟灉锛?
 
-### 🥊 2.4 击退 (Knockback) —— *最难点*
-`NavMeshAgent` 和 `Rigidbody` 是死对头。Agent 试图吸附在地面，Rigidbody 试图飞出去。
+### 鉂勶笍 2.1 鍑忛€?(Slow)
+*   **瀹炵幇:** 鐩存帴淇敼 `agent.speed`銆?
+*   **鍙犲姞瑙勫垯:** 
+    *   寤鸿浣跨敤 **涔樻硶鍙犲姞**锛歚FinalSpeed = BaseSpeed * (1 - SlowA) * (1 - SlowB)`銆?
+    *   璁剧疆涓嬮檺锛歚Mathf.Max(FinalSpeed, 0.5f)`锛岄槻姝㈤€熷害鍑忎负 0 瀵艰嚧鍔ㄧ敾鎾斁寮傚父銆?
 
-*   **标准流程:**
-    1.  **Disable Agent:** `agent.enabled = false` (必须彻底关掉，否则它会强制把坐标拉回 NavMesh 上)。
+### 馃 2.2 瀹氳韩/鍐板喕 (Root / Freeze)
+*   **閿欒鍋氭硶:** `agent.enabled = false`銆傝繖浼氬鑷存€墿澶卞幓纰版挒浣撶Н锛屾垨鑰呯灛闂撮噸缃矾寰勩€?
+*   **姝ｇ‘鍋氭硶:** `agent.isStopped = true`銆?
+    *   淇濈暀璺緞鏁版嵁 (Path Pending)锛屽彧鏄殏鍋滅Щ鍔ㄣ€?
+    *   鍚屾椂绂佺敤 `Animator` 鐨勭Щ鍔ㄥ弬鏁帮紝闃叉鍘熷湴澶┖姝ャ€?
+*   **鎭㈠:** `agent.isStopped = false`銆?
+
+### 馃挮 2.3 鐪╂檿 (Stun)
+*   **鍖哄埆:** 瀹氳韩鏃舵€墿杩樿兘鏀诲嚮/杞ご锛岀湬鏅曟椂瀹屽叏鐦棯銆?
+*   **瀹炵幇:**
+    1.  `agent.isStopped = true`銆?
+    2.  `agent.updateRotation = false` (绂佹杞ご)銆?
+
+    3.  閫昏緫灞傜鐢?AI 鐘舵€佹満 (`FSM.Pause()`)銆?
+
+### 馃 2.4 鍑婚€€ (Knockback) 鈥斺€?*鏈€闅剧偣*
+`NavMeshAgent` 鍜?`Rigidbody` 鏄瀵瑰ご銆侫gent 璇曞浘鍚搁檮鍦ㄥ湴闈紝Rigidbody 璇曞浘椋炲嚭鍘汇€?
+
+*   **鏍囧噯娴佺▼:**
+    1.  **Disable Agent:** `agent.enabled = false` (蹇呴』褰诲簳鍏虫帀锛屽惁鍒欏畠浼氬己鍒舵妸鍧愭爣鎷夊洖 NavMesh 涓?銆?
     2.  **Add Force:** `rb.isKinematic = false`; `rb.AddForce(ExplosionForce)`.
 
-    3.  **Wait:** 等待击退时间（如 0.5秒）或等待速度接近 0。
+    3.  **Wait:** 绛夊緟鍑婚€€鏃堕棿锛堝 0.5绉掞級鎴栫瓑寰呴€熷害鎺ヨ繎 0銆?
 
     4.  **Re-enable Agent:** 
 
         *   `rb.isKinematic = true`.
-        *   `agent.Warp(transform.position)` (关键！告诉 Agent 我瞬移到了新位置).
+        *   `agent.Warp(transform.position)` (鍏抽敭锛佸憡璇?Agent 鎴戠灛绉诲埌浜嗘柊浣嶇疆).
         *   `agent.enabled = true`.
-        *   `agent.SetDestination(Target)` (重新寻路).
+        *   `agent.SetDestination(Target)` (閲嶆柊瀵昏矾).
 
 ---
 
-## 3. 实用案例大全 (Practical Use Cases)
+## 3. 瀹炵敤妗堜緥澶у叏 (Practical Use Cases)
 
-### ⚔️ Case A: 到达攻击距离 (Reaching Attack Range)
-当怪物进入射程时，如何优雅地停下来攻击，而不是推着玩家走？
+### 鈿旓笍 Case A: 鍒拌揪鏀诲嚮璺濈 (Reaching Attack Range)
+褰撴€墿杩涘叆灏勭▼鏃讹紝濡備綍浼橀泤鍦板仠涓嬫潵鏀诲嚮锛岃€屼笉鏄帹鐫€鐜╁璧帮紵
 
-*   **核心逻辑:** 不要依赖 `StoppingDistance`，自己手动控制。
-*   **流程:**
-    1.  **Check:** 每帧检测 `Distance(Self, Target) <= AttackRange`。
-    2.  **Stop:** 满足条件时，立即 `agent.isStopped = true`。
+*   **鏍稿績閫昏緫:** 涓嶈渚濊禆 `StoppingDistance`锛岃嚜宸辨墜鍔ㄦ帶鍒躲€?
+*   **娴佺▼:**
+    1.  **Check:** 姣忓抚妫€娴?`Distance(Self, Target) \<= AttackRange`銆?
+    2.  **Stop:** 婊¤冻鏉′欢鏃讹紝绔嬪嵆 `agent.isStopped = true`銆?
 
-    3.  **Rotate:** 攻击时手动调用 `transform.LookAt(Target)` (或者插值旋转)，保证朝向正确。
+    3.  **Rotate:** 鏀诲嚮鏃舵墜鍔ㄨ皟鐢?`transform.LookAt(Target)` (鎴栬€呮彃鍊兼棆杞?锛屼繚璇佹湞鍚戞纭€?
 
-    4.  **Resume:** 如果目标跑出射程 `Distance > AttackRange * 1.2` (迟滞阈值)，则 `agent.isStopped = false` 继续追击。
+    4.  **Resume:** 濡傛灉鐩爣璺戝嚭灏勭▼ `Distance > AttackRange * 1.2` (杩熸粸闃堝€?锛屽垯 `agent.isStopped = false` 缁х画杩藉嚮銆?
 
-#### 体积修正 (Size Adjustment)
-在塔防中，塔通常有很大的碰撞体积（如 `Radius = 2.0m`），而小怪只有 `Radius = 0.5m`。直接计算 `Vector3.Distance` (中心点距离) 会导致小怪贴着塔站，或者打不到塔。
+#### 浣撶Н淇 (Size Adjustment)
+鍦ㄥ闃蹭腑锛屽閫氬父鏈夊緢澶х殑纰版挒浣撶Н锛堝 `Radius = 2.0m`锛夛紝鑰屽皬鎬彧鏈?`Radius = 0.5m`銆傜洿鎺ヨ绠?`Vector3.Distance` (涓績鐐硅窛绂? 浼氬鑷村皬鎬创鐫€濉旂珯锛屾垨鑰呮墦涓嶅埌濉斻€?
 
-*   **公式修正:** `EffectiveRange = AttackRange + TargetRadius + SelfRadius`。
-    *   **Center-to-Center:** 默认距离计算是中心对中心。
-    *   **Edge-to-Edge:** 我们希望的是“边缘对边缘”。
-    *   通过加上双方半径，我们算出的是“为了让武器碰到对方边缘，两个中心点需要的最大距离”。
-*   **近战判定:**
-    *   对于近战攻击，**不需要**真实的物理碰撞（武器碰到塔）。
-    *   **Hitbox Lag:** 依赖物理碰撞会导致因为动画延迟、帧率波动而造成的判定丢失。
-    *   **最佳实践:** 只要在 `AttackAnimation` 的关键帧 (Impact Frame) 触发时，检测 `Distance <= EffectiveRange` 即可判定伤害。这是最稳定、手感最好的做法。
+*   **鍏紡淇:** `EffectiveRange = AttackRange + TargetRadius + SelfRadius`銆?
+    *   **Center-to-Center:** 榛樿璺濈璁＄畻鏄腑蹇冨涓績銆?
+    *   **Edge-to-Edge:** 鎴戜滑甯屾湜鐨勬槸鈥滆竟缂樺杈圭紭鈥濄€?
+    *   閫氳繃鍔犱笂鍙屾柟鍗婂緞锛屾垜浠畻鍑虹殑鏄€滀负浜嗚姝﹀櫒纰板埌瀵规柟杈圭紭锛屼袱涓腑蹇冪偣闇€瑕佺殑鏈€澶ц窛绂烩€濄€?
+*   **杩戞垬鍒ゅ畾:**
+    *   瀵逛簬杩戞垬鏀诲嚮锛?*涓嶉渶瑕?*鐪熷疄鐨勭墿鐞嗙鎾烇紙姝﹀櫒纰板埌濉旓級銆?
+    *   **Hitbox Lag:** 渚濊禆鐗╃悊纰版挒浼氬鑷村洜涓哄姩鐢诲欢杩熴€佸抚鐜囨尝鍔ㄨ€岄€犳垚鐨勫垽瀹氫涪澶便€?
+    *   **鏈€浣冲疄璺?** 鍙鍦?`AttackAnimation` 鐨勫叧閿抚 (Impact Frame) 瑙﹀彂鏃讹紝妫€娴?`Distance \<= EffectiveRange` 鍗冲彲鍒ゅ畾浼ゅ銆傝繖鏄渶绋冲畾銆佹墜鎰熸渶濂界殑鍋氭硶銆?
 
-### 🧱 Case B: 动态阻挡与堵路检测 (Dynamic Blocking)
-在塔防模式下，玩家放塔不能把怪物的路彻底堵死 (Maze Blocking Rule)。
+### 馃П Case B: 鍔ㄦ€侀樆鎸′笌鍫佃矾妫€娴?(Dynamic Blocking)
+鍦ㄥ闃叉ā寮忎笅锛岀帺瀹舵斁濉斾笉鑳芥妸鎬墿鐨勮矾褰诲簳鍫垫 (Maze Blocking Rule)銆?
 
-*   **组件:** 塔预制体上挂 `NavMeshObstacle`。
-*   **设置:** `Carve = true` (必须勾选，否则怪物会穿过去或被挤开，而不是绕路)。
-*   **放置前检测算法:**
-    1.  虚拟放置一个 Obstacle (不显示，只参与计算)。
-    2.  调用 `NavMesh.CalculatePath(SpawnPoint, NexusPoint, AreaMask, pathResult)`。
+*   **缁勪欢:** 濉旈鍒朵綋涓婃寕 `NavMeshObstacle`銆?
+*   **璁剧疆:** `Carve = true` (蹇呴』鍕鹃€夛紝鍚﹀垯鎬墿浼氱┛杩囧幓鎴栬鎸ゅ紑锛岃€屼笉鏄粫璺?銆?
+*   **鏀剧疆鍓嶆娴嬬畻娉?**
+    1.  铏氭嫙鏀剧疆涓€涓?Obstacle (涓嶆樉绀猴紝鍙弬涓庤绠?銆?
+    2.  璋冪敤 `NavMesh.CalculatePath(SpawnPoint, NexusPoint, AreaMask, pathResult)`銆?
 
-    3.  检查 `pathResult.status == NavMeshPathStatus.PathComplete`。
+    3.  妫€鏌?`pathResult.status == NavMeshPathStatus.PathComplete`銆?
 
-    4.  如果是 `Partial` 或 `Invalid`，说明路被堵死了，禁止玩家建造。
+    4.  濡傛灉鏄?`Partial` 鎴?`Invalid`锛岃鏄庤矾琚牭姝讳簡锛岀姝㈢帺瀹跺缓閫犮€?
 
-### 🕷️ Case C: 爬墙/跳跃 (Off-Mesh Links)
-让怪物像蜘蛛一样翻越城墙，或者跳过沟壑。
+### 馃暦锔?Case C: 鐖/璺宠穬 (Off-Mesh Links)
+璁╂€墿鍍忚湗铔涗竴鏍风炕瓒婂煄澧欙紝鎴栬€呰烦杩囨矡澹戙€?
 
-*   **场景:** 僵尸从地面跳上 2楼平台攻击玩家。
-*   **实现:**
-    1.  在地图关键连接点放置 `OffMeshLink` 组件。
-    2.  当 Agent 走到 Link 入口时，`agent.isOnOffMeshLink` 变为 `true`。
+*   **鍦烘櫙:** 鍍靛案浠庡湴闈㈣烦涓?2妤煎钩鍙版敾鍑荤帺瀹躲€?
+*   **瀹炵幇:**
+    1.  鍦ㄥ湴鍥惧叧閿繛鎺ョ偣鏀剧疆 `OffMeshLink` 缁勪欢銆?
+    2.  褰?Agent 璧板埌 Link 鍏ュ彛鏃讹紝`agent.isOnOffMeshLink` 鍙樹负 `true`銆?
 
-    3.  **接管控制:** 
+    3.  **鎺ョ鎺у埗:** 
 
-        *   `agent.autoTraverseOffMeshLink = false` (禁止自动瞬移)。
-        *   播放“跳跃”动画。
-        *   使用 `Coroutine` 平滑移动 Agent 的 `transform` 到 Link 的另一端。
-        *   到达后，`agent.CompleteOffMeshLink()`，交还控制权。
+        *   `agent.autoTraverseOffMeshLink = false` (绂佹鑷姩鐬Щ)銆?
+        *   鎾斁鈥滆烦璺冣€濆姩鐢汇€?
+        *   浣跨敤 `Coroutine` 骞虫粦绉诲姩 Agent 鐨?`transform` 鍒?Link 鐨勫彟涓€绔€?
+        *   鍒拌揪鍚庯紝`agent.CompleteOffMeshLink()`锛屼氦杩樻帶鍒舵潈銆?
 
-### 🎭 Case D: 游击/风筝 (Kiting)
-弓箭手不仅要追玩家，还要保持距离。
+### 馃幁 Case D: 娓稿嚮/椋庣瓭 (Kiting)
+寮撶鎵嬩笉浠呰杩界帺瀹讹紝杩樿淇濇寔璺濈銆?
 
-*   **笨办法:** 只要距离 < 5米，就向后跑。容易卡墙角。
-*   **NavMesh 办法 (SamplePosition):**
-    1.  计算反向向量: `Dir = (SelfPos - TargetPos).normalized`.
-    2.  目标点: `FleePos = SelfPos + Dir * 5.0f`.
+*   **绗ㄥ姙娉?** 鍙璺濈 < 5绫筹紝灏卞悜鍚庤窇銆傚鏄撳崱澧欒銆?
+*   **NavMesh 鍔炴硶 (SamplePosition):**
+    1.  璁＄畻鍙嶅悜鍚戦噺: `Dir = (SelfPos - TargetPos).normalized`.
+    2.  鐩爣鐐? `FleePos = SelfPos + Dir * 5.0f`.
 
-    3.  **采样有效性:** `NavMesh.SamplePosition(FleePos, out hit, 2.0f, AreaMask)`.
+    3.  **閲囨牱鏈夋晥鎬?** `NavMesh.SamplePosition(FleePos, out hit, 2.0f, AreaMask)`.
 
-    4.  如果采样成功，`SetDestination(hit.position)`。
+    4.  濡傛灉閲囨牱鎴愬姛锛宍SetDestination(hit.position)`銆?
 
-    5.  如果采样失败（背后是墙），则向侧面寻找向量（叉乘）重试。
+    5.  濡傛灉閲囨牱澶辫触锛堣儗鍚庢槸澧欙級锛屽垯鍚戜晶闈㈠鎵惧悜閲忥紙鍙変箻锛夐噸璇曘€?
 
-### 🐜 Case E: 拥挤处理 (Crowd Separation)
-几百个僵尸挤在一起，互相推挤导致卡顿。
+### 馃悳 Case E: 鎷ユ尋澶勭悊 (Crowd Separation)
+鍑犵櫨涓兊灏告尋鍦ㄤ竴璧凤紝浜掔浉鎺ㄦ尋瀵艰嚧鍗￠】銆?
 
-*   **RVO (Reciprocal Velocity Obstacles):** Unity 内置的避障。
-    *   *缺点:* 消耗 CPU，且容易让怪物看起来像醉汉乱晃。
-*   **优化方案:**
-    1.  **降低 RVO Quality:** 在 Project Settings 里把 Agent 的避障质量调低。
-    2.  **关闭部分 RVO:** 只有前排怪物开启 Obstacle Avoidance，后排怪物关闭（反正它们只要跟着前排走）。
+*   **RVO (Reciprocal Velocity Obstacles):** Unity 鍐呯疆鐨勯伩闅溿€?
+    *   *缂虹偣:* 娑堣€?CPU锛屼笖瀹规槗璁╂€墿鐪嬭捣鏉ュ儚閱夋眽涔辨檭銆?
+*   **浼樺寲鏂规:**
+    1.  **闄嶄綆 RVO Quality:** 鍦?Project Settings 閲屾妸 Agent 鐨勯伩闅滆川閲忚皟浣庛€?
+    2.  **鍏抽棴閮ㄥ垎 RVO:** 鍙湁鍓嶆帓鎬墿寮€鍚?Obstacle Avoidance锛屽悗鎺掓€墿鍏抽棴锛堝弽姝ｅ畠浠彧瑕佽窡鐫€鍓嶆帓璧帮級銆?
 
-    3.  **流场 (Flow Field) 替代:** 如果同屏超过 200 个单位，**放弃 NavMeshAgent**。
+    3.  **娴佸満 (Flow Field) 鏇夸唬:** 濡傛灉鍚屽睆瓒呰繃 200 涓崟浣嶏紝**鏀惧純 NavMeshAgent**銆?
 
-        *   使用 `NavMesh.CalculatePath` 算出一口路径。
-        *   所有怪物只根据路径上的“向量场”移动 `transform.Translate`。
-        *   仅在攻击最后阶段启用 Agent 进行精确定位。
+        *   浣跨敤 `NavMesh.CalculatePath` 绠楀嚭涓€鍙ｈ矾寰勩€?
+        *   鎵€鏈夋€墿鍙牴鎹矾寰勪笂鐨勨€滃悜閲忓満鈥濈Щ鍔?`transform.Translate`銆?
+        *   浠呭湪鏀诲嚮鏈€鍚庨樁娈靛惎鐢?Agent 杩涜绮剧‘瀹氫綅銆?
 
 ---
 
-## 4. 代码片段：安全的击退处理
+## 4. 浠ｇ爜鐗囨锛氬畨鍏ㄧ殑鍑婚€€澶勭悊
 
 ```csharp
 public class NavMeshMovement : MonoBehaviour
@@ -161,34 +161,34 @@ public class NavMeshMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Rigidbody _rb;
 
-    // 协程：处理击退
+    // 鍗忕▼锛氬鐞嗗嚮閫€
     public IEnumerator ApplyKnockback(Vector3 force, float duration)
     {
-        // 1. 切断 NavMesh 连接
-        _agent.isStopped = true; // 先停逻辑
-        _agent.enabled = false;  // 再关组件 (重要顺序)
-        _rb.isKinematic = false; // 开启物理
+        // 1. 鍒囨柇 NavMesh 杩炴帴
+        _agent.isStopped = true; // 鍏堝仠閫昏緫
+        _agent.enabled = false;  // 鍐嶅叧缁勪欢 (閲嶈椤哄簭)
+        _rb.isKinematic = false; // 寮€鍚墿鐞?
 
-        // 2. 施加力
+        // 2. 鏂藉姞鍔?
         _rb.AddForce(force, ForceMode.Impulse);
 
-        // 3. 等待物理模拟
+        // 3. 绛夊緟鐗╃悊妯℃嫙
         yield return new WaitForSeconds(duration);
 
-        // 4. 恢复 NavMesh
+        // 4. 鎭㈠ NavMesh
         _rb.velocity = Vector3.zero;
         _rb.isKinematic = true;
         
-        // 寻找最近的有效地面，防止卡在墙里
+        // 瀵绘壘鏈€杩戠殑鏈夋晥鍦伴潰锛岄槻姝㈠崱鍦ㄥ閲?
         if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 2.0f, NavMesh.AllAreas))
         {
-            _agent.Warp(hit.position); // 瞬移回网格
+            _agent.Warp(hit.position); // 鐬Щ鍥炵綉鏍?
             _agent.enabled = true;
             _agent.isStopped = false;
         }
         else
         {
-            // 异常处理：被击飞出地图了，直接处死
+            // 寮傚父澶勭悊锛氳鍑婚鍑哄湴鍥句簡锛岀洿鎺ュ姝?
             GetComponent<Health>().Kill(); 
         }
     }
@@ -197,11 +197,12 @@ public class NavMeshMovement : MonoBehaviour
 
 ---
 
-## 5. 常见坑点速查 (Troubleshooting)
+## 5. 甯歌鍧戠偣閫熸煡 (Troubleshooting)
 
-|          现象          |          原因          |          解决方案          |
+|          鐜拌薄          |          鍘熷洜          |          瑙ｅ喅鏂规          |
 |          :---          |          :---          |          :---          |
-|          **怪物原地转圈**          |          目标点在脚下，但因为 StoppingDistance 没停住。          |          增大 `StoppingDistance` 或检测 `agent.remainingDistance < Threshold` 手动 Stop。          |
-|          **怪物穿墙**          |          速度太快，或 `NavMeshObstacle` 没有开 `Carve`。          |          开启 `Carve`；对于极快单位，改用 Raycast 检测前方障碍。          |
-|          **浮空/陷入地下**          |          Agent 的 `BaseOffset` 设置不对，或模型原点不在脚底。          |          调整 `BaseOffset`；确保美术模型的 Pivot 在脚底中心。          |
-|          **性能暴跌**          |          每一帧都对 100 个怪调用 `SetDestination`。          |          必须限制频率！使用协程每 0.2s 更新一次路径，或仅当目标移动超过 1米时更新。          |
+|          **鎬墿鍘熷湴杞湀**          |          鐩爣鐐瑰湪鑴氫笅锛屼絾鍥犱负 StoppingDistance 娌″仠浣忋€?         |          澧炲ぇ `StoppingDistance` 鎴栨娴?`agent.remainingDistance < Threshold` 鎵嬪姩 Stop銆?         |
+|          **鎬墿绌垮**          |          閫熷害澶揩锛屾垨 `NavMeshObstacle` 娌℃湁寮€ `Carve`銆?         |          寮€鍚?`Carve`锛涘浜庢瀬蹇崟浣嶏紝鏀圭敤 Raycast 妫€娴嬪墠鏂归殰纰嶃€?         |
+|          **娴┖/闄峰叆鍦颁笅**          |          Agent 鐨?`BaseOffset` 璁剧疆涓嶅锛屾垨妯″瀷鍘熺偣涓嶅湪鑴氬簳銆?         |          璋冩暣 `BaseOffset`锛涚‘淇濈編鏈ā鍨嬬殑 Pivot 鍦ㄨ剼搴曚腑蹇冦€?         |
+|          **鎬ц兘鏆磋穼**          |          姣忎竴甯ч兘瀵?100 涓€皟鐢?`SetDestination`銆?         |          蹇呴』闄愬埗棰戠巼锛佷娇鐢ㄥ崗绋嬫瘡 0.2s 鏇存柊涓€娆¤矾寰勶紝鎴栦粎褰撶洰鏍囩Щ鍔ㄨ秴杩?1绫虫椂鏇存柊銆?         |
+
