@@ -1,0 +1,185 @@
+/* 
+ * Mintlify 自定义样式
+ * 让文档更像 Claude 风格
+ */
+
+/* 导入 Google 字体 */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* 全局样式 */
+:root {
+  --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+}
+
+/* 侧边栏样式优化 */
+[data-sidebar] {
+  font-family: var(--font-family);
+}
+
+/* 侧边栏链接 */
+[data-sidebar] a {
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+[data-sidebar] a:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* 主内容区域 */
+article {
+  font-family: var(--font-family);
+  line-height: 1.7;
+}
+
+/* 标题样式 */
+article h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+article h2 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+article h3 {
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* 段落样式 */
+article p {
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+/* 链接样式 */
+article a {
+  color: #d97706;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+article a:hover {
+  border-bottom-color: #d97706;
+}
+
+/* 代码块样式 */
+pre {
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+code:not(pre code) {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #1f2937;
+}
+
+/* 表格样式 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+  background-color: #f9fafb;
+}
+
+/* 引用块样式 */
+blockquote {
+  border-left: 3px solid #d97706;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* 列表样式 */
+ul,
+ol {
+  margin-bottom: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* 卡片组件优化 */
+[data-card] {
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+[data-card]:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* 搜索框样式 */
+[data-search] {
+  border-radius: 8px;
+}
+
+/* 顶部导航栏 */
+nav[data-navbar] {
+  backdrop-filter: blur(8px);
+}
+
+/* 目录导航 (On this page) */
+[data-toc] {
+  font-size: 0.875rem;
+}
+
+[data-toc] a {
+  color: #6b7280;
+  transition: color 0.15s ease;
+}
+
+[data-toc] a:hover,
+[data-toc] a[data-active] {
+  color: #d97706;
+}
+
+/* 页脚样式 */
+footer {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  article h1 {
+    font-size: 1.75rem;
+  }
+
+  article h2 {
+    font-size: 1.25rem;
+  }
+}

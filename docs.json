@@ -6,9 +6,33 @@
     "default": "light"
   },
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373"
+    "primary": "#D97706",
+    "light": "#F59E0B",
+    "dark": "#B45309",
+    "background": {
+      "light": "#FAFAFA",
+      "dark": "#0F0F0F"
+    }
+  },
+  "font": {
+    "headings": {
+      "family": "Inter",
+      "weight": 600
+    },
+    "body": {
+      "family": "Inter",
+      "weight": 400
+    }
+  },
+  "styling": {
+    "eyebrows": "section",
+    "codeblocks": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
+    },
+    "rounded": "default"
   },
   "favicon": "/docs/assets/favicon.png",
   "logo": {
@@ -16,6 +40,7 @@
     "light": "/docs/assets/favicon.png"
   },
   "mermaid": true,
+  "css": "/docs/stylesheets/custom.css",
   "navigation": {
     "tabs": [
       {
