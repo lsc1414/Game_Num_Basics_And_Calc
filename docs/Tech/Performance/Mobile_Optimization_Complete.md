@@ -1,127 +1,127 @@
 ---
-sidebarTitle: "移动优化综合指南"
+sidebarTitle: "ç§»å¨ä¼åç»¼åæå"
 ---
 
-# 移动优化综合指南
+# ç§»å¨ä¼åç»¼åæå
 
-> 本文档由以下文件合并生成 (2026-01-09)
-
-
-
----
+> æ¬ææ¡£ç±ä»¥ä¸æä»¶åå¹¶çæ (2026-01-09)
 
 
-{/* 来源: Tech\Mobile_Optimization_Guide.md */}
-
-## 📱 移动端深度优化指�?(Mobile Optimization Guide)
-
-**文档目标�?* �?Vampirefall �?iPhone 8 / 小米 6 级别的设备上稳定运行，且**不烫�?*�?
-**核心矛盾�?* 塔防的海量单�?vs 手机可怜的散热能力�?
 
 ---
 
-## 1. 🔥 发热控制：你的游戏为什么烫手？
 
-手机发热主要源于 **GPU 负载持续过高** �?**CPU 密集运算**。一旦发热，系统强制降频，帧率从 60 瞬间跌到 15�?
+{/* æ¥æº: Tech\Mobile_Optimization_Guide.md */}
 
-### 1.1 帧率封顶 (Target Frame Rate)
-*   **菜单/UI界面:** 强制锁定 **30 FPS**。没人需要在背包界面�?60 帧的动画�?
-*   **战斗界面:** 默认 **30 FPS**。提�?"高帧率模�?(60 FPS)" 开关，但默认关闭�?
-    *   *理由:* 30 FPS 能节�?40% 的电量，大幅延缓发热�?
+## ð± ç§»å¨ç«¯æ·±åº¦ä¼åæå?(Mobile Optimization Guide)
 
-### 1.2 动态分辨率 (Dynamic Resolution)
-*   **原理:** 当检测到 GPU 压力大时，自动降低渲染分辨率，UI 保持高清�?
-*   **Unity设置:** `URP Asset -> Render Scale`.
-*   **自适应脚本:**
+**ææ¡£ç®æ ï¼?* è®?Vampirefall å?iPhone 8 / å°ç±³ 6 çº§å«çè®¾å¤ä¸ç¨³å®è¿è¡ï¼ä¸**ä¸ç«æ?*ã?
+**æ ¸å¿çç¾ï¼?* å¡é²çæµ·éåä½?vs ææºå¯æçæ£ç­è½åã?
+
+---
+
+## 1. ð¥ åç­æ§å¶ï¼ä½ çæ¸¸æä¸ºä»ä¹ç«æï¼
+
+ææºåç­ä¸»è¦æºäº **GPU è´è½½æç»­è¿é«** å?**CPU å¯éè¿ç®**ãä¸æ¦åç­ï¼ç³»ç»å¼ºå¶éé¢ï¼å¸§çä» 60 ç¬é´è·å° 15ã?
+
+### 1.1 å¸§çå°é¡¶ (Target Frame Rate)
+*   **èå/UIçé¢:** å¼ºå¶éå® **30 FPS**ãæ²¡äººéè¦å¨èåçé¢ç?60 å¸§çå¨ç»ã?
+*   **ææçé¢:** é»è®¤ **30 FPS**ãæä¾?"é«å¸§çæ¨¡å¼?(60 FPS)" å¼å³ï¼ä½é»è®¤å³é­ã?
+    *   *çç±:* 30 FPS è½èç?40% ççµéï¼å¤§å¹å»¶ç¼åç­ã?
+
+### 1.2 å¨æåè¾¨ç (Dynamic Resolution)
+*   **åç:** å½æ£æµå° GPU ååå¤§æ¶ï¼èªå¨éä½æ¸²æåè¾¨çï¼UI ä¿æé«æ¸ã?
+*   **Unityè®¾ç½®:** `URP Asset -> Render Scale`.
+*   **èªéåºèæ¬:**
     ```csharp
     void Update() {
-        \text{if} (Time.deltaTime > 0.04f) { // 低于 25 FPS
+        if (Time.deltaTime > 0.04f) { // ä½äº 25 FPS
             currentScale = Mathf.Max(0.7f, currentScale - 0.05f);
             URPAsset.renderScale = currentScale;
         }
     }
     ```
 
-*   **效果:** 手机用户通常看不�?1080p �?720p 的区别，�?GPU 负载减半�?
+*   **ææ:** ææºç¨æ·éå¸¸çä¸å?1080p å?720p çåºå«ï¼ä½?GPU è´è½½ååã?
 
-### 1.3 物理降频 (Physics Throttling)
-*   **默认:** `FixedTimestep = 0.02` (50Hz)�?
-*   **优化:** 塔防游戏不需要那么精确的碰撞。改�?**0.04 (25Hz)** 甚至 **0.05 (20Hz)**�?
-*   *收益:* CPU 物理计算开销直接减半�?
-
----
-
-## 2. 📦 包体瘦身 (App Size Optimization)
-
-目标：APK < 100MB (不含资源热更)，首包越小，转化率越高�?
-
-### 2.1 纹理压缩 (Texture Compression)
-这是包体的大头�?
-
-*   **Android:** 必须强制全员 **ASTC 6x6** (甚至 8x8)�?
-    *   *对比:* ETC2 质量差，ASTC 质量好且压缩率高。所�?2016 年后的安卓机都支持�?
-*   **iOS:** **ASTC 6x6**�?
-*   **禁忌:** 严禁使用 RGBA32 �?PNG 原图进包�?
-
-### 2.2 代码裁剪 (Code Stripping)
-*   **设置:** `Player Settings -> Managed Stripping Level -> High`.
-*   **原理:** Unity 会自动剔除那些你没用到的 C# 库代码�?
-*   **风险:** 反射 (Reflection) 可能会失效。如果用�?JSON 库或 Lua，需要配�?`link.xml` 白名单�?
-
-### 2.3 音频设置
-*   **BGM:** 强制单声�?(Force to Mono)，码�?96kbps (Vorbis)。手机外放听不出 192kbps 的区别�?
-*   **SFX:** 短音效码�?70kbps (ADPCM)�?
+### 1.3 ç©çéé¢ (Physics Throttling)
+*   **é»è®¤:** `FixedTimestep = 0.02` (50Hz)ã?
+*   **ä¼å:** å¡é²æ¸¸æä¸éè¦é£ä¹ç²¾ç¡®çç¢°æãæ¹ä¸?**0.04 (25Hz)** çè³ **0.05 (20Hz)**ã?
+*   *æ¶ç:* CPU ç©çè®¡ç®å¼éç´æ¥ååã?
 
 ---
 
-## 3. 🧱 内存防爆�?GB 内存生存指南
+## 2. ð¦ åä½ç¦èº« (App Size Optimization)
 
-Android 低端机只�?2GB 内存，除去系统，分给游戏的只�?500MB - 700MB�?
+ç®æ ï¼APK < 100MB (ä¸å«èµæºç­æ´)ï¼é¦åè¶å°ï¼è½¬åçè¶é«ã?
 
-### 3.1 纹理流�?(Texture Streaming)
-*   **设置:** `Quality -> Texture Streaming`.
-*   **原理:** 游戏启动时只加载 1/8 尺寸的模糊贴图。当摄像机靠近物体时，才加载高清贴图�?
-*   **收益:** 显存占用减少 60%~80%�?
+### 2.1 çº¹çåç¼© (Texture Compression)
+è¿æ¯åä½çå¤§å¤´ã?
 
-### 3.2 杜绝 Resources
-*   再次强调，不要把大图�?Resources�?
-*   **Addressables Duplicate Check:** 使用 Addressables 的分析工具检查有没有资源被打进了多个包里 (Duplicated Assets)�?
+*   **Android:** å¿é¡»å¼ºå¶å¨å **ASTC 6x6** (çè³ 8x8)ã?
+    *   *å¯¹æ¯:* ETC2 è´¨éå·®ï¼ASTC è´¨éå¥½ä¸åç¼©çé«ãææ?2016 å¹´åçå®åæºé½æ¯æã?
+*   **iOS:** **ASTC 6x6**ã?
+*   **ç¦å¿:** ä¸¥ç¦ä½¿ç¨ RGBA32 æ?PNG åå¾è¿åã?
 
-### 3.3 Shader 变体爆炸
-*   **现象:** 内存里加载了几十 MB �?Shader Lab�?
-*   **原因:** URP �?Shader 包含成千上万个变�?(Variants)�?
-*   **对策:** 使用 `Strip URPS` 脚本，剔除掉你没用到的变体（比如你没用点光源阴影，就剔除 Additional Light Shadow 变体）�?
+### 2.2 ä»£ç è£åª (Code Stripping)
+*   **è®¾ç½®:** `Player Settings -> Managed Stripping Level -> High`.
+*   **åç:** Unity ä¼èªå¨åé¤é£äºä½ æ²¡ç¨å°ç C# åºä»£ç ã?
+*   **é£é©:** åå° (Reflection) å¯è½ä¼å¤±æãå¦æç¨äº?JSON åºæ Luaï¼éè¦éç½?`link.xml` ç½ååã?
+
+### 2.3 é³é¢è®¾ç½®
+*   **BGM:** å¼ºå¶åå£°é?(Force to Mono)ï¼ç ç?96kbps (Vorbis)ãææºå¤æ¾å¬ä¸åº 192kbps çåºå«ã?
+*   **SFX:** ç­é³æç ç?70kbps (ADPCM)ã?
 
 ---
 
-## 4. 🤖 专项：海量单位优�?(DOTS / GPU Instancing)
+## 3. ð§± åå­é²çï¼?GB åå­çå­æå
+
+Android ä½ç«¯æºåªæ?2GB åå­ï¼é¤å»ç³»ç»ï¼åç»æ¸¸æçåªæ?500MB - 700MBã?
+
+### 3.1 çº¹çæµé?(Texture Streaming)
+*   **è®¾ç½®:** `Quality -> Texture Streaming`.
+*   **åç:** æ¸¸æå¯å¨æ¶åªå è½½ 1/8 å°ºå¯¸çæ¨¡ç³è´´å¾ãå½æåæºé è¿ç©ä½æ¶ï¼æå è½½é«æ¸è´´å¾ã?
+*   **æ¶ç:** æ¾å­å ç¨åå° 60%~80%ã?
+
+### 3.2 æç» Resources
+*   åæ¬¡å¼ºè°ï¼ä¸è¦æå¤§å¾æ?Resourcesã?
+*   **Addressables Duplicate Check:** ä½¿ç¨ Addressables çåæå·¥å·æ£æ¥ææ²¡æèµæºè¢«æè¿äºå¤ä¸ªåé (Duplicated Assets)ã?
+
+### 3.3 Shader åä½çç¸
+*   **ç°è±¡:** åå­éå è½½äºå å MB ç?Shader Labã?
+*   **åå :** URP ç?Shader åå«æåä¸ä¸ä¸ªåä½?(Variants)ã?
+*   **å¯¹ç­:** ä½¿ç¨ `Strip URPS` èæ¬ï¼åé¤æä½ æ²¡ç¨å°çåä½ï¼æ¯å¦ä½ æ²¡ç¨ç¹åæºé´å½±ï¼å°±åé¤ Additional Light Shadow åä½ï¼ã?
+
+---
+
+## 4. ð¤ ä¸é¡¹ï¼æµ·éåä½ä¼å?(DOTS / GPU Instancing)
 
 ### 4.1 GPU Instancing
-*   **材质设置:** 所有怪物的材质球必须勾�?**Enable GPU Instancing**�?
-*   **条件:** 只有使用**相同 Mesh** �?**相同 Material** 的物体才能合批�?
-*   **技�?(Property Block):** 
-    *   如果想改变怪物颜色（如受击变红），**千万不要** `material.color = red` (这会破坏合批)�?
-    *   **必须使用** `MaterialPropertyBlock`�?
+*   **æè´¨è®¾ç½®:** æææªç©çæè´¨çå¿é¡»å¾é?**Enable GPU Instancing**ã?
+*   **æ¡ä»¶:** åªæä½¿ç¨**ç¸å Mesh** å?**ç¸å Material** çç©ä½æè½åæ¹ã?
+*   **æå·?(Property Block):** 
+    *   å¦ææ³æ¹åæªç©é¢è²ï¼å¦åå»åçº¢ï¼ï¼**åä¸ä¸è¦** `material.color = red` (è¿ä¼ç ´ååæ¹)ã?
+    *   **å¿é¡»ä½¿ç¨** `MaterialPropertyBlock`ï¼?
     ```csharp
     block.SetColor("_BaseColor", Color.red);
     renderer.SetPropertyBlock(block);
     ```
 
-### 4.2 动画烘焙 (Texture Skinning)
-*   **痛点:** 500 个怪物�?`SkinnedMeshRenderer` 计算骨骼极其�?CPU�?
-*   **解法:** 使用 **Animation Instancing** (GitHub 有开源库)�?
-    *   原理: 把动画帧烘焙成一张纹�?(Animation Texture)�?
-    *   运行: GPU 读取纹理来移动顶点。CPU 开销几乎�?0�?
+### 4.2 å¨ç»çç (Texture Skinning)
+*   **çç¹:** 500 ä¸ªæªç©ç?`SkinnedMeshRenderer` è®¡ç®éª¨éª¼æå¶è?CPUã?
+*   **è§£æ³:** ä½¿ç¨ **Animation Instancing** (GitHub æå¼æºåº)ã?
+    *   åç: æå¨ç»å¸§ççæä¸å¼ çº¹ç?(Animation Texture)ã?
+    *   è¿è¡: GPU è¯»åçº¹çæ¥ç§»å¨é¡¶ç¹ãCPU å¼éå ä¹ä¸?0ã?
 
 ---
 
-## 5. 📝 优化检查清�?(Pre-Launch Checklist)
+## 5. ð ä¼åæ£æ¥æ¸å?(Pre-Launch Checklist)
 
-*   [ ] **Scripting Backend:** 必须�?**IL2CPP** (ARM64)。不要用 Mono�?
-*   [ ] **Target Architectures:** Android 勾�?ARM64，取�?ARMv7 (Google Play 要求，且 v7 性能�?�?
-*   [ ] **Multithreaded Rendering:** 必须勾选�?
-*   [ ] **V-Sync:** 关闭 (在代码里手动限帧，更可控)�?
-*   [ ] **Accelerometer Frequency:** 如果不玩重力感应，设�?Disabled，省电�?
+*   [ ] **Scripting Backend:** å¿é¡»æ?**IL2CPP** (ARM64)ãä¸è¦ç¨ Monoã?
+*   [ ] **Target Architectures:** Android å¾é?ARM64ï¼åæ¶?ARMv7 (Google Play è¦æ±ï¼ä¸ v7 æ§è½å·?ã?
+*   [ ] **Multithreaded Rendering:** å¿é¡»å¾éã?
+*   [ ] **V-Sync:** å³é­ (å¨ä»£ç éæå¨éå¸§ï¼æ´å¯æ§)ã?
+*   [ ] **Accelerometer Frequency:** å¦æä¸ç©éåæåºï¼è®¾ä¸?Disabledï¼ççµã?
 
 
 
@@ -129,68 +129,68 @@ Android 低端机只�?2GB 内存，除去系统，分给游戏的只�?500MB - 
 ---
 
 
-{/* 来源: Tech\Mobile_Optimization\Device_Grading_And_Scalability.md */}
+{/* æ¥æº: Tech\Mobile_Optimization\Device_Grading_And_Scalability.md */}
 
-## 📱 设备分级与画质自适应 (Device Grading & Scalability)
+## ð± è®¾å¤åçº§ä¸ç»è´¨èªéåº (Device Grading & Scalability)
 
-> **"�?iPhone 15 Pro 跑满 120 帧，让红�?Note 7 也能活着玩下去�?**
+> **"è®?iPhone 15 Pro è·æ»¡ 120 å¸§ï¼è®©çº¢ç±?Note 7 ä¹è½æ´»çç©ä¸å»ã?**
 >
-> 移动端碎片化严重，一套画质通吃天下是不可能的。我们需要建立一套严谨的**设备分级系统 (Tier System)**，动态调整渲染负载�?
+> ç§»å¨ç«¯ç¢çåä¸¥éï¼ä¸å¥ç»è´¨éåå¤©ä¸æ¯ä¸å¯è½çãæä»¬éè¦å»ºç«ä¸å¥ä¸¥è°¨ç**è®¾å¤åçº§ç³»ç» (Tier System)**ï¼å¨æè°æ´æ¸²æè´è½½ã?
 
 ---
 
-## 📚 1. 理论基础 (Theoretical Basis)
+## ð 1. çè®ºåºç¡ (Theoretical Basis)
 
-### 📊 为什么要分级�?
+### ð ä¸ºä»ä¹è¦åçº§ï¼?
 
-- **硬件鸿沟:** 高端�?GPU 算力是低端机�?50 倍以上�?
-- **热节�?(Thermal Throttling):** 即使是高端机，全开画质�?10 分钟也会降频�?
-- **用户体验:** 低端机用户宁愿看马赛克，也不愿玩 PPT�?
+- **ç¡¬ä»¶é¸¿æ²:** é«ç«¯æ?GPU ç®åæ¯ä½ç«¯æºç?50 åä»¥ä¸ã?
+- **ç­èæµ?(Thermal Throttling):** å³ä½¿æ¯é«ç«¯æºï¼å¨å¼ç»è´¨è·?10 åéä¹ä¼éé¢ã?
+- **ç¨æ·ä½éª:** ä½ç«¯æºç¨æ·å®æ¿çé©¬èµåï¼ä¹ä¸æ¿ç© PPTã?
 
-### 🏷�?分级核心指标
+### ð·ï¸?åçº§æ ¸å¿ææ 
 
-我们不能单纯靠识别机型名字（�?"Samsung S21"），因为机型太多了。我们需要看**硬指�?*�?
+æä»¬ä¸è½åçº¯é è¯å«æºååå­ï¼å¦?"Samsung S21"ï¼ï¼å ä¸ºæºåå¤ªå¤äºãæä»¬éè¦ç**ç¡¬ææ ?*ï¼?
 
-1.  **GPU 型号 (SystemInfo.graphicsDeviceName):** 最靠谱的指标�?
-    - _Android:_ Adreno (高�?, Mali (联发�?麒麟/Exynos), PowerVR.
+1.  **GPU åå· (SystemInfo.graphicsDeviceName):** æé è°±çææ ã?
+    - _Android:_ Adreno (é«é?, Mali (èåç§?éºéº/Exynos), PowerVR.
     - _iOS:_ Apple A series GPU.
-2.  **显存/内存 (SystemMemorySize):** 决定能不能开高精细度贴图�?
+2.  **æ¾å­/åå­ (SystemMemorySize):** å³å®è½ä¸è½å¼é«ç²¾ç»åº¦è´´å¾ã?
 
-3.  **API 支持:** Vulkan vs OpenGL ES 3.x.
+3.  **API æ¯æ:** Vulkan vs OpenGL ES 3.x.
 
 ---
 
-## 🛠�?2. 实践应用 (Practical Implementation)
+## ð ï¸?2. å®è·µåºç¨ (Practical Implementation)
 
-### 📐 1. 分级标准建议 (Grading Criteria)
+### ð 1. åçº§æ åå»ºè®® (Grading Criteria)
 
-建议将设备分�?4 档：**High, Medium, Low, Potato (土豆)**�?
+å»ºè®®å°è®¾å¤åä¸?4 æ¡£ï¼**High, Medium, Low, Potato (åè±)**ã?
 
-|          档位                |          标杆机型 (Android)              |          标杆机型 (iOS)          |          GPU 特征 (Regex)          |          目标帧率               |
+|          æ¡£ä½                |          æ ææºå (Android)              |          æ ææºå (iOS)          |          GPU ç¹å¾ (Regex)          |          ç®æ å¸§ç               |
 |          :---------          |          :---------------------          |          :-------------          |          :---------------          |          :------------          |
-|          **High**            |          骁龙 8+ Gen 1, 8 Gen 2          |          iPhone 13 Pro+          |          Adreno 7xx, 660+          |          60/120 FPS             |
-|          **Medium**          |          骁龙 865, 870                   |          iPhone 11, 12           |          Adreno 640, 650           |          60 FPS                 |
-|          **Low**             |          骁龙 660, 845                   |          iPhone 8, X             |          Adreno 61x, 5xx           |          30 FPS                 |
-|          **Potato**          |          骁龙 4xx, 老旧麒麟              |          iPhone 6s, 7            |          Adreno 4xx, 3xx           |          30 FPS (稳住)          |
+|          **High**            |          éªé¾ 8+ Gen 1, 8 Gen 2          |          iPhone 13 Pro+          |          Adreno 7xx, 660+          |          60/120 FPS             |
+|          **Medium**          |          éªé¾ 865, 870                   |          iPhone 11, 12           |          Adreno 640, 650           |          60 FPS                 |
+|          **Low**             |          éªé¾ 660, 845                   |          iPhone 8, X             |          Adreno 61x, 5xx           |          30 FPS                 |
+|          **Potato**          |          éªé¾ 4xx, èæ§éºéº              |          iPhone 6s, 7            |          Adreno 4xx, 3xx           |          30 FPS (ç¨³ä½)          |
 
-### ⚙️ 2. 画质配置映射 (Quality Mapping)
+### âï¸ 2. ç»è´¨éç½®æ å° (Quality Mapping)
 
-针对不同档位，我们需要调整以下核心参数：
+éå¯¹ä¸åæ¡£ä½ï¼æä»¬éè¦è°æ´ä»¥ä¸æ ¸å¿åæ°ï¼
 
-|          参数 (Feature)                |          High (旗舰)                |          Medium (主流)               |          Low (低配)                  |          Potato (极简)                 |
+|          åæ° (Feature)                |          High (æè°)                |          Medium (ä¸»æµ)               |          Low (ä½é)                  |          Potato (æç®)                 |
 |          :-------------------          |          :----------------          |          :-----------------          |          :-----------------          |          :-------------------          |
 |          **Resolution Scale**          |          1.0 (Native)               |          0.85                        |          0.75                        |          0.6                           |
-|          **HDR**                       |          �?On                      |          �?On                       |          �?Off (LDR Bloom)          |          �?Off                        |
-|          **Shadows**                   |          Hard + Soft (40m)          |          Hard Only (25m)             |          Hard Only (15m)             |          �?Off (Blob Shadow)          |
+|          **HDR**                       |          â?On                      |          â?On                       |          â?Off (LDR Bloom)          |          â?Off                        |
+|          **Shadows**                   |          Hard + Soft (40m)          |          Hard Only (25m)             |          Hard Only (15m)             |          â?Off (Blob Shadow)          |
 |          **Anti-Aliasing**             |          MSAA 4x                    |          MSAA 2x                     |          FXAA / Off                  |          Off                           |
 |          **VFX Max Count**             |          500                        |          200                         |          100                         |          50                            |
 |          **LOD Bias**                  |          1.5                        |          1.0                         |          0.7                         |          0.5                           |
 |          **Skinning**                  |          GPU (4 weights)            |          GPU (2 weights)             |          CPU (2 weights)             |          CPU (1 weight)                |
 |          **Post-Processing**           |          Full Stack                 |          Bloom + ColorGrade          |          ColorGrade Only             |          Off                           |
 
-### 🖥�?3. 代码实现逻辑 (C# Detection)
+### ð¥ï¸?3. ä»£ç å®ç°é»è¾ (C# Detection)
 
-不要依赖云端数据库，直接在本地解�?GPU 字符串�?
+ä¸è¦ä¾èµäºç«¯æ°æ®åºï¼ç´æ¥å¨æ¬å°è§£æ?GPU å­ç¬¦ä¸²ã?
 
 ```csharp
 public enum DeviceTier { Potato, Low, Medium, High }
@@ -200,68 +200,68 @@ public static class DeviceGrader
     public static DeviceTier GetTier()
     {
 #if UNITY_IOS
-        // iOS 比较简单，直接通过 SystemInfo.deviceModel 判断代数
-        // iPhone14,x �?iPhone 12 系列
+        // iOS æ¯è¾ç®åï¼ç´æ¥éè¿ SystemInfo.deviceModel å¤æ­ä»£æ°
+        // iPhone14,x æ?iPhone 12 ç³»å
         string model = SystemInfo.deviceModel;
-        \text{if} (model.Contains("iPhone14") || model.Contains("iPad13")) return DeviceTier.High;
-        \text{if} (model.Contains("iPhone11") || model.Contains("iPhone12")) return DeviceTier.Medium;
+        if (model.Contains("iPhone14") || model.Contains("iPad13")) return DeviceTier.High;
+        if (model.Contains("iPhone11") || model.Contains("iPhone12")) return DeviceTier.Medium;
         return DeviceTier.Low;
 #elif UNITY_ANDROID
         string gpu = SystemInfo.graphicsDeviceName; // e.g., "Adreno (TM) 650"
 
-        \text{if} (gpu.Contains("Adreno"))
+        if (gpu.Contains("Adreno"))
         {
-            int series = ExtractNumber(gpu); // 解析�?650, 512 等数�?
-            \text{if} (series >= 730) return DeviceTier.High;
-            \text{if} (series >= 640) return DeviceTier.Medium; // 骁龙855
-            \text{if} (series >= 610) return DeviceTier.Low;
+            int series = ExtractNumber(gpu); // è§£æå?650, 512 ç­æ°å­?
+            if (series >= 730) return DeviceTier.High;
+            if (series >= 640) return DeviceTier.Medium; // éªé¾855
+            if (series >= 610) return DeviceTier.Low;
             return DeviceTier.Potato;
         }
-        else \text{if} (gpu.Contains("Mali"))
+        else if (gpu.Contains("Mali"))
         {
-            // Mali 命名比较�?(G71, G72, G76, G77...)
-            // 通常 G7x MPx, 数字越大越好
-            \text{if} (gpu.Contains("G710") || gpu.Contains("G78")) return DeviceTier.High;
-            \text{if} (gpu.Contains("G77") || gpu.Contains("G76")) return DeviceTier.Medium;
+            // Mali å½åæ¯è¾ä¹?(G71, G72, G76, G77...)
+            // éå¸¸ G7x MPx, æ°å­è¶å¤§è¶å¥½
+            if (gpu.Contains("G710") || gpu.Contains("G78")) return DeviceTier.High;
+            if (gpu.Contains("G77") || gpu.Contains("G76")) return DeviceTier.Medium;
             return DeviceTier.Low;
         }
 
-        return DeviceTier.Low; // 无法识别的默认为�?
+        return DeviceTier.Low; // æ æ³è¯å«çé»è®¤ä¸ºä½?
 #else
-        return DeviceTier.High; // PC 默认�?
+        return DeviceTier.High; // PC é»è®¤é«?
 #endif
     }
 }
 ```
 
-### 📉 4. 动态降�?(Auto-Scalability)
+### ð 4. å¨æéçº?(Auto-Scalability)
 
-除了进游戏时定死画质，还应该支持**动态降�?*�?
+é¤äºè¿æ¸¸ææ¶å®æ­»ç»è´¨ï¼è¿åºè¯¥æ¯æ**å¨æéçº?*ã?
 
-- **监控:** �?30 秒检测一次平�?FPS�?
-- **逻辑:** 如果最�?30 �?平均帧率 < 25 (目标 30)，则强制降低一�?Resolution Scale 或关闭阴影�?
-- **恢复:** **永远不要自动升级画质**。如果用户卡了，降级了，后面流畅了也不要升回去，防止反复横跳�?
-
----
-
-## 🌟 3. 业界优秀案例 (Industry Best Practices)
-
-### ⚔️ 原神 (Genshin Impact)
-
-- **极致细分:** 它的图像设置极其详细，针对“渲染精度”和“特效质量”分得很开�?
-- **过热保护:** 检测到手机温度过高（通过操作系统 API）时，会强制锁定 30 �?+ 甚至降低亮度，而不是让手机关机�?
-
-### 🔫 PUBG Mobile
-
-- **帧率优先:** 提供了“流�?极限帧率(60/90)”的选项。对于竞技游戏，降低画质（Low Tier 设置）换取高帧率（High Tier 帧率策略）是常规操作�?
-- **LOD 策略:** 远处的草丛在低画质下直接不显示，但这涉及�?*竞技公平�?*（低画质透视挂）。Vampirefall �?PVE，不需要担心这个，低画质应该尽可能剔除草丛�?
+- **çæ§:** æ¯?30 ç§æ£æµä¸æ¬¡å¹³å?FPSã?
+- **é»è¾:** å¦ææè¿?30 ç§?å¹³åå¸§ç < 25 (ç®æ  30)ï¼åå¼ºå¶éä½ä¸çº?Resolution Scale æå³é­é´å½±ã?
+- **æ¢å¤:** **æ°¸è¿ä¸è¦èªå¨åçº§ç»è´¨**ãå¦æç¨æ·å¡äºï¼éçº§äºï¼åé¢æµçäºä¹ä¸è¦ååå»ï¼é²æ­¢åå¤æ¨ªè·³ã?
 
 ---
 
-## 🔗 4. 参考资�?(References)
+## ð 3. ä¸çä¼ç§æ¡ä¾ (Industry Best Practices)
 
-- 📄 **[HDR 技术](../../Art/Tech_Art/HDR_DeepDive.md):** 哪些档位该开 HDR�?
-- 📄 **[Unity Manual - Quality Settings]:** Unity 自带的画质分级系统�?
+### âï¸ åç¥ (Genshin Impact)
+
+- **æè´ç»å:** å®çå¾åè®¾ç½®æå¶è¯¦ç»ï¼éå¯¹âæ¸²æç²¾åº¦âåâç¹æè´¨éâåå¾å¾å¼ã?
+- **è¿ç­ä¿æ¤:** æ£æµå°ææºæ¸©åº¦è¿é«ï¼éè¿æä½ç³»ç» APIï¼æ¶ï¼ä¼å¼ºå¶éå® 30 å¸?+ çè³éä½äº®åº¦ï¼èä¸æ¯è®©ææºå³æºã?
+
+### ð« PUBG Mobile
+
+- **å¸§çä¼å:** æä¾äºâæµç?æéå¸§ç(60/90)âçéé¡¹ãå¯¹äºç«ææ¸¸æï¼éä½ç»è´¨ï¼Low Tier è®¾ç½®ï¼æ¢åé«å¸§çï¼High Tier å¸§çç­ç¥ï¼æ¯å¸¸è§æä½ã?
+- **LOD ç­ç¥:** è¿å¤çèä¸å¨ä½ç»è´¨ä¸ç´æ¥ä¸æ¾ç¤ºï¼ä½è¿æ¶åå?*ç«æå¬å¹³æ?*ï¼ä½ç»è´¨éè§æï¼ãVampirefall æ?PVEï¼ä¸éè¦æå¿è¿ä¸ªï¼ä½ç»è´¨åºè¯¥å°½å¯è½åé¤èä¸ã?
+
+---
+
+## ð 4. åèèµæ?(References)
+
+- ð **[HDR ææ¯](../../Art/Tech_Art/HDR_DeepDive.md):** åªäºæ¡£ä½è¯¥å¼ HDRã?
+- ð **[Unity Manual - Quality Settings]:** Unity èªå¸¦çç»è´¨åçº§ç³»ç»ã?
 
 
 

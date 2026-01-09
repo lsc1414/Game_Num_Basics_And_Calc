@@ -120,7 +120,7 @@ Shader "Vampirefall/Particles/Standard_Additive"
             // ... 顶点和片元着色器代码 ...
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = \text{tex2D}(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv);
                 return col * _TintColor * i.color; // 顶点颜色用于粒子系统控制
             }
             ENDCG

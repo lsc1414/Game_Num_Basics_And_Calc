@@ -66,7 +66,7 @@ sidebarTitle: "馃攰 娓告垙闊虫晥璁捐涓庡疄鐜板疄鎴樻寚鍗?
 ```csharp
 public void PlaySoundWithVariation(AudioSource source, AudioClip clip)
 {
-    \text{if} (source == null || clip == null) return;
+    if (source == null || clip == null) return;
 
     // 1. 闅忔満闊抽珮锛氶槻姝㈠惉瑙夌柌鍔?
     source.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
@@ -99,7 +99,7 @@ public void PlaySoundWithVariation(AudioSource source, AudioClip clip)
 ```csharp
 public void PlayClip(AudioClip clip)
 {
-    \text{if} (Time.time - lastPlayTimes[clip.name] \< 0.1f) 
+    if (Time.time - lastPlayTimes[clip.name] \< 0.1f) 
     {
         return; // 0.1绉掑唴鍚屼竴闊虫晥涓嶉噸澶嶆挱鏀?
     }

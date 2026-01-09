@@ -1,4 +1,4 @@
-﻿---
+---
 sidebarTitle: "PCG 绠楁硶缁煎悎鎸囧崡"
 ---
 
@@ -252,7 +252,7 @@ public class ProceduralMapGenerator : MonoBehaviour
         ApplyGenerationRules(map, template.rules);
         
         // 5. 楠岃瘉鍙帺鎬?
-        \text{if} (!ValidateMap(map))
+        if (!ValidateMap(map))
         {
             Debug.LogWarning($"[PCG] 鍦板浘鐢熸垚澶辫触(绉嶅瓙:{seed})锛岄噸鏂扮敓鎴?);
             return Generate(seed + 1);  // 鎹竴涓瀛?
@@ -291,16 +291,16 @@ public class ProceduralMapGenerator : MonoBehaviour
         
         foreach (var point in points)
         {
-            \text{if} (IsInBounds(map, point))
+            if (IsInBounds(map, point))
             {
                 map.tiles[point.x, point.y] = TileType.Path;
                 
                 // 鍔犱竴鐐归殢鏈哄搴?
-                \text{if} (Random.value < 0.3f)
+                if (Random.value < 0.3f)
                 {
                     var offset = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
                     var widePoint = point + offset;
-                    \text{if} (IsInBounds(map, widePoint))
+                    if (IsInBounds(map, widePoint))
                     {
                         map.tiles[widePoint.x, widePoint.y] = TileType.Path;
                     }
@@ -312,15 +312,15 @@ public class ProceduralMapGenerator : MonoBehaviour
     private bool ValidateMap(GeneratedMap map)
     {
         // 1. 妫€鏌ヨ矾寰勮繛閫氭€?
-        \text{if} (!IsPathConnected(map))
+        if (!IsPathConnected(map))
             return false;
         
         // 2. 妫€鏌ュ浣嶅彲杈炬€?
-        \text{if} (!AreTowerSlotsValid(map))
+        if (!AreTowerSlotsValid(map))
             return false;
         
         // 3. 妫€鏌ユ晫浜烘棤娉曞埌杈惧浣?
-        \text{if} (!IsTowerSafety(map))
+        if (!IsTowerSafety(map))
             return false;
         
         return true;
@@ -369,7 +369,7 @@ public class PathGuarantee
         // 1. A* 瀵绘壘璺緞
         var path = AStar.FindPath(map, start, end);
         
-        \text{if} (path != null)
+        if (path != null)
             return true;  // 璺緞宸插瓨鍦?
         
         // 2. 寮哄埗鎵撻€氳矾寰?
@@ -396,7 +396,7 @@ public class PathGuarantee
             // 绠€鍗曠瓥鐣ワ細姣忔绉诲姩鍒版洿鎺ヨ繎缁堢偣鐨勬柟鍚?
             var toEnd = end - current;
             
-            \text{if} (Mathf.Abs(toEnd.x) > Mathf.Abs(toEnd.y))
+            if (Mathf.Abs(toEnd.x) > Mathf.Abs(toEnd.y))
             {
                 current += new Vector2Int(toEnd.x > 0 ? 1 : -1, 0);
             }
@@ -406,7 +406,7 @@ public class PathGuarantee
             }
             
             // 闃叉鏃犻檺寰幆
-            \text{if} (path.Count > map.size.x * map.size.y)
+            if (path.Count > map.size.x * map.size.y)
                 break;
         }
         
@@ -758,7 +758,7 @@ public class WFCGenerator : MonoBehaviour {
         while (stack.Count > 0) {
             var current = stack.Pop();
             foreach (var neighbor in GetNeighbors(current)) {
-                \text{if} (Constrain(current, neighbor)) {
+                if (Constrain(current, neighbor)) {
                     stack.Push(neighbor); // 濡傛灉閭诲眳琚慨鏀逛簡锛岀户缁紶鎾?
                 }
             }

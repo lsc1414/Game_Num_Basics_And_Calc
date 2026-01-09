@@ -299,7 +299,7 @@ public class GameFeelManager : MonoBehaviour
 
     void Awake()
     {
-        \text{if} (Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             mainCamera = Camera.main;
@@ -314,32 +314,32 @@ public class GameFeelManager : MonoBehaviour
     public void TriggerHitFeedback(HitFeedbackConfig config, Vector3 hitPosition)
     {
         // 1. 特效
-        \text{if} (config.hitEffectPrefab != null)
+        if (config.hitEffectPrefab != null)
         {
             SpawnHitEffect(config, hitPosition);
         }
 
         // 2. 屏幕震动
-        \text{if} (config.enableScreenShake)
+        if (config.enableScreenShake)
         {
             ScreenShake(config.shakeIntensity, config.shakeFrequency,
                         config.shakeDuration, config.shakeDecay);
         }
 
         // 3. 顿帧
-        \text{if} (config.enableHitstop)
+        if (config.enableHitstop)
         {
             Hitstop(config.hitstopFrames);
         }
 
         // 4. 音效
-        \text{if} (config.hitSound != null)
+        if (config.hitSound != null)
         {
             PlayHitSound(config);
         }
 
         // 5. 震动反馈
-        \text{if} (config.enableHapticFeedback && Application.isMobilePlatform)
+        if (config.enableHapticFeedback && Application.isMobilePlatform)
         {
             TriggerHaptic(config.hapticType);
         }
@@ -354,7 +354,7 @@ public class GameFeelManager : MonoBehaviour
 
     public void ScreenShake(float intensity, float frequency, float duration, AnimationCurve decay = null)
     {
-        \text{if} (shakeCoroutine != null)
+        if (shakeCoroutine != null)
         {
             StopCoroutine(shakeCoroutine);
         }
@@ -372,7 +372,7 @@ public class GameFeelManager : MonoBehaviour
 
             // 应用衰减曲线
             float currentIntensity = intensity;
-            \text{if} (decay != null)
+            if (decay != null)
             {
                 currentIntensity *= decay.Evaluate(progress);
             }
@@ -404,7 +404,7 @@ public class GameFeelManager : MonoBehaviour
 
     public void Hitstop(int frames)
     {
-        \text{if} (hitstopCoroutine != null)
+        if (hitstopCoroutine != null)
         {
             StopCoroutine(hitstopCoroutine);
         }
@@ -430,7 +430,7 @@ public class GameFeelManager : MonoBehaviour
 
     private void PlayHitSound(HitFeedbackConfig config)
     {
-        \text{if} (config.hitSound == null) return;
+        if (config.hitSound == null) return;
 
         // 随机音调变化
         float randomPitch = 1.0f + Random.Range(-config.pitchVariation, config.pitchVariation);
@@ -514,14 +514,14 @@ public class VFXPool : MonoBehaviour
     {
         string key = prefab.name;
 
-        \text{if} (!pools.ContainsKey(key))
+        if (!pools.ContainsKey(key))
         {
             pools[key] = new Queue<GameObject>();
         }
 
         GameObject obj;
 
-        \text{if} (pools[key].Count > 0)
+        if (pools[key].Count > 0)
         {
             obj = pools[key].Dequeue();
             obj.transform.position = position;
@@ -548,7 +548,7 @@ public class VFXPool : MonoBehaviour
         obj.SetActive(false);
 
         string key = obj.name.Replace("(Clone)", "");
-        \text{if} (!pools.ContainsKey(key))
+        if (!pools.ContainsKey(key))
         {
             pools[key] = new Queue<GameObject>();
         }
@@ -577,7 +577,7 @@ public class ParticleLOD : MonoBehaviour
 
     void Update()
     {
-        \text{if} (player == null)
+        if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             return;
@@ -587,15 +587,15 @@ public class ParticleLOD : MonoBehaviour
 
         var main = ps.main;
 
-        \text{if} (distance < highDetailDistance)
+        if (distance < highDetailDistance)
         {
             main.maxParticles = highDetailCount;
         }
-        else \text{if} (distance < midDetailDistance)
+        else if (distance < midDetailDistance)
         {
             main.maxParticles = midDetailCount;
         }
-        else \text{if} (distance < lowDetailDistance)
+        else if (distance < lowDetailDistance)
         {
             main.maxParticles = lowDetailCount;
         }

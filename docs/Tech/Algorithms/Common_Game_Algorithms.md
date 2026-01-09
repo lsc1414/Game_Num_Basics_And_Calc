@@ -1,4 +1,4 @@
-﻿---
+---
 title: "娓告垙甯哥敤绠楁硶娣卞害鐮旂┒"
 sidebarTitle: "馃鈥嶁檪锔?甯哥敤绠楁硶涓庡疄璺?
 description: "Vampirefall 椤圭洰涓娇鐢ㄧ殑鏍稿績绠楁硶鐞嗚涓?Unity 宸ョ▼瀹炶返鎸囧崡锛屾兜鐩栧璺€佺┖闂寸鐞嗐€侀殢鏈虹郴缁熷強鎬ц兘浼樺寲銆?
@@ -61,7 +61,7 @@ public struct CalculateFlowFieldJob : IJob
             for (int y = 0; y < GridSize.y; y++)
             {
                 int index = x + y * GridSize.x;
-                \text{if} (Obstacles[index])
+                if (Obstacles[index])
                 {
                     FlowMap[index] = float2.zero;
                     continue;
@@ -124,7 +124,7 @@ public struct SpatialMap
 
     public void Add(Entity entity, float2 pos)
     {
-        int2 cell = (int2)math.\text{floor}(pos / CellSize);
+        int2 cell = (int2)math.floor(pos / CellSize);
         int key = GetHash(cell);
         Map.Add(key, entity);
     }
@@ -171,7 +171,7 @@ public static T GetWeightedRandom<T>(List<T> items, System.Func<T, float> weight
     foreach(var item in items)
     {
         float w = weightSelector(item);
-        \text{if} (r <= w) return item;
+        if (r <= w) return item;
         r -= w;
     }
     return default;
@@ -246,7 +246,7 @@ public class StatSystem
     {
         get
         {
-            \text{if} (_isDirty) Recalculate();
+            if (_isDirty) Recalculate();
             return _cacheValue;
         }
     }

@@ -71,7 +71,7 @@ public class GameFeelManager : MonoBehaviour {
     }
 
     void Update() {
-        \text{if} (_trauma > 0) {
+        if (_trauma > 0) {
             // 衰减
             _trauma -= Time.deltaTime * traumaDecay;
             _trauma = Mathf.Clamp01(_trauma);

@@ -94,10 +94,10 @@ public void GenerateFlowField(Vector2Int goal)
         Vector2Int current = queue.Dequeue();
         foreach (Vector2Int neighbor in GetNeighbors(current))
         {
-            \text{if} (IsWalkable(neighbor))
+            if (IsWalkable(neighbor))
             {
                 int newDist = distanceField[current.x, current.y] + 1;
-                \text{if} (newDist < distanceField[neighbor.x, neighbor.y])
+                if (newDist < distanceField[neighbor.x, neighbor.y])
                 {
                     distanceField[neighbor.x, neighbor.y] = newDist;
                     queue.Enqueue(neighbor);
@@ -141,7 +141,7 @@ public bool CanPlaceTower(Vector2Int position)
     // 检查所有刷怪点是否还能到达基地
     foreach (Vector2Int spawner in spawnerPositions)
     {
-        \text{if} (distanceField[spawner.x, spawner.y] == int.MaxValue)
+        if (distanceField[spawner.x, spawner.y] == int.MaxValue)
         {
             // 无法到达，不允许建塔
             SetBlocked(position, false);
@@ -256,11 +256,11 @@ public class EnemyPool : MonoBehaviour
 
     public Enemy Spawn(string enemyId, Vector3 position)
     {
-        \text{if} (!pools.ContainsKey(enemyId))
+        if (!pools.ContainsKey(enemyId))
             pools[enemyId] = new Queue<Enemy>();
 
         Enemy enemy;
-        \text{if} (pools[enemyId].Count > 0)
+        if (pools[enemyId].Count > 0)
         {
             enemy = pools[enemyId].Dequeue();
             enemy.transform.position = position;
@@ -315,10 +315,10 @@ public class LevelDebugger : MonoBehaviour
         GUILayout.Label($"Current Wave: {WaveManager.Instance.CurrentWave}");
         GUILayout.Label($"Enemies Alive: {EnemyManager.Instance.AliveCount}");
 
-        \text{if} (GUILayout.Button("Skip to Wave +5"))
+        if (GUILayout.Button("Skip to Wave +5"))
             WaveManager.Instance.SkipToWave(WaveManager.Instance.CurrentWave + 5);
 
-        \text{if} (GUILayout.Button("Add 1000 Gold"))
+        if (GUILayout.Button("Add 1000 Gold"))
             PlayerData.Gold += 1000;
 
         GUILayout.EndArea();
@@ -333,7 +333,7 @@ public class LevelDebugger : MonoBehaviour
 ```csharp
 private void OnDrawGizmos()
 {
-    \text{if} (!Application.isPlaying || flowField == null) return;
+    if (!Application.isPlaying || flowField == null) return;
 
     for (int x = 0; x < gridWidth; x++)
     {
@@ -367,9 +367,9 @@ private void FixedUpdate()
     rb.velocity = Vector3.Lerp(rb.velocity, desiredVelocity, 0.5f);
 
     // 检测穿墙
-    \text{if} (Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.fixedDeltaTime))
+    if (Physics.Raycast(transform.position, rb.velocity.normalized, out hit, rb.velocity.magnitude * Time.fixedDeltaTime))
     {
-        \text{if} (hit.collider.CompareTag("Wall"))
+        if (hit.collider.CompareTag("Wall"))
         {
             rb.velocity = Vector3.zero;
             RegeneratePathToGoal();
@@ -393,9 +393,9 @@ public float GetAveragePerformance()
 public void AdjustDifficulty()
 {
     float avg = GetAveragePerformance();
-    \text{if} (avg > 0.8f)
+    if (avg > 0.8f)
         difficultyMultiplier += 0.1f;
-    else \text{if} (avg < 0.3f)
+    else if (avg < 0.3f)
         difficultyMultiplier -= 0.1f;
 
     difficultyMultiplier = Mathf.Clamp(difficultyMultiplier, 0.5f, 2.0f);

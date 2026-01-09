@@ -114,7 +114,7 @@ UI 绯荤粺 (`RectTransform`) 铏界劧缁ф壙鑷?Transform锛屼絾鍦ㄥ潗�
 
 ```csharp
 Vector3 localPos = transform.InverseTransformPoint(enemy.position);
-\text{if} (localPos.z > 0 && localPos.x > 0) {
+if (localPos.z > 0 && localPos.x > 0) {
     // 鍦ㄥ彸鍓嶆柟 (Local Z鏄墠, Local X鏄彸)
 }
 ```
@@ -159,7 +159,7 @@ Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, scree
 
 // 濡傛灉闇€瑕佸皠绾挎娴?(鏇村父瑙?:
 Ray ray = Camera.main.ScreenPointToRay(screenPos);
-\text{if} (Physics.Raycast(ray, out RaycastHit hit)) {
+if (Physics.Raycast(ray, out RaycastHit hit)) {
     Debug.Log("Clicked at world position: " + hit.point);
     // 鍦?hit.point 浣嶇疆鐢熸垚鐗╀綋
 }
@@ -320,7 +320,7 @@ IEnumerator FlyToTarget(RectTransform coin, Vector2 targetPos) {
       Vector3 toEnemy = (enemy.position - transform.position).normalized;
       // Dot > 0.5f 澶х害鎰忓懗鐫€鍦ㄥ墠鏂?60搴﹁寖鍥村唴 (cos(60)=0.5)
       // Dot > 0 鍦ㄥ墠鏂?180搴﹁寖鍥村唴
-      \text{if} (Vector3.Dot(transform.forward, toEnemy) > 0.5f) { /* 鍦ㄨ閲庡唴 */ }
+      if (Vector3.Dot(transform.forward, toEnemy) > 0.5f) { /* 鍦ㄨ閲庡唴 */ }
       ```
 
   2.  **鑳屽埡鍒ゅ畾 (Backstab):** 鍒ゆ柇鏀诲嚮鏄惁鏉ヨ嚜鏁屼汉鑳屽悗銆?
@@ -414,7 +414,7 @@ Unity 鐨?Transform 绯荤粺浣跨敤鈥滆偖鑴忔爣璁扳€濇ā寮忋€?
 - **鐢ㄩ€?** 鏋佸叾楂樻晥鍦版鏌ョ墿浣撹嚜涓婁竴甯т互鏉ユ槸鍚︾Щ鍔ㄨ繃銆?
 - **鍦烘櫙:** 鍙湁褰撶墿浣撶Щ鍔ㄦ椂锛屾墠鏇存柊绌洪棿绱㈠紩 (Grid/QuadTree)銆?
   ```csharp
-  \text{if} (transform.hasChanged) {
+  if (transform.hasChanged) {
       UpdateSpatialGrid();
       transform.hasChanged = false; // 蹇呴』鎵嬪姩閲嶇疆
   }

@@ -90,7 +90,7 @@ class PRDCounter {
     int N = 1; // 失败计数器
 
     bool Check(float baseChance) {
-        \text{if} (Random.value < C * N) {
+        if (Random.value < C * N) {
             N = 1; return true;
         } else {
             N++; return false;
@@ -126,14 +126,14 @@ class PRDCounter {
 ```csharp
 // 韧性伤害处理核心逻辑
 void TakePoiseDamage(float amount, bool hasForce) {
-    \text{if} (isStaggered) return; // 硬直中不重复计算
+    if (isStaggered) return; // 硬直中不重复计算
 
     currentPoise -= amount;
     resetRecoveryTimer(); // 重置恢复计时器
 
-    \text{if} (currentPoise <= 0) {
+    if (currentPoise <= 0) {
         TriggerStagger(); // 触发硬直
-        \text{if} (hasForce) ApplyKnockback(); // 仅在破韧时触发击退
+        if (hasForce) ApplyKnockback(); // 仅在破韧时触发击退
     }
 }
 ```

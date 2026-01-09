@@ -787,7 +787,7 @@ public bool ValidateMovement(Player player, Vector3 newPos, float deltaTime)
 
     float actualDistance = Vector3.Distance(player.Position, newPos);
 
-    \text{if} (actualDistance > maxDistance)
+    if (actualDistance > maxDistance)
     {
         // 可能作弊，拒绝并拉回
         Log.Warning($"[Cheat?] {player.Id} moved {actualDistance} in {deltaTime}s");

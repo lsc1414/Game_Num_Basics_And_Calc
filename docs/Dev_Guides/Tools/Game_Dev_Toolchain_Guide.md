@@ -34,7 +34,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
         {
             TextureImporter importer = (TextureImporter)assetImporter;
             // 鑷姩璇嗗埆 UI 鏂囦欢澶?
-            \text{if} (assetPath.Contains("Assets/UI"))
+            if (assetPath.Contains("Assets/UI"))
             {
                 importer.textureType = TextureImporterType.Sprite;
                 importer.mipmapEnabled = false; // UI 涓嶉渶瑕?Mipmap
@@ -88,7 +88,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
         foreach (var monster in tables.TbMonster.DataList)
         {
             // 楠岃瘉 1: 鎺夎惤 ID 鏄惁瀛樺湪浜庢帀钀借〃涓?(澶栭敭妫€鏌?
-            \text{if} (!tables.TbLoot.ContainsKey(monster.DropId))
+            if (!tables.TbLoot.ContainsKey(monster.DropId))
             {
                 Debug.LogError($"閰嶇疆閿欒: 鎬墿 {monster.Id} 鐨勬帀钀絀D {monster.DropId} 涓嶅瓨鍦紒");
             }
@@ -96,7 +96,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
             // 楠岃瘉 2: 鎶€鑳?ID 鍒楄〃妫€鏌?
             foreach (int skillId in monster.SkillIds)
             {
-                \text{if} (!tables.TbSkill.ContainsKey(skillId))
+                if (!tables.TbSkill.ContainsKey(skillId))
                 {
                     Debug.LogError($"閰嶇疆閿欒: 鎬墿 {monster.Id} 寮曠敤浜嗘棤鏁堟妧鑳?{skillId}");
                 }
@@ -130,11 +130,11 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
             foreach (Transform child in prefab.GetComponentsInChildren<Transform>(true))
             {
                 // 绾﹀畾浼樹簬閰嶇疆: 浠?btn_ 寮€澶寸殑鑺傜偣鑷姩鐢熸垚 Button 寮曠敤
-                \text{if} (child.name.StartsWith("btn_"))
+                if (child.name.StartsWith("btn_"))
                 {
                     sb.AppendLine($"    public Button {child.name};");
                 }
-                else \text{if} (child.name.StartsWith("txt_"))
+                else if (child.name.StartsWith("txt_"))
                 {
                     sb.AppendLine($"    public TextMeshProUGUI {child.name};");
                 }
@@ -311,7 +311,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
         void Update()
         {
             // 涓夋寚鍚屾椂鐐瑰嚮灞忓箷锛屽紑鍚皟璇曡彍鍗?
-            \text{if} (Input.touchCount == 3)
+            if (Input.touchCount == 3)
             {
                 showMenu = !showMenu;
             }
@@ -319,18 +319,18 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
 
         void OnGUI()
         {
-            \text{if} (!showMenu) return;
+            if (!showMenu) return;
 
             GUILayout.BeginArea(new Rect(10, 10, 300, 400));
             GUILayout.Label("FPS: " + (1.0f / Time.deltaTime).ToString("F1"));
             GUILayout.Label("Memory: " + (GC.GetTotalMemory(false) / 1024 / 1024) + " MB");
 
-            \text{if} (GUILayout.Button("鏃犳晫妯″紡"))
+            if (GUILayout.Button("鏃犳晫妯″紡"))
             {
                 PlayerController.Instance.SetGodMode(true);
             }
 
-            \text{if} (GUILayout.Button("璺宠繃褰撳墠鍏冲崱"))
+            if (GUILayout.Button("璺宠繃褰撳墠鍏冲崱"))
             {
                 LevelManager.Instance.CompleteLevel();
             }
@@ -732,7 +732,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
       bool isDoubleExpEvent = ConfigManager.appConfig.GetBool("doubleExpEvent");
       float discountRate = ConfigManager.appConfig.GetFloat("shopDiscount");
 
-      \text{if} (isDoubleExpEvent)
+      if (isDoubleExpEvent)
       {
           GameManager.Instance.ExpMultiplier = 2.0f;
       }
@@ -810,7 +810,7 @@ sidebarTitle: "娓告垙寮€鍙戝伐鍏烽摼鎸囧崡锛氬姞閫熻凯浠�
       {
           get
           {
-              \text{if} (_instance == null)
+              if (_instance == null)
                   _instance = Resources.Load<GameConfig>("GameConfig");
               return _instance;
           }

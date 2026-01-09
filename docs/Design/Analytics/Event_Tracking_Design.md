@@ -159,17 +159,17 @@ public class EventBatcher {
         _queue.Add(eventData);
 
         // 条件 1: 队列满
-        \text{if} (_queue.Count >= MAX_BATCH_SIZE) {
+        if (_queue.Count >= MAX_BATCH_SIZE) {
             Flush();
         }
         // 条件 2: 超过时间间隔
-        else \text{if} (Time.time - _lastFlushTime > FLUSH_INTERVAL) {
+        else if (Time.time - _lastFlushTime > FLUSH_INTERVAL) {
             Flush();
         }
     }
 
     private void Flush() {
-        \text{if} (_queue.Count == 0) return;
+        if (_queue.Count == 0) return;
 
         AnalyticsAPI.SendBatch(_queue);
         _queue.Clear();
@@ -178,7 +178,7 @@ public class EventBatcher {
 
     // 应用暂停/退出时强制发送
     void OnApplicationPause(bool pauseStatus) {
-        \text{if} (pauseStatus) Flush();
+        if (pauseStatus) Flush();
     }
 }
 ```
@@ -202,7 +202,7 @@ public void TrackDeferred(EventData eventData) {
     LocalDB.Insert("pending_events", eventData);
 
     // 检查发送条件
-    \text{if} (IsWiFiConnected() && !IsBatteryLow()) {
+    if (IsWiFiConnected() && !IsBatteryLow()) {
         SendPendingEvents();
     }
 }
@@ -255,7 +255,7 @@ void Update() {
 // ✅ 每秒采样 1 次
 private float _lastSampleTime;
 void Update() {
-    \text{if} (Time.time - _lastSampleTime >= 1f) {
+    if (Time.time - _lastSampleTime >= 1f) {
         TrackEvent("player_position", new {x, y, z});
         _lastSampleTime = Time.time;
     }
@@ -268,7 +268,7 @@ void Update() {
 // ✅ 只在位置显著变化时发送
 private Vector3 _lastPosition;
 void Update() {
-    \text{if} (Vector3.Distance(transform.position, _lastPosition) > 5f) {
+    if (Vector3.Distance(transform.position, _lastPosition) > 5f) {
         TrackEvent("player_position", new {x, y, z});
         _lastPosition = transform.position;
     }
@@ -751,7 +751,7 @@ public class AnalyticsManager : MonoBehaviour {
     }
 
     void OnApplicationPause(bool pauseStatus) {
-        \text{if} (pauseStatus) {
+        if (pauseStatus) {
             // 应用切到后台，发送会话总结
             TrackSessionEnd();
             _batcher.Flush();
@@ -831,7 +831,7 @@ void OnAnyButtonClick(string buttonName) {
 ```csharp
 // ✅ 只埋关键转化点
 void OnImportantButtonClick(string feature) {
-    \text{if} (IsKeyFeature(feature)) {
+    if (IsKeyFeature(feature)) {
         Track($"{feature}_click", new {source_page = currentPage});
     }
 }

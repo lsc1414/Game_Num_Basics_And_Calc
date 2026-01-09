@@ -140,13 +140,29 @@ def add_to_docs_json(file_path: str, tab_name:str, group_name: str):
     save_docs_json(data)
 
 def fix_math_syntax(text: str) -> str:
-    """Fixes common math syntax issues for MathJax/KaTeX compatibility."""
-    # Similar logic to mkdocs_lint_fix.py but simplified or adapted if needed
-    text = re.sub(r'([A-Za-z0-9])\\_\{([a-zA-Z0-9]+)\}', r'\1_{\2}', text)
+    """Fixes common math syntax issues for MathJax/KaTeX compatibility.
+    
+    IMPORTANT: Only applies \\text{} wrapping inside math blocks ($...$),
+    NOT inside code blocks (```...```) or inline code (`...`).
+    """
+    # Fix subscript syntax
+    text = re.sub(r'([A-Za-z0-9])\_\{([a-zA-Z0-9]+)\}', r'\1_{\2}', text)
     text = re.sub(r'([A-Za-z0-9])\*\{([a-zA-Z0-9]+)\}', r'\1_{\2}', text)
-    for func in MATH_FUNCTIONS:
-            pattern = rf'(?<!\\text\{{)(?<!\\)(?<![a-zA-Z])({func})(\s*\()'
-            text = re.sub(pattern, rf'\\text{{\1}}\2', text)
+    
+    def replace_in_math(match):
+        """Only apply \\text{} inside $ or $$ blocks."""
+        math_content = match.group(0)
+        # Apply \text{} to function names inside math
+        for func in MATH_FUNCTIONS:
+            pattern = rf'(?<!\\text\{{)(?<!\\)(?<![a-zA-Z])({re.escape(func)})(\s*\()'
+            math_content = re.sub(pattern, rf'\\text{{\1}}\2', math_content)
+        return math_content
+    
+    # Only process content inside $...$ or $$...$$
+    # Match $$...$$ first (display math), then $...$ (inline math)
+    text = re.sub(r'\$\$[^$]+\$\$', replace_in_math, text)
+    text = re.sub(r'\$[^$\n]+\$', replace_in_math, text)
+    
     return text
 
 def convert_admonitions(text: str) -> str:

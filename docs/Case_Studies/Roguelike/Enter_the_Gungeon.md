@@ -50,7 +50,7 @@ public class BounceMechanic : WeaponMechanic {
 
     public override void OnProjectileHit(Projectile proj, Enemy target) {
         proj.bounceCount++;
-        \text{if} (proj.bounceCount < maxBounces) {
+        if (proj.bounceCount < maxBounces) {
             Enemy nextTarget = FindNearestEnemy(proj.transform.position);
             proj.Redirect(nextTarget.transform.position);
         } else {
@@ -90,7 +90,7 @@ public class ProjectilePool : MonoBehaviour {
     }
 
     public Projectile Get() {
-        \text{if} (pool.Count > 0) {
+        if (pool.Count > 0) {
             Projectile proj = pool.Dequeue();
             proj.gameObject.SetActive(true);
             return proj;

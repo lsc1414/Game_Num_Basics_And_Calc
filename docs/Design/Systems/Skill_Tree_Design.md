@@ -139,7 +139,7 @@ Build Entropy = -Σ (P(Build_i) × log P(Build_i))
 90%+ 玩家都会点的技能
 
 识别方法:
-\text{if} (选择率 > 90% AND 无替代方案):
+if (选择率 > 90% AND 无替代方案):
     标记为必点节点
     → 考虑改为基础能力或降低吸引力
 
@@ -363,7 +363,7 @@ public class SkillTreeManager : MonoBehaviour
 
     void Awake()
     {
-        \text{if} (Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -391,27 +391,27 @@ public class SkillTreeManager : MonoBehaviour
 
     public bool CanUnlockNode(string nodeID)
     {
-        \text{if} (!allNodes.ContainsKey(nodeID))
+        if (!allNodes.ContainsKey(nodeID))
             return false;
 
         var node = allNodes[nodeID];
 
         // 1. 检查是否已解锁
-        \text{if} (unlockedNodes.Contains(nodeID))
+        if (unlockedNodes.Contains(nodeID))
             return false;
 
         // 2. 检查技能点
-        \text{if} (availablePoints < node.pointCost)
+        if (availablePoints < node.pointCost)
             return false;
 
         // 3. 检查等级需求
-        \text{if} (PlayerLevel.Current < node.levelRequirement)
+        if (PlayerLevel.Current < node.levelRequirement)
             return false;
 
         // 4. 检查前置技能
         foreach (var prereqID in node.prerequisiteIDs)
         {
-            \text{if} (!unlockedNodes.Contains(prereqID))
+            if (!unlockedNodes.Contains(prereqID))
                 return false;
         }
 
@@ -420,7 +420,7 @@ public class SkillTreeManager : MonoBehaviour
 
     public void UnlockNode(string nodeID)
     {
-        \text{if} (!CanUnlockNode(nodeID))
+        if (!CanUnlockNode(nodeID))
         {
             Debug.LogWarning($"[SkillTree] 无法解锁: {nodeID}");
             return;
@@ -456,7 +456,7 @@ public class SkillTreeManager : MonoBehaviour
         }
 
         // 特殊处理核心节点
-        \text{if} (node.nodeType == SkillNodeType.Keystone)
+        if (node.nodeType == SkillNodeType.Keystone)
         {
             ApplyKeystoneEffect(node);
         }
@@ -464,7 +464,7 @@ public class SkillTreeManager : MonoBehaviour
 
     public int CalculateResetCost()
     {
-        \text{if} (resetCount == 0)
+        if (resetCount == 0)
             return 0;  // 首次免费
 
         return Mathf.RoundToInt(
@@ -478,7 +478,7 @@ public class SkillTreeManager : MonoBehaviour
         int cost = CalculateResetCost();
 
         // 扣除货币
-        \text{if} (!CurrencySystem.TrySpend(CurrencyType.Gold, cost))
+        if (!CurrencySystem.TrySpend(CurrencyType.Gold, cost))
         {
             Debug.LogWarning("[SkillTree] 金币不足，无法重置");
             return;
@@ -517,7 +517,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             var category = allNodes[nodeID].category;
 
-            \text{if} (!distribution.ContainsKey(category))
+            if (!distribution.ContainsKey(category))
                 distribution[category] = 0;
 
             distribution[category]++;

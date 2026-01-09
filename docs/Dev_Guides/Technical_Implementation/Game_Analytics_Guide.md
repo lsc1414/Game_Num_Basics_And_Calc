@@ -293,7 +293,7 @@ public class ABTestManager
         foreach (var variant in variantWeights)
         {
             cumulative += variant.Value;
-            \text{if} (bucket < cumulative * 100)
+            if (bucket < cumulative * 100)
                 return variant.Key;
         }
         return "control";
@@ -392,7 +392,7 @@ public class DataQualityMonitor
         var actualEvents = GetActualEvents();
 
         double completeness = (double)actualEvents / expectedEvents;
-        \text{if} (completeness < 0.95) // 95%完整性阈值
+        if (completeness < 0.95) // 95%完整性阈值
         {
             AlertManager.SendAlert("Data completeness below threshold");
         }
@@ -435,7 +435,7 @@ public static class AnalyticsMgr
         // SDK.Track(eventName, params);
 
         // 3. 开发模式下打印日志
-        \text{if} (Debug.isDebugBuild)
+        if (Debug.isDebugBuild)
         {
             Debug.Log($"[Analytics] {eventName}: {JsonConvert.SerializeObject(params)}");
         }

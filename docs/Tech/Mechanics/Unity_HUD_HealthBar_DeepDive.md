@@ -50,7 +50,7 @@ public class UI_HealthBar : MonoBehaviour {
 
     // 浣跨敤 LateUpdate 纭繚鍦ㄧ墿浣撶Щ鍔ㄥ悗鎵嶆洿鏂?UI锛岄伩鍏嶆姈鍔?
     void LateUpdate() {
-        \text{if} (targetUnit == null) {
+        if (targetUnit == null) {
             Destroy(gameObject); // 鎴栧洖鏀惰繘瀵硅薄姹?
             return;
         }
@@ -66,7 +66,7 @@ public class UI_HealthBar : MonoBehaviour {
         
         // 绠€鍗曠殑鏄鹃殣鍒囨崲 (鍙互浣跨敤 CanvasGroup 鍋氭贰鍏ユ贰鍑?
         gameObject.SetActive(isVisible); 
-        \text{if} (!isVisible) return;
+        if (!isVisible) return;
 
         // 2. 鍧愭爣杞崲鏍稿績 (鍙傝€?RectTransform 娣卞害瑙ｆ瀽鏂囨。)
         Vector2 screenPos = _mainCamera.WorldToScreenPoint(targetUnit.position + worldOffset);
@@ -118,8 +118,8 @@ public class UI_HealthBar_Juice : MonoBehaviour {
 
     void Update() {
         // 寤惰繜涓€娈垫椂闂村悗鍐嶅紑濮嬬缉鍑忕紦鍐叉潯
-        \text{if} (Time.time > _lastHitTime + _bufferDelay) {
-            \text{if} (bufferFill.fillAmount > _targetFill) {
+        if (Time.time > _lastHitTime + _bufferDelay) {
+            if (bufferFill.fillAmount > _targetFill) {
                 // 骞虫粦鎻掑€?(Lerp)
                 bufferFill.fillAmount = Mathf.Lerp(bufferFill.fillAmount, _targetFill, Time.deltaTime * 5f);
                 
@@ -164,7 +164,7 @@ public class GPU_HealthBar : MonoBehaviour {
     private static readonly int _FillPropId = Shader.PropertyToID("_Fill");
 
     void Awake() {
-        \text{if} (_propBlock == null) _propBlock = new MaterialPropertyBlock();
+        if (_propBlock == null) _propBlock = new MaterialPropertyBlock();
     }
 
     public void UpdateHealth(float pct) {

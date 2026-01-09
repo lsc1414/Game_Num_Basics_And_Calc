@@ -117,7 +117,7 @@ public static class DebugSnapshot
 
     public static void Load()
     {
-        \text{if} (_snapshot == null) return;
+        if (_snapshot == null) return;
 
         // 恢复随机种子（关键！）
         GameRandom.SetSeed(_snapshot.RandomSeed);
@@ -156,7 +156,7 @@ public static class DebugLog
     [Conditional("UNITY_EDITOR"), Conditional("DEBUG_BUILD")]
     public static void Log(LogCategory cat, string msg)
     {
-        \text{if} ((EnabledCategories & cat) != 0)
+        if ((EnabledCategories & cat) != 0)
             Debug.Log($"[{cat}] {msg}");
     }
 }
@@ -178,13 +178,13 @@ public class DebugVisualization : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        \text{if} (showEnemyHP)
+        if (showEnemyHP)
             DrawEnemyHealthBars();
 
-        \text{if} (showPathfinding)
+        if (showPathfinding)
             DrawNavPaths();
 
-        \text{if} (showAttackRange)
+        if (showAttackRange)
             DrawPlayerAttackRange();
     }
 
@@ -280,7 +280,7 @@ public static class LaunchArgs
         SkipTutorial = args.Contains("-skiptutorial");
 
         var waveArg = args.FirstOrDefault(a => a.StartsWith("-wave="));
-        \text{if} (waveArg != null)
+        if (waveArg != null)
             StartWave = int.Parse(waveArg.Split('=')[1]);
     }
 }
@@ -309,7 +309,7 @@ public class AFKBot : MonoBehaviour
     void Update()
     {
         var nearest = EnemyManager.FindNearest(transform.position);
-        \text{if} (nearest != null && IsInRange(nearest))
+        if (nearest != null && IsInRange(nearest))
             Player.Instance.Attack(nearest);
     }
 }
@@ -329,7 +329,7 @@ public class RandomBot : MonoBehaviour
     void Update()
     {
         // 随机移动
-        \text{if} (Time.time > _nextMoveTime)
+        if (Time.time > _nextMoveTime)
         {
             _moveDir = Random.insideUnitCircle.normalized;
             _nextMoveTime = Time.time + Random.Range(0.5f, 2f);
@@ -339,7 +339,7 @@ public class RandomBot : MonoBehaviour
         // 随机使用技能
         foreach (var skill in Player.Instance.Skills)
         {
-            \text{if} (skill.IsReady && Random.value \< 0.3f)
+            if (skill.IsReady && Random.value \< 0.3f)
                 skill.Use();
         }
     }
@@ -362,7 +362,7 @@ public class StressTestBot : MonoBehaviour
     {
         _completedWaves++;
 
-        \text{if} (logMemoryPerWave)
+        if (logMemoryPerWave)
         {
             _memoryLog.Add(new MemorySnapshot
             {
@@ -372,7 +372,7 @@ public class StressTestBot : MonoBehaviour
             });
         }
 
-        \text{if} (_completedWaves >= targetWaveCount)
+        if (_completedWaves >= targetWaveCount)
         {
             ExportReport();
             Debug.Log($"[StressTest] Completed {targetWaveCount} waves!");
@@ -471,7 +471,7 @@ public class CrashReporter : MonoBehaviour
 
     void OnLogReceived(string condition, string stackTrace, LogType type)
     {
-        \text{if} (type == LogType.Exception || type == LogType.Error)
+        if (type == LogType.Exception || type == LogType.Error)
         {
             var report = new CrashReport
             {
@@ -486,7 +486,7 @@ public class CrashReporter : MonoBehaviour
             SaveLocalReport(report);
 
             // 上报服务器（注意：不要在每次 Error 时都上报，做节流）
-            \text{if} (ShouldUpload(report))
+            if (ShouldUpload(report))
                 UploadReport(report);
         }
     }
@@ -517,7 +517,7 @@ public class ReplayRecorder : MonoBehaviour
 
     void Update()
     {
-        \text{if} (!_isRecording) return;
+        if (!_isRecording) return;
 
         _inputLog.Add(new InputFrame
         {
@@ -571,15 +571,15 @@ public class DebugUnlocker : MonoBehaviour
     // 连续点击屏幕左上角 10 次
     void Update()
     {
-        \text{if} (Input.GetMouseButtonDown(0) && IsInCorner())
+        if (Input.GetMouseButtonDown(0) && IsInCorner())
         {
-            \text{if} (Time.time - _lastTapTime > 1f)
+            if (Time.time - _lastTapTime > 1f)
                 _tapCount = 0;
 
             _tapCount++;
             _lastTapTime = Time.time;
 
-            \text{if} (_tapCount >= 10)
+            if (_tapCount >= 10)
                 ShowPasswordDialog();
         }
     }

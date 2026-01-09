@@ -180,13 +180,13 @@ public class AssetValidationPostprocessor : AssetPostprocessor
 
         // 检查纹理尺寸是否为 2 的幂次方
         Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(assetPath);
-        \text{if} (!IsPowerOfTwo(texture.width) || !IsPowerOfTwo(texture.height))
+        if (!IsPowerOfTwo(texture.width) || !IsPowerOfTwo(texture.height))
         {
             Debug.LogError($"[资源验证失败] {assetPath} 尺寸非POT");
         }
 
         // 强制设置压缩格式
-        \text{if} (assetPath.Contains("Textures/Characters"))
+        if (assetPath.Contains("Textures/Characters"))
         {
             var androidSettings = importer.GetPlatformTextureSettings("Android");
             androidSettings.format = TextureImporterFormat.ASTC_6x6;
@@ -288,7 +288,7 @@ stage('Asset Validation') {
 
             // 读取验证报告
             def report = readJSON file: 'validation_report.json'
-            \text{if} (report.errors > 0) {
+            if (report.errors > 0) {
                 error("发现 ${report.errors} 个资源错误")
             }
         }
