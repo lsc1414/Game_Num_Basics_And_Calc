@@ -203,7 +203,7 @@ sidebarTitle: "核心数值体系定义手册"
   - `Speed` = **0**。
   - `Lifetime` = **2.0s** (起爆倒计时)。
   - `TriggerRadius` = **2.0m** (可选：感应半径，有怪经过提前炸)。
-- **逻辑：** 代码检测到 Speed <= 0 时，跳过射程计算，直接使用 Lifetime。
+- **逻辑：** 代码检测到 `Speed <= 0` 时，跳过射程计算，直接使用 Lifetime。
 
 #### B. 多阶段追踪 (Multi-Stage Homing)
 
@@ -694,7 +694,7 @@ public class PRDSystem {
 
 #### A. 斩杀 (Cull / Execute)
 
-- **机制：** 当 `TargetHP < MaxHP * CullThreshold` 时，直接 `Kill()`。
+- **机制：** 当 ``TargetHP < MaxHP` * CullThreshold` 时，直接 `Kill()`。
 - **默认值：** 0% (不斩杀)。
 - **词条：** “获得 10% 斩杀效果”。
 - _体验：_ 极大地提升清怪手感，特别是对付肉盾怪。
