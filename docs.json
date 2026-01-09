@@ -502,5 +502,15 @@
         ]
       }
     ]
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-1H3B6TTNTH"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/lsc1414"
+    }
   }
 }
