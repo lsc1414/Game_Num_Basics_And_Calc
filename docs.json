@@ -171,7 +171,9 @@
             "group": "数值体系",
             "pages": [
               "docs/Design/Numerical/Numerical_Framework_Methodology",
-              "docs/Design/Numerical_Manual"
+              "docs/Design/Numerical_Manual",
+              "docs/Design/Numerical/Cross_Genre_Balance_Models",
+              "docs/Design/Numerical/Game_Theory_In_Balance"
             ]
           },
           {
@@ -184,7 +186,9 @@
           {
             "group": "产品策略",
             "pages": [
-              "docs/Design/Product_Strategy/Screen_Orientation_Strategy"
+              "docs/Design/Product_Strategy/Screen_Orientation_Strategy",
+              "docs/Design/Product_Strategy/F2P_vs_Premium_Economics",
+              "docs/Design/Product_Strategy/Cross_Platform_Adaptation"
             ]
           },
           {
@@ -198,7 +202,8 @@
             "group": "心理学",
             "pages": [
               "docs/Design/Psychology/Skinner_Box_and_Addiction",
-              "docs/Design/Game_Psychology_DeepDive"
+              "docs/Design/Game_Psychology_DeepDive",
+              "docs/Design/Psychology/Progression_Psychology"
             ]
           },
           {
@@ -229,7 +234,8 @@
           {
             "group": "数据分析",
             "pages": [
-              "docs/Design/Analytics/Event_Tracking_Design.md"
+              "docs/Design/Analytics/Data_Driven_Balance",
+              "docs/Design/Analytics/Numeric_Mining_Methods"
             ]
           }
         ]

@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "e51e11587c448a1a",
+    "type": "split",
+    "children": [
+      {
+        "id": "a451b5aa15c6b1b4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bef5549cb2cd5ad5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Research_TODO.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Research_TODO"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9f8814f8ab178b88",
+    "type": "split",
+    "children": [
+      {
+        "id": "93eefcc9aedfb5b4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a96ebcf8a4d73974",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "087b00eb542c47e7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "roguelike",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "d65ff387f2084eb8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "78036dbe020e3bd3",
+    "type": "split",
+    "children": [
+      {
+        "id": "150b5ef4225ff110",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "82f6245cb9095c37",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Research_TODO.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Research_TODO 的反向链接列表"
+            }
+          },
+          {
+            "id": "e068975b4bdff746",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/Art/Tech_Art/Asset_Validation_Standards.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Asset_Validation_Standards 的出链列表"
+            }
+          },
+          {
+            "id": "1e0a193a62ab6868",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "0403a6acdc963c4c",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "3db5e02efdc5dd4c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "docs/Dev_Guides/Tools/Odin_Luban_Integration_Guide.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Odin_Luban_Integration_Guide 的大纲"
+            }
+          },
+          {
+            "id": "c6608f1dbca263bd",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "Research_TODO.md"
+              },
+              "icon": "lucide-info",
+              "title": "Research_TODO的笔记属性"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-kanban:创建新看板": false
+    }
+  },
+  "active": "bef5549cb2cd5ad5",
+  "lastOpenFiles": [
+    "docs/Full_Index.md",
+    "Dev_Guides/Failure_Cases/Concord_Failure_Analysis.md",
+    "Dev_Guides/Failure_Cases",
+    "Dev_Guides",
+    "docs/Design/Analytics/Event_Tracking_Design.md",
+    "docs/Design/CaseStudies/BangBangSurvivor_DeepDive.md",
+    "docs/Design/Content/Boss_Design_Philosophy.md",
+    "docs/Design/Content/Enemy_Bestiary.md",
+    "docs/Design/Content/Level_Design_Guide.md",
+    "docs/Design/Content/Level_Design_Theory.md",
+    "docs/Art/Tech_Art/Asset_Validation_Standards.md",
+    "GEMINI.md",
+    "research.md",
+    "readme.md",
+    "docs/Dev_Guides/Tools/AI_Balance_Testing.md",
+    "未命名.base",
+    "docs/Research/TODO.md",
+    "docs/Dev_Guides/Tools/Odin_Luban_Integration_Guide.md",
+    "node_modules/regex/README.md",
+    "docs/Design/Systems/Achievement_And_Collection_System.md",
+    "docs/Case_Studies/Roguelike/Slay_the_Spire.md",
+    "docs/START_HERE.md",
+    "CLAUDE.md",
+    "未命名.canvas",
+    "node_modules/rollup/LICENSE.md"
+  ]
+}
