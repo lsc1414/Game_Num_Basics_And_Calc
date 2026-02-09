@@ -1,156 +1,157 @@
-﻿---
-sidebarTitle: "Git 鎸囧崡缁煎悎鎸囧崡"
+---
+title: "Git 指南综合指南"
+sidebarTitle: "Git 指南综合指南"
 ---
 
-# Git 鎸囧崡缁煎悎鎸囧崡
+# Git 指南综合指南
 
-> 鏈枃妗ｇ敱浠ヤ笅鏂囦欢鍚堝苟鐢熸垚 (2026-01-09)
+> 本文档由以下文件合并生成 (2026-01-09)
 
 
 
 ---
 
 
-{/* 鏉ユ簮: Dev_Guides\Collaboration\Git_Advanced_Guide_For_Programmers.md */}
+<!-- 来源: Dev_Guides\Collaboration\Git_Advanced_Guide_For_Programmers.md -->
 
-## 馃悪 Git 鏋佸鐢熷瓨鎸囧崡锛氫粠鍛戒护琛屽埌绉佹湁浜戞惌寤?
+## 🐙 Git 极客生存指南：从命令行到私有云搭建
 
-> **闈㈠悜瀵硅薄**: 绋嬪簭鍛?(Programmers)銆?
-> **鐩爣**: 鎺屾彙 Git 鐨勨€滈粦榄旀硶鈥濓紝澶勭悊澶嶆潅鐨勫垎鏀鐞嗐€佸啿绐佽В鍐筹紝骞跺浼氭惌寤哄洟闃熺殑绉佹湁浠ｇ爜浠撳簱銆?
+> **面向对象**: 程序员 (Programmers)。
+> **目标**: 掌握 Git 的“黑魔法”，处理复杂的分支管理、冲突解决，并学会搭建团队的私有代码仓库。
 
-## 1. 甯哥敤鍛戒护閫熸煡 (The Cheat Sheet)
+## 1. 常用命令速查 (The Cheat Sheet)
 
-### 1.1 鍩虹鎿嶄綔
+### 1.1 基础操作
 ```bash
-git init                    # 鍒濆鍖栦粨搴?
-git clone <url>             # 鍏嬮殕杩滅▼浠撳簱
-git status                  # 鏌ョ湅褰撳墠鐘舵€?(蹇呯敤!)
-git add .                   # 娣诲姞鎵€鏈変慨鏀瑰埌鏆傚瓨鍖?
-git commit -m "feat: xxx"   # 鎻愪氦
-git pull                    # 鎷夊彇鏇存柊 (鐩稿綋浜?fetch + merge)
-git push                    # 鎺ㄩ€佷慨鏀?
+git init                    # 初始化仓库
+git clone <url>             # 克隆远程仓库
+git status                  # 查看当前状态 (必用!)
+git add .                   # 添加所有修改到暂存区
+git commit -m "feat: xxx"   # 提交
+git pull                    # 拉取更新 (相当于 fetch + merge)
+git push                    # 推送修改
 ```
 
-### 1.2 鍒嗘敮鎿嶄綔 (Branching)
+### 1.2 分支操作 (Branching)
 ```bash
-git branch                  # 鍒楀嚭鏈湴鍒嗘敮
-git branch -a               # 鍒楀嚭鎵€鏈夊垎鏀?(鍚繙绋?
-git checkout -b feature/A   # 鍒涘缓骞跺垏鎹㈠埌 feature/A 鍒嗘敮
-git checkout develop        # 鍒囨崲鍥?develop
-git merge feature/A         # 鎶?feature/A 鍚堝苟杩涘綋鍓嶅垎鏀?
-git branch -d feature/A     # 鍒犻櫎鍒嗘敮
+git branch                  # 列出本地分支
+git branch -a               # 列出所有分支 (含远程)
+git checkout -b feature/A   # 创建并切换到 feature/A 分支
+git checkout develop        # 切换回 develop
+git merge feature/A         # 把 feature/A 合并进当前分支
+git branch -d feature/A     # 删除分支
 ```
 
-### 1.3 鍚庢倲鑽?(Undo)
+### 1.3 后悔药 (Undo)
 ```bash
-git checkout -- file.cs     # 涓㈠純宸ヤ綔鍖虹殑淇敼 (杩樻病 add)
-git reset HEAD file.cs      # 鎶婃殏瀛樺尯鐨勪慨鏀规挙鍥炲伐浣滃尯 (add 浜嗕絾娌?commit)
-git reset --soft HEAD^      # 鎾ら攢鏈€杩戜竴娆?commit (浠ｇ爜淇濈暀鍦ㄦ殏瀛樺尯)
-git reset --hard HEAD^      # 褰诲簳鍥為€€鍒颁笂涓増鏈?(浠ｇ爜鍏ㄩ儴涓㈠純锛屾厧鐢?)
-git commit --amend          # 淇敼鏈€杩戜竴娆?commit 鐨勬敞閲?
+git checkout -- file.cs     # 丢弃工作区的修改 (还没 add)
+git reset HEAD file.cs      # 把暂存区的修改撤回工作区 (add 了但没 commit)
+git reset --soft HEAD^      # 撤销最近一次 commit (代码保留在暂存区)
+git reset --hard HEAD^      # 彻底回退到上个版本 (代码全部丢弃，慎用!)
+git commit --amend          # 修改最近一次 commit 的注释
 ```
 
-### 1.4 鏆傚瓨鐜板満 (Stash)
-褰撲綘姝ｅ湪淇?Bug锛岀獊鐒惰€佹澘璁╀綘鍒囧垎鏀幓鏀瑰彟涓€涓揣鎬?Bug锛?
+### 1.4 暂存现场 (Stash)
+当你正在修 Bug，突然老板让你切分支去改另一个紧急 Bug：
 ```bash
-git stash                   # 鎶婂綋鍓嶆湭鎻愪氦鐨勪慨鏀光€滆棌鈥濊捣鏉?
-git checkout hotfix/001     # 鍒囧垎鏀幓淇?Bug...
-# ... 淇畬鍥炴潵 ...
+git stash                   # 把当前未提交的修改“藏”起来
+git checkout hotfix/001     # 切分支去修 Bug...
+# ... 修完回来 ...
 git checkout develop
-git stash pop               # 鎶娾€滆棌鈥濊捣鏉ョ殑浠ｇ爜杩樺師鍥炴潵
+git stash pop               # 把“藏”起来的代码还原回来
 ```
 
-## 2. 杩涢樁鎶€宸?(Advanced Skills)
+## 2. 进阶技巧 (Advanced Skills)
 
-### 2.1 Rebase (鍙樺熀) vs Merge
-*   **Merge**: 淇濈暀鐪熷疄鐨勫巻鍙茶褰曪紝浼氭湁 "Merge branch 'xxx'" 鐨勬彁浜ゃ€傞€傚悎鍏叡鍒嗘敮鍚堝苟銆?
-*   **Rebase**: 鎶婁綘鐨勬彁浜も€滄帴鈥濆湪鐩爣鍒嗘敮鐨勬渶鏂版彁浜ゅ悗闈€傚巻鍙茶褰曟槸涓€鏉＄洿绾匡紝闈炲父骞插噣銆?
-    *   `git pull --rebase`: 鎷夊彇浠ｇ爜鏃惰嚜鍔ㄥ彉鍩?(鎺ㄨ崘閰嶇疆)銆?
-    *   `git rebase develop`: 鍦?feature 鍒嗘敮涓婏紝鎶?develop 鐨勬渶鏂颁唬鐮佸灚鍦ㄤ笅闈€?
+### 2.1 Rebase (变基) vs Merge
+*   **Merge**: 保留真实的历史记录，会有 "Merge branch 'xxx'" 的提交。适合公共分支合并。
+*   **Rebase**: 把你的提交“接”在目标分支的最新提交后面。历史记录是一条直线，非常干净。
+    *   `git pull --rebase`: 拉取代码时自动变基 (推荐配置)。
+    *   `git rebase develop`: 在 feature 分支上，把 develop 的最新代码垫在下面。
 
-### 2.2 Cherry-pick (鎽樻ū妗?
-鍙兂瑕佹煇涓垎鏀噷鐨?*鏌愪竴娆?*鎻愪氦锛岃€屼笉鏄暣涓垎鏀紵
+### 2.2 Cherry-pick (摘樱桃)
+只想要某个分支里的**某一次**提交，而不是整个分支？
 ```bash
-git log                     # 鎵惧埌閭ｄ釜 commit 鐨?hash (渚嬪 a1b2c3d)
-git cherry-pick a1b2c3d     # 鎶婅繖涓?commit 澶嶅埗鍒板綋鍓嶅垎鏀?
+git log                     # 找到那个 commit 的 hash (例如 a1b2c3d)
+git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
 ```
 
-### 2.3 瑙ｅ喅鍐茬獊 (Conflict Resolution)
+### 2.3 解决冲突 (Conflict Resolution)
 
-#### A. 鏂囨湰鏂囦欢鍐茬獊
-1.  **瀹氫綅**: 鎵撳紑鍐茬獊鏂囦欢锛屾壘鍒?`<<<<<<<`, `=======`, `>>>>>>>` 鏍囪銆?
-2.  **淇敼**: 鍐冲畾淇濈暀鍝儴鍒嗕唬鐮侊紙鎴栬€呴兘淇濈暀锛夛紝鍒犻櫎鏍囪绗﹀彿銆?
+#### A. 文本文件冲突
+1.  **定位**: 打开冲突文件，找到 `<<<<<<<`, `=======`, `>>>>>>>` 标记。
+2.  **修改**: 决定保留哪部分代码（或者都保留），删除标记符号。
 
-3.  **鎻愪氦**: `git add` + `git commit`銆?
+3.  **提交**: `git add` + `git commit`。
 
-#### B. 浜岃繘鍒舵枃浠跺啿绐?(Binary Conflict) - **鍏抽敭锛?*
-鍥剧墖銆佹ā鍨嬨€丏LL 鏃犳硶鍚堝苟鍐呭锛屽繀椤?*浜岄€変竴**銆?
+#### B. 二进制文件冲突 (Binary Conflict) - **关键！**
+图片、模型、DLL 无法合并内容，必须**二选一**。
 
-**鍛戒护琛屾柟妗?*:
+**命令行方案**:
 
-*   **淇濈暀鎴戠殑 (Mine)**: 鎴戞敼浜嗗浘锛屾垜瑕佽鐩栨湇鍔″櫒鐨勩€?
+*   **保留我的 (Mine)**: 我改了图，我要覆盖服务器的。
     ```bash
     git checkout --ours path/to/image.png
     git add path/to/image.png
     ```
 
-*   **淇濈暀浠栫殑 (Theirs)**: 鍒汉鐨勫浘鏄鐨勶紝鎴戞斁寮冩垜鐨勪慨鏀广€?
+*   **保留他的 (Theirs)**: 别人的图是对的，我放弃我的修改。
     ```bash
     git checkout --theirs path/to/image.png
     git add path/to/image.png
     ```
 
-*   娉ㄦ剰锛氬湪 `git merge` 鏃讹紝`--ours` 鏄寚褰撳墠鍒嗘敮锛宍--theirs` 鏄寚瑕佸悎骞惰繘鏉ョ殑鍒嗘敮銆備絾鍦?`git rebase` 鏃讹紝閫昏緫鏄弽鐨勶紒鍔″繀鍏堝浠姐€?
+*   注意：在 `git merge` 时，`--ours` 是指当前分支，`--theirs` 是指要合并进来的分支。但在 `git rebase` 时，逻辑是反的！务必先备份。
 
-**GUI 鏂规 (Sourcetree / TortoiseGit)**:
+**GUI 方案 (Sourcetree / TortoiseGit)**:
 
-1.  鍦ㄥ啿绐佹枃浠朵笂鍙抽敭銆?
-2.  閫夋嫨 `Resolve using 'Mine'` (浣跨敤鎴戠殑鐗堟湰) 鎴?`Resolve using 'Theirs'` (浣跨敤杩滅▼鐗堟湰)銆?
+1.  在冲突文件上右键。
+2.  选择 `Resolve using 'Mine'` (使用我的版本) 或 `Resolve using 'Theirs'` (使用远程版本)。
 
-3.  宸ュ叿浼氳嚜鍔ㄦ墽琛屼笂杩板懡浠ゅ苟鏍囪涓哄凡瑙ｅ喅銆?
+3.  工具会自动执行上述命令并标记为已解决。
 
-**缁堟瀬鏂规: 閿佸畾 (Locking)**
-涓轰簡閬垮厤浜岃繘鍒跺啿绐侊紝鏈€濂界殑鍔炴硶鏄?*涓嶈璁╁啿绐佸彂鐢?*銆?
+**终极方案: 锁定 (Locking)**
+为了避免二进制冲突，最好的办法是**不要让冲突发生**。
 
-*   浣跨敤 LFS 鐨勯攣瀹氬姛鑳? `git lfs lock image.png`銆?
-*   杩欐牱褰撲綘鍦ㄤ慨鏀规椂锛屽埆浜烘棤娉曟帹閫佽繖涓枃浠讹紝鐩村埌浣?`unlock`銆?
+*   使用 LFS 的锁定功能: `git lfs lock image.png`。
+*   这样当你在修改时，别人无法推送这个文件，直到你 `unlock`。
 
-## 3. 鎼缓绉佹湁 Git 鏈嶅姟鍣?(Self-Hosted Git)
+## 3. 搭建私有 Git 服务器 (Self-Hosted Git)
 
-瀵逛簬涓嶆兂鎶婁唬鐮佹斁鍦?GitHub/Gitee 鐨勫洟闃燂紝鎺ㄨ崘鎼缓 **Gitea** (杞婚噺绾? 鎴?**GitLab** (鍔熻兘鍏?銆?
+对于不想把代码放在 GitHub/Gitee 的团队，推荐搭建 **Gitea** (轻量级) 或 **GitLab** (功能全)。
 
-### 3.1 鏂规 A: Gitea (鎺ㄨ崘锛屾瀬杞婚噺)
-閫傚悎灏忓洟闃燂紝涓€涓簩杩涘埗鏂囦欢鎼炲畾锛屽唴瀛樺崰鐢ㄦ瀬浣庛€?
+### 3.1 方案 A: Gitea (推荐，极轻量)
+适合小团队，一个二进制文件搞定，内存占用极低。
 
-**鎼缓姝ラ (Windows/Linux)**:
+**搭建步骤 (Windows/Linux)**:
 
-1.  **涓嬭浇**: 鍘?[Gitea 瀹樼綉](https://gitea.io) 涓嬭浇瀵瑰簲绯荤粺鐨勫彲鎵ц鏂囦欢銆?
-2.  **杩愯**: 鐩存帴鍙屽嚮杩愯 (浼氬惎鍔?Web 鏈嶅姟鍣紝榛樿绔彛 3000)銆?
+1.  **下载**: 去 [Gitea 官网](https://gitea.io) 下载对应系统的可执行文件。
+2.  **运行**: 直接双击运行 (会启动 Web 服务器，默认端口 3000)。
 
-3.  **閰嶇疆**: 娴忚鍣ㄨ闂?`localhost:3000`锛岄娆¤繍琛屼細杩涘叆瀹夎鍚戝銆?
+3.  **配置**: 浏览器访问 `localhost:3000`，首次运行会进入安装向导。
 
-    *   鏁版嵁搴撻€?`SQLite3` (鏈€绠€鍗曪紝鏃犻渶瀹夎 MySQL)銆?
-    *   璁剧疆绠＄悊鍛樿处鍙枫€?
-4.  **灞€鍩熺綉璁块棶**: 纭繚闃茬伀澧欏紑鏀?3000 绔彛銆傞槦鍙嬪彲浠ラ€氳繃 `http://192.168.x.x:3000` 璁块棶銆?
+    *   数据库选 `SQLite3` (最简单，无需安装 MySQL)。
+    *   设置管理员账号。
+4.  **局域网访问**: 确保防火墙开放 3000 端口。队友可以通过 `http://192.168.x.x:3000` 访问。
 
-### 3.2 鏂规 B: 灞€鍩熺綉瑁镐粨搴?(Bare Repo)
-鏈€鍘熷鐨勬柟娉曪紝涓嶉渶瑕佷换浣?Web 鐣岄潰銆?
+### 3.2 方案 B: 局域网裸仓库 (Bare Repo)
+最原始的方法，不需要任何 Web 界面。
 
-1.  **鏈嶅姟鍣ㄧ (鎵惧彴鐢佃剳鍋氫富鏈?**:
+1.  **服务器端 (找台电脑做主机)**:
     ```bash
     mkdir vampirefall.git
     cd vampirefall.git
-    git init --bare  # 鍒濆鍖栬８浠撳簱 (娌℃湁宸ヤ綔鍖猴紝鍙湁鏁版嵁搴?
+    git init --bare  # 初始化裸仓库 (没有工作区，只有数据库)
     ```
 
-2.  **鍏变韩**: 灏?`vampirefall.git` 鏂囦欢澶硅缃负**缃戠粶鍏变韩鏂囦欢澶?* (Windows SMB)銆?
+2.  **共享**: 将 `vampirefall.git` 文件夹设置为**网络共享文件夹** (Windows SMB)。
 
-3.  **瀹㈡埛绔?*:
+3.  **客户端**:
     ```bash
     git clone //SERVER_IP/Shared/vampirefall.git
     ```
 
-## 4. Unity 椤圭洰鐨?.gitignore (蹇呮妱)
+## 4. Unity 项目的 .gitignore (必抄)
 
 ```gitignore
 # Unity folders
@@ -174,44 +175,44 @@ git cherry-pick a1b2c3d     # 鎶婅繖涓?commit 澶嶅埗鍒板綋鍓嶅垎鏀
 Thumbs.db
 ```
 
-## 5. LFS 閰嶇疆 (澶ф枃浠跺瓨鍌?
+## 5. LFS 配置 (大文件存储)
 
-瀵逛簬澶т簬 100MB 鐨勬枃浠?(PSD, FBX)锛屽繀椤荤敤 LFS銆?
+对于大于 100MB 的文件 (PSD, FBX)，必须用 LFS。
 
-1.  **瀹夎**: `git lfs install`
-2.  **閰嶇疆**:
+1.  **安装**: `git lfs install`
+2.  **配置**:
     ```bash
     git lfs track "*.psd"
     git lfs track "*.fbx"
     git lfs track "*.wav"
     ```
 
-3.  **鎻愪氦**: 杩欎細鐢熸垚涓€涓?`.gitattributes` 鏂囦欢锛屽姟蹇呮妸瀹冩彁浜や笂鍘汇€?
+3.  **提交**: 这会生成一个 `.gitattributes` 文件，务必把它提交上去。
 
 ---
 
-**涓€鍙ヨ瘽蹇犲憡**: 
-**姘歌繙涓嶈鍦ㄤ富鍒嗘敮 (master/develop) 涓婄洿鎺ュ啓浠ｇ爜銆?*
-**Commit 鏃╋紝Commit 鍕ゃ€?*
+**一句话忠告**: 
+**永远不要在主分支 (master/develop) 上直接写代码。**
+**Commit 早，Commit 勤。**
 
 
 
 ---
 
 
-{/* 鏉ユ簮: Dev_Guides\Collaboration\Git_Commit_Standards.md */}
+<!-- 来源: Dev_Guides\Collaboration\Git_Commit_Standards.md -->
 
-## 馃悪 Git 鐗堟湰绠＄悊涓?Commit Log 瑙勮寖 (Git Standards)
+## 🐙 Git 版本管理与 Commit Log 规范 (Git Standards)
 
-> **鏍稿績鐞嗗康**: **Commit Log 鏄啓缁欎汉鐪嬬殑锛屼笉鏄啓缁欐満鍣ㄧ湅鐨勩€?*
-> 涓€涓ソ鐨?Commit Log 搴旇鑳藉洖绛斾笁涓棶棰橈細
-> 1.  **鏀逛簡浠€涔堬紵** (What)
-> 2.  **涓轰粈涔堟敼锛?* (Why)
-> 3.  **鎬庝箞鏀圭殑锛?* (How - 鍙€夛紝濡傛灉鏄鏉傞€昏緫)
+> **核心理念**: **Commit Log 是写给人看的，不是写给机器看的。**
+> 一个好的 Commit Log 应该能回答三个问题：
+> 1.  **改了什么？** (What)
+> 2.  **为什么改？** (Why)
+> 3.  **怎么改的？** (How - 可选，如果是复杂逻辑)
 
-## 1. Commit Message 鏍煎紡瑙勮寖
+## 1. Commit Message 格式规范
 
-閲囩敤涓氱晫鏍囧噯鐨?**Angular Commit Convention**锛岀粨鏋勫涓嬶細
+采用业界标准的 **Angular Commit Convention**，结构如下：
 
 ```text
 <type>(<scope>): <subject>
@@ -221,158 +222,158 @@ Thumbs.db
 <footer>
 ```
 
-### 1.1 Type (蹇呭～)
-鐢ㄤ竴涓瘝鎻忚堪鏀瑰姩鐨勬€ц川锛?
+### 1.1 Type (必填)
+用一个词描述改动的性质：
 
-*   **feat**: 鏂板姛鑳?(Feature)銆?
-*   **fix**: 淇ˉ Bug銆?
-*   **docs**: 浠呬慨鏀逛簡鏂囨。 (濡?README)銆?
-*   **style**: 鏍煎紡淇敼 (涓嶅奖鍝嶄唬鐮佽繍琛岀殑鍙樺姩锛屽绌烘牸銆佺缉杩?銆?
-*   **refactor**: 閲嶆瀯 (鍗充笉鏄柊澧炲姛鑳斤紝涔熶笉鏄慨鏀?bug 鐨勪唬鐮佸彉鍔?銆?
-*   **perf**: 鎬ц兘浼樺寲銆?
-*   **test**: 澧炲姞娴嬭瘯鎴栦慨鏀规祴璇曘€?
-*   **chore**: 鏋勫缓杩囩▼鎴栬緟鍔╁伐鍏风殑鍙樺姩 (濡?.gitignore, package.json)銆?
-*   **art**: 缇庢湳璧勬簮鎻愪氦 (璐村浘銆佹ā鍨嬨€侀鍒朵綋)銆?
+*   **feat**: 新功能 (Feature)。
+*   **fix**: 修补 Bug。
+*   **docs**: 仅修改了文档 (如 README)。
+*   **style**: 格式修改 (不影响代码运行的变动，如空格、缩进)。
+*   **refactor**: 重构 (即不是新增功能，也不是修改 bug 的代码变动)。
+*   **perf**: 性能优化。
+*   **test**: 增加测试或修改测试。
+*   **chore**: 构建过程或辅助工具的变动 (如 .gitignore, package.json)。
+*   **art**: 美术资源提交 (贴图、模型、预制体)。
 
-### 1.2 Scope (閫夊～)
-鐢ㄦ嫭鍙疯鏄庡奖鍝嶇殑鑼冨洿 (妯″潡/鍔熻兘)锛?
+### 1.2 Scope (选填)
+用括号说明影响的范围 (模块/功能)：
 
-*   `feat(Tower)`: 濉旈槻妯″潡銆?
-*   `fix(UI)`: 鐣岄潰妯″潡銆?
-*   `art(VFX)`: 鐗规晥璧勬簮銆?
+*   `feat(Tower)`: 塔防模块。
+*   `fix(UI)`: 界面模块。
+*   `art(VFX)`: 特效资源。
 
-### 1.3 Subject (蹇呭～)
-绠€鐭殑鎻忚堪锛屼笉瓒呰繃 50 涓瓧绗︺€?
+### 1.3 Subject (必填)
+简短的描述，不超过 50 个字符。
 
-*   **鍘熷垯**: 鍔ㄨ瘝寮€澶达紝浣跨敤绁堜娇鍙ャ€?
-*   *Good*: "Add double jump mechanic" (娣诲姞浜屾璺虫満鍒?
-*   *Bad*: "Fixed some bugs" (淇簡涓€浜沚ug -> **淇簡鍟ワ紵锛?*)
+*   **原则**: 动词开头，使用祈使句。
+*   *Good*: "Add double jump mechanic" (添加二段跳机制)
+*   *Bad*: "Fixed some bugs" (修了一些bug -> **修了啥？？**)
 
-### 1.4 Body (閫夊～锛屼絾鎺ㄨ崘)
-璇︾粏鎻忚堪銆?
+### 1.4 Body (选填，但推荐)
+详细描述。
 
-*   瑙ｉ噴**涓轰粈涔?*瑕佸仛杩欎釜淇敼锛?
-*   瑙ｉ噴**涔嬪墠**鏄€庝箞鏍风殑锛?*鐜板湪**鏄€庝箞鏍风殑锛?
-*   濡傛灉鏄慨澶?Bug锛屾弿杩?*澶嶇幇姝ラ**鎴?*鏍瑰洜**銆?
+*   解释**为什么**要做这个修改？
+*   解释**之前**是怎么样的，**现在**是怎么样的？
+*   如果是修复 Bug，描述**复现步骤**或**根因**。
 
-### 1.5 Footer (閫夊～)
-*   鍏宠仈鐨?Issue 鎴栦换鍔?ID銆?
+### 1.5 Footer (选填)
+*   关联的 Issue 或任务 ID。
 *   `Closes #123`
-*   `BREAKING CHANGE`: 濡傛灉鏈夌牬鍧忔€ф洿鏂帮紙濡傛敼浜嗗瓨妗ｆ牸寮忥級锛屽繀椤诲ぇ鍐欐敞鏄庯紒
+*   `BREAKING CHANGE`: 如果有破坏性更新（如改了存档格式），必须大写注明！
 
-## 2. 馃摑 鏍囧噯 Commit Log Demo (鎶勪綔涓氬尯)
+## 2. 📝 标准 Commit Log Demo (抄作业区)
 
-璇峰洟闃熸垚鍛樼洿鎺ュ鍒朵互涓嬫ā鏉夸慨鏀广€?
+请团队成员直接复制以下模板修改。
 
-### 鍦烘櫙 A: 淇浜嗕竴涓?Bug
+### 场景 A: 修复了一个 Bug
 ```text
-fix(Combat): 淇绠鏀婚€熻繃蹇鑷翠激瀹充涪澶辩殑闂
+fix(Combat): 修复箭塔攻速过快导致伤害丢失的问题
 
-鍘熷洜: 
-涔嬪墠鐨勬敾鍑诲喎鍗磋鏃跺櫒浣跨敤 Time.deltaTime 绱姞锛屽湪浣庡抚鐜囦笅浼氭湁娴偣璇樊銆?
+原因: 
+之前的攻击冷却计时器使用 Time.deltaTime 累加，在低帧率下会有浮点误差。
 
-淇敼:
-鏀圭敤 Time.time 鏃堕棿鎴宠繘琛屽喎鍗村垽瀹氥€?
+修改:
+改用 Time.time 时间戳进行冷却判定。
 
 Closes #405
 ```
 
-### 鍦烘櫙 B: 寮€鍙戜簡涓€涓柊鍔熻兘
+### 场景 B: 开发了一个新功能
 ```text
-feat(Roguelike): 鏂板澶╄祴 "鐏劙绮鹃€?
+feat(Roguelike): 新增天赋 "火焰精通"
 
-鏁堟灉:
-鎵€鏈夐€犳垚鐗╃悊浼ゅ鐨勯槻寰″锛岀幇鍦ㄦ湁 30% 姒傜巼闄勫姞鐐圭噧鏁堟灉銆?
+效果:
+所有造成物理伤害的防御塔，现在有 30% 概率附加点燃效果。
 
-鎶€鏈粏鑺?
-1. 鍦?DamageCalculator 涓柊澧炰簡 ElementCheck 閫昏緫銆?
-2. 鏂板浜?Buff_Ignite 鑴氭湰銆?
+技术细节:
+1. 在 DamageCalculator 中新增了 ElementCheck 逻辑。
+2. 新增了 Buff_Ignite 脚本。
 ```
 
-### 鍦烘櫙 C: 鎻愪氦缇庢湳璧勬簮
+### 场景 C: 提交美术资源
 ```text
-art(Enemy): 鎻愪氦 Level 3 绮捐嫳鎬?"鐭冲ご浜? 璧勬簮
+art(Enemy): 提交 Level 3 精英怪 "石头人" 资源
 
-鍖呭惈:
-1. 妯″瀷: Golem_L3.fbx (甯?LOD)
-2. 璐村浘: T_Golem_D/N/M_01.png (ASTC 鍘嬬缉)
-3. 鍔ㄧ敾: Anim_Golem_Walk/Attack/Die
+包含:
+1. 模型: Golem_L3.fbx (带 LOD)
+2. 贴图: T_Golem_D/N/M_01.png (ASTC 压缩)
+3. 动画: Anim_Golem_Walk/Attack/Die
 
-娉ㄦ剰:
-鏉愯川鐞冧娇鐢ㄤ簡鏂扮殑 Toon Shader锛岃绋嬪簭纭鏄惁鏀寔 GPU Instancing銆?
+注意:
+材质球使用了新的 Toon Shader，请程序确认是否支持 GPU Instancing。
 ```
 
-### 鍦烘櫙 D: 鎬ц兘浼樺寲
+### 场景 D: 性能优化
 ```text
-perf(Pathfinding): 浼樺寲澶ч噺鍗曚綅瀵昏矾鏃剁殑 CPU 鍗犵敤
+perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 
-涔嬪墠浣跨敤 NavMeshAgent.SetDestination 姣忓抚璋冪敤锛屽鑷翠富绾跨▼鍗￠】銆?
-鐜板湪鏀逛负姣?10 甯?(0.2s) 鏇存柊涓€娆¤矾寰勶紝骞跺惎鐢ㄤ簡 Job System 杩涜璺濈璁＄畻銆?
+之前使用 NavMeshAgent.SetDestination 每帧调用，导致主线程卡顿。
+现在改为每 10 帧 (0.2s) 更新一次路径，并启用了 Job System 进行距离计算。
 
-鎬ц兘鎻愬崌:
-鍚屽睆 500 鍗曚綅鏃讹紝Update 鑰楁椂浠?8ms 闄嶈嚦 1.5ms銆?
+性能提升:
+同屏 500 单位时，Update 耗时从 8ms 降至 1.5ms。
 ```
 
-## 3. 鍒嗘敮绠＄悊绛栫暐 (Branching Strategy)
+## 3. 分支管理策略 (Branching Strategy)
 
-### 3.1 鍒嗘敮鍛藉悕
-*   **master / main**: 闅忔椂鍙彂甯冪殑绋冲畾鐗堟湰銆?*缁濆绂佹鐩存帴 Push**銆?
-*   **develop**: 寮€鍙戜富鍒嗘敮銆傛墍鏈?Feature 鍒嗘敮鍚堝叆杩欓噷銆?
-*   **feat/xxx**: 鍔熻兘鍒嗘敮銆傚 `feat/login_system`銆?
-*   **fix/xxx**: 淇鍒嗘敮銆傚 `fix/crash_on_start`銆?
-*   **art/xxx**: 缇庢湳璧勬簮鍒嗘敮銆?
+### 3.1 分支命名
+*   **master / main**: 随时可发布的稳定版本。**绝对禁止直接 Push**。
+*   **develop**: 开发主分支。所有 Feature 分支合入这里。
+*   **feat/xxx**: 功能分支。如 `feat/login_system`。
+*   **fix/xxx**: 修复分支。如 `fix/crash_on_start`。
+*   **art/xxx**: 美术资源分支。
 
-### 3.2 宸ヤ綔娴?(Workflow)
-1.  鎺ュ埌浠诲姟 "寮€鍙戠櫥褰曠郴缁?銆?
-2.  鍩轰簬 `develop` 鍒囧嚭 `feat/login`銆?
+### 3.2 工作流 (Workflow)
+1.  接到任务 "开发登录系统"。
+2.  基于 `develop` 切出 `feat/login`。
 
-3.  寮€鍙?.. 鎻愪氦... (澶氭 Commit)銆?
+3.  开发... 提交... (多次 Commit)。
 
-4.  寮€鍙戝畬姣曪紝鎺ㄩ€佸埌杩滅▼銆?
+4.  开发完毕，推送到远程。
 
-5.  鍙戣捣 **Pull Request (PR)** 鍚堝叆 `develop`銆?
+5.  发起 **Pull Request (PR)** 合入 `develop`。
 
-6.  **Code Review**: 鍚屼簨妫€鏌ヤ唬鐮侊紝纭鏃犺鍚?Approve銆?
+6.  **Code Review**: 同事检查代码，确认无误后 Approve。
 
-7.  鍚堝苟銆?
+7.  合并。
 
-## 4. 宸ュ叿寮哄埗绾︽潫 (Enforcement)
+## 4. 工具强制约束 (Enforcement)
 
-涓轰簡闃叉浜轰负鍋锋噿锛屽缓璁儴缃?**Git Hooks**銆?
+为了防止人为偷懒，建议部署 **Git Hooks**。
 
 ### 4.1 commit-msg Hook
-鍦?`.git/hooks/commit-msg` 涓坊鍔犺剼鏈紝浣跨敤姝ｅ垯琛ㄨ揪寮忔鏌?Commit Message 鏍煎紡銆傚鏋滀笉绗﹀悎 `<type>(<scope>): <subject>` 鏍煎紡锛岀洿鎺ユ嫆缁濇彁浜ゃ€?
+在 `.git/hooks/commit-msg` 中添加脚本，使用正则表达式检查 Commit Message 格式。如果不符合 `<type>(<scope>): <subject>` 格式，直接拒绝提交。
 
 ### 4.2 pre-commit Hook
-鍦ㄦ彁浜ゅ墠鑷姩杩愯锛?
+在提交前自动运行：
 
-*   浠ｇ爜鏍煎紡鍖?(CSharpier / Format)銆?
-*   绠€鍗曠殑闈欐€佹鏌?(濡傛湁鏃犲甫 `Debug.Log` 鐨勪唬鐮?銆?
-
----
-
-**鏈€鍚庨€氱墥**: 
-"Update", "Fix bug", "Backup", "..." 杩欑 Commit Message 涓€缁忓彂鐜帮紝**璇疯鍏ㄧ粍鍠濆ザ鑼?*銆?
+*   代码格式化 (CSharpier / Format)。
+*   简单的静态检查 (如有无带 `Debug.Log` 的代码)。
 
 ---
 
-## 馃摎 鎵╁睍闃呰涓庡弬鑰冩爣鍑?(References)
+**最后通牒**: 
+"Update", "Fix bug", "Backup", "..." 这种 Commit Message 一经发现，**请请全组喝奶茶**。
 
-### 馃實 琛屼笟鏍囧噯
+---
+
+## 📚 扩展阅读与参考标准 (References)
+
+### 🌍 行业标准
 *   **[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)**
-    *   鏈枃妗ｅ熀浜庢瑙勮寖銆傚畠鏄洰鍓嶆渶娴佽鐨?Commit Message 鏍囧噯锛岃 Angular, React, Electron 绛夋暟涓囦釜寮€婧愰」鐩噰鐢ㄣ€?
-*   **[Semantic Versioning 2.0.0](https://semver.org/)** (璇箟鍖栫増鏈帶鍒?
-    *   瑙ｉ噴浜嗕负浠€涔?`BREAKING CHANGE` 浼氬鑷村ぇ鐗堟湰鍙?+1 (v1.0.0 -> v2.0.0)銆?
+    *   本文档基于此规范。它是目前最流行的 Commit Message 标准，被 Angular, React, Electron 等数万个开源项目采用。
+*   **[Semantic Versioning 2.0.0](https://semver.org/)** (语义化版本控制)
+    *   解释了为什么 `BREAKING CHANGE` 会导致大版本号 +1 (v1.0.0 -> v2.0.0)。
 
-### 馃敡 鑷姩鍖栧伐鍏?
+### 🔧 自动化工具
 *   **[Husky](https://github.com/typicode/husky)**
-    *   鏈€娴佽鐨?Git Hooks 宸ュ叿銆傚彲浠ョ敤瀹冨湪 `git commit` 涔嬪墠鑷姩杩愯 Lint 妫€鏌ャ€?
+    *   最流行的 Git Hooks 工具。可以用它在 `git commit` 之前自动运行 Lint 检查。
 *   **[Commitlint](https://github.com/conventional-changelog/commitlint)**
-    *   涓€涓懡浠よ宸ュ叿锛岀敤鏉ユ鏌?Commit Message 鏄惁绗﹀悎 Conventional Commits 瑙勮寖銆傚缓璁泦鎴愬埌 CI/CD 娴佺▼涓€?
+    *   一个命令行工具，用来检查 Commit Message 是否符合 Conventional Commits 规范。建议集成到 CI/CD 流程中。
 
-### 馃摉 娣卞害鏂囩珷
+### 📖 深度文章
 *   **[How to Write a Git Commit Message](https://cbea.ms/git-commit/)** (Chris Beams)
-    *   杩欑瘒鍗氬琚棤鏁颁汉寮曠敤锛岃缁嗚В閲婁簡鈥滀负浠€涔堣鐢ㄧ浣垮彞鈥濄€佲€滀负浠€涔堥琛屼笉鑳借秴杩?0涓瓧绗︹€濄€?
+    *   这篇博客被无数人引用，详细解释了“为什么要用祈使句”、“为什么首行不能超过50个字符”。
 
 
 
@@ -380,210 +381,207 @@ perf(Pathfinding): 浼樺寲澶ч噺鍗曚綅瀵昏矾鏃剁殑 CPU 鍗犵敤
 ---
 
 
-{/* 鏉ユ簮: Dev_Guides\Collaboration\GitHub_PR_Workflow.md */}
+<!-- 来源: Dev_Guides\Collaboration\GitHub_PR_Workflow.md -->
 
-## 馃悪 GitHub 宸ヤ綔娴佷笌 PR 鏈€浣冲疄璺?(GitHub Flow & PR Guide)
+## 🐙 GitHub 工作流与 PR 最佳实践 (GitHub Flow & PR Guide)
 
-> **鏍稿績鐞嗗康**: **涓诲垎鏀?(main/develop) 鏄鍦ｄ笉鍙镜鐘殑**銆備换浣曚唬鐮佹兂瑕佽繘鍏ヤ富鍒嗘敮锛屽繀椤荤粡杩囪嚦灏戜竴鍙岀溂鐫涚殑妫€鏌?(Code Review)銆傝繖涓繃绋嬪氨鍙?**Pull Request (PR)**銆?
+> **核心理念**: **主分支 (main/develop) 是神圣不可侵犯的**。任何代码想要进入主分支，必须经过至少一双眼睛的检查 (Code Review)。这个过程就叫 **Pull Request (PR)**。
 
-## 1. 鏍囧噯宸ヤ綔娴?(The Flow)
+## 1. 标准工作流 (The Flow)
 
 ### 1.1 Fork vs Branch
-*   **寮€婧愭ā寮?(Fork)**: 浣犳病鏈夊師浠撳簱鐨勫啓鏉冮檺銆備綘鎶婁粨搴?`Fork` 鍒颁綘鑷繁鍚嶄笅锛屾敼瀹屽悗鍚戝師浠撳簱鍙戣捣 PR銆?
-*   **鍥㈤槦妯″紡 (Branch)**: 浣犳湁鍐欐潈闄愩€備綘鐩存帴鍦ㄥ師浠撳簱閲屽垏涓€涓?`feature/xxx` 鍒嗘敮锛屾敼瀹屽悗鍚?`develop` 鍙戣捣 PR銆?
-*   **Vampirefall 鎺ㄨ崘**: **鍥㈤槦妯″紡**銆傛晥鐜囨洿楂樸€?
+*   **开源模式 (Fork)**: 你没有原仓库的写权限。你把仓库 `Fork` 到你自己名下，改完后向原仓库发起 PR。
+*   **团队模式 (Branch)**: 你有写权限。你直接在原仓库里切一个 `feature/xxx` 分支，改完后向 `develop` 发起 PR。
+*   **Vampirefall 推荐**: **团队模式**。效率更高。
 
-### 1.2 瀹屾暣鐢熷懡鍛ㄦ湡
-1.  **鏂板缓鍒嗘敮**: 鍩轰簬鏈€鏂?`develop` 鍒涘缓 `feat/tower_fire`銆?
-2.  **鎻愪氦浠ｇ爜**: 鍦?`feat/tower_fire` 涓?commit銆?
+### 1.2 完整生命周期
+1.  **新建分支**: 基于最新 `develop` 创建 `feat/tower_fire`。
+2.  **提交代码**: 在 `feat/tower_fire` 上 commit。
 
-3.  **鍙戣捣 PR**: 鍦?GitHub/Gitea 缃戦〉涓婄偣鍑?"New Pull Request"銆?
+3.  **发起 PR**: 在 GitHub/Gitea 网页上点击 "New Pull Request"。
 
     *   *Source*: `feat/tower_fire`
     *   *Target*: `develop`
-4.  **Code Review**: 浣犵殑鍚屼簨鏀跺埌閫氱煡锛岃繘鏉ユ鏌ヤ唬鐮侊紝鍐欒瘎璁恒€?
+4.  **Code Review**: 你的同事收到通知，进来检查代码，写评论。
 
-5.  **淇敼鍙嶉**: 鏍规嵁鍚屼簨鐨勫缓璁紝缁х画鍦?`feat/tower_fire` 涓婃彁浜や慨鏀广€?
+5.  **修改反馈**: 根据同事的建议，继续在 `feat/tower_fire` 上提交修改。
 
-6.  **鍚堝苟 (Merge)**: 鍚屼簨鐐硅禐 (Approve) 鍚庯紝鐐瑰嚮 "Squash and Merge"銆?
+6.  **合并 (Merge)**: 同事点赞 (Approve) 后，点击 "Squash and Merge"。
 
-7.  **鍒犻櫎鍒嗘敮**: 瀹屼簨鍚庡垹鎺?`feat/tower_fire`銆?
+7.  **删除分支**: 完事后删掉 `feat/tower_fire`。
 
-## 2. 濡備綍鍐欎竴涓紭绉€鐨?PR 鎻忚堪锛?
+## 2. 如何写一个优秀的 PR 描述？
 
-PR 鐨勬弿杩板喅瀹氫簡 Reviewer 鐨勫績鎯呭拰瀹℃牳閫熷害銆?
+PR 的描述决定了 Reviewer 的心情和审核速度。
 
-### 2.1 鏍囬 (Title)
-*   鏍煎紡: `<Type>: <Subject>` (鍚?Commit Message)
-*   渚嬪瓙: `feat: 瀹炵幇鐏劙濉旂殑鐕冪儳閫昏緫`
+### 2.1 标题 (Title)
+*   格式: `<Type>: <Subject>` (同 Commit Message)
+*   例子: `feat: 实现火焰塔的燃烧逻辑`
 
-### 2.2 妯℃澘 (Template)
-寤鸿鍦ㄤ粨搴撴牴鐩綍寤轰竴涓?`.github/PULL_REQUEST_TEMPLATE.md`锛屽唴瀹瑰涓嬶細
+### 2.2 模板 (Template)
+建议在仓库根目录建一个 `.github/PULL_REQUEST_TEMPLATE.md`，内容如下：
 
 ```markdown
-## 馃摑 鏀瑰姩鎽樿
-瀹炵幇浜嗙伀鐒板鐨勫熀纭€閫昏緫锛屽寘鎷?DoT 浼ゅ鍜岃瑙夌壒鏁堛€?
+## 📝 改动摘要
+实现了火焰塔的基础逻辑，包括 DoT 伤害和视觉特效。
 
-## 馃摳 鎴浘/GIF (閫夊～)
-[杩欓噷鏀句竴寮犵伀鐒板鏀诲嚮鎬墿鐨?GIF锛岃儨杩囧崈瑷€涓囪]
+## 📸 截图/GIF (选填)
+[这里放一张火焰塔攻击怪物的 GIF，胜过千言万语]
 
-## 馃敆 鍏宠仈 Issue
+## 🔗 关联 Issue
 Closes #102
 
-## 鉁?鑷祴娓呭崟
-- [x] 濉旇兘姝ｅ父鏀诲嚮
-- [x] 鐕冪儳浼ゅ鏁板€兼纭?
-- [x] 鎬墿姝讳骸鍚庣壒鏁堟秷澶?
-- [x] 娌℃湁浜х敓 GC Alloc
+## ✅ 自测清单
+- [x] 塔能正常攻击
+- [x] 燃烧伤害数值正确
+- [x] 怪物死亡后特效消失
+- [x] 没有产生 GC Alloc
 ```
 
-## 3. Code Review 绀间华涓庢爣鍑?
+## 3. Code Review 礼仪与标准
 
-### 3.1 Reviewer (瀹℃牳鑰? 鐨勮亴璐?
-*   **鐪嬮€昏緫**: 浠ｇ爜鏄惁瀹炵幇浜嗛渶姹傦紵鏈夋病鏈夋槑鏄剧殑 Bug锛?
-*   **鐪嬭鑼?*: 鍙橀噺鍚嶆槸鍚﹁鑼冿紵鏈夋病鏈夊啓娉ㄩ噴锛?
-*   **鐪嬫€ц兘**: 鏈夋病鏈夊湪 Update 閲?`new List`锛熸湁娌℃湁姝诲惊鐜闄╋紵
-*   **璇皵**: **瀵逛簨涓嶅浜?*銆?
-    *   *Bad*: "浣犺繖浠ｇ爜鍐欏緱澶儌浜嗐€?
-    *   *Good*: "杩欓噷鍙兘浼氫骇鐢?GC锛屽缓璁敼鐢ㄥ璞℃睜銆?
+### 3.1 Reviewer (审核者) 的职责
+*   **看逻辑**: 代码是否实现了需求？有没有明显的 Bug？
+*   **看规范**: 变量名是否规范？有没有写注释？
+*   **看性能**: 有没有在 Update 里 `new List`？有没有死循环风险？
+*   **语气**: **对事不对人**。
+    *   *Bad*: "你这代码写得太烂了。"
+    *   *Good*: "这里可能会产生 GC，建议改用对象池。"
 
-### 3.2 Submitter (鎻愪氦鑰? 鐨勫績鎬?
-*   **涓嶈鐜荤拑蹇?*: 鍒汉鎸囧嚭鐨勯棶棰樻槸涓轰簡椤圭洰濂斤紝涓嶆槸閽堝浣犮€?
-*   **瑙ｉ噴**: 濡傛灉浣犱笉璁ゅ悓 Reviewer 鐨勬剰瑙侊紝璇峰湪璇勮閲岃В閲婁綘鐨勭悊鐢憋紝鎴栬€呯嚎涓嬫矡閫氥€?
-*   **鍙婃椂鍝嶅簲**: 鍒彂浜?PR 灏变笉绠′簡锛屽埆浜烘彁浜嗘剰瑙佽刀绱ф敼銆?
+### 3.2 Submitter (提交者) 的心态
+*   **不要玻璃心**: 别人指出的问题是为了项目好，不是针对你。
+*   **解释**: 如果你不认同 Reviewer 的意见，请在评论里解释你的理由，或者线下沟通。
+*   **及时响应**: 别发了 PR 就不管了，别人提了意见赶紧改。
 
-## 4. Merge 绛栫暐锛歋quash vs Merge
+## 4. Merge 策略：Squash vs Merge
 
-鐐瑰嚮 Merge 鎸夐挳鏃讹紝鏈変笁绉嶉€夐」锛?
+点击 Merge 按钮时，有三种选项：
 
-### 4.1 Create a merge commit (鏅€氬悎骞?
-*   淇濈暀鎵€鏈夊巻鍙茶褰曘€傚鏋滀綘鐨勫垎鏀笂鏈?100 涓?"fix typo" 鐨勫瀮鍦炬彁浜わ紝瀹冧滑閮戒細杩涘叆涓诲垎鏀€?
-*   **璇勪环**: 鉂?**鑴?*銆備笉鎺ㄨ崘銆?
+### 4.1 Create a merge commit (普通合并)
+*   保留所有历史记录。如果你的分支上有 100 个 "fix typo" 的垃圾提交，它们都会进入主分支。
+*   **评价**: ❌ **脏**。不推荐。
 
-### 4.2 Squash and merge (鍘嬬缉鍚堝苟) - **鎺ㄨ崘**
-*   鎶婁綘鍒嗘敮涓婄殑 100 涓彁浜?*鍘嬬缉鎴?1 涓?*鎻愪氦锛屽悎鍏ヤ富鍒嗘敮銆?
-*   **璇勪环**: 鉁?**骞插噣**銆備富鍒嗘敮鐨勫巻鍙茶褰曢潪甯告竻鏅帮紝涓€涓姛鑳藉搴斾竴涓?Commit銆?
+### 4.2 Squash and merge (压缩合并) - **推荐**
+*   把你分支上的 100 个提交**压缩成 1 个**提交，合入主分支。
+*   **评价**: ✅ **干净**。主分支的历史记录非常清晰，一个功能对应一个 Commit。
 
-### 4.3 Rebase and merge (鍙樺熀鍚堝苟)
-*   鎶婁綘鐨勬彁浜ょ洿鎺ユ帴鍒颁富鍒嗘敮鍚庨潰锛屽儚浠庢潵娌″垎鍙夎繃涓€鏍枫€?
-*   **璇勪环**: 鈿狅笍 **楂橀闄?*銆傚鏋滀笉浠呬繚鐣欎簡鍨冨溇鎻愪氦锛岃繕娌℃湁 Merge 鑺傜偣锛屽嚭闂寰堥毦鍥為€€銆?
+### 4.3 Rebase and merge (变基合并)
+*   把你的提交直接接到主分支后面，像从来没分叉过一样。
+*   **评价**: ⚠️ **高风险**。如果不仅保留了垃圾提交，还没有 Merge 节点，出问题很难回退。
 
-## 5. 甯歌闂
+## 5. 常见问题
 
-*   **PR 鍐茬獊浜嗘€庝箞鍔烇紵**: 
-    *   鍦ㄦ湰鍦?`git pull origin develop` (鎶婁富鍒嗘敮鏈€鏂颁唬鐮佹媺涓嬫潵)銆?
-    *   鏈湴瑙ｅ啿绐併€?
-    *   `git push` 鏇存柊浣犵殑 PR 鍒嗘敮銆侴itHub 浼氳嚜鍔ㄦ洿鏂扮姸鎬併€?
-*   **PR 澶ぇ浜嗘€庝箞鍔烇紵**: 
-    *   濡傛灉涓€涓?PR 鏀逛簡 50 涓枃浠讹紝娌′汉鎰挎剰鐪嬨€?
-    *   **鎷嗗垎**: 鍏堟彁涓€涓?`feat/tower_base` (鍙湁鍩虹被)锛屽悎鍏ュ悗鍐嶆彁 `feat/tower_fire`銆?
-
----
-
-**涓€鍙ヨ瘽鎬荤粨**: 
-**PR 鏄唬鐮佽川閲忕殑瀹堥棬鍛樸€?*
-**娌℃湁 Review 鐨勪唬鐮侊紝灏辨槸鍩嬪湪椤圭洰閲岀殑闆枫€?*
-
-
-
+*   **PR 冲突了怎么办？**: 
+    *   在本地 `git pull origin develop` (把主分支最新代码拉下来)。
+    *   本地解冲突。
+    *   `git push` 更新你的 PR 分支。GitHub 会自动更新状态。
+*   **PR 太大了怎么办？**: 
+    *   如果一个 PR 改了 50 个文件，没人愿意看。
+    *   **拆分**: 先提一个 `feat/tower_base` (只有基类)，合入后再提 `feat/tower_fire`。
 
 ---
 
+**一句话总结**: 
+**PR 是代码质量的守门员。**
+**没有 Review 的代码，就是埋在项目里的雷。**
 
-{/* 鏉ユ簮: Dev_Guides\Collaboration\SVN_vs_Git_Migration_Guide.md */}
 
-## 馃悽 SVN vs 馃悪 Git锛氭繁搴﹀姣斾笌鏋佺畝涓婃墜鎸囧崡
 
-> **鍐欏湪鍓嶉潰**: 寰堝鍥㈤槦锛堝挨鍏舵槸缇庢湳鍚屽锛変範鎯簡 SVN 鐨勨€滅洿瑙傗€濓紝瀵?Git 鎰熷埌鎭愭儳銆傚叾瀹?Git 骞舵病鏈夐偅涔堥毦锛屽彧鏄€昏緫鍙樹簡銆?
-> **鏍稿績鍖哄埆**: **SVN 鏄泦涓紡鐨?(鏈嶅姟鍣ㄥ潖浜嗗ぇ瀹堕兘寰楀仠宸?锛孏it 鏄垎甯冨紡鐨?(姣忎釜浜虹數鑴戦噷閮芥湁涓€浠藉畬鏁寸殑鐗堟湰搴?銆?*
-
-## 1. 娣卞害瀵规瘮鍒嗘瀽 (Analysis)
-
-### 1.1 涓轰粈涔堢編鏈枩娆?SVN锛?
-*   **鏂囦欢閿佸畾 (Locking)**: SVN 鍙互鍦ㄤ綘缂栬緫 `Hero.psd` 鏃垛€滈攣浣忊€濆畠锛屽埆浜哄氨涓嶈兘鏀逛簡銆傝繖瀵逛簩杩涘埗鏂囦欢锛堝浘鐗囥€佹ā鍨嬶級鑷冲叧閲嶈锛岄槻姝㈠啿绐併€侴it 榛樿娌℃湁閿侊紙闇€瑕?LFS 鎻掍欢锛夈€?
-*   **灞€閮ㄦ鍑?*: SVN 鍙互鍙笅杞介」鐩殑 `Art/Characters` 鏂囦欢澶广€侴it 蹇呴』鎶婃暣涓粨搴擄紙鍖呮嫭浣犱笉鍏冲績鐨勪唬鐮佸拰鏂囨。锛夊叏鎷変笅鏉ャ€?
-*   **鏉冮檺鎺у埗**: SVN 鍙互绮剧‘鎺у埗鈥滅編鏈彧鑳借鍐?Art 鐩綍锛屼笉鑳界 Code 鐩綍鈥濄€侴it 閫氬父鏄粨搴撶骇鍒殑鏉冮檺锛堣涔堥兘鑳借鍐欙紝瑕佷箞閮戒笉鑳斤級銆?
-
-### 1.2 涓轰粈涔堢▼搴忓枩娆?Git锛?
-*   **鍒嗘敮 (Branching)**: Git 鍒囧垎鏀槸绉掔骇鐨勩€傛瘡涓姛鑳戒竴涓垎鏀紝浜掍笉褰卞搷銆係VN 鍒囧垎鏀緢閲嶏紝鑰屼笖鍚堝苟浠ｇ爜绠€鐩存槸鍣╂ⅵ銆?
-*   **绂荤嚎宸ヤ綔**: Git 鍙互鍦ㄦ病缃戠殑鏃跺€欐彁浜や唬鐮侊紙Commit 鍒版湰鍦帮級锛岀瓑鏈夌綉浜嗗啀鎺ㄩ€佸埌鏈嶅姟鍣ㄣ€係VN 娌＄綉灏卞簾浜嗐€?
-*   **瀹夊叏鎬?*: Git 姣忎釜浜虹殑鐢佃剳閲岄兘鏈夊畬鏁村浠姐€傛湇鍔″櫒鐐镐簡锛岄殢渚挎壘鍙扮數鑴戝氨鑳芥仮澶嶃€係VN 鏈嶅姟鍣ㄧ偢浜嗕笖娌″浠斤紝椤圭洰灏辨病浜嗐€?
-
-### 1.3 缁撹锛歏ampirefall 璇ラ€夎皝锛?
-*   **浠ｇ爜/閰嶇疆**: **蹇呴』鐢?Git**銆傚垎鏀鐞嗗拰鍚堝苟鏄浜哄崗浣滅殑鍒氶渶銆?
-*   **缇庢湳澶ц祫婧?(PSD/MAX)**: 
-    *   鏂规 A: 缁х画鐢?SVN 绠＄悊婧愭枃浠讹紝瀵煎嚭鍚庣殑璧勬簮 (FBX/PNG) 杩?Git銆?
-    *   鏂规 B: 鍏ㄩ潰杞?Git锛屼絾蹇呴』寮€鍚?**Git LFS (Large File Storage)** 骞堕厤缃枃浠堕攣銆?
 
 ---
 
-## 2. 馃悪 Git 鏋佺畝涓婃墜鎸囧崡 (缇庢湳/绛栧垝涓撶敤鐗?
 
-**蹇樻帀鍛戒护琛岋紒** 鎴戜滑鎺ㄨ崘浣跨敤 **Sourcetree** 鎴?**GitHub Desktop** 鎴?**TortoiseGit** (灏忎箤榫燂紝闀垮緱璺?SVN 寰堝儚)銆?
+<!-- 来源: Dev_Guides\Collaboration\SVN_vs_Git_Migration_Guide.md -->
 
-### 2.1 鏍稿績姒傚康瀵瑰簲琛?(SVN -> Git)
+## 🐢 SVN vs 🐙 Git：深度对比与极简上手指南
 
-|          浣犲湪 SVN 鍋氱殑鎿嶄綔          |          鍦?Git 閲岀殑瀵瑰簲鎿嶄綔          |          鍖哄埆          |
+> **写在前面**: 很多团队（尤其是美术同学）习惯了 SVN 的“直观”，对 Git 感到恐惧。其实 Git 并没有那么难，只是逻辑变了。
+> **核心区别**: **SVN 是集中式的 (服务器坏了大家都得停工)，Git 是分布式的 (每个人电脑里都有一份完整的版本库)。**
+
+## 1. 深度对比分析 (Analysis)
+
+### 1.1 为什么美术喜欢 SVN？
+*   **文件锁定 (Locking)**: SVN 可以在你编辑 `Hero.psd` 时“锁住”它，别人就不能改了。这对二进制文件（图片、模型）至关重要，防止冲突。Git 默认没有锁（需要 LFS 插件）。
+*   **局部检出**: SVN 可以只下载项目的 `Art/Characters` 文件夹。Git 必须把整个仓库（包括你不关心的代码和文档）全拉下来。
+*   **权限控制**: SVN 可以精确控制“美术只能读写 Art 目录，不能碰 Code 目录”。Git 通常是仓库级别的权限（要么都能读写，要么都不能）。
+
+### 1.2 为什么程序喜欢 Git？
+*   **分支 (Branching)**: Git 切分支是秒级的。每个功能一个分支，互不影响。SVN 切分支很重，而且合并代码简直是噩梦。
+*   **离线工作**: Git 可以在没网的时候提交代码（Commit 到本地），等有网了再推送到服务器。SVN 没网就废了。
+*   **安全性**: Git 每个人的电脑里都有完整备份。服务器炸了，随便找台电脑就能恢复。SVN 服务器炸了且没备份，项目就没了。
+
+### 1.3 结论：Vampirefall 该选谁？
+*   **代码/配置**: **必须用 Git**。分支管理和合并是多人协作的刚需。
+*   **美术大资源 (PSD/MAX)**: 
+    *   方案 A: 继续用 SVN 管理源文件，导出后的资源 (FBX/PNG) 进 Git。
+    *   方案 B: 全面转 Git，但必须开启 **Git LFS (Large File Storage)** 并配置文件锁。
+
+---
+
+## 2. 🐙 Git 极简上手指南 (美术/策划专用版)
+
+**忘掉命令行！** 我们推荐使用 **Sourcetree** 或 **GitHub Desktop** 或 **TortoiseGit** (小乌龟，长得跟 SVN 很像)。
+
+### 2.1 核心概念对应表 (SVN -> Git)
+
+|          你在 SVN 做的操作          |          在 Git 里的对应操作          |          区别          |
 |          :---          |          :---          |          :---          |
-|          **Update** (鏇存柊)          |          **Pull** (鎷夊彇)          |          娌″尯鍒紝閮芥槸鎶婃湇鍔″櫒鐨勪笢瑗挎媺涓嬫潵銆?         |
-|          **Commit** (鎻愪氦)          |          **Commit** (鎻愪氦) + **Push** (鎺ㄩ€?          |          **杩欐槸鏈€澶х殑鍧戯紒** <br />SVN 鎻愪氦灏卞畬浜嬩簡銆?br>Git 鎻愪氦鍙槸瀛樺埌**浣犺嚜宸辩數鑴?*閲岋紝蹇呴』鍐嶇偣涓€涓?**Push** 鎵嶈兘浼犲埌鏈嶅姟鍣ㄧ粰鍒汉鐪嬨€?         |
-|          **Revert** (杩樺師)          |          **Discard** / **Reset**          |          鏀惧純淇敼锛岃繕鍘熷埌涓婃鎻愪氦鐨勭姸鎬併€?         |
-|          **Lock** (閿佸畾)          |          **LFS Lock**          |          闇€瑕佷笓闂ㄩ厤缃?LFS 鎵嶈兘鐢ㄣ€?         |
+|          **Update** (更新)          |          **Pull** (拉取)          |          没区别，都是把服务器的东西拉下来。          |
+|          **Commit** (提交)          |          **Commit** (提交) + **Push** (推送)          |          **这是最大的坑！** <br>SVN 提交就完事了。<br>Git 提交只是存到**你自己电脑**里，必须再点一下 **Push** 才能传到服务器给别人看。          |
+|          **Revert** (还原)          |          **Discard** / **Reset**          |          放弃修改，还原到上次提交的状态。          |
+|          **Lock** (锁定)          |          **LFS Lock**          |          需要专门配置 LFS 才能用。          |
 
-### 2.2 鍌荤摐寮忓伐浣滄祦 (Daily Workflow)
+### 2.2 傻瓜式工作流 (Daily Workflow)
 
-鍋囪浣犱娇鐢?**TortoiseGit** (鍥犱负瀹冨拰 SVN 鎿嶄綔鏈€鍍?锛?
+假设你使用 **TortoiseGit** (因为它和 SVN 操作最像)：
 
-#### 绗竴姝ワ細鏃╀笂寮€宸?(Pull)
-1.  鍦ㄩ」鐩枃浠跺す涓婂彸閿?-> `TortoiseGit` -> `Pull`銆?
-2.  鐐?`OK`銆?
+#### 第一步：早上开工 (Pull)
+1.  在项目文件夹上右键 -> `TortoiseGit` -> `Pull`。
+2.  点 `OK`。
 
-3.  **鐩殑**: 纭繚浣犳嬁鍒扮殑鏄渶鏂扮増鏈紝闃叉鍜屽埆浜哄啿绐併€?
+3.  **目的**: 确保你拿到的是最新版本，防止和别人冲突。
 
-#### 绗簩姝ワ細骞叉椿 (Work)
-*   鏀?Excel锛岀敾鍥撅紝鏀瑰満鏅?.. 闅忎究寮勩€?
+#### 第二步：干活 (Work)
+*   改 Excel，画图，改场景... 随便弄。
 
-#### 绗笁姝ワ細涓嬬彮鎻愪氦 (Commit + Push)
-1.  鍙抽敭 -> `Git Commit -> "master"`銆?
-2.  **鍕鹃€?*浣犱慨鏀圭殑鏂囦欢銆?
+#### 第三步：下班提交 (Commit + Push)
+1.  右键 -> `Git Commit -> "master"`。
+2.  **勾选**你修改的文件。
 
-3.  鍦?Message 妗嗛噷鍐欙細`art: 淇敼浜嗗惛琛€楝间富瑙掔殑妯″瀷璐村浘`銆?
+3.  在 Message 框里写：`art: 修改了吸血鬼主角的模型贴图`。
 
-4.  鐐瑰嚮 `Commit`銆?
+4.  点击 `Commit`。
 
-5.  **鍏抽敭鍔ㄤ綔**: 姝ゆ椂寮圭獥宸︿笅瑙掍細鏈変竴涓?`Push` 鎸夐挳锛?*涓€瀹氳鐐逛竴涓嬶紒** (鎴栬€?Commit 瀹屽崟鐙彸閿?-> `Push`)銆?
+5.  **关键动作**: 此时弹窗左下角会有一个 `Push` 按钮，**一定要点一下！** (或者 Commit 完单独右键 -> `Push`)。
 
-6.  **鐩殑**: 鍙湁 Push 鎴愬姛浜嗭紝浣犵殑涓滆タ鎵嶇畻鐪熸鎻愪氦浜嗐€?
+6.  **目的**: 只有 Push 成功了，你的东西才算真正提交了。
 
-### 2.3 閬囧埌鍐茬獊鎬庝箞鍔烇紵 (Conflict)
-*   **鐜拌薄**: Push 澶辫触锛屾彁绀?`Updates were rejected`銆?
-*   **鍘熷洜**: 浣犳敼浜?`Data.xlsx`锛屽皬鐜嬩篃鏀逛簡 `Data.xlsx`锛岃€屼笖浠栨瘮浣犲厛 Push銆?
-*   **瑙ｅ喅**:
-    1.  鍏堢偣 `Pull`銆侴it 浼氳瘯鍥惧悎骞躲€?
-    2.  濡傛灉鍚堝苟澶辫触锛屾枃浠朵笂浼氭湁涓劅鍙瑰彿銆?
+### 2.3 遇到冲突怎么办？ (Conflict)
+*   **现象**: Push 失败，提示 `Updates were rejected`。
+*   **原因**: 你改了 `Data.xlsx`，小王也改了 `Data.xlsx`，而且他比你先 Push。
+*   **解决**:
+    1.  先点 `Pull`。Git 会试图合并。
+    2.  如果合并失败，文件上会有个感叹号。
 
-    3.  **绛栧垝/缇庢湳**: 鍒厡锛佺洿鎺ユ壘绋嬪簭甯繖锛屾垨鑰?*澶囦唤浣犵殑鏂囦欢**锛岃繕鍘?(Revert)锛屾媺鍙栨渶鏂?(Pull)锛屽啀鎶婁綘鐨勬敼鍔ㄨ鐩栦笂鍘汇€?
+    3.  **策划/美术**: 别慌！直接找程序帮忙，或者**备份你的文件**，还原 (Revert)，拉取最新 (Pull)，再把你的改动覆盖上去。
 
-    4.  **绋嬪簭**: 浣跨敤 Merge Tool 瑙ｅ喅鍐茬獊銆?
+    4.  **程序**: 使用 Merge Tool 解决冲突。
 
-## 3. 馃殌 缁欎富绋嬬殑寤鸿锛氬浣曞钩婊戣縼绉伙紵
+## 3. 🚀 给主程的建议：如何平滑迁移？
 
-1.  **淇濈暀 SVN 涔犳儻**: 缁欑編鏈 **TortoiseGit**锛屽洜涓哄彸閿彍鍗曠殑鎿嶄綔涔犳儻鍜?SVN 鍑犱箮涓€鏍凤紝瀛︿範鎴愭湰鏈€浣庛€?
-2.  **蹇界暐鏂囦欢閰嶇疆 (.gitignore)**:
+1.  **保留 SVN 习惯**: 给美术装 **TortoiseGit**，因为右键菜单的操作习惯和 SVN 几乎一样，学习成本最低。
+2.  **忽略文件配置 (.gitignore)**:
 
-    *   鍔″繀鎶?`Library/`, `Temp/`, `Logs/`, `.vs/` 灞忚斀鎺夈€係VN 浠ュ墠鍙兘鎶婅繖浜涘瀮鍦鹃兘浼犱笂鍘讳簡锛孏it 缁濆涓嶈銆?
-3.  **LFS 寮哄埗寮€鍚?*:
+    *   务必把 `Library/`, `Temp/`, `Logs/`, `.vs/` 屏蔽掉。SVN 以前可能把这些垃圾都传上去了，Git 绝对不行。
+3.  **LFS 强制开启**:
 
-    *   閰嶇疆 `.gitattributes`锛屾妸 `*.psd`, `*.fbx`, `*.png`, `*.wav` 鍏ㄩ儴璧?LFS銆傚惁鍒?1涓湀鍚庝綘鐨?Git 浠撳簱浼氬ぇ鍒版媺涓嶄笅鏉ャ€?
+    *   配置 `.gitattributes`，把 `*.psd`, `*.fbx`, `*.png`, `*.wav` 全部走 LFS。否则 1个月后你的 Git 仓库会大到拉不下来。
 
 ---
 
-**涓€鍙ヨ瘽鎬荤粨**: 
-**Git = SVN + "鏈湴浠撳簱"**銆?
-浠ュ墠鏄?`鍐欏畬 -> 涓婁紶`銆?
-鐜板湪鏄?`鍐欏畬 -> 瀛樻湰鍦?(Commit) -> 涓婁紶 (Push)`銆?
-澶氫簡涓€姝ワ紝浣嗘洿瀹夊叏銆?
-
-
-
+**一句话总结**: 
+**Git = SVN + "本地仓库"**。
+以前是 `写完 -> 上传`。
+现在是 `写完 -> 存本地 (Commit) -> 上传 (Push)`。
+多了一步，但更安全。
 

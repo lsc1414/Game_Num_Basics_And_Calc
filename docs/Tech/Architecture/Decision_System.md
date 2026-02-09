@@ -1,106 +1,115 @@
----
-sidebarTitle: "å³ç­ç³»ç»ç»¼åæå"
----
+# 决策系统综合指南
 
-# å³ç­ç³»ç»ç»¼åæå
-
-> æ¬ææ¡£ç±ä»¥ä¸æä»¶åå¹¶çæ (2026-01-09)
+> 本文档由以下文件合并生成 (2026-01-09)
 
 
 
 ---
 
 
-{/* æ¥æº: Tech\Architecture\Unified_Decision_System.md */}
+<!-- 来源: Tech\Architecture\Unified_Decision_System.md -->
 
-## ð§  éç¨å æå³ç­ç³»ç» (Unified Weighted Decision System)
+## 🧠 通用加权决策系统 (Unified Weighted Decision System)
 
-æ¬ææ¡£æ¨å¨æ½è±?Project Vampirefall ä¸­å¤ä¸ªæ ¸å¿ç³»ç»çåºå±é»è¾ï¼æå»ºä¸ä¸?*éç¨çãåºäºä¸ä¸æçå æéæ©å?(Context-Aware Weighted Selector)**ã?
+本文档旨在抽象 Project Vampirefall 中多个核心系统的底层逻辑，构建一个**通用的、基于上下文的加权选择器 (Context-Aware Weighted Selector)**。
 
-éè¿ç»ä¸ä»æ¨ (Aggro)ãå¡é²ç´¢æ?(Tower Targeting) å?èé¸½æ½å¡ (Perk Drafting) çå³ç­ä»£ç ï¼æä»¬å¯ä»¥åå°éå¤é»è¾ï¼æé«ç³»ç»çå¯ç»´æ¤æ§åæ©å±æ§ã?
-
----
-
-## 1. ç³»ç»æ¦è¿° (Overview)
-
-å¨æ¸¸æä¸­ï¼æä»¬ç»å¸¸é¢ä¸´è¿æ ·çé®é¢ï¼?*âä»ä¸å éé¡¹ä¸­ï¼æ ¹æ®å½åæåµï¼éæ©æåéçä¸ä¸ªï¼æå ä¸ªï¼ãâ?*
-
-- **ä»æ¨ç³»ç»:** ä»ä¸å æªç©ä¸­ï¼éåºå¨èæå¤§çæ»å»ã?
-- **å¡é²ç´¢æ:** ä»å°ç¨åçæäººä¸­ï¼éåºä»·å¼æé«çå»æã?
-- **Perk æ½å:** ä»å ç¾ä¸ªå¼ºåè¯æ¡ä¸­ï¼éåºæéåç©å®¶å½åæµæ´¾çå±ç¤ºã?
-
-è¿ä¸ä¸ªçä¼¼æ å³çç³»ç»ï¼æ¬è´¨ä¸é½éµå¾?**`Input -> Scoring -> Selection`** çæ¨¡å¼ã?
+通过统一仇恨 (Aggro)、塔防索敌 (Tower Targeting) 和 肉鸽抽卡 (Perk Drafting) 的决策代码，我们可以减少重复逻辑，提高系统的可维护性和扩展性。
 
 ---
 
-## 2. æ ¸å¿æ¶æ (Core Architecture)
+## 1. 系统概述 (Overview)
 
-### 2.1 æµç¨å?(Flowchart)
+在游戏中，我们经常面临这样的问题：**“从一堆选项中，根据当前情况，选择最合适的一个（或几个）。”**
+- **仇恨系统:** 从一堆怪物中，选出威胁最大的攻击。
+- **塔防索敌:** 从射程内的敌人中，选出价值最高的击杀。
+- **Perk 抽取:** 从几百个强化词条中，选出最适合玩家当前流派的展示。
+这三个看似无关的系统，本质上都遵循 **`Input -> Scoring -> Selection`** 的模式。
+## 2. 核心架构 (Core Architecture)
+### 2.1 流程图 (Flowchart)
 
-```mermaid
-graph LR
-    Pool("åéæ±  Candidates") */} Filter("è¿æ»¤å?Filter")
-    Context("ç¯å¢ä¸ä¸æ?Context") */} Filter
-    Filter */} Scorer("è¯åå¼æ Scoring Engine")
-    Context */} Scorer
-    Scorer */} Weight("æç»æéåè¡?)
-    Weight */} Mode{"éæ©æ¨¡å¼"}
-    Mode */}|"Top 1"| ResultA("æä¼è§£ (Aggro/Tower)")
-    Mode */}|"Weighted Random"| ResultB("éæºè§?(Perk/Loot)")
-```
+    Pool("候选池 Candidates") --> Filter("过滤器 Filter")
+    Context("环境上下文 Context") --> Filter
+    Filter --> Scorer("评分引擎 Scoring Engine")
+    Context --> Scorer
+    Scorer --> Weight("最终权重列表")
+    Weight --> Mode{"选择模式"}
+    Mode -->|"Top 1"| ResultA("最优解 (Aggro/Tower)")
+    Mode -->|"Weighted Random"| ResultB("随机解 (Perk/Loot)")
 
-### 2.2 æ ¸å¿ç»ä»¶ (Components)
+### 2.2 核心组件 (Components)
+1.  **候选人 (Candidate `T`):** 待选择的对象（Enemy, Tower, PerkData）。
+2.  **上下文 (Context `C`):** 决策时的环境信息（距离、玩家 HP、已拥有的 Tags）。
+3.  **评分器 (Scorer `IScorer<T, C>`):** 一个独立的逻辑单元，负责计算单项分数。
+4.  **选择器 (Selector):** 负责运行所有评分器并汇总结果。
+## 3. 评分器策略库 (Scorer Strategy Library)
+通过组合不同的评分器，我们可以“拼装”出不同的 AI 行为，而无需重写代码。
+### 3.1 基础评分器
+|          评分器名称                       |          逻辑描述                                              |          适用场景                            |
+|          **DistanceScorer**               |          距离越近，分数越高 (线性或指数衰减)。                 |          仇恨(近战怪)、塔防(近程塔)          |
+|          **HealthScorer**                 |          生命值越低，分数越高 (斩杀逻辑)。                     |          刺客型怪物、收割型防御塔            |
+|          **TagSynergyScorer**             |          拥有相同标签 (Tag) 数量越多，分数越高。               |          Perk 抽取、战利品生成               |
+|          **FixedPriorityScorer**          |          基于硬编码的优先级 (Boss > Elite > Minion)。          |          塔防(优先打大怪)                    |
+|          **MemoryScorer**                 |          之前互动过 (造成伤害/被选中) 则加分。                 |          仇恨(反击逻辑)、连击系统            |
+### 3.2 评分公式
+标准的归一化评分公式：
+- **Multiplier (乘区):** 用于调整权重（例如：刺客怪的 `HealthScorer` 权重是 5.0，而 `DistanceScorer` 权重是 0.5）。
+- **FlatBonus (加算):** 用于强制覆盖（例如：嘲讽状态直接 +10000 分）。
+## 4. 实战应用配置 (Configuration Examples)
+### Case A: 怪物仇恨 (Aggro System)
 
-1.  **åéäºº (Candidate `T`):** å¾éæ©çå¯¹è±¡ï¼Enemy, Tower, PerkDataï¼ã?
-2.  **ä¸ä¸æ?(Context `C`):** å³ç­æ¶çç¯å¢ä¿¡æ¯ï¼è·ç¦»ãç©å®?HPãå·²æ¥æç?Tagsï¼ã?
+- **目标:** 选一个攻击目标。
+- **选择模式:** `Top 1` (确定性)。
+- **配置:**
+    - `DamageReceivedScorer`: 权重 1.0 (谁打我，我打谁)。
+    - `DistanceScorer`: 权重 2.0 (谁离我近，我打谁)。
+    - `TauntStatusScorer`: 权重 100.0 (嘲讽强制最高)。
+### Case B: 狙击塔索敌 (Sniper Tower Targeting)
+- **目标:** 选一个敌人开火。
+- **选择模式:** `Top 1` (确定性)。
+- **配置:**
+    - `DistanceScorer`: 权重 **-1.0** (反向，优先打远的)。
+    - `HealthScorer`: 权重 2.0 (优先打残血，确保击杀)。
+    - `ArmorTypeScorer`: 若目标是重甲，权重 0.5 (打不动)；若轻甲，权重 1.5。
+### Case C: 肉鸽 Perk 抽取 (Perk Drafting)
+- **目标:** 选 3 个 Perk 给玩家。
+- **选择模式:** `Weighted Random` (加权随机)。
+- **配置:**
+    - `RarityBaseScorer`: 传说(5) < 史诗(15) < 稀有(30) < 普通(50)。
+    - `TagSynergyScorer`: 玩家若有[Fire]，火系 Perk 权重 x 1.5。
+    - `BanListFilter`: 若玩家选了[NoMagic]，剔除所有法术 Perk。
+    - `PityTimerScorer`: 若连续 10 次没出传说，传说权重 x 10。
+## 5. 代码实现参考 (C# Implementation)
+为了保证性能（避免每帧 GC），建议使用结构体或预分配内存。
 
-3.  **è¯åå?(Scorer `IScorer<T, C>`):** ä¸ä¸ªç¬ç«çé»è¾ååï¼è´è´£è®¡ç®åé¡¹åæ°ã?
+// 1. 定义评分上下文
+    public Vector3 Origin; // 决策者位置
+    public EntityType SelfType; // 决策者类型
+    public List<string> PlayerTags; // 玩家当前的流派标签
+    // ... 其他共享数据
+// 2. 评分器接口
+// 3. 具体评分器实现：距离评分
 
-4.  **éæ©å?(Selector):** è´è´£è¿è¡ææè¯åå¨å¹¶æ±æ»ç»æã?
+        // 距离越近分越高，使用 1/x 曲线
 
----
+// 4. 决策引擎
+    // 模式 A: 选最好的 (用于 AI)
 
-## 3. è¯åå¨ç­ç¥åº (Scorer Strategy Library)
+    // 模式 B: 加权随机 (用于抽卡)
+        // 实现标准的加权随机算法 (Roulette Wheel Selection)
+## 6. 性能优化指南 (Optimization)
+由于 AI 决策可能每一帧都在跑，必须注意开销。
+1.  **分帧计算 (Time-Slicing):** 不要让所有怪物在同一帧跑决策逻辑。将怪物分组，每帧只更新一组。
+2.  **空间划分 (Spatial Partitioning):** 在运行 `DistanceScorer` 之前，先通过四叉树 (QuadTree) 或网格系统获取附近的候选人，避免遍历全图。
+3.  **脏标记 (Dirty Flags):** 对于 Perk 系统，只有当玩家获得新 Perk 或进入新房间时才重新计算权重，而不是每帧计算。
+4.  **提前退出 (Early Exit):** 在寻找 `SelectBest` 时，如果发现一个“绝对优先”的目标（如嘲讽），直接返回，跳过后续计算。
+<!-- 来源: Tech\Architecture\Decision_System_Diagrams.md -->
 
-éè¿ç»åä¸åçè¯åå¨ï¼æä»¬å¯ä»¥âæ¼è£âåºä¸åç?AI è¡ä¸ºï¼èæ ééåä»£ç ã?
+## 🏗️ 通用决策系统架构图 (Unified Decision System Architecture)
 
-### 3.1 åºç¡è¯åå?
-
-|          è¯åå¨åç§?                      |          é»è¾æè¿°                                              |          éç¨åºæ¯                            |
-|          :----------------------          |          :-------------------------------------------          |          :-------------------------          |
-|          **DistanceScorer**               |          è·ç¦»è¶è¿ï¼åæ°è¶é«?(çº¿æ§æææ°è¡°å)ã?                |          ä»æ¨(è¿ææ?ãå¡é?è¿ç¨å¡?          |
-|          **HealthScorer**                 |          çå½å¼è¶ä½ï¼åæ°è¶é« (æ©æé»è¾)ã?                    |          åºå®¢åæªç©ãæ¶å²åé²å¾¡å¡?           |
-|          **TagSynergyScorer**             |          æ¥æç¸åæ ç­¾ (Tag) æ°éè¶å¤ï¼åæ°è¶é«ã?              |          Perk æ½åãæå©åçæ               |
-|          **FixedPriorityScorer**          |          åºäºç¡¬ç¼ç çä¼åçº?(Boss > Elite > Minion)ã?         |          å¡é²(ä¼åæå¤§æ?                    |
-|          **MemoryScorer**                 |          ä¹åäºå¨è¿?(é æä¼¤å®³/è¢«éä¸­) åå åã?                |          ä»æ¨(åå»é»è¾)ãè¿å»ç³»ç»?           |
-
-### 3.2 è¯åå¬å¼
-
-æ åçå½ä¸åè¯åå¬å¼ï¼
-
-$$FinalScore = \sum (RawScore_i \times Multiplier_i) + FlatBonus$$
-
-- **Multiplier (ä¹åº):** ç¨äºè°æ´æéï¼ä¾å¦ï¼åºå®¢æªç `HealthScorer` æéæ?5.0ï¼è?`DistanceScorer` æéæ?0.5ï¼ã?
-- **FlatBonus (å ç®):** ç¨äºå¼ºå¶è¦çï¼ä¾å¦ï¼å²è®½ç¶æç´æ?+10000 åï¼ã?
-
----
-
-## 4. å®æåºç¨éç½® (Configuration Examples)
-
-### Case A: æªç©ä»æ¨ (Aggro System)
-
-- **ç®æ :** éä¸ä¸ªæ»å»ç®æ ã?
-- **éæ©æ¨¡å¼:** `Top 1` (ç¡®å®æ?ã?
-- **éç½®:**
-    - `DamageReceivedScorer`: æé 1.0 (è°ææï¼ææè°?ã?
-    - `DistanceScorer`: æé 2.0 (è°ç¦»æè¿ï¼ææè°)ã?
-    - `TauntStatusScorer`: æé 100.0 (å²è®½å¼ºå¶æé«?ã?
-
-### Case B: çå»å¡ç´¢æ?(Sniper Tower Targeting)
-
-- **ç®æ :** éä¸ä¸ªæäººå¼ç«ã?
-- **éæ©æ¨¡å¼:** `Top 1` (ç¡®å®æ?ã?
-- **éç½®:**
+本文档作为系统的工程蓝图，详细定义了类结构、接口关系及运行时序。
+## 1. 类图结构 (Class Diagram)
+该图展示了核心泛型引擎与具体业务系统（仇恨、塔防、Perk）的继承与组合关系。
+ç½®:**
     - `DistanceScorer`: æé **-1.0** (ååï¼ä¼åæè¿ç)ã?
     - `HealthScorer`: æé 2.0 (ä¼åææ®è¡ï¼ç¡®ä¿å»æ)ã?
     - `ArmorTypeScorer`: è¥ç®æ æ¯éç²ï¼æé?0.5 (æä¸å?ï¼è¥è½»ç²ï¼æé?1.5ã?
@@ -211,209 +220,220 @@ public class DecisionEngine<T> {
 ```mermaid
 classDiagram
     %% --- Core Framework ---
-    class DecisionEngine~T~ {
-        -List~IScorer~T~~ _scorers
-        -IFilter~T~ _filter
-        +AddScorer(IScorer~T~ scorer)
-        +SetFilter(IFilter~T~ filter)
-        +SelectBest(List~T~ candidates, Context ctx) T
-        +SelectRandom(List~T~ candidates, Context ctx) T
-    }
+    MonsterAI --> DecisionEngine : Uses
+    TowerController --> DecisionEngine : Uses
+    PerkDraftingSystem --> DecisionEngine : Uses
+## 2. 运行时序图 (Sequence Diagram)
+### 2.1 怪物索敌流程 (AI Select Best)
+展示了怪物如何通过多重评分器选出最佳攻击目标。
+    participant Monster as 🧟 MonsterAI
+    participant Engine as 🧠 DecisionEngine
+    participant Filter as 🛡️ IFilter
+    participant Scorer1 as 📏 DistanceScorer
+    participant Scorer2 as 🩸 HealthScorer
+    participant Scorer3 as 💢 ThreatScorer
+            Filter-->>Engine: False (Skip)
+            Scorer1-->>Engine: Score (e.g., 50)
+            Scorer2-->>Engine: Score (e.g., 20)
+            Scorer3-->>Engine: Score (e.g., 100)
+    Engine-->>Monster: Return BestTarget
+### 2.2 Perk 抽取流程 (Weighted Random Draft)
 
-    class IScorer~T~ {
-        <<interface>>
-        +Evaluate(T candidate, Context ctx) float
-    }
+展示了如何根据玩家流派权重抽取 Perk。
+    participant UI as 🃏 DraftUI
+    participant System as 🎲 PerkSystem
+    participant Engine as 🧠 DecisionEngine
+    participant TagScorer as 🏷️ TagSynergyScorer
+        TagScorer-->>Engine: Final Weight
+    Engine-->>System: Return [Perk A, Perk B, Perk C]
+    System-->>UI: Display Options
+## 3. 数据流设计 (Data Flow Specs)
+为了支持通用的 `Context`，我们需要一个灵活的黑板机制。
+### 3.1 Context Blackboard 结构
+`DecisionContext` 不仅仅是位置信息，它包含了一个 `Dictionary<string, object>` 或强类型的 `Blackboard` 结构，用于传递特定业务参数。
+|          `"AttackerPos"`          |          `Vector3`          |          发起者的位置          |          DistanceScorer          |
+|          `"PlayerHP"`          |          `float`          |          玩家当前血量百分比          |          MercyScorer (低血量降低怪物攻击欲望)          |
+|          `"PlayerTags"`          |          `List<string>`          |          玩家拥有的流派标签          |          SynergyScorer          |
+|          `"PityCounter"`          |          `int`          |          保底计数器          |          RarityScorer          |
+|          `"LastTarget"`          |          `Entity`          |          上一次攻击的目标          |          StickinessScorer (粘性评分，防止频繁切换)          |
+## 4. 优化策略 (Optimization Plan)
+在架构层面预留性能优化接口。
+1.  **`IJob` 兼容性:** 设计 `IScorer` 时尽量使用 `struct` 和 `NativeArray`，以便未来可以将计算繁重的评分逻辑放入 Unity Job System 并行处理。
+2.  **预分配列表 (Pre-allocation):** `DecisionEngine` 内部维护静态或对象池化的 `List<float> scores`，避免在 `SelectBest` 中产生 GC Alloc。
+<!-- 来源: Tech\Code_Snippets\DecisionSystem_Core_Classes.md -->
+## 💻 核心代码定义 (Core Code Definitions)
+本文档定义了通用决策系统的关键 C# 接口与类结构，包括核心引擎和一组标准评分器。
+## 0. 基础数据接口 (Core Data Interfaces)
+为了让评分器能够通用，候选对象 `T` 需要实现这些接口，以暴露必要的数据。
+    /// 可定位的物体，用于 DistanceScorer
+    /// 具有生命值的物体，用于 HealthScorer
+    /// 具有标签列表的物体，用于 TagSynergyScorer
 
-    class IFilter~T~ {
-        <<interface>>
-        +IsValid(T candidate, Context ctx) bool
-    }
+    // 假设 EntityType 是一个全局定义的枚举，例如：
+    /// 具有实体类型的物体，用于 PriorityScorer
+## 1. 基础接口 (Interfaces)
+### `DecisionContext` (上下文)
+用于在评分过程中传递环境数据。使用 `Dictionary` 实现灵活的黑板模式，同时也提供常用属性的快捷访问。
+    /// 决策上下文：包含决策所需的所有环境信息
+        // --- 常用属性 (热数据，避免查字典) ---
+        public Vector3 Origin { get; set; }         // 决策发起者的位置
+        public GameObject Source { get; set; }      // 决策发起者实例
+        // --- 扩展数据 (黑板) ---
+        // 复用池接口 (可选)
 
-    class DecisionContext {
-        +Vector3 Origin
-        +EntityType SourceType
-        +Dictionary~string, object~ Blackboard
-        +GetTag(string key)
-    }
+### `IScorer<T>` (评分器)
+核心逻辑单元。
+    /// 评分器接口：对单个候选人进行评分
+    /// <typeparam name="T">候选人类型 (Enemy, PerkData, etc.)</typeparam>
+        /// 计算分数。
+        /// <param name="candidate">待评估的目标</param>
+        /// <param name="ctx">当前上下文</param>
+        /// <returns>分数 (可以是负数)</returns>
+### `IFilter<T>` (过滤器)
+用于在评分前剔除无效目标（硬性门槛）。
+        /// 是否保留该候选人？
+## 2. 核心引擎 (Core Engine)
+负责组装评分器并执行选择逻辑。
+        // --- 配置方法 ---
+            return this; // 链式调用
+        // --- 核心逻辑 A: 选出最优解 (Best Choice) ---
+        // 适用于：AI索敌、自动拾取
+                // 1. 过滤 (Hard Filter)
 
-    %% --- Relationships ---
-    DecisionEngine o-- IScorer
-    DecisionEngine o-- IFilter
-    DecisionEngine ..> DecisionContext : Uses
+                // 2. 评分 (Scoring)
 
-    %% --- Common Implementations ---
-    class DistanceScorer {
-        +float Weight
-        +Evaluate()
-    }
-    class HealthScorer {
-        +bool Inverse
-        +Evaluate()
-    }
-    class TagSynergyScorer {
-        +List~string~ TargetTags
-        +Evaluate()
-    }
-    
-    IScorer <|.. DistanceScorer
-    IScorer <|.. HealthScorer
-    IScorer <|.. TagSynergyScorer
+                // 3. 比较 (Comparison)
 
-    %% --- Business Layer: Aggro System ---
-    class MonsterAI {
-        -DecisionEngine~IAggroTarget~ _brain
-        +UpdateTarget()
-    }
-    class AggroTargetWrapper {
-        <<Interface>> IAggroTarget
-    }
-    
-    MonsterAI */} DecisionEngine : Uses
-    MonsterAI ..> AggroTargetWrapper : Selects
+        // --- 核心逻辑 B: 加权随机 (Weighted Random) ---
+        // 适用于：掉落、抽卡
+            // 临时列表用于存储通过过滤的候选项及其权重
+            // 注意：生产环境应使用 ListPool 避免 GC
+                // 权重必须非负
+            // 轮盘赌算法 (Roulette Wheel Selection)
+## 3. 标准评分器实现 (Standard Scorer Implementations)
+### `DistanceScorer` (距离评分)
+通用性极强，用于 AI 和 塔防。
+        private float _maxDistance; // 超过此距离分数为0，或按最大距离计算
+        private bool _inverse;      // true: 越远分越高; false: 越近分越高
+        private Func<T, Vector3> _getPositionFunc; // 动态获取T的位置
+        /// 构造函数
+        /// <param name="weight">评分权重</param>
+        /// <param name="getPositionFunc">一个委托，用于从候选对象T获取其Vector3位置</param>
+        /// <param name="maxDistance">最大考量距离，超出按此距离计算，或直接返回0</param>
+        /// <param name="inverse">是否反向：true为越远分越高，false为越近分越高</param>
+            // 超出最大距离则直接不给分 (或者按最远距离计算)
+            if (dist > _maxDistance) return 0f; // 也可以 return (_inverse ? _maxDistance : 0f) * _weight;
+            // 归一化距离 (0~1)
+                score = normalizedDist; // 越远分越高
+                score = 1f - normalizedDist; // 越近分越高
+### `HealthScorer` (生命值评分)
+根据生命值高低进行评分。
+        private Func<T, IHealth> _getHealthFunc; // 动态获取T的IHealth接口
+        /// 构造函数
+        /// <param name="weight">评分权重</param>
+        /// <param name="getHealthFunc">一个委托，用于从候选对象T获取其IHealth接口</param>
+        /// <param name="mode">评分模式：最低血量优先，最高血量优先，或剩余百分比</param>
+            if (health == null || !health.IsAlive) return 0f; // 已死亡或无生命值属性则不给分
+            float healthRatio = health.CurrentHealth / health.MaxHealth; // 0-1之间
+                    score = 1f - healthRatio; // 血量越低，比值越小，1-比值越大
+                    score = healthRatio; // 血量越高，比值越大
+                    score = healthRatio; // 直接按百分比
+### `TagSynergyScorer` (标签协同评分)
+用于 Perk 系统，根据标签匹配度评分。
+        private Func<T, IHasTags> _getTagsFunc; // 动态获取T的IHasTags接口
+        private List<string> _synergyTags; // 用于匹配的标签，可从Context或构造函数传入
+        /// 构造函数
+        /// <param name="weight">评分权重</param>
+        /// <param name="getTagsFunc">一个委托，用于从候选对象T获取其IHasTags接口</param>
+        /// <param name="synergyTags">期望匹配的协同标签列表</param>
+            _synergyTags = synergyTags; // 可以通过Context覆盖
+            // 优先从 Context 获取协同标签，如果 Context 没有，则使用构造函数传入的
+            // 简单地按匹配数量给分
+### `PriorityScorer` (优先级评分)
+根据实体类型给定固定分数。
+    // EntityType 枚举已在 IHasEntityType 定义处提供
+        private Func<T, IHasEntityType> _getEntityTypeFunc; // 动态获取T的IHasEntityType接口
+        /// 构造函数
+        /// <param name="weight">基础评分权重</param>
+        /// <param name="getEntityTypeFunc">一个委托，用于从候选对象T获取其IHasEntityType接口</param>
+        /// <param name="priorityMap">EntityType 到分数的映射</param>
+            return 0f; // 未知实体类型不给分
+<!-- 来源: Tech\Code_Snippets\DecisionSystem_Performance_Demo.md -->
+## 🚀 决策系统性能优化示例 (Decision System Performance Optimization Demo)
+本文档展示了如何将时间分片 (Time-Slicing) 和空间划分 (Spatial Partitioning) 策略集成到 `DecisionEngine` 的工作流中，以确保游戏在高并发计算时依然流畅。
+## 1. 时间分片 (Time-Slicing)
+在游戏中，有数百个 AI 同时进行索敌或决策是非常常见的。如果所有单位都在同一帧内更新其 `DecisionEngine`，会导致帧率骤降。时间分片通过在多帧之间分配计算负载来解决这个问题。
+### 1.1 `IDecisionRequester` 接口
+定义一个接口，任何需要定期执行决策的 AI 或塔都应实现它。
+using Vampirefall.DecisionSystem; // 引入DecisionSystem命名空间
+    /// 任何需要DecisionScheduler调度的决策请求者
+        bool IsActive { get; } // 是否还需要继续调度
+        int Priority { get; }  // 调度优先级 (可选)
+### 1.2 `DecisionScheduler` (决策调度器)
+一个单例 (Singleton) 或全局服务，负责管理和调度所有 `IDecisionRequester`。
+        [SerializeField] private int _requestsPerFrame = 10; // 每帧处理多少个决策请求
+            // 用于所有决策请求的共享上下文（减少GC，并在多个请求间传递通用数据）
+            // 在实际使用中，可能每个请求都会填充一些特定的上下文数据
 
-    %% --- Business Layer: Tower Defense ---
-    class TowerController {
-        -DecisionEngine~Enemy~ _targeting
-        +ScanAndFire()
-    }
-    
-    TowerController */} DecisionEngine : Uses
+                if (_requesters.Count == 0) break; // 防止列表为空
 
-    %% --- Business Layer: Perk System ---
-    class PerkDraftingSystem {
-        -DecisionEngine~PerkData~ _drafter
-        +RollOptions()
-    }
-    
-    PerkDraftingSystem */} DecisionEngine : Uses
-```
+                    sharedContext.Reset(); // 重置上下文，准备下一个请求
+                    // 如果请求者不再活跃，将其移除
+                    _currentIndex--; // 移除后索引需要调整
 
----
+                // 可以根据优先级进行排序：_requesters = _requesters.OrderByDescending(r => r.Priority).ToList();
+### 1.3 `AggroAgent` (或其他AI) 集成调度器
+// 假设 AggroAgent 已经像之前示例一样被重构了
+    // ... 其他 AggroAgent 字段和方法 ...
+    // IDecisionRequester 接口实现
+    public bool IsActive => gameObject.activeInHierarchy && _currentTarget != null && _currentTarget.IsAlive; // 怪物存活且有目标
+    public int Priority => (int)(Vector3.Distance(transform.position, _currentTarget.Position)); // 优先处理近距离目标
+        // 注册到调度器
+        // 从调度器注销
+    // 将原先的 FindBestTarget 逻辑放入 PerformDecision
+        // 1. 获取所有潜在候选人 (使用空间划分，下一节讨论)
+        // 2. 准备决策上下文 (填充当前请求者的特定数据)
+        sharedContext.Set("AggroThreatTable", _threatTable); // 将自身的仇恨表放入上下文供ThreatScorer使用
+        // 3. 执行决策
 
-## 2. è¿è¡æ¶åºå?(Sequence Diagram)
+        // 4. 切换目标逻辑
+            // TODO: 通知 NavMeshAgent 新目标
+            _currentTarget = null; // 当前目标死亡
 
-### 2.1 æªç©ç´¢ææµç¨ (AI Select Best)
+    // Note: 原来的 Update 方法只需要处理移动/攻击动画，不再需要 FindBestTarget()
+## 2. 空间划分 (Spatial Partitioning)
+空间划分系统是提供 `Candidates` 列表给 `DecisionEngine` 的关键优化。它将整个游戏世界划分为多个区域，从而将“遍历所有敌人”的操作变为“查询局部区域的敌人”。
+### 2.1 概念：Grid 或 QuadTree
+*   **Grid System (网格系统):**
+    *   **原理:** 将世界地图划分为均匀的网格，每个网格单元存储其中的所有单位引用。
+    *   **查询:** 塔或 AI 只需查询其射程覆盖的几个网格单元，就能获得潜在目标列表。
+    *   **适用:** 地形平坦、单位分布相对均匀的 2D 或伪 3D 游戏（如标准塔防）。
+*   **QuadTree (四叉树/八叉树):**
+    *   **原理:** 递归地将空间划分为更小的象限，直到每个象限内的单位数量达到某个阈值。
+    *   **查询:** 快速定位到包含查询区域的象限，并只检索这些象限内的单位。
+    *   **适用:** 单位分布稀疏、地图广阔、有垂直高度的 3D 游戏。
+### 2.2 伪代码：优化 `GetAllAggroTargetsInRadius`
 
-å±ç¤ºäºæªç©å¦ä½éè¿å¤éè¯åå¨éåºæä½³æ»å»ç®æ ã?
+这个方法现在应该由一个专门的 **空间管理服务** 提供，而不是遍历一个大列表。
+// 假设我们有一个全局空间管理服务
+public static class SpatialManager // 这是一个概念性的Manager，实际会更复杂
+    // ... 内部管理 Grid 或 QuadTree 数据结构 ...
 
-```mermaid
-sequenceDiagram
-    participant Monster as ð§ MonsterAI
-    participant Engine as ð§  DecisionEngine
-    participant Filter as ð¡ï¸?IFilter
-    participant Scorer1 as ð DistanceScorer
-    participant Scorer2 as ð©¸ HealthScorer
-    participant Scorer3 as ð¢ ThreatScorer
+        // 实际实现：
+        // 1. 根据 origin 和 radius 计算出需要查询的网格单元或四叉树节点。
+        // 2. 从这些单元/节点中高效地检索出所有 IAggroTargetRefactored。
+        // 3. 严格地说，Physics.OverlapSphereNonAlloc 是 Unity 提供的加速结构。
+        // 为了演示，我们继续使用简化的 GameManager.GetAllAggroTargetsInRadius
+        // 但请记住，真实项目会替换它。
+// 之前的 GameManager 伪代码中的 GetAllAggroTargetsInRadius 会被调用
+// class GameManager { ... } // 见 AggroSystem_Refactor_Demo.md
+### 2.3 `AggroAgent` 中的应用
+当 `AggroAgent.PerformDecision` 被调用时，它不再依赖一个全局的 `_allAggroTargets` 列表。
 
-    Note over Monster: Update Tick (0.5s)
-    Monster->>Monster: Get Nearby Targets (Physics.Overlap)
-    Monster->>Engine: SelectBest(Candidates, Context)
-    
-    loop For Each Candidate
-        Engine->>Filter: IsValid(Candidate)?
-        alt Invalid
-            Filter*/}>Engine: False (Skip)
-        else Valid
-            Engine->>Scorer1: Evaluate(Candidate)
-            Scorer1*/}>Engine: Score (e.g., 50)
-            
-            Engine->>Scorer2: Evaluate(Candidate)
-            Scorer2*/}>Engine: Score (e.g., 20)
-            
-            Engine->>Scorer3: Evaluate(Candidate)
-            Scorer3*/}>Engine: Score (e.g., 100)
-            
-            Engine->>Engine: Sum Scores (170)
-        end
-    end
-    
-    Engine->>Engine: Find Max Score
-    Engine*/}>Monster: Return BestTarget
-    Monster->>Monster: Set Attack Target
-```
+// AggroAgent.PerformDecision 方法的一部分
+    // **优化点：通过 SpatialManager 获取候选人列表**
+    // ... 后续逻辑不变 ...
 
-### 2.2 Perk æ½åæµç¨ (Weighted Random Draft)
-
-å±ç¤ºäºå¦ä½æ ¹æ®ç©å®¶æµæ´¾æéæ½å?Perkã?
-
-```mermaid
-sequenceDiagram
-    participant UI as ð DraftUI
-    participant System as ð² PerkSystem
-    participant Engine as ð§  DecisionEngine
-    participant TagScorer as ð·ï¸?TagSynergyScorer
-
-    UI->>System: RequestPerks(Count=3)
-    System->>System: Prepare Context (Player Tags: [Fire, Crit])
-    System->>Engine: SelectRandom(AllPerks, Context)
-    
-    loop For All Perks in Pool
-        Engine->>TagScorer: Evaluate(Perk)
-        note right of TagScorer: Has [Fire]? Weight * 1.5
-        TagScorer*/}>Engine: Final Weight
-    end
-    
-    Engine->>Engine: Build Cumulative Distribution Table (CDF)
-    
-    loop 3 Times
-        Engine->>Engine: Random.Range(0, TotalWeight)
-        Engine->>Engine: Pick Perk by CDF
-        Engine->>Engine: Remove from Pool (Optional)
-    end
-    
-    Engine*/}>System: Return [Perk A, Perk B, Perk C]
-    System*/}>UI: Display Options
-```
-
----
-
-## 3. æ°æ®æµè®¾è®?(Data Flow Specs)
-
-ä¸ºäºæ¯æéç¨ç?`Context`ï¼æä»¬éè¦ä¸ä¸ªçµæ´»çé»æ¿æºå¶ã?
-
-### 3.1 Context Blackboard ç»æ
-`DecisionContext` ä¸ä»ä»æ¯ä½ç½®ä¿¡æ¯ï¼å®åå«äºä¸ä¸?`Dictionary<string, object>` æå¼ºç±»åç?`Blackboard` ç»æï¼ç¨äºä¼ éç¹å®ä¸å¡åæ°ã?
-
-|          Key (String)          |          Type          |          Description          |          Used By          |
-|          :---          |          :---          |          :---          |          :---          |
-|          `"AttackerPos"`          |          `Vector3`          |          åèµ·èçä½ç½®          |          DistanceScorer          |
-|          `"PlayerHP"`          |          `float`          |          ç©å®¶å½åè¡éç¾åæ¯          |          MercyScorer (ä½è¡ééä½æªç©æ»å»æ¬²æ)          |
-|          `"PlayerTags"`          |          `List<string>`          |          ç©å®¶æ¥æçæµæ´¾æ ç­?         |          SynergyScorer          |
-|          `"PityCounter"`          |          `int`          |          ä¿åºè®¡æ°å?         |          RarityScorer          |
-|          `"LastTarget"`          |          `Entity`          |          ä¸ä¸æ¬¡æ»å»çç®æ           |          StickinessScorer (ç²æ§è¯åï¼é²æ­¢é¢ç¹åæ¢)          |
-
-## 4. ä¼åç­ç¥ (Optimization Plan)
-
-å¨æ¶æå±é¢é¢çæ§è½ä¼åæ¥å£ã?
-
-1.  **`IJob` å¼å®¹æ?** è®¾è®¡ `IScorer` æ¶å°½éä½¿ç?`struct` å?`NativeArray`ï¼ä»¥ä¾¿æªæ¥å¯ä»¥å°è®¡ç®ç¹éçè¯åé»è¾æ¾å¥ Unity Job System å¹¶è¡å¤çã?
-2.  **é¢åéåè¡?(Pre-allocation):** `DecisionEngine` åé¨ç»´æ¤éææå¯¹è±¡æ± åç?`List<float> scores`ï¼é¿åå¨ `SelectBest` ä¸­äº§ç?GC Allocã?
-
-
-
-
-
----
-
-
-{/* æ¥æº: Tech\Code_Snippets\DecisionSystem_Core_Classes.md */}
-
-## ð» æ ¸å¿ä»£ç å®ä¹ (Core Code Definitions)
-
-æ¬ææ¡£å®ä¹äºéç¨å³ç­ç³»ç»çå³é?C# æ¥å£ä¸ç±»ç»æï¼åæ¬æ ¸å¿å¼æåä¸ç»æ åè¯åå¨ã?
-
----
-
-## 0. åºç¡æ°æ®æ¥å£ (Core Data Interfaces)
-
-ä¸ºäºè®©è¯åå¨è½å¤éç¨ï¼åéå¯¹è±?`T` éè¦å®ç°è¿äºæ¥å£ï¼ä»¥æ´é²å¿è¦çæ°æ®ã?
-
-### `IPositionable`
-```csharp
-using UnityEngine;
-
-namespace Vampirefall.DecisionSystem
 {
     /// <summary>
     /// å¯å®ä½çç©ä½ï¼ç¨äº?DistanceScorer
