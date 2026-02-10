@@ -4,14 +4,10 @@ title: "游戏手感与 \\\"Juice\\\""
 ---
 > **摘要**：本文聚焦「游戏手感与 \\\"Juice\\\"」，梳理核心概念、关键方法与落地实践。
 
----
-
 > [!TIP] > **定义**: "Juice" 是指那些不改变游戏核心机制，但能极大提升玩家交互反馈和满足感的视听元素。
 > _It's the difference between a spreadsheet and a game._
 
 对于 **Vampirefall** (Roguelike + Looter) 这种高频战斗游戏，优秀的手感是留存的关键。
-
----
 
 ## 1. 核心支柱 (The Core Pillars)
 

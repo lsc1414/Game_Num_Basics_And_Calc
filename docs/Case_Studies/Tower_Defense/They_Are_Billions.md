@@ -4,8 +4,6 @@ title: "《They Are Billions》核心设计知识图谱"
 ---
 > **摘要**：本文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
 
----
-
 ## 📚 1. 理论基础 (Theoretical Basis)
 
 ### 1.1 核心定义：经济螺旋 (Economic Snowball)

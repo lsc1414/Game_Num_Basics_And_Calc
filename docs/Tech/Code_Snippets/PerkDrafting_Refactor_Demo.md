@@ -4,10 +4,6 @@ title: "肉鸽强化抽取系统重构示例"
 ---
 > **摘要**：本文档展示了如何将 `Design/Mechanics/Roguelike_Perks.md` 中定义的肉鸽强化（Perk）抽取逻辑，通过我们设计的 `DecisionEngine` 进行重构。这使得 Perk 池的加权随机选择、流派偏好和稀有度控制变得高度可配置。
 
----
-
----
-
 ## 1. 模拟 `PerkData` 实现
 
 Perk 数据需要实现 `IHasTags` 和 `IHasRarity` 接口，以便评分器对其进行评估。

@@ -4,8 +4,6 @@ title: "失败案例复盘：Concord (星鸣特攻)"
 ---
 > **摘要**：本文聚焦「失败案例复盘：Concord (星鸣特攻)」，梳理核心概念、关键方法与落地实践。
 
----
-
 ## 1. 项目概况
 *   **开发商**: Firewalk Studios (Sony)
 *   **类型**: Hero Shooter (5v5)

@@ -4,13 +4,9 @@ title: "移动与冲刺系统 (Movement & Dash System)"
 ---
 > **摘要**：本文聚焦「移动与冲刺系统 (Movement & Dash System)」，梳理核心概念、关键方法与落地实践。
 
----
-
 > **研究归属**: Project Vampirefall - Tech/Mechanics  
 > **创建日期**: 2025-12-04  
 > **优先级**: ⭐⭐⭐⭐ (中高)
-
----
 
 ## 📑 目录
 

@@ -4,11 +4,7 @@ title: "局外成长系统"
 ---
 > **摘要**：本文档定义了 **Project Vampirefall** 的长期留存动力引擎。
 
----
-
 Meta-Progression 是连接单局体验 (Session) 的桥梁，它负责将玩家的短期挫败感转化为长期的成就感。
-
----
 
 ## 💎 1. 核心设计哲学 (Core Philosophy)
 

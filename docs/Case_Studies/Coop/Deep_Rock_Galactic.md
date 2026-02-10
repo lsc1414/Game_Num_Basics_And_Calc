@@ -4,8 +4,6 @@ title: "《Deep Rock Galactic》核心设计知识图谱"
 ---
 > **摘要**：本文档拆解《深岩银河》的**职业互补设计**、**程序生成洞穴**和**强制合作机制**。
 
----
-
 ## 📚 1. 理论基础 (Theoretical Basis)
 
 ### 1.1 核心定义：能力互斥原则 (Ability Exclusivity Principle)

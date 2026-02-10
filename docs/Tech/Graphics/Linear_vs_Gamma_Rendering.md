@@ -4,8 +4,6 @@ title: "Linear 与 Gamma 渲染空间深度解析"
 ---
 > **摘要**：本文聚焦「Linear 与 Gamma 渲染空间深度解析」，梳理核心概念、关键方法与落地实践。
 
----
-
 ## 📚 1. 理论基础 (Theoretical Basis)
 
 ### 1.1 核心定义

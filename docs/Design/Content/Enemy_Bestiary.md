@@ -4,10 +4,6 @@ title: "怪物图鉴与AI行为"
 ---
 > **摘要**：本文档定义了怪物的分类、AI 行为模式及特殊词缀设计。
 
----
-
----
-
 ## 1. 怪物分级 (Hierarchy)
 
 *   **<span style="color:#A9A9A9">⚪ 杂兵 (Trash / Chaff)</span>:**

@@ -4,8 +4,6 @@ title: "Vampirefall 游戏技能系统 (GAS) 设计方案"
 ---
 > **摘要**：本文聚焦「Vampirefall 游戏技能系统 (GAS) 设计方案」，梳理核心概念、关键方法与落地实践。
 
----
-
 ## 1. 概述 (Overview)
 **Gameplay Ability System (GAS)** 是一个用于处理交互、技能和属性变更的数据驱动框架。虽然它源自 Unreal Engine，但我们将把其核心设计哲学适配到 Unity 中，用于 **Project Vampirefall**。
 

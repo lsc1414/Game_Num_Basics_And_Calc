@@ -4,13 +4,9 @@ title: "多人协作平衡 (Co-op Balance Design)"
 ---
 > **摘要**：本文聚焦「多人协作平衡 (Co-op Balance Design)」，梳理核心概念、关键方法与落地实践。
 
----
-
 > **研究归属**: Project Vampirefall - Design/Systems  
 > **创建日期**: 2025-12-04  
 > **优先级**: ⭐⭐⭐ (中)
-
----
 
 ## 📑 目录
 

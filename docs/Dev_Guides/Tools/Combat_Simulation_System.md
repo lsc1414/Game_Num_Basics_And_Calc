@@ -4,11 +4,7 @@ title: "战斗仿真系统 (Combat Simulation System)：Python 极速模拟"
 ---
 > **摘要**：本文聚焦「战斗仿真系统 (Combat Simulation System)：Python 极速模拟」，梳理核心概念、关键方法与落地实践。
 
----
-
 **文档目标**：在不启动 Unity 的情况下，通过纯数据模拟进行数万次战斗迭代，验证 PRD、暴击率、闪避率及数值成长的数学期望。
-
----
 
 ## 1. 为什么需要仿真？
 

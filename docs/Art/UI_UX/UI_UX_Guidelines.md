@@ -4,10 +4,6 @@ title: "UI/UX 设计与交互规范"
 ---
 > **摘要**：本文档定义了 Project Vampirefall 的用户界面风格、层级结构及交互反馈标准。
 
----
-
----
-
 ## 1. 视觉风格 (Visual Style)
 
 *   **关键词:** 哥特 (Gothic)、极简 (Minimalist)、血与金 (Blood & Gold)。

@@ -4,13 +4,9 @@ title: "Unity RectTransform 深度解析"
 ---
 > **摘要**：本文聚焦「Unity RectTransform 深度解析」，梳理核心概念、关键方法与落地实践。
 
----
-
 `RectTransform` 是 Unity UGUI 系统的核心组件，继承自 `Transform`。虽然它保留了位置、旋转和缩放属性，但其**定位逻辑**与普通 3D 物体截然不同。
 
 很多开发者在处理 UI 适配（分辨率变化）时感到痛苦，根源往往是对 **Anchors（锚点）**、**Pivot（轴心）** 和 **SizeDelta** 的数学定义理解不深。
-
----
 
 ## 1. 核心概念图解
 

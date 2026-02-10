@@ -4,13 +4,9 @@ title: "动态音乐系统 (Adaptive Music System)"
 ---
 > **摘要**：本文聚焦「动态音乐系统 (Adaptive Music System)」，梳理核心概念、关键方法与落地实践。
 
----
-
 > **研究归属**: Project Vampirefall - Audio  
 > **创建日期**: 2025-12-04  
 > **优先级**: ⭐⭐⭐ (中)
-
----
 
 ## 📑 目录
 

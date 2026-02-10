@@ -4,11 +4,7 @@ title: "Battleborn 失败剖析：当复杂性吞噬了核心体验"
 ---
 > **摘要**：本文聚焦「Battleborn 失败剖析：当复杂性吞噬了核心体验」，梳理核心概念、关键方法与落地实践。
 
----
-
 **文档目标**：分析 *Battleborn* (Gearbox, 2016) 失败的关键设计原因，为 *Vampirefall* 的多类型融合（TD + Roguelike）提供警示。
-
----
 
 ## 1. 核心死因：认知过载 (Cognitive Overload)
 

@@ -4,10 +4,6 @@ title: "塔防建筑机制设计"
 ---
 > **摘要**：本文档详细定义了 Project Vampirefall 中“塔防”部分的玩法规则。由于本作混合了 ARPG 元素，塔的设计必须考虑到与主角的协同作战。
 
----
-
----
-
 ## 1. 核心设计原则 (Core Principles)
 
 1.  **主角是矛，塔是盾 (Hero is Spear, Tower is Shield):**

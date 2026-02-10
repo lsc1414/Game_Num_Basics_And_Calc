@@ -4,10 +4,6 @@ title: "Luban 配表实战与 ID 命名规范"
 ---
 > **摘要**：本文档旨在确立 Project Vampirefall 的配表标准。我们使用 **Luban** 作为核心数据工具。
 
----
-
----
-
 ## 1. ID 设计辩论：字符串 vs 数字 (String Key vs Int Key)
 
 *(...此处保持原有的 ID 对比内容，为节省篇幅省略，实际写入时会保留...)*

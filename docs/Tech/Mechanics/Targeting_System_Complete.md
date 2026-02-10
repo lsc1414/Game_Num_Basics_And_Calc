@@ -4,15 +4,6 @@ title: "索敌系统综合指南"
 ---
 > **摘要**：本文聚焦「索敌系统综合指南」，梳理核心概念、关键方法与落地实践。
 
----
-
-
-
-
----
-
-
-
 ## 🎯 索敌机制详解与实战
 
 本文档基于 [Unified Decision System](../Architecture/Unified_Decision_System.md) 架构，深入解析 Project Vampirefall 中的索敌逻辑。索敌（Targeting）是塔防与 ARPG 的核心交互体验，它决定了玩家感受到的“智能”程度。

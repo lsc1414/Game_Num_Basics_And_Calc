@@ -4,8 +4,6 @@ title: "失败案例复盘：The Day Before (浩劫前夕)"
 ---
 > **摘要**：本文聚焦「失败案例复盘：The Day Before (浩劫前夕)」，梳理核心概念、关键方法与落地实践。
 
----
-
 ## 1. 项目概况
 *   **开发商**: Fntastic
 *   **类型**: MMO Survival

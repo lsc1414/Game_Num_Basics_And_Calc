@@ -4,9 +4,6 @@ title: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思
 ---
 > **摘要**：本文聚焦「ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁」，梳理核心概念、关键方法与落地实践。
 
----
-
-
 ## 1. 什么是 ECS？ (What is ECS?)
 
 **实体组件系统 (Entity Component System, ECS)** 是一种遵循 **组合优于继承 (Composition over Inheritance)** 原则的架构模式。它将游戏对象的数据与行为彻底分离。

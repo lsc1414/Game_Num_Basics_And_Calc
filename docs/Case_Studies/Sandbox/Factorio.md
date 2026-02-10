@@ -4,8 +4,6 @@ title: "Factorio (异星工厂) 深度研究：极致优化与自动化"
 ---
 > **摘要**：本文聚焦「Factorio (异星工厂) 深度研究：极致优化与自动化」，梳理核心概念、关键方法与落地实践。
 
----
-
 ## 📚 1. 理论基础 (Theoretical Basis)
 
 ### 1.1 数据导向设计 (Data-Oriented Design, DOD)

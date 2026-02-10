@@ -4,14 +4,10 @@ title: "Utility AI 决策系统"
 ---
 > **摘要**：本文聚焦「Utility AI 决策系统」，梳理核心概念、关键方法与落地实践。
 
----
-
 > [!IMPORTANT]
 > **核心理念**: AI 不应该只是“处于”某种状态 (State)，而应该根据当前环境评估所有可能行为的“效用” (Utility)，并选择最优解。
 
 Utility AI (效用 AI) 是一种基于**评分 (Scoring)** 的决策架构。与传统的 FSM (有限状态机) 或行为树相比，它在处理模糊逻辑和多目标权衡时表现出极高的涌现性 (Emergent Behavior)。
-
----
 
 ## 1. 为什么选择 Utility AI? (Why Utility AI?)
 

@@ -4,8 +4,6 @@ title: "《Binding of Isaac》核心设计知识图谱"
 ---
 > **摘要**：本文档拆解《以撒的结合》的**道具协同数学**、**房间生成**和**诅咒机制**。
 
----
-
 ## 📚 1. 理论基础 (Theoretical Basis)
 
 ### 1.1 核心定义：乘法协同 (Multiplicative Synergies)

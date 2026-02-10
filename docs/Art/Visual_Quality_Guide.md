@@ -4,10 +4,6 @@ title: "Unity URP 画面表现与镜头设计指南"
 ---
 > **摘要**：本文档基于 Unity URP (Universal Render Pipeline) 编写，旨在指导如何构建**手游性能预算下**的高品质画面。
 
----
-
----
-
 ## 1. 摄像机美学 (Camera Aesthetics)
 
 摄像机不仅仅是玩家的“眼睛”，它是导演。
