@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "技能动画管线：从 Animator Event 到可视化时间轴"
 ---
+sidebarTitle: "技能动画管线：从 Animator Event 到可视化时间轴"
+title: "技能动画管线：从 Animator Event 到可视化时间轴"
+---
+> **摘要**：本文围绕「技能动画管线：从 Animator Event 到可视化时间轴」提供核心内容与可落地方法。
 
-# 🎬 技能动画管线：从 Animator Event 到可视化时间轴
+---
 
 在动作游戏与 RPG 开发中，技能释放不仅仅是播放一个 Animation Clip。它涉及到复杂的**时序同步**：第 0.1秒 播放音效，第 0.3秒 生成特效，第 0.4秒 开启伤害判定框，第 0.8秒 允许输入打断。
 

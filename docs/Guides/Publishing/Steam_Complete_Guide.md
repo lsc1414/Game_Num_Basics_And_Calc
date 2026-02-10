@@ -1,13 +1,11 @@
-﻿---
+---
 sidebarTitle: "Steam 发行策略研究"
+title: "Steam 发行策略研究"
+---
+> **摘要**：本文档旨在为《Vampirefall》制定一套科学、数据驱动的 Steam 发行策略。Steam 不是一个“上传游戏然后躺平”的平台，它是一个**算法驱动的流量放大器**。
+
 ---
 
-# Steam 发行综合指南
-
-> 本文档由以下文件合并生成 (2026-02-10)
-## 🚂 Steam 发行策略研究
-
-本文档旨在为《Vampirefall》制定一套科学、数据驱动的 Steam 发行策略。Steam 不是一个“上传游戏然后躺平”的平台，它是一个**算法驱动的流量放大器**。
 
 ---
 
@@ -519,7 +517,6 @@ SteamUserStats.UploadLeaderboardScore(leaderboardHandle, k_ELeaderboardUploadSco
 - 🛠️ **插件库**: [Steamworks.NET GitHub](https://github.com/rlabrecque/Steamworks.NET)
 - 📺 **教程**: [Unity Steamworks Integration (YouTube)](https://www.youtube.com/results?search_query=unity+steamworks+tutorial)
 - 🌐 **指南**: [Valve's Guide to Achievements](https://partner.steamgames.com/doc/features/achievements)
-
 
 
 

@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Unity PRD 算法插件：伪随机分布的 C# 实现"
 ---
+sidebarTitle: "Unity PRD 算法插件：伪随机分布的 C# 实现"
+title: "Unity PRD 算法插件：伪随机分布的 C# 实现"
+---
+> **摘要**：本文围绕「Unity PRD 算法插件：伪随机分布的 C# 实现」提供核心内容与可落地方法。
 
-# 🛠️ Unity PRD 算法插件：伪随机分布的 C# 实现
+---
 
 **文档目标**：提供一个开箱即用的 C# 类库，用于在 Unity 中替换 `Random.value`，实现“暴击/闪避”等概率事件的“保底”与“防连黑”。
 

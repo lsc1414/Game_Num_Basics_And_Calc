@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "They Are Billions》核心设计知识图谱"
 ---
+sidebarTitle: "《They Are Billions》核心设计知识图谱"
+title: "《They Are Billions》核心设计知识图谱"
+---
+> **摘要**：这份文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
 
-# 🧟 《They Are Billions》核心设计知识图谱
-
-这份文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

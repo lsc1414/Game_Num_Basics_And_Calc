@@ -1,11 +1,11 @@
-﻿---
+---
 sidebarTitle: "移动端深度优化指南"
+title: "移动端深度优化指南"
+---
+> **摘要**：本文围绕「移动端深度优化指南」提供核心内容与可落地方法。
+
 ---
 
-# 移动优化综合指南
-
-> 本文档由以下文件合并生成 (2026-02-10)
-## 📱 移动端深度优化指南
 
 **文档目标：** 让 Vampirefall 在 iPhone 8 / 小米 6 级别的设备上稳定运行，且**不烫手**。
 **核心矛盾：** 塔防的海量单位 vs 手机可怜的散热能力。
@@ -252,7 +252,6 @@ public static class DeviceGrader
 
 - 📄 **[HDR 技术](../../Art/Tech_Art/HDR_DeepDive.md):** 哪些档位该开 HDR。
 - 📄 **[Unity Manual - Quality Settings]:** Unity 自带的画质分级系统。
-
 
 
 

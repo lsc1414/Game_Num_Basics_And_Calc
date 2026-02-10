@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "Enter the Gungeon》核心设计知识图谱"
 ---
+sidebarTitle: "《Enter the Gungeon》核心设计知识图谱"
+title: "《Enter the Gungeon》核心设计知识图谱"
+---
+> **摘要**：这份文档拆解《挺进地牢》的**武器多样性设计**、**弹道系统优化**和**房间生成算法**。
 
-# 🔫 《Enter the Gungeon》核心设计知识图谱
-
-这份文档拆解《挺进地牢》的**武器多样性设计**、**弹道系统优化**和**房间生成算法**。
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

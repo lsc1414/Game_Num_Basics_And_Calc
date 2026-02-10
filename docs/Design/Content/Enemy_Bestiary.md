@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "怪物图鉴与AI行为"
 ---
+sidebarTitle: "怪物图鉴与AI行为"
+title: "怪物图鉴与AI行为"
+---
+> **摘要**：本文档定义了怪物的分类、AI 行为模式及特殊词缀设计。
 
-# 👹 怪物图鉴与AI行为
-
-本文档定义了怪物的分类、AI 行为模式及特殊词缀设计。
+---
 
 ---
 
@@ -78,4 +78,3 @@ graph TD
     Attacking -->|Low HP| Fleeing
     Chasing -->|Path Blocked| Breaching(拆墙)
 ```
-

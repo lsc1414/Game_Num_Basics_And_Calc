@@ -2,6 +2,10 @@
 sidebarTitle: "埋点设计"
 description: "深入探讨游戏埋点设计原则、数据架构、发送时机与频率控制，以及如何构建可分析的事件体系"
 icon: "material/chart-line"
+title: "埋点设计"
+---
+> **摘要**：本文围绕「埋点设计」提供核心内容与可落地方法。
+
 ---
 
 ## 🎯 埋点设计核心原则
@@ -982,7 +986,7 @@ def parse_battle_event(event):
 - [ ] 监控数据量和成本
 - [ ] 定期清理无用事件
 - [ ] 根据分析需求调整粒度
-      </Accordion>
+</Accordion>
 
 ---
 

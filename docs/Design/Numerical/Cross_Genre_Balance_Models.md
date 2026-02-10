@@ -1,10 +1,9 @@
-﻿---
+---
 sidebarTitle: "跨品类平衡模型"
 description: "深度解析RPG、MOBA、Roguelike三大品类的数值底层逻辑，建立通用的数值密度分析框架"
 icon: "material/scale-balance"
+title: "跨品类平衡模型"
 ---
-
-# ⚖️ 跨品类数值平衡模型差异
 
 > **摘要**：不同游戏品类的数值体系虽有交集，但其底层数学模型（增长曲线、博弈重点、经济循环）存在本质差异。本文将解构 RPG、MOBA、Roguelike 三大核心品类的数值基因，并为混合品类游戏提供融合指南。
 

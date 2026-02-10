@@ -1,10 +1,12 @@
-﻿---
+---
 sidebarTitle: "数值挖掘 (Mining)"
 description: "使用聚类、回归等机器学习算法发现潜在Meta与经济漏洞"
 icon: "material/database"
+title: "数值挖掘 (Mining)"
 ---
+> **摘要**：本文围绕「数值挖掘 (Mining)」提供核心内容与可落地方法。
 
-# ⛏️ 数据挖掘技术在数值优化中的实践
+---
 
 > **核心目标**：建立“数值挖掘”（Numeric Mining）工具链，从海量日志中提炼高价值的平衡性洞察。
 

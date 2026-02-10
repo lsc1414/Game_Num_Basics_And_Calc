@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "失败案例复盘：Anthem (圣歌)"
 ---
+sidebarTitle: "失败案例复盘：Anthem (圣歌)"
+title: "失败案例复盘：Anthem (圣歌)"
+---
+> **摘要**：本文围绕「失败案例复盘：Anthem (圣歌)」提供核心内容与可落地方法。
 
-# 🛑 失败案例复盘：Anthem (圣歌)
+---
 
 ## 1. 项目概况
 *   **开发商**: BioWare

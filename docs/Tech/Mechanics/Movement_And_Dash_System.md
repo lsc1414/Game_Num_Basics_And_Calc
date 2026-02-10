@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "移动与冲刺系统 (Movement & Dash System)"
 ---
+sidebarTitle: "移动与冲刺系统 (Movement & Dash System)"
+title: "移动与冲刺系统 (Movement & Dash System)"
+---
+> **摘要**：本文围绕「移动与冲刺系统 (Movement & Dash System)」提供核心内容与可落地方法。
 
-# 🏃 移动与冲刺系统 (Movement & Dash System)
+---
 
 > **研究归属**: Project Vampirefall - Tech/Mechanics  
 > **创建日期**: 2025-12-04  

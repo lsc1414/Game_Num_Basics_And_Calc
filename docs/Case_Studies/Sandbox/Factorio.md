@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Factorio (异星工厂) 深度研究：极致优化与自动化"
 ---
+sidebarTitle: "Factorio (异星工厂) 深度研究：极致优化与自动化"
+title: "Factorio (异星工厂) 深度研究：极致优化与自动化"
+---
+> **摘要**：本文围绕「Factorio (异星工厂) 深度研究：极致优化与自动化」提供核心内容与可落地方法。
 
-# 🏭 Factorio (异星工厂) 深度研究：极致优化与自动化
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

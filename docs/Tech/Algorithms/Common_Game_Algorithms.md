@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "游戏常用算法深度研究 (Common Game Algorithms)"
 ---
+sidebarTitle: "游戏常用算法深度研究 (Common Game Algorithms)"
+title: "游戏常用算法深度研究 (Common Game Algorithms)"
+---
+> **摘要**：本文围绕「游戏常用算法深度研究 (Common Game Algorithms)」提供核心内容与可落地方法。
 
-# 🧙‍♂️ 游戏常用算法深度研究 (Common Game Algorithms)
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

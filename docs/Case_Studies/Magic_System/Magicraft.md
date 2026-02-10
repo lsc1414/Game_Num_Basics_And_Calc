@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Magicraft》核心设计知识图谱"
 ---
+sidebarTitle: "《Magicraft》核心设计知识图谱"
+title: "《Magicraft》核心设计知识图谱"
+---
+> **摘要**：本文围绕「《Magicraft》核心设计知识图谱」提供核心内容与可落地方法。
 
-# 🪄 《Magicraft》核心设计知识图谱
+---
 
 > **"用魔法零件组装你的终极武器"** - Magicraft 的核心玩法
 
@@ -622,4 +624,5 @@ Magicraft 不给你"100把武器"，而是给你"30个零件"，让你自己组�
 **文档版本**: v1.0  
 **最后更新**: 2025-12-06  
 **作者**: Vampirefall Team
+
 

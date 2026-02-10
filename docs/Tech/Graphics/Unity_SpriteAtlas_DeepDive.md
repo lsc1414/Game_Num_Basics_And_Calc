@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Unity SpriteAtlas 优化与实践"
 ---
+sidebarTitle: "Unity SpriteAtlas 优化与实践"
+title: "Unity SpriteAtlas 优化与实践"
+---
+> **摘要**：本文围绕「Unity SpriteAtlas 优化与实践」提供核心内容与可落地方法。
 
-# 🎨 Unity SpriteAtlas 优化与实践
+---
 
 > **SpriteAtlas 是 Unity 中优化 2D 渲染性能的核心工具。** 通过合理的图集规划，可以大幅减少 Draw Call、降低内存占用，同时支持多分辨率资源的动态切换。
 

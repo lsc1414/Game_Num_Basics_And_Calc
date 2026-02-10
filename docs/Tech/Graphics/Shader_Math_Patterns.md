@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
 ---
+sidebarTitle: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
+title: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
+---
+> **摘要**：本文围绕「Shader 核心数学模式与实战指南 (The Math of Shaders)」提供核心内容与可落地方法。
 
-# 🎨 Shader 核心数学模式与实战指南 (The Math of Shaders)
+---
 
 Shader 编程的本质不是写代码，而是**数学建模**。
 我们要做的就是把光照、纹理、时间等输入，通过数学公式，映射为屏幕上的每一个像素颜色。

@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "Darkest Dungeon》核心设计知识图谱"
 ---
+sidebarTitle: "《Darkest Dungeon》核心设计知识图谱"
+title: "《Darkest Dungeon》核心设计知识图谱"
+---
+> **摘要**：这份文档拆解《暗黑地牢》的**压力系统设计**、**永久损失机制**和**叙事驱动机制**。
 
-# 😰 《Darkest Dungeon》核心设计知识图谱
-
-这份文档拆解《暗黑地牢》的**压力系统设计**、**永久损失机制**和**叙事驱动机制**。
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "失败案例复盘：The Day Before (浩劫前夕)"
 ---
+sidebarTitle: "失败案例复盘：The Day Before (浩劫前夕)"
+title: "失败案例复盘：The Day Before (浩劫前夕)"
+---
+> **摘要**：本文围绕「失败案例复盘：The Day Before (浩劫前夕)」提供核心内容与可落地方法。
 
-# 🛑 失败案例复盘：The Day Before (浩劫前夕)
+---
 
 ## 1. 项目概况
 *   **开发商**: Fntastic

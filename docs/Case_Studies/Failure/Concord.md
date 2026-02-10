@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "失败案例复盘：Concord (星鸣特攻)"
 ---
+sidebarTitle: "失败案例复盘：Concord (星鸣特攻)"
+title: "失败案例复盘：Concord (星鸣特攻)"
+---
+> **摘要**：本文围绕「失败案例复盘：Concord (星鸣特攻)」提供核心内容与可落地方法。
 
-# 🛑 失败案例复盘：Concord (星鸣特攻)
+---
 
 ## 1. 项目概况
 *   **开发商**: Firewalk Studios (Sony)

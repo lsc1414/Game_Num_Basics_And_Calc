@@ -17,3 +17,6 @@ Dev_Guides/
 *.csv
 *.log
 *.tmp
+
+# Root research draft (non-doc, has encoding issues for MDX parser)
+research.md

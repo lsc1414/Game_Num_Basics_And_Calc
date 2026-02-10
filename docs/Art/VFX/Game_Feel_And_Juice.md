@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "游戏手感与 \\\"Juice\\\""
 ---
+sidebarTitle: "游戏手感与 \\\"Juice\\\""
+title: "游戏手感与 \\\"Juice\\\""
+---
+> **摘要**：本文围绕「游戏手感与 \\\"Juice\\\"」提供核心内容与可落地方法。
 
-# 游戏手感与 "Juice"
+---
 
 > [!TIP] > **定义**: "Juice" 是指那些不改变游戏核心机制，但能极大提升玩家交互反馈和满足感的视听元素。
 > _It's the difference between a spreadsheet and a game._

@@ -1,10 +1,11 @@
 ---
 sidebarTitle: "决策系统综合指南"
+title: "决策系统综合指南"
+---
+> **摘要**：本文围绕「决策系统综合指南」提供核心内容与可落地方法。
+
 ---
 
-# 决策系统综合指南
-
-> 本文档由以下文件合并生成 (2026-02-10)
 
 
 
@@ -1138,6 +1139,5 @@ public void PerformDecision(DecisionContext sharedContext)
 ```
 
 ---
-
 
 

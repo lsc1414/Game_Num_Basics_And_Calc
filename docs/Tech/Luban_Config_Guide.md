@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "Luban 配表实战与 ID 命名规范"
 ---
+sidebarTitle: "Luban 配表实战与 ID 命名规范"
+title: "Luban 配表实战与 ID 命名规范"
+---
+> **摘要**：本文档旨在确立 Project Vampirefall 的配表标准。我们使用 **Luban** 作为核心数据工具。
 
-# 🛠️ Luban 配表实战与 ID 命名规范
-
-本文档旨在确立 Project Vampirefall 的配表标准。我们使用 **Luban** 作为核心数据工具。
+---
 
 ---
 

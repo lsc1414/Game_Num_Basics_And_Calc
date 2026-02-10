@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "瞄准辅助系统 (Aim Assist System)"
 ---
+sidebarTitle: "瞄准辅助系统 (Aim Assist System)"
+title: "瞄准辅助系统 (Aim Assist System)"
+---
+> **摘要**：本文围绕「瞄准辅助系统 (Aim Assist System)」提供核心内容与可落地方法。
 
-# 🎯 瞄准辅助系统 (Aim Assist System)
+---
 
 > **研究归属**: Project Vampirefall - Tech/Mechanics  
 > **创建日期**: 2025-12-04  

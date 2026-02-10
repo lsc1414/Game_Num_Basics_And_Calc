@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Unity RectTransform 深度解析"
 ---
+sidebarTitle: "Unity RectTransform 深度解析"
+title: "Unity RectTransform 深度解析"
+---
+> **摘要**：本文围绕「Unity RectTransform 深度解析」提供核心内容与可落地方法。
 
-# 📐 Unity RectTransform 深度解析
+---
 
 `RectTransform` 是 Unity UGUI 系统的核心组件，继承自 `Transform`。虽然它保留了位置、旋转和缩放属性，但其**定位逻辑**与普通 3D 物体截然不同。
 

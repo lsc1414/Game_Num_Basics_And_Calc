@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "仇恨系统与 AI 目标选择"
 ---
+sidebarTitle: "仇恨系统与 AI 目标选择"
+title: "仇恨系统与 AI 目标选择"
+---
+> **摘要**：本文围绕「仇恨系统与 AI 目标选择」提供核心内容与可落地方法。
 
-# 💢 仇恨系统与 AI 目标选择
+---
 
 仇恨系统（Aggro/Threat System）是连接怪物 AI 与玩家行为的桥梁。在 Project Vampirefall 中，由于融合了 **Action Roguelike**（玩家移动）与 **Tower Defense**（固定防御），仇恨系统必须在“被动寻路”与“主动反击”之间找到平衡。
 

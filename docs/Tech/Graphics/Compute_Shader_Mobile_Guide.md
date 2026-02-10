@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Compute Shader 移动端深度指南"
 ---
+sidebarTitle: "Compute Shader 移动端深度指南"
+title: "Compute Shader 移动端深度指南"
+---
+> **摘要**：本文围绕「Compute Shader 移动端深度指南」提供核心内容与可落地方法。
 
-# ⚡ Compute Shader 移动端深度指南
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

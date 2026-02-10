@@ -1,10 +1,12 @@
-﻿---
+---
 sidebarTitle: "F2P vs Premium 数值"
 description: "揭示商业模式对数值设计的深层影响，建立双轨制经济模型"
 icon: "material/currency-usd"
+title: "F2P vs Premium 数值"
 ---
+> **摘要**：本文围绕「F2P vs Premium 数值」提供核心内容与可落地方法。
 
-# 💰 免费游戏与付费游戏的数值设计策略
+---
 
 > **核心目标**：明确游戏商业模式（Business Model）如何决定数值设计的底层逻辑，避免在混合品类中出现“定位精神分裂”。
 

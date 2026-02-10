@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Utility AI 决策系统"
 ---
+sidebarTitle: "Utility AI 决策系统"
+title: "Utility AI 决策系统"
+---
+> **摘要**：本文围绕「Utility AI 决策系统」提供核心内容与可落地方法。
 
-# Utility AI 决策系统
+---
 
 > [!IMPORTANT]
 > **核心理念**: AI 不应该只是“处于”某种状态 (State)，而应该根据当前环境评估所有可能行为的“效用” (Utility)，并选择最优解。

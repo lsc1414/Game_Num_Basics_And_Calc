@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Unity C# 进阶开发：高性能与底层原理"
 ---
+sidebarTitle: "Unity C# 进阶开发：高性能与底层原理"
+title: "Unity C# 进阶开发：高性能与底层原理"
+---
+> **摘要**：本文围绕「Unity C# 进阶开发：高性能与底层原理」提供核心内容与可落地方法。
 
-# 🧙‍♂️ Unity C# 进阶开发：高性能与底层原理
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

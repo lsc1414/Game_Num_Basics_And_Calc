@@ -1,8 +1,10 @@
 ---
 sidebarTitle: "Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)"
+title: "Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)"
 ---
+> **摘要**：本文围绕「Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)」提供核心内容与可落地方法。
 
-# 🩸 Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)
+---
 
 在 RPG、塔防或 Roguelike 游戏中，血条（Health Bar）不仅是数据显示，更是战斗反馈的核心。
 本指南将深入探讨三种不同量级的血条实现方案，以及如何制作“拳拳到肉”的视觉反馈。

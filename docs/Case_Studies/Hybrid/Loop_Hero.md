@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Loop Hero 案例分析：循环叙事与风险博弈"
 ---
+sidebarTitle: "Loop Hero 案例分析：循环叙事与风险博弈"
+title: "Loop Hero 案例分析：循环叙事与风险博弈"
+---
+> **摘要**：本文围绕「Loop Hero 案例分析：循环叙事与风险博弈」提供核心内容与可落地方法。
 
-# 🔄 Loop Hero 案例分析：循环叙事与风险博弈
+---
 
 > **核心评价**: Loop Hero 不是在玩“勇者斗恶龙”，而是在玩“我是地下城主 (Dungeon Master)”。它颠覆了传统 RPG 的视角，将**关卡构建权**交给了玩家。
 

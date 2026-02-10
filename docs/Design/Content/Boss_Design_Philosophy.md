@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Boss 战设计哲学"
 ---
+sidebarTitle: "Boss 战设计哲学"
+title: "Boss 战设计哲学"
+---
+> **摘要**：本文围绕「Boss 战设计哲学」提供核心内容与可落地方法。
 
-# 🧙‍♂️ Boss 战设计哲学
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

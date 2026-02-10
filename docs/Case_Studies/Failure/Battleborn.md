@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Battleborn 失败剖析：当复杂性吞噬了核心体验"
 ---
+sidebarTitle: "Battleborn 失败剖析：当复杂性吞噬了核心体验"
+title: "Battleborn 失败剖析：当复杂性吞噬了核心体验"
+---
+> **摘要**：本文围绕「Battleborn 失败剖析：当复杂性吞噬了核心体验」提供核心内容与可落地方法。
 
-# 📉 Battleborn 失败剖析：当复杂性吞噬了核心体验
+---
 
 **文档目标**：分析 *Battleborn* (Gearbox, 2016) 失败的关键设计原因，为 *Vampirefall* 的多类型融合（TD + Roguelike）提供警示。
 

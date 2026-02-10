@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "Unity URP 画面表现与镜头设计指南"
 ---
+sidebarTitle: "Unity URP 画面表现与镜头设计指南"
+title: "Unity URP 画面表现与镜头设计指南"
+---
+> **摘要**：本文档基于 Unity URP (Universal Render Pipeline) 编写，旨在指导如何构建**手游性能预算下**的高品质画面。
 
-# 🎥 Unity URP 画面表现与镜头设计指南
-
-本文档基于 Unity URP (Universal Render Pipeline) 编写，旨在指导如何构建**手游性能预算下**的高品质画面。
+---
 
 ---
 

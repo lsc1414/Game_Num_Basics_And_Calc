@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "UI/UX 设计与交互规范"
 ---
+sidebarTitle: "UI/UX 设计与交互规范"
+title: "UI/UX 设计与交互规范"
+---
+> **摘要**：本文档定义了 Project Vampirefall 的用户界面风格、层级结构及交互反馈标准。
 
-# 🎨 UI/UX 设计与交互规范
-
-本文档定义了 Project Vampirefall 的用户界面风格、层级结构及交互反馈标准。
+---
 
 ---
 
@@ -65,4 +65,3 @@ Unity Canvas 的 `Sorting Order` 规划：
 *   **比例缩放:** 
     *   PC: 保持 UI 物理尺寸适中。
     *   Steam Deck: UI 整体缩放系数 x1.2，确保 7寸屏可见。
-

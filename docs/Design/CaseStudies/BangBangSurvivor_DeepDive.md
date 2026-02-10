@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "正中靶心 (BangBang Survivor) - 深度设计拆解"
 ---
+sidebarTitle: "正中靶心 (BangBang Survivor) - 深度设计拆解"
+title: "正中靶心 (BangBang Survivor) - 深度设计拆解"
+---
+> **摘要**：本文围绕「正中靶心 (BangBang Survivor) - 深度设计拆解」提供核心内容与可落地方法。
 
-# 🎯 正中靶心 (BangBang Survivor) - 深度设计拆解
+---
 
 > **文档目标**：深入剖析《正中靶心》的核心设计亮点，特别是其 UI 交互与数值权衡机制。
 > **关键词**：UI 焦点设计、Trade-off (权衡) 机制、宝石体系、技能构筑

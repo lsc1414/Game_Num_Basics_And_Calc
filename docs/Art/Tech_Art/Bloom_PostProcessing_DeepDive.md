@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Bloom 后处理"
 ---
+sidebarTitle: "Bloom 后处理"
+title: "Bloom 后处理"
+---
+> **摘要**：本文围绕「Bloom 后处理」提供核心内容与可落地方法。
 
-# 🌤️ Bloom 后处理
+---
 
 > **"没有 Bloom，霓虹灯只是一块带颜色的板子。"**
 >

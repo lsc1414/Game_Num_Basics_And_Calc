@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall"
 ---
+sidebarTitle: "GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall"
+title: "GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall"
+---
+> **摘要**：本文围绕「GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall」提供核心内容与可落地方法。
 
-# 🎨 GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall
+---
 
 **文档目标**：详解如何在 Unity 中实现海量同屏单位的高效渲染，从 `MaterialPropertyBlock` 到 `DrawMeshInstancedIndirect` 的完整技术路线。
 

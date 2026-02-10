@@ -1,10 +1,10 @@
-﻿---
-sidebarTitle: "怪物仇恨系统重构示例"
 ---
+sidebarTitle: "怪物仇恨系统重构示例"
+title: "怪物仇恨系统重构示例"
+---
+> **摘要**：本文档展示了如何将 `Design/Mechanics/Aggro_System.md` 中定义的怪物仇恨系统，通过我们设计的 `DecisionEngine` 进行重构。这使得仇恨逻辑更加模块化、可配置，并能轻松扩展新的仇恨考量因素。
 
-# 怪物仇恨系统重构示例
-
-本文档展示了如何将 `Design/Mechanics/Aggro_System.md` 中定义的怪物仇恨系统，通过我们设计的 `DecisionEngine` 进行重构。这使得仇恨逻辑更加模块化、可配置，并能轻松扩展新的仇恨考量因素。
+---
 
 ---
 

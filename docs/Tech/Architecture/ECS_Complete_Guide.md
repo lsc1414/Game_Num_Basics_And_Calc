@@ -1,11 +1,11 @@
-﻿---
+---
 sidebarTitle: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
+title: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
+---
+> **摘要**：本文围绕「ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁」提供核心内容与可落地方法。
+
 ---
 
-# ECS 综合指南
-
-> 本文档由以下文件合并生成 (2026-02-10)
-## 🧩 ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁
 
 ## 1. 什么是 ECS？ (What is ECS?)
 
@@ -316,7 +316,6 @@ public partial struct BuffProcessingSystem : ISystem
 |          PC (Mid)          |          2000+          |          < 1500 (Batching后)          |          < 3ms          |
 |          Mobile (High)          |          500+          |          < 300          |          < 4ms          |
 |          Mobile (Low)          |          100+          |          < 100          |          < 5ms          |
-
 
 
 

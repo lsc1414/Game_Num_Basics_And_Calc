@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "工业化游戏开发：ScriptableObject 的生存指南"
 ---
+sidebarTitle: "工业化游戏开发：ScriptableObject 的生存指南"
+title: "工业化游戏开发：ScriptableObject 的生存指南"
+---
+> **摘要**：本文围绕「工业化游戏开发：ScriptableObject 的生存指南」提供核心内容与可落地方法。
 
-# 🛠️ 工业化游戏开发：ScriptableObject 的生存指南
+---
 
 在大型项目中，ScriptableObject (SO) 常因“需要手动拖拽引用”而被误解为效率杀手。本文档旨在澄清这一误区，并提供一套基于工具链的“工业化”解决方案，证明其在可维护性和性能上远超传统 Excel/CSV 流程。
 

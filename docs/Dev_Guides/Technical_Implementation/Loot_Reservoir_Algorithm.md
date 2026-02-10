@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
 ---
+sidebarTitle: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
+title: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
+---
+> **摘要**：本文围绕「掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现」提供核心内容与可落地方法。
 
-# 💰 掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现
+---
 
 **文档目标**：解决高频战斗（每秒死亡 50+ 怪物）下的掉落性能问题，并实现策划对“掉落节奏”的精确控制。
 

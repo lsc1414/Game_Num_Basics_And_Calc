@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Unity 游戏开发通用经验数值速查表"
 ---
+sidebarTitle: "Unity 游戏开发通用经验数值速查表"
+title: "Unity 游戏开发通用经验数值速查表"
+---
+> **摘要**：本文围绕「Unity 游戏开发通用经验数值速查表」提供核心内容与可落地方法。
 
-# 🧙‍♂️ Unity 游戏开发通用经验数值速查表
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 

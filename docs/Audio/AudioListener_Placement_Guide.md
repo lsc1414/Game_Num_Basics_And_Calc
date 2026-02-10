@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "AudioListener 挂载策略：俯视视角的陷阱"
 ---
+sidebarTitle: "AudioListener 挂载策略：俯视视角的陷阱"
+title: "AudioListener 挂载策略：俯视视角的陷阱"
+---
+> **摘要**：本文围绕「AudioListener 挂载策略：俯视视角的陷阱」提供核心内容与可落地方法。
 
-# 👂 AudioListener 挂载策略：俯视视角的陷阱
+---
 
 > **一句话结论**: 在上帝视角 (Top-Down) 或 2.5D 游戏中，**千万不要把 AudioListener 直接挂在 Main Camera 上**，除非你想让玩家听起来像在云端漫步。
 

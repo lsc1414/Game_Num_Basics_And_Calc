@@ -1,8 +1,10 @@
-﻿---
-sidebarTitle: "Linear 与 Gamma 渲染空间深度解析"
 ---
+sidebarTitle: "Linear 与 Gamma 渲染空间深度解析"
+title: "Linear 与 Gamma 渲染空间深度解析"
+---
+> **摘要**：本文围绕「Linear 与 Gamma 渲染空间深度解析」提供核心内容与可落地方法。
 
-# 🎨 Linear 与 Gamma 渲染空间深度解析
+---
 
 ## 📚 1. 理论基础 (Theoretical Basis)
 
