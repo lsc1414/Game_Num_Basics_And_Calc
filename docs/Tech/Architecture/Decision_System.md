@@ -11,7 +11,6 @@ sidebarTitle: "决策系统综合指南"
 ---
 
 
-<!-- 来源: Tech\Architecture\Unified_Decision_System.md -->
 
 ## 🧠 通用加权决策系统
 
@@ -45,8 +44,8 @@ graph LR
     Context --> Scorer
     Scorer --> Weight("最终权重列表")
     Weight --> Mode{"选择模式"}
-    Mode -->|"Top 1"| ResultA("最优解 (Aggro/Tower)")
-    Mode -->|"Weighted Random"| ResultB("随机解 (Perk/Loot)")
+    Mode-->|"Top 1"| ResultA("最优解 (Aggro/Tower)")
+    Mode-->|"Weighted Random"| ResultB("随机解 (Perk/Loot)")
 ```
 
 ### 2.2 核心组件 (Components)
@@ -195,14 +194,6 @@ public class DecisionEngine<T> {
 
 
 
----
-
-
-<!-- 来源: Tech\Architecture\Decision_System_Diagrams.md -->
-
----
-sidebarTitle: "通用决策系统架构图"
-title: "🏗️ 通用决策系统架构图"
 ---
 
 
@@ -404,7 +395,6 @@ sequenceDiagram
 ---
 
 
-<!-- 来源: Tech\Code_Snippets\DecisionSystem_Core_Classes.md -->
 
 ## 💻 核心代码定义
 
@@ -908,14 +898,6 @@ namespace Vampirefall.DecisionSystem
 ---
 
 
-<!-- 来源: Tech\Code_Snippets\DecisionSystem_Performance_Demo.md -->
-
----
-sidebarTitle: "决策系统性能优化示例"
-title: "🚀 决策系统性能优化示例"
----
-
-
 
 ## 🚀 决策系统性能优化示例
 
@@ -1156,5 +1138,6 @@ public void PerformDecision(DecisionContext sharedContext)
 ```
 
 ---
+
 
 

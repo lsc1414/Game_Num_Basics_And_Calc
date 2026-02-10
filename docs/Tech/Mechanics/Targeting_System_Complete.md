@@ -11,7 +11,6 @@ sidebarTitle: "索敌系统综合指南"
 ---
 
 
-<!-- 来源: Tech\Mechanics\Targeting_System_DeepDive.md -->
 
 ## 🎯 索敌机制详解与实战
 
@@ -188,14 +187,6 @@ public class SniperTower : MonoBehaviour
 ---
 
 
-<!-- 来源: Tech\Mechanics\Targeting_Pipeline_DeepDive.md -->
-
----
-sidebarTitle: "索敌管道详解"
-title: "🎯 索敌管道详解"
----
-
-
 
 ## 🎯 索敌管道详解
 
@@ -210,11 +201,11 @@ title: "🎯 索敌管道详解"
 ```mermaid
 graph TD
     A[Tick Trigger] --> B{空间查询 Broad Phase}
-    B -->|Grid/QuadTree| C[候选列表 Candidates]
+    B-->|Grid/QuadTree| C[候选列表 Candidates]
     C --> D{视线检查 LOS Check}
-    D -->|Raycast/Height| E[有效目标 Valid Targets]
+    D-->|Raycast/Height| E[有效目标 Valid Targets]
     E --> F{评分引擎 Scoring}
-    F -->|Weighted Sum| G[最优解 Best Target]
+    F-->|Weighted Sum| G[最优解 Best Target]
 ```
 
 ---
@@ -317,6 +308,7 @@ graph TD
 *   **SIMD 优化:** 如果单位极多，可以将位置数据放入 `NativeArray<float3>`，用 Unity Job System 并行计算距离分数。
 
 ---
+
 
 
 

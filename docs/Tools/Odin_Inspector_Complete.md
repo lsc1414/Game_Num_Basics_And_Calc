@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "Odin Inspector 高级使用技巧"
 ---
 
@@ -804,7 +804,6 @@ public class TowerDatabase : ScriptableObject
 ---
 
 
-<!-- 来源: Dev_Guides\Tools\Odin_Luban_Integration_Guide.md -->
 ## 🔗 Odin Inspector + Luban 深度集成指南
 
 > 🎯 **目标**: 结合 Odin 的强大 Inspector 可视化能力与 Luban 的配置表生成能力，打造双向编辑工作流  
@@ -1085,7 +1084,6 @@ public class LubanExportWindow : OdinEditorWindow
 在 Luban 项目中配置读取 Unity 导出的 JSON：
 
 ```xml
-<!-- Luban 配置示例 -->
 <bean name="TowerConfig">
   <var name="id" type="string"/>
   <var name="name" type="string"/>
@@ -1454,6 +1452,7 @@ dotnet Luban.dll -j cfg --input_data_dir ./LubanExport --output_code_dir ./Gener
 文档版本: v1.0  
 最后更新: 2025-12-06  
 适用版本: Odin 3.1.x+ / Luban 2.x+
+
 
 
 

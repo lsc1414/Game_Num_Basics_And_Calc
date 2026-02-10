@@ -1,4 +1,4 @@
-﻿---
+---
 sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
 ---
 
@@ -62,15 +62,17 @@ sidebarTitle: "游戏开发工具链指南：加速迭代的秘密武器"
   - **工具**: **Luban** (强烈推荐) 或 **EasyTables**。
   - **流程**: Excel/Google Sheets -> 导表工具 -> 生成 C# 代码 + 二进制数据 -> Unity。
   - **优势**: 强类型检查（填错 ID 直接报错），支持复杂数据结构（嵌套列表、多态），加载速度极快。
-    ```xml
-    <!-- 示例: Luban 定义 (Defines.xml) -->
-    <bean name="Item">
-        <var name="id" type="int"/>
-        <var name="name" type="string"/>
-        <var name="rarity" type="ERarity"/> <!-- 枚举类型 -->
-    </bean>
-    <table name="TbItem" value="Item" input="Item.xlsx" output="Item.bin"/>
-    ```
+
+```xml
+<!-- 示例: Luban 定义 (Defines.xml) -->
+<bean name="Item">
+    <var name="id" type="int"/>
+    <var name="name" type="string"/>
+    <var name="rarity" type="ERarity"/> <!-- 枚举类型 -->
+</bean>
+<table name="TbItem" value="Item" input="Item.xlsx" output="Item.bin"/>
+```
+
 - **关卡设计工具**:
   - **Tilemap 笔刷**: 自动处理转角连接 (Rule Tile)。
   - **随机种子预览**: 在编辑器里直接预览不同 Seed 生成的地图，不需要运行游戏。

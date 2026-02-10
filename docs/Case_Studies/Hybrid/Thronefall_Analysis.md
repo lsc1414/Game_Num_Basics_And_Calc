@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
 ---
 
@@ -204,7 +204,6 @@ Thronefall 在信息透明度上做得非常出色，这大大降低了玩家的
 ---
 
 
-<!-- 来源: Case_Studies\Hybrid\Thronefall.md -->
 ## 🏰 构建《王权陨落》类极简策略游戏知识图谱
 
 这份文档旨在拆解《Thronefall》、《Kingdom Two Crowns》、《Bad North》这类“极简策略”游戏背后的设计理论与核心知识体系。
@@ -304,6 +303,7 @@ public float CalculateTargetScore(Enemy enemy, Hero hero) {
 *   📄 **Paper**: [Reynolds Flocking (Boids) Algorithm](https://www.red3d.com/cwr/boids/)
 *   🌐 **Blog**: [Flow Fields Pathfinding Explained](https://leifnode.com/2013/12/flow-field-pathfinding/)
 *   **书籍**: 《The Design of Everyday Things》 (关于示能性 Affordance 的理解)
+
 
 
 

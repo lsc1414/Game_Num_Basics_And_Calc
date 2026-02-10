@@ -1,0 +1,19 @@
+# Exclude non-doc/workspace folders from Mintlify path scanning
+.agent/
+.claude/
+.kiro/
+.obsidian/
+.github/
+node_modules/
+plan/
+reports/
+scripts/
+site/
+wechat/
+Dev_Guides/
+
+# Ignore generated/temp artifacts
+.tmp_*
+*.csv
+*.log
+*.tmp

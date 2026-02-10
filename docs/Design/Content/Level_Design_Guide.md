@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "关卡与波次设计指南"
 ---
 
@@ -580,7 +580,6 @@ public void AdjustDifficulty()
 ---
 
 
-<!-- 来源: Design\Content\Level_Design_Theory.md -->
 ## 🗺️ 关卡设计理论：节奏、空间与引导
 
 > **核心理念**: 优秀的关卡设计是**无形**的。它在玩家不知不觉中教会他们规则，引导他们去往正确的地方，并在他们即将厌倦时提供新的刺激。
@@ -673,9 +672,9 @@ public void AdjustDifficulty()
 ```mermaid
 graph LR
     A[挑战 vs 技能] --> B{平衡状态}
-    B -->|挑战 > 技能| C[焦虑区 😰]
-    B -->|挑战 < 技能| D[无聊区 😴]
-    B -->|挑战 ≈ 技能| E[心流区 🎯]
+    B-->|挑战 > 技能| C[焦虑区 😰]
+    B-->|挑战 < 技能| D[无聊区 😴]
+    B-->|挑战 ≈ 技能| E[心流区 🎯]
 
     C --> F[降低难度]
     D --> G[增加难度]
@@ -819,16 +818,16 @@ Analytics.CustomEvent("WaveFailed", new Dictionary<string, object>
 graph TD
     A[设计关卡] --> B[内部测试]
     B --> C{问题发现}
-    C -->|有| D[调整数值/结构]
-    C -->|无| E[小规模玩家测试]
+    C-->|有| D[调整数值/结构]
+    C-->|无| E[小规模玩家测试]
     D --> B
     E --> F{收集反馈}
-    F -->|需改进| D
-    F -->|通过| G[正式上线]
+    F-->|需改进| D
+    F-->|通过| G[正式上线]
     G --> H[持续监控数据]
     H --> I{数据异常?}
-    I -->|是| D
-    I -->|否| G
+    I-->|是| D
+    I-->|否| G
 ```
 
 > [!IMPORTANT] > **关卡设计的黄金法则**: 一个关卡必须经过**至少 3 轮**内部测试和**至少 10 名**外部玩家的试玩，才能视为"完成"。
@@ -884,6 +883,7 @@ graph TD
 - [🏰 塔防系统](/docs/Design/Mechanics/Tower_Defense_System) - 塔的类型和建造规则
 - [💀 敌人图鉴](/docs/Design/Content/Enemy_Bestiary) - 所有敌人的详细数据
 - [🎮 游戏心理学深度探究](/docs/Design/Game_Psychology_DeepDive) - 玩家动机和成瘾机制
+
 
 
 

@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "Git 极客生存指南：从命令行到私有云搭建"
 ---
 
@@ -192,7 +192,6 @@ Thumbs.db
 ---
 
 
-<!-- 来源: Dev_Guides\Collaboration\Git_Commit_Standards.md -->
 ## 🐙 Git 版本管理与 Commit Log 规范
 
 > **核心理念**: **Commit Log 是写给人看的，不是写给机器看的。**
@@ -372,7 +371,6 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 ---
 
 
-<!-- 来源: Dev_Guides\Collaboration\GitHub_PR_Workflow.md -->
 ## 🐙 GitHub 工作流与 PR 最佳实践
 
 > **核心理念**: **主分支 (main/develop) 是神圣不可侵犯的**。任何代码想要进入主分支，必须经过至少一双眼睛的检查 (Code Review)。这个过程就叫 **Pull Request (PR)**。
@@ -481,7 +479,6 @@ Closes #102
 ---
 
 
-<!-- 来源: Dev_Guides\Collaboration\SVN_vs_Git_Migration_Guide.md -->
 ## 🐢 SVN vs 🐙 Git：深度对比与极简上手指南
 
 > **写在前面**: 很多团队（尤其是美术同学）习惯了 SVN 的“直观”，对 Git 感到恐惧。其实 Git 并没有那么难，只是逻辑变了。
@@ -516,7 +513,7 @@ Closes #102
 |          你在 SVN 做的操作          |          在 Git 里的对应操作          |          区别          |
 |          :---          |          :---          |          :---          |
 |          **Update** (更新)          |          **Pull** (拉取)          |          没区别，都是把服务器的东西拉下来。          |
-|          **Commit** (提交)          |          **Commit** (提交) + **Push** (推送)          |          **这是最大的坑！** <br>SVN 提交就完事了。<br>Git 提交只是存到**你自己电脑**里，必须再点一下 **Push** 才能传到服务器给别人看。          |
+|          **Commit** (提交)          |          **Commit** (提交) + **Push** (推送)          |          **这是最大的坑！** <br />SVN 提交就完事了。<br />Git 提交只是存到**你自己电脑**里，必须再点一下 **Push** 才能传到服务器给别人看。          |
 |          **Revert** (还原)          |          **Discard** / **Reset**          |          放弃修改，还原到上次提交的状态。          |
 |          **Lock** (锁定)          |          **LFS Lock**          |          需要专门配置 LFS 才能用。          |
 
@@ -573,6 +570,7 @@ Closes #102
 以前是 `写完 -> 上传`。
 现在是 `写完 -> 存本地 (Commit) -> 上传 (Push)`。
 多了一步，但更安全。
+
 
 
 

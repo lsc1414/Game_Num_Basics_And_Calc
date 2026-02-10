@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "关卡生成算法(PCG)"
 ---
 
@@ -641,7 +641,6 @@ Gungeon 结合了**BSP 分割 + 手工房间 + 特殊规则**。
 ---
 
 
-<!-- 来源: Dev_Guides\Technical_Implementation\Procedural_Generation_WFC.md -->
 ## 波函数坍缩 (WFC) 生成
 
 > [!NOTE]
@@ -785,6 +784,7 @@ public class WFCGenerator : MonoBehaviour {
 ## 6. 扩展阅读
 *   [Maxim Gumin's Original WFC Repo](https://github.com/mxgmn/WaveFunctionCollapse)
 *   [Oskar Stålberg (Townscaper) Talks](https://www.youtube.com/watch?v=0bcZb-SsnrA)
+
 
 
 

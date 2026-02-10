@@ -1,4 +1,4 @@
-﻿---
+---
 sidebarTitle: "Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)"
 ---
 
@@ -15,9 +15,9 @@ sidebarTitle: "Unity HUD & 血条系统最佳实践 (Health Bar Deep Dive)"
 
 | 方案 | 实现方式 | 优点 | 缺点 | 适用场景 |
 | :--- | :--- | :--- | :--- | :--- |
-| **A. World Space Canvas** | 每个单位头顶挂一个 World Space 的 Canvas。 | 1. 开发极快<br>2. 物理依附，自带透视缩放 | 1. **性能最差** (每个 Canvas 都是独立 DrawCall)<br>2. 远距离看不清 (太小) | 少量精英怪、主角、BOSS |
-| **B. Screen Space Mapping** | 一个全屏 UI Canvas，通过脚本计算坐标跟随 3D 单位。 | 1. **性能较好** (UI 合批)<br>2. 大小恒定，清晰锐利<br>3. 不会穿模 | 1. 需要数学计算 (WorldToScreen)<br>2. 需要处理遮挡剔除 | 大多数 RPG、MOBA (英雄联盟方式) |
-| **C. GPU Instancing / Mesh** | 不使用 uGUI，直接在怪的模型上方画一个 Quad 面片，用 Shader 控制进度。 | 1. **性能极致** (支持海量单位)<br>2. 0 GC | 1. 制作复杂 (需写 Shader)<br>2. 难以实现复杂 UI 动画 | **吸血鬼幸存者类**、超多单位塔防 |
+| **A. World Space Canvas** | 每个单位头顶挂一个 World Space 的 Canvas。 | 1. 开发极快<br />2. 物理依附，自带透视缩放 | 1. **性能最差** (每个 Canvas 都是独立 DrawCall)<br />2. 远距离看不清 (太小) | 少量精英怪、主角、BOSS |
+| **B. Screen Space Mapping** | 一个全屏 UI Canvas，通过脚本计算坐标跟随 3D 单位。 | 1. **性能较好** (UI 合批)<br />2. 大小恒定，清晰锐利<br />3. 不会穿模 | 1. 需要数学计算 (WorldToScreen)<br />2. 需要处理遮挡剔除 | 大多数 RPG、MOBA (英雄联盟方式) |
+| **C. GPU Instancing / Mesh** | 不使用 uGUI，直接在怪的模型上方画一个 Quad 面片，用 Shader 控制进度。 | 1. **性能极致** (支持海量单位)<br />2. 0 GC | 1. 制作复杂 (需写 Shader)<br />2. 难以实现复杂 UI 动画 | **吸血鬼幸存者类**、超多单位塔防 |
 
 > 💡 **Vampirefall 建议:** 
 > *   **普通怪物:** 方案 B (对象池管理 UI) 或 方案 C (如果同屏 > 200)。

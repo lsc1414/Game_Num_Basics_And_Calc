@@ -1,4 +1,4 @@
-﻿---
+---
 sidebarTitle: "Unity Transform 数学变换与最佳实践 (The Math of Transform)"
 ---
 
@@ -84,8 +84,8 @@ UI 系统 (`RectTransform`) 虽然继承自 Transform，但在坐标转换上有
 **核心理论:** 
 在处理 UI 交互（如鼠标点击、物体飞向 UI）时，永远不要试图直接“加减坐标”。必须寻找一个**公共参考系**——通常是**屏幕空间 (Screen Space)**。
 
-*   3D 世界 -> **屏幕** <- UI 局部
-*   UI A -> **屏幕** <- UI B
+*   3D 世界 -> **屏幕** &lt;- UI 局部
+*   UI A -> **屏幕** &lt;- UI B
 
 ---
 
@@ -391,7 +391,7 @@ Unity 的 Transform 系统使用“肮脏标记”模式。
 | **将向量投影到平面** | `Vector3.ProjectOnPlane(vector, planeNormal);` |
 | **向量反射 (子弹反弹)** | `Vector3.Reflect(velocity, wallNormal);` |
 | **检查是否在前方 (视野)** | `Vector3.Dot(transform.forward, (target - me).normalized) > 0` |
-| **检查在左还是右** | `Vector3.Cross(transform.forward, targetDir).y` (>0 右, <0 左) |
+| **检查在左还是右** | `Vector3.Cross(transform.forward, targetDir).y` (>0 右, &lt;0 左) |
 | **两向量夹角** | `Vector3.Angle(dirA, dirB);` (返回 0~180 度) |
 | **世界坐标转屏幕坐标** | `Camera.main.WorldToScreenPoint(worldPos)` |
 | **屏幕坐标转世界 (带深度)** | `Camera.main.ScreenToWorldPoint(new Vector3(x, y, depth))` |

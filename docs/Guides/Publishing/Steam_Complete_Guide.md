@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 sidebarTitle: "Steam 发行策略研究"
 ---
 
@@ -119,7 +119,6 @@ Steam 的推荐算法完全依赖标签。
 ---
 
 
-<!-- 来源: Dev_Guides\Publishing\Steam_Unity_Indie_Game_Guide.md -->
 ## 🚀 Steam Unity 独立游戏开发实战指南：从入门到上线
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -240,7 +239,6 @@ public class GameManager : MonoBehaviour
 ---
 
 
-<!-- 来源: Dev_Guides\Publishing\Steam_Unity_Quality_Standards.md -->
 ## 🧙‍♂️ Steam Unity 游戏开发标准：下限与上限
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -363,7 +361,6 @@ public class GameManager : MonoBehaviour
 ---
 
 
-<!-- 来源: Dev_Guides\Publishing\Steam_Unity_Steamworks_Checklist.md -->
 ## 🧙‍♂️ Unity Steamworks 核心功能开发清单
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -522,6 +519,7 @@ SteamUserStats.UploadLeaderboardScore(leaderboardHandle, k_ELeaderboardUploadSco
 - 🛠️ **插件库**: [Steamworks.NET GitHub](https://github.com/rlabrecque/Steamworks.NET)
 - 📺 **教程**: [Unity Steamworks Integration (YouTube)](https://www.youtube.com/results?search_query=unity+steamworks+tutorial)
 - 🌐 **指南**: [Valve's Guide to Achievements](https://partner.steamgames.com/doc/features/achievements)
+
 
 
 
