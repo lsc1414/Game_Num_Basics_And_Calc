@@ -187,6 +187,28 @@
         "Dev_Guides/Technical_Implementation/Procedural_Generation_WFC.md"
       ],
       "description": "合并程序生成相关文档"
+    },
+    {
+      "name": "??????",
+      "target": "Design/Content/Level_Design_Guide.md",
+      "sources": [
+        "Design/Content/Level_Design_Guide.md",
+        "Design/Content/Level_Design_Theory.md"
+      ],
+      "description": "?????????????",
+      "merge_strategy": "delete_sources",
+      "reason": "second_pass_same_topic"
+    },
+    {
+      "name": "Thronefall ????",
+      "target": "Case_Studies/Hybrid/Thronefall_Analysis.md",
+      "sources": [
+        "Case_Studies/Hybrid/Thronefall_Analysis.md",
+        "Case_Studies/Hybrid/Thronefall.md"
+      ],
+      "description": "?? Thronefall ???????",
+      "merge_strategy": "delete_sources",
+      "reason": "second_pass_same_topic"
     }
   ],
   "new_directories": [

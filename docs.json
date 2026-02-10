@@ -136,7 +136,6 @@
             "pages": [
               "docs/Design/Content/Enemy_Bestiary",
               "docs/Design/Content/Level_Design_Guide",
-              "docs/Design/Content/Level_Design_Theory",
               "docs/Design/Content/Boss_Design_Philosophy"
             ]
           },
@@ -264,7 +263,6 @@
             "pages": [
               "docs/Case_Studies/Hybrid/Dome_Keeper",
               "docs/Case_Studies/Hybrid/Loop_Hero",
-              "docs/Case_Studies/Hybrid/Thronefall",
               "docs/Case_Studies/Hybrid/Thronefall_Analysis"
             ]
           },

@@ -58,8 +58,7 @@
 
 ### ⚔️ 混合类型
 
-- [🏰 构建《王权陨落》类极简策略游戏知识图谱](Case_Studies/Hybrid/Thronefall)
-- [👑 Thronefall 机制分析：极简主义与日夜循环的完美融合](Case_Studies/Hybrid/Thronefall_Analysis)
+- [Thronefall 机制分析：极简主义与日夜循环的完美融合](Case_Studies/Hybrid/Thronefall_Analysis)
 - [🔄 Loop Hero 案例分析：循环叙事与风险博弈](Case_Studies/Hybrid/Loop_Hero)
 - [🛡️ 《Dome Keeper》核心设计知识图谱](Case_Studies/Hybrid/Dome_Keeper)
 
@@ -114,9 +113,8 @@
 
 ### 内容设计
 
-- [👹 怪物图鉴与AI行为](Design/Content/Enemy_Bestiary)
 - [🗺️ 关卡与波次设计指南](Design/Content/Level_Design_Guide)
-- [🗺️ 关卡设计理论：节奏、空间与引导](Design/Content/Level_Design_Theory)
+- [👹 怪物图鉴与AI行为](Design/Content/Enemy_Bestiary)
 - [🧙‍♂️ Boss 战设计哲学](Design/Content/Boss_Design_Philosophy)
 
 ### 运营系统

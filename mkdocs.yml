@@ -172,8 +172,7 @@ nav:
       - 🛑 失败案例复盘：Concord (星鸣特攻): Case_Studies/Failure/Concord.md
       - 🛑 失败案例复盘：The Day Before (浩劫前夕): Case_Studies/Failure/The_Day_Before.md
     - Hybrid:
-      - 🏰 构建《王权陨落》类极简策略游戏知识图谱: Case_Studies/Hybrid/Thronefall.md
-      - 👑 Thronefall 机制分析：极简主义与日夜循环的完美融合: Case_Studies/Hybrid/Thronefall_Analysis.md
+      - Thronefall ????: Case_Studies/Hybrid/Thronefall_Analysis.md
       - 🔄 Loop Hero 案例分析：循环叙事与风险博弈: Case_Studies/Hybrid/Loop_Hero.md
       - 🛡️ 《Dome Keeper》核心设计知识图谱: Case_Studies/Hybrid/Dome_Keeper.md
     - Magic_System:
@@ -206,9 +205,8 @@ nav:
     - CaseStudies:
       - 🎯 正中靶心 - 深度设计拆解: Design/CaseStudies/BangBangSurvivor_DeepDive.md
     - Content:
+      - ??????: Design/Content/Level_Design_Guide.md
       - 👹 怪物图鉴与AI行为: Design/Content/Enemy_Bestiary.md
-      - 🗺️ 关卡与波次设计指南: Design/Content/Level_Design_Guide.md
-      - 🗺️ 关卡设计理论：节奏、空间与引导: Design/Content/Level_Design_Theory.md
       - 🧙‍♂️ Boss 战设计哲学: Design/Content/Boss_Design_Philosophy.md
     - LiveOps:
       - 🌟 业界优秀运营系统研究: Design/LiveOps/Advanced_LiveOps_Systems.md
