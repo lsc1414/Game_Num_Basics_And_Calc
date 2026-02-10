@@ -2,7 +2,7 @@
 sidebarTitle: "埋点设计"
 title: "游戏埋点设计与数据分析"
 description: "深入探讨游戏埋点设计原则、数据架构、发送时机与频率控制，以及如何构建可分析的事件体系"
-icon: "chart-line"
+icon: "material/chart-line"
 ---
 
 

@@ -9,7 +9,7 @@
 
 <!-- 来源: Dev_Guides\Collaboration\Git_Advanced_Guide_For_Programmers.md -->
 
-﻿---
+---
 sidebarTitle: "Git 极客生存指南：从命令行到私有云搭建"
 title: "🐙 Git 极客生存指南：从命令行到私有云搭建"
 ---
@@ -205,7 +205,7 @@ Thumbs.db
 
 <!-- 来源: Dev_Guides\Collaboration\Git_Commit_Standards.md -->
 
-﻿---
+---
 sidebarTitle: "Git 版本管理与 Commit Log 规范"
 title: "🐙 Git 版本管理与 Commit Log 规范"
 ---
@@ -393,7 +393,7 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 
 <!-- 来源: Dev_Guides\Collaboration\GitHub_PR_Workflow.md -->
 
-﻿---
+---
 sidebarTitle: "GitHub 工作流与 PR 最佳实践"
 title: "🐙 GitHub 工作流与 PR 最佳实践"
 ---
@@ -510,7 +510,7 @@ Closes #102
 
 <!-- 来源: Dev_Guides\Collaboration\SVN_vs_Git_Migration_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "SVN vs 🐙 Git：深度对比与极简上手指南"
 title: "🐢 SVN vs 🐙 Git：深度对比与极简上手指南"
 ---

@@ -9,7 +9,7 @@
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Strategy.md -->
 
-﻿---
+---
 sidebarTitle: "Steam 发行策略研究"
 title: "🚂 Steam 发行策略研究"
 ---
@@ -132,7 +132,7 @@ Steam 的推荐算法完全依赖标签。
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Indie_Game_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "Steam Unity 独立游戏开发实战指南：从入门到上线"
 title: "🚀 Steam Unity 独立游戏开发实战指南：从入门到上线"
 ---
@@ -261,7 +261,7 @@ public class GameManager : MonoBehaviour
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Quality_Standards.md -->
 
-﻿---
+---
 sidebarTitle: "Steam Unity 游戏开发标准：下限与上限"
 title: "🧙‍♂️ Steam Unity 游戏开发标准：下限与上限"
 ---
@@ -392,7 +392,7 @@ title: "🧙‍♂️ Steam Unity 游戏开发标准：下限与上限"
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Steamworks_Checklist.md -->
 
-﻿---
+---
 sidebarTitle: "Unity Steamworks 核心功能开发清单"
 title: "🧙‍♂️ Unity Steamworks 核心功能开发清单"
 ---

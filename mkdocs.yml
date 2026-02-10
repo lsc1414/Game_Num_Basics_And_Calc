@@ -8,6 +8,13 @@ site_url: https://lsc1414.github.io/Game_Num_Basics_And_Calc/
 # 目录配置
 docs_dir: docs
 
+# 链接校验策略
+# 保留无后缀链接（如 NAVIGATION.md / Full_Index.md 中的 /docs/... 或 xxx/yyy 形式），
+# 仅关闭这类“无法识别的相对链接”提示，真正的坏链(not_found)仍继续告警。
+validation:
+  links:
+    unrecognized_links: ignore
+
 # 仓库信息 (可选，显示在右上角)
 repo_url: https://github.com/lsc1414/Game_Num_Basics_And_Calc
 repo_name: Game_Num_Basics_And_Calc

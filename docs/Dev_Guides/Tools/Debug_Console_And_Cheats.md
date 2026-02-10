@@ -2,7 +2,7 @@
 sidebarTitle: "🛠️ 调试控制台与作弊指令"
 title: "调试指令与GM工具"
 description: "游戏开发中的调试工具、控制台指令、快速调试技巧与自动化测试方案"
-icon: "bug"
+icon: "material/bug"
 ---
 
 

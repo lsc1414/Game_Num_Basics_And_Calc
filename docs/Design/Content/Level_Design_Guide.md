@@ -9,7 +9,7 @@
 
 <!-- 来源: Design\Content\Level_Design_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "关卡与波次设计指南"
 title: "🗺️ 关卡与波次设计指南"
 ---
@@ -593,7 +593,7 @@ public void AdjustDifficulty()
 
 <!-- 来源: Design\Content\Level_Design_Theory.md -->
 
-﻿---
+---
 sidebarTitle: "关卡设计理论：节奏、空间与引导"
 title: "🗺️ 关卡设计理论：节奏、空间与引导"
 ---

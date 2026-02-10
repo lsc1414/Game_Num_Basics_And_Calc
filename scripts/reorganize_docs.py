@@ -77,7 +77,8 @@ def move_files(docs_path: Path, moves: List[Dict], dry_run: bool, minimal_report
 
 def extract_title_from_md(file_path: Path) -> str:
     try:
-        content = file_path.read_text(encoding="utf-8")
+        # Read with utf-8-sig so source files with BOM don't leak FEFF into merged docs.
+        content = file_path.read_text(encoding="utf-8-sig").replace("\ufeff", "")
         match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
         return match.group(1).strip() if match else file_path.stem
     except Exception:
@@ -124,7 +125,8 @@ def merge_files(
         merged_content.append("")
 
         for src in existing_sources:
-            content = src.read_text(encoding="utf-8")
+            # Source docs may be UTF-8 BOM; normalize here before concatenation.
+            content = src.read_text(encoding="utf-8-sig").replace("\ufeff", "")
             content = _promote_first_h1_to_h2(content)
             merged_content.append("\n---\n")
             merged_content.append(f"\n<!-- 来源: {src.relative_to(docs_path)} -->\n")

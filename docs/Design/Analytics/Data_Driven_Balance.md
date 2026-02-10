@@ -2,7 +2,7 @@
 sidebarTitle: "数据驱动平衡 (DDNO)"
 title: "玩家行为数据驱动的动态数值调整"
 description: "警惕辛普森悖论与幸存者偏差，构建基于多维分层的数值健康监控体系"
-icon: "chart-line"
+icon: "material/chart-line"
 ---
 
 

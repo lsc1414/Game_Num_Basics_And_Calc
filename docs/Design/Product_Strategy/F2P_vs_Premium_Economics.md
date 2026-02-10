@@ -2,7 +2,7 @@
 sidebarTitle: "F2P vs Premium 数值"
 title: "免费游戏与付费游戏的数值设计策略"
 description: "揭示商业模式对数值设计的深层影响，建立双轨制经济模型"
-icon: "money-bill-trend-up"
+icon: "material/currency-usd"
 ---
 
 

@@ -9,7 +9,7 @@
 
 <!-- 来源: Tech\Architecture\Unified_Decision_System.md -->
 
-﻿---
+---
 sidebarTitle: "通用加权决策系统"
 title: "🧠 通用加权决策系统"
 ---
@@ -203,7 +203,7 @@ public class DecisionEngine<T> {
 
 <!-- 来源: Tech\Architecture\Decision_System_Diagrams.md -->
 
-﻿---
+---
 sidebarTitle: "通用决策系统架构图"
 title: "🏗️ 通用决策系统架构图"
 ---
@@ -409,7 +409,7 @@ sequenceDiagram
 
 <!-- 来源: Tech\Code_Snippets\DecisionSystem_Core_Classes.md -->
 
-﻿---
+---
 sidebarTitle: "核心代码定义"
 title: "💻 核心代码定义"
 ---
@@ -920,7 +920,7 @@ namespace Vampirefall.DecisionSystem
 
 <!-- 来源: Tech\Code_Snippets\DecisionSystem_Performance_Demo.md -->
 
-﻿---
+---
 sidebarTitle: "决策系统性能优化示例"
 title: "🚀 决策系统性能优化示例"
 ---

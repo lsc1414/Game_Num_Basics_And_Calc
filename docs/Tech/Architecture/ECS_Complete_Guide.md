@@ -9,7 +9,7 @@
 
 <!-- 来源: Tech\Architecture\ECS_Theory_And_Practice.md -->
 
-﻿---
+---
 sidebarTitle: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
 title: "🧩 ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
 ---
@@ -164,7 +164,7 @@ ECS 不仅仅是性能优化工具，更是一种**架构解耦**的利器。它
 
 <!-- 来源: Dev_Guides\Technical_Implementation\ECS_Performance_Optimization.md -->
 
-﻿---
+---
 sidebarTitle: "ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS"
 title: "🚀 ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS"
 ---

@@ -9,7 +9,7 @@
 
 <!-- 来源: Tech\Algorithms\Procedural_Generation_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "关卡生成算法(PCG)"
 title: "🧙‍♂️ 关卡生成算法(PCG)"
 ---
@@ -654,7 +654,7 @@ Gungeon 结合了**BSP 分割 + 手工房间 + 特殊规则**。
 
 <!-- 来源: Dev_Guides\Technical_Implementation\Procedural_Generation_WFC.md -->
 
-﻿---
+---
 sidebarTitle: "波函数坍缩 (WFC) 生成"
 title: "波函数坍缩 (WFC) 生成"
 ---

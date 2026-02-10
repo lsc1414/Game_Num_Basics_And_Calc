@@ -9,7 +9,7 @@
 
 <!-- 来源: Tech\Mechanics\Targeting_System_DeepDive.md -->
 
-﻿---
+---
 sidebarTitle: "索敌机制详解与实战"
 title: "🎯 索敌机制详解与实战"
 ---
@@ -193,7 +193,7 @@ public class SniperTower : MonoBehaviour
 
 <!-- 来源: Tech\Mechanics\Targeting_Pipeline_DeepDive.md -->
 
-﻿---
+---
 sidebarTitle: "索敌管道详解"
 title: "🎯 索敌管道详解"
 ---

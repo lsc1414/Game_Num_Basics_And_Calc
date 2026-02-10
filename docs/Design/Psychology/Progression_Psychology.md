@@ -2,7 +2,7 @@
 sidebarTitle: "成长心理学"
 title: "心理学在玩家成长曲线中的应用"
 description: "深度解析游戏成瘾背后的心理学机制，利用韦伯定律、心流理论与斯金纳箱构建沉浸式数值体验"
-icon: "brain"
+icon: "material/brain"
 ---
 
 

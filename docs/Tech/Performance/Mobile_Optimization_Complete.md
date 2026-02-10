@@ -9,7 +9,7 @@
 
 <!-- 来源: Tech\Mobile_Optimization_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "移动端深度优化指南"
 title: "📱 移动端深度优化指南"
 ---
@@ -134,7 +134,7 @@ Android 低端机只有 2GB 内存，除去系统，分给游戏的只有 500MB 
 
 <!-- 来源: Tech\Mobile_Optimization\Device_Grading_And_Scalability.md -->
 
-﻿---
+---
 sidebarTitle: "设备分级与画质自适应"
 title: "📱 设备分级与画质自适应"
 ---

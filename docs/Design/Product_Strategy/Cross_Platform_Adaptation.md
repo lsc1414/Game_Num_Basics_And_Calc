@@ -2,7 +2,7 @@
 sidebarTitle: "跨平台适配"
 title: "跨平台与全球化的数值适配策略"
 description: "应对移动端与PC端的技术差异，以及全球不同市场的文化数值偏好"
-icon: "globe"
+icon: "material/earth"
 ---
 
 

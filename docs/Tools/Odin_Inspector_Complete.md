@@ -9,7 +9,7 @@
 
 <!-- 来源: Dev_Guides\Tools\Odin_Inspector_Advanced_Techniques.md -->
 
-﻿---
+---
 sidebarTitle: "Odin Inspector 高级使用技巧"
 title: "🧙‍♂️ Odin Inspector 高级使用技巧"
 ---
@@ -817,7 +817,7 @@ public class TowerDatabase : ScriptableObject
 
 <!-- 来源: Dev_Guides\Tools\Odin_Luban_Integration_Guide.md -->
 
-﻿---
+---
 sidebarTitle: "Odin Inspector + Luban 深度集成指南"
 title: "🔗 Odin Inspector + Luban 深度集成指南"
 ---

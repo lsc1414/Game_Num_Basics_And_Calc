@@ -9,7 +9,7 @@
 
 <!-- 来源: Case_Studies\Hybrid\Thronefall_Analysis.md -->
 
-﻿---
+---
 sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
 title: "👑 Thronefall 机制分析：极简主义与日夜循环的完美融合"
 ---
@@ -217,7 +217,7 @@ Thronefall 在信息透明度上做得非常出色，这大大降低了玩家的
 
 <!-- 来源: Case_Studies\Hybrid\Thronefall.md -->
 
-﻿---
+---
 sidebarTitle: "构建《王权陨落》类极简策略游戏知识图谱"
 title: "🏰 构建《王权陨落》类极简策略游戏知识图谱"
 ---

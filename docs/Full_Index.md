@@ -1,10 +1,28 @@
 # 📚 全站索引
 
-> 本索引根据 `docs/` 目录结构自动生成。
+> 本索引用于快速导航 `docs/` 全部内容。
 
-## 📄 根目录
+## 🚀 快速入口
 
-- [🧭 阅读导航中心](NAVIGATION.md)
+- [开始阅读](START_HERE.md)
+- [阅读导航中心](NAVIGATION.md)
+- [站点首页](index.md)
+- [可视化门户](portal.html)
+
+## 🧭 按任务导航
+
+- 新成员上手：[`START_HERE`](START_HERE.md) -> [`NAVIGATION`](NAVIGATION.md) -> [`全员速查表`](Dev_Guides/Project_Cheat_Sheet)
+- 做数值框架：[`核心数值体系定义手册`](Design/Numerical_Manual) / [`游戏数值框架构建指南`](Design/Numerical/Numerical_Framework_Methodology) / [`博弈论在PVP数值平衡中的应用`](Design/Numerical/Game_Theory_In_Balance)
+- 做战斗与机制：[`战斗系统详解`](Design/Mechanics/Combat_System) / [`索敌系统综合指南`](Tech/Mechanics/Targeting_System_Complete) / [`投射物系统深度解析`](Tech/Mechanics/Projectile_System_DeepDive)
+- 做经济与商业化：[`经济系统与通胀控制模型`](Design/Systems/Economy_And_Inflation_Model) / [`通行证经济学`](Design/LiveOps/Battle_Pass_Economy) / [`免费游戏与付费游戏的数值设计策略`](Design/Product_Strategy/F2P_vs_Premium_Economics)
+- 做留存与成长：[`心理学在玩家成长曲线中的应用`](Design/Psychology/Progression_Psychology) / [`局外成长系统`](Design/Systems/Meta_Progression) / [`新手引导与首局体验`](Design/UX/FTUE_Best_Practices)
+- 做性能优化：[`性能预算与优化标准`](Tech/Performance_Budget) / [`Unity C# 进阶开发：高性能与底层原理`](Tech/Optimization/Unity_Advanced_CSharp_Performance) / [`移动优化综合指南`](Tech/Performance/Mobile_Optimization_Complete)
+- 做开发提效：[`游戏开发工具链指南`](Dev_Guides/Tools/Game_Dev_Toolchain_Guide) / [`战斗仿真系统`](Dev_Guides/Tools/Combat_Simulation_System) / [`自动化 WIKI 生成指南`](Dev_Guides/Tools/Automated_Wiki_Generation)
+- 做调试与运营：[`调试指令与 GM 工具`](Dev_Guides/Tools/Debug_Console_And_Cheats) / [`活动排期策略`](Design/LiveOps/Event_Cadence_Strategy) / [`社区危机公关指南`](Dev_Guides/Community/Community_Crisis_Management)
+- 做发行上线：[`Steam 发行综合指南`](Guides/Publishing/Steam_Complete_Guide) / [`TapTap 发行策略研究`](Dev_Guides/Publishing/TapTap_Strategy) / [`上线前的生死清单`](Dev_Guides/Publishing/Launch_Readiness_Checklist)
+- 查规范：[`Unity 资产命名规范`](Unity_Standards/Asset_Naming) / [`Unity 项目文件夹结构规范`](Unity_Standards/Folder_Structure) / [`标准资源管理工业流程`](Unity_Standards/Standard_Resource_Workflow)
+
+## 🗂️ 按目录完整索引
 
 ## 🎨 美术
 
@@ -42,7 +60,7 @@
 - [🔊 游戏音效设计与实现实战指南](Audio/Practical_Guide)
 - [🛠️ Unity 轻量级音频框架](Audio/Lightweight_Audio_Framework)
 
-## 📖 案例研究
+## 🧪 案例研究
 
 ### 👥 合作游戏
 
@@ -94,14 +112,14 @@
 - [🐒 Bloons TD6 伤害矩阵系统深度剖析](Case_Studies/Tower_Defense/Bloons_TD6)
 - [🧟 《They Are Billions》核心设计知识图谱](Case_Studies/Tower_Defense/They_Are_Billions)
 
-## 🎮 设计
+## 🎮 游戏设计
 
 - [🏛️ 优秀数值设计案例库](Design/Industry_CaseStudies)
 - [📘 核心数值体系定义手册](Design/Numerical_Manual)
 - [🧙‍♂️ 游戏设计哲学与系统架构](Design/Philosophy_And_Systems)
 - [🧠 游戏心理学框架：心流、爽点与留存机制](Design/Game_Psychology_DeepDive)
 
-### Analytics
+### 数据分析
 
 - [⛏️ 数据挖掘技术在数值优化中的实践](Design/Analytics/Numeric_Mining_Methods)
 - [服务器端处理（Python 示例）](Design/Analytics/Event_Tracking_Design)
@@ -185,7 +203,7 @@
 - [♿ 无障碍设计标准](Design/UX/Accessibility_Standards)
 - [👶 新手引导与首局体验](Design/UX/FTUE_Best_Practices)
 
-## 📖 开发指南
+## 🛠️ 开发实践
 
 - [💀 游戏开发血泪史：那些没人告诉你的坑](Dev_Guides/Production_Lessons)
 - [📜 全员速查表](Dev_Guides/Project_Cheat_Sheet)
@@ -247,7 +265,7 @@
 - [🤖 AI 平衡测试工具：利用 LLM 进行自动化数值验收](Dev_Guides/Tools/AI_Balance_Testing)
 - [🧮 数值计算器套装：可视化你的设计](Dev_Guides/Tools/Numerical_Calculator_Suite)
 
-## 📚 指南
+## 📘 通用指南
 
 ### 团队协作
 
@@ -257,7 +275,7 @@
 
 - [Steam 发行综合指南](Guides/Publishing/Steam_Complete_Guide)
 
-## 🖥️ 技术
+## 🖥️ 技术实现
 
 - [Utility AI 决策系统](Tech/AI_Utility_System)
 - [⚔️ Vampirefall 游戏技能系统 (GAS) 设计方案](Tech/Gameplay_Ability_System_Design)
@@ -327,7 +345,13 @@
 
 - [Odin 工具综合指南](Tools/Odin_Inspector_Complete)
 
-## 📋 规范
+## 🔬 研究与草稿
+
+- [研究待办总览](Research/Research_TODO)
+- [研究待办](Research/TODO)
+- [Roguelike 强化系统深度分析报告](Research/Roguelike强化系统深度分析报告)
+
+## ✅ 规范与标准
 
 - [Unity 资产命名规范与强制检查工具](Unity_Standards/Asset_Naming)
 - [🏭 标准资源管理工业流程](Unity_Standards/Standard_Resource_Workflow)
