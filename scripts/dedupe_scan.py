@@ -140,7 +140,7 @@ def build_index(docs_dir: Path, cache_obj: Dict, use_incremental: bool) -> Dict[
             parsed_count += 1
         index[key] = data
 
-    if use_incremental and changed:
+    if use_incremental:
         changed_keys = {p.as_posix() for p in changed}
     else:
         changed_keys = set(index.keys())
