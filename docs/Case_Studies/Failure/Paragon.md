@@ -2,7 +2,7 @@
 sidebarTitle: "Paragon 失败剖析：复杂度陷阱与 3D MOBA 的伪命题"
 title: "Paragon 失败剖析：复杂度陷阱与 3D MOBA 的伪命题"
 ---
-> **摘要**：本文围绕「Paragon 失败剖析：复杂度陷阱与 3D MOBA 的伪命题」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Paragon 失败剖析：复杂度陷阱与 3D MOBA 的伪命题」，梳理核心概念、关键方法与落地实践。
 
 ---
 

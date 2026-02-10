@@ -2,7 +2,7 @@
 sidebarTitle: "决策系统综合指南"
 title: "决策系统综合指南"
 ---
-> **摘要**：本文围绕「决策系统综合指南」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「决策系统综合指南」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -1139,5 +1139,4 @@ public void PerformDecision(DecisionContext sharedContext)
 ```
 
 ---
-
 

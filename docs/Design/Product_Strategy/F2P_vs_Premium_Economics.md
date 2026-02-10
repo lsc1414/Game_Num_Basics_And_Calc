@@ -4,7 +4,7 @@ description: "揭示商业模式对数值设计的深层影响，建立双轨制
 icon: "material/currency-usd"
 title: "F2P vs Premium 数值"
 ---
-> **摘要**：本文围绕「F2P vs Premium 数值」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「F2P vs Premium 数值」，梳理核心概念、关键方法与落地实践。
 
 ---
 

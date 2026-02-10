@@ -2,7 +2,7 @@
 sidebarTitle: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
 title: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
 ---
-> **摘要**：本文围绕「ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -316,7 +316,6 @@ public partial struct BuffProcessingSystem : ISystem
 |          PC (Mid)          |          2000+          |          < 1500 (Batching后)          |          < 3ms          |
 |          Mobile (High)          |          500+          |          < 300          |          < 4ms          |
 |          Mobile (Low)          |          100+          |          < 100          |          < 5ms          |
-
 
 
 

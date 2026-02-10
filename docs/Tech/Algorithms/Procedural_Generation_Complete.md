@@ -2,7 +2,7 @@
 sidebarTitle: "关卡生成算法(PCG)"
 title: "关卡生成算法(PCG)"
 ---
-> **摘要**：本文围绕「关卡生成算法(PCG)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「关卡生成算法(PCG)」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -784,7 +784,6 @@ public class WFCGenerator : MonoBehaviour {
 ## 6. 扩展阅读
 *   [Maxim Gumin's Original WFC Repo](https://github.com/mxgmn/WaveFunctionCollapse)
 *   [Oskar Stålberg (Townscaper) Talks](https://www.youtube.com/watch?v=0bcZb-SsnrA)
-
 
 
 

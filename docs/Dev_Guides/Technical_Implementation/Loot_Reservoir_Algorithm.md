@@ -2,7 +2,7 @@
 sidebarTitle: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
 title: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
 ---
-> **摘要**：本文围绕「掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现」，梳理核心概念、关键方法与落地实践。
 
 ---
 

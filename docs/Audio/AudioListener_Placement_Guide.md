@@ -2,7 +2,7 @@
 sidebarTitle: "AudioListener 挂载策略：俯视视角的陷阱"
 title: "AudioListener 挂载策略：俯视视角的陷阱"
 ---
-> **摘要**：本文围绕「AudioListener 挂载策略：俯视视角的陷阱」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「AudioListener 挂载策略：俯视视角的陷阱」，梳理核心概念、关键方法与落地实践。
 
 ---
 

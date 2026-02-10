@@ -2,7 +2,7 @@
 sidebarTitle: "视觉特效设计与性能规范"
 title: "视觉特效设计与性能规范"
 ---
-> **摘要**：本文围绕「视觉特效设计与性能规范」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「视觉特效设计与性能规范」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -52,4 +52,3 @@ VFX 是游戏爽感的来源，也是性能杀手。本文档旨在平衡“酷�
 
 *   **工具:** Unity Shader Graph + Visual Effect Graph (VFX Graph) 或 Shuriken (旧版粒子)。
 *   **标准 Shader:** 禁止使用 Standard Shader 做特效。必须使用专门的 `Particles/Standard Unlit` 或自定义的 Additive/AlphaBlended Shader。
-

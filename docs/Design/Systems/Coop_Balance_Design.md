@@ -2,7 +2,7 @@
 sidebarTitle: "多人协作平衡 (Co-op Balance Design)"
 title: "多人协作平衡 (Co-op Balance Design)"
 ---
-> **摘要**：本文围绕「多人协作平衡 (Co-op Balance Design)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「多人协作平衡 (Co-op Balance Design)」，梳理核心概念、关键方法与落地实践。
 
 ---
 

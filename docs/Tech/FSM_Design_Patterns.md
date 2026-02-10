@@ -2,7 +2,7 @@
 sidebarTitle: "有限状态机 (FSM) 设计与实战指南"
 title: "有限状态机 (FSM) 设计与实战指南"
 ---
-> **摘要**：本文围绕「有限状态机 (FSM) 设计与实战指南」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「有限状态机 (FSM) 设计与实战指南」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -270,4 +270,3 @@ public class BossChaseState : BaseState {
 *   **原则：** **Logic FSM 驱动 Animator，绝反之。**
 *   **错误：** 在 Animator 的 `OnStateExit` 里写代码改逻辑变量。这会导致逻辑很难调试。
 *   **正确：** 代码里 `ChangeState(Attack)` -> 调用 `animator.SetTrigger("Attack")`。
-

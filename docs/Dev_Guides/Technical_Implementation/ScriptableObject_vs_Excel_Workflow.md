@@ -2,7 +2,7 @@
 sidebarTitle: "工业化游戏开发：ScriptableObject 的生存指南"
 title: "工业化游戏开发：ScriptableObject 的生存指南"
 ---
-> **摘要**：本文围绕「工业化游戏开发：ScriptableObject 的生存指南」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「工业化游戏开发：ScriptableObject 的生存指南」，梳理核心概念、关键方法与落地实践。
 
 ---
 

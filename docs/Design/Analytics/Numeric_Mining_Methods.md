@@ -4,7 +4,7 @@ description: "使用聚类、回归等机器学习算法发现潜在Meta与经�
 icon: "material/database"
 title: "数值挖掘 (Mining)"
 ---
-> **摘要**：本文围绕「数值挖掘 (Mining)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「数值挖掘 (Mining)」，梳理核心概念、关键方法与落地实践。
 
 ---
 

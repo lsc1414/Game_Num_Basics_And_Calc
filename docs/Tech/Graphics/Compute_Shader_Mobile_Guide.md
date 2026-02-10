@@ -2,7 +2,7 @@
 sidebarTitle: "Compute Shader 移动端深度指南"
 title: "Compute Shader 移动端深度指南"
 ---
-> **摘要**：本文围绕「Compute Shader 移动端深度指南」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Compute Shader 移动端深度指南」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -124,4 +124,3 @@ public class BulletSystem : MonoBehaviour
 *   📄 **Catlike Coding**: [Compute Shaders Tutorial](https://catlikecoding.com/unity/tutorials/basics/compute-shaders/) - *入门必读*
 *   📺 **GDC 2019**: [Mobile Compute Shaders in Fortnite](https://www.youtube.com/watch?v=2y2XF-a5_wU)
 *   🌐 **Mobile GPU Compatibility**: [Android Developer Guide](https://developer.android.com/games/optimize/compute-shaders)
-

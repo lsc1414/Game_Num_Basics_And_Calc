@@ -2,7 +2,7 @@
 sidebarTitle: "Palworld 生产模式分析：Triple-I 与自动化管线"
 title: "Palworld 生产模式分析：Triple-I 与自动化管线"
 ---
-> **摘要**：本文围绕「Palworld 生产模式分析：Triple-I 与自动化管线」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Palworld 生产模式分析：Triple-I 与自动化管线」，梳理核心概念、关键方法与落地实践。
 
 ---
 

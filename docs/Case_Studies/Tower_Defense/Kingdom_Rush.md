@@ -2,7 +2,7 @@
 sidebarTitle: "Kingdom Rush 数值模型分析：四维平衡的艺术"
 title: "Kingdom Rush 数值模型分析：四维平衡的艺术"
 ---
-> **摘要**：本文围绕「Kingdom Rush 数值模型分析：四维平衡的艺术」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Kingdom Rush 数值模型分析：四维平衡的艺术」，梳理核心概念、关键方法与落地实践。
 
 ---
 

@@ -2,7 +2,7 @@
 sidebarTitle: "构建《杀戮尖塔》类游戏知识图谱"
 title: "构建《杀戮尖塔》类游戏知识图谱"
 ---
-> **摘要**：这份文档旨在拆解 Rogue-like Deckbuilder (DBG) 游戏的核心设计知识体系，从数学模型到代码架构，为 Vampirefall 项目提供理论支撑。
+> **摘要**：本文档旨在拆解 Rogue-like Deckbuilder (DBG) 游戏的核心设计知识体系，从数学模型到代码架构，为 Vampirefall 项目提供理论支撑。
 
 ---
 

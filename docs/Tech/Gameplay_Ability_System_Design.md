@@ -2,7 +2,7 @@
 sidebarTitle: "Vampirefall 游戏技能系统 (GAS) 设计方案"
 title: "Vampirefall 游戏技能系统 (GAS) 设计方案"
 ---
-> **摘要**：本文围绕「Vampirefall 游戏技能系统 (GAS) 设计方案」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Vampirefall 游戏技能系统 (GAS) 设计方案」，梳理核心概念、关键方法与落地实践。
 
 ---
 

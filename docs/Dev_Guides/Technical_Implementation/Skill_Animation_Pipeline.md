@@ -2,7 +2,7 @@
 sidebarTitle: "技能动画管线：从 Animator Event 到可视化时间轴"
 title: "技能动画管线：从 Animator Event 到可视化时间轴"
 ---
-> **摘要**：本文围绕「技能动画管线：从 Animator Event 到可视化时间轴」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「技能动画管线：从 Animator Event 到可视化时间轴」，梳理核心概念、关键方法与落地实践。
 
 ---
 

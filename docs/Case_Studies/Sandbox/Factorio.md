@@ -2,7 +2,7 @@
 sidebarTitle: "Factorio (异星工厂) 深度研究：极致优化与自动化"
 title: "Factorio (异星工厂) 深度研究：极致优化与自动化"
 ---
-> **摘要**：本文围绕「Factorio (异星工厂) 深度研究：极致优化与自动化」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Factorio (异星工厂) 深度研究：极致优化与自动化」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -96,4 +96,3 @@ public class EnemyManager {
 *   📄 **Factorio Friday Facts #366 - The only simulation**: [Factorio Blog](https://www.factorio.com/blog/post/fff-366) - *关于确定性模拟的深度好文*
 *   📺 **GDC: Data-Oriented Design in C++**: [YouTube Link](https://www.youtube.com/watch?v=rX0ItVEVjHc)
 *   🌐 **Unity DOTS Documentation**: [Unity ECS](https://unity.com/dots)
-

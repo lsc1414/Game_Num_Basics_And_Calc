@@ -2,7 +2,7 @@
 sidebarTitle: "Unity Transform 数学变换与最佳实践 (The Math of Transform)"
 title: "Unity Transform 数学变换与最佳实践 (The Math of Transform)"
 ---
-> **摘要**：本文围绕「Unity Transform 数学变换与最佳实践 (The Math of Transform)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Unity Transform 数学变换与最佳实践 (The Math of Transform)」，梳理核心概念、关键方法与落地实践。
 
 ---
 

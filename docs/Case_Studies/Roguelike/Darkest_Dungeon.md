@@ -2,7 +2,7 @@
 sidebarTitle: "《Darkest Dungeon》核心设计知识图谱"
 title: "《Darkest Dungeon》核心设计知识图谱"
 ---
-> **摘要**：这份文档拆解《暗黑地牢》的**压力系统设计**、**永久损失机制**和**叙事驱动机制**。
+> **摘要**：本文档拆解《暗黑地牢》的**压力系统设计**、**永久损失机制**和**叙事驱动机制**。
 
 ---
 
@@ -61,4 +61,3 @@ public class Hero {
 
 ## 🔗 4. 参考资料 (References)
 *   📺 **GDC**: [Darkest Dungeon Stress System](https://www.youtube.com/watch?v=example)
-

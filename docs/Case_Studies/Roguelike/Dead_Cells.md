@@ -2,7 +2,7 @@
 sidebarTitle: "《Dead Cells》核心设计知识图谱"
 title: "《Dead Cells》核心设计知识图谱"
 ---
-> **摘要**：这份文档拆解《死亡细胞》的**颜色分级词缀系统**、**关卡分支设计**和**打击感优化**。
+> **摘要**：本文档拆解《死亡细胞》的**颜色分级词缀系统**、**关卡分支设计**和**打击感优化**。
 
 ---
 
@@ -117,4 +117,3 @@ public class HitFeedback : MonoBehaviour {
 ## 🔗 4. 参考资料 (References)
 *   📺 **GDC**: [Dead Cells: Game Feel](https://www.youtube.com/watch?v=example)
 *   📄 **Blog**: [Color-Coded Progression Systems](https://www.gamedeveloper.com)
-

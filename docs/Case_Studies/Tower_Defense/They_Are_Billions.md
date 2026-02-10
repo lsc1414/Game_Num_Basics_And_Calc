@@ -2,7 +2,7 @@
 sidebarTitle: "《They Are Billions》核心设计知识图谱"
 title: "《They Are Billions》核心设计知识图谱"
 ---
-> **摘要**：这份文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
+> **摘要**：本文档拆解《亿万僵尸》的**经济螺旋设计**、**大规模单位优化**和**失败惩罚机制**。
 
 ---
 
@@ -56,4 +56,3 @@ public class EconomyManager {
 
 ## 🔗 4. 参考资料 (References)
 *   📺 **GDC**: [They Are Billions Performance](https://www.youtube.com/watch?v=example)
-

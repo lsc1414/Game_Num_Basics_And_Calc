@@ -2,7 +2,7 @@
 sidebarTitle: "《Binding of Isaac》核心设计知识图谱"
 title: "《Binding of Isaac》核心设计知识图谱"
 ---
-> **摘要**：这份文档拆解《以撒的结合》的**道具协同数学**、**房间生成**和**诅咒机制**。
+> **摘要**：本文档拆解《以撒的结合》的**道具协同数学**、**房间生成**和**诅咒机制**。
 
 ---
 
@@ -51,4 +51,3 @@ public class ItemManager {
 
 ## 🔗 4. 参考资料 (References)
 *   📺 **GDC**: [Binding of Isaac Design](https://www.youtube.com/watch?v=example)
-

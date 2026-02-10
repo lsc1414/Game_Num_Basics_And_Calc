@@ -2,7 +2,7 @@
 sidebarTitle: "游戏常用算法深度研究 (Common Game Algorithms)"
 title: "游戏常用算法深度研究 (Common Game Algorithms)"
 ---
-> **摘要**：本文围绕「游戏常用算法深度研究 (Common Game Algorithms)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「游戏常用算法深度研究 (Common Game Algorithms)」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -101,4 +101,3 @@ public struct FlowNode
 *   📺 **GDC: AI Pathfinding in Unity**: [YouTube Link](https://www.youtube.com/watch?v=j1k438m0DRc)
 *   🌐 **Red Blob Games (算法宝藏)**: [Introduction to A*](https://www.redblobgames.com/pathfinding/a-star/introduction.html) - *强烈推荐，包含交互式演示*
 *   📄 **Unity DOTS Physics**: [Unity Documentation](https://docs.unity3d.com/Packages/com.unity.physics@1.0/manual/index.html)
-

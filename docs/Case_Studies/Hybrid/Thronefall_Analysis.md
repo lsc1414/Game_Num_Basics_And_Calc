@@ -2,7 +2,7 @@
 sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
 title: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
 ---
-> **摘要**：本文围绕「Thronefall 机制分析：极简主义与日夜循环的完美融合」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Thronefall 机制分析：极简主义与日夜循环的完美融合」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -303,7 +303,6 @@ public float CalculateTargetScore(Enemy enemy, Hero hero) {
 *   📄 **Paper**: [Reynolds Flocking (Boids) Algorithm](https://www.red3d.com/cwr/boids/)
 *   🌐 **Blog**: [Flow Fields Pathfinding Explained](https://leifnode.com/2013/12/flow-field-pathfinding/)
 *   **书籍**: 《The Design of Everyday Things》 (关于示能性 Affordance 的理解)
-
 
 
 

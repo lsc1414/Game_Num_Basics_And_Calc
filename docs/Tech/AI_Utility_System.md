@@ -2,7 +2,7 @@
 sidebarTitle: "Utility AI 决策系统"
 title: "Utility AI 决策系统"
 ---
-> **摘要**：本文围绕「Utility AI 决策系统」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Utility AI 决策系统」，梳理核心概念、关键方法与落地实践。
 
 ---
 

@@ -2,7 +2,7 @@
 sidebarTitle: "Vampire Survivors 性能奇迹：如何渲染与逻辑解耦"
 title: "Vampire Survivors 性能奇迹：如何渲染与逻辑解耦"
 ---
-> **摘要**：本文围绕「Vampire Survivors 性能奇迹：如何渲染与逻辑解耦」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Vampire Survivors 性能奇迹：如何渲染与逻辑解耦」，梳理核心概念、关键方法与落地实践。
 
 ---
 

@@ -2,7 +2,7 @@
 sidebarTitle: "Unity SpriteAtlas 优化与实践"
 title: "Unity SpriteAtlas 优化与实践"
 ---
-> **摘要**：本文围绕「Unity SpriteAtlas 优化与实践」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Unity SpriteAtlas 优化与实践」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -431,4 +431,3 @@ public static class SpriteAtlasVariantSelector
 - 🛠️ **Memory Profiler**: 检测图集内存占用
 
 ---
-

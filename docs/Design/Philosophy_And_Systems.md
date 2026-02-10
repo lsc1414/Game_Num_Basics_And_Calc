@@ -2,7 +2,7 @@
 sidebarTitle: "游戏设计哲学与系统架构"
 title: "游戏设计哲学与系统架构"
 ---
-> **摘要**：本文围绕「游戏设计哲学与系统架构」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「游戏设计哲学与系统架构」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -147,4 +147,3 @@ public class WavePacingConfig
 *   📺 **GDC: The Art of the Screen Shake** (Vlambeer)
 *   📺 **GDC: Left 4 Dead's AI Director**
 *   🌐 **Flow Theory** (Mihaly Csikszentmihalyi)
-

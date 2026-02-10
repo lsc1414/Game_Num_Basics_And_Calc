@@ -2,7 +2,7 @@
 sidebarTitle: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
 title: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
 ---
-> **摘要**：本文围绕「Shader 核心数学模式与实战指南 (The Math of Shaders)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「Shader 核心数学模式与实战指南 (The Math of Shaders)」，梳理核心概念、关键方法与落地实践。
 
 ---
 

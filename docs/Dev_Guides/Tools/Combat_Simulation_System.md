@@ -2,7 +2,7 @@
 sidebarTitle: "战斗仿真系统 (Combat Simulation System)：Python 极速模拟"
 title: "战斗仿真系统 (Combat Simulation System)：Python 极速模拟"
 ---
-> **摘要**：本文围绕「战斗仿真系统 (Combat Simulation System)：Python 极速模拟」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「战斗仿真系统 (Combat Simulation System)：Python 极速模拟」，梳理核心概念、关键方法与落地实践。
 
 ---
 

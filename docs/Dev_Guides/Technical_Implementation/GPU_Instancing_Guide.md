@@ -2,7 +2,7 @@
 sidebarTitle: "GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall"
 title: "GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall"
 ---
-> **摘要**：本文围绕「GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall」，梳理核心概念、关键方法与落地实践。
 
 ---
 

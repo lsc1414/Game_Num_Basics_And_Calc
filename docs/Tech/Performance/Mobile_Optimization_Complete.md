@@ -2,7 +2,7 @@
 sidebarTitle: "移动端深度优化指南"
 title: "移动端深度优化指南"
 ---
-> **摘要**：本文围绕「移动端深度优化指南」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「移动端深度优化指南」，梳理核心概念、关键方法与落地实践。
 
 ---
 
@@ -252,7 +252,6 @@ public static class DeviceGrader
 
 - 📄 **[HDR 技术](../../Art/Tech_Art/HDR_DeepDive.md):** 哪些档位该开 HDR。
 - 📄 **[Unity Manual - Quality Settings]:** Unity 自带的画质分级系统。
-
 
 
 

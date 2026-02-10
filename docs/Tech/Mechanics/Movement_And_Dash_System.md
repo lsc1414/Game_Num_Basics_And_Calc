@@ -2,7 +2,7 @@
 sidebarTitle: "移动与冲刺系统 (Movement & Dash System)"
 title: "移动与冲刺系统 (Movement & Dash System)"
 ---
-> **摘要**：本文围绕「移动与冲刺系统 (Movement & Dash System)」提供核心内容与可落地方法。
+> **摘要**：本文聚焦「移动与冲刺系统 (Movement & Dash System)」，梳理核心概念、关键方法与落地实践。
 
 ---
 
