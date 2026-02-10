@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Shader 核心数学模式与实战指南 (The Math of Shaders)"
-title: "🎨 Shader 核心数学模式与实战指南 (The Math of Shaders)"
 ---
-
-
 
 # 🎨 Shader 核心数学模式与实战指南 (The Math of Shaders)
 

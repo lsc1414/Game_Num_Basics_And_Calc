@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "PRD算法完整实现指南"
-title: "🎲 PRD算法完整实现指南"
 ---
-
-
 
 # 🎲 PRD算法完整实现指南
 

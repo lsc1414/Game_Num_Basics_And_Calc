@@ -4,16 +4,24 @@
 
 ```yaml
 ---
-title: "文档标题"
-description: "简短说明用途与范围"
 sidebarTitle: "侧边栏标题" # 可选
+description: "简短说明用途与范围" # 可选
 icon: "rocket" # 可选
 ---
 ```
 
 规则:
 - 保持 YAML 合法，避免 tab 缩进。
-- `title` 与 `description` 必填。
+- frontmatter 必须在文件最顶部，且仅保留一个有效块。
+- 本仓库默认不使用 `title` 字段，页面主标题由正文 `# H1` 提供。
+- `sidebarTitle` 用于侧边栏显示名；`description`/`icon` 按需使用。
+- 禁止在文中嵌入二次 frontmatter（常见于“多文档合并”产物）。
+
+### 标题一致性规则（避免双标题）
+
+- 页面唯一主标题来源：正文 `# H1`。
+- 不要同时依赖 frontmatter `title` 与正文 `H1`。
+- 若页面出现“两个标题”，优先移除 frontmatter `title`。
 
 ## 2. `.md` vs `.mdx`
 
@@ -73,4 +81,22 @@ python scripts/mintlify_helper.py lint <文件路径> --fix
 Get-ChildItem docs -Recurse -Filter *.md | ForEach-Object {
   python scripts/mintlify_helper.py lint $_.FullName --fix
 }
+```
+
+建议增加的人工检查:
+
+- 检查顶部 frontmatter 是否只出现一次。
+- 检查是否残留 `title:` 行。
+- 检查正文是否存在且仅有一个主 `# H1`。
+
+推荐自动巡检命令:
+
+```bash
+python .agent/skills/mintlify-markdown-kb/scripts/check_frontmatter_titles.py --docs-dir docs
+```
+
+推荐自动修复命令:
+
+```bash
+python .agent/skills/mintlify-markdown-kb/scripts/auto_fix_frontmatter.py --docs-dir docs
 ```

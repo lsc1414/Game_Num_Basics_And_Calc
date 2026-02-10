@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "移动与冲刺系统 (Movement & Dash System)"
-title: "🏃 移动与冲刺系统 (Movement & Dash System)"
 ---
-
-
 
 # 🏃 移动与冲刺系统 (Movement & Dash System)
 

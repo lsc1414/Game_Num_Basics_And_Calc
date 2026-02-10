@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Unity PRD 算法插件：伪随机分布的 C# 实现"
-title: "🛠️ Unity PRD 算法插件：伪随机分布的 C# 实现"
 ---
-
-
 
 # 🛠️ Unity PRD 算法插件：伪随机分布的 C# 实现
 

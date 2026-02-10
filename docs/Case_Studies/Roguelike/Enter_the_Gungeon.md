@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Enter the Gungeon》核心设计知识图谱"
-title: "🔫 《Enter the Gungeon》核心设计知识图谱"
 ---
-
-
 
 # 🔫 《Enter the Gungeon》核心设计知识图谱
 

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "AI 平衡测试工具：利用 LLM 进行自动化数值验收"
-title: "🤖 AI 平衡测试工具：利用 LLM 进行自动化数值验收"
 ---
-
-
 
 # 🤖 AI 平衡测试工具：利用 LLM 进行自动化数值验收
 
@@ -76,7 +73,7 @@ def analyze_combat_log(log_json, persona="Timmy"):
     )
     return response.choices[0].message.content
 
-# 批量运行
+## 批量运行
 for i in range(10):
     log = run_headless_game_simulation() # 运行一局游戏仿真
     feedback = analyze_combat_log(log)

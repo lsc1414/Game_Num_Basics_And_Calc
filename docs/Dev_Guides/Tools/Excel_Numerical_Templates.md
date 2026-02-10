@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Excel三表法数值模板指南"
-title: "📊 Excel三表法数值模板指南"
 ---
-
-
 
 # 📊 Excel三表法数值模板指南
 
@@ -174,7 +171,7 @@ function sendNotificationEmail(editor, cell, oldValue, newValue) {
 
 ### 🤖 AI辅助数值检查
 ```python
-# AI数值合理性检查脚本
+## AI数值合理性检查脚本
 import openai
 import pandas as pd
 import json
@@ -210,7 +207,7 @@ def check_numerical_balance(excel_file):
 
     return response.choices[0].message.content
 
-# 使用示例
+## 使用示例
 analysis_result = check_numerical_balance('game_balance.xlsx')
 print(analysis_result)
 ```
@@ -310,28 +307,28 @@ ENEMY_FAST_HP        快速敌人血量        80        10        低血量但�
 
 ### 🔧 公式优化技巧
 ```excel
-# 避免循环引用的累计计算
+## 避免循环引用的累计计算
 =SUM(OFFSET(B2, 0, 0, ROW()-ROW(B2)+1, 1))
 
-# 动态范围命名，便于维护
+## 动态范围命名，便于维护
 =SUM(INDIRECT("Parameters!B" & start_row & ":B" & end_row))
 
-# 条件格式化，自动高亮异常数值
+## 条件格式化，自动高亮异常数值
 =AND(B2>0, OR(B2<MIN_RANGE, B2>MAX_RANGE))
 
-# 数据验证，防止输入错误
+## 数据验证，防止输入错误
 =AND(ISNUMBER(B2), B2>0, B2<10000)
 ```
 
 ### 📈 数据可视化技巧
 ```excel
-# 创建数值趋势图
+## 创建数值趋势图
 1. 选择计算表的数据范围
 2. 插入 → 折线图 → 带数据标记的折线图
 3. 添加趋势线：右键 → 添加趋势线
 4. 设置格式：显示公式和R²值
 
-# 制作热力图显示平衡性
+## 制作热力图显示平衡性
 1. 选择验证表的检查结果
 2. 条件格式 → 色阶 → 红-黄-绿色阶
 3. 自动标识问题区域
@@ -339,14 +336,14 @@ ENEMY_FAST_HP        快速敌人血量        80        10        低血量但�
 
 ### 🔄 版本控制与协作
 ```excel
-# 修改追踪系统
+## 修改追踪系统
 A列: 修改时间 =NOW()
 B列: 修改人   =USER()
 C列: 修改内容 [手动输入]
 D列: 影响范围 [手动输入]
 E列: 回滚标记 =IF(F1="回滚", "已回滚", "正常")
 
-# 批注系统
+## 批注系统
 右键单元格 → 插入批注
 包含：修改原因、预期效果、风险评估
 ```
@@ -364,12 +361,12 @@ E列: 回滚标记 =IF(F1="回滚", "已回滚", "正常")
 
 **解决方案**:
 ```excel
-# 参数调整
+## 参数调整
 镜技能1倍率: 3.5 → 2.2 (降低37%)
 镜技能1CD:   6秒 → 8秒 (增加33%)
 镜基础攻击:  175 → 165 (降低6%)
 
-# 预期效果计算
+## 预期效果计算
 调整后DPS: 原DPS * 0.63 = 新DPS
 预期胜率: 65% → 52% (合理范围)
 ```
@@ -387,11 +384,11 @@ E列: 回滚标记 =IF(F1="回滚", "已回滚", "正常")
 
 **解决方案**:
 ```excel
-# 调整血量成长曲线
+## 调整血量成长曲线
 原公式: HP = BASE_HP * (1.4 ^ WAVE)
 新公式: HP = BASE_HP * (1.15 + 0.02 * WAVE) * WAVE
 
-# 效果对比
+## 效果对比
 第20波原血量: 100 * 1.4^20 = 8,379
 第20波新血量: 100 * (1.15 + 0.4) * 20 = 3,100
 难度降幅: 63%

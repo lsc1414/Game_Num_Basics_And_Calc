@@ -1,3 +1,7 @@
+---
+sidebarTitle: "决策系统综合指南"
+---
+
 # 决策系统综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
@@ -8,13 +12,6 @@
 
 
 <!-- 来源: Tech\Architecture\Unified_Decision_System.md -->
-
----
-sidebarTitle: "通用加权决策系统"
-title: "🧠 通用加权决策系统"
----
-
-
 
 ## 🧠 通用加权决策系统
 
@@ -408,13 +405,6 @@ sequenceDiagram
 
 
 <!-- 来源: Tech\Code_Snippets\DecisionSystem_Core_Classes.md -->
-
----
-sidebarTitle: "核心代码定义"
-title: "💻 核心代码定义"
----
-
-
 
 ## 💻 核心代码定义
 

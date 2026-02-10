@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
+---
+
 # ECS 综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Tech\Architecture\ECS_Theory_And_Practice.md -->
-
----
-sidebarTitle: "ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
-title: "🧩 ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁"
----
-
-
-
 ## 🧩 ECS 理论与实践：从面向对象 (OOP) 到数据导向 (DOD) 的思维跃迁
 
 ## 1. 什么是 ECS？ (What is ECS?)
@@ -163,14 +152,6 @@ ECS 不仅仅是性能优化工具，更是一种**架构解耦**的利器。它
 
 
 <!-- 来源: Dev_Guides\Technical_Implementation\ECS_Performance_Optimization.md -->
-
----
-sidebarTitle: "ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS"
-title: "🚀 ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS"
----
-
-
-
 ## 🚀 ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS
 
 **文档目标**：解析如何在 Unity 中实现同屏 500+ 敌人的高性能逻辑，参考 *Vampire Survivors* 的优化思路，并映射到 Unity DOTS (Data-Oriented Technology Stack) 的最佳实践。同时结合本项目特有的 **GAS (Gameplay Ability System)** 进行混合架构设计。
@@ -336,5 +317,8 @@ public partial struct BuffProcessingSystem : ISystem
 |          PC (Mid)          |          2000+          |          < 1500 (Batching后)          |          < 3ms          |
 |          Mobile (High)          |          500+          |          < 300          |          < 4ms          |
 |          Mobile (Low)          |          100+          |          < 100          |          < 5ms          |
+
+
+
 
 

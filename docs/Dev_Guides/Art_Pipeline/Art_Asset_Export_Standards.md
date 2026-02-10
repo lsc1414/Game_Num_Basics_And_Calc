@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "美术资源出图规范与速查表"
-title: "🎨 美术资源出图规范与速查表"
 ---
-
-
 
 # 🎨 美术资源出图规范与速查表
 
@@ -190,5 +187,5 @@ def process_icon(path):
     
     new_img.save(path)
 
-# 遍历文件夹调用 process_icon...
+## 遍历文件夹调用 process_icon...
 ```

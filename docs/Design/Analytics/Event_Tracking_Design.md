@@ -1,11 +1,8 @@
 ﻿---
 sidebarTitle: "埋点设计"
-title: "游戏埋点设计与数据分析"
 description: "深入探讨游戏埋点设计原则、数据架构、发送时机与频率控制，以及如何构建可分析的事件体系"
 icon: "material/chart-line"
 ---
-
-
 
 ## 🎯 埋点设计核心原则
 
@@ -890,7 +887,7 @@ public class TimeSync {
 ```
 
 ```python
-# 服务器端兼容处理
+## 服务器端兼容处理
 def parse_battle_event(event):
     version = event.get('event_version', '1.0')
 

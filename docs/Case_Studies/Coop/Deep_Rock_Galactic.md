@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Deep Rock Galactic》核心设计知识图谱"
-title: "⛏️ 《Deep Rock Galactic》核心设计知识图谱"
 ---
-
-
 
 # ⛏️ 《Deep Rock Galactic》核心设计知识图谱
 

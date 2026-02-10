@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Unity Transform 数学变换与最佳实践 (The Math of Transform)"
-title: "📐 Unity Transform 数学变换与最佳实践 (The Math of Transform)"
 ---
-
-
 
 # 📐 Unity Transform 数学变换与最佳实践 (The Math of Transform)
 

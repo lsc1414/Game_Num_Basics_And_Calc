@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
-title: "💰 掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现"
 ---
-
-
 
 # 💰 掉落蓄水池算法 (Loot Reservoir Algorithm)：恒定 DPM 的 0GC 实现
 

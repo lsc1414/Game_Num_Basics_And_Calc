@@ -1,11 +1,8 @@
 ﻿---
 sidebarTitle: "博弈论与PVP平衡"
-title: "博弈论在PVP数值平衡中的应用"
 description: "超越简单的石头剪刀布，利用纳什均衡漂移与非对称博弈模型构建动态的竞技生态"
 icon: "material/chess-knight"
 ---
-
-
 
 # ♟️ 博弈论在PVP数值平衡中的应用
 

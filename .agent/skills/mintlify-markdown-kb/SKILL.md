@@ -14,18 +14,20 @@ description: 为本仓库知识库创建、改写、批量修复 Markdown 文档
 - 仅在需要 Mintlify React 组件（如 `<Card>`、`<Steps>`）时使用 `.mdx`。
 
 2. 生成或修正文档 frontmatter
-- 统一包含：
-  - `title`
-  - `description`
-- 按需添加：
-  - `sidebarTitle`
-  - `icon`
+- 本仓库 frontmatter 统一约定：
+  - 必须放在文件最顶部（第一段 `--- ... ---`）。
+  - 默认仅保留 `sidebarTitle`（需要侧边栏显示名时）。
+  - 不写 `title`，避免页面出现“元标题 + 正文 H1”双标题。
+  - `description`/`icon` 按需添加（仅在确有 SEO/展示需求时）。
 - 详细约束见 `references/mintlify-rules.md`。
 
 3. 按 Mintlify 语法写作或迁移
 - 将 MkDocs `!!!` 提示块改为 GitHub Alert 风格 `> [!NOTE]`。
 - 保持数学公式与表格的可渲染格式。
 - 修复常见 MDX 兼容问题（如 `<br />`、比较符 `<`）。
+- 对“合并生成文档”执行清理：
+  - 仅保留顶部唯一 frontmatter。
+  - 移除文中嵌入的历史 frontmatter 片段（`sidebarTitle/title` + `---` 块）。
 - 详细规则见 `references/mintlify-rules.md`。
 
 4. 运行仓库脚本自动修复
@@ -39,6 +41,14 @@ Get-ChildItem docs -Recurse -Filter *.md | ForEach-Object {
   python scripts/mintlify_helper.py lint $_.FullName --fix
 }
 ```
+- 规则巡检（frontmatter/H1/残留 title）：
+```bash
+python .agent/skills/mintlify-markdown-kb/scripts/check_frontmatter_titles.py --docs-dir docs
+```
+- frontmatter 机械修复（顶部归一 + 去重 + 移除 title）：
+```bash
+python .agent/skills/mintlify-markdown-kb/scripts/auto_fix_frontmatter.py --docs-dir docs
+```
 
 5. 注册导航到 `docs.json`
 - 先查看可用分类：
@@ -51,7 +61,9 @@ python scripts/mintlify_helper.py add <文件路径> --tab "<Tab名称>" --group
 ```
 
 6. 验收并汇报
-- 检查文档是否包含 frontmatter。
+- 检查 frontmatter 是否在最顶部且仅有一个。
+- 检查是否误写 `title`（本仓库默认不使用）。
+- 运行规则巡检脚本并附上统计结果（`SCANNED/BAD`）。
 - 检查是否仍残留 `!!!` 语法或不合法链接格式。
 - 汇报变更文件、执行命令、残留问题和建议下一步。
 

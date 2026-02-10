@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "Git 极客生存指南：从命令行到私有云搭建"
+---
+
 # Git 指南综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Dev_Guides\Collaboration\Git_Advanced_Guide_For_Programmers.md -->
-
----
-sidebarTitle: "Git 极客生存指南：从命令行到私有云搭建"
-title: "🐙 Git 极客生存指南：从命令行到私有云搭建"
----
-
-
-
 ## 🐙 Git 极客生存指南：从命令行到私有云搭建
 
 > **面向对象**: 程序员 (Programmers)。
@@ -58,7 +47,7 @@ git commit --amend          # 修改最近一次 commit 的注释
 ```bash
 git stash                   # 把当前未提交的修改“藏”起来
 git checkout hotfix/001     # 切分支去修 Bug...
-# ... 修完回来 ...
+## ... 修完回来 ...
 git checkout develop
 git stash pop               # 把“藏”起来的代码还原回来
 ```
@@ -156,7 +145,7 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
 ## 4. Unity 项目的 .gitignore (必抄)
 
 ```gitignore
-# Unity folders
+## Unity folders
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -165,14 +154,14 @@ git cherry-pick a1b2c3d     # 把这个 commit 复制到当前分支
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# Visual Studio / JetBrains
+## Visual Studio / JetBrains
 .vs/
 .idea/
 *.sln
 *.csproj
 *.unityproj
 
-# OS
+## OS
 .DS_Store
 Thumbs.db
 ```
@@ -204,14 +193,6 @@ Thumbs.db
 
 
 <!-- 来源: Dev_Guides\Collaboration\Git_Commit_Standards.md -->
-
----
-sidebarTitle: "Git 版本管理与 Commit Log 规范"
-title: "🐙 Git 版本管理与 Commit Log 规范"
----
-
-
-
 ## 🐙 Git 版本管理与 Commit Log 规范
 
 > **核心理念**: **Commit Log 是写给人看的，不是写给机器看的。**
@@ -392,14 +373,6 @@ perf(Pathfinding): 优化大量单位寻路时的 CPU 占用
 
 
 <!-- 来源: Dev_Guides\Collaboration\GitHub_PR_Workflow.md -->
-
----
-sidebarTitle: "GitHub 工作流与 PR 最佳实践"
-title: "🐙 GitHub 工作流与 PR 最佳实践"
----
-
-
-
 ## 🐙 GitHub 工作流与 PR 最佳实践
 
 > **核心理念**: **主分支 (main/develop) 是神圣不可侵犯的**。任何代码想要进入主分支，必须经过至少一双眼睛的检查 (Code Review)。这个过程就叫 **Pull Request (PR)**。
@@ -509,14 +482,6 @@ Closes #102
 
 
 <!-- 来源: Dev_Guides\Collaboration\SVN_vs_Git_Migration_Guide.md -->
-
----
-sidebarTitle: "SVN vs 🐙 Git：深度对比与极简上手指南"
-title: "🐢 SVN vs 🐙 Git：深度对比与极简上手指南"
----
-
-
-
 ## 🐢 SVN vs 🐙 Git：深度对比与极简上手指南
 
 > **写在前面**: 很多团队（尤其是美术同学）习惯了 SVN 的“直观”，对 Git 感到恐惧。其实 Git 并没有那么难，只是逻辑变了。
@@ -608,5 +573,8 @@ title: "🐢 SVN vs 🐙 Git：深度对比与极简上手指南"
 以前是 `写完 -> 上传`。
 现在是 `写完 -> 存本地 (Commit) -> 上传 (Push)`。
 多了一步，但更安全。
+
+
+
 
 

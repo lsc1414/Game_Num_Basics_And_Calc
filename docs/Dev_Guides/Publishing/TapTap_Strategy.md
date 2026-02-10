@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "TapTap 发行策略研究"
-title: "📱 TapTap 发行策略研究"
 ---
-
-
 
 # 📱 TapTap 发行策略研究
 

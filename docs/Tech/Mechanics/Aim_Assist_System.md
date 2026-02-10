@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "瞄准辅助系统 (Aim Assist System)"
-title: "🎯 瞄准辅助系统 (Aim Assist System)"
 ---
-
-
 
 # 🎯 瞄准辅助系统 (Aim Assist System)
 

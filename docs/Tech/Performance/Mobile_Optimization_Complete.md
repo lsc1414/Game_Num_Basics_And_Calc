@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "移动端深度优化指南"
+---
+
 # 移动优化综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Tech\Mobile_Optimization_Guide.md -->
-
----
-sidebarTitle: "移动端深度优化指南"
-title: "📱 移动端深度优化指南"
----
-
-
-
 ## 📱 移动端深度优化指南
 
 **文档目标：** 让 Vampirefall 在 iPhone 8 / 小米 6 级别的设备上稳定运行，且**不烫手**。
@@ -133,14 +122,6 @@ Android 低端机只有 2GB 内存，除去系统，分给游戏的只有 500MB 
 
 
 <!-- 来源: Tech\Mobile_Optimization\Device_Grading_And_Scalability.md -->
-
----
-sidebarTitle: "设备分级与画质自适应"
-title: "📱 设备分级与画质自适应"
----
-
-
-
 ## 📱 设备分级与画质自适应
 
 > **"让 iPhone 15 Pro 跑满 120 帧，让红米 Note 7 也能活着玩下去。"**
@@ -272,5 +253,8 @@ public static class DeviceGrader
 
 - 📄 **[HDR 技术](../../Art/Tech_Art/HDR_DeepDive.md):** 哪些档位该开 HDR。
 - 📄 **[Unity Manual - Quality Settings]:** Unity 自带的画质分级系统。
+
+
+
 
 

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "游戏设计模式：理论与 Unity 实战"
-title: "🏗️ 游戏设计模式：理论与 Unity 实战"
 ---
-
-
 
 # 🏗️ 游戏设计模式：理论与 Unity 实战
 

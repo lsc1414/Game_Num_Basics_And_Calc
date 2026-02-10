@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "NavMesh 寻路与状态控制指南 (NavMesh Pathfinding & CC Interaction)"
-title: "🧭 NavMesh 寻路与状态控制指南 (NavMesh Pathfinding & CC Interaction)"
 ---
-
-
 
 # 🧭 NavMesh 寻路与状态控制指南 (NavMesh Pathfinding & CC Interaction)
 

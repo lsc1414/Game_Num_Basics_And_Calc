@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Vampirefall 深度研究 TODO 清单"
-title: "🎯 Vampirefall 深度研究 TODO 清单"
 ---
-
-
 
 # 🎯 Vampirefall 深度研究 TODO 清单
 

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Kingdom Rush 数值模型分析：四维平衡的艺术"
-title: "🏰 Kingdom Rush 数值模型分析：四维平衡的艺术"
 ---
-
-
 
 # 🏰 Kingdom Rush 数值模型分析：四维平衡的艺术
 

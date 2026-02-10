@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Battleborn 失败剖析：当复杂性吞噬了核心体验"
-title: "📉 Battleborn 失败剖析：当复杂性吞噬了核心体验"
 ---
-
-
 
 # 📉 Battleborn 失败剖析：当复杂性吞噬了核心体验
 

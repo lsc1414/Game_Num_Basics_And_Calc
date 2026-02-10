@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "Steam 发行策略研究"
+---
+
 # Steam 发行综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Dev_Guides\Publishing\Steam_Strategy.md -->
-
----
-sidebarTitle: "Steam 发行策略研究"
-title: "🚂 Steam 发行策略研究"
----
-
-
-
 ## 🚂 Steam 发行策略研究
 
 本文档旨在为《Vampirefall》制定一套科学、数据驱动的 Steam 发行策略。Steam 不是一个“上传游戏然后躺平”的平台，它是一个**算法驱动的流量放大器**。
@@ -131,14 +120,6 @@ Steam 的推荐算法完全依赖标签。
 
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Indie_Game_Guide.md -->
-
----
-sidebarTitle: "Steam Unity 独立游戏开发实战指南：从入门到上线"
-title: "🚀 Steam Unity 独立游戏开发实战指南：从入门到上线"
----
-
-
-
 ## 🚀 Steam Unity 独立游戏开发实战指南：从入门到上线
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -260,14 +241,6 @@ public class GameManager : MonoBehaviour
 
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Quality_Standards.md -->
-
----
-sidebarTitle: "Steam Unity 游戏开发标准：下限与上限"
-title: "🧙‍♂️ Steam Unity 游戏开发标准：下限与上限"
----
-
-
-
 ## 🧙‍♂️ Steam Unity 游戏开发标准：下限与上限
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -391,14 +364,6 @@ title: "🧙‍♂️ Steam Unity 游戏开发标准：下限与上限"
 
 
 <!-- 来源: Dev_Guides\Publishing\Steam_Unity_Steamworks_Checklist.md -->
-
----
-sidebarTitle: "Unity Steamworks 核心功能开发清单"
-title: "🧙‍♂️ Unity Steamworks 核心功能开发清单"
----
-
-
-
 ## 🧙‍♂️ Unity Steamworks 核心功能开发清单
 
 ## 📚 1. 理论基础 (Theoretical Basis)
@@ -557,5 +522,8 @@ SteamUserStats.UploadLeaderboardScore(leaderboardHandle, k_ELeaderboardUploadSco
 - 🛠️ **插件库**: [Steamworks.NET GitHub](https://github.com/rlabrecque/Steamworks.NET)
 - 📺 **教程**: [Unity Steamworks Integration (YouTube)](https://www.youtube.com/results?search_query=unity+steamworks+tutorial)
 - 🌐 **指南**: [Valve's Guide to Achievements](https://partner.steamgames.com/doc/features/achievements)
+
+
+
 
 

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "怪物图鉴与AI行为"
-title: "👹 怪物图鉴与AI行为"
 ---
-
-
 
 # 👹 怪物图鉴与AI行为
 

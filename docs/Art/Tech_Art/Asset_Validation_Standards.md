@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "美术警察：资源验证标准"
-title: "👮‍♂️ 美术警察：资源验证标准"
 ---
-
-
 
 # 👮‍♂️ 美术警察：资源验证标准
 
@@ -264,11 +261,11 @@ $$
 
 ```bash
 #!/bin/bash
-# .git/hooks/pre-commit
+## .git/hooks/pre-commit
 
 echo "🔍 正在检查美术资源..."
 
-# 检查纹理尺寸
+## 检查纹理尺寸
 python tools/validate_textures.py
 
 if [ $? -ne 0 ]; then

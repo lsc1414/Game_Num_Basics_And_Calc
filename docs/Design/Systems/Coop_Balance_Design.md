@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "多人协作平衡 (Co-op Balance Design)"
-title: "👥 多人协作平衡 (Co-op Balance Design)"
 ---
-
-
 
 # 👥 多人协作平衡 (Co-op Balance Design)
 

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "动态音乐系统 (Adaptive Music System)"
-title: "🎵 动态音乐系统 (Adaptive Music System)"
 ---
-
-
 
 # 🎵 动态音乐系统 (Adaptive Music System)
 

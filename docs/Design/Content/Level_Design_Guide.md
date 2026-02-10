@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "关卡与波次设计指南"
+---
+
 # 关卡与波次设计指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Design\Content\Level_Design_Guide.md -->
-
----
-sidebarTitle: "关卡与波次设计指南"
-title: "🗺️ 关卡与波次设计指南"
----
-
-
-
 ## 🗺️ 关卡与波次设计指南
 
 本文档指导如何构建游戏地图以及控制刷怪节奏 (Pacing)。
@@ -592,14 +581,6 @@ public void AdjustDifficulty()
 
 
 <!-- 来源: Design\Content\Level_Design_Theory.md -->
-
----
-sidebarTitle: "关卡设计理论：节奏、空间与引导"
-title: "🗺️ 关卡设计理论：节奏、空间与引导"
----
-
-
-
 ## 🗺️ 关卡设计理论：节奏、空间与引导
 
 > **核心理念**: 优秀的关卡设计是**无形**的。它在玩家不知不觉中教会他们规则，引导他们去往正确的地方，并在他们即将厌倦时提供新的刺激。
@@ -903,5 +884,8 @@ graph TD
 - [🏰 塔防系统](/docs/Design/Mechanics/Tower_Defense_System) - 塔的类型和建造规则
 - [💀 敌人图鉴](/docs/Design/Content/Enemy_Bestiary) - 所有敌人的详细数据
 - [🎮 游戏心理学深度探究](/docs/Design/Game_Psychology_DeepDive) - 玩家动机和成瘾机制
+
+
+
 
 

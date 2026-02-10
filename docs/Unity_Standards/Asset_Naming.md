@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Unity 资产命名规范与强制检查工具"
-title: "Unity 资产命名规范与强制检查工具"
 ---
-
-
 
 # Unity 资产命名规范与强制检查工具
 

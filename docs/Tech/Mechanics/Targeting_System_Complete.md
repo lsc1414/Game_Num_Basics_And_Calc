@@ -1,3 +1,7 @@
+---
+sidebarTitle: "索敌系统综合指南"
+---
+
 # 索敌系统综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
@@ -8,13 +12,6 @@
 
 
 <!-- 来源: Tech\Mechanics\Targeting_System_DeepDive.md -->
-
----
-sidebarTitle: "索敌机制详解与实战"
-title: "🎯 索敌机制详解与实战"
----
-
-
 
 ## 🎯 索敌机制详解与实战
 

@@ -40,16 +40,19 @@ python scripts/mintlify_helper.py list-cats
 - ❌ **避免**: 过长的代码块(超过 30 行)、重复的样板代码
 - 📝 **风格**: 简洁实用,点到即止
 
-**Frontmatter 模板 (必须)**:
+**Frontmatter 模板 (本仓库约定)**:
 
 ```markdown
 ---
-title: "文档标题"
 sidebarTitle: "侧边栏标题 (可选)"
 description: "简短的文档描述，用于 SEO 和预览"
 icon: "emoji (可选，如 'rocket')"
 ---
 ```
+
+规则:
+- frontmatter 必须在文件最顶部。
+- 本仓库默认不写 `title`，页面主标题统一使用正文 `# H1`（避免双标题）。
 
 **内容模板 (Mintlify 风格)**:
 

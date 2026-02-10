@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Dead Cells》核心设计知识图谱"
-title: "⚔️ 《Dead Cells》核心设计知识图谱"
 ---
-
-
 
 # ⚔️ 《Dead Cells》核心设计知识图谱
 

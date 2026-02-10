@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "高效游戏开发指南：拒绝返工与项目规划"
-title: "🚀 高效游戏开发指南：拒绝返工与项目规划"
 ---
-
-
 
 # 🚀 高效游戏开发指南：拒绝返工与项目规划
 
@@ -104,7 +101,7 @@ title: "🚀 高效游戏开发指南：拒绝返工与项目规划"
 #### Vampirefall 文档规范
 
 ```markdown
-# 系统名称
+## 系统名称
 
 ## 1. 目标 (Goal)
 
@@ -179,7 +176,7 @@ title: "🚀 高效游戏开发指南：拒绝返工与项目规划"
 #### 美术-程序对接规范
 
 ```yaml
-# AssetSpec.yaml - 资源规格文档
+## AssetSpec.yaml - 资源规格文档
 UI图标:
   尺寸: 256x256px
   格式: PNG with Alpha
@@ -235,7 +232,7 @@ gitGraph
 ### 5.2 Unity 项目的 .gitignore
 
 ```gitignore
-# Unity 生成文件
+## Unity 生成文件
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -244,7 +241,7 @@ gitGraph
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 
-# 永远不要提交的配置
+## 永远不要提交的配置
 *.csproj
 *.unityproj
 *.sln
@@ -259,7 +256,7 @@ gitGraph
 *.opendb
 *.VC.db
 
-# 大型资源通过 Git LFS 管理
+## 大型资源通过 Git LFS 管理
 *.psd
 *.ai
 *.fbx
@@ -273,16 +270,16 @@ gitGraph
 ### 5.3 Git LFS 配置（大文件管理）
 
 ```bash
-# 安装 Git LFS
+## 安装 Git LFS
 git lfs install
 
-# 追踪大文件类型
+## 追踪大文件类型
 git lfs track "*.psd"
 git lfs track "*.fbx"
 git lfs track "*.wav"
 git lfs track "*.mp4"
 
-# 提交 .gitattributes
+## 提交 .gitattributes
 git add .gitattributes
 git commit -m "chore: 配置 Git LFS"
 ```
@@ -678,7 +675,7 @@ gantt
 > "If it doesn't build, it doesn't ship."
 
 ```bash
-# Jenkins/GitHub Actions 自动构建脚本
+## Jenkins/GitHub Actions 自动构建脚本
 name: Daily Build
 
 on:
@@ -812,7 +809,7 @@ void OldFunction() {
 ### 11.4 技术债务清单
 
 ```markdown
-# 技术债务登记表
+## 技术债务登记表
 
 ## 高优先级（影响开发效率）
 

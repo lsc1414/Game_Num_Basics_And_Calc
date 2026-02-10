@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "Odin Inspector 高级使用技巧"
+---
+
 # Odin 工具综合指南
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Dev_Guides\Tools\Odin_Inspector_Advanced_Techniques.md -->
-
----
-sidebarTitle: "Odin Inspector 高级使用技巧"
-title: "🧙‍♂️ Odin Inspector 高级使用技巧"
----
-
-
-
 ## 🧙‍♂️ Odin Inspector 高级使用技巧
 
 > 🎯 **目标读者**: 已掌握 Odin 基础用法的 Unity 开发者  
@@ -816,14 +805,6 @@ public class TowerDatabase : ScriptableObject
 
 
 <!-- 来源: Dev_Guides\Tools\Odin_Luban_Integration_Guide.md -->
-
----
-sidebarTitle: "Odin Inspector + Luban 深度集成指南"
-title: "🔗 Odin Inspector + Luban 深度集成指南"
----
-
-
-
 ## 🔗 Odin Inspector + Luban 深度集成指南
 
 > 🎯 **目标**: 结合 Odin 的强大 Inspector 可视化能力与 Luban 的配置表生成能力，打造双向编辑工作流  
@@ -1377,10 +1358,10 @@ public class AutoLubanExporter
 ### 5.2 命令行工具：CI/CD 集成
 
 ```bash
-# 在 Unity 项目中调用
+## 在 Unity 项目中调用
 Unity.exe -quit -batchmode -projectPath "." -executeMethod LubanExportWindow.BatchExport
 
-# 然后调用 Luban 生成
+## 然后调用 Luban 生成
 dotnet Luban.dll -j cfg --input_data_dir ./LubanExport --output_code_dir ./Generated
 ```
 
@@ -1473,5 +1454,8 @@ dotnet Luban.dll -j cfg --input_data_dir ./LubanExport --output_code_dir ./Gener
 文档版本: v1.0  
 最后更新: 2025-12-06  
 适用版本: Odin 3.1.x+ / Luban 2.x+
+
+
+
 
 

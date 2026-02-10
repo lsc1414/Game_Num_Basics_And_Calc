@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡"
-title: "⚔️ Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡"
 ---
-
-
 
 # ⚔️ Roguelike + 塔防 + 刷宝：三位一体设计的利弊权衡
 

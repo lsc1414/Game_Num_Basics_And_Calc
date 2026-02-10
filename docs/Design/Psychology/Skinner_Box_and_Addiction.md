@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "斯金纳箱与成瘾设计"
-title: "📦 斯金纳箱与成瘾设计"
 ---
-
-
 
 # 📦 斯金纳箱与成瘾设计
 
@@ -226,7 +223,7 @@ $$
 - **硬保底 (Hard Pity)**: 第 M 次必定获得。
 
 ```python
-# 模拟抽卡期望次数
+## 模拟抽卡期望次数
 def expected_pulls(base_rate, soft_pity_start, hard_pity, rate_increase):
     """
     计算获得目标物品的期望抽数
@@ -246,8 +243,8 @@ def expected_pulls(base_rate, soft_pity_start, hard_pity, rate_increase):
 
     return total
 
-# 原神 UP 池参数模拟
-# 基础概率 0.6%, 软保底从第 74 抽开始, 硬保底 90 抽, 每抽提升 6%
+## 原神 UP 池参数模拟
+## 基础概率 0.6%, 软保底从第 74 抽开始, 硬保底 90 抽, 每抽提升 6%
 expected = expected_pulls(0.006, 74, 90, 0.06)
 print(f"期望抽数: {expected:.2f}")  # 约 62.5 抽
 ```

@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Bloom 后处理"
-title: "🌤️ Bloom 后处理"
 ---
-
-
 
 # 🌤️ Bloom 后处理
 

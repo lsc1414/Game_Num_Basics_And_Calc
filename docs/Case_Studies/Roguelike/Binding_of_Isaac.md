@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Binding of Isaac》核心设计知识图谱"
-title: "👶 《Binding of Isaac》核心设计知识图谱"
 ---
-
-
 
 # 👶 《Binding of Isaac》核心设计知识图谱
 

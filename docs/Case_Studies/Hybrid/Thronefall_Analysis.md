@@ -1,21 +1,10 @@
+﻿﻿---
+sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
+---
+
 # Thronefall 机制分析：极简主义与日夜循环的完美融合
 
 > 本文档由以下文件合并生成 (2026-02-10)
-
-
-
----
-
-
-<!-- 来源: Case_Studies\Hybrid\Thronefall_Analysis.md -->
-
----
-sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
-title: "👑 Thronefall 机制分析：极简主义与日夜循环的完美融合"
----
-
-
-
 ## 👑 Thronefall 机制分析：极简主义与日夜循环的完美融合
 
 **文档目标**：解析 *Thronefall* (王权陨落) 如何在“极简主义”的设计哲学下，成功融合了**塔防 (TD)**、**动作 (Hack & Slash)** 与 **经济策略**，并提炼对 *Vampirefall* 的关键启示。
@@ -216,14 +205,6 @@ Thronefall 在信息透明度上做得非常出色，这大大降低了玩家的
 
 
 <!-- 来源: Case_Studies\Hybrid\Thronefall.md -->
-
----
-sidebarTitle: "构建《王权陨落》类极简策略游戏知识图谱"
-title: "🏰 构建《王权陨落》类极简策略游戏知识图谱"
----
-
-
-
 ## 🏰 构建《王权陨落》类极简策略游戏知识图谱
 
 这份文档旨在拆解《Thronefall》、《Kingdom Two Crowns》、《Bad North》这类“极简策略”游戏背后的设计理论与核心知识体系。
@@ -323,5 +304,8 @@ public float CalculateTargetScore(Enemy enemy, Hero hero) {
 *   📄 **Paper**: [Reynolds Flocking (Boids) Algorithm](https://www.red3d.com/cwr/boids/)
 *   🌐 **Blog**: [Flow Fields Pathfinding Explained](https://leifnode.com/2013/12/flow-field-pathfinding/)
 *   **书籍**: 《The Design of Everyday Things》 (关于示能性 Affordance 的理解)
+
+
+
 
 

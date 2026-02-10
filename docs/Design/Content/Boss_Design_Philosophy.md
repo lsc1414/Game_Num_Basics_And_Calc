@@ -1,9 +1,6 @@
 ﻿---
 sidebarTitle: "Boss 战设计哲学"
-title: "🧙‍♂️ Boss 战设计哲学"
 ---
-
-
 
 # 🧙‍♂️ Boss 战设计哲学
 
