@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Bloom 后处理"
+title: "🌤️ Bloom 后处理"
 ---
-sidebarTitle: "🌤️ Bloom 后处理深度研究"
----
+
+
 
 # 🌤️ Bloom 后处理
 

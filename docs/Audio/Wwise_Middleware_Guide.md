@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Wwise 音频中间件：工业级声音引擎"
+title: "🎧 Wwise 音频中间件：工业级声音引擎"
 ---
-sidebarTitle: "🎧 Wwise 音频中间件：工业级声音引擎详解"
----
+
+
 
 # 🎧 Wwise 音频中间件：工业级声音引擎
 

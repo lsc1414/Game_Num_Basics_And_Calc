@@ -1,9 +1,11 @@
----
-title: "数据挖掘技术在数值优化中的实践"
+﻿---
 sidebarTitle: "数值挖掘 (Mining)"
+title: "数据挖掘技术在数值优化中的实践"
 description: "使用聚类、回归等机器学习算法发现潜在Meta与经济漏洞"
 icon: "database"
 ---
+
+
 
 # ⛏️ 数据挖掘技术在数值优化中的实践
 

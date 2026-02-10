@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Luban 配表实战与 ID 命名规范"
+title: "🛠️ Luban 配表实战与 ID 命名规范"
 ---
-sidebarTitle: "🛠️ Luban 配表实战与 ID 命名规范"
----
+
+
 
 # 🛠️ Luban 配表实战与 ID 命名规范
 

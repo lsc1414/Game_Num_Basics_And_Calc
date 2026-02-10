@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "土豆兄弟 (Brotato) 数值体系全解"
+title: "🥔 土豆兄弟 (Brotato) 数值体系全解"
 ---
-sidebarTitle: "🥔 土豆兄弟"
----
+
+
 
 # 🥔 土豆兄弟 (Brotato) 数值体系全解
 

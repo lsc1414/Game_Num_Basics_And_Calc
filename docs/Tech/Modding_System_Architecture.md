@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Mod 系统架构指南"
+title: "🛠️ Mod 系统架构指南"
 ---
-sidebarTitle: "🛠️ Mod 系统架构指南"
----
+
+
 
 # 🛠️ Mod 系统架构指南
 

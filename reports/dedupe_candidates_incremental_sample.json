@@ -1,0 +1,15 @@
+{
+  "docs_dir": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs",
+  "min_score": 0.35,
+  "incremental": true,
+  "cache": "reports/dedupe_cache.json",
+  "scan_stats": {
+    "total_files": 186,
+    "parsed_files": 0,
+    "cache_hits": 186,
+    "changed_files": 2,
+    "candidate_pairs": 3
+  },
+  "candidate_count": 0,
+  "candidates": []
+}

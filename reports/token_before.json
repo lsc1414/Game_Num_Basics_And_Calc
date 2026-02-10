@@ -1,0 +1,249 @@
+{
+  "docs_dir": "docs",
+  "file_count": 208,
+  "total_chars": 1503707,
+  "total_tokens_est": 939724,
+  "avg_tokens_est": 4517,
+  "top_heavy_files": [
+    {
+      "path": "docs/Tech/Architecture/Decision_System.md",
+      "chars": 41968,
+      "tokens_est": 26230,
+      "lines": 1174
+    },
+    {
+      "path": "docs/Tools/Odin_Inspector_Complete.md",
+      "chars": 41724,
+      "tokens_est": 26077,
+      "lines": 1509
+    },
+    {
+      "path": "docs/Tech/Performance_Budget.md",
+      "chars": 37223,
+      "tokens_est": 23264,
+      "lines": 737
+    },
+    {
+      "path": "docs/Unity_Standards/Asset_Naming.md",
+      "chars": 28560,
+      "tokens_est": 17850,
+      "lines": 458
+    },
+    {
+      "path": "docs/Design/Numerical_Manual.md",
+      "chars": 25401,
+      "tokens_est": 15875,
+      "lines": 875
+    },
+    {
+      "path": "docs/Guides/Publishing/Steam_Complete_Guide.md",
+      "chars": 24620,
+      "tokens_est": 15387,
+      "lines": 605
+    },
+    {
+      "path": "docs/Tech/Network_Architecture.md",
+      "chars": 24566,
+      "tokens_est": 15353,
+      "lines": 991
+    },
+    {
+      "path": "docs/Dev_Guides/Tools/Game_Dev_Toolchain_Guide.md",
+      "chars": 23600,
+      "tokens_est": 14750,
+      "lines": 902
+    },
+    {
+      "path": "docs/Design/Content/Boss_Design_Philosophy.md",
+      "chars": 22697,
+      "tokens_est": 14185,
+      "lines": 1312
+    },
+    {
+      "path": "docs/Dev_Guides/Unity_Practical_Tips.md",
+      "chars": 20594,
+      "tokens_est": 12871,
+      "lines": 806
+    },
+    {
+      "path": "docs/Design/Analytics/Event_Tracking_Design.md",
+      "chars": 20071,
+      "tokens_est": 12544,
+      "lines": 1001
+    },
+    {
+      "path": "docs/Dev_Guides/Art_Pipeline/Indie_Team_Art_Strategy.md",
+      "chars": 19118,
+      "tokens_est": 11948,
+      "lines": 593
+    },
+    {
+      "path": "docs/Design/Production/Efficient_Game_Dev_Guide.md",
+      "chars": 18959,
+      "tokens_est": 11849,
+      "lines": 1009
+    },
+    {
+      "path": "docs/Art/VFX/VFX_And_Game_Feel.md",
+      "chars": 18452,
+      "tokens_est": 11532,
+      "lines": 942
+    },
+    {
+      "path": "docs/Tech/Mechanics/Combo_System_Design.md",
+      "chars": 17814,
+      "tokens_est": 11133,
+      "lines": 817
+    },
+    {
+      "path": "docs/Dev_Guides/Tools/Odin_Inspector_Advanced_Techniques.md",
+      "chars": 17493,
+      "tokens_est": 10933,
+      "lines": 800
+    },
+    {
+      "path": "docs/Design/Systems/Achievement_And_Collection_System.md",
+      "chars": 17462,
+      "tokens_est": 10913,
+      "lines": 861
+    },
+    {
+      "path": "docs/Art/VFX/Unity_Particle_System_DeepDive.md",
+      "chars": 16381,
+      "tokens_est": 10238,
+      "lines": 474
+    },
+    {
+      "path": "docs/Tech/Algorithms/Procedural_Generation_Complete.md",
+      "chars": 15949,
+      "tokens_est": 9968,
+      "lines": 798
+    },
+    {
+      "path": "docs/Dev_Guides/Tools/Debug_Console_And_Cheats.md",
+      "chars": 15847,
+      "tokens_est": 9904,
+      "lines": 663
+    },
+    {
+      "path": "docs/Case_Studies/Tower_Defense/Bloons_TD6.md",
+      "chars": 15656,
+      "tokens_est": 9785,
+      "lines": 453
+    },
+    {
+      "path": "docs/Tech/Graphics/Unity_SpriteAtlas_DeepDive.md",
+      "chars": 15598,
+      "tokens_est": 9748,
+      "lines": 436
+    },
+    {
+      "path": "docs/Tech/Mechanics/Aim_Assist_System.md",
+      "chars": 15513,
+      "tokens_est": 9695,
+      "lines": 649
+    },
+    {
+      "path": "docs/Case_Studies/Magic_System/Magicraft.md",
+      "chars": 15363,
+      "tokens_est": 9601,
+      "lines": 629
+    },
+    {
+      "path": "docs/Dev_Guides/Tools/Odin_Luban_Integration_Guide.md",
+      "chars": 15288,
+      "tokens_est": 9555,
+      "lines": 657
+    },
+    {
+      "path": "docs/Design/Systems/TradeOff_Affix_Library.md",
+      "chars": 15113,
+      "tokens_est": 9445,
+      "lines": 352
+    },
+    {
+      "path": "docs/Design/Mechanics/Roguelike_Perks.md",
+      "chars": 15032,
+      "tokens_est": 9395,
+      "lines": 689
+    },
+    {
+      "path": "docs/Design/Systems/Skill_Tree_Design.md",
+      "chars": 15003,
+      "tokens_est": 9376,
+      "lines": 916
+    },
+    {
+      "path": "docs/Tech/Architecture/ECS_Complete_Guide.md",
+      "chars": 14603,
+      "tokens_est": 9126,
+      "lines": 362
+    },
+    {
+      "path": "docs/Dev_Guides/Technical_Implementation/Game_Analytics_Guide.md",
+      "chars": 14410,
+      "tokens_est": 9006,
+      "lines": 452
+    },
+    {
+      "path": "docs/Tech/Performance/Mobile_Optimization_Complete.md",
+      "chars": 14238,
+      "tokens_est": 8898,
+      "lines": 298
+    },
+    {
+      "path": "docs/Full_Index.md",
+      "chars": 13927,
+      "tokens_est": 8704,
+      "lines": 362
+    },
+    {
+      "path": "docs/Tech/Code_Snippets/DecisionSystem_Core_Classes.md",
+      "chars": 13889,
+      "tokens_est": 8680,
+      "lines": 503
+    },
+    {
+      "path": "docs/Design/Narrative/Game_Narrative_And_Presentation.md",
+      "chars": 13750,
+      "tokens_est": 8593,
+      "lines": 683
+    },
+    {
+      "path": "docs/Tech/Mechanics/Targeting_System_Complete.md",
+      "chars": 13703,
+      "tokens_est": 8564,
+      "lines": 352
+    },
+    {
+      "path": "docs/Case_Studies/Roguelike/Noita.md",
+      "chars": 13610,
+      "tokens_est": 8506,
+      "lines": 596
+    },
+    {
+      "path": "docs/Tech/Graphics/Shader_Math_Patterns.md",
+      "chars": 13599,
+      "tokens_est": 8499,
+      "lines": 542
+    },
+    {
+      "path": "docs/Guides/Collaboration/Git_Complete_Guide.md",
+      "chars": 13521,
+      "tokens_est": 8450,
+      "lines": 592
+    },
+    {
+      "path": "docs/Tech/Mechanics/Unity_Transform_Math_Guide.md",
+      "chars": 13052,
+      "tokens_est": 8157,
+      "lines": 401
+    },
+    {
+      "path": "docs/Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md",
+      "chars": 12987,
+      "tokens_est": 8116,
+      "lines": 516
+    }
+  ]
+}

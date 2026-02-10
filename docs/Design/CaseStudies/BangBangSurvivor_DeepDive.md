@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "正中靶心 (BangBang Survivor) - 深度设计拆解"
+title: "🎯 正中靶心 (BangBang Survivor) - 深度设计拆解"
 ---
-sidebarTitle: "正中靶心"
----
+
+
 
 # 🎯 正中靶心 (BangBang Survivor) - 深度设计拆解
 

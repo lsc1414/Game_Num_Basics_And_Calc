@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "They Are Billions》核心设计知识图谱"
+title: "🧟 《They Are Billions》核心设计知识图谱"
 ---
-sidebarTitle: "🧟 《They Are Billions》核心设计知识图谱"
----
+
+
 
 # 🧟 《They Are Billions》核心设计知识图谱
 

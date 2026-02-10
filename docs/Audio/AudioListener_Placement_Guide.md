@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "AudioListener 挂载策略：俯视视角的陷阱"
+title: "👂 AudioListener 挂载策略：俯视视角的陷阱"
 ---
-sidebarTitle: "👂 AudioListener 挂载策略：俯视视角的陷阱"
----
+
+
 
 # 👂 AudioListener 挂载策略：俯视视角的陷阱
 

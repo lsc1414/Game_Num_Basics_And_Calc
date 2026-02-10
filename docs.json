@@ -329,10 +329,7 @@
             "pages": [
               "docs/Dev_Guides/Collaboration/Remote_Collaboration",
               "docs/Dev_Guides/Collaboration/Agile_For_Indie_Teams",
-              "docs/Dev_Guides/Collaboration/Git_Advanced_Guide_For_Programmers",
-              "docs/Dev_Guides/Collaboration/Git_Commit_Standards",
-              "docs/Dev_Guides/Collaboration/GitHub_PR_Workflow",
-              "docs/Dev_Guides/Collaboration/SVN_vs_Git_Migration_Guide",
+              "docs/Guides/Collaboration/Git_Complete_Guide",
               "docs/Dev_Guides/Collaboration/Milestone_Planning",
               "docs/Dev_Guides/Collaboration/Beta_Testing_Guide"
             ]
@@ -351,44 +348,25 @@
           },
           {
             "group": "行业案例",
-            "pages": [
-              "docs/Case_Studies/Sandbox/Palworld",
-              "docs/Case_Studies/Sandbox/Factorio",
-              "docs/Case_Studies/Tower_Defense/Kingdom_Rush",
-              "docs/Case_Studies/Tower_Defense/Bloons_TD6",
-              "docs/Case_Studies/Hybrid/Thronefall_Analysis",
-              "docs/Case_Studies/Hybrid/Loop_Hero",
-              "docs/Case_Studies/Roguelike/Hades",
-              "docs/Case_Studies/Roguelike/Brotato",
-              "docs/Case_Studies/Survivors/Vampire_Survivors"
-            ]
+            "pages": []
           },
           {
             "group": "💀 失败复盘",
-            "pages": [
-              "docs/Case_Studies/Failure/Battleborn",
-              "docs/Case_Studies/Failure/Paragon",
-              "docs/Case_Studies/Failure/Anthem",
-              "docs/Case_Studies/Failure/Concord",
-              "docs/Case_Studies/Failure/The_Day_Before"
-            ]
+            "pages": []
           },
           {
             "group": "发行上线",
             "pages": [
               "docs/Dev_Guides/Publishing/TapTap_Strategy",
-              "docs/Dev_Guides/Publishing/Steam_Unity_Indie_Game_Guide",
-              "docs/Dev_Guides/Publishing/Launch_Readiness_Checklist",
-              "docs/Dev_Guides/Publishing/Steam_Strategy",
-              "docs/Dev_Guides/Publishing/Steam_Unity_Quality_Standards",
-              "docs/Dev_Guides/Publishing/Steam_Unity_Steamworks_Checklist"
+              "docs/Guides/Publishing/Steam_Complete_Guide",
+              "docs/Dev_Guides/Publishing/Launch_Readiness_Checklist"
             ]
           },
           {
             "group": "技术实现",
             "pages": [
               "docs/Dev_Guides/Technical_Implementation/Terrain_3D_vs_2D_Analysis",
-              "docs/Dev_Guides/Technical_Implementation/Procedural_Generation_WFC",
+              "docs/Tech/Algorithms/Procedural_Generation_Complete",
               "docs/Dev_Guides/Technical_Implementation/GPU_Instancing_Guide",
               "docs/Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline",
               "docs/Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices",
@@ -396,7 +374,7 @@
               "docs/Dev_Guides/Technical_Implementation/Loot_Reservoir_Algorithm",
               "docs/Dev_Guides/Technical_Implementation/Game_Analytics_Guide",
               "docs/Dev_Guides/Technical_Implementation/Skill_Text_Localization_System",
-              "docs/Dev_Guides/Technical_Implementation/ECS_Performance_Optimization",
+              "docs/Tech/Architecture/ECS_Complete_Guide",
               "docs/Dev_Guides/Technical_Implementation/ScriptableObject_vs_Excel_Workflow"
             ]
           },
@@ -413,13 +391,12 @@
               "docs/Dev_Guides/Tools/Combat_Simulation_System",
               "docs/Dev_Guides/Tools/Monte_Carlo_Simulation",
               "docs/Dev_Guides/Tools/Excel_Numerical_Templates",
-              "docs/Dev_Guides/Tools/Odin_Luban_Integration_Guide",
+              "docs/Tools/Odin_Inspector_Complete",
               "docs/Dev_Guides/Tools/Unity_PRD_Plugin",
               "docs/Dev_Guides/Tools/Game_Dev_Toolchain_Guide",
               "docs/Dev_Guides/Tools/Automated_Wiki_Generation",
               "docs/Dev_Guides/Tools/Debug_Console_And_Cheats",
               "docs/Dev_Guides/Tools/AI_Balance_Testing",
-              "docs/Dev_Guides/Tools/Odin_Inspector_Advanced_Techniques",
               "docs/Dev_Guides/Tools/Numerical_Calculator_Suite"
             ]
           },
@@ -440,7 +417,6 @@
             "group": "算法",
             "pages": [
               "docs/Tech/Algorithms/Roguelike_RNG_Systems",
-              "docs/Tech/Algorithms/Procedural_Generation_Guide",
               "docs/Tech/Algorithms/Common_Game_Algorithms"
             ]
           },
@@ -449,9 +425,7 @@
             "pages": [
               "docs/Tech/Architecture/Unity_Anti_Patterns",
               "docs/Tech/Architecture/Game_Design_Patterns_Practice",
-              "docs/Tech/Architecture/Decision_System_Diagrams",
-              "docs/Tech/Architecture/Unified_Decision_System",
-              "docs/Tech/Architecture/ECS_Theory_And_Practice"
+              "docs/Tech/Architecture/Decision_System"
             ]
           },
           {
@@ -459,9 +433,7 @@
             "pages": [
               "docs/Tech/Code_Snippets/AggroSystem_Refactor_Demo",
               "docs/Tech/Code_Snippets/PerkDrafting_Refactor_Demo",
-              "docs/Tech/Code_Snippets/DecisionSystem_Core_Classes",
               "docs/Tech/Code_Snippets/TowerTargeting_Refactor_Demo",
-              "docs/Tech/Code_Snippets/DecisionSystem_Performance_Demo",
               "docs/Tech/Code_Snippets/TowerPlacementValidation_Demo"
             ]
           },
@@ -485,8 +457,7 @@
             "group": "机制实现",
             "pages": [
               "docs/Tech/Mechanics/Aim_Assist_System",
-              "docs/Tech/Mechanics/Targeting_System_DeepDive",
-              "docs/Tech/Mechanics/Targeting_Pipeline_DeepDive",
+              "docs/Tech/Mechanics/Targeting_System_Complete",
               "docs/Tech/Mechanics/Movement_And_Dash_System",
               "docs/Tech/Mechanics/Projectile_System_DeepDive",
               "docs/Tech/Mechanics/Unity_RectTransform_DeepDive",
@@ -500,7 +471,7 @@
           {
             "group": "移动优化",
             "pages": [
-              "docs/Tech/Mobile_Optimization/Device_Grading_And_Scalability"
+              "docs/Tech/Performance/Mobile_Optimization_Complete"
             ]
           },
           {
@@ -518,7 +489,6 @@
               "docs/Tech/Network_Architecture",
               "docs/Tech/Input_System_Design",
               "docs/Tech/Save_System_Architecture",
-              "docs/Tech/Mobile_Optimization_Guide",
               "docs/Tech/Hot_Update_And_Resources",
               "docs/Tech/Luban_Config_Guide",
               "docs/Tech/Modding_System_Architecture",

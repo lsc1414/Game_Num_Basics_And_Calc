@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "新人上路指南"
+title: "🚀 新人上路指南"
 ---
+
+
 
 # 🚀 新人上路指南
 
@@ -42,6 +45,14 @@ docs/
 - [Hades 构建多样性](Case_Studies/Roguelike/Hades)
 - [Dead Cells 知识图谱](Case_Studies/Roguelike/Dead_Cells)
 - [Vampire Survivors 性能奇迹](Case_Studies/Survivors/Vampire_Survivors)
+
+## 🧭 先选阅读路线（建议）
+
+如果你是带着具体工作目标来的，先看 [阅读导航中心](NAVIGATION.md)：
+
+- 按职责：程序 / 美术 / 策划 / 发行 / 运营 / 制作管理
+- 按阶段：立项 -> 预制作 -> 制作 -> 上线与长线
+- 按目标：战斗手感、数值框架、性能稳定、上线运营
 
 ## 🛠️ 工具与规范
 

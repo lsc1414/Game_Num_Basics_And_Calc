@@ -1,0 +1,36 @@
+{
+  "docs_dir": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs",
+  "min_score": 0.35,
+  "incremental": true,
+  "cache": "reports/dedupe_cache.json",
+  "scan_stats": {
+    "total_files": 186,
+    "parsed_files": 0,
+    "cache_hits": 186,
+    "changed_files": 207,
+    "candidate_pairs": 450
+  },
+  "candidate_count": 2,
+  "candidates": [
+    {
+      "family": "cross_scope",
+      "target": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs/Case_Studies/Roguelike/Darkest_Dungeon.md",
+      "source": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs/Case_Studies/Roguelike/Binding_of_Isaac.md",
+      "seq_ratio": 0.5253,
+      "heading_overlap": 0.25,
+      "similarity_score": 0.4427,
+      "token_saving_est": 660,
+      "reason": "incremental_pool_similarity_threshold"
+    },
+    {
+      "family": "cross_scope",
+      "target": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs/Case_Studies/Roguelike/Dead_Cells.md",
+      "source": "I:/MTSVN_NEW/002_Vampirefall/Server/Game_Num_Basics_And_Calc/docs/Case_Studies/Roguelike/Binding_of_Isaac.md",
+      "seq_ratio": 0.431,
+      "heading_overlap": 0.2105,
+      "similarity_score": 0.3649,
+      "token_saving_est": 660,
+      "reason": "incremental_pool_similarity_threshold"
+    }
+  ]
+}

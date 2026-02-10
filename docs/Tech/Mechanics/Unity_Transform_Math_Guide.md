@@ -1,3 +1,10 @@
+﻿---
+sidebarTitle: "Unity Transform 数学变换与最佳实践 (The Math of Transform)"
+title: "📐 Unity Transform 数学变换与最佳实践 (The Math of Transform)"
+---
+
+
+
 # 📐 Unity Transform 数学变换与最佳实践 (The Math of Transform)
 
 Transform 是 Unity 中最基础也最重要的组件，它定义了物体在空间中的**位置 (Position)**、**旋转 (Rotation)** 和 **缩放 (Scale)**。深刻理解其背后的线性代数原理，对于编写高性能、无 Bug 的代码至关重要。

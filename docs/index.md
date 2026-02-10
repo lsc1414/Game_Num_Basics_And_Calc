@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "游戏开发 101"
+title: "🎮 游戏开发 101"
 ---
-sidebarTitle: "首页"
----
+
+
 
 # 🎮 游戏开发 101
 
@@ -11,6 +14,9 @@ sidebarTitle: "首页"
 <CardGroup cols={2}>
   <Card title="新手上路" icon="rocket" href="/docs/START_HERE">
     首次访问？从这里开始
+  </Card>
+  <Card title="阅读导航中心" icon="compass" href="/docs/NAVIGATION">
+    按职责 / 阶段 / 目标快速选路
   </Card>
   <Card title="全站索引" icon="book" href="/docs/Full_Index">
     按目录浏览所有文档

@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "Palworld 生产模式分析：Triple-I 与自动化管线"
+title: "🌐 Palworld 生产模式分析：Triple-I 与自动化管线"
 ---
+
+
 
 # 🌐 Palworld 生产模式分析：Triple-I 与自动化管线
 

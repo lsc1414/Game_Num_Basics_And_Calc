@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "Thronefall 机制分析：极简主义与日夜循环的完美融合"
+title: "👑 Thronefall 机制分析：极简主义与日夜循环的完美融合"
 ---
+
+
 
 # 👑 Thronefall 机制分析：极简主义与日夜循环的完美融合
 

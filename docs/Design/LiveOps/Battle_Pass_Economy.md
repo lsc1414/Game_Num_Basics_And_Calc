@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "通行证经济学"
+title: "🎫 通行证经济学"
 ---
-sidebarTitle: "🎫 通行证经济学"
----
+
+
 
 # 🎫 通行证经济学
 

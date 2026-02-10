@@ -1,0 +1,2 @@
+docs/Tech/Architecture/Decision_System.md
+docs/Tech/Performance/Mobile_Optimization_Complete.md

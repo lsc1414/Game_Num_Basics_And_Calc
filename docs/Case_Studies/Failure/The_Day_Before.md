@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "失败案例复盘：The Day Before (浩劫前夕)"
+title: "🛑 失败案例复盘：The Day Before (浩劫前夕)"
 ---
-sidebarTitle: "🛑 失败案例复盘：The Day Before"
----
+
+
 
 # 🛑 失败案例复盘：The Day Before (浩劫前夕)
 

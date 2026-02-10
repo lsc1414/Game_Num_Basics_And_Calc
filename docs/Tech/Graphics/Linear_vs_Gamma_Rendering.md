@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "Linear 与 Gamma 渲染空间深度解析"
+title: "🎨 Linear 与 Gamma 渲染空间深度解析"
 ---
+
+
 
 # 🎨 Linear 与 Gamma 渲染空间深度解析
 

@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Compute Shader 移动端深度指南"
+title: "⚡ Compute Shader 移动端深度指南"
 ---
-sidebarTitle: "⚡ Compute Shader 移动端深度指南"
----
+
+
 
 # ⚡ Compute Shader 移动端深度指南
 

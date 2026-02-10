@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "仇恨系统与 AI 目标选择"
+title: "💢 仇恨系统与 AI 目标选择"
 ---
-sidebarTitle: "💢 仇恨系统与 AI 目标选择"
----
+
+
 
 # 💢 仇恨系统与 AI 目标选择
 

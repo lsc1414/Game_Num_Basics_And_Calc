@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Magicraft》核心设计知识图谱"
+title: "🪄 《Magicraft》核心设计知识图谱"
 ---
-sidebarTitle: "🪄 《Magicraft》核心设计知识图谱"
----
+
+
 
 # 🪄 《Magicraft》核心设计知识图谱
 

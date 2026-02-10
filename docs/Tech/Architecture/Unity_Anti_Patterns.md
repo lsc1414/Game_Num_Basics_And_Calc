@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Unity 代码毒药：那些毁灭项目的反模式"
+title: "☠️ Unity 代码毒药：那些毁灭项目的反模式"
 ---
-sidebarTitle: "☠️ Unity 代码毒药：那些毁灭项目的反模式"
----
+
+
 
 # ☠️ Unity 代码毒药：那些毁灭项目的反模式
 

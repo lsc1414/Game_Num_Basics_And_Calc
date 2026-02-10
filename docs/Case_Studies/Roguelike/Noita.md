@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Noita》核心设计知识图谱"
+title: "🔮 《Noita》核心设计知识图谱"
 ---
-sidebarTitle: "🔮 《Noita》核心设计知识图谱"
----
+
+
 
 # 🔮 《Noita》核心设计知识图谱
 

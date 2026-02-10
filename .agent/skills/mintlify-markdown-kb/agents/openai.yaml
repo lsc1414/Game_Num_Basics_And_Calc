@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mintlify 文档规范化"
+  short_description: "为知识库文档提供 Mintlify 格式创建与修复流程"
+  default_prompt: "将目标 Markdown 文档改写为符合 Mintlify 规范，并完成 docs.json 导航注册。"

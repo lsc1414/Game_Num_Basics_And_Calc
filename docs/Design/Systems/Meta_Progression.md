@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "局外成长系统"
+title: "🌲 局外成长系统"
 ---
-sidebarTitle: "🌲 局外成长系统"
----
+
+
 
 # 🌲 局外成长系统
 

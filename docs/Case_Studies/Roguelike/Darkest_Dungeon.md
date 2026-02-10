@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Darkest Dungeon》核心设计知识图谱"
+title: "😰 《Darkest Dungeon》核心设计知识图谱"
 ---
-sidebarTitle: "😰 《Darkest Dungeon》核心设计知识图谱"
----
+
+
 
 # 😰 《Darkest Dungeon》核心设计知识图谱
 

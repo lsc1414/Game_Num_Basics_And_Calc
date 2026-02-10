@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "工业化游戏开发：ScriptableObject 的生存指南"
+title: "🛠️ 工业化游戏开发：ScriptableObject 的生存指南"
 ---
+
+
 
 # 🛠️ 工业化游戏开发：ScriptableObject 的生存指南
 

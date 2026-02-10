@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "邮件系统设计"
+title: "📧 邮件系统设计"
 ---
-sidebarTitle: "📧 邮件系统设计"
----
+
+
 
 # 📧 邮件系统设计
 

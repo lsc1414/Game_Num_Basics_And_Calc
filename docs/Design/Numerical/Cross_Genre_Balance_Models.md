@@ -1,9 +1,11 @@
----
-title: "跨品类数值平衡模型差异"
+﻿---
 sidebarTitle: "跨品类平衡模型"
+title: "跨品类数值平衡模型差异"
 description: "深度解析RPG、MOBA、Roguelike三大品类的数值底层逻辑，建立通用的数值密度分析框架"
 icon: "scale-balanced"
 ---
+
+
 
 # ⚖️ 跨品类数值平衡模型差异
 

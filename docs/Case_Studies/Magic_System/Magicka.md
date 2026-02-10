@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Magicka》核心设计知识图谱"
+title: "🔮 《Magicka》核心设计知识图谱"
 ---
-sidebarTitle: "🔮 《Magicka》核心设计知识图谱"
----
+
+
 
 # 🔮 《Magicka》核心设计知识图谱
 

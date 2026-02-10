@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "失败案例复盘：Anthem (圣歌)"
+title: "🛑 失败案例复盘：Anthem (圣歌)"
 ---
-sidebarTitle: "🛑 失败案例复盘：Anthem"
----
+
+
 
 # 🛑 失败案例复盘：Anthem (圣歌)
 

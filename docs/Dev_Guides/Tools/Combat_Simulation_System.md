@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "战斗仿真系统 (Combat Simulation System)：Python 极速模拟"
+title: "⚔️ 战斗仿真系统 (Combat Simulation System)：Python 极速模拟"
 ---
-sidebarTitle: "战斗仿真系统"
----
+
+
 
 # ⚔️ 战斗仿真系统 (Combat Simulation System)：Python 极速模拟
 

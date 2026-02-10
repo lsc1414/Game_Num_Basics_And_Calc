@@ -1,6 +1,9 @@
+﻿---
+sidebarTitle: "Factorio (异星工厂) 深度研究：极致优化与自动化"
+title: "🏭 Factorio (异星工厂) 深度研究：极致优化与自动化"
 ---
-sidebarTitle: "Factorio"
----
+
+
 
 # 🏭 Factorio (异星工厂) 深度研究：极致优化与自动化
 

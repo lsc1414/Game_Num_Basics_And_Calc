@@ -1,6 +1,9 @@
----
+﻿---
 sidebarTitle: "技能动画管线：从 Animator Event 到可视化时间轴"
+title: "🎬 技能动画管线：从 Animator Event 到可视化时间轴"
 ---
+
+
 
 # 🎬 技能动画管线：从 Animator Event 到可视化时间轴
 
