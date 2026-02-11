@@ -137,14 +137,202 @@ title: "Unity 游戏开发工业化标准流程指南"
 
 通过多场景同时加载并行开发，降低冲突。
 
-## 7. 提交前检查清单（Pre-Commit）
+## 7. 第三方资产包管理规范 (Third-Party Asset Management)
+
+❌ 错误做法：  
+直接导入 Asset Store 包，任由它在 `Assets` 根目录下生成 `SuperSciFiKit`、`PolygonHorror` 等文件夹。
+
+后果：项目目录乱成一锅粥；由于包含大量 4K 贴图和 Demo 场景，工程体积爆炸；想要修改某个脚本时，下次更新插件又被覆盖了。
+
+✅ 工业化做法 (隔离与清洗)：
+
+### A. 目录隔离 (The Quarantine Zone)
+
+建立一个专门的文件夹（如 `Assets/_ThirdParty` 或 `Assets/Vendor`），所有购买的插件、素材包必须放在这里面。
+
+- 保持原样：在这个文件夹内，尽量保持插件原本的目录结构，方便未来更新。
+
+### B. 提取与清洗工作流 (Extract & Clean)
+
+- 绝不直接使用第三方包里的 Prefab。
+- 筛选 (Filter)：导入包时，取消勾选 `Documentation`、`Demos`、`Examples` 文件夹。这些只会拖慢你的工程。
+- 提取 (Extract)：
+  - 如果你看中了包里的一个“油桶”模型，不要直接引用。
+  - 复制那个 `.fbx` 和对应的贴图，粘贴到你自己的 `Assets/Art/Models/Props` 文件夹中。
+  - 按照本文第 1 章的规范，为这个复制出来的模型创建你自己的 Prefab。
+- 理由：这样你可以随意修改材质、碰撞体，而不必担心更新资产包时被重置。
+
+### C. 代码隔离 (Assembly Definition)
+
+对于包含大量脚本的插件（如 `A* Pathfinding`、`Rewired`）：
+
+- 在该插件的根目录下创建一个 Assembly Definition (`.asmdef`) 文件。
+- 作用：这会把插件编译成一个独立的 DLL。当你修改自己的游戏逻辑代码时，Unity 不需要重新编译这些巨大的插件代码，编译速度能快 50% 以上。
+
+### D. 修改原则 (Modification Rule)
+
+- 原则：永远不要修改第三方脚本的源代码。
+- 如果必须改：
+  - 优先尝试继承 (Inheritance) 或扩展方法 (Extension Methods)。
+  - 如果非改不可，必须在修改处加上注释 `// MODIFIED BY [YOUR NAME]`，并把修改过的脚本复制一份备份。否则下次插件更新，你的修改就全没了。
+
+## 8. 资产引用强制隔离与自动化提取 (Enforcement & Automation)
+
+针对“资产包文件夹混乱”和“手动复制麻烦”的痛点，我们需要两套脚本：一套负责拦截，一套负责智能搬运。
+
+### A. 引用阻断器 (The Reference Barrier)
+
+将此脚本放入 `Assets/Editor` 文件夹。当你保存 Prefab 时，它会自动检查依赖。
+
+```csharp
+using UnityEngine;
+using UnityEditor;
+
+public class AssetReferenceBarrier : UnityEditor.AssetModificationProcessor
+{
+    // 定义隔离区和安全区
+    const string FORBIDDEN_FOLDER = "Assets/_ThirdParty";
+    const string MY_PREFABS_FOLDER = "Assets/Prefabs";
+
+    static string[] OnWillSaveAssets(string[] paths)
+    {
+        foreach (string path in paths)
+        {
+            // 只检查我们自己的 Prefab 文件夹
+            if (path.StartsWith(MY_PREFABS_FOLDER) && path.EndsWith(".prefab"))
+            {
+                // 获取该 Prefab 的所有依赖（包括脚本、材质、贴图、模型）
+                string[] dependencies = AssetDatabase.GetDependencies(path, true);
+                
+                foreach (string depPath in dependencies)
+                {
+                    // 如果发现依赖了隔离区的内容
+                    if (depPath.StartsWith(FORBIDDEN_FOLDER))
+                    {
+                        string errorMsg = $"[阻断] 禁止保存！Prefab '{path}' 引用了隔离区资产: '{depPath}'。\n" +
+                                          "请先使用 'Smart Extract' 工具将该资产提取到 'Assets/Art' 目录。";
+                        
+                        EditorUtility.DisplayDialog("违反工业化规范", errorMsg, "我错了");
+                        Debug.LogError(errorMsg);
+                        
+                        // 返回原始路径列表，但实际上 Unity 的 Save 机制比较强硬，
+                        // 这里虽然只是报错，但配合下面的工具使用效果更佳。
+                        // 如果要强制禁止保存，可能需要抛出异常或重置 Asset。
+                        return paths;
+                    }
+                }
+            }
+        }
+        return paths;
+    }
+}
+```
+
+### B. 智能提取器 (Smart Asset Extractor)
+
+这是一个“一键搬家”工具。  
+用法：在 Project 窗口选中 `_ThirdParty` 里的一个 FBX 模型 -> 右键 -> `Industrial Tools -> Smart Extract to Art`。
+
+功能：自动找到该模型用到的材质和贴图，把它们全部移动到 `Assets/Art/Imported/[模型名]` 文件夹，并保持引用不断裂。
+
+```csharp
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+using System.Collections.Generic;
+
+public class SmartExtractor : Editor
+{
+    [MenuItem("Assets/Industrial Tools/Smart Extract to Art (Move)", false, 20)]
+    static void ExtractAsset()
+    {
+        // 1. 获取选中的主资产
+        Object selectedObject = Selection.activeObject;
+        string mainAssetPath = AssetDatabase.GetAssetPath(selectedObject);
+
+        if (string.IsNullOrEmpty(mainAssetPath) || !mainAssetPath.StartsWith("Assets/_ThirdParty"))
+        {
+            EditorUtility.DisplayDialog("Error", "请在 _ThirdParty 文件夹内选中一个主要资产 (如 FBX)", "OK");
+            return;
+        }
+
+        // 2. 准备目标路径
+        string assetName = Path.GetFileNameWithoutExtension(mainAssetPath);
+        string targetFolder = $"Assets/Art/Imported/{assetName}"; // 自动创建同名文件夹
+        
+        if (!Directory.Exists(targetFolder))
+        {
+            Directory.CreateDirectory(targetFolder);
+            AssetDatabase.Refresh();
+        }
+
+        // 3. 获取所有依赖 (递归查找)
+        string[] dependencies = AssetDatabase.GetDependencies(mainAssetPath, true);
+        List<string> assetsToMove = new List<string>();
+
+        foreach (string depPath in dependencies)
+        {
+            // 只移动在 _ThirdParty 里的东西，且排除脚本 (脚本通常不需要移动)
+            if (depPath.StartsWith("Assets/_ThirdParty") && !depPath.EndsWith(".cs"))
+            {
+                if (!assetsToMove.Contains(depPath))
+                {
+                    assetsToMove.Add(depPath);
+                }
+            }
+        }
+
+        // 4. 执行移动
+        int moveCount = 0;
+        AssetDatabase.StartAssetEditing(); // 暂停导入，加速移动
+        
+        try
+        {
+            foreach (string srcPath in assetsToMove)
+            {
+                string fileName = Path.GetFileName(srcPath);
+                string dstPath = $"{targetFolder}/{fileName}";
+
+                // 避免同名覆盖
+                if (srcPath == dstPath) continue;
+
+                // 使用 MoveAsset，Unity 会自动更新所有引用！这是关键！
+                string error = AssetDatabase.MoveAsset(srcPath, dstPath);
+                
+                if (string.IsNullOrEmpty(error))
+                {
+                    moveCount++;
+                }
+                else
+                {
+                    Debug.LogError($"移动失败: {srcPath} -> {error}");
+                }
+            }
+        }
+        finally
+        {
+            AssetDatabase.StopAssetEditing();
+            AssetDatabase.Refresh();
+        }
+
+        Debug.Log($"<color=green>成功提取 {moveCount} 个文件到 {targetFolder}</color>");
+        
+        // 5. 选中移动后的主文件
+        string newMainPath = $"{targetFolder}/{Path.GetFileName(mainAssetPath)}";
+        Object newObj = AssetDatabase.LoadAssetAtPath<Object>(newMainPath);
+        if (newObj != null) Selection.activeObject = newObj;
+    }
+}
+```
+
+## 9. 提交前检查清单（Pre-Commit）
 
 1. 无 `Missing Prefab` / 丢失引用。  
 2. 场景根目录无测试垃圾对象。  
 3. 灯光烘焙状态正确（或明确使用 Realtime）。  
 4. 静态环境对象正确标记 `Static`（关系到 Occlusion Culling / NavMesh）。
 
-## 8. 标准 Scrap 预制体范例
+## 10. 标准 Scrap 预制体范例
 
 ```text
 ▼ Scrap_Engine (Layer: Interactable, Tag: Scrap)
@@ -170,3 +358,4 @@ title: "Unity 游戏开发工业化标准流程指南"
 - 逻辑与视觉可独立迭代。
 - 批量变体继承统一行为。
 - 跨团队协作时引用与合并风险最小化。
+
