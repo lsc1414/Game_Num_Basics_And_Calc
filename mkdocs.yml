@@ -290,6 +290,7 @@ nav:
     - Technical_Implementation:
       - ⛰️ 3D 地形 vs 平面地形选型分析: Dev_Guides/Technical_Implementation/Terrain_3D_vs_2D_Analysis.md
       - 🎨 GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall: Dev_Guides/Technical_Implementation/GPU_Instancing_Guide.md
+      - 🌐 Unity Steam Host+Client 联网游戏深度研究: Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive.md
       - 🎬 技能动画管线：从 Animator Event 到可视化时间轴: Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline.md
       - 🎮 游戏开发最佳实践：Tag系统、热重载与快速测试: Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices.md
       - 🎲 PRD算法完整实现指南: Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete.md

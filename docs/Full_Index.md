@@ -18,6 +18,7 @@ title: "📚 全站索引"
 - 新成员上手：[`START_HERE`](START_HERE.md) -> [`NAVIGATION`](NAVIGATION.md) -> [`全员速查表`](Dev_Guides/Project_Cheat_Sheet)
 - 做数值框架：[`核心数值体系定义手册`](Design/Numerical_Manual) / [`游戏数值框架构建指南`](Design/Numerical/Numerical_Framework_Methodology) / [`博弈论在PVP数值平衡中的应用`](Design/Numerical/Game_Theory_In_Balance)
 - 做战斗与机制：[`战斗系统详解`](Design/Mechanics/Combat_System) / [`索敌系统综合指南`](Tech/Mechanics/Targeting_System_Complete) / [`投射物系统深度解析`](Tech/Mechanics/Projectile_System_DeepDive)
+- 做联网与联机：[`Unity Steam Host+Client 联网游戏深度研究`](Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive) / [`网络架构与协议`](Tech/Network_Architecture) / [`全局埋点实战指南`](Dev_Guides/Technical_Implementation/Game_Analytics_Guide)
 - 做经济与商业化：[`经济系统与通胀控制模型`](Design/Systems/Economy_And_Inflation_Model) / [`通行证经济学`](Design/LiveOps/Battle_Pass_Economy) / [`免费游戏与付费游戏的数值设计策略`](Design/Product_Strategy/F2P_vs_Premium_Economics)
 - 做留存与成长：[`心理学在玩家成长曲线中的应用`](Design/Psychology/Progression_Psychology) / [`局外成长系统`](Design/Systems/Meta_Progression) / [`新手引导与首局体验`](Design/UX/FTUE_Best_Practices)
 - 做性能优化：[`性能预算与优化标准`](Tech/Performance_Budget) / [`Unity C# 进阶开发：高性能与底层原理`](Tech/Optimization/Unity_Advanced_CSharp_Performance) / [`移动优化综合指南`](Tech/Performance/Mobile_Optimization_Complete)
@@ -246,6 +247,7 @@ title: "📚 全站索引"
 
 - [⛰️ 3D 地形 vs 平面地形选型分析](Dev_Guides/Technical_Implementation/Terrain_3D_vs_2D_Analysis)
 - [🎨 GPU Instancing 渲染优化：15,000 个单位 1 个 DrawCall](Dev_Guides/Technical_Implementation/GPU_Instancing_Guide)
+- [🌐 Unity Steam Host+Client 联网游戏深度研究](Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive)
 - [🎬 技能动画管线：从 Animator Event 到可视化时间轴](Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline)
 - [🎮 游戏开发最佳实践：Tag系统、热重载与快速测试](Dev_Guides/Technical_Implementation/Game_Dev_Best_Practices)
 - [🎲 PRD算法完整实现指南](Dev_Guides/Technical_Implementation/PRD_Algorithm_Complete)

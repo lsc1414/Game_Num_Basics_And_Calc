@@ -19,6 +19,7 @@ title: "阅读导航中心"
 - [性能预算与优化标准](Tech/Performance_Budget)
 - [Unity C# 进阶开发：高性能与底层原理](Tech/Optimization/Unity_Advanced_CSharp_Performance)
 - [网络架构与协议](Tech/Network_Architecture)
+- [Unity Steam Host+Client 联网游戏深度研究](Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive)
 
 ### 美术（TA/UI/VFX）
 
@@ -81,6 +82,7 @@ title: "阅读导航中心"
 - [Luban 配表实战与 ID 命名规范](Tech/Luban_Config_Guide)
 - [技能动画管线：从 Animator Event 到可视化时间轴](Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline)
 - [游戏文本配置方案：富文本、动态参数与多语言架构](Dev_Guides/Technical_Implementation/Skill_Text_Localization_System)
+- [Unity Steam Host+Client 联网游戏深度研究](Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive)
 
 ### D. 上线与长线期（运营与优化）
 
@@ -108,6 +110,12 @@ title: "阅读导航中心"
 - [性能预算与优化标准](Tech/Performance_Budget)
 - [ECS 性能优化实战：从 Vampire Survivors 到 Unity DOTS](Dev_Guides/Technical_Implementation/ECS_Performance_Optimization)
 - [移动端深度优化指南](Tech/Mobile_Optimization_Guide)
+
+### 我要做“Steam 联机与组队”
+
+- [Unity Steam Host+Client 联网游戏深度研究](Dev_Guides/Technical_Implementation/Unity_Steam_Host_Client_Networking_DeepDive)
+- [网络架构与协议](Tech/Network_Architecture)
+- [全局埋点实战指南：用数据上帝视角“看”游戏](Dev_Guides/Technical_Implementation/Game_Analytics_Guide)
 
 ### 我要做“上线与运营闭环”
 
