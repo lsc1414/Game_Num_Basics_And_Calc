@@ -1,4 +1,4 @@
----
+﻿---
 sidebarTitle: "Steam Unity 功能上下限知识库"
 title: "Steam Unity 游戏功能：下限保底与上限突破知识库"
 ---
@@ -664,23 +664,24 @@ Assets/
 
 ## 16. 参考资料（官方）
 
-- Unity Input System：<https://docs.unity3d.com/Packages/com.unity.inputsystem@latest>
-- Unity Localization：<https://docs.unity3d.com/Packages/com.unity.localization@latest>
-- Steamworks API：<https://partner.steamgames.com/doc/api>
-- Steam Input：<https://partner.steamgames.com/doc/features/steam_controller>
-- ISteamInput：<https://partner.steamgames.com/doc/api/isteaminput>
-- ISteamUtils（Overlay/虚拟键盘）：<https://partner.steamgames.com/doc/api/ISteamUtils>
-- Steam Cloud：<https://partner.steamgames.com/doc/features/cloud>
-- ISteamRemoteStorage：<https://partner.steamgames.com/doc/api/ISteamRemoteStorage>
-- ISteamUserStats：<https://partner.steamgames.com/doc/api/ISteamUserStats>
-- ISteamApps（DLC 检查）：<https://partner.steamgames.com/doc/api/ISteamApps>
-- Steam Matchmaking & Lobbies：<https://partner.steamgames.com/doc/features/multiplayer/matchmaking>
-- SteamNetworkingSockets：<https://partner.steamgames.com/doc/api/ISteamNetworkingSockets>
-- Steam Playtest：<https://partner.steamgames.com/doc/features/playtest>
-- Steam Deck 兼容性：<https://partner.steamgames.com/doc/steamdeck/compat>
-- Steam Deck 验证流程：<https://partner.steamgames.com/doc/steamdeck/compat#deckcompatchecklist>
-- Steam Timelines：<https://partner.steamgames.com/doc/features/timelines>
-- Steam 微交易实现：<https://partner.steamgames.com/doc/features/microtransactions/implementation>
-- Steam Inventory Service：<https://partner.steamgames.com/doc/features/inventory>
-- Steam Error Reporting：<https://partner.steamgames.com/doc/features/error_reporting>
-- Steam Workshop：<https://partner.steamgames.com/doc/features/workshop>
+- Unity Input System：[https://docs.unity3d.com/Packages/com.unity.inputsystem@latest](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest)
+- Unity Localization：[https://docs.unity3d.com/Packages/com.unity.localization@latest](https://docs.unity3d.com/Packages/com.unity.localization@latest)
+- Steamworks API：[https://partner.steamgames.com/doc/api](https://partner.steamgames.com/doc/api)
+- Steam Input：[https://partner.steamgames.com/doc/features/steam_controller](https://partner.steamgames.com/doc/features/steam_controller)
+- ISteamInput：[https://partner.steamgames.com/doc/api/isteaminput](https://partner.steamgames.com/doc/api/isteaminput)
+- ISteamUtils（Overlay/虚拟键盘）：[https://partner.steamgames.com/doc/api/ISteamUtils](https://partner.steamgames.com/doc/api/ISteamUtils)
+- Steam Cloud：[https://partner.steamgames.com/doc/features/cloud](https://partner.steamgames.com/doc/features/cloud)
+- ISteamRemoteStorage：[https://partner.steamgames.com/doc/api/ISteamRemoteStorage](https://partner.steamgames.com/doc/api/ISteamRemoteStorage)
+- ISteamUserStats：[https://partner.steamgames.com/doc/api/ISteamUserStats](https://partner.steamgames.com/doc/api/ISteamUserStats)
+- ISteamApps（DLC 检查）：[https://partner.steamgames.com/doc/api/ISteamApps](https://partner.steamgames.com/doc/api/ISteamApps)
+- Steam Matchmaking & Lobbies：[https://partner.steamgames.com/doc/features/multiplayer/matchmaking](https://partner.steamgames.com/doc/features/multiplayer/matchmaking)
+- SteamNetworkingSockets：[https://partner.steamgames.com/doc/api/ISteamNetworkingSockets](https://partner.steamgames.com/doc/api/ISteamNetworkingSockets)
+- Steam Playtest：[https://partner.steamgames.com/doc/features/playtest](https://partner.steamgames.com/doc/features/playtest)
+- Steam Deck 兼容性：[https://partner.steamgames.com/doc/steamdeck/compat](https://partner.steamgames.com/doc/steamdeck/compat)
+- Steam Deck 验证流程：[https://partner.steamgames.com/doc/steamdeck/compat#deckcompatchecklist](https://partner.steamgames.com/doc/steamdeck/compat#deckcompatchecklist)
+- Steam Timelines：[https://partner.steamgames.com/doc/features/timelines](https://partner.steamgames.com/doc/features/timelines)
+- Steam 微交易实现：[https://partner.steamgames.com/doc/features/microtransactions/implementation](https://partner.steamgames.com/doc/features/microtransactions/implementation)
+- Steam Inventory Service：[https://partner.steamgames.com/doc/features/inventory](https://partner.steamgames.com/doc/features/inventory)
+- Steam Error Reporting：[https://partner.steamgames.com/doc/features/error_reporting](https://partner.steamgames.com/doc/features/error_reporting)
+- Steam Workshop：[https://partner.steamgames.com/doc/features/workshop](https://partner.steamgames.com/doc/features/workshop)
+

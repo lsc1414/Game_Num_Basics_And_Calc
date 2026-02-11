@@ -1,4 +1,4 @@
----
+﻿---
 sidebarTitle: "Steam游戏下限与上限指南"
 title: "Steam游戏 下限保底与上限突破指南"
 ---
@@ -211,11 +211,12 @@ Steam 官方说明，系统自动通知愿望单用户的常见场景主要是�
 
 ## 10. 参考资料（官方）
 
-- Steamworks 文档主页：<https://partner.steamgames.com/doc/home>
-- 发布流程与时间要求：<https://partner.steamgames.com/doc/store/releasing>
-- 审核流程：<https://partner.steamgames.com/doc/store/review_process>
-- 可见性与轮次：<https://partner.steamgames.com/doc/marketing/visibility>
-- 折扣规则：<https://partner.steamgames.com/doc/marketing/discounts>
-- 愿望单通知：<https://partner.steamgames.com/doc/marketing/wishlist>
-- 活动档期（含 Next Fest）：<https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest>
-- Steam 退款政策：<https://store.steampowered.com/steam_refunds/>
+- Steamworks 文档主页：[https://partner.steamgames.com/doc/home](https://partner.steamgames.com/doc/home)
+- 发布流程与时间要求：[https://partner.steamgames.com/doc/store/releasing](https://partner.steamgames.com/doc/store/releasing)
+- 审核流程：[https://partner.steamgames.com/doc/store/review_process](https://partner.steamgames.com/doc/store/review_process)
+- 可见性与轮次：[https://partner.steamgames.com/doc/marketing/visibility](https://partner.steamgames.com/doc/marketing/visibility)
+- 折扣规则：[https://partner.steamgames.com/doc/marketing/discounts](https://partner.steamgames.com/doc/marketing/discounts)
+- 愿望单通知：[https://partner.steamgames.com/doc/marketing/wishlist](https://partner.steamgames.com/doc/marketing/wishlist)
+- 活动档期（含 Next Fest）：[https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest](https://partner.steamgames.com/doc/marketing/upcoming_events/nextfest)
+- Steam 退款政策：[https://store.steampowered.com/steam_refunds/](https://store.steampowered.com/steam_refunds/)
+
