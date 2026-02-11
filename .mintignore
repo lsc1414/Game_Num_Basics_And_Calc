@@ -10,7 +10,7 @@ reports/
 scripts/
 site/
 wechat/
-Dev_Guides/
+/Dev_Guides/
 
 # Ignore generated/temp artifacts
 .tmp_*
