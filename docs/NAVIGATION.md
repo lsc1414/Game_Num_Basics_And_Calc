@@ -39,6 +39,8 @@ title: "阅读导航中心"
 ### 发行（平台与上线）
 
 - [发射前夜：上线前的生死清单](Dev_Guides/Publishing/Launch_Readiness_Checklist)
+- [Steam游戏 下限保底与上限突破指南](Dev_Guides/Publishing/Steam_Floor_And_Ceiling_Guide)
+- [Steam Unity 游戏功能：下限与上限知识库](Dev_Guides/Publishing/Steam_Unity_Functionality_Floor_Ceiling_KB)
 - [Steam 发行策略研究](Dev_Guides/Publishing/Steam_Strategy)
 - [TapTap 发行策略研究](Dev_Guides/Publishing/TapTap_Strategy)
 - [Steam Unity 游戏开发标准：下限与上限](Dev_Guides/Publishing/Steam_Unity_Quality_Standards)

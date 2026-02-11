@@ -357,6 +357,8 @@
             "pages": [
               "docs/Dev_Guides/Publishing/TapTap_Strategy",
               "docs/Guides/Publishing/Steam_Complete_Guide",
+              "docs/Dev_Guides/Publishing/Steam_Floor_And_Ceiling_Guide",
+              "docs/Dev_Guides/Publishing/Steam_Unity_Functionality_Floor_Ceiling_KB",
               "docs/Dev_Guides/Publishing/Launch_Readiness_Checklist"
             ]
           },

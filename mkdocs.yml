@@ -284,6 +284,8 @@ nav:
       - 🕵️‍♂️ 福尔摩斯调试法：像侦探一样修 Bug: Dev_Guides/Debugging/Sherlock_Holmes_Debugging_Guide.md
     - Publishing:
       - 📱 TapTap 发行策略研究: Dev_Guides/Publishing/TapTap_Strategy.md
+      - 🧭 Steam游戏 下限保底与上限突破指南: Dev_Guides/Publishing/Steam_Floor_And_Ceiling_Guide.md
+      - 🧩 Steam Unity 功能上下限知识库: Dev_Guides/Publishing/Steam_Unity_Functionality_Floor_Ceiling_KB.md
       - 🚀 发射前夜：上线前的生死清单: Dev_Guides/Publishing/Launch_Readiness_Checklist.md
     - Technical_Implementation:
       - ⛰️ 3D 地形 vs 平面地形选型分析: Dev_Guides/Technical_Implementation/Terrain_3D_vs_2D_Analysis.md
