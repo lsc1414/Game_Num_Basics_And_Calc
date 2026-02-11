@@ -55,6 +55,7 @@ docs/
 
 - [Unity 资产命名规范](Unity_Standards/Asset_Naming)
 - [项目文件夹结构](Unity_Standards/Folder_Structure)
+- [Unity 工业化标准流程指南](Unity_Standards/Unity_Industrial_Development_Workflow_Guide)
 - [全员速查表](Dev_Guides/Project_Cheat_Sheet)
 
 ## 💡 常见问题

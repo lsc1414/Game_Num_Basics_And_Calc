@@ -79,6 +79,7 @@ title: "阅读导航中心"
 ### C. 制作期（内容与工程化）
 
 - [工业化游戏开发：ScriptableObject 的生存指南](Dev_Guides/Technical_Implementation/ScriptableObject_vs_Excel_Workflow)
+- [Unity 游戏开发工业化标准流程指南](Unity_Standards/Unity_Industrial_Development_Workflow_Guide)
 - [Luban 配表实战与 ID 命名规范](Tech/Luban_Config_Guide)
 - [技能动画管线：从 Animator Event 到可视化时间轴](Dev_Guides/Technical_Implementation/Skill_Animation_Pipeline)
 - [游戏文本配置方案：富文本、动态参数与多语言架构](Dev_Guides/Technical_Implementation/Skill_Text_Localization_System)

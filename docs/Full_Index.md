@@ -25,7 +25,7 @@ title: "📚 全站索引"
 - 做开发提效：[`游戏开发工具链指南`](Dev_Guides/Tools/Game_Dev_Toolchain_Guide) / [`战斗仿真系统`](Dev_Guides/Tools/Combat_Simulation_System) / [`自动化 WIKI 生成指南`](Dev_Guides/Tools/Automated_Wiki_Generation)
 - 做调试与运营：[`调试指令与 GM 工具`](Dev_Guides/Tools/Debug_Console_And_Cheats) / [`活动排期策略`](Design/LiveOps/Event_Cadence_Strategy) / [`社区危机公关指南`](Dev_Guides/Community/Community_Crisis_Management)
 - 做发行上线：[`Steam 发行综合指南`](Guides/Publishing/Steam_Complete_Guide) / [`Steam游戏 下限保底与上限突破指南`](Dev_Guides/Publishing/Steam_Floor_And_Ceiling_Guide) / [`Steam Unity 游戏功能：下限与上限知识库`](Dev_Guides/Publishing/Steam_Unity_Functionality_Floor_Ceiling_KB) / [`TapTap 发行策略研究`](Dev_Guides/Publishing/TapTap_Strategy) / [`上线前的生死清单`](Dev_Guides/Publishing/Launch_Readiness_Checklist)
-- 查规范：[`Unity 资产命名规范`](Unity_Standards/Asset_Naming) / [`Unity 项目文件夹结构规范`](Unity_Standards/Folder_Structure) / [`标准资源管理工业流程`](Unity_Standards/Standard_Resource_Workflow)
+- 查规范：[`Unity 资产命名规范`](Unity_Standards/Asset_Naming) / [`Unity 项目文件夹结构规范`](Unity_Standards/Folder_Structure) / [`标准资源管理工业流程`](Unity_Standards/Standard_Resource_Workflow) / [`Unity 游戏开发工业化标准流程指南`](Unity_Standards/Unity_Industrial_Development_Workflow_Guide)
 
 ## 🗂️ 按目录完整索引
 
@@ -364,4 +364,5 @@ title: "📚 全站索引"
 - [Unity 资产命名规范与强制检查工具](Unity_Standards/Asset_Naming)
 - [🏭 标准资源管理工业流程](Unity_Standards/Standard_Resource_Workflow)
 - [📂 Unity 项目文件夹结构规范](Unity_Standards/Folder_Structure)
+- [🏗️ Unity 游戏开发工业化标准流程指南](Unity_Standards/Unity_Industrial_Development_Workflow_Guide)
 - [📦 Unity 资产管理实战指南](Unity_Standards/Asset_Management)
