@@ -114,7 +114,6 @@ title: "游戏开发工具链指南：加速迭代的秘密武器"
   - **UI 代码生成 (UI Binding)**:
     - **痛点**: 手写 `public Button btnStart;` 然后在 Inspector 里拖拽，容易丢失引用。
     - **解决**: 编写工具遍历 Prefab，自动生成 View 类并绑定引用。
-      {% raw %}
     ```csharp
     // 示例: 自动生成 UI 绑定代码 (UIGenerator.cs)
     // 遍历 Prefab，找到所有以 "btn_" 开头的节点，自动生成 C# 引用
@@ -144,13 +143,11 @@ title: "游戏开发工具链指南：加速迭代的秘密武器"
         }
     }
     ```
-    {% endraw %}
 
 - **构建自动化 (Build Automation)**:
   - **Jenkins / GitHub Actions / TeamCity**:
     - **Commit Build**: 每次提交，跑一遍单元测试。
     - **Nightly Build**: 每晚自动打出 Android/iOS 包，上传到内网服务器，并通过飞书/钉钉机器人通知群组。
-      {% raw %}
     ```yaml
     # 示例: GitHub Actions (main.yml)
     name: Build Android
@@ -167,7 +164,6 @@ title: "游戏开发工具链指南：加速迭代的秘密武器"
               androidKeystoreName: user.keystore
               androidKeystorePass: ${{ secrets.KEYSTORE_PASS }}
     ```
-    {% endraw %}
 
 - **质量控制**:
 
